@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lean LCA W997 Nonterminal Progress</title>
+  <style id="html-progress-report-style">
+:root {
+  color-scheme: light;
+  --bg: #f6f7f4;
+  --panel: #ffffff;
+  --panel-soft: #fbfcfd;
+  --ink: #20242a;
+  --muted: #626b75;
+  --line: #d8ded8;
+  --accent: #0f6b6e;
+  --accent-2: #87510d;
+  --ok: #166534;
+  --warn: #9a5b00;
+  --risk: #9f2f2f;
+  --info-bg: #e7f1f2;
+  --ok-bg: #e9f5ee;
+  --warn-bg: #fff3dc;
+  --risk-bg: #fdeceb;
+  --code: #eef2f4;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .045);
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 14px/1.56 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0;
+}
+header.report-hero {
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.wrap {
+  width: min(1180px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: 24px 0;
+}
+main.wrap { padding-bottom: 48px; }
+h1, h2, h3 { margin: 0; line-height: 1.22; letter-spacing: 0; }
+h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 760; }
+h2 { font-size: 20px; margin-bottom: 12px; font-weight: 740; }
+h3 { font-size: 16px; margin-bottom: 7px; font-weight: 720; }
+p { margin: 8px 0 0; }
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .92em;
+  background: var(--code);
+  padding: 1px 5px;
+  border-radius: 4px;
+  overflow-wrap: anywhere;
+}
+.lede { color: var(--muted); max-width: 920px; margin-top: 8px; }
+.toolbar, .badges { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 16px; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  background: var(--panel-soft);
+  white-space: nowrap;
+}
+.badge.ok { color: var(--ok); background: var(--ok-bg); border-color: #bad8c4; }
+.badge.warn { color: var(--warn); background: var(--warn-bg); border-color: #ebcf93; }
+.badge.risk { color: var(--risk); background: var(--risk-bg); border-color: #e7b2ae; }
+.badge.info { color: var(--accent); background: var(--info-bg); border-color: #bad4d5; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+section, .card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 17px;
+  box-shadow: var(--shadow);
+}
+section { margin-top: 16px; }
+.span-3 { grid-column: span 3; }
+.span-4 { grid-column: span 4; }
+.span-6 { grid-column: span 6; }
+.span-8 { grid-column: span 8; }
+.span-12 { grid-column: span 12; }
+.metric {
+  font-size: clamp(21px, 3vw, 30px);
+  font-weight: 780;
+  line-height: 1.14;
+  margin-top: 7px;
+}
+.label, .meta { color: var(--muted); font-size: 13px; }
+.note, .warnbox, .riskbox {
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-top: 10px;
+  border-left: 4px solid var(--accent);
+  background: var(--info-bg);
+}
+.warnbox { border-left-color: var(--warn); background: var(--warn-bg); }
+.riskbox { border-left-color: var(--risk); background: var(--risk-bg); }
+.timeline { display: grid; gap: 10px; margin-top: 8px; }
+.event {
+  border-left: 3px solid var(--accent-2);
+  padding: 10px 0 10px 13px;
+  background: linear-gradient(90deg, rgba(135, 81, 13, .06), transparent 32%);
+}
+.event time { display: block; color: var(--muted); font-size: 12px; margin-bottom: 4px; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 14px;
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+  padding: 9px 8px;
+}
+th { color: var(--muted); font-weight: 680; background: rgba(127, 127, 127, .06); }
+ul, ol { margin: 8px 0 0; padding-left: 20px; }
+li { margin: 5px 0; }
+textarea.goal-text {
+  width: 100%;
+  min-height: 150px;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px;
+  background: var(--code);
+  color: var(--ink);
+  font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+@media (max-width: 900px) {
+  .wrap { width: min(100% - 28px, 1180px); padding-top: 18px; }
+  .span-3, .span-4, .span-6, .span-8, .span-12 { grid-column: span 12; }
+  section, .card { padding: 15px; }
+}
+  </style>
+</head>
+<body>
+  <header class="report-hero">
+    <div class="wrap">
+      <p class="badge info">Generated 2026-05-27 15:48 JST</p>
+      <h1>Lean LCA W997 Nonterminal Progress</h1>
+      <p class="lede">W997 packages the remaining W715 target compactness and W987 branch-specific full-data assumptions behind one provider boundary. Product success remains false under the immutable original four-task contract.</p>
+      <div class="badges">
+        <span class="badge ok">Lean route checked</span>
+        <span class="badge warn">Nonterminal</span>
+        <span class="badge risk">Goal completion forbidden</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="grid" aria-label="Current W997 status">
+      <article class="card span-3">
+        <p class="label">Latest Increment</p>
+        <div class="metric">W997</div>
+        <p>One branch-full-data provider now feeds the W996 route.</p>
+      </article>
+      <article class="card span-3">
+        <p class="label">Product Success</p>
+        <div class="metric">False</div>
+        <p>No final original-four-task witness or product-success packet exists.</p>
+      </article>
+      <article class="card span-3">
+        <p class="label">Exposed Inputs</p>
+        <div class="metric">1</div>
+        <p>One provider input remains explicit, still containing W715 and W987.</p>
+      </article>
+      <article class="card span-3">
+        <p class="label">Goal Update</p>
+        <div class="metric">Forbidden</div>
+      <p><code>update_goal(status="complete")</code> remains disallowed.</p>
+      </article>
+    </section>
+
+    <section>
+      <h2>What Changed</h2>
+      <p>W997 adds <code>ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRoute.lean</code>.</p>
+      <p>The new route projects W715 target surjective-compact data and W987 branch-specific full data from one W997 provider, constructs the W996 surface, and then delegates through W996, W995, W994, W993, W988, W987, W986, W985, W984, W983, W982, W981, W980, W979, W978, W977, W976, W975, W974, W973, W972, W971, W970, W969, W968, W967, W966, W965, W964, W963, W962, W961, W959, W958, W957, W956, W955, W954, W953, and W952.</p>
+      <p>The increment is intentionally nonterminal: W997 reduces W996's two explicit provider input names to one, but that provider still contains W715 and W987 and does not construct the original four-task completion witness.</p>
+    </section>
+
+    <section>
+      <h2>Artifact Paths</h2>
+      <table>
+        <thead>
+          <tr><th>Artifact</th><th>WSL path</th><th>Explorer path</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Report</td>
+            <td><a href="file://wsl.localhost/Ubuntu-24.04/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html" target="_blank" rel="noopener noreferrer"><code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html</code></a></td>
+            <td><a href="file://wsl.localhost/Ubuntu-24.04/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html" target="_blank" rel="noopener noreferrer"><code>\\wsl.localhost\Ubuntu-24.04\home\roku\src\Rokurolize\lean-lca-exact-challenge-20260518\scratch-log.html</code></a></td>
+          </tr>
+          <tr>
+            <td>W997 module</td>
+            <td><a href="file://wsl.localhost/Ubuntu-24.04/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRoute.lean" target="_blank" rel="noopener noreferrer"><code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRoute.lean</code></a></td>
+            <td><a href="file://wsl.localhost/Ubuntu-24.04/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRoute.lean" target="_blank" rel="noopener noreferrer"><code>\\wsl.localhost\Ubuntu-24.04\home\roku\src\Rokurolize\lean-lca-exact-challenge-20260518\LeanLCAExactChallenge\Derived\ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRoute.lean</code></a></td>
+          </tr>
+          <tr>
+            <td>Evidence root</td>
+            <td><a href="file://wsl.localhost/Ubuntu-24.04/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T064600Z_codex_parent_w997_target_surjective_compact_branch_full_data" target="_blank" rel="noopener noreferrer"><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T064600Z_codex_parent_w997_target_surjective_compact_branch_full_data</code></a></td>
+            <td><a href="file://wsl.localhost/Ubuntu-24.04/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T064600Z_codex_parent_w997_target_surjective_compact_branch_full_data" target="_blank" rel="noopener noreferrer"><code>\\wsl.localhost\Ubuntu-24.04\home\roku\codex-consultant-20260517\outputs\lean_lca_hourly_strategy_runs\20260527T064600Z_codex_parent_w997_target_surjective_compact_branch_full_data</code></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Verification Plan</h2>
+      <table>
+        <thead>
+          <tr><th>Gate</th><th>Status</th><th>Evidence</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Focused Lean</td><td>Passed</td><td><code>w997_focused_lean.log</code></td></tr>
+          <tr><td>Named Lake module build</td><td>Passed</td><td><code>w997_named_module_build.log</code></td></tr>
+          <tr><td>Root package and audit imports</td><td>Passed</td><td><code>w997_root_import.log</code>, <code>w997_root_module_build.log</code>, <code>w997_product_success_declarations.log</code>, <code>w997_original_four_audit.log</code>, <code>w997_required_declarations.log</code></td></tr>
+          <tr><td>Full build and scan gates</td><td>Passed</td><td><code>w997_full_lake_build.log</code>, <code>w997_forbidden_lean_token_scan.log</code>, <code>w997_product_success_true_scan.log</code>, <code>w997_git_diff_check.log</code></td></tr>
+          <tr><td>Report and browser evidence</td><td>Passed</td><td><code>w997_html_check_report.log</code>, <code>w997_browser_render.log</code>, <code>browser_evidence_fidelity.json</code></td></tr>
+          <tr><td>JSON and hash consistency</td><td>Passed</td><td><code>w997_json_validation.log</code>, <code>w997_source_tree_hash_consistency.log</code></td></tr>
+          <tr><td>Contract audits</td><td>Expected nonterminal</td><td><code>w997_contract_audit.log</code> accepts the nonterminal state; <code>w997_external_audit_nonterminal_expected.log</code> stops at the expected product-success gate.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Next Safe Action</h2>
+      <p>Continue from W997 by constructing the W997 branch-full-data provider from real data, especially the underlying W715 and W987 obligations, while preserving the W973 closed-embedding branch-specific surface inside W987/W986.</p>
+      <div class="warnbox">Do not mark the goal complete from W997. The immutable four-task contract still requires a no-argument final witness, product-success terminal outcome, and clean review packet evidence.</div>
+    </section>
+  </main>
+</body>
+</html>

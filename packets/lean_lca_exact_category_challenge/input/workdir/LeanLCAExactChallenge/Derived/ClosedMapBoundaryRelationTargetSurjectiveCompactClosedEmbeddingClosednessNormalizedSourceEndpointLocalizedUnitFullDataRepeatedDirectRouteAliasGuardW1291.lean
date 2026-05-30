@@ -1,0 +1,140 @@
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRepeatedDirectRouteAliasGuardW1290
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromCurrentFullDataToBranchFullDataDirectRouteW1179
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromComponentFieldsToCurrentFullDataDirectRouteW1180
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromUnitStrictExactIsoDataToComponentFieldsDirectRouteW1181
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromLocalizedUnitChoiceToUnitStrictExactIsoDataDirectRouteW1182
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromEndpointLocalizedUnitToLocalizedUnitChoiceDirectRouteW1183
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromNormalizedSourceEndpointLocalizedUnitToEndpointLocalizedUnitDirectRouteW1184
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromTargetClosedEmbeddingClosednessToNormalizedSourceEndpointLocalizedUnitDirectRouteW1185
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromTargetClosedEmbeddingClosednessNormalizedSourceEndpointToTargetClosedEmbeddingClosednessDirectRouteW1186
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromBranchFullDataToTargetClosedEmbeddingClosednessNormalizedSourceEndpointDirectRouteW1187
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromCurrentFullDataToBranchFullDataDirectRouteW1188
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromComponentFieldsToCurrentFullDataDirectRouteW1189
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromUnitStrictExactIsoDataToComponentFieldsDirectRouteW1190
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromLocalizedUnitChoiceToUnitStrictExactIsoDataDirectRouteW1191
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromEndpointLocalizedUnitToLocalizedUnitChoiceDirectRouteW1192
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromNormalizedSourceEndpointLocalizedUnitToEndpointLocalizedUnitDirectRouteW1193
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromTargetClosedEmbeddingClosednessToNormalizedSourceEndpointLocalizedUnitDirectRouteW1194
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromTargetClosedEmbeddingClosednessNormalizedSourceEndpointToTargetClosedEmbeddingClosednessDirectRouteW1195
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromBranchFullDataToTargetClosedEmbeddingClosednessNormalizedSourceEndpointDirectRouteW1196
+
+/-!
+W1291 records the repeated W1179-W1196 direct-route alias bands.
+-/
+
+set_option autoImplicit false
+set_option linter.style.longLine false
+
+namespace LeanLCAExactChallenge
+
+open CategoryTheory
+open CategoryTheory.Limits
+open Topology
+open DirectWppLimitFiniteShapeTransfer
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpSelectedW461TransportedPointIsoProviderV370SupportW506
+open WppOpClosedNatTransOrdinaryRelationTopologyV370SupportW511
+open WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512
+open WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+open WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484
+open WppOpClosedRangeMappedCokernelPreservationV370SupportW519
+
+namespace Dbounded
+
+theorem repeatedDirectRouteWrappersKeepCurrentSurfaceW1291 :
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270.length =
+      currentFullDataInputNamesW1179.length ∧
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270.length =
+      branchFullDataInputNamesW1187.length ∧
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270.length =
+      currentFullDataInputNamesW1188.length ∧
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270.length =
+      branchFullDataInputNamesW1196.length := by
+  rw [currentFullDataPayloadFromBranchFullDataInputNamesW1270_count,
+    currentFullDataInputNamesW1179_count,
+    branchFullDataInputNamesW1187_count,
+    currentFullDataInputNamesW1188_count,
+    branchFullDataInputNamesW1196_count]
+  exact ⟨rfl, rfl, rfl, rfl⟩
+
+theorem repeatedDirectRouteAliasesDoNotReduceW1291 :
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270.length <
+      componentFieldsInputNamesW1180.length ∧
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270.length <
+      unitStrictExactIsoDataInputNamesW1181.length ∧
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270.length <
+      localizedUnitChoiceInputNamesW1182.length ∧
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270.length <
+      endpointLocalizedUnitInputNamesW1183.length ∧
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270.length <
+      normalizedSourceEndpointLocalizedUnitInputNamesW1184.length ∧
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270.length <
+      targetClosedEmbeddingClosednessInputNamesW1185.length ∧
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270.length <
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointInputNamesW1186.length ∧
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270.length <
+      componentFieldsInputNamesW1189.length ∧
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270.length <
+      unitStrictExactIsoDataInputNamesW1190.length ∧
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270.length <
+      localizedUnitChoiceInputNamesW1191.length ∧
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270.length <
+      endpointLocalizedUnitInputNamesW1192.length ∧
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270.length <
+      normalizedSourceEndpointLocalizedUnitInputNamesW1193.length ∧
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270.length <
+      targetClosedEmbeddingClosednessInputNamesW1194.length ∧
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270.length <
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointInputNamesW1195.length := by
+  rw [currentFullDataPayloadFromBranchFullDataInputNamesW1270_count,
+    componentFieldsInputNamesW1180_count,
+    unitStrictExactIsoDataInputNamesW1181_count,
+    localizedUnitChoiceInputNamesW1182_count,
+    endpointLocalizedUnitInputNamesW1183_count,
+    normalizedSourceEndpointLocalizedUnitInputNamesW1184_count,
+    targetClosedEmbeddingClosednessInputNamesW1185_count,
+    targetClosedEmbeddingClosednessNormalizedSourceEndpointInputNamesW1186_count,
+    componentFieldsInputNamesW1189_count,
+    unitStrictExactIsoDataInputNamesW1190_count,
+    localizedUnitChoiceInputNamesW1191_count,
+    endpointLocalizedUnitInputNamesW1192_count,
+    normalizedSourceEndpointLocalizedUnitInputNamesW1193_count,
+    targetClosedEmbeddingClosednessInputNamesW1194_count,
+    targetClosedEmbeddingClosednessNormalizedSourceEndpointInputNamesW1195_count]
+  norm_num
+
+structure MetrizableRepeatedDirectRouteAliasGuardStateW1291 : Type where
+  seed : String
+  inspectedRoutes : List String
+  routeInputCounts : List (String × Nat)
+  providerSearchResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+def currentMetrizableRepeatedDirectRouteAliasGuardStateW1291 :
+    MetrizableRepeatedDirectRouteAliasGuardStateW1291 where
+  seed := "w1291-repeated-direct-route-alias-guard"
+  inspectedRoutes :=
+    ["W1179-W1187 direct-route alias band", "W1188-W1196 direct-route alias band"]
+  routeInputCounts :=
+    [("W1179 current-full-data wrapper", 1), ("W1187 branch-full-data wrapper", 1),
+      ("W1188 current-full-data wrapper", 1), ("W1196 branch-full-data wrapper", 1),
+      ("each middle band", 18), ("each middle band", 7), ("each middle band", 6),
+      ("each middle band", 5), ("each middle band", 4), ("each middle band", 3),
+      ("each middle band", 2)]
+  providerSearchResult :=
+    "proved: W1179/W1187/W1188/W1196 preserve the current W1270 one-input\
+      surface, while W1180-W1186 and W1189-W1195 expand"
+  remainingInputs := currentFullDataPayloadFromBranchFullDataInputNamesW1270
+  productSuccessClaimed := false
+
+theorem currentW1291RepeatedDirectRouteAliasGuard_productSuccess :
+    (let state :=
+        currentMetrizableRepeatedDirectRouteAliasGuardStateW1291;
+      state.productSuccessClaimed) =
+      false :=
+  rfl
+
+end Dbounded
+
+end LeanLCAExactChallenge

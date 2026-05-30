@@ -19,3 +19,7 @@ scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge
 
 `LeanLCAExactChallenge/MathlibSurvey.lean` records checked mathlib anchors. It
 is a starting point, not a solution.
+
+## Current Frontier
+
+W1271 is the latest checked nonterminal increment. It records that W999 constructs W987 branch full data only from a W977 current full-data payload, while W1270 constructs that W977 payload from W987. This is a one-input cycle guard, not a completion witness. Product success remains false.

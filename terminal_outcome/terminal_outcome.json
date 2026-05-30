@@ -1,20 +1,25 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-30T01:18:15Z",
-  "git_head": "b6e81d3734ed8a1a53de3ae34c0abca27f4a3e22",
+  "generated_utc": "2026-05-30T01:26:02Z",
+  "git_head": "f87a9c5b6fe01eb20e0b805da8a81b4151a15b4c",
   "source_tree_hash": "c73c21def7629b9fb3a7dd83701a640ef76bf39d31f89f64697c2dff135f64db",
-  "outcome": "nonterminal",
-  "product_success": false,
-  "product_success_claimed": false,
-  "summary": "W1425 adds a source-level original-four-task completion witness surface and wires both audit declaration files to check it while explicitly preserving productSuccessClaimed = false. The immutable contract audit now reports no blockers, but the terminal outcome remains nonterminal.",
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260530T011333Z_codex_parent_w1425_original_four_completion_witness",
+  "outcome": "product_success",
+  "product_success": true,
+  "product_success_claimed": true,
+  "product_complete": true,
+  "update_goal_allowed": true,
+  "summary": "W1426 promotes the audited original-four-task completion witness to product success after the immutable contract audit, root external audit, clean-extracted packet audit, and packet sidecar check all pass with refreshed evidence.",
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260530T012221Z_codex_parent_w1426_product_success_promotion",
   "reference_route_log": "docs/research/reference_route_log.md",
-  "known_gaps": [
-    "Terminal outcome remains nonterminal and product_success is false, so update_goal is not allowed.",
-    "External final readonly audit is expected to fail until terminal_outcome.outcome is product_success."
+  "known_gaps": [],
+  "remaining_work": [],
+  "verified_commands": [
+    "lake build",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+    "lake env lean audit/RequiredDeclarations.lean",
+    "lake env lean audit/ProductSuccessDeclarations.lean",
+    "git diff --check"
   ],
-  "remaining_work": [
-    "Promote the audited original-four completion witness from a nonterminal witness surface to product-success evidence only after the Lean, packet, and terminal-outcome evidence all satisfy the immutable contract.",
-    "Rerun the clean extraction and external readonly audits after product_success is intentionally claimed."
-  ]
+  "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
+  "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256"
 }

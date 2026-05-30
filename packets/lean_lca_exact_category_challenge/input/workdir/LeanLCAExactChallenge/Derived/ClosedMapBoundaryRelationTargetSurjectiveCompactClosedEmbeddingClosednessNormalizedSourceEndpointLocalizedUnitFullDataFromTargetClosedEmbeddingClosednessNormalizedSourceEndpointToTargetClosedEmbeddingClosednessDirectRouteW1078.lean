@@ -1,0 +1,398 @@
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromTargetClosedEmbeddingClosednessToNormalizedSourceEndpointLocalizedUnitDirectRouteW1077
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromTargetClosedEmbeddingClosednessNormalizedSourceEndpointDirectRoute
+
+/-!
+W1078 replaces W1077's W1014 target/closed-embedding-closedness input surface
+by the existing W1015 target/closedness/normalized-source/endpoint input
+surface. W1015 already constructs W1005, and W1078 feeds that provider into
+W1077.
+-/
+
+set_option autoImplicit false
+set_option linter.style.longLine false
+
+namespace LeanLCAExactChallenge
+
+open CategoryTheory
+open CategoryTheory.Limits
+open Topology
+open DirectWppLimitFiniteShapeTransfer
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpSelectedW461TransportedPointIsoProviderV370SupportW506
+open WppOpClosedNatTransOrdinaryRelationTopologyV370SupportW511
+open WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512
+open WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+open WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484
+open WppOpClosedRangeMappedCokernelPreservationV370SupportW519
+
+namespace Dbounded
+
+/-- W1078 constructs the W1005 target/closed-embedding-closedness surface from W1006 data. -/
+def targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1015
+    targetClosedEmbeddingClosednessNormalizedSourceEndpointData
+
+/-- W1078 constructs the W1004 normalized-source/endpoint-localized-unit surface from W1006 through W1077. -/
+def normalizedSourceEndpointLocalizedUnitDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  normalizedSourceEndpointLocalizedUnitDataProviderOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 constructs the W1003 endpoint-localized-unit surface from W1006 through W1077. -/
+def endpointLocalizedUnitDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  endpointLocalizedUnitDataProviderOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 constructs the W982 localized-unit-choice surface from W1006 through W1077. -/
+def localizedUnitChoiceDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  localizedUnitChoiceDataOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 constructs the W981 provider surface from W1006 through W1077. -/
+noncomputable def unitStrictExactIsoDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  unitStrictExactIsoDataOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 constructs the W971 component-field surface from W1006 through W1077. -/
+noncomputable def componentFieldsOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  componentFieldsOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 constructs the W1008 current-full-data surface from W1006 through W1077. -/
+noncomputable def currentFullDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  currentFullDataProviderOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 constructs the W1007 branch-full-data surface from W1006 through W1077. -/
+noncomputable def branchFullDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  branchFullDataProviderOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 exposes the rebuilt W1006 target/closedness/normalized-source/endpoint surface through W1077. -/
+noncomputable def targetClosedEmbeddingClosednessNormalizedSourceEndpointDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  targetClosedEmbeddingClosednessNormalizedSourceEndpointDataProviderOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 returns the rebuilt W1005 target/closed-embedding-closedness surface through W1077. -/
+noncomputable def targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 exposes the rebuilt W1004 normalized-source/endpoint-localized-unit surface through W1077. -/
+noncomputable def normalizedSourceEndpointLocalizedUnitDataProviderOfNormalizedSourceEndpointLocalizedUnitOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  normalizedSourceEndpointLocalizedUnitDataProviderOfNormalizedSourceEndpointLocalizedUnitOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 exposes the rebuilt W1003 endpoint-localized-unit surface after routing through W1077. -/
+noncomputable def endpointLocalizedUnitDataProviderOfEndpointLocalizedUnitOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  endpointLocalizedUnitDataProviderOfEndpointLocalizedUnitOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 exposes the rebuilt W982 localized-unit-choice surface after routing through W1077. -/
+noncomputable def localizedUnitChoiceDataOfLocalizedUnitChoiceOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  localizedUnitChoiceDataOfLocalizedUnitChoiceOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 exposes the rebuilt W981 surface after routing through W1077. -/
+noncomputable def unitStrictExactIsoDataOfUnitStrictExactIsoDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  unitStrictExactIsoDataOfUnitStrictExactIsoDataOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 exposes the rebuilt W971 component fields after routing through W1077. -/
+noncomputable def componentFieldsOfComponentFieldsOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  componentFieldsOfComponentFieldsOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 exposes the rebuilt W1008 current-full-data surface after routing through W1077. -/
+noncomputable def currentFullDataProviderOfCurrentFullDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  currentFullDataProviderOfCurrentFullDataOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 exposes the rebuilt W1007 branch-full-data surface after routing through W1077. -/
+noncomputable def branchFullDataProviderOfBranchFullDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  branchFullDataProviderOfBranchFullDataOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 exposes the rebuilt W1006 target/closedness/normalized-source/endpoint surface after routing through W1077. -/
+noncomputable def targetClosedEmbeddingClosednessNormalizedSourceEndpointDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  targetClosedEmbeddingClosednessNormalizedSourceEndpointDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 returns the nested rebuilt W1005 target/closed-embedding-closedness surface through W1077. -/
+noncomputable def targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessOfTargetClosedEmbeddingClosednessOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 exposes the twice-rebuilt W1004 normalized-source/endpoint-localized-unit surface through W1077. -/
+noncomputable def normalizedSourceEndpointLocalizedUnitDataProviderOfNormalizedSourceEndpointLocalizedUnitOfNormalizedSourceEndpointLocalizedUnitOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  normalizedSourceEndpointLocalizedUnitDataProviderOfNormalizedSourceEndpointLocalizedUnitOfNormalizedSourceEndpointLocalizedUnitOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 exposes the nested rebuilt W1003 endpoint-localized-unit surface through W1077. -/
+noncomputable def endpointLocalizedUnitDataProviderOfEndpointLocalizedUnitOfEndpointLocalizedUnitOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  endpointLocalizedUnitDataProviderOfEndpointLocalizedUnitOfEndpointLocalizedUnitOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 exposes the twice-rebuilt W982 localized-unit-choice surface after routing through W1077. -/
+noncomputable def localizedUnitChoiceDataOfLocalizedUnitChoiceOfLocalizedUnitChoiceOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  localizedUnitChoiceDataOfLocalizedUnitChoiceOfLocalizedUnitChoiceOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 exposes the twice-rebuilt W981 surface after routing through W1077. -/
+noncomputable def unitStrictExactIsoDataOfUnitStrictExactIsoDataOfUnitStrictExactIsoDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  unitStrictExactIsoDataOfUnitStrictExactIsoDataOfUnitStrictExactIsoDataOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 exposes the twice-rebuilt W971 component fields after routing through W1077. -/
+noncomputable def componentFieldsOfComponentFieldsOfComponentFieldsOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  componentFieldsOfComponentFieldsOfComponentFieldsOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 exposes the rebuilt W1008 current-full-data surface after the nested W1077 pass. -/
+noncomputable def currentFullDataProviderOfCurrentFullDataOfCurrentFullDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  currentFullDataProviderOfCurrentFullDataOfCurrentFullDataOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 exposes the rebuilt W1007 branch-full-data surface after the nested W1077 pass. -/
+noncomputable def branchFullDataProviderOfBranchFullDataOfBranchFullDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  branchFullDataProviderOfBranchFullDataOfBranchFullDataOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 exposes the triply rebuilt W982 localized-unit-choice surface after routing through W1077. -/
+noncomputable def localizedUnitChoiceDataOfLocalizedUnitChoiceOfLocalizedUnitChoiceOfLocalizedUnitChoiceOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  localizedUnitChoiceDataOfLocalizedUnitChoiceOfLocalizedUnitChoiceOfLocalizedUnitChoiceOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 exposes the triply rebuilt W971 component fields after routing through W1077. -/
+noncomputable def componentFieldsOfComponentFieldsOfComponentFieldsOfComponentFieldsOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  componentFieldsOfComponentFieldsOfComponentFieldsOfComponentFieldsOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 constructs W977 current full data from W1006 through W1077. -/
+noncomputable def currentFullDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  currentFullDataOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 constructs W987 branch full data from W1006 through W1077. -/
+noncomputable def branchFullDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  branchFullDataOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 recovers W715 target surjective-compact data from W1006 through W1077. -/
+noncomputable def targetSurjectiveCompactDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  targetSurjectiveCompactDataOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+/-- W1078 returns the constructed W987 branch full data from W1006 through W1077. -/
+noncomputable def fullDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  fullDataOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+theorem directBoundedLeftCalculusOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+  directBoundedLeftCalculusOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+noncomputable def boundedDerivedInfinityCategoryOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+    (targetClosedEmbeddingClosednessNormalizedSourceEndpointData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1006) :=
+  boundedDerivedInfinityCategoryOfTargetClosedEmbeddingClosednessW1077
+    (targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointData)
+
+def targetClosedEmbeddingClosednessNormalizedSourceEndpointInputNamesW1078 : List String :=
+  targetClosedEmbeddingClosednessNormalizedSourceEndpointInputNamesW1015
+
+theorem targetClosedEmbeddingClosednessNormalizedSourceEndpointInputNamesW1078_count :
+    targetClosedEmbeddingClosednessNormalizedSourceEndpointInputNamesW1078.length =
+      2 :=
+  targetClosedEmbeddingClosednessNormalizedSourceEndpointInputNamesW1015_count
+
+structure MetrizableTargetClosedEmbeddingClosednessNormalizedSourceEndpointToTargetClosedEmbeddingClosednessDirectRouteStateW1078 :
+    Type where
+  seed : String
+  declarations : List String
+  providerRepackagingResult : String
+  targetSurjectiveCompactRecoveryResult : String
+  exactAtResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+def currentMetrizableTargetClosedEmbeddingClosednessNormalizedSourceEndpointToTargetClosedEmbeddingClosednessDirectRouteStateW1078 :
+    MetrizableTargetClosedEmbeddingClosednessNormalizedSourceEndpointToTargetClosedEmbeddingClosednessDirectRouteStateW1078
+    where
+  seed := "w1078-target-closed-embedding-closedness-normalized-source-endpoint-to-w1077-target-closed-embedding-closedness-route"
+  declarations :=
+    ["targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "normalizedSourceEndpointLocalizedUnitDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "endpointLocalizedUnitDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "localizedUnitChoiceDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "unitStrictExactIsoDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "componentFieldsOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "currentFullDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "branchFullDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "targetClosedEmbeddingClosednessNormalizedSourceEndpointDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "normalizedSourceEndpointLocalizedUnitDataProviderOfNormalizedSourceEndpointLocalizedUnitOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "endpointLocalizedUnitDataProviderOfEndpointLocalizedUnitOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "localizedUnitChoiceDataOfLocalizedUnitChoiceOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "unitStrictExactIsoDataOfUnitStrictExactIsoDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "componentFieldsOfComponentFieldsOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "currentFullDataProviderOfCurrentFullDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "branchFullDataProviderOfBranchFullDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "targetClosedEmbeddingClosednessNormalizedSourceEndpointDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessOfTargetClosedEmbeddingClosednessOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "normalizedSourceEndpointLocalizedUnitDataProviderOfNormalizedSourceEndpointLocalizedUnitOfNormalizedSourceEndpointLocalizedUnitOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "endpointLocalizedUnitDataProviderOfEndpointLocalizedUnitOfEndpointLocalizedUnitOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "localizedUnitChoiceDataOfLocalizedUnitChoiceOfLocalizedUnitChoiceOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "unitStrictExactIsoDataOfUnitStrictExactIsoDataOfUnitStrictExactIsoDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "componentFieldsOfComponentFieldsOfComponentFieldsOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "currentFullDataProviderOfCurrentFullDataOfCurrentFullDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "branchFullDataProviderOfBranchFullDataOfBranchFullDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "localizedUnitChoiceDataOfLocalizedUnitChoiceOfLocalizedUnitChoiceOfLocalizedUnitChoiceOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "componentFieldsOfComponentFieldsOfComponentFieldsOfComponentFieldsOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "currentFullDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "branchFullDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "targetSurjectiveCompactDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "fullDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "directBoundedLeftCalculusOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "boundedDerivedInfinityCategoryOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1078",
+      "targetClosedEmbeddingClosednessNormalizedSourceEndpointInputNamesW1078_count"]
+  providerRepackagingResult :=
+    "proved: W1078 constructs the W1077 W1014 target/closed-embedding\
+      closedness input surface from W1015 target/closedness/normalized-source/\
+      endpoint data and feeds W1077"
+  targetSurjectiveCompactRecoveryResult :=
+    "proved: W1078 inherits W1077/W1076/W1075/W1074/W1073/W1072/\
+      W1071/W1070/W1069/W1068/W1067/W1066/W1065/W1064/W1063/W1062/\
+      W1061/W1060/W1059/W1058/W1057/W1056/W1055/W1054/W1053/W1052/\
+      W1051/W1050/W1049/W1048/W1047/W1046/W1045/W1044/W1043/W1042/\
+      W1041/W1040/W1039/W1038/W1037/W1036/W1035/W1034/W1033/W1032/\
+      W1031/W1030/W1029/W1028/W1027/W1026/W1025/W1024/W1023/W1022/\
+      W1021/W1020/W1019/W1018/W1017/W1016/W1015/W1014/W1013/W1012/\
+      W1011/W1010/W1009/W1008/W1007/W1006/W1005/W1004/W1003/W1002/\
+      W998 target surjective-compact recovery after W1015 constructs W1005"
+  exactAtResult :=
+    "proved: the W1078 W1015 target/closedness/normalized-source/endpoint\
+      input surface feeds W1077/W1076/W1075/W1074/W1073/W1072/W1071/\
+      W1070/W1069/W1068/W1067/W1066/W1065/W1064/W1063/W1062/W1061/\
+      W1060/W1059/W1058/W1057/W1056/W1055/W1054/W1053/W1052/W1051/\
+      W1050/W1049/W1048/W1047/W1046/W1045/W1044/W1043/W1042/W1041/\
+      W1040/W1039/W1038/W1037/W1036/W1035/W1034/W1033/W1032/W1031/\
+      W1030/W1029/W1028/W1027/W1026/W1025/W1024/W1023/W1022/W1021/\
+      W1020/W1019/W1018/W1017/W1016/W1015/W1014/W1013/W1012/W1011/\
+      W1010/W1009/W1008/W1007/W1006/W1005/W1004/W1003/W1002/W998/\
+      W997/W996/W995/W994/W993/W988/W987/W986/W985/W984/W983/W982/\
+      W981/W980/W979/W978/W977/W976/W975/W974/W973/W972/W971/W970/\
+      W969/W968/W967/W966/W965/W964/W963/W962/W961/W959/W958/W957/\
+      W956/W955/W954/W953/W952 stable ExactAt route"
+  remainingInputs := targetClosedEmbeddingClosednessNormalizedSourceEndpointInputNamesW1078
+  productSuccessClaimed := false
+
+theorem currentW1078TargetClosedEmbeddingClosednessNormalizedSourceEndpointToTargetClosedEmbeddingClosednessDirectRoute_productSuccess :
+    (let state :=
+        currentMetrizableTargetClosedEmbeddingClosednessNormalizedSourceEndpointToTargetClosedEmbeddingClosednessDirectRouteStateW1078;
+      state.productSuccessClaimed) =
+      false :=
+  rfl
+
+end Dbounded
+
+end LeanLCAExactChallenge

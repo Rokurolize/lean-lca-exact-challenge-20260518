@@ -1,0 +1,46 @@
+# W1006 Provider Search Ledger
+
+## Target
+
+W1006 removes W1005's separate W984 target no-univ plus closed-embedding closedness data and W950 normalized-source/endpoint-localized-unit data assumptions by projecting them from the existing W986 target/closedness/normalized-source/endpoint-localized provider, then feeding the resulting W1005 target-closedness surface into W1005.
+
+## Search Notes
+
+- `BoundaryRelationTargetNoUnivClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW1005`: rejected as the latest frontier because it still exposes W984 target/closedness data and W950 normalized-source/endpoint-localized-unit data separately.
+- `TargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW986`: chosen because it is already the branch-specific provider boundary that packages W984 target/closedness data with W950 normalized-source/endpoint-localized-unit data.
+- `targetClosedEmbeddingClosednessDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataW986`: accepted as the projection that supplies W1005's W984 target/closedness data.
+- `normalizedSourceEndpointLocalizedUnitDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataW986`: accepted as the projection that supplies W1005's W950 normalized-source/endpoint-localized-unit data.
+- `branchFullDataOfTargetClosedEmbeddingClosednessW1005` and `targetSurjectiveCompactDataOfTargetClosedEmbeddingClosednessW1005`: accepted as the existing route that turns the reconstructed W1005 surface into the W1005/W1004/W1003/W1002/W998 target-surjective-compact bridge.
+
+## Remaining W1006 Inputs
+
+- W730 boundary/relation data provider
+- W986 target/closed-embedding-closedness/normalized-source/endpoint-localized data provider
+
+## Implemented Declarations
+
+- `targetClosedEmbeddingClosednessDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1006`
+- `normalizedSourceEndpointLocalizedUnitDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1006`
+- `targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1006`
+- `normalizedSourceEndpointLocalizedUnitDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1006`
+- `endpointLocalizedUnitDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1006`
+- `localizedUnitChoiceDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1006`
+- `branchFullDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1006`
+- `targetSurjectiveCompactDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1006`
+- `targetSurjectiveCompactBranchFullDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1006`
+- `targetProviderDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1006`
+- `normalizedSourceEndpointDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1006`
+- `fullDataOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1006`
+- `w977LeavesOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1006`
+- `componentFieldsOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1006`
+- `endpointStrictExactOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1006`
+- `unitMappingConeAlgebraicExactOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1006`
+- `unitMappingConeStrictExactOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1006`
+- `unitMappingConeIsoNonemptyOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1006`
+- `directBoundedLeftCalculusOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1006`
+- `boundedDerivedInfinityCategoryOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointW1006`
+- `targetClosedEmbeddingClosednessNormalizedSourceEndpointInputNamesW1006_count`
+
+## Nonterminal Status
+
+Product success remains false. W1006 replaces two W1005 assumptions with one W986 provider boundary, but the two W1006 provider items remain explicit assumptions and the original four-task completion witness and review packet are still missing. The negative blocker for future closeout is any claim that W1006 is terminal while W730 and W986 provider data remain input fields.

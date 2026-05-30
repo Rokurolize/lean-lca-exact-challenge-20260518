@@ -1,0 +1,155 @@
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataUnitMappingConeFieldSplitGuardW1333
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsRoute
+
+/-!
+W1334 supplements the existing W1309 W975 boundary guard by recording the
+field-split equalities from the localized-adjunction data route into W974
+leaves. The route still exposes W975's twelve-input component surface and
+therefore does not close the current one-input W987 obligation.
+-/
+
+set_option autoImplicit false
+set_option linter.style.longLine false
+
+namespace LeanLCAExactChallenge
+
+namespace Dbounded
+
+def canonicalW975LocalizedAdjunctionFieldSplitInputNamesW1334 :
+    List String :=
+  closedEmbeddingClosednessEndpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFieldsInputNamesW975
+
+theorem canonicalW975LocalizedAdjunctionFieldSplitInputNamesW1334_count :
+    canonicalW975LocalizedAdjunctionFieldSplitInputNamesW1334.length = 12 :=
+  closedEmbeddingClosednessEndpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFieldsInputNamesW975_count
+
+theorem canonicalW975LocalizedAdjunctionFieldSplitExpandsCurrentSurfaceW1334 :
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270.length <
+      canonicalW975LocalizedAdjunctionFieldSplitInputNamesW1334.length := by
+  rw [currentFullDataPayloadFromBranchFullDataInputNamesW1270_count,
+    canonicalW975LocalizedAdjunctionFieldSplitInputNamesW1334_count]
+  norm_num
+
+theorem w975KeepsBoundaryRelationW1334
+    (leaves :
+      MetrizableWppClosedEmbeddingClosednessEndpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFieldLeavesW975) :
+    (w974LeavesOfLocalizedAdjunctionDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW975
+        leaves).boundaryRelationData =
+      leaves.boundaryRelationData :=
+  rfl
+
+theorem w975KeepsTargetNoUnivDataW1334
+    (leaves :
+      MetrizableWppClosedEmbeddingClosednessEndpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFieldLeavesW975) :
+    (w974LeavesOfLocalizedAdjunctionDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW975
+        leaves).targetNoUnivData =
+      leaves.targetNoUnivData :=
+  rfl
+
+theorem w975KeepsClosedEmbeddingClosednessDataW1334
+    (leaves :
+      MetrizableWppClosedEmbeddingClosednessEndpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFieldLeavesW975) :
+    (w974LeavesOfLocalizedAdjunctionDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW975
+        leaves).closedEmbeddingClosednessData =
+      leaves.closedEmbeddingClosednessData :=
+  rfl
+
+theorem w975KeepsEndpointKernelCokernelTopDataW1334
+    (leaves :
+      MetrizableWppClosedEmbeddingClosednessEndpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFieldLeavesW975) :
+    (w974LeavesOfLocalizedAdjunctionDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW975
+        leaves).endpointKernelCokernelTopData =
+      leaves.endpointKernelCokernelTopData :=
+  rfl
+
+theorem w975KeepsNormalizedSourceW1334
+    (leaves :
+      MetrizableWppClosedEmbeddingClosednessEndpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFieldLeavesW975) :
+    (w974LeavesOfLocalizedAdjunctionDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW975
+        leaves).normalizedSourceTriangulationData =
+      leaves.normalizedSourceTriangulationData :=
+  rfl
+
+theorem w975KeepsUnitMappingConeModelW1334
+    (leaves :
+      MetrizableWppClosedEmbeddingClosednessEndpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFieldLeavesW975) :
+    (w974LeavesOfLocalizedAdjunctionDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW975
+        leaves).unitMappingConeModel =
+      leaves.unitMappingConeModel :=
+  rfl
+
+theorem w975KeepsUnitMappingConeClosedEmbeddingW1334
+    (leaves :
+      MetrizableWppClosedEmbeddingClosednessEndpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFieldLeavesW975) :
+    (w974LeavesOfLocalizedAdjunctionDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW975
+        leaves).unitMappingConeClosedEmbedding =
+      leaves.unitMappingConeClosedEmbedding :=
+  rfl
+
+theorem w975KeepsUnitMappingConeOpenMapW1334
+    (leaves :
+      MetrizableWppClosedEmbeddingClosednessEndpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFieldLeavesW975) :
+    (w974LeavesOfLocalizedAdjunctionDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW975
+        leaves).unitMappingConeOpenMap =
+      leaves.unitMappingConeOpenMap :=
+  rfl
+
+theorem w975KeepsUnitMappingConeCokernelTopW1334
+    (leaves :
+      MetrizableWppClosedEmbeddingClosednessEndpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFieldLeavesW975) :
+    (w974LeavesOfLocalizedAdjunctionDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW975
+        leaves).unitMappingConeCokernelTop =
+      leaves.unitMappingConeCokernelTop :=
+  rfl
+
+theorem w975KeepsUnitMappingConeKernelEqualityW1334
+    (leaves :
+      MetrizableWppClosedEmbeddingClosednessEndpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFieldLeavesW975) :
+    (w974LeavesOfLocalizedAdjunctionDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW975
+        leaves).unitMappingConeKernelEquality =
+      leaves.unitMappingConeKernelEquality :=
+  rfl
+
+theorem w975KeepsUnitMappingConeIsoW1334
+    (leaves :
+      MetrizableWppClosedEmbeddingClosednessEndpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFieldLeavesW975) :
+    (w974LeavesOfLocalizedAdjunctionDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW975
+        leaves).unitMappingConeIso =
+      leaves.unitMappingConeIso :=
+  rfl
+
+structure MetrizableLocalizedAdjunctionFieldSplitGuardStateW1334 : Type where
+  seed : String
+  inspectedBoundary : String
+  routeSurfaceCount : Nat
+  providerSearchResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+def currentMetrizableLocalizedAdjunctionFieldSplitGuardStateW1334 :
+    MetrizableLocalizedAdjunctionFieldSplitGuardStateW1334 where
+  seed := "w1334-localized-adjunction-field-split-guard"
+  inspectedBoundary :=
+    "W975 field split from localized-adjunction data into W974 leaves"
+  routeSurfaceCount :=
+    canonicalW975LocalizedAdjunctionFieldSplitInputNamesW1334.length
+  providerSearchResult :=
+    "proved: W975 preserves boundary/relation, target no-univ, closedness,\
+      endpoint kernel/cokernel-top, normalized-source, unit mapping-cone model,\
+      unit closed-embedding, unit open-map, unit cokernel-top, unit\
+      kernel-equality, and chosen unit isomorphism fields while rebuilding W974,\
+      but its route surface still has twelve inputs and expands the current\
+      one-input W987 obligation"
+  remainingInputs := currentFullDataPayloadFromBranchFullDataInputNamesW1270
+  productSuccessClaimed := false
+
+theorem currentW1334LocalizedAdjunctionFieldSplitGuard_productSuccess :
+    (let state :=
+        currentMetrizableLocalizedAdjunctionFieldSplitGuardStateW1334;
+      state.productSuccessClaimed) =
+      false :=
+  rfl
+
+end Dbounded
+
+end LeanLCAExactChallenge

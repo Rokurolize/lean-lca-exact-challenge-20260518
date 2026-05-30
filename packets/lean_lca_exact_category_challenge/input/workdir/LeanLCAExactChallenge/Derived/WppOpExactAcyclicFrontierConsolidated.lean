@@ -108,6 +108,14 @@ abbrev algebraicExact_walkingParallelPairOp_colimitClosure : Prop :=
         (∀ j : WalkingParallelPairᵒᵖ, MetrizableLCA.strictShortExact (S.obj j)) →
           ∀ x₂ : cs.pt.X₂, cs.pt.g x₂ = 0 → ∃ x₁ : cs.pt.X₁, cs.pt.f x₁ = x₂
 
+/-- W737 categorical exactness at the WPP-op colimit point. -/
+abbrev exact_walkingParallelPairOp_colimitClosureW737 : Prop :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S),
+      IsColimit cs →
+        (∀ j : WalkingParallelPairᵒᵖ, MetrizableLCA.strictShortExact (S.obj j)) →
+          cs.pt.Exact
+
 /-- Element-level exactness of a short complex after forgetting topology. -/
 abbrev AdditiveKernelExact (T : ShortComplex MetrizableLCA.{0}) : Prop :=
   ∀ x₂ : T.X₂, T.g x₂ = 0 → ∃ x₁ : T.X₁, T.f x₁ = x₂
@@ -785,6 +793,100 @@ theorem strictShortExact_walkingParallelPairOp_colimitClosure_of_consolidated_fr
       surjective := hsurj
       algebraic_exact := halg S cs hcs hS }
 
+/-- W737: exactness itself supplies the local homology datum used by the exact/topology path. -/
+theorem hasHomology_walkingParallelPairOp_colimitClosure_of_exactnessW737
+    (hexact : exact_walkingParallelPairOp_colimitClosureW737) :
+    ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+      (cs : Cocone S),
+        IsColimit cs →
+          (∀ j : WalkingParallelPairᵒᵖ, MetrizableLCA.strictShortExact (S.obj j)) →
+            cs.pt.HasHomology := by
+  intro S cs hcs hS
+  exact (hexact S cs hcs hS).hasHomology
+
+/--
+W737 exact/topology consumer: the previous standalone homology-availability
+input is unnecessary once categorical exactness of the colimit point is known.
+-/
+theorem strictShortExact_walkingParallelPairOp_colimitClosure_of_exact_componentTopologyW737
+    (hpres : (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology)
+    (hexact : exact_walkingParallelPairOp_colimitClosureW737)
+    (hclosed : wppOp_colimit_preserves_leftClosedEmbedding)
+    (hopen : openMap_walkingParallelPairOp_colimitMap_boundary) :
+    ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+      (cs : Cocone S),
+        IsColimit cs →
+          (∀ j : WalkingParallelPairᵒᵖ, MetrizableLCA.strictShortExact (S.obj j)) →
+            MetrizableLCA.strictShortExact cs.pt := by
+  intro S cs hcs hS
+  have hexact_cs : cs.pt.Exact := hexact S cs hcs hS
+  have hhom_cs : cs.pt.HasHomology := hexact_cs.hasHomology
+  have hclosed_cs : IsClosedEmbedding (cs.pt.f : cs.pt.X₁ → cs.pt.X₂) :=
+    leftClosedEmbedding_walkingParallelPairOp_colimitClosure_of_preserves hclosed
+      S cs hcs hS
+  have hopen_cs : IsOpenMap (cs.pt.g : cs.pt.X₂ → cs.pt.X₃) :=
+    rightOpenMap_walkingParallelPairOp_colimitClosure_of_boundary hopen S cs hcs hS
+  haveI : Epi cs.pt.g :=
+    rightMapEpi_walkingParallelPairOp_colimitClosure_direct S cs hcs hS
+  have hsurj : Function.Surjective (cs.pt.g : cs.pt.X₂ → cs.pt.X₃) :=
+    MetrizableLCA.surjective_of_cokernelSubgroup_eq_top_of_isOpenMap cs.pt.g
+      (MetrizableLCA.cokernelSubgroup_eq_top_of_cokernelπ_eq_zero cs.pt.g
+        (MetrizableLCA.cokernelπ_eq_zero_of_epi cs.pt.g))
+      hopen_cs
+  exact MetrizableLCA.strictShortExact_of_exact_of_topology
+    hhom_cs hpres hexact_cs hclosed_cs hopen_cs hsurj
+
+/--
+W737 exact-acyclic consumer with categorical exactness and component-level
+topology fields.  This is the production version of the exact/topology route
+with local homology derived from exactness.
+-/
+theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_exact_componentTopologyW737
+    (hpres : (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology)
+    (hexact : exact_walkingParallelPairOp_colimitClosureW737)
+    (hclosed : wppOp_colimit_preserves_leftClosedEmbedding)
+    (hopen : openMap_walkingParallelPairOp_colimitMap_boundary) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure := by
+  intro K ck hck hK i
+  let S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0} :=
+    K ⋙ degreeShortComplexFunctor i
+  let cs : Cocone S := (degreeShortComplexFunctor i).mapCocone ck
+  have hcs : IsColimit cs := by
+    refine ShortComplex.isColimitOfIsColimitπ _ ?_ ?_ ?_
+    · simpa [degreeShortComplexFunctor, HomologicalComplex.shortComplexFunctor, cs] using
+        (isColimitOfPreserves
+          (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ)
+            ((ComplexShape.up ℤ).prev i)) hck)
+    · simpa [degreeShortComplexFunctor, HomologicalComplex.shortComplexFunctor, cs] using
+        (isColimitOfPreserves
+          (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) i) hck)
+    · simpa [degreeShortComplexFunctor, HomologicalComplex.shortComplexFunctor, cs] using
+        (isColimitOfPreserves
+          (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ)
+            ((ComplexShape.up ℤ).next i)) hck)
+  have hS : ∀ j : WalkingParallelPairᵒᵖ, MetrizableLCA.strictShortExact (S.obj j) := by
+    intro j
+    exact hK j i
+  exact strictShortExact_walkingParallelPairOp_colimitClosure_of_exact_componentTopologyW737
+    hpres hexact hclosed hopen S cs hcs hS
+
+/--
+W737 fixed-open variant: the right-open input is supplied internally by the
+canonical WPP-op colimit leg, so the exact/topology route exposes only exactness,
+forgetful homology preservation, and the left closed-embedding boundary.
+-/
+theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_exact_left_fixedOpenW737
+    (hpres : (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology)
+    (hexact : exact_walkingParallelPairOp_colimitClosureW737)
+    (hclosed : wppOp_lca_colimitMap_injective_inducing_closedImage) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_exact_componentTopologyW737
+    hpres
+    hexact
+    (wppOp_colimit_preserves_leftClosedEmbedding_of_injective_inducing_closedImage hclosed)
+    (openMap_walkingParallelPairOp_colimitMap_boundary_of_lca_colimitMap
+      wppOp_lca_colimitMap_preserves_openMap_of_wppOp_fixed_leg)
+
 /--
 Consolidated exact-acyclic consumer: W271's WPP-op exact-acyclic colimit closure
 follows from the three remaining source-level field-preservation inputs.
@@ -917,6 +1019,65 @@ theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_snakeCoke
   exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_addCommGrpStrict
     hclosed
     (addCommGrpStrictKernelExact_wppOp_colimit_boundary_of_snakeCokernel hsnake)
+
+/-- Input names exposed by the W737 exact/topology fixed-open route. -/
+def exactAcyclicWppOpExactLeftFixedOpenInputNamesW737 : List String :=
+  ["PreservesHomology for forget₂ MetrizableLCA AddCommGrpCat",
+    "WPP-op colimit point categorical exactness",
+    "pure left closed-embedding preservation for WPP-op LCA colimit maps"]
+
+theorem exactAcyclicWppOpExactLeftFixedOpenInputNamesW737_count :
+    exactAcyclicWppOpExactLeftFixedOpenInputNamesW737.length = 3 :=
+  rfl
+
+/-- Machine-readable W737 exact/topology fixed-open reduction state. -/
+structure WppOpExactAcyclicExactLeftFixedOpenRouteStateW737 : Type where
+  seed : String
+  declarations : List String
+  exactnessHomologyResult : String
+  strictnessConsumerResult : String
+  exactAcyclicConsumerResult : String
+  exposedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Reproducible W737 state for downstream workers. -/
+def currentWppOpExactAcyclicExactLeftFixedOpenRouteSupportStateW737 :
+    WppOpExactAcyclicExactLeftFixedOpenRouteStateW737 where
+  seed := "w737-exact-topology-fixed-open-with-exactness-derived-homology"
+  declarations :=
+    ["exact_walkingParallelPairOp_colimitClosureW737",
+      "hasHomology_walkingParallelPairOp_colimitClosure_of_exactnessW737",
+      "strictShortExact_walkingParallelPairOp_colimitClosure_of_exact_componentTopologyW737",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_exact_componentTopologyW737",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_exact_left_fixedOpenW737",
+      "exactAcyclicWppOpExactLeftFixedOpenInputNamesW737",
+      "exactAcyclicWppOpExactLeftFixedOpenInputNamesW737_count"]
+  exactnessHomologyResult :=
+    "proved: WPP-op colimit-point Exact supplies HasHomology by ShortComplex.Exact.hasHomology"
+  strictnessConsumerResult :=
+    "proved: exactness plus component topology gives strict short exactness without a \
+      standalone homology input"
+  exactAcyclicConsumerResult :=
+    "proved: exact-acyclic WPP-op colimit closure follows from exactness, forgetful \
+      homology preservation, and the pure left-topology boundary because the right-open \
+      input is fixed internally"
+  exposedInputs :=
+    exactAcyclicWppOpExactLeftFixedOpenInputNamesW737
+  remainingInputs :=
+    ["construct PreservesHomology for forget₂ MetrizableLCA AddCommGrpCat",
+      "construct WPP-op colimit point categorical exactness",
+      "construct pure left closed-embedding preservation for WPP-op LCA colimit maps"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked W737 product-success marker. -/
+abbrev currentWppOpExactAcyclicExactLeftFixedOpenRouteStateW737 :
+    WppOpExactAcyclicExactLeftFixedOpenRouteStateW737 :=
+  currentWppOpExactAcyclicExactLeftFixedOpenRouteSupportStateW737
+
+theorem currentWppOpExactAcyclicExactLeftFixedOpenRouteStateW737_productSuccess :
+    currentWppOpExactAcyclicExactLeftFixedOpenRouteStateW737.productSuccessClaimed =
+      false := rfl
 
 /-- Machine-readable W318 reduction state. -/
 structure WppOpExactAcyclicFrontierConsolidatedState : Type where

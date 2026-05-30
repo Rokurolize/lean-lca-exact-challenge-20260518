@@ -1,4 +1,56 @@
+Parent update v714: W714 diagram-only selected-difference component mapped-cokernel route was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It replaces the selected-difference component closedness fields at the W713 target-only route surface with diagram-only facts, assembles the W711 cocone-indexed selected-difference closed-map and closed-embedding fields internally, delegates both accepted paths to W713, and keeps product success false. Remaining concrete inputs are WPP right-open and source-pi-zero boundary data, relation-pullback and target-relation-lift providers, target-only ordinary target-difference surjectivity, compact target data, diagram-only selected-difference component closed-map or closed-embedding facts, normalized strict-representative lift blueprint, target fixed-target uniqueness, localization-model fixed-target uniqueness, homology existence, W519 mapped-cokernel closed-map or closed-embedding data, explicit endpoint facts, bounded homotopy localized-right-adjoint data, source triangulation/triangle completion data, and Dbounded finite-limit/finite-colimit/suspension-loop/pushout-pullback stable infinity inputs.
+
+Parent update v713: W713 target-only target-difference surjectivity mapped-cokernel route was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It replaces the direct `TargetDifferenceSurjectiveProviderW601` call-site input at the W712 explicit relation-field provider surface with a provider depending only on the target WPP-op diagram, assembles the W601 provider internally, delegates both accepted paths to W712, and keeps product success false. Remaining concrete inputs are WPP right-open and source-pi-zero boundary data, relation-pullback and target-relation-lift providers, target-only ordinary target-difference surjectivity, compact target data, selected-difference component closed-map or closed-embedding facts, normalized strict-representative lift blueprint, target fixed-target uniqueness, localization-model fixed-target uniqueness, homology existence, W519 mapped-cokernel closed-map or closed-embedding data, explicit endpoint facts, bounded homotopy localized-right-adjoint data, source triangulation/triangle completion data, and Dbounded finite-limit/finite-colimit/suspension-loop/pushout-pullback stable infinity inputs.
+
+Parent update v712: W712 explicit relation-field provider mapped-cokernel route was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It replaces the direct `ClosedNatTransOrdinaryRelationFieldsProviderW512` call-site input at the W711 explicit componentwise closed-provider surface with separate relation-pullback and target-relation-lift provider fields, assembles the W512 provider internally, delegates both accepted paths to W711, and keeps product success false. Remaining concrete inputs are WPP right-open and source-pi-zero boundary data, relation-pullback and target-relation-lift providers, W601 target-difference surjectivity, compact target data, selected-difference component closed-map or closed-embedding facts, normalized strict-representative lift blueprint, target fixed-target uniqueness, localization-model fixed-target uniqueness, homology existence, W519 mapped-cokernel closed-map or closed-embedding data, explicit endpoint facts, bounded homotopy localized-right-adjoint data, source triangulation/triangle completion data, and Dbounded finite-limit/finite-colimit/suspension-loop/pushout-pullback stable infinity inputs.
+
+Parent update v711: W711 explicit componentwise closed-provider mapped-cokernel route was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It replaces the direct `ComponentwiseClosedMapProviderW525` or `ComponentwiseClosedEmbeddingProviderW525` call-site input at the W710 explicit endpoint-strict topology surface with three selected-difference component facts, assembles the W525 provider internally, delegates both accepted paths to W710, and keeps product success false. Remaining concrete inputs are WPP right-open and source-pi-zero boundary data, W512 relation fields, W601 target-difference surjectivity, compact target data, selected-difference component closed-map or closed-embedding facts, normalized strict-representative lift blueprint, target fixed-target uniqueness, localization-model fixed-target uniqueness, homology existence, W519 mapped-cokernel closed-map or closed-embedding data, explicit endpoint facts, bounded homotopy localized-right-adjoint data, source triangulation/triangle completion data, and Dbounded finite-limit/finite-colimit/suspension-loop/pushout-pullback stable infinity inputs.
+
+Parent update v710: W710 explicit endpoint-strict topology route was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It replaces the direct `MetrizableExactAtEndpointStrictTopologyInputs` call-site input at the W709 mapped-cokernel closed-provider surface with four explicit endpoint fields: forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and ExactAt-implied epis. Both closed-map and closed-embedding paths assemble the endpoint topology internally, delegate to W709, and keep product success false. Remaining concrete inputs are WPP right-open and source-pi-zero boundary data, W512 relation fields, W601 target-difference surjectivity, compact target data, componentwise W525 global closed-map or closed-embedding provider data, normalized strict-representative lift blueprint, target fixed-target uniqueness, localization-model fixed-target uniqueness, homology existence, W519 mapped-cokernel closed-map or closed-embedding data, explicit endpoint facts, bounded homotopy localized-right-adjoint data, source triangulation/triangle completion data, and Dbounded finite-limit/finite-colimit/suspension-loop/pushout-pullback stable infinity inputs.
+
+Parent update v709: W709 mapped-cokernel closed-provider route was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It lifts W519 mapped-explicit-cokernel closed-map and closed-embedding provider data into the W708 route surface, internally constructs the W519 closed-range provider with `closedRangeProvider_of_closedMapProvider_w519` or `closedRangeProvider_of_closedEmbeddingProvider_w519`, delegates both accepted paths to W708, and keeps product success false. Remaining concrete inputs are WPP right-open and source-pi-zero boundary data, W512 relation fields, W601 target-difference surjectivity, compact target data, componentwise W525 global closed-map or closed-embedding provider data, normalized strict-representative lift blueprint, target fixed-target uniqueness, localization-model fixed-target uniqueness, homology existence, W519 mapped-cokernel closed-map or closed-embedding data, endpoint-strict ExactAt topology data, bounded homotopy localized-right-adjoint data, source triangulation/triangle completion data, and Dbounded finite-limit/finite-colimit/suspension-loop/pushout-pullback stable infinity inputs.
+
+Parent update v708: W708 target-surjective explicit normalized fixed-target localized-right-adjoint route was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It lifts W601 target-difference surjectivity into the newest W707 route surface, internally constructs the W600 target-relation-top provider with `targetTopProvider_of_targetSurjective_w601`, delegates both closed-map and closed-embedding accepted paths to W707, and keeps product success false. Remaining concrete inputs are WPP right-open and source-pi-zero boundary data, W512 relation fields, W601 target-difference surjectivity, compact target data, componentwise W525 global closed-map or closed-embedding provider data, normalized strict-representative lift blueprint, target fixed-target uniqueness, localization-model fixed-target uniqueness, homology existence, W519 closed-range data, endpoint-strict ExactAt topology data, bounded homotopy localized-right-adjoint data, source triangulation/triangle completion data, and Dbounded finite-limit/finite-colimit/suspension-loop/pushout-pullback stable infinity inputs.
+
+Parent update v707: W707 explicit normalized fixed-target localized-right-adjoint route was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It exposes the W706 normalized fixed-target localization input as separate normalized strict-representative lift blueprint, target fixed-target uniqueness, and localization-model fixed-target uniqueness fields, assembles `Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs` internally, and delegates closed-map and closed-embedding paths to W706. Product success remains false. Remaining concrete inputs are unchanged except that the normalized fixed-target package is now visible at the call surface as three fields: WPP right-open and source-pi-zero boundary data, W512 relation fields, W600 target-relation-top data for W702/W703/W704/W705/W706/W707 or W601 target-difference surjectivity data for W701, compact target data, componentwise W525 global closed-map or closed-embedding provider data, normalized strict-representative lift blueprint, target fixed-target uniqueness, localization-model fixed-target uniqueness, homology existence, W519 closed-range data, endpoint-strict ExactAt topology data, bounded homotopy localized-right-adjoint data, source triangulation/triangle completion data, and Dbounded finite-limit/finite-colimit/suspension-loop/pushout-pullback stable infinity inputs.
+
+Parent update v706: W706 explicit localized-right-adjoint target-top route was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It exposes the W705 bounded homotopy localized-right-adjoint package as separate right-adjoint, adjunction, and unit-membership fields, assembles `BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA` internally, and delegates closed-map and closed-embedding paths to W705. Product success remains false. Remaining concrete inputs are unchanged from W705, now visible at the call surface: WPP right-open and source-pi-zero boundary data, W512 relation fields, W600 target-relation-top data for W702/W703/W704/W705/W706 or W601 target-difference surjectivity data for W701, compact target data, componentwise W525 global closed-map or closed-embedding provider data, normalized strict representatives with target and localization-model uniqueness, homology existence, W519 closed-range data, endpoint-strict ExactAt topology data, bounded homotopy localized-right-adjoint data, source triangulation/triangle completion data, and Dbounded finite-limit/finite-colimit/suspension-loop/pushout-pullback stable infinity inputs.
+
+Parent update v705: W705 explicit source-triangulation target-top route was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It exposes the W704 direct-localization source core as separate source `Pretriangulated`, source `IsTriangulated`, and bounded exact weak-equivalence triangle-completion fields, assembles the W657 core internally, and delegates closed-map and closed-embedding paths to W704. Product success remains false. Remaining concrete inputs are unchanged from W704, now visible at the call surface: WPP right-open and source-pi-zero boundary data, W512 relation fields, W600 target-relation-top data for W702/W703/W704/W705 or W601 target-difference surjectivity data for W701, compact target data, componentwise W525 global closed-map or closed-embedding provider data, normalized strict representatives with target and localization-model uniqueness, homology existence, W519 closed-range data, endpoint-strict ExactAt topology data, bounded homotopy localized-right-adjoint data, source triangulation/triangle completion data, and Dbounded finite-limit/finite-colimit/suspension-loop/pushout-pullback stable infinity inputs.
+
+Parent update v704: W704 explicit endpoint-strict target-top route was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It exposes the W703 endpoint-strict closed-range topology package as separate W519 mapped-explicit-cokernel closed-range and endpoint-strict ExactAt topology fields, assembles the W701 package internally, and delegates closed-map and closed-embedding paths to W703. Product success remains false. Remaining concrete inputs are unchanged from W703: WPP right-open and source-pi-zero boundary data, W512 relation fields, W600 target-relation-top data for W702/W703/W704 or W601 target-difference surjectivity data for W701, compact target data, componentwise W525 global closed-map or closed-embedding provider data, normalized strict representatives with target and localization-model uniqueness, homology existence, W519 closed-range data, endpoint-strict ExactAt topology data, bounded homotopy localized-right-adjoint data, source triangulation/triangle completion data, and Dbounded finite-limit/finite-colimit/suspension-loop/pushout-pullback stable infinity inputs.
+
+Parent update v703: W703 explicit target-top compact endpoint-strict route was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It exposes the W702 accepted-stable route through concrete target-top compact provider fields by internally assembling the W646 normalized fixed-target closed-map and closed-embedding bundles, then delegating to W702. Product success remains false. Remaining concrete inputs are unchanged from W702: WPP right-open and source-pi-zero boundary data, W512 relation fields, W600 target-relation-top data for W702 or W601 target-difference surjectivity data for W701, compact target data, componentwise W525 global closed-map or closed-embedding provider data, normalized strict representatives with target and localization-model uniqueness, homology existence, W519 closed-range data, endpoint-strict ExactAt topology data, bounded homotopy localized-right-adjoint data, source triangulation/triangle completion data, and Dbounded finite-limit/finite-colimit/suspension-loop/pushout-pullback stable infinity inputs.
+
+Parent update v702: W702 target-top compact endpoint-strict closed-range route was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It narrows the target-top compact W694 normalized fixed-target route by using W701 endpoint-strict closed-range topology, so W519 mapped-explicit-cokernel closed-range data plus `MetrizableExactAtEndpointStrictTopologyInputs` supply the closure-kernel endpoint topology for both closed-map and closed-embedding paths. Product success remains false. Remaining concrete inputs are WPP right-open and source-pi-zero boundary data, W512 relation fields, W600 target-relation-top data for W702 or W601 target-difference surjectivity data for W701, compact target data, componentwise W525 global closed-map or closed-embedding provider data, normalized strict representatives with target and localization-model uniqueness, homology existence, W519 closed-range data, endpoint-strict ExactAt topology data, bounded homotopy localized-right-adjoint data, source triangulation/triangle completion data, and Dbounded finite-limit/finite-colimit/suspension-loop/pushout-pullback stable infinity inputs.
+
+Parent update v701: W701 endpoint-strict closed-range route was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It narrows the W700 normalized fixed-target global-provider closed-range endpoint route by using W519 mapped-explicit-cokernel closed-range data plus `MetrizableExactAtEndpointStrictTopologyInputs` to supply the W696 closed-range endpoint package for both closed-map and closed-embedding paths. Product success remains false. Remaining concrete inputs are WPP right-open and source-pi-zero boundary data, W512 relation fields, W601 target-difference surjectivity and compact target data, componentwise W525 global closed-map or closed-embedding provider data, normalized strict representatives with target and localization-model uniqueness, homology existence, W519 mapped-explicit-cokernel closed-range data, endpoint-strict ExactAt topology data, bounded homotopy localized-right-adjoint data, source triangulation/triangle completion data, and Dbounded finite-limit/finite-colimit/suspension-loop/pushout-pullback stable infinity inputs.
+
+Parent update v700: W700 normalized fixed-target global-provider closed-range endpoint route was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It narrows the W699 fixed-target global-provider closed-range endpoint route by using W646 normalized fixed-target representative data to supply the W642 fixed-target global-provider packages for both the global closed-map path and the global closed-embedding path through W686 global closed-embedding dominance. Product success remains false. Remaining concrete inputs are WPP right-open and source-pi-zero boundary data, W512 relation fields, W601 target-difference surjectivity and compact target data, componentwise W525 global closed-map or closed-embedding provider data, normalized strict representatives with target and localization-model uniqueness, homology existence, W519 mapped-explicit-cokernel closed-range data, ExactAt-conditioned endpoint topology, bounded homotopy localized-right-adjoint data, source triangulation/triangle completion data, and Dbounded finite-limit/finite-colimit/suspension-loop/pushout-pullback stable infinity inputs.
+
 # Proof Frontier Matrix
+
+Parent update v699: W699 fixed-target global-provider closed-range endpoint route was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It narrows the W685 fixed-target global-provider route by using W696 closed-range endpoint topology to supply the generic kernel/cokernel topology input, and W642 global closed-embedding fixed-target bundles feed the same closed-map accepted route through W686 dominance. Product success remains false. Remaining concrete inputs are WPP right-open and source-pi-zero boundary data, W512 relation fields, W601 target-difference surjectivity and compact target data, componentwise W525 global closed-map or closed-embedding provider data, fixed-target lift/fac/uniq packages, homology existence, W519 closed-range mapped-cokernel data, ExactAt-conditioned endpoint topology, bounded homotopy localized-right-adjoint data, source triangulation/triangle completion data, and Dbounded finite-limit/finite-colimit/suspension-loop/pushout-pullback stable infinity inputs.
+
+Parent update v698: W698 global-provider target-surjective closed-range endpoint route was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It narrows the W697 target-surjective closed-range endpoint row route from direct W527 row providers to W525 global providers: global closed-map providers narrow through W581, while global closed-embedding providers route through W619 dominance and then W581. Product success remains false. Remaining concrete inputs are WPP right-open and source-pi-zero boundary data, W512 relation fields, W601 target-difference surjectivity, W601 compact target data, componentwise global closed-map or closed-embedding provider data, normalized fixed-target data, global homology, W519 closed-range provider data, ExactAt-conditioned endpoint topology, bounded homotopy localized-right-adjoint data, source triangulation and triangle completion, and Dbounded finite-limit/finite-colimit inputs.
+
+Parent update v697: W697 was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It uses the existing W601 adapter so the W696 closed-range endpoint-topology row route can take target-difference surjectivity plus compact target codomains instead of an abstract W600 target-relation-top provider. The closed-map and closed-embedding row bundles still route through W696 and W695 accepted-stable packages, but product success remains false. Remaining concrete inputs are WPP right-open and source-pi-zero boundary data, W512 relation fields, W601 target-difference surjectivity, W601 compact target data, componentwise row closed-map or closed-embedding provider data, normalized fixed-target data, global homology, W519 closed-range provider data, ExactAt-conditioned endpoint topology, bounded homotopy localized-right-adjoint data, source triangulation and triangle completion, and Dbounded finite-limit/finite-colimit inputs.
+
+Parent update v696: W696 was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It introduces a closed-range endpoint-topology surface that uses W519 mapped explicit cokernel closed-range data to supply the W503 closure-kernel provider required by W694/W695, then routes row closed-map and row closed-embedding bundles through the W695 accepted-stable packages. This narrows the W695 row-provider endpoint-topology route from direct W503 closure-kernel data to W519 closed-range provider data, but product success remains false. Remaining concrete inputs are WPP right-open and source-pi-zero boundary data, W512 relation fields, W600 target-top data, W601 compact target data, componentwise row closed-map or closed-embedding provider data, normalized fixed-target data, global homology, W519 closed-range provider data, ExactAt-conditioned endpoint topology, bounded homotopy localized-right-adjoint data, source triangulation and triangle completion, and Dbounded finite-limit/finite-colimit inputs.
+
+Parent update v695: W695 was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It adapts W694 closure-kernel endpoint topology into the generic kernel/cokernel conditioned topology inputs, then combines that endpoint route with the W682/W683 row-provider closed-map and closed-embedding bundles to produce accepted stable bounded derived infinity-category packages. This narrows the W694 accepted-stable route from global W525-style providers to row-level W527 provider surfaces, but product success remains false. Remaining concrete inputs are WPP right-open and source-pi-zero boundary data, W512 relation fields, W600 target-top data, W601 compact target data, componentwise row closed-map or closed-embedding provider data, normalized fixed-target data, global homology, W503 closure-kernel provider data, ExactAt-conditioned endpoint topology, bounded homotopy localized-right-adjoint data, source triangulation and triangle completion, and Dbounded finite-limit/finite-colimit inputs.
+
+Parent update v694: W694 was verified in the importable module and `audit/ProductSuccessDeclarations.lean`. It adds direct strict-short-exact kernel and cokernel universal-property lemmas for `MetrizableLCA`, then routes ExactAt endpoint topology through those lemmas into the W692 closure-kernel accepted-stable path. The route removes the Balanced `MetrizableLCA` endpoint leaf as a current dependency, but product success remains false. Remaining concrete inputs are WPP right-open and source-pi-zero boundary data, W512 relation fields, W600 target-top data, W601 compact target data, componentwise global closed-map or closed-embedding provider data, normalized fixed-target data, global homology, W503 closure-kernel provider data, ExactAt-conditioned endpoint topology, bounded homotopy localized-right-adjoint data, source triangulation and triangle completion, and Dbounded finite-limit/finite-colimit inputs.
+
+Parent update v497: W495/W496/W497 were verified in the importable module. W495 turns underlying WPP-op preservation into short-complex WPP-op preservation, W496 composes W480 split providers with finite-colimit preservation of `forget₂ MetrizableLCA AddCommGrpCat`, and W497 reduces that finite-preservation input to proving that every mapped explicit MetrizableLCA cokernel cofork is colimiting in `AddCommGrpCat`. Product success remains false; the current branch still needs the two concrete W480 providers and this mapped explicit cokernel colimit theorem.
+
+Parent update v494: W493/W494 were verified in the importable module. `selectedCokernelColimitProvider_of_shortComplexPreservesWppOpColimits_w493` derives `SelectedCokernelColimitProviderW492` from `PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor`, and `exactAcyclic_of_w480_splitProviders_and_shortComplexPreservesWppOpColimits_w494` composes that with W480 split providers. Product success remains false; the current branch still needs concrete W480 promotion/ordinary providers and the short-complex preservation input.
+
+Parent update v492: W492 was verified in the importable module. `exactAcyclic_of_w480_splitProviders_and_selectedCokernelColimit_w492` composes W480 split providers with W491 selected cokernel-colimit projection fields, reducing the current WPP-op exact-acyclic branch to three concrete final-call-site providers: `W461ToW475PromotionInputsProviderW480`, `W461ToW475OrdinaryMapProviderW480`, and `SelectedCokernelColimitProviderW492`. Product success remains false.
+
+Parent update v491: W491 was verified in the importable module and support file. The declarations `selectedMappedCokernelColimitOfSelectedForgottenTargetCokernel_w491`, `selectedProjectionComponentIsColimitInputs_of_selectedCokernelColimit_w491`, `projectionFieldsProvider_of_selectedCokernelColimitProvider_w491`, and `exactAcyclic_of_w426Promotion_and_selectedCokernelColimitProvider_w491` show that one selected forgotten-target cokernel colimit provider supplies the three W475 projection fields. Product success remains false; the next target is a thin W480+W491 composition wrapper followed by concrete final-call-site providers.
+
+Parent update v490: The parent consumed the completed `w488-w480-w478-closed-range-quotient-route-current-head-v370` support lead by reimplementing the useful composition as `WppOpW480SplitProvidersComponentwiseProjectionV370SupportW490`. The importable declarations `exactAcyclic_of_w480_splitProviders_and_closedRangeQuotientIdentification_w490` and `exactAcyclic_of_w480_splitProviders_and_componentwiseProjection_w490` compose W480 split providers with W487 closed-range quotient-identification and W489 componentwise projection routes. Product success remains blocked by concrete final-call-site `W461ToW475PromotionInputsProviderW480`, `W461ToW475OrdinaryMapProviderW480`, and `ComponentwiseClosedRangeProjectionProviderW481`.
 
 Parent update v362: The parent added the SnakeInput route for the strict AddCommGrp algebraic frontier. `AddCommGrpStrictSnakeCokernelData` records an isomorphism from the cokernel row `L₃` of a `ShortComplex.SnakeInput AddCommGrpCat` to the target short complex, `addCommGrpKernelExact_of_strictSnakeCokernelData` consumes `ShortComplex.SnakeInput.L₃_exact`, and `addCommGrpStrictKernelExact_wppOp_colimit_boundary_of_snakeCokernel` reduces the strict AddCommGrp boundary to a concrete cokernel-row presentation. W318 and W271 now have direct `..._of_left_and_snakeCokernel` consumers. Product success remains blocked by the left LCA injective/inducing/closed-image certificate and the SnakeInput cokernel-row presentation boundary.
 
@@ -983,4 +1035,227 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - verified: `lake env lean audit/blockers/addcommgrp_w426_left_closed_projection_fields_exact_acyclic_v370_support_w475.lean`; `rg -n '\b(sorry|admit|axiom)\b' audit/blockers/addcommgrp_w426_left_closed_projection_fields_exact_acyclic_v370_support_w475.lean`; `scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_projection_fields_exact_acyclic_v370_support_w475.lean`; `git diff --check`
 - effect: W426 ordinary-map promotion supplies the left closed-embedding input and composes directly with W464 projection fields to the exact-acyclic WPP-op colimit closure endpoint.
 - remaining blockers: instantiate the W426 promotion/equality inputs and projection component `IsColimit` fields for the actual final call site.
+- product_complete: false
+
+
+## W476 W426 Left Closed Component Comparison Exact Acyclic
+
+- timestamp: `2026-05-21T03:14:00Z`
+- artifact: `audit/blockers/addcommgrp_w426_left_closed_component_comparison_exact_acyclic_v370_support_w476.lean`
+- verified: `lake env lean audit/blockers/addcommgrp_w426_left_closed_component_comparison_exact_acyclic_v370_support_w476.lean`; `rg -n '\b(sorry|admit|axiom)\b' audit/blockers/addcommgrp_w426_left_closed_component_comparison_exact_acyclic_v370_support_w476.lean`; `scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_component_comparison_exact_acyclic_v370_support_w476.lean`; `git diff --check`
+- effect: W426 ordinary-map promotion supplies the left closed-embedding input and composes with W471 component-colimit comparison inputs to the exact-acyclic WPP-op colimit closure endpoint.
+- remaining blockers: instantiate W441 ordinary-map promotion fields, the W441 ordinary/canonical colimit-map equality field, and W471 component-colimit comparison inputs at the actual call sites.
+- product_complete: false
+
+
+## W475 Projection Fields Importable Derived API
+
+- timestamp: `2026-05-21T02:38:21Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- commit: `7799cb1`
+- verified: `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `git diff --check -- LeanLCAExactChallenge.lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields`; `lake env lean LeanLCAExactChallenge.lean`; `lake build`
+- effect: W475 projection-fields exact-acyclic route is now an importable `Derived` module and is included by the root `LeanLCAExactChallenge` module.
+- remaining blockers: instantiate W426 promotion/equality inputs and projection component `IsColimit` fields at the actual final call site, then connect this endpoint into the final consolidated product-success declaration.
+- product_complete: false
+
+
+## W477 Componentwise Closed Range Projection Fields
+
+- timestamp: `2026-05-21T02:43:22Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake env lean audit/ProductSuccessDeclarations.lean`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean`
+- effect: W426 promotion/equality data now composes with a componentwise closed-range projection provider through the importable W475 projection-fields exact-acyclic route.
+- remaining blockers: instantiate concrete W426 promotion/equality data and actual projection `IsColimit` fields at the final call site.
+- product_complete: false
+
+
+## W478 W461 To W441 Promotion Fields
+
+- timestamp: `2026-05-21T02:43:22Z`
+- artifact: `audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean`
+- verified: `lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean`; `scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean`
+- effect: W461-shaped quotient-compatibility and point-identification target-leg data, with a matching W426 ordinary descended package, now construct W441-shaped promotion fields and transport ordinary closed-embedding facts to the W318 colimit map.
+- source promotion: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean` now exposes `WppOpW461ToW441PromotionProviderV370SupportW478`; `audit/ProductSuccessDeclarations.lean` checks the importable provider API.
+- verified source promotion: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake env lean audit/ProductSuccessDeclarations.lean`; `lake build`
+- remaining blockers: instantiate the concrete W461 point-identification inputs and W426 ordinary package, and supply projection/component-colimit inputs at the final call site.
+- product_complete: false
+
+
+## W478 Importable Provider Bridge
+
+- timestamp: `2026-05-21T03:25:00Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake env lean audit/ProductSuccessDeclarations.lean`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean`; `git diff --check`
+- effect: the W478 bridge is now importable as `WppOpW461ToW441PromotionProviderV370SupportW478`. It exposes `W461PromotionInputProviderW478`, `w426PromotionFieldsProvider_of_w461Inputs_w478`, `w426OrdinaryMapProvider_of_w461Inputs_w478`, `w426OrdinaryEqualsCanonicalProvider_of_w461Inputs_w478`, and `exactAcyclic_of_w461PromotionInputs_and_projectionFields_w478`.
+- remaining blockers: construct the actual `W461PromotionInputProviderW478` and `ProjectionFieldsProviderW475` for the final WPP-op exact-acyclic call sites. The provider contract now explicitly includes the W426 ordinary descended package for the specified W475 `ordinaryMap`, plus equality of the descended map with the W461 point-identification input.
+- product_complete: false
+
+
+## W480 W461 Bridge To W475 Projection Exact Acyclic
+
+- timestamp: `2026-05-21T03:45:00Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- verified: `lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields`; `lake env lean audit/ProductSuccessDeclarations.lean`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean`; `git diff --check`
+- effect: W480 exposes the split-provider adapter `WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480`. It reconstructs the W478 provider from `W461ToW475PromotionInputsProviderW480` plus `W461ToW475OrdinaryMapProviderW480`, then composes with W475 projection fields through `exactAcyclic_of_w461_bridge_to_w475_projection_w480`.
+- remaining blockers: instantiate actual `W461ToW475PromotionInputsProviderW480`, `W461ToW475OrdinaryMapProviderW480`, and `ProjectionFieldsProviderW475` at the final WPP-op exact-acyclic call sites.
+- product_complete: false
+
+
+## W481 W461 Bridge Componentwise Closed Range Projection
+
+- timestamp: `2026-05-21T03:13:15Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- worker result: `/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave185_20260520T163335Z/workers/w481-w461-bridge-componentwise-closed-range-projection-current-head-v370/result.json`
+- verified: `lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields`; `lake env lean audit/ProductSuccessDeclarations.lean`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean`; `lake build`; `git diff --check`
+- effect: W481 exposes `WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481`. It packages componentwise closed-range evidence plus projection `IsColimit` fields, provides `projectionFieldsProvider_of_componentwiseClosedRangeProjectionInputs_w481`, and composes W480's W461 bridge through `exactAcyclic_of_w461_to_w441_and_componentwiseClosedRangeProjection_w481`.
+- remaining blockers: construct actual `W461ToW475PromotionInputsProviderW480`, `W461ToW475OrdinaryMapProviderW480`, and componentwise projection-field inputs at the final WPP-op exact-acyclic call sites.
+- product_complete: false
+
+
+## W482 W477 To W481 Componentwise Projection Adapter
+
+- timestamp: `2026-05-21T03:58:00Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake env lean audit/ProductSuccessDeclarations.lean`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean`; `git diff --check`
+- effect: W482 exposes `WppOpW477ToW481ComponentwiseProjectionAdapterV370SupportW482`. It proves the W477/W481 selected-difference components are definitionally the same, converts W477 componentwise projection inputs into W481 inputs, and composes the W477 provider with the W480 W461 bridge through `exactAcyclic_of_w461_bridge_and_w477_componentwiseProjection_w482`.
+- remaining blockers: instantiate actual `W461ToW475PromotionInputsProviderW480`, `W461ToW475OrdinaryMapProviderW480`, and the concrete W477 componentwise provider at the final WPP-op exact-acyclic call sites.
+- product_complete: false
+
+
+## W483 Single W461 Provider Componentwise Projection
+
+- timestamp: `2026-05-21T04:05:00Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- support lead: `/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave185_20260520T163335Z/workers/w482-single-w461-provider-componentwise-projection-current-head-v370/result.json`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields`; `lake env lean audit/ProductSuccessDeclarations.lean`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean`; `git diff --check`
+- effect: W483 exposes `WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483`. It uses `SelectedW461PromotionInputsProviderW483` to prove W318's left closed-image input directly, then composes it with W475 projection fields or W481 componentwise projection inputs through `exactAcyclic_of_selectedW461Provider_and_componentwiseClosedRangeProjection_w483`.
+- remaining blockers: construct actual `SelectedW461PromotionInputsProviderW483` and `ComponentwiseClosedRangeProjectionProviderW481` at the final WPP-op exact-acyclic call sites.
+- product_complete: false
+
+
+## W484 Closed Range Only Componentwise Projection Bridge
+
+- timestamp: `2026-05-21T03:32:02Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- support lead: `/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave185_20260520T163335Z/workers/w483-closed-range-only-componentwise-projection-current-head-v370/result.json`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields`; `lake env lean audit/ProductSuccessDeclarations.lean`; `lake env lean audit/RequiredDeclarations.lean`; `lake build`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean`; `git diff --check`
+- effect: W484 exposes `WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484`. It separates closed-range-only component inputs from the missing selected projection bridge, recovers W481's componentwise projection provider once that bridge is supplied, and composes through W483 via `exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyComponentwiseProjection_w484`.
+- remaining blockers: construct actual `SelectedW461PromotionInputsProviderW483`, `ComponentwiseClosedRangeOnlyProviderW484`, and `ComponentwiseClosedRangeOnlyProjectionBridgeW484`; the bridge is the isolated W457-style selected projected component cofork `IsColimit` input.
+- product_complete: false
+
+
+## W485 Quotient Identification Projection Provider
+
+- timestamp: `2026-05-21T03:41:09Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- support lead: `/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave185_20260520T163335Z/workers/w484-quotient-identification-projection-provider-current-head-v370/result.json`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake env lean audit/ProductSuccessDeclarations.lean`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean`; `git diff --check`
+- effect: W485 exposes `WppOpQuotientIdentificationProjectionProviderV370SupportW485`. It turns selected component quotient-identification inputs into W475 projection fields and composes them with W483's selected-W461 endpoint through `exactAcyclic_of_selectedW461Provider_and_quotientIdentificationProjection_w485`. The W487 closed-range adapter can supply the explicit quotient cofork `IsColimit` proofs from closed-range hypotheses.
+- remaining blockers: construct actual `SelectedW461PromotionInputsProviderW483` and either `QuotientIdentificationProjectionProviderW485` or the closed-range provider surface adapted to it at final WPP-op exact-acyclic call sites. The closed-range surface still needs three point isomorphisms, three leg-to-explicit-quotient equations, and three closed-range facts for the selected component differences.
+- product_complete: false
+
+
+## W486/W487 W478 Provider Quotient Identification Route
+
+- timestamp: `2026-05-21T03:41:09Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- support lead: `/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave185_20260520T163335Z/workers/w486-w478-provider-to-selected-w461-provider-current-head-v370/result.json`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake env lean audit/ProductSuccessDeclarations.lean`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean`; `git diff --check`
+- effect: W486 turns `W461PromotionInputProviderW478` into W483's selected-W461 provider and composes it with arbitrary W475 projection fields. W487 combines W486 with W485, yielding `exactAcyclic_of_w461PromotionInputProvider_and_quotientIdentificationProjection_w487`; it also exposes `exactAcyclic_of_w461PromotionInputProvider_and_closedRangeQuotientIdentification_w487` for the closed-range provider route.
+- remaining blockers: construct actual `W461PromotionInputProviderW478` and either `QuotientIdentificationProjectionProviderW485` or the closed-range provider surface adapted to it at final WPP-op exact-acyclic call sites.
+- product_complete: false
+
+
+## W489 Componentwise Projection To Closed-Range Quotient Identification
+
+- timestamp: `2026-05-21T04:02:51Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- focused support artifact: `audit/blockers/wpp_op_closed_range_quotient_identification_provider_current_head_v370_support_w489.lean`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake env lean audit/ProductSuccessDeclarations.lean`; `lake env lean audit/blockers/wpp_op_closed_range_quotient_identification_provider_current_head_v370_support_w489.lean`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/blockers/wpp_op_closed_range_quotient_identification_provider_current_head_v370_support_w489.lean`
+- effect: W489 exposes `WppOpComponentwiseProjectionToClosedRangeQuotientIdentificationV370SupportW489`. It transports W481 projected component `IsColimit` proofs back to W485 selected component coforks, derives the closed-range quotient-identification point isomorphisms and leg equations, builds `closedRangeQuotientIdentificationProvider_of_componentwiseProjection_w489`, and composes W478 with W481 through `exactAcyclic_of_w461PromotionInputProvider_and_componentwiseProjection_w489`.
+- remaining blockers: construct actual `W461PromotionInputProviderW478` and `ComponentwiseClosedRangeProjectionProviderW481` at final WPP-op exact-acyclic call sites.
+- product_complete: false
+
+
+## W479 W426 Left Closed Quotient Identification Exact Acyclic
+
+- timestamp: `2026-05-21T02:52:26Z`
+- artifact: `audit/blockers/addcommgrp_w426_left_closed_quotient_identification_exact_acyclic_v370_support_w479.lean`
+- verified: `scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_quotient_identification_exact_acyclic_v370_support_w479.lean`; `git diff --check -- audit/blockers/addcommgrp_w426_left_closed_quotient_identification_exact_acyclic_v370_support_w479.lean`; `lake env lean audit/blockers/addcommgrp_w426_left_closed_quotient_identification_exact_acyclic_v370_support_w479.lean`
+- effect: W426 ordinary-map promotion supplies the left closed-image input and composes with W463 selected component quotient-identification data to the exact-acyclic WPP-op colimit closure endpoint.
+- remaining blockers: instantiate concrete W426 ordinary descended map package, ordinary/canonical colimit-map equality, and W463 selected component quotient-identification data at the final call sites.
+- product_complete: false
+
+
+## W522 Closed Range Only Projection Bridge
+
+- timestamp: `2026-05-21T13:48:45Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields`; `lake env lean audit/ProductSuccessDeclarations.lean`; `lake env lean audit/RequiredDeclarations.lean`; `lake build`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean`
+- effect: W522 exposes `WppOpClosedRangeOnlyProjectionBridgeV370SupportW522`. It uses W521's component colimit lemmas to construct `SelectedComponentwiseProjectionBridgeInputsW484` from W484 closed-range-only fields, upgrades `ComponentwiseClosedRangeOnlyProviderW484` to W481's full componentwise projection provider, and composes with W483 through `exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyProjection_w522`.
+- remaining blockers: construct actual `SelectedW461PromotionInputsProviderW483` or the equivalent W478/W480 provider package, and construct concrete `ComponentwiseClosedRangeOnlyProviderW484` at the final WPP-op exact-acyclic call sites.
+- product_complete: false
+
+
+## W523 Closed Natural Transformation Selected Provider Closed Range Only
+
+- timestamp: `2026-05-21T13:58:22Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields`; `lake env lean audit/ProductSuccessDeclarations.lean`; `lake env lean audit/RequiredDeclarations.lean`; `lake build`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean`; `git diff --check`
+- effect: W523 exposes `WppOpClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportW523`. It follows the existing W509 -> W507 -> W506 -> W505 -> W504 -> W500 -> W483 adapter chain, so a closed-natural-transformation ordinary package, W510 topology facts, W511 relation-topology data, or W512 relation-field data can supply `SelectedW461PromotionInputsProviderW483`. It then composes those selected-provider routes with W522 closed-range-only projection fields.
+- remaining blockers: construct concrete `ClosedNatTransOrdinaryPackageProviderW509` or the corresponding W510/W511/W512 provider data, and construct concrete `ComponentwiseClosedRangeOnlyProviderW484` at the final WPP-op exact-acyclic call sites.
+- product_complete: false
+
+
+## W524 Representative Image Selected Provider Closed Range Only
+
+- timestamp: `2026-05-21T14:09:05Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields`; `lake env lean audit/ProductSuccessDeclarations.lean`; `lake env lean audit/RequiredDeclarations.lean`; `lake build`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean`; `git diff --check`
+- effect: W524 exposes `WppOpRepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportW524`. It routes W515 representative-image data, W516 top-target relation data, and W517 compact-target relation data into W523's selected-W461 provider surface, then composes those selected-provider routes with W522 closed-range-only projection fields.
+- remaining blockers: construct concrete `ClosedNatTransOrdinaryRepresentativeImageProviderW515` or the corresponding W516/W517 relation provider data, and construct concrete `ComponentwiseClosedRangeOnlyProviderW484` at the final WPP-op exact-acyclic call sites.
+- product_complete: false
+
+
+## W525 Selected Difference Closed Map Closed Range Only
+
+- timestamp: `2026-05-21T14:17:10Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields`; `lake env lean audit/ProductSuccessDeclarations.lean`; `lake env lean audit/RequiredDeclarations.lean`; `lake build`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean`; `git diff --check`
+- effect: W525 exposes `WppOpSelectedDifferenceClosedMapClosedRangeOnlyV370SupportW525`. It reduces W484's closed-range-only provider to selected component difference closed-map or closed-embedding provider surfaces, then composes those providers through the W524 representative-image, top-target, and compact-target endpoints.
+- remaining blockers: construct concrete `ClosedNatTransOrdinaryRepresentativeImageProviderW515` or the corresponding W516/W517 relation provider data, and prove selected component difference closed-map or closed-embedding data at the final WPP-op exact-acyclic call sites.
+- product_complete: false
+
+
+## W526 Row-Aware Closed Range Only Projection
+
+- timestamp: `2026-05-21T14:31:00Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields`; `lake env lean audit/ProductSuccessDeclarations.lean`; `lake env lean audit/RequiredDeclarations.lean`
+- effect: W526 exposes `WppOpRowAwareClosedRangeOnlyProjectionV370SupportW526`. It replaces the overbroad all-diagrams W484 closed-range-only requirement with `ComponentwiseClosedRangeOnlyRowsProviderW526`, which receives the strict AddCommGrp row fields available at W318's algebraic boundary. W526 then uses W522 projection bridge fields and W483/W524 selected-provider routes to derive exact-acyclic closure from representative-image, top-target, or compact-target relation data plus row-aware closed-range data.
+- remaining blockers: construct concrete `ClosedNatTransOrdinaryRepresentativeImageProviderW515` or the corresponding W516/W517 relation provider data, and construct a concrete row-aware selected component closed-range provider at the strict AddCommGrp boundary.
+- product_complete: false
+
+
+## W527 Row-Aware Closed Map Closed Range Only
+
+- timestamp: `2026-05-21T14:44:00Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields`; `lake env lean audit/ProductSuccessDeclarations.lean`; `lake env lean audit/RequiredDeclarations.lean`; `lake build`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean`; `git diff --check`
+- effect: W527 exposes `WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527`. It turns row-aware selected component difference closed-map or closed-embedding providers into W526's `ComponentwiseClosedRangeOnlyRowsProviderW526`, then composes those providers through selected-W461, representative-image, top-target, and compact-target endpoints.
+- remaining blockers: construct concrete `ClosedNatTransOrdinaryRepresentativeImageProviderW515` or the corresponding W516/W517 relation provider data, and prove concrete row-aware selected component difference closed-map or closed-embedding data at the strict AddCommGrp boundary.
 - product_complete: false

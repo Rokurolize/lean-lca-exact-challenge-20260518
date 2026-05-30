@@ -1,6 +1,7 @@
 import LeanLCAExactChallenge.LCA.Cokernel
 import Mathlib.Algebra.Homology.ShortComplex.Ab
 import Mathlib.Algebra.Homology.ShortComplex.ConcreteCategory
+import Mathlib.CategoryTheory.ConcreteCategory.EpiMono
 import Mathlib.Topology.Algebra.OpenSubgroup
 import Mathlib.Topology.Constructions
 
@@ -184,6 +185,105 @@ lemma strictShortExact_of_kernel_open_closed_epi
     strictShortExact T :=
   strictShortExact_of_kernel_open_closed_cokernelπ_eq_zero hker hclosed hopen
     (cokernelπ_eq_zero_of_epi T.g)
+
+/--
+A strict short exact sequence has the expected categorical kernel fork on the
+incoming map.
+-/
+noncomputable def kernelForkOfStrictShortExact {S : ShortComplex MetrizableLCA.{u}}
+    (hS : strictShortExact S) :
+    IsLimit (KernelFork.ofι S.f S.zero) := by
+  haveI : Mono S.f := ConcreteCategory.mono_of_injective S.f hS.closed_inclusion.injective
+  refine KernelFork.IsLimit.ofι' S.f S.zero (fun {A} k hk => ?_)
+  let e := hS.closed_inclusion.isEmbedding.toHomeomorph
+  have rangeProof : ∀ a : A, k a ∈ Set.range (S.f : S.X₁ → S.X₂) := by
+    intro a
+    have hk_point : S.g (k a) = 0 := by
+      have h := congrArg (fun q : A ⟶ S.X₃ => q a) hk
+      simpa using h
+    exact hS.algebraic_exact (k a) hk_point
+  let liftFun : A → S.X₁ := fun a => e.symm ⟨k a, rangeProof a⟩
+  have lift_spec : ∀ a : A, S.f (liftFun a) = k a := by
+    intro a
+    dsimp [liftFun]
+    exact congrArg Subtype.val (e.apply_symm_apply ⟨k a, rangeProof a⟩)
+  let lift : A ⟶ S.X₁ :=
+    { hom' :=
+        { toFun := liftFun
+          map_zero' := by
+            apply hS.closed_inclusion.injective
+            rw [lift_spec 0]
+            simp
+          map_add' := by
+            intro a b
+            apply hS.closed_inclusion.injective
+            calc
+              S.f (liftFun (a + b)) = k (a + b) := lift_spec (a + b)
+              _ = k a + k b := map_add k.hom a b
+              _ = S.f (liftFun a) + S.f (liftFun b) := by
+                rw [lift_spec a, lift_spec b]
+              _ = S.f (liftFun a + liftFun b) :=
+                (map_add S.f.hom (liftFun a) (liftFun b)).symm
+          continuous_toFun := by
+            dsimp [liftFun]
+            apply e.symm.continuous.comp
+            apply Continuous.subtype_mk
+            exact k.hom.continuous } }
+  refine ⟨lift, ?_⟩
+  ext a
+  exact lift_spec a
+
+/--
+A strict short exact sequence has the expected categorical cokernel cofork on
+the outgoing map.
+-/
+noncomputable def cokernelCoforkOfStrictShortExact {S : ShortComplex MetrizableLCA.{u}}
+    (hS : strictShortExact S) :
+    IsColimit (CokernelCofork.ofπ S.g S.zero) := by
+  haveI : Epi S.g := ConcreteCategory.epi_of_surjective S.g hS.surjective
+  refine CokernelCofork.IsColimit.ofπ' S.g S.zero (fun {A} k hk => ?_)
+  have fiber_eq : ∀ {x x' : S.X₂}, S.g x = S.g x' → k x = k x' := by
+    intro x x' hxx
+    have hdiff : S.g (x - x') = 0 := by
+      calc
+        S.g (x - x') = S.g x - S.g x' := map_sub S.g.hom x x'
+        _ = 0 := by rw [hxx, sub_self]
+    rcases hS.algebraic_exact (x - x') hdiff with ⟨a, ha⟩
+    have hkfa : k (S.f a) = 0 := by
+      have h := congrArg (fun q : S.X₁ ⟶ A => q a) hk
+      simpa using h
+    have hkdiff : k (x - x') = 0 := by
+      simpa [ha] using hkfa
+    have hsub : k x - k x' = 0 := by
+      simpa [map_sub] using hkdiff
+    exact sub_eq_zero.mp hsub
+  let liftFun : S.X₃ → A := fun y => k (Classical.choose (hS.surjective y))
+  have lift_spec : ∀ x : S.X₂, liftFun (S.g x) = k x := by
+    intro x
+    dsimp [liftFun]
+    exact fiber_eq (Classical.choose_spec (hS.surjective (S.g x)))
+  let lift : S.X₃ ⟶ A :=
+    { hom' :=
+        { toFun := liftFun
+          map_zero' := by
+            rw [← map_zero S.g.hom, lift_spec]
+            simp
+          map_add' := by
+            intro y z
+            rcases hS.surjective y with ⟨x, rfl⟩
+            rcases hS.surjective z with ⟨x', rfl⟩
+            rw [← map_add S.g.hom, lift_spec, lift_spec, lift_spec]
+            exact map_add k.hom x x'
+          continuous_toFun := by
+            have hq : IsQuotientMap (S.g : S.X₂ → S.X₃) :=
+              hS.open_map.isQuotientMap S.g.hom.continuous hS.surjective
+            exact hq.continuous_iff.mpr (by
+              convert k.hom.continuous using 1
+              funext x
+              exact lift_spec x) } }
+  refine ⟨lift, ?_⟩
+  ext x
+  exact lift_spec x
 
 /-- Coordinatewise product of two short complexes. -/
 def strictShortExactBiprodComplex (S T : ShortComplex MetrizableLCA.{u}) :

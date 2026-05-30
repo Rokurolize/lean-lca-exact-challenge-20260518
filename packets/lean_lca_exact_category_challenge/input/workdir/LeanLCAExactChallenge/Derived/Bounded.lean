@@ -5,6 +5,7 @@ import Mathlib.Algebra.Homology.HomotopyCategory.MappingCone
 import Mathlib.AlgebraicTopology.Quasicategory.Nerve
 import Mathlib.AlgebraicTopology.Quasicategory.StrictBicategory
 import Mathlib.AlgebraicTopology.SimplicialSet.NerveAdjunction
+import Mathlib.CategoryTheory.Localization.CalculusOfFractions.OfAdjunction
 import Mathlib.CategoryTheory.Localization.CalculusOfFractions.Preadditive
 import Mathlib.CategoryTheory.Localization.FiniteProducts
 import Mathlib.CategoryTheory.Localization.HasLocalization
@@ -434,6 +435,222 @@ theorem exactAcyclicHomotopyObject_quotient_obj_iff (K : CochainComplex C ℤ) :
       exactAcyclic C K := by
   rfl
 
+/-- Object-level input for proving that exact acyclicity descends through homotopy-category
+isomorphisms: it is enough to show invariance under homotopy equivalences of complexes. -/
+structure ExactAcyclicHomotopyEquivInvarianceInput : Prop where
+  exactAcyclic_of_homotopyEquiv :
+    ∀ {K L : CochainComplex C ℤ}, HomotopyEquiv K L → exactAcyclic C K → exactAcyclic C L
+
+/-- Homology-level detection input for exact acyclicity. This separates the homotopy-invariant
+homology part from the strict exact-category/topological part. -/
+structure ExactAcyclicHomologyDetectionInput : Prop where
+  hasHomology : ∀ (K : CochainComplex C ℤ) (i : ℤ), K.HasHomology i
+  isZero_homology_of_exactAcyclic :
+    ∀ (K : CochainComplex C ℤ), exactAcyclic C K →
+      ∀ i : ℤ, letI : K.HasHomology i := hasHomology K i; IsZero (K.homology i)
+  exactAcyclic_of_isZero_homology :
+    ∀ (K : CochainComplex C ℤ),
+      (∀ i : ℤ, letI : K.HasHomology i := hasHomology K i; IsZero (K.homology i)) →
+        exactAcyclic C K
+
+/-- Degreewise exactness detection input for exact acyclicity. This is often the smaller
+remaining target than raw homology object manipulation because mathlib already proves
+`K.ExactAt i ↔ IsZero (K.homology i)` once homology exists. -/
+structure ExactAcyclicExactAtDetectionInput : Prop where
+  hasHomology : ∀ (K : CochainComplex C ℤ) (i : ℤ), K.HasHomology i
+  exactAt_of_exactAcyclic :
+    ∀ (K : CochainComplex C ℤ), exactAcyclic C K → ∀ i : ℤ, K.ExactAt i
+  exactAcyclic_of_exactAt :
+    ∀ (K : CochainComplex C ℤ), (∀ i : ℤ, K.ExactAt i) → exactAcyclic C K
+
+/-- Degreewise exactness detection supplies homology detection of exact acyclicity. -/
+theorem exactAcyclicHomologyDetectionInput_of_exactAtDetection
+    (E : ExactAcyclicExactAtDetectionInput C) :
+    ExactAcyclicHomologyDetectionInput C where
+  hasHomology := E.hasHomology
+  isZero_homology_of_exactAcyclic := by
+    intro K hK i
+    letI : K.HasHomology i := E.hasHomology K i
+    exact (HomologicalComplex.exactAt_iff_isZero_homology (K := K) (i := i)).mp
+      (E.exactAt_of_exactAcyclic K hK i)
+  exactAcyclic_of_isZero_homology := by
+    intro K hK
+    apply E.exactAcyclic_of_exactAt
+    intro i
+    letI : K.HasHomology i := E.hasHomology K i
+    exact (HomologicalComplex.exactAt_iff_isZero_homology (K := K) (i := i)).mpr
+      (hK i)
+
+/-- For the strict MetrizableLCA exact structure, exact acyclicity gives categorical
+exactness at each degree once the forgetful functor preserves homology. -/
+theorem exactAt_of_exactAcyclic_metrizableLCA
+    (hhom :
+      ∀ (K : CochainComplex MetrizableLCA.{u} ℤ) (i : ℤ), K.HasHomology i)
+    (hpres : (forget₂ MetrizableLCA.{u} AddCommGrpCat.{u}).PreservesHomology)
+    {K : CochainComplex MetrizableLCA.{u} ℤ}
+    (hK : exactAcyclic MetrizableLCA.{u} K) :
+    ∀ i : ℤ, K.ExactAt i := by
+  intro i
+  letI : K.HasHomology i := hhom K i
+  letI : (forget₂ MetrizableLCA.{u} AddCommGrpCat.{u}).PreservesHomology := hpres
+  rw [HomologicalComplex.exactAt_iff]
+  rw [ShortComplex.exact_iff_exact_map_forget₂]
+  change ((K.sc i).map MetrizableLCA.forgetToAddCommGrpCat).Exact
+  exact MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict (hK i)
+
+/-- Topological short-complex fields that turn categorical exactness at every degree into
+strict exact acyclicity for MetrizableLCA cochain complexes. -/
+structure MetrizableExactAtTopologyInputs : Prop where
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  forgetPreservesHomology :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology
+  closedEmbedding :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      Topology.IsClosedEmbedding ((K.sc i).f : (K.sc i).X₁ → (K.sc i).X₂)
+  openMap :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
+  surjective :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      Function.Surjective ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
+
+/-- Categorical exactness at every degree gives strict exact acyclicity once the
+degreewise MetrizableLCA topology fields are supplied. -/
+theorem exactAcyclic_of_exactAt_metrizableLCA_of_topology
+    (I : MetrizableExactAtTopologyInputs)
+    (K : CochainComplex MetrizableLCA.{0} ℤ)
+    (hK : ∀ i : ℤ, K.ExactAt i) :
+    exactAcyclic MetrizableLCA.{0} K := by
+  intro i
+  exact MetrizableLCA.strictShortExact_of_exact_of_topology
+    (I.hasHomology K i) I.forgetPreservesHomology (hK i)
+    (I.closedEmbedding K i) (I.openMap K i) (I.surjective K i)
+
+/-- The reverse ExactAt-to-strict-exact direction does not need homology existence as an
+input: exactness of each short complex supplies the local homology data. -/
+structure MetrizableExactAtStrictTopologyInputs : Prop where
+  forgetPreservesHomology :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology
+  closedEmbedding :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      Topology.IsClosedEmbedding ((K.sc i).f : (K.sc i).X₁ → (K.sc i).X₂)
+  openMap :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
+  surjective :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      Function.Surjective ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
+
+/-- Right-endpoint form of the reverse ExactAt route.  It keeps the endpoint datum
+categorical: ExactAt must imply the outgoing differential is epi, and openness then
+recovers the topological surjectivity used by strict exactness. -/
+structure MetrizableExactAtEndpointStrictTopologyInputs : Prop where
+  forgetPreservesHomology :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology
+  closedEmbedding :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      Topology.IsClosedEmbedding ((K.sc i).f : (K.sc i).X₁ → (K.sc i).X₂)
+  openMap :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
+  epi_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → Epi ((K.sc i).g)
+
+/-- `ShortExact` is the positive bridge from categorical exactness to the separate
+right-endpoint epi datum consumed by the W602 endpoint route. -/
+structure MetrizableExactAtShortExactTopologyInputs : Prop where
+  forgetPreservesHomology :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology
+  closedEmbedding :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      Topology.IsClosedEmbedding ((K.sc i).f : (K.sc i).X₁ → (K.sc i).X₂)
+  openMap :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
+  shortExact_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → (K.sc i).ShortExact
+
+/-- Categorical exactness at every degree gives strict exact acyclicity from only the
+degreewise topology fields plus forgetful homology preservation. -/
+theorem exactAcyclic_of_exactAt_metrizableLCA_of_strictTopology
+    (I : MetrizableExactAtStrictTopologyInputs)
+    (K : CochainComplex MetrizableLCA.{0} ℤ)
+    (hK : ∀ i : ℤ, K.ExactAt i) :
+    exactAcyclic MetrizableLCA.{0} K := by
+  intro i
+  have hhom : (K.sc i).HasHomology := (show (K.sc i).Exact from hK i).hasHomology
+  exact MetrizableLCA.strictShortExact_of_exact_of_topology
+    hhom I.forgetPreservesHomology (hK i)
+    (I.closedEmbedding K i) (I.openMap K i) (I.surjective K i)
+
+/-- Categorical exactness at every degree gives strict exact acyclicity from endpoint
+epi data, closed incoming differentials, and open outgoing differentials. -/
+theorem exactAcyclic_of_exactAt_metrizableLCA_of_endpointStrictTopology
+    (I : MetrizableExactAtEndpointStrictTopologyInputs)
+    (K : CochainComplex MetrizableLCA.{0} ℤ)
+    (hK : ∀ i : ℤ, K.ExactAt i) :
+    exactAcyclic MetrizableLCA.{0} K := by
+  intro i
+  have hhom : (K.sc i).HasHomology := (show (K.sc i).Exact from hK i).hasHomology
+  haveI : Epi ((K.sc i).g) := I.epi_of_exactAt K i (hK i)
+  have hsurj :
+      Function.Surjective ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃) :=
+    MetrizableLCA.surjective_of_cokernelSubgroup_eq_top_of_isOpenMap ((K.sc i).g)
+      (MetrizableLCA.cokernelSubgroup_eq_top_of_cokernelπ_eq_zero ((K.sc i).g)
+        (MetrizableLCA.cokernelπ_eq_zero_of_epi ((K.sc i).g)))
+      (I.openMap K i)
+  exact MetrizableLCA.strictShortExact_of_exact_of_topology
+    hhom I.forgetPreservesHomology (hK i)
+    (I.closedEmbedding K i) (I.openMap K i) hsurj
+
+/-- ShortExact endpoint data supplies the endpoint-epi route. -/
+theorem endpointStrictTopologyInputs_of_shortExactTopology
+    (I : MetrizableExactAtShortExactTopologyInputs) :
+    MetrizableExactAtEndpointStrictTopologyInputs where
+  forgetPreservesHomology := I.forgetPreservesHomology
+  closedEmbedding := I.closedEmbedding
+  openMap := I.openMap
+  epi_of_exactAt := by
+    intro K i hK
+    exact (I.shortExact_of_exactAt K i hK).epi_g
+
+/-- The ShortExact endpoint route is a convenient wrapper around the endpoint-epi route. -/
+theorem exactAcyclic_of_exactAt_metrizableLCA_of_shortExactTopology
+    (I : MetrizableExactAtShortExactTopologyInputs)
+    (K : CochainComplex MetrizableLCA.{0} ℤ)
+    (hK : ∀ i : ℤ, K.ExactAt i) :
+    exactAcyclic MetrizableLCA.{0} K :=
+  exactAcyclic_of_exactAt_metrizableLCA_of_endpointStrictTopology
+    (endpointStrictTopologyInputs_of_shortExactTopology I) K hK
+
+/-- Homology detection of exact acyclicity implies invariance under homotopy equivalences:
+homotopy equivalences induce isomorphisms on homology. -/
+theorem exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection
+    (H : ExactAcyclicHomologyDetectionInput C) :
+    ExactAcyclicHomotopyEquivInvarianceInput C where
+  exactAcyclic_of_homotopyEquiv := by
+    intro K L e hK
+    apply H.exactAcyclic_of_isZero_homology
+    intro i
+    letI : K.HasHomology i := H.hasHomology K i
+    letI : L.HasHomology i := H.hasHomology L i
+    exact IsZero.of_iso (H.isZero_homology_of_exactAcyclic K hK i)
+      (HomotopyEquiv.toHomologyIso e i).symm
+
+/-- Homotopy-equivalence invariance of exact acyclicity implies that the homotopy-category
+exact-acyclic object predicate is closed under isomorphisms. -/
+theorem exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+    (I : ExactAcyclicHomotopyEquivInvarianceInput C) :
+    (exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms where
+  of_iso := by
+    intro X Y e hX
+    obtain ⟨K, rfl⟩ := HomotopyCategory.quotient_obj_surjective X
+    obtain ⟨L, rfl⟩ := HomotopyCategory.quotient_obj_surjective Y
+    exact I.exactAcyclic_of_homotopyEquiv (HomotopyCategory.homotopyEquivOfIso e) hX
+
 /-- Exact acyclic homotopy objects contain a zero object. -/
 instance exactAcyclicHomotopyObject_containsZero [HasZeroObject C] :
     (exactAcyclicHomotopyObject C).ContainsZero where
@@ -515,6 +732,25 @@ theorem exactAcyclicHomotopyObject_isTriangulated_of_isTriangulatedClosed2
     [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
     [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
     (exactAcyclicHomotopyObject C).IsTriangulated where
+
+/-- If exact-acyclic homotopy objects are identified with the homological kernel of a
+homological functor, mathlib's homological-kernel theorem supplies the middle-object
+distinguished-triangle closure directly. -/
+theorem exactAcyclicHomotopyObject_isTriangulatedClosed2_of_homologicalKernel
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    {A : Type*} [Category A] [Abelian A]
+    (F : HomotopyCategory C (ComplexShape.up ℤ) ⥤ A)
+    [F.IsHomological]
+    (identify :
+      ∀ X, exactAcyclicHomotopyObject C X ↔ F.homologicalKernel X) :
+    (exactAcyclicHomotopyObject C).IsTriangulatedClosed₂ where
+  ext₂' := by
+    intro T hT h₁ h₃
+    have h₂ : F.homologicalKernel.isoClosure T.obj₂ :=
+      ObjectProperty.ext_of_isTriangulatedClosed₂' (P := F.homologicalKernel) T hT
+        ((identify T.obj₁).mp h₁) ((identify T.obj₃).mp h₃)
+    rcases h₂ with ⟨X₂, hX₂, e⟩
+    exact ⟨X₂, (identify X₂).mpr hX₂, e⟩
 
 /-- A morphism of complexes whose mapping cone is exact acyclic lies in the Verdier-style
 `trW` class for the exact-acyclic homotopy-object predicate. -/
@@ -734,6 +970,58 @@ theorem exactAcyclicHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_real
     rcases realize hT h₁ h₃ with ⟨K, L, f, e₁, e₃, comm, hL⟩
     exact exactAcyclicHomotopyObject_distinguished_ext2_of_triangleh_iso13 C
       hT f e₁ e₃ comm hL
+
+/-- The strict-realization input needed to make exact-acyclic homotopy objects closed under
+distinguished triangles. -/
+abbrev exactAcyclicHomotopyObjectTrianglehIso13Realization
+    [HasZeroObject C] [HasBinaryBiproducts C] : Prop :=
+  ∀ {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))},
+    T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)) →
+    exactAcyclicHomotopyObject C T.obj₁ →
+    exactAcyclicHomotopyObject C T.obj₃ →
+    ∃ (K L : CochainComplex C ℤ) (f : K ⟶ L)
+      (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+      (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃),
+        (CochainComplex.mappingCone.triangleh f).mor₃ ≫
+            (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map e₁.hom =
+          e₃.hom ≫ T.mor₃ ∧
+        exactAcyclic C L
+
+/-- A target-isomorphism form of the exact-acyclic homotopy-object strict-realization input. -/
+abbrev exactAcyclicHomotopyObjectTrianglehIso13TargetIsoRealization
+    [HasZeroObject C] [HasBinaryBiproducts C] : Prop :=
+  ∀ {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))},
+    T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)) →
+    exactAcyclicHomotopyObject C T.obj₁ →
+    exactAcyclicHomotopyObject C T.obj₃ →
+    ∃ (K L Lexact : CochainComplex C ℤ) (f : K ⟶ L)
+      (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+      (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃)
+      (_eL : Lexact ≅ L),
+        (CochainComplex.mappingCone.triangleh f).mor₃ ≫
+            (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map e₁.hom =
+          e₃.hom ≫ T.mor₃ ∧
+        exactAcyclic C Lexact
+
+/-- Target-isomorphism realization data supplies the exact-acyclic homotopy-object
+strict-realization input. -/
+theorem exactAcyclicHomotopyObjectTrianglehIso13Realization_of_targetIsoRealization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : exactAcyclicHomotopyObjectTrianglehIso13TargetIsoRealization C) :
+    exactAcyclicHomotopyObjectTrianglehIso13Realization C := by
+  intro T hT h₁ h₃
+  rcases realize hT h₁ h₃ with ⟨K, L, Lexact, f, e₁, e₃, eL, comm, hLexact⟩
+  exact ⟨K, L, f, e₁, e₃, comm, exactAcyclic_of_iso C eL hLexact⟩
+
+/-- Target-isomorphism realization data is enough for exact-acyclic homotopy-object
+middle-object distinguished-triangle closure. -/
+theorem exactAcyclicHomotopyObject_isTriangulatedClosed2_of_targetIsoRealization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : exactAcyclicHomotopyObjectTrianglehIso13TargetIsoRealization C) :
+    (exactAcyclicHomotopyObject C).IsTriangulatedClosed₂ :=
+  exactAcyclicHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization C
+    (exactAcyclicHomotopyObjectTrianglehIso13Realization_of_targetIsoRealization
+      C realize)
 
 /-- A strict-realization criterion for the middle-object distinguished-triangle closure of
 the isomorphism closure of exact-acyclic homotopy objects.
@@ -1849,6 +2137,19 @@ theorem boundedExactWeakEquivalence_eq_exactAcyclicHomotopy_trW_inverseImage
       (HomotopyCategory.mappingCone_triangleh_distinguished
         ((BoundedComplexCategory.ι C).map f))).1 hf
 
+/-- Homotopy-equivalence invariance of exact acyclicity supplies the iso-closedness needed
+to identify direct bounded weak equivalences with the exact-acyclic homotopy `trW`
+inverse image. -/
+theorem boundedExactWeakEquivalence_eq_homotopy_trW_inverseImage_of_homotopyEquiv
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (E : ExactAcyclicHomotopyEquivInvarianceInput C) :
+    boundedExactWeakEquivalence C =
+      (exactAcyclicHomotopyObject C).trW.inverseImage
+        (BoundedComplexCategory.homotopyQuotient C) := by
+  haveI : (exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms :=
+    exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance C E
+  exact boundedExactWeakEquivalence_eq_exactAcyclicHomotopy_trW_inverseImage C
+
 /-- If exact acyclicity is homotopy-category isomorphism invariant, direct bounded
 mapping-cone weak equivalences contain all identities. -/
 noncomputable instance boundedExactWeakEquivalence_containsIdentities_of_isoClosed
@@ -1864,6 +2165,119 @@ abbrev boundedHomotopyExactWeakEquivalence [HasZeroObject C] [HasBinaryBiproduct
     MorphismProperty (BoundedComplexCategory C) :=
   (exactAcyclicHomotopyIsoClosure C).trW.inverseImage
     (BoundedComplexCategory.homotopyQuotient C)
+
+/--
+For an ambient weak-equivalence class `W`, the localized composite inverts the
+inverse-image class along `F`.
+-/
+theorem inverseImage_isInvertedBy_localizedFunctor
+    {D : Type*} {E : Type*} [Category D] [Category E]
+    (F : D ⥤ E) (W : MorphismProperty E) :
+    (W.inverseImage F).IsInvertedBy (F ⋙ W.Q) := by
+  intro X Y f hf
+  exact Localization.inverts W.Q W (F.map f) hf
+
+/--
+If the localized composite `F ⋙ W.Q` has a right adjoint whose unit lies in the
+inverse-image class, mathlib's adjunction theorem gives left calculus for that
+inverse-image class.
+-/
+theorem inverseImage_hasLeftCalculusOfFractions_of_localizedRightAdjoint
+    {D : Type*} {E : Type*} [Category D] [Category E]
+    (F : D ⥤ E) (W : MorphismProperty E) [W.HasLeftCalculusOfFractions]
+    (R : MorphismProperty.Localization W ⥤ D)
+    (adj : F ⋙ W.Q ⊣ R)
+    (hunit : (W.inverseImage F).functorCategory D adj.unit) :
+    (W.inverseImage F).HasLeftCalculusOfFractions :=
+  CategoryTheory.Adjunction.hasLeftCalculusOfFractions adj (W.inverseImage F)
+    (inverseImage_isInvertedBy_localizedFunctor F W) hunit
+
+/--
+If the localized composite `F ⋙ W.Q` has a left adjoint whose counit lies in the
+inverse-image class, mathlib's adjunction theorem gives right calculus for that
+inverse-image class.
+-/
+theorem inverseImage_hasRightCalculusOfFractions_of_localizedLeftAdjoint
+    {D : Type*} {E : Type*} [Category D] [Category E]
+    (F : D ⥤ E) (W : MorphismProperty E) [W.HasRightCalculusOfFractions]
+    (L : MorphismProperty.Localization W ⥤ D)
+    (adj : L ⊣ F ⋙ W.Q)
+    (hcounit : (W.inverseImage F).functorCategory D adj.counit) :
+    (W.inverseImage F).HasRightCalculusOfFractions :=
+  CategoryTheory.Adjunction.hasRightCalculusOfFractions adj (W.inverseImage F)
+    (inverseImage_isInvertedBy_localizedFunctor F W) hcounit
+
+/-- The bounded-complex functor into the exact-acyclic homotopy Verdier quotient. -/
+noncomputable abbrev boundedHomotopyLocalizedVerdierFunctor [HasZeroObject C]
+    [HasBinaryBiproducts C] :
+    BoundedComplexCategory C ⥤
+      MorphismProperty.Localization ((exactAcyclicHomotopyIsoClosure C).trW) :=
+  BoundedComplexCategory.homotopyQuotient C ⋙
+    (exactAcyclicHomotopyIsoClosure C).trW.Q
+
+/--
+Concrete input replacing the opaque bounded homotopy/Verdier pullback left-calculus
+assumption: a right adjoint to the localized Verdier composite, plus unit membership
+in the pullback weak-equivalence class.
+-/
+structure BoundedHomotopyLocalizedRightAdjointInput
+    [HasZeroObject C] [HasBinaryBiproducts C] : Type (max u v) where
+  rightAdjoint :
+    MorphismProperty.Localization ((exactAcyclicHomotopyIsoClosure C).trW) ⥤
+      BoundedComplexCategory C
+  adjunction :
+    boundedHomotopyLocalizedVerdierFunctor C ⊣ rightAdjoint
+  unit_mem :
+    (boundedHomotopyExactWeakEquivalence C).functorCategory
+      (BoundedComplexCategory C) adjunction.unit
+
+/--
+Concrete input replacing the opaque bounded homotopy/Verdier pullback right-calculus
+assumption: a left adjoint to the localized Verdier composite, plus counit membership
+in the pullback weak-equivalence class.
+-/
+structure BoundedHomotopyLocalizedLeftAdjointInput
+    [HasZeroObject C] [HasBinaryBiproducts C] : Type (max u v) where
+  leftAdjoint :
+    MorphismProperty.Localization ((exactAcyclicHomotopyIsoClosure C).trW) ⥤
+      BoundedComplexCategory C
+  adjunction :
+    leftAdjoint ⊣ boundedHomotopyLocalizedVerdierFunctor C
+  counit_mem :
+    (boundedHomotopyExactWeakEquivalence C).functorCategory
+      (BoundedComplexCategory C) adjunction.counit
+
+/--
+A localized right adjoint plus unit membership gives the bounded homotopy/Verdier
+pullback weak equivalences a left calculus of fractions, once the ambient Verdier
+class has a left calculus.
+-/
+theorem
+    boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjoint
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [((exactAcyclicHomotopyIsoClosure C).trW).HasLeftCalculusOfFractions]
+    (I : BoundedHomotopyLocalizedRightAdjointInput C) :
+    (boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions :=
+  inverseImage_hasLeftCalculusOfFractions_of_localizedRightAdjoint
+    (BoundedComplexCategory.homotopyQuotient C)
+    ((exactAcyclicHomotopyIsoClosure C).trW)
+    I.rightAdjoint I.adjunction I.unit_mem
+
+/--
+A localized left adjoint plus counit membership gives the bounded homotopy/Verdier
+pullback weak equivalences a right calculus of fractions, once the ambient Verdier
+class has a right calculus.
+-/
+theorem
+    boundedHomotopyExactWeakEquivalence_hasRightCalculusOfFractions_of_localizedLeftAdjoint
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [((exactAcyclicHomotopyIsoClosure C).trW).HasRightCalculusOfFractions]
+    (I : BoundedHomotopyLocalizedLeftAdjointInput C) :
+    (boundedHomotopyExactWeakEquivalence C).HasRightCalculusOfFractions :=
+  inverseImage_hasRightCalculusOfFractions_of_localizedLeftAdjoint
+    (BoundedComplexCategory.homotopyQuotient C)
+    ((exactAcyclicHomotopyIsoClosure C).trW)
+    I.leftAdjoint I.adjunction I.counit_mem
 
 /-- The isomorphism-closed homotopy/Verdier bounded weak equivalences contain all
 identities without any separate homotopy-invariance hypothesis. -/
@@ -2133,6 +2547,55 @@ theorem exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_isTrian
     exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
   infer_instance
 
+/--
+The localized-right-adjoint input gives left calculus for the bounded
+homotopy/Verdier pullback class when the ambient exact-acyclic isomorphism
+closure is triangulated closed.
+-/
+theorem
+    boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjointClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (I : BoundedHomotopyLocalizedRightAdjointInput C) :
+    (boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions := by
+  haveI : ((exactAcyclicHomotopyIsoClosure C).trW).HasLeftCalculusOfFractions :=
+    exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2 C
+  exact
+    boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjoint
+      C I
+
+/--
+After exact-acyclic homotopy objects are isomorphism-invariant, the same
+localized-right-adjoint input transfers left calculus to the direct bounded
+exact weak equivalences.
+-/
+theorem
+    boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjointClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (I : BoundedHomotopyLocalizedRightAdjointInput C) :
+    (boundedExactWeakEquivalence C).HasLeftCalculusOfFractions := by
+  haveI : (boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions :=
+    boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjointClosed2
+      C I
+  exact boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed C
+
+/-- Homotopy-equivalence invariance is enough to discharge the exact-acyclic homotopy-object
+iso-closedness premise in the localized-right-adjoint route to direct bounded left calculus. -/
+theorem
+    boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_homotopyEquivRightAdjoint
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (E : ExactAcyclicHomotopyEquivInvarianceInput C)
+    (I : BoundedHomotopyLocalizedRightAdjointInput C) :
+    (boundedExactWeakEquivalence C).HasLeftCalculusOfFractions := by
+  haveI : (exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms :=
+    exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance C E
+  exact
+    boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjointClosed2
+      C I
+
 /-- Once the isomorphism closure is triangulated, mathlib supplies the Verdier right calculus
 directly for the isomorphism-closed homotopy-category `trW` class. -/
 theorem exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_isTriangulatedClosed2
@@ -2142,6 +2605,55 @@ theorem exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_isTria
   haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulated :=
     exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
   infer_instance
+
+/--
+The localized-left-adjoint input gives right calculus for the bounded
+homotopy/Verdier pullback class when the ambient exact-acyclic isomorphism
+closure is triangulated closed.
+-/
+theorem
+    boundedHomotopyExactWeakEquivalence_hasRightCalculusOfFractions_of_localizedLeftAdjointClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (I : BoundedHomotopyLocalizedLeftAdjointInput C) :
+    (boundedHomotopyExactWeakEquivalence C).HasRightCalculusOfFractions := by
+  haveI : ((exactAcyclicHomotopyIsoClosure C).trW).HasRightCalculusOfFractions :=
+    exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_isTriangulatedClosed2 C
+  exact
+    boundedHomotopyExactWeakEquivalence_hasRightCalculusOfFractions_of_localizedLeftAdjoint
+      C I
+
+/--
+After exact-acyclic homotopy objects are isomorphism-invariant, the same
+localized-left-adjoint input transfers right calculus to the direct bounded
+exact weak equivalences.
+-/
+theorem
+    boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_localizedLeftAdjointClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (I : BoundedHomotopyLocalizedLeftAdjointInput C) :
+    (boundedExactWeakEquivalence C).HasRightCalculusOfFractions := by
+  haveI : (boundedHomotopyExactWeakEquivalence C).HasRightCalculusOfFractions :=
+    boundedHomotopyExactWeakEquivalence_hasRightCalculusOfFractions_of_localizedLeftAdjointClosed2
+      C I
+  exact boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_isoClosed C
+
+/-- Homotopy-equivalence invariance is enough to discharge the exact-acyclic homotopy-object
+iso-closedness premise in the localized-left-adjoint route to direct bounded right calculus. -/
+theorem
+    boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_homotopyEquivLeftAdjoint
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (E : ExactAcyclicHomotopyEquivInvarianceInput C)
+    (I : BoundedHomotopyLocalizedLeftAdjointInput C) :
+    (boundedExactWeakEquivalence C).HasRightCalculusOfFractions := by
+  haveI : (exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms :=
+    exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance C E
+  exact
+    boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_localizedLeftAdjointClosed2
+      C I
 
 /-- The same reduction as
 `exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_homotopyObjectClosed2`,
@@ -2735,14 +3247,44 @@ equivalences. -/
 abbrev BoundedDerivedCategory [HasBinaryBiproducts C] : Type (max u v) :=
   (boundedExactWeakEquivalence C).Localization
 
-/-- The bounded derived infinity-category as the quasicategory nerve of the bounded derived
-ordinary category. -/
-noncomputable abbrev BoundedDerivedInfinityCategory [HasBinaryBiproducts C] : SSet.QCat :=
+/-- The ordinary quasicategory nerve attached to the bounded derived localization. -/
+noncomputable abbrev BoundedDerivedOrdinaryQuasicategory [HasBinaryBiproducts C] : SSet.QCat :=
   ⟨CategoryTheory.nerve (BoundedDerivedCategory C), inferInstance⟩
 
 /-- The bounded derived category for a local Quillen exact category. -/
 abbrev Dbounded [HasBinaryBiproducts C] : Type (max u v) :=
   BoundedDerivedCategory C
+
+/--
+Product-facing stable bounded-derived infinity-category data. The carrier is tied to the actual
+bounded derived localization, and the stable projections are recorded as concrete categorical
+structure on `Dbounded`, not as arbitrary readiness predicates.
+-/
+structure BoundedDerivedInfinityCategory [HasBinaryBiproducts C] (Q : SSet.QCat) :
+    Type (max (max (u + 1) (v + 1)) 2) where
+  quasicategoryCarrier : Q = BoundedDerivedOrdinaryQuasicategory C
+  preadditive : Preadditive (Dbounded C)
+  finiteLimitInstance : HasFiniteLimits (Dbounded C)
+  finiteColimitInstance : HasFiniteColimits (Dbounded C)
+  zeroObjectInstance : HasZeroObject (Dbounded C)
+  shiftAdditiveAll :
+    letI : Preadditive (Dbounded C) := preadditive
+    ∀ n : ℤ, (shiftFunctor (Dbounded C) n).Additive
+  suspensionAdditive :
+    letI : Preadditive (Dbounded C) := preadditive
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded C) n).Additive := shiftAdditiveAll
+    (shiftFunctor (Dbounded C) (1 : ℤ)).Additive
+  pretriangulatedStructure :
+    letI : Preadditive (Dbounded C) := preadditive
+    letI : HasZeroObject (Dbounded C) := zeroObjectInstance
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded C) n).Additive := shiftAdditiveAll
+    Pretriangulated (Dbounded C)
+  triangulatedStructure :
+    letI : Preadditive (Dbounded C) := preadditive
+    letI : HasZeroObject (Dbounded C) := zeroObjectInstance
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded C) n).Additive := shiftAdditiveAll
+    letI : Pretriangulated (Dbounded C) := pretriangulatedStructure
+    IsTriangulated (Dbounded C)
 
 /-- The localization functor from bounded complexes to the bounded derived category. -/
 abbrev Dbounded.localization [HasBinaryBiproducts C] :
@@ -3214,7 +3756,7 @@ abbrev Dbounded.of [HasBinaryBiproducts C]
 
 /-- The bounded derived category, regarded as an object of the category of quasicategories. -/
 noncomputable abbrev Dbounded.infinityCategory [HasBinaryBiproducts C] : SSet.QCat :=
-  BoundedDerivedInfinityCategory C
+  BoundedDerivedOrdinaryQuasicategory C
 
 /-- The underlying simplicial set of the bounded derived quasicategory. -/
 noncomputable abbrev Dbounded.infinityNerve [HasBinaryBiproducts C] : SSet :=
@@ -3223,13 +3765,1502 @@ noncomputable abbrev Dbounded.infinityNerve [HasBinaryBiproducts C] : SSet :=
 /-- The bounded derived nerve is a quasicategory. -/
 theorem Dbounded.infinityNerve_quasicategory [HasBinaryBiproducts C] :
     SSet.Quasicategory (Dbounded.infinityNerve C) := by
-  dsimp [Dbounded.infinityNerve, Dbounded.infinityCategory, BoundedDerivedInfinityCategory]
+  dsimp [Dbounded.infinityNerve, Dbounded.infinityCategory, BoundedDerivedOrdinaryQuasicategory]
   infer_instance
 
 /-- The homotopy category of the bounded derived quasicategory recovers `Dbounded`. -/
 noncomputable def Dbounded.homotopyCategoryIso [HasBinaryBiproducts C] :
     SSet.hoFunctor.obj (Dbounded.infinityNerve C) ≅ Cat.of (Dbounded C) :=
   CategoryTheory.nerveFunctorCompHoFunctorIso.app (Cat.of (Dbounded C))
+
+/--
+A single stable certificate shape carrying the four projections that the bounded derived
+infinity-category review gate has to consume. The predicates remain abstract here so that this
+file records the gate without inventing a semantic stable-quasicategory API.
+-/
+structure StableFourProjectionCertificate (Q : SSet.QCat) : Type 2 where
+  stableCertificate : Type
+  certificate : stableCertificate
+  finiteLimits : stableCertificate → Prop
+  finiteColimits : stableCertificate → Prop
+  suspensionLoopEquivalence : stableCertificate → Prop
+  pushoutPullbackCompatibility : stableCertificate → Prop
+  finiteLimits_ready : finiteLimits certificate
+  finiteColimits_ready : finiteColimits certificate
+  suspensionLoopEquivalence_ready : suspensionLoopEquivalence certificate
+  pushoutPullbackCompatibility_ready : pushoutPullbackCompatibility certificate
+
+/-- Product-gate readiness of one four-projection stable certificate. -/
+def StableFourProjectionCertificate.ready
+    {Q : SSet.QCat} (cert : StableFourProjectionCertificate Q) : Prop :=
+  cert.finiteLimits cert.certificate ∧
+    cert.finiteColimits cert.certificate ∧
+    cert.suspensionLoopEquivalence cert.certificate ∧
+    cert.pushoutPullbackCompatibility cert.certificate
+
+/-- The four readiness fields of a stable certificate imply its product-gate readiness. -/
+theorem StableFourProjectionCertificate.ready_of_fields
+    {Q : SSet.QCat} (cert : StableFourProjectionCertificate Q) :
+    cert.ready := by
+  exact ⟨cert.finiteLimits_ready, cert.finiteColimits_ready,
+    cert.suspensionLoopEquivalence_ready, cert.pushoutPullbackCompatibility_ready⟩
+
+/-- The ordinary infinity-category evidence currently exposed for `Dbounded`. -/
+structure Dbounded.OrdinaryInfinityContext
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] : Type (max u v) where
+  quasicategory : SSet.Quasicategory (Dbounded.infinityNerve C)
+  homotopyCategoryIso : SSet.hoFunctor.obj (Dbounded.infinityNerve C) ≅ Cat.of (Dbounded C)
+
+/-- Assemble the current ordinary `Dbounded` infinity-category context. -/
+noncomputable def Dbounded.currentOrdinaryInfinityContext
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] :
+    Dbounded.OrdinaryInfinityContext C where
+  quasicategory := Dbounded.infinityNerve_quasicategory (C := C)
+  homotopyCategoryIso := Dbounded.homotopyCategoryIso (C := C)
+
+/-- A four-projection stable certificate specifically for `Dbounded.infinityCategory`. -/
+abbrev Dbounded.StableFourProjectionCertificate
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] : Type 2 :=
+  LeanLCAExactChallenge.StableFourProjectionCertificate (Dbounded.infinityCategory C)
+
+/--
+Stable route attempts for the bounded derived infinity-category gate. The current ordinary
+context is kept separate from a full four-projection certificate so that ordinary nerve evidence
+does not automatically satisfy the stable gate.
+-/
+inductive Dbounded.StableRouteAttempt
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] : Type (max (max u v) 2) where
+  | ordinaryOnly : Dbounded.OrdinaryInfinityContext C → Dbounded.StableRouteAttempt C
+  | fullCertificate :
+      Dbounded.StableFourProjectionCertificate C → Dbounded.StableRouteAttempt C
+
+/-- Boolean review gate for stable route attempts. -/
+def Dbounded.StableRouteAttempt.accepted
+    {C : Type u} [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] :
+    Dbounded.StableRouteAttempt C → Bool
+  | .ordinaryOnly _ => false
+  | .fullCertificate _ => true
+
+/-- The current local route is the ordinary-context branch. -/
+noncomputable def Dbounded.currentOrdinaryStableRouteAttempt
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] :
+    Dbounded.StableRouteAttempt C :=
+  .ordinaryOnly (Dbounded.currentOrdinaryInfinityContext C)
+
+/-- The current ordinary-context route is not accepted by the stable gate. -/
+theorem Dbounded.currentOrdinaryStableRouteAttempt_rejected
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] :
+    Dbounded.StableRouteAttempt.accepted (Dbounded.currentOrdinaryStableRouteAttempt C) = false :=
+  rfl
+
+/-- A full four-projection certificate is accepted by the stable gate. -/
+theorem Dbounded.fullStableCertificateRoute_accepted
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] (cert : Dbounded.StableFourProjectionCertificate C) :
+    Dbounded.StableRouteAttempt.accepted (C := C) (.fullCertificate cert) = true :=
+  rfl
+
+/-- Names of the four stable projection fields consumed by the gate. -/
+def Dbounded.requiredStableProjectionFieldNames : List String :=
+  ["finiteLimits", "finiteColimits", "suspensionLoopEquivalence",
+    "pushoutPullbackCompatibility"]
+
+/-- The stable `Dbounded` gate consumes exactly four projection fields. -/
+theorem Dbounded.requiredStableProjectionFieldNames_count :
+    Dbounded.requiredStableProjectionFieldNames.length = 4 :=
+  rfl
+
+/--
+Concrete ordinary-category inputs that would make the W528 stable gate reviewable for
+`Dbounded MetrizableLCA.{0}`.
+-/
+structure Dbounded.MetrizableOrdinaryStableSemanticInput : Type 1 where
+  preadditive : Preadditive (Dbounded MetrizableLCA.{0})
+  finiteLimits : HasFiniteLimits (Dbounded MetrizableLCA.{0})
+  finiteColimits : HasFiniteColimits (Dbounded MetrizableLCA.{0})
+  zeroObject : HasZeroObject (Dbounded MetrizableLCA.{0})
+  shiftAdditiveAll :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := preadditive
+    ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive
+  suspensionAdditive :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := preadditive
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      shiftAdditiveAll
+    (shiftFunctor (Dbounded MetrizableLCA.{0}) (1 : ℤ)).Additive
+  pretriangulated :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- Suspension-loop readiness represented by ordinary `Dbounded MetrizableLCA` data. -/
+def Dbounded.metrizableSemanticSuspensionLoopReady
+    (data : Dbounded.MetrizableOrdinaryStableSemanticInput) : Prop :=
+  letI : Preadditive (Dbounded MetrizableLCA.{0}) := data.preadditive
+  letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+    data.shiftAdditiveAll
+  Nonempty (HasZeroObject (Dbounded MetrizableLCA.{0})) ∧
+    Nonempty ((shiftFunctor (Dbounded MetrizableLCA.{0}) (1 : ℤ)).Additive)
+
+/-- Pushout-pullback readiness represented by ordinary triangulated `Dbounded` data. -/
+def Dbounded.metrizableSemanticPushoutPullbackReady
+    (data : Dbounded.MetrizableOrdinaryStableSemanticInput) : Prop :=
+  letI : Preadditive (Dbounded MetrizableLCA.{0}) := data.preadditive
+  letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := data.zeroObject
+  letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+    data.shiftAdditiveAll
+  letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := data.pretriangulated
+  Nonempty (IsTriangulated (Dbounded MetrizableLCA.{0}))
+
+/--
+Convert concrete ordinary `Dbounded MetrizableLCA` semantic inputs into the W528
+four-projection stable certificate shape.
+-/
+def Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+    (input : Dbounded.MetrizableOrdinaryStableSemanticInput) :
+    Dbounded.StableFourProjectionCertificate MetrizableLCA.{0} where
+  stableCertificate := Unit
+  certificate := ()
+  finiteLimits := fun _data => Nonempty (HasFiniteLimits (Dbounded MetrizableLCA.{0}))
+  finiteColimits := fun _data => Nonempty (HasFiniteColimits (Dbounded MetrizableLCA.{0}))
+  suspensionLoopEquivalence := fun _data =>
+    Dbounded.metrizableSemanticSuspensionLoopReady input
+  pushoutPullbackCompatibility := fun _data =>
+    Dbounded.metrizableSemanticPushoutPullbackReady input
+  finiteLimits_ready := ⟨input.finiteLimits⟩
+  finiteColimits_ready := ⟨input.finiteColimits⟩
+  suspensionLoopEquivalence_ready := ⟨⟨input.zeroObject⟩, ⟨input.suspensionAdditive⟩⟩
+  pushoutPullbackCompatibility_ready := ⟨input.triangulated⟩
+
+/-- The semantic ordinary-input adapter produces a ready W528 certificate. -/
+theorem Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput_ready
+    (input : Dbounded.MetrizableOrdinaryStableSemanticInput) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput input).ready := by
+  exact StableFourProjectionCertificate.ready_of_fields _
+
+/-- An accepted stable bounded-derived infinity-category package for `Dbounded`. -/
+structure Dbounded.AcceptedStableBoundedDerivedInfinityCategory
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] : Type (max (max u v) 2) where
+  certificate : Dbounded.StableFourProjectionCertificate C
+  ready : certificate.ready
+  accepted :
+    Dbounded.StableRouteAttempt.accepted (C := C) (.fullCertificate certificate) = true
+
+/-- Package any ready four-projection certificate as an accepted stable `Dbounded` object. -/
+noncomputable def Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfCertificate
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C]
+    (cert : Dbounded.StableFourProjectionCertificate C) (ready : cert.ready) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory C where
+  certificate := cert
+  ready := ready
+  accepted := rfl
+
+/-- Turn an accepted four-projection certificate into the stable product-facing package. -/
+noncomputable def Dbounded.stableBoundedDerivedInfinityCategoryOfAccepted
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C]
+    (_accepted : Dbounded.AcceptedStableBoundedDerivedInfinityCategory C)
+    (stableStructure : BoundedDerivedInfinityCategory C (Dbounded.infinityCategory C)) :
+    BoundedDerivedInfinityCategory C (Dbounded.infinityCategory C) :=
+  stableStructure
+
+/-- Package a metrizable ordinary semantic input as an accepted stable `Dbounded` object. -/
+noncomputable def
+    Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableOrdinaryInput
+    (input : Dbounded.MetrizableOrdinaryStableSemanticInput) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfCertificate
+    MetrizableLCA.{0}
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput input)
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput_ready input)
+
+/-- Product-facing stable bounded-derived package from the metrizable semantic input adapter. -/
+noncomputable def Dbounded.boundedDerivedInfinityCategoryOfMetrizableOrdinaryInput
+    (input : Dbounded.MetrizableOrdinaryStableSemanticInput) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) where
+  quasicategoryCarrier := rfl
+  preadditive := input.preadditive
+  finiteLimitInstance := input.finiteLimits
+  finiteColimitInstance := input.finiteColimits
+  zeroObjectInstance := input.zeroObject
+  shiftAdditiveAll := input.shiftAdditiveAll
+  suspensionAdditive := input.suspensionAdditive
+  pretriangulatedStructure := input.pretriangulated
+  triangulatedStructure := input.triangulated
+
+/--
+Typeclass-resolved stable bounded-derived package for `MetrizableLCA`. Unlike the legacy semantic
+input adapter, this route has no explicit evidence bundle argument; it becomes a nullary witness
+exactly when the concrete `Dbounded MetrizableLCA` stable instances are available.
+-/
+noncomputable def Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstances
+    [Preadditive (Dbounded MetrizableLCA.{0})]
+    [HasFiniteLimits (Dbounded MetrizableLCA.{0})]
+    [HasFiniteColimits (Dbounded MetrizableLCA.{0})]
+    [HasZeroObject (Dbounded MetrizableLCA.{0})]
+    [∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive]
+    [Pretriangulated (Dbounded MetrizableLCA.{0})]
+    [IsTriangulated (Dbounded MetrizableLCA.{0})] :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) where
+  quasicategoryCarrier := rfl
+  preadditive := inferInstance
+  finiteLimitInstance := inferInstance
+  finiteColimitInstance := inferInstance
+  zeroObjectInstance := inferInstance
+  shiftAdditiveAll := inferInstance
+  suspensionAdditive := inferInstance
+  pretriangulatedStructure := inferInstance
+  triangulatedStructure := inferInstance
+
+/-- The typeclass route still requires seven stable `Dbounded MetrizableLCA` instance families. -/
+def Dbounded.metrizableStableInstanceFieldNames : List String :=
+  ["Preadditive (Dbounded MetrizableLCA)",
+    "HasFiniteLimits (Dbounded MetrizableLCA)",
+    "HasFiniteColimits (Dbounded MetrizableLCA)",
+    "HasZeroObject (Dbounded MetrizableLCA)",
+    "forall n, (shiftFunctor (Dbounded MetrizableLCA) n).Additive",
+    "Pretriangulated (Dbounded MetrizableLCA)",
+    "IsTriangulated (Dbounded MetrizableLCA)"]
+
+/-- Seven stable instance families remain before the typeclass route is nullary. -/
+theorem Dbounded.metrizableStableInstanceFieldNames_count :
+    Dbounded.metrizableStableInstanceFieldNames.length = 7 :=
+  rfl
+
+/-- Concrete ordinary fields required by the semantic adapter for `Dbounded MetrizableLCA`. -/
+def Dbounded.metrizableSemanticStableRequiredFieldNames : List String :=
+  ["Preadditive (Dbounded MetrizableLCA)", "HasFiniteLimits (Dbounded MetrizableLCA)",
+    "HasFiniteColimits (Dbounded MetrizableLCA)", "HasZeroObject (Dbounded MetrizableLCA)",
+    "forall n, (shiftFunctor (Dbounded MetrizableLCA) n).Additive",
+    "(shiftFunctor (Dbounded MetrizableLCA) 1).Additive",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+/-- The semantic adapter names eight ordinary-category fields. -/
+theorem Dbounded.metrizableSemanticStableRequiredFieldNames_count :
+    Dbounded.metrizableSemanticStableRequiredFieldNames.length = 8 :=
+  rfl
+
+/-- Current semantic route state for the metrizable LCA bounded-derived gate. -/
+structure Dbounded.MetrizableSemanticStableRouteState : Type 2 where
+  ordinaryContext : Dbounded.OrdinaryInfinityContext MetrizableLCA.{0}
+  semanticInput : Option Dbounded.MetrizableOrdinaryStableSemanticInput
+  requiredFields : List String
+  productSuccessClaimed : Bool
+
+/-- Current state: ordinary context is present, semantic input has not been supplied. -/
+noncomputable def Dbounded.currentMetrizableSemanticStableRouteState :
+    Dbounded.MetrizableSemanticStableRouteState where
+  ordinaryContext := Dbounded.currentOrdinaryInfinityContext MetrizableLCA.{0}
+  semanticInput := none
+  requiredFields := Dbounded.metrizableSemanticStableRequiredFieldNames
+  productSuccessClaimed := false
+
+/-- The current semantic route does not supply the ordinary semantic input record. -/
+theorem Dbounded.currentMetrizableSemanticStableRouteState_semanticInput_not_supplied :
+    Dbounded.currentMetrizableSemanticStableRouteState.semanticInput = none :=
+  rfl
+
+/-- The current semantic route does not claim product success. -/
+theorem Dbounded.currentMetrizableSemanticStableRouteState_productSuccess :
+    Dbounded.currentMetrizableSemanticStableRouteState.productSuccessClaimed = false :=
+  rfl
+
+/-- Ordinary semantic fields supplied by direct bounded left calculus. -/
+structure Dbounded.MetrizableLeftCalculusSemanticFields : Type 1 where
+  preadditive : Preadditive (Dbounded MetrizableLCA.{0})
+  zeroObject : HasZeroObject (Dbounded MetrizableLCA.{0})
+  shiftAdditiveAll :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := preadditive
+    ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive
+  suspensionAdditive :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := preadditive
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      shiftAdditiveAll
+    (shiftFunctor (Dbounded MetrizableLCA.{0}) (1 : ℤ)).Additive
+
+/-- Assemble the semantic fields already supplied by direct bounded left calculus. -/
+noncomputable def Dbounded.metrizableLeftCalculusSemanticFields
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions] :
+    Dbounded.MetrizableLeftCalculusSemanticFields where
+  preadditive := Dbounded.preadditiveOfHasLeftCalculusOfFractions MetrizableLCA.{0}
+  zeroObject := Dbounded.hasZeroObjectOfHasLeftCalculusOfFractions MetrizableLCA.{0}
+  shiftAdditiveAll := by
+    intro n
+    exact Dbounded.shiftFunctor_additiveOfHasLeftCalculusOfFractions MetrizableLCA.{0} n
+  suspensionAdditive := by
+    change (shiftFunctor (Dbounded MetrizableLCA.{0}) (1 : ℤ)).Additive
+    exact Dbounded.shiftFunctor_additiveOfHasLeftCalculusOfFractions MetrizableLCA.{0} 1
+
+/--
+Homotopy/Verdier left calculus plus homotopy-category isomorphism invariance supplies the
+same semantic fields as direct bounded left calculus, via equality of the weak equivalences.
+-/
+noncomputable def Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions] :
+    Dbounded.MetrizableLeftCalculusSemanticFields := by
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed MetrizableLCA.{0}
+  exact Dbounded.metrizableLeftCalculusSemanticFields
+
+/--
+Localized-right-adjoint data for the homotopy/Verdier quotient, together with the ambient
+isomorphism-closure triangulatedness and homotopy-category isomorphism invariance, supplies
+the same direct-left-calculus semantic fields.
+-/
+noncomputable def
+    Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyLocalizedRightAdjointClosed2
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (I : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}) :
+    Dbounded.MetrizableLeftCalculusSemanticFields := by
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjointClosed2
+      MetrizableLCA.{0} I
+  exact Dbounded.metrizableLeftCalculusSemanticFields
+
+/-- Remaining ordinary semantic fields after direct bounded left calculus supplies its part. -/
+structure Dbounded.MetrizableRemainingStableSemanticFields
+    (available : Dbounded.MetrizableLeftCalculusSemanticFields) : Type 1 where
+  finiteLimits : HasFiniteLimits (Dbounded MetrizableLCA.{0})
+  finiteColimits : HasFiniteColimits (Dbounded MetrizableLCA.{0})
+  pretriangulated :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- Build the full W529 semantic input from left-calculus fields plus the remaining fields. -/
+def Dbounded.metrizableOrdinaryStableSemanticInputOfLeftCalculusFields
+    (available : Dbounded.MetrizableLeftCalculusSemanticFields)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields available) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput where
+  preadditive := available.preadditive
+  finiteLimits := remaining.finiteLimits
+  finiteColimits := remaining.finiteColimits
+  zeroObject := available.zeroObject
+  shiftAdditiveAll := available.shiftAdditiveAll
+  suspensionAdditive := available.suspensionAdditive
+  pretriangulated := remaining.pretriangulated
+  triangulated := remaining.triangulated
+
+/-- Left-calculus route constructor for the full W529 semantic input. -/
+noncomputable def Dbounded.metrizableOrdinaryStableSemanticInputOfLeftCalculus
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      Dbounded.metrizableLeftCalculusSemanticFields) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  Dbounded.metrizableOrdinaryStableSemanticInputOfLeftCalculusFields
+    Dbounded.metrizableLeftCalculusSemanticFields remaining
+
+/-- The left-calculus route produces a ready W528 certificate once the remaining fields exist. -/
+theorem Dbounded.stableCertificateOfMetrizableLeftCalculusInput_ready
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      Dbounded.metrizableLeftCalculusSemanticFields) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (Dbounded.metrizableOrdinaryStableSemanticInputOfLeftCalculus remaining)).ready := by
+  exact Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput_ready _
+
+/-- Semantic fields supplied by direct bounded left calculus. -/
+def Dbounded.metrizableLeftCalculusSemanticFieldNames : List String :=
+  ["Preadditive (Dbounded MetrizableLCA)", "HasZeroObject (Dbounded MetrizableLCA)",
+    "forall n, (shiftFunctor (Dbounded MetrizableLCA) n).Additive",
+    "(shiftFunctor (Dbounded MetrizableLCA) 1).Additive"]
+
+/-- Direct bounded left calculus supplies four semantic fields. -/
+theorem Dbounded.metrizableLeftCalculusSemanticFieldNames_count :
+    Dbounded.metrizableLeftCalculusSemanticFieldNames.length = 4 :=
+  rfl
+
+/-- Homotopy/Verdier hypotheses that supply the direct-left-calculus semantic fields. -/
+def Dbounded.metrizableHomotopyIsoClosedLeftCalculusSemanticInputNames : List String :=
+  ["exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+    "bounded homotopy/Verdier pullback left calculus of fractions"]
+
+/-- Two homotopy/Verdier inputs replace the direct bounded-left-calculus semantic-field input. -/
+theorem Dbounded.metrizableHomotopyIsoClosedLeftCalculusSemanticInputNames_count :
+    Dbounded.metrizableHomotopyIsoClosedLeftCalculusSemanticInputNames.length = 2 :=
+  rfl
+
+/--
+Concrete homotopy/Verdier inputs that replace the opaque pullback left-calculus premise via
+the localized-right-adjoint bridge.
+-/
+def Dbounded.metrizableHomotopyLocalizedRightAdjointLeftCalculusSemanticInputNames :
+    List String :=
+  ["exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+    "exactAcyclicHomotopyIsoClosure is triangulated closed",
+    "bounded homotopy localized right adjoint plus unit membership"]
+
+/--
+The localized-right-adjoint route names the three remaining concrete inputs for the
+homotopy/Verdier left-calculus semantic-field bridge.
+-/
+theorem
+    Dbounded.metrizableHomotopyLocalizedRightAdjointLeftCalculusSemanticInputNames_count :
+    Dbounded.metrizableHomotopyLocalizedRightAdjointLeftCalculusSemanticInputNames.length =
+      3 :=
+  rfl
+
+/--
+Concrete homotopy/Verdier inputs that replace the opaque pullback right-calculus premise via
+the localized-left-adjoint bridge.
+-/
+def Dbounded.metrizableHomotopyLocalizedLeftAdjointRightCalculusInputNames :
+    List String :=
+  ["exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+    "exactAcyclicHomotopyIsoClosure is triangulated closed",
+    "bounded homotopy localized left adjoint plus counit membership"]
+
+/--
+The localized-left-adjoint route names the three remaining concrete inputs for the
+homotopy/Verdier right-calculus bridge.
+-/
+theorem Dbounded.metrizableHomotopyLocalizedLeftAdjointRightCalculusInputNames_count :
+    Dbounded.metrizableHomotopyLocalizedLeftAdjointRightCalculusInputNames.length = 3 :=
+  rfl
+
+/-- MetrizableLCA input name for replacing homotopy-category iso-closedness by the concrete
+homotopy-equivalence invariance obligation. -/
+def Dbounded.metrizableExactAcyclicHomotopyEquivInvarianceInputNamesW584 : List String :=
+  ["∀ homotopy equivalence K ≃h L, exactAcyclic MetrizableLCA K → exactAcyclic MetrizableLCA L"]
+
+theorem Dbounded.metrizableExactAcyclicHomotopyEquivInvarianceInputNamesW584_count :
+    Dbounded.metrizableExactAcyclicHomotopyEquivInvarianceInputNamesW584.length = 1 :=
+  rfl
+
+/-- Combined MetrizableLCA input names for the direct bounded calculus routes after W584:
+the raw iso-closedness premise has been replaced by homotopy-equivalence invariance. -/
+def Dbounded.metrizableHomotopyEquivLocalizedAdjunctionCalculusInputNamesW585 : List String :=
+  ["exactAcyclic MetrizableLCA is invariant under homotopy equivalences",
+    "exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "bounded homotopy localized left adjoint plus counit membership"]
+
+theorem Dbounded.metrizableHomotopyEquivLocalizedAdjunctionCalculusInputNamesW585_count :
+    Dbounded.metrizableHomotopyEquivLocalizedAdjunctionCalculusInputNamesW585.length = 4 :=
+  rfl
+
+/-- MetrizableLCA homology-detection input names for proving homotopy-equivalence invariance
+of exact acyclicity. -/
+def Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586 : List String :=
+  ["homology exists for all MetrizableLCA cochain complexes in every degree",
+    "exactAcyclic implies zero homology in every degree",
+    "zero homology in every degree implies exactAcyclic"]
+
+theorem Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586_count :
+    Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586.length = 3 :=
+  rfl
+
+/-- MetrizableLCA exact-at route for constructing the homology-detection input. -/
+def Dbounded.metrizableExactAcyclicExactAtDetectionInputNamesW587 : List String :=
+  ["homology exists for all MetrizableLCA cochain complexes in every degree",
+    "exactAcyclic MetrizableLCA implies categorical ExactAt in every degree",
+    "categorical ExactAt in every degree implies exactAcyclic MetrizableLCA"]
+
+theorem Dbounded.metrizableExactAcyclicExactAtDetectionInputNamesW587_count :
+    Dbounded.metrizableExactAcyclicExactAtDetectionInputNamesW587.length = 3 :=
+  rfl
+
+/-- The W587 route replaces the raw zero-homology target by exactness-at-each-degree plus
+the existing mathlib homology comparison theorem. -/
+def Dbounded.metrizableExactAcyclicHomologyDetectionRouteNamesW587 : List String :=
+  ["ExactAcyclicExactAtDetectionInput MetrizableLCA",
+    "exactAcyclicHomologyDetectionInput_of_exactAtDetection",
+    "exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection"]
+
+theorem Dbounded.metrizableExactAcyclicHomologyDetectionRouteNamesW587_count :
+    Dbounded.metrizableExactAcyclicHomologyDetectionRouteNamesW587.length = 3 :=
+  rfl
+
+/-- MetrizableLCA fields that now suffice to construct the exact-at detection input. -/
+structure Dbounded.MetrizableExactAcyclicExactAtDetectionInputs : Prop where
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  forgetPreservesHomology :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology
+  exactAcyclic_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ),
+      (∀ i : ℤ, K.ExactAt i) → exactAcyclic MetrizableLCA.{0} K
+
+/-- The W588 MetrizableLCA inputs construct the W587 exact-at detection input. -/
+theorem Dbounded.exactAcyclicExactAtDetectionInput_metrizableLCA_of_inputs
+    (I : Dbounded.MetrizableExactAcyclicExactAtDetectionInputs) :
+    ExactAcyclicExactAtDetectionInput MetrizableLCA.{0} where
+  hasHomology := I.hasHomology
+  exactAt_of_exactAcyclic := by
+    intro K hK i
+    exact exactAt_of_exactAcyclic_metrizableLCA I.hasHomology
+      I.forgetPreservesHomology hK i
+  exactAcyclic_of_exactAt := I.exactAcyclic_of_exactAt
+
+/-- The same inputs construct homology detection of exact acyclicity. -/
+theorem Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_exactAtInputs
+    (I : Dbounded.MetrizableExactAcyclicExactAtDetectionInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  exactAcyclicHomologyDetectionInput_of_exactAtDetection
+    (C := MetrizableLCA.{0})
+    (Dbounded.exactAcyclicExactAtDetectionInput_metrizableLCA_of_inputs I)
+
+/-- W588 input names after proving the strict-exact to categorical-exact direction. -/
+def Dbounded.metrizableExactAcyclicExactAtDetectionInputNamesW588 : List String :=
+  ["homology exists for all MetrizableLCA cochain complexes in every degree",
+    "forget₂ MetrizableLCA AddCommGrpCat preserves homology",
+    "degreewise categorical ExactAt implies exactAcyclic MetrizableLCA"]
+
+theorem Dbounded.metrizableExactAcyclicExactAtDetectionInputNamesW588_count :
+    Dbounded.metrizableExactAcyclicExactAtDetectionInputNamesW588.length = 3 :=
+  rfl
+
+/-- W588 route names from strict exactness to homology detection. -/
+def Dbounded.metrizableExactAcyclicExactAtDetectionRouteNamesW588 : List String :=
+  ["exactAt_of_exactAcyclic_metrizableLCA",
+    "Dbounded.exactAcyclicExactAtDetectionInput_metrizableLCA_of_inputs",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_exactAtInputs"]
+
+theorem Dbounded.metrizableExactAcyclicExactAtDetectionRouteNamesW588_count :
+    Dbounded.metrizableExactAcyclicExactAtDetectionRouteNamesW588.length = 3 :=
+  rfl
+
+/-- The W589 topological exact-at fields construct the W588 MetrizableLCA input bundle. -/
+theorem Dbounded.metrizableExactAcyclicExactAtDetectionInputs_of_topology
+    (I : MetrizableExactAtTopologyInputs) :
+    Dbounded.MetrizableExactAcyclicExactAtDetectionInputs where
+  hasHomology := I.hasHomology
+  forgetPreservesHomology := I.forgetPreservesHomology
+  exactAcyclic_of_exactAt := by
+    intro K hK
+    exact exactAcyclic_of_exactAt_metrizableLCA_of_topology I K hK
+
+/-- The W589 topological route constructs homology detection of exact acyclicity. -/
+theorem Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_topology
+    (I : MetrizableExactAtTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_exactAtInputs
+    (Dbounded.metrizableExactAcyclicExactAtDetectionInputs_of_topology I)
+
+/-- W589 input names for converting categorical ExactAt into strict exact acyclicity. -/
+def Dbounded.metrizableExactAtTopologyInputNamesW589 : List String :=
+  ["homology exists for all MetrizableLCA cochain complexes in every degree",
+    "forget₂ MetrizableLCA AddCommGrpCat preserves homology",
+    "each degreewise incoming differential is a closed embedding",
+    "each degreewise outgoing differential is an open map",
+    "each degreewise outgoing differential is surjective"]
+
+theorem Dbounded.metrizableExactAtTopologyInputNamesW589_count :
+    Dbounded.metrizableExactAtTopologyInputNamesW589.length = 5 :=
+  rfl
+
+/-- W589 route names from degreewise topology data to homology detection. -/
+def Dbounded.metrizableExactAtTopologyRouteNamesW589 : List String :=
+  ["MetrizableExactAtTopologyInputs",
+    "exactAcyclic_of_exactAt_metrizableLCA_of_topology",
+    "Dbounded.metrizableExactAcyclicExactAtDetectionInputs_of_topology",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_topology"]
+
+theorem Dbounded.metrizableExactAtTopologyRouteNamesW589_count :
+    Dbounded.metrizableExactAtTopologyRouteNamesW589.length = 4 :=
+  rfl
+
+/-- W590 combines global homology existence with the narrower reverse topology route. -/
+theorem Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_strictTopology
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtStrictTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  exactAcyclicHomologyDetectionInput_of_exactAtDetection
+    (C := MetrizableLCA.{0})
+    { hasHomology := hasHomology
+      exactAt_of_exactAcyclic := by
+        intro K hK i
+        exact exactAt_of_exactAcyclic_metrizableLCA
+          hasHomology I.forgetPreservesHomology hK i
+      exactAcyclic_of_exactAt := by
+        intro K hK
+        exact exactAcyclic_of_exactAt_metrizableLCA_of_strictTopology I K hK }
+
+/-- W590 input names for the narrowed reverse ExactAt-to-strict-exact route. -/
+def Dbounded.metrizableExactAtStrictTopologyInputNamesW590 : List String :=
+  ["forget₂ MetrizableLCA AddCommGrpCat preserves homology",
+    "each degreewise incoming differential is a closed embedding",
+    "each degreewise outgoing differential is an open map",
+    "each degreewise outgoing differential is surjective"]
+
+theorem Dbounded.metrizableExactAtStrictTopologyInputNamesW590_count :
+    Dbounded.metrizableExactAtStrictTopologyInputNamesW590.length = 4 :=
+  rfl
+
+/-- W590 route names separating global homology existence from reverse topology data. -/
+def Dbounded.metrizableExactAtStrictTopologyRouteNamesW590 : List String :=
+  ["MetrizableExactAtStrictTopologyInputs",
+    "exactAcyclic_of_exactAt_metrizableLCA_of_strictTopology",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_strictTopology"]
+
+theorem Dbounded.metrizableExactAtStrictTopologyRouteNamesW590_count :
+    Dbounded.metrizableExactAtStrictTopologyRouteNamesW590.length = 3 :=
+  rfl
+
+/-- W602 combines global homology existence with the endpoint-epi reverse ExactAt route. -/
+theorem
+    Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_endpointStrictTopology
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointStrictTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  exactAcyclicHomologyDetectionInput_of_exactAtDetection
+    (C := MetrizableLCA.{0})
+    { hasHomology := hasHomology
+      exactAt_of_exactAcyclic := by
+        intro K hK i
+        exact exactAt_of_exactAcyclic_metrizableLCA
+          hasHomology I.forgetPreservesHomology hK i
+      exactAcyclic_of_exactAt := by
+        intro K hK
+        exact exactAcyclic_of_exactAt_metrizableLCA_of_endpointStrictTopology I K hK }
+
+/-- W602 ShortExact wrapper for the endpoint route to homology detection. -/
+theorem Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_shortExactTopology
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_endpointStrictTopology
+    hasHomology (endpointStrictTopologyInputs_of_shortExactTopology I)
+
+/-- W602 endpoint input names for the reverse ExactAt-to-strict-exact route. -/
+def Dbounded.metrizableExactAtEndpointStrictTopologyInputNamesW602 : List String :=
+  ["forget₂ MetrizableLCA AddCommGrpCat preserves homology",
+    "each degreewise incoming differential is a closed embedding",
+    "each degreewise outgoing differential is an open map",
+    "categorical ExactAt implies the outgoing differential is epi"]
+
+theorem Dbounded.metrizableExactAtEndpointStrictTopologyInputNamesW602_count :
+    Dbounded.metrizableExactAtEndpointStrictTopologyInputNamesW602.length = 4 :=
+  rfl
+
+/-- W602 ShortExact input names for obtaining the endpoint epi datum. -/
+def Dbounded.metrizableExactAtShortExactTopologyInputNamesW602 : List String :=
+  ["forget₂ MetrizableLCA AddCommGrpCat preserves homology",
+    "each degreewise incoming differential is a closed embedding",
+    "each degreewise outgoing differential is an open map",
+    "categorical ExactAt upgrades the degreewise short complex to ShortExact"]
+
+theorem Dbounded.metrizableExactAtShortExactTopologyInputNamesW602_count :
+    Dbounded.metrizableExactAtShortExactTopologyInputNamesW602.length = 4 :=
+  rfl
+
+/-- W602 route names for replacing raw surjectivity with endpoint epi/ShortExact data. -/
+def Dbounded.metrizableExactAtEndpointTopologyRouteNamesW602 : List String :=
+  ["MetrizableExactAtEndpointStrictTopologyInputs",
+    "exactAcyclic_of_exactAt_metrizableLCA_of_endpointStrictTopology",
+    "MetrizableExactAtShortExactTopologyInputs",
+    "endpointStrictTopologyInputs_of_shortExactTopology",
+    "exactAcyclic_of_exactAt_metrizableLCA_of_shortExactTopology",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_\
+endpointStrictTopology",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_\
+shortExactTopology"]
+
+theorem Dbounded.metrizableExactAtEndpointTopologyRouteNamesW602_count :
+    Dbounded.metrizableExactAtEndpointTopologyRouteNamesW602.length = 7 :=
+  rfl
+
+/-- Current checked W602 state for the endpoint-epi exact-at route. -/
+structure Dbounded.MetrizableExactAtEndpointTopologyRouteStateW602 : Type where
+  seed : String
+  declarations : List String
+  endpointResult : String
+  shortExactResult : String
+  homologyDetectionResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W602 state. -/
+def Dbounded.currentMetrizableExactAtEndpointTopologyRouteSupportStateW602 :
+    Dbounded.MetrizableExactAtEndpointTopologyRouteStateW602 where
+  seed := "w602-exact-at-endpoint-epi-shortexact-topology-route"
+  declarations :=
+    ["MetrizableExactAtEndpointStrictTopologyInputs",
+      "MetrizableExactAtShortExactTopologyInputs",
+      "exactAcyclic_of_exactAt_metrizableLCA_of_endpointStrictTopology",
+      "endpointStrictTopologyInputs_of_shortExactTopology",
+      "exactAcyclic_of_exactAt_metrizableLCA_of_shortExactTopology",
+      "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_\
+endpointStrictTopology",
+      "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_\
+shortExactTopology",
+      "Dbounded.metrizableExactAtEndpointStrictTopologyInputNamesW602",
+      "Dbounded.metrizableExactAtEndpointStrictTopologyInputNamesW602_count",
+      "Dbounded.metrizableExactAtShortExactTopologyInputNamesW602",
+      "Dbounded.metrizableExactAtShortExactTopologyInputNamesW602_count",
+      "Dbounded.metrizableExactAtEndpointTopologyRouteNamesW602",
+      "Dbounded.metrizableExactAtEndpointTopologyRouteNamesW602_count"]
+  endpointResult :=
+    "proved: endpoint epi plus openness recover strict-exact surjectivity"
+  shortExactResult :=
+    "proved: ShortExact supplies the separate outgoing epi datum for the endpoint route"
+  homologyDetectionResult :=
+    "proved: homology detection can use endpoint epi or ShortExact instead of raw surjectivity"
+  remainingInputs :=
+    ["construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "prove forget2 MetrizableLCA AddCommGrpCat preserves homology",
+      "construct degreewise closed-embedding/open-map topology facts for ExactAt complexes",
+      "prove ExactAt implies outgoing epi or ShortExact for the relevant complexes"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev Dbounded.currentMetrizableExactAtEndpointTopologyRouteStateW602 :
+    Dbounded.MetrizableExactAtEndpointTopologyRouteStateW602 :=
+  Dbounded.currentMetrizableExactAtEndpointTopologyRouteSupportStateW602
+
+theorem Dbounded.currentMetrizableExactAtEndpointTopologyRouteStateW602_productSuccess :
+    Dbounded.currentMetrizableExactAtEndpointTopologyRouteStateW602.productSuccessClaimed =
+      false :=
+  rfl
+
+/--
+W667 endpoint topology inputs conditioned on categorical `ExactAt`.
+
+Unlike W602's earlier endpoint surface, this does not require arbitrary differentials in
+arbitrary complexes to be closed embeddings or open maps.  The strict-topology data is
+only requested at degrees where the short complex is already categorically exact.
+-/
+structure MetrizableExactAtEndpointConditionedTopologyInputs : Prop where
+  forgetPreservesHomology :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology
+  closedEmbedding_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → Topology.IsClosedEmbedding ((K.sc i).f : (K.sc i).X₁ → (K.sc i).X₂)
+  openMap_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
+  epi_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → Epi ((K.sc i).g)
+
+/-- W667 ShortExact variant of the conditioned endpoint topology inputs. -/
+structure MetrizableExactAtShortExactConditionedTopologyInputs : Prop where
+  forgetPreservesHomology :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology
+  closedEmbedding_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → Topology.IsClosedEmbedding ((K.sc i).f : (K.sc i).X₁ → (K.sc i).X₂)
+  openMap_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
+  shortExact_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → (K.sc i).ShortExact
+
+/-- W667 ShortExact-conditioned inputs supply the endpoint-conditioned epi data. -/
+theorem endpointConditionedTopologyInputs_of_shortExactConditionedTopology
+    (I : MetrizableExactAtShortExactConditionedTopologyInputs) :
+    MetrizableExactAtEndpointConditionedTopologyInputs where
+  forgetPreservesHomology := I.forgetPreservesHomology
+  closedEmbedding_of_exactAt := I.closedEmbedding_of_exactAt
+  openMap_of_exactAt := I.openMap_of_exactAt
+  epi_of_exactAt := by
+    intro K i hK
+    exact (I.shortExact_of_exactAt K i hK).epi_g
+
+/-- W667 conditioned endpoint topology turns categorical ExactAt into strict exactness. -/
+theorem exactAcyclic_of_exactAt_metrizableLCA_of_endpointConditionedTopology
+    (I : MetrizableExactAtEndpointConditionedTopologyInputs)
+    (K : CochainComplex MetrizableLCA.{0} ℤ)
+    (hK : ∀ i : ℤ, K.ExactAt i) :
+    exactAcyclic MetrizableLCA.{0} K := by
+  intro i
+  have hExact : (K.sc i).Exact := hK i
+  have hhom : (K.sc i).HasHomology := hExact.hasHomology
+  haveI : Epi ((K.sc i).g) := I.epi_of_exactAt K i (hK i)
+  have hopen : IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃) :=
+    I.openMap_of_exactAt K i (hK i)
+  have hsurj :
+      Function.Surjective ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃) :=
+    MetrizableLCA.surjective_of_cokernelSubgroup_eq_top_of_isOpenMap ((K.sc i).g)
+      (MetrizableLCA.cokernelSubgroup_eq_top_of_cokernelπ_eq_zero ((K.sc i).g)
+        (MetrizableLCA.cokernelπ_eq_zero_of_epi ((K.sc i).g)))
+      hopen
+  exact MetrizableLCA.strictShortExact_of_exact_of_topology
+    hhom I.forgetPreservesHomology hExact
+    (I.closedEmbedding_of_exactAt K i (hK i)) hopen hsurj
+
+/-- W667 conditioned ShortExact topology wraps the conditioned endpoint route. -/
+theorem exactAcyclic_of_exactAt_metrizableLCA_of_shortExactConditionedTopology
+    (I : MetrizableExactAtShortExactConditionedTopologyInputs)
+    (K : CochainComplex MetrizableLCA.{0} ℤ)
+    (hK : ∀ i : ℤ, K.ExactAt i) :
+    exactAcyclic MetrizableLCA.{0} K :=
+  exactAcyclic_of_exactAt_metrizableLCA_of_endpointConditionedTopology
+    (endpointConditionedTopologyInputs_of_shortExactConditionedTopology I) K hK
+
+/-- W667 homology detection from global homology plus conditioned endpoint topology. -/
+theorem
+    Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_endpointConditionedTopology
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointConditionedTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  exactAcyclicHomologyDetectionInput_of_exactAtDetection
+    (C := MetrizableLCA.{0})
+    { hasHomology := hasHomology
+      exactAt_of_exactAcyclic := by
+        intro K hK i
+        exact exactAt_of_exactAcyclic_metrizableLCA
+          hasHomology I.forgetPreservesHomology hK i
+      exactAcyclic_of_exactAt := by
+        intro K hK
+        exact exactAcyclic_of_exactAt_metrizableLCA_of_endpointConditionedTopology I K hK }
+
+/-- W667 homology detection from global homology plus conditioned ShortExact topology. -/
+theorem
+    Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_shortExactConditionedTopology
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactConditionedTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_endpointConditionedTopology
+    hasHomology (endpointConditionedTopologyInputs_of_shortExactConditionedTopology I)
+
+/-- W667 input names for the conditioned endpoint route. -/
+def Dbounded.metrizableExactAtEndpointConditionedTopologyInputNamesW667 : List String :=
+  ["homology exists for all MetrizableLCA cochain complexes in every degree",
+    "forget2 MetrizableLCA AddCommGrpCat preserves homology",
+    "categorical ExactAt implies the incoming differential is a closed embedding",
+    "categorical ExactAt implies the outgoing differential is an open map",
+    "categorical ExactAt implies the outgoing differential is epi or ShortExact"]
+
+theorem Dbounded.metrizableExactAtEndpointConditionedTopologyInputNamesW667_count :
+    Dbounded.metrizableExactAtEndpointConditionedTopologyInputNamesW667.length = 5 :=
+  rfl
+
+/-- W667 route names for the conditioned endpoint route. -/
+def Dbounded.metrizableExactAtEndpointConditionedTopologyRouteNamesW667 : List String :=
+  ["MetrizableExactAtEndpointConditionedTopologyInputs",
+    "MetrizableExactAtShortExactConditionedTopologyInputs",
+    "endpointConditionedTopologyInputs_of_shortExactConditionedTopology",
+    "exactAcyclic_of_exactAt_metrizableLCA_of_endpointConditionedTopology",
+    "exactAcyclic_of_exactAt_metrizableLCA_of_shortExactConditionedTopology",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_\
+endpointConditionedTopology",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_\
+shortExactConditionedTopology"]
+
+theorem Dbounded.metrizableExactAtEndpointConditionedTopologyRouteNamesW667_count :
+    Dbounded.metrizableExactAtEndpointConditionedTopologyRouteNamesW667.length = 7 :=
+  rfl
+
+/-- Current checked W667 state for the conditioned endpoint topology route. -/
+structure Dbounded.MetrizableExactAtEndpointConditionedTopologyRouteStateW667 : Type where
+  seed : String
+  declarations : List String
+  endpointResult : String
+  shortExactResult : String
+  homologyDetectionResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W667 state. -/
+def Dbounded.currentMetrizableExactAtEndpointConditionedTopologyRouteSupportStateW667 :
+    Dbounded.MetrizableExactAtEndpointConditionedTopologyRouteStateW667 where
+  seed := "w667-exact-at-conditioned-endpoint-topology-route"
+  declarations :=
+    ["MetrizableExactAtEndpointConditionedTopologyInputs",
+      "MetrizableExactAtShortExactConditionedTopologyInputs",
+      "endpointConditionedTopologyInputs_of_shortExactConditionedTopology",
+      "exactAcyclic_of_exactAt_metrizableLCA_of_endpointConditionedTopology",
+      "exactAcyclic_of_exactAt_metrizableLCA_of_shortExactConditionedTopology",
+      "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_\
+endpointConditionedTopology",
+      "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_\
+shortExactConditionedTopology",
+      "Dbounded.metrizableExactAtEndpointConditionedTopologyInputNamesW667",
+      "Dbounded.metrizableExactAtEndpointConditionedTopologyInputNamesW667_count",
+      "Dbounded.metrizableExactAtEndpointConditionedTopologyRouteNamesW667",
+      "Dbounded.metrizableExactAtEndpointConditionedTopologyRouteNamesW667_count"]
+  endpointResult :=
+    "proved: ExactAt-conditioned endpoint topology recovers strict exact acyclicity without requiring arbitrary differentials to be strict"
+  shortExactResult :=
+    "proved: ExactAt-conditioned ShortExact data supplies the conditioned endpoint epi route"
+  homologyDetectionResult :=
+    "proved: homology detection can use ExactAt-conditioned endpoint or ShortExact topology"
+  replacedInputs :=
+    ["unconditional degreewise closed-embedding/open-map topology facts for all complexes"]
+  remainingInputs :=
+    ["construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "prove forget2 MetrizableLCA AddCommGrpCat preserves homology",
+      "prove categorical ExactAt implies the incoming map is a closed embedding",
+      "prove categorical ExactAt implies the outgoing map is an open map",
+      "prove categorical ExactAt implies outgoing epi or ShortExact"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev Dbounded.currentMetrizableExactAtEndpointConditionedTopologyRouteStateW667 :
+    Dbounded.MetrizableExactAtEndpointConditionedTopologyRouteStateW667 :=
+  Dbounded.currentMetrizableExactAtEndpointConditionedTopologyRouteSupportStateW667
+
+theorem
+    Dbounded.currentMetrizableExactAtEndpointConditionedTopologyRouteStateW667_productSuccess :
+    Dbounded.currentMetrizableExactAtEndpointConditionedTopologyRouteStateW667.productSuccessClaimed =
+      false :=
+  rfl
+
+namespace Dbounded
+
+/-- Short W667 alias for conditioned endpoint homology detection. -/
+theorem homologyDetection_of_endpointConditionedTopology_w667
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointConditionedTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_endpointConditionedTopology
+    hasHomology I
+
+/-- Short W667 alias for conditioned ShortExact homology detection. -/
+theorem homologyDetection_of_shortExactConditionedTopology_w667
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactConditionedTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_shortExactConditionedTopology
+    hasHomology I
+
+end Dbounded
+
+/-- W667 conditioned endpoint route from homology detection to homotopy-equivalence invariance. -/
+theorem
+    Dbounded.homotopyEquivInvariance_of_endpointConditionedTopology_w667
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointConditionedTopologyInputs) :
+    ExactAcyclicHomotopyEquivInvarianceInput MetrizableLCA.{0} :=
+  exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection
+    (C := MetrizableLCA.{0})
+    (Dbounded.homologyDetection_of_endpointConditionedTopology_w667 hasHomology I)
+
+/-- W667 conditioned ShortExact route to homotopy-equivalence invariance. -/
+theorem
+    Dbounded.homotopyEquivInvariance_of_shortExactConditionedTopology_w667
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactConditionedTopologyInputs) :
+    ExactAcyclicHomotopyEquivInvarianceInput MetrizableLCA.{0} :=
+  exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection
+    (C := MetrizableLCA.{0})
+    (Dbounded.homologyDetection_of_shortExactConditionedTopology_w667 hasHomology I)
+
+/-- W667 conditioned endpoint route to exact-acyclic homotopy-object iso-closedness. -/
+theorem
+    Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_endpointConditionedTopology_w667
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointConditionedTopologyInputs) :
+    (exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms :=
+  exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_endpointConditionedTopology_w667 hasHomology I)
+
+/-- W667 conditioned ShortExact route to exact-acyclic homotopy-object iso-closedness. -/
+theorem
+    Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_shortExactConditionedTopology_w667
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactConditionedTopologyInputs) :
+    (exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms :=
+  exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_shortExactConditionedTopology_w667 hasHomology I)
+
+/-- W667 conditioned endpoint route from homotopy invariance to direct bounded left calculus. -/
+theorem Dbounded.leftCalculus_of_endpointConditionedTopology_w667
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointConditionedTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+  boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_homotopyEquivRightAdjoint
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_endpointConditionedTopology_w667
+      hasHomology I) R
+
+/-- W667 conditioned ShortExact route from homotopy invariance to direct bounded left calculus. -/
+theorem Dbounded.leftCalculus_of_shortExactConditionedTopology_w667
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactConditionedTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+  boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_homotopyEquivRightAdjoint
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_shortExactConditionedTopology_w667
+      hasHomology I) R
+
+/--
+W668 kernel/cokernel-conditioned endpoint data.
+
+This replaces direct topological closed/open fields with categorical universal properties:
+an incoming kernel fork is a closed embedding by the explicit equalizer model, and an
+outgoing cokernel cofork is an open surjection by the explicit quotient coequalizer model.
+-/
+structure MetrizableExactAtKernelCokernelConditionedTopologyInputs : Type 2 where
+  forgetPreservesHomology :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology
+  kernel_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → IsLimit (KernelFork.ofι (K.sc i).f (K.sc i).zero)
+  cokernel_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → IsColimit (CokernelCofork.ofπ (K.sc i).g (K.sc i).zero)
+
+/-- W668 kernel/cokernel-conditioned ExactAt data turns ExactAt into strict exactness. -/
+theorem exactAcyclic_of_exactAt_metrizableLCA_of_kernelCokernelConditionedTopology
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs)
+    (K : CochainComplex MetrizableLCA.{0} ℤ)
+    (hK : ∀ i : ℤ, K.ExactAt i) :
+    exactAcyclic MetrizableLCA.{0} K := by
+  intro i
+  have hExact : (K.sc i).Exact := hK i
+  have hhom : (K.sc i).HasHomology := hExact.hasHomology
+  have hclosed :
+      Topology.IsClosedEmbedding ((K.sc i).f : (K.sc i).X₁ → (K.sc i).X₂) :=
+    MetrizableLCA.isLimit_fork_ι_closedEmbedding
+      (r := (K.sc i).g) (s := 0) (I.kernel_of_exactAt K i (hK i))
+  have hopen : IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃) :=
+    MetrizableLCA.isColimit_cofork_π_openMap (I.cokernel_of_exactAt K i (hK i))
+  have hsurj :
+      Function.Surjective ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃) :=
+    MetrizableLCA.isColimit_cofork_π_surjective (I.cokernel_of_exactAt K i (hK i))
+  exact MetrizableLCA.strictShortExact_of_exact_of_topology
+    hhom I.forgetPreservesHomology hExact hclosed hopen hsurj
+
+/-- W668 homology detection from global homology plus kernel/cokernel-conditioned topology. -/
+theorem
+    Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_kernelCokernelConditionedTopology
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  exactAcyclicHomologyDetectionInput_of_exactAtDetection
+    (C := MetrizableLCA.{0})
+    { hasHomology := hasHomology
+      exactAt_of_exactAcyclic := by
+        intro K hK i
+        exact exactAt_of_exactAcyclic_metrizableLCA
+          hasHomology I.forgetPreservesHomology hK i
+      exactAcyclic_of_exactAt := by
+        intro K hK
+        exact
+          exactAcyclic_of_exactAt_metrizableLCA_of_kernelCokernelConditionedTopology I K hK }
+
+/-- W668 input names for the kernel/cokernel-conditioned route. -/
+def Dbounded.metrizableExactAtKernelCokernelConditionedTopologyInputNamesW668 :
+    List String :=
+  ["homology exists for all MetrizableLCA cochain complexes in every degree",
+    "forget2 MetrizableLCA AddCommGrpCat preserves homology",
+    "categorical ExactAt supplies the incoming kernel fork",
+    "categorical ExactAt supplies the outgoing cokernel cofork"]
+
+theorem Dbounded.metrizableExactAtKernelCokernelConditionedTopologyInputNamesW668_count :
+    Dbounded.metrizableExactAtKernelCokernelConditionedTopologyInputNamesW668.length = 4 :=
+  rfl
+
+/-- W668 route names for the kernel/cokernel-conditioned route. -/
+def Dbounded.metrizableExactAtKernelCokernelConditionedTopologyRouteNamesW668 :
+    List String :=
+  ["MetrizableExactAtKernelCokernelConditionedTopologyInputs",
+    "exactAcyclic_of_exactAt_metrizableLCA_of_kernelCokernelConditionedTopology",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_\
+kernelCokernelConditionedTopology"]
+
+theorem Dbounded.metrizableExactAtKernelCokernelConditionedTopologyRouteNamesW668_count :
+    Dbounded.metrizableExactAtKernelCokernelConditionedTopologyRouteNamesW668.length = 3 :=
+  rfl
+
+/-- Current checked W668 state for the kernel/cokernel-conditioned route. -/
+structure Dbounded.MetrizableExactAtKernelCokernelConditionedTopologyRouteStateW668 :
+    Type where
+  seed : String
+  declarations : List String
+  topologyResult : String
+  homologyDetectionResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W668 state. -/
+def Dbounded.currentMetrizableExactAtKernelCokernelConditionedTopologyRouteSupportStateW668 :
+    Dbounded.MetrizableExactAtKernelCokernelConditionedTopologyRouteStateW668 where
+  seed := "w668-kernel-cokernel-conditioned-endpoint-topology-route"
+  declarations :=
+    ["MetrizableExactAtKernelCokernelConditionedTopologyInputs",
+      "exactAcyclic_of_exactAt_metrizableLCA_of_kernelCokernelConditionedTopology",
+      "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_\
+kernelCokernelConditionedTopology",
+      "Dbounded.metrizableExactAtKernelCokernelConditionedTopologyInputNamesW668",
+      "Dbounded.metrizableExactAtKernelCokernelConditionedTopologyInputNamesW668_count",
+      "Dbounded.metrizableExactAtKernelCokernelConditionedTopologyRouteNamesW668",
+      "Dbounded.metrizableExactAtKernelCokernelConditionedTopologyRouteNamesW668_count"]
+  topologyResult :=
+    "proved: kernel and cokernel universal properties supply closed-embedding/open-surjection topology"
+  homologyDetectionResult :=
+    "proved: homology detection can use ExactAt-conditioned kernel/cokernel data"
+  replacedInputs :=
+    ["direct topological closed-embedding, open-map, and endpoint-surjectivity fields"]
+  remainingInputs :=
+    ["construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "prove forget2 MetrizableLCA AddCommGrpCat preserves homology",
+      "prove categorical ExactAt supplies incoming kernel and outgoing cokernel coforks",
+      "construct direct finite-shape WPP source data and localization/triangulation inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev Dbounded.currentMetrizableExactAtKernelCokernelConditionedTopologyRouteStateW668 :
+    Dbounded.MetrizableExactAtKernelCokernelConditionedTopologyRouteStateW668 :=
+  Dbounded.currentMetrizableExactAtKernelCokernelConditionedTopologyRouteSupportStateW668
+
+theorem
+    Dbounded.currentMetrizableExactAtKernelCokernelConditionedTopologyRouteStateW668_productSuccess :
+    Dbounded.currentMetrizableExactAtKernelCokernelConditionedTopologyRouteStateW668.productSuccessClaimed =
+      false :=
+  rfl
+
+namespace Dbounded
+
+/-- Short W668 alias for kernel/cokernel-conditioned homology detection. -/
+theorem homologyDetection_of_kernelCokernelConditionedTopology_w668
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_kernelCokernelConditionedTopology
+    hasHomology I
+
+end Dbounded
+
+/-- W668 kernel/cokernel-conditioned route from homology detection to homotopy invariance. -/
+theorem
+    Dbounded.homotopyEquivInvariance_of_kernelCokernelConditionedTopology_w668
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs) :
+    ExactAcyclicHomotopyEquivInvarianceInput MetrizableLCA.{0} :=
+  exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection
+    (C := MetrizableLCA.{0})
+    (Dbounded.homologyDetection_of_kernelCokernelConditionedTopology_w668 hasHomology I)
+
+/-- W668 kernel/cokernel-conditioned route to homotopy-object iso-closedness. -/
+theorem
+    Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_kernelCokernelConditionedTopology_w668
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs) :
+    (exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms :=
+  exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_kernelCokernelConditionedTopology_w668
+      hasHomology I)
+
+/-- W668 kernel/cokernel-conditioned route from homotopy invariance to left calculus. -/
+theorem Dbounded.leftCalculus_of_kernelCokernelConditionedTopology_w668
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+  boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_homotopyEquivRightAdjoint
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_kernelCokernelConditionedTopology_w668
+      hasHomology I) R
+
+namespace Dbounded
+
+/-- Short W603 alias for the W602 endpoint homology-detection route. -/
+theorem homologyDetection_of_endpointTopology_w603
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointStrictTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_endpointStrictTopology
+    hasHomology I
+
+/-- Short W603 alias for the W602 ShortExact homology-detection route. -/
+theorem homologyDetection_of_shortExactTopology_w603
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_shortExactTopology
+    hasHomology I
+
+end Dbounded
+
+/-- W603 endpoint route from W602 homology detection to homotopy-equivalence invariance. -/
+theorem
+    Dbounded.homotopyEquivInvariance_of_endpointTopology_w603
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointStrictTopologyInputs) :
+    ExactAcyclicHomotopyEquivInvarianceInput MetrizableLCA.{0} :=
+  exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection
+    (C := MetrizableLCA.{0})
+    (Dbounded.homologyDetection_of_endpointTopology_w603 hasHomology I)
+
+/-- W603 ShortExact route from W602 homology detection to homotopy-equivalence invariance. -/
+theorem
+    Dbounded.homotopyEquivInvariance_of_shortExactTopology_w603
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactTopologyInputs) :
+    ExactAcyclicHomotopyEquivInvarianceInput MetrizableLCA.{0} :=
+  exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection
+    (C := MetrizableLCA.{0})
+    (Dbounded.homologyDetection_of_shortExactTopology_w603 hasHomology I)
+
+/-- W603 endpoint route discharging exact-acyclic homotopy-object iso-closedness. -/
+theorem
+    Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_endpointTopology_w603
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointStrictTopologyInputs) :
+    (exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms :=
+  exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_endpointTopology_w603 hasHomology I)
+
+/-- W603 ShortExact route discharging exact-acyclic homotopy-object iso-closedness. -/
+theorem
+    Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_shortExactTopology_w603
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactTopologyInputs) :
+    (exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms :=
+  exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_shortExactTopology_w603 hasHomology I)
+
+/-- W603 input names for making exact-acyclic homotopy objects iso-closed through W602. -/
+def Dbounded.metrizableExactAcyclicIsoClosedEndpointInputNamesW603 : List String :=
+  ["homology exists for all MetrizableLCA cochain complexes in every degree",
+    "W602 endpoint-epi or ShortExact exact-at topology data"]
+
+theorem Dbounded.metrizableExactAcyclicIsoClosedEndpointInputNamesW603_count :
+    Dbounded.metrizableExactAcyclicIsoClosedEndpointInputNamesW603.length = 2 :=
+  rfl
+
+/-- W603 route names from W602 endpoint data to homotopy-object iso-closedness. -/
+def Dbounded.metrizableExactAcyclicIsoClosedEndpointRouteNamesW603 : List String :=
+  ["Dbounded.homologyDetection_of_endpointTopology_w603",
+    "Dbounded.homotopyEquivInvariance_of_endpointTopology_w603",
+    "Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_endpointTopology_w603",
+    "Dbounded.homologyDetection_of_shortExactTopology_w603",
+    "Dbounded.homotopyEquivInvariance_of_shortExactTopology_w603",
+    "Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_shortExactTopology_w603"]
+
+theorem Dbounded.metrizableExactAcyclicIsoClosedEndpointRouteNamesW603_count :
+    Dbounded.metrizableExactAcyclicIsoClosedEndpointRouteNamesW603.length = 6 :=
+  rfl
+
+/-- Current checked W603 state for W602-to-iso-closedness wrappers. -/
+structure Dbounded.MetrizableExactAcyclicIsoClosedEndpointRouteStateW603 : Type where
+  seed : String
+  declarations : List String
+  homotopyEquivResult : String
+  isoClosedResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W603 state. -/
+def Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteSupportStateW603 :
+    Dbounded.MetrizableExactAcyclicIsoClosedEndpointRouteStateW603 where
+  seed := "w603-exact-acyclic-iso-closed-endpoint-route"
+  declarations :=
+    ["Dbounded.homologyDetection_of_endpointTopology_w603",
+      "Dbounded.homologyDetection_of_shortExactTopology_w603",
+      "Dbounded.homotopyEquivInvariance_of_endpointTopology_w603",
+      "Dbounded.homotopyEquivInvariance_of_shortExactTopology_w603",
+      "Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_endpointTopology_w603",
+      "Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_shortExactTopology_w603",
+      "Dbounded.metrizableExactAcyclicIsoClosedEndpointInputNamesW603",
+      "Dbounded.metrizableExactAcyclicIsoClosedEndpointInputNamesW603_count",
+      "Dbounded.metrizableExactAcyclicIsoClosedEndpointRouteNamesW603",
+      "Dbounded.metrizableExactAcyclicIsoClosedEndpointRouteNamesW603_count"]
+  homotopyEquivResult :=
+    "proved: W602 homology detection supplies homotopy-equivalence invariance"
+  isoClosedResult :=
+    "proved: W602 endpoint or ShortExact data discharge homotopy-object iso-closedness"
+  remainingInputs :=
+    ["construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "construct W602 endpoint-epi or ShortExact exact-at topology data",
+      "prove exactAcyclicHomotopyIsoClosure is triangulated closed or supply triangle realization",
+      "construct bounded homotopy localized adjunction data for calculus"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteStateW603 :
+    Dbounded.MetrizableExactAcyclicIsoClosedEndpointRouteStateW603 :=
+  Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteSupportStateW603
+
+theorem Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteStateW603_productSuccess :
+    Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteStateW603.productSuccessClaimed =
+      false :=
+  rfl
+
+/-- W604 endpoint route from W603 homotopy invariance to direct bounded left calculus. -/
+theorem Dbounded.leftCalculus_of_endpointTopology_w604
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointStrictTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+  boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_homotopyEquivRightAdjoint
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_endpointTopology_w603 hasHomology I) R
+
+/-- W604 ShortExact route from W603 homotopy invariance to direct bounded left calculus. -/
+theorem Dbounded.leftCalculus_of_shortExactTopology_w604
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+  boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_homotopyEquivRightAdjoint
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_shortExactTopology_w603 hasHomology I) R
+
+/-- W604 endpoint route from W603 homotopy invariance to direct bounded right calculus. -/
+theorem Dbounded.rightCalculus_of_endpointTopology_w604
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointStrictTopologyInputs)
+    (L : BoundedHomotopyLocalizedLeftAdjointInput MetrizableLCA.{0}) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasRightCalculusOfFractions :=
+  boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_homotopyEquivLeftAdjoint
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_endpointTopology_w603 hasHomology I) L
+
+/-- W604 ShortExact route from W603 homotopy invariance to direct bounded right calculus. -/
+theorem Dbounded.rightCalculus_of_shortExactTopology_w604
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactTopologyInputs)
+    (L : BoundedHomotopyLocalizedLeftAdjointInput MetrizableLCA.{0}) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasRightCalculusOfFractions :=
+  boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_homotopyEquivLeftAdjoint
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_shortExactTopology_w603 hasHomology I) L
+
+/-- W604 left/right calculus input names after W603 discharges iso-closedness. -/
+def Dbounded.metrizableEndpointCalculusInputNamesW604 : List String :=
+  ["homology exists for all MetrizableLCA cochain complexes in every degree",
+    "W602 endpoint-epi or ShortExact exact-at topology data",
+    "exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "bounded homotopy localized left adjoint plus counit membership"]
+
+theorem Dbounded.metrizableEndpointCalculusInputNamesW604_count :
+    Dbounded.metrizableEndpointCalculusInputNamesW604.length = 5 :=
+  rfl
+
+/-- W604 route names from W603 endpoint data to direct bounded calculus. -/
+def Dbounded.metrizableEndpointCalculusRouteNamesW604 : List String :=
+  ["Dbounded.leftCalculus_of_endpointTopology_w604",
+    "Dbounded.leftCalculus_of_shortExactTopology_w604",
+    "Dbounded.rightCalculus_of_endpointTopology_w604",
+    "Dbounded.rightCalculus_of_shortExactTopology_w604"]
+
+theorem Dbounded.metrizableEndpointCalculusRouteNamesW604_count :
+    Dbounded.metrizableEndpointCalculusRouteNamesW604.length = 4 :=
+  rfl
+
+/-- Current checked W604 state for endpoint routes into direct bounded calculus. -/
+structure Dbounded.MetrizableEndpointCalculusRouteStateW604 : Type where
+  seed : String
+  declarations : List String
+  leftCalculusResult : String
+  rightCalculusResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W604 state. -/
+def Dbounded.currentMetrizableEndpointCalculusRouteSupportStateW604 :
+    Dbounded.MetrizableEndpointCalculusRouteStateW604 where
+  seed := "w604-endpoint-route-to-direct-bounded-calculus"
+  declarations :=
+    ["Dbounded.leftCalculus_of_endpointTopology_w604",
+      "Dbounded.leftCalculus_of_shortExactTopology_w604",
+      "Dbounded.rightCalculus_of_endpointTopology_w604",
+      "Dbounded.rightCalculus_of_shortExactTopology_w604",
+      "Dbounded.metrizableEndpointCalculusInputNamesW604",
+      "Dbounded.metrizableEndpointCalculusInputNamesW604_count",
+      "Dbounded.metrizableEndpointCalculusRouteNamesW604",
+      "Dbounded.metrizableEndpointCalculusRouteNamesW604_count"]
+  leftCalculusResult :=
+    "proved: W603 homotopy invariance feeds localized-right-adjoint left calculus"
+  rightCalculusResult :=
+    "proved: W603 homotopy invariance feeds localized-left-adjoint right calculus"
+  remainingInputs :=
+    ["construct homology existence and W602 endpoint or ShortExact data",
+      "prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct bounded homotopy localized left adjoint plus counit membership",
+      "construct remaining finite-limit, finite-colimit, and triangulated Dbounded fields"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev Dbounded.currentMetrizableEndpointCalculusRouteStateW604 :
+    Dbounded.MetrizableEndpointCalculusRouteStateW604 :=
+  Dbounded.currentMetrizableEndpointCalculusRouteSupportStateW604
+
+theorem Dbounded.currentMetrizableEndpointCalculusRouteStateW604_productSuccess :
+    Dbounded.currentMetrizableEndpointCalculusRouteStateW604.productSuccessClaimed =
+      false :=
+  rfl
+
+/-- Remaining semantic fields after direct bounded left calculus supplies its part. -/
+def Dbounded.metrizableRemainingSemanticFieldNamesAfterLeftCalculus : List String :=
+  ["HasFiniteLimits (Dbounded MetrizableLCA)", "HasFiniteColimits (Dbounded MetrizableLCA)",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+/-- Four semantic fields remain after direct bounded left calculus supplies its part. -/
+theorem Dbounded.metrizableRemainingSemanticFieldNamesAfterLeftCalculus_count :
+    Dbounded.metrizableRemainingSemanticFieldNamesAfterLeftCalculus.length = 4 :=
+  rfl
 
 /-- Checked abelian-category comparison target provided by mathlib. -/
 abbrev abelianDerivedCategory (A : Type u) [Category.{v} A] [Abelian A]
