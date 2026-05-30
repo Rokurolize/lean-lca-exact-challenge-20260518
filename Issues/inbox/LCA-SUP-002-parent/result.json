@@ -1,0 +1,30 @@
+{
+  "schema": "lean_lca_support_issue_result.v1",
+  "issue_id": "LCA-SUP-002",
+  "base_head": "f08e8d914b47ade3e95745850251c82ef255796f",
+  "target_head_observed": "ab98106f",
+  "dirty_context": "clean_w1449_issue_ledger_installed_quiescent_impl_session",
+  "role": "parent_source_contradiction_auditor",
+  "status": "accepted_candidate",
+  "audited_paths": [
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/terminal_outcome/terminal_outcome.json",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/run/verification.json",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/audit/ProductSuccessDeclarations.lean"
+  ],
+  "commands_run": [
+    "jq product-success fields from terminal_outcome/terminal_outcome.json",
+    "jq product-success fields from run/verification.json",
+    "rg productSuccessClaimed true over LeanLCAExactChallenge and audit (expected no matches)",
+    "rg productSuccessClaimed false over OriginalFourTaskContractCompletion.lean and ProductSuccessDeclarations.lean"
+  ],
+  "frontier_summary": "W1449 remains nonterminal. terminal_outcome and run/verification both report product_success=false and product_success_claimed=false; terminal_outcome also records product_complete=false and update_goal_allowed=false. No productSuccessClaimed=true declaration was found, and OriginalFourTaskContractCompletion still contains productSuccessClaimed=false.",
+  "candidate_next_action": "Keep the false-completion guard active. Do not resume or complete the Lean implementation goal from W1449 or the issue-ledger commits; implementation must produce a positive OriginalFourTaskProductSuccess witness first.",
+  "lean_command_to_rerun": "lake env lean LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean",
+  "rejected_routes": [],
+  "failure_signature": "metadata_git_head_lags_proof_base_and_product_success_false",
+  "product_success_claimed": false,
+  "implementation_note": "Audit-only: prevents false completion; no proof integration.",
+  "terminal_outcome_git_head_observed": "ddd1fd0ccb23d83450c69f6563bb33b86eab595c",
+  "proof_base_head": "f08e8d914b47ade3e95745850251c82ef255796f"
+}
