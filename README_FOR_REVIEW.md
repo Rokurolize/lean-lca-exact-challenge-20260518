@@ -167,6 +167,8 @@ git diff --check
 
 `run/verification.json`には、実行したコマンドとsource tree hashを記録している。`audit/ProductSuccessDeclarations.lean`はv124までの公開APIがstrict LCA exact categoryから使えることを確認する。`audit/external_audit.py`はgoalの完了条件どおり、`product_success`以外のterminal outcomeを失敗させ、ordinary nerve経路をstable infinity-category完成として扱う主張を失敗させ、コメントや文字列だけのstable marker、stable certificate名だけで具体的field evidenceがない主張、未解決またはproduct success時の期待失敗検証entryも失敗させる。
 
+2026-05-30T14:44:00Z時点で、W1443として`ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW949EndpointLocalizedUnitUnpackBoundaryGuardW1443.lean`を追加した。W1443はW1442で露出したW949 endpoint-localized-unit componentをW1301のrepackへ接続する。W1007由来のW949 componentをrepackしても同じcomponentに戻り、endpoint strict-exact witnessesとW945 localized-unit dataがLean上で一致することを記録した。入力面はW1442の6入力W730/W944/W973/W719/W722/W949からW1443の7入力W730/W944/W973/W719/W722/endpoint/W945へ展開するため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
