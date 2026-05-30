@@ -32,4 +32,6 @@ W1430 records the nested W982 target/closedness/normalized-source/endpoint and r
 
 W1431 extends the same route to deeper rebuilt current-full-data, branch-full-data, target, endpoint, localized-choice, unit-strict-exact, and component-field projections through W1164/W1163. This continues the checked route surface without changing the nonterminal product status.
 
+W1432 moves the checked bridge one step upstream: W1003 endpoint-localized-unit data constructs the W982 localized-choice surface through W1165, then delegates direct calculus and the stable package through W1164. The route now records five remaining endpoint-localized-unit inputs, but it is still not a positive product witness.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.

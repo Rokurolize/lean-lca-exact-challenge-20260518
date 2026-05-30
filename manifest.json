@@ -1,8 +1,8 @@
 {
   "schema": "lean_lca_exact_challenge.manifest.v1",
-  "generated_utc": "2026-05-30T11:32:11Z",
-  "source_tree_hash": "331ade485aae6a7c4ae8568690f0b783f377f2fd9f1739efc8f3a42b66c80fe4",
-  "content_hash_tree": "962855baac4083a9c958307abbf1d6a19dfb03e84fe619c5f42d7ddc7b1e3e09",
+  "generated_utc": "2026-05-30T11:45:11Z",
+  "source_tree_hash": "addc64b602f7b9001fa4cb64a3579787782c3d164e3fc74fbcc68a1f97a6b6a9",
+  "content_hash_tree": "fd1002d34c6b5a4ee36dabd1e10acfdd63b7e77985af5dee7d3e6546719b3fee",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -378,6 +378,11 @@
       "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapEndpointKernelCokernelTopStableConvergenceFieldSplitGuardW1407.lean",
       "sha256": "0ffb4ee153aec929f2b3469e973d271cafb0b522c9334aa614080711eec13702",
       "bytes": 4952
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapEndpointLocalizedUnitStableConvergenceFieldSplitGuardW1432.lean",
+      "sha256": "6db0df46767d265b45d75345d52aa4b7457819525b4eff4c26be0b1be46fd124",
+      "bytes": 7032
     },
     {
       "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapEndpointStrictComponentStableConvergenceFieldSplitGuardW1405.lean",
@@ -3036,8 +3041,8 @@
     },
     {
       "path": "LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean",
-      "sha256": "f43420a9fd24fedd8c56b1bbe6b38b4f4f884de7f5ee90504c03957f9042dc1b",
-      "bytes": 4783
+      "sha256": "d5e97b8a1310550f7e4ee4c4c33b1bafeb742bdd7b0b351b3913dd92f747cb58",
+      "bytes": 5193
     },
     {
       "path": "LeanLCAExactChallenge/Derived/RelationFieldsComparisonStableExactAtRoute.lean",
@@ -3446,18 +3451,18 @@
     },
     {
       "path": "LeanLCAExactChallenge.lean",
-      "sha256": "163a7b1ac83081fb186ce9829229c90d686b86de95c5cdb4226e15b6d104cd0f",
-      "bytes": 121602
+      "sha256": "85e217b1b910881b76b33e645e9e9d0053fe953b6ecda3df43f3290f579de116",
+      "bytes": 121825
     },
     {
       "path": "README.md",
-      "sha256": "655dc8c9bc9a95831f66a9c7b1c1efd24f86e7865be26a66cc864db7e34ea7f9",
-      "bytes": 2370
+      "sha256": "31cb87c5d73414836b2f36ea82646c2097f408e017e4ebf68b19c943b653e1c0",
+      "bytes": 2702
     },
     {
       "path": "README_FOR_REVIEW.md",
-      "sha256": "fa2593a1b76d2ae2bae3c0bcc8c1e940e70510254eb562dbd5877ffd5b7b4691",
-      "bytes": 59580
+      "sha256": "10424576b0c6f61e382e7a1dc508ad330a7c2d1801f35fb72dc82d15aaef193e",
+      "bytes": 59927
     },
     {
       "path": "WORKER_HANDOFF.md",
@@ -3466,13 +3471,13 @@
     },
     {
       "path": "audit/OriginalFourTaskCompletionDeclarations.lean",
-      "sha256": "c839e5460d6a60d8c015784f35331a01ab061de08660bb64f86972124fd06d39",
-      "bytes": 1307667
+      "sha256": "c5eff05eb9acd0b431a8ad5a340b5e3abb19225309cb01e70a6f21dda5e65270",
+      "bytes": 1309360
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
-      "sha256": "7216199e0c9be7bc3ef0786b635f445b83def21947ca9b2911651529aecea0da",
-      "bytes": 1661870
+      "sha256": "72a3845867de6979ba64d68bdeca2fc996a5c414f6994845f85e26be9a881f79",
+      "bytes": 1662893
     },
     {
       "path": "audit/RequiredDeclarations.lean",
@@ -15991,8 +15996,8 @@
     },
     {
       "path": "run/verification.json",
-      "sha256": "278853a228246d50cfe85b3c32d765ceb47691f73c6f0a33e692e68f16f2af5e",
-      "bytes": 5694
+      "sha256": "273311e660d42d8b2221c5c61a839248f41589f1e2f40d53cc5edb0c13d66436",
+      "bytes": 5661
     },
     {
       "path": "scratch-log.html",
@@ -16011,8 +16016,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "sha256": "49bec60719f4314b49223cacbc5b94f1b2dce754466c283963ef9ee8872ec58d",
-      "bytes": 1982
+      "sha256": "0d4d8d2ae8e674aea7ccebfd4983597f66bae63ffd3b8390193d1bd2f711fffa",
+      "bytes": 1973
     },
     {
       "path": "workers/README.md",
