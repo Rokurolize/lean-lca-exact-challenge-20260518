@@ -68,4 +68,6 @@ W1448 rewraps the W1447-built W987 full data as a W1007 branch-full-data provide
 
 W1449 exposes the W1448 rewrapped provider through W1007's stable-route outputs: the rewrapped provider supplies component fields, endpoint strict exactness, unit mapping-cone exactness and isomorphism data, the direct bounded left-calculus proof, and the bounded-derived infinity-category object while preserving the one-input W987 surface. Product success remains false.
 
+W1450 replaces that one W987 provider argument with a direct field-data construction surface: W716 boundary data and W717 relation data build W730, W984 target/closedness data and W950 normalized-source/endpoint data build W986, and those two constructed providers assemble W987 with projection theorems back to the four named inputs. Product success remains false because these four inputs are still assumed data, not a positive `OriginalFourTaskProductSuccess` witness.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.

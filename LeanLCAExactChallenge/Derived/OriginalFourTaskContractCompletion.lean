@@ -25,6 +25,7 @@ import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCo
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW989LocalizedUnitChoiceFullDataPackagingGuardW1447
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrapCycleGuardW1448
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrappedStableRouteGuardW1449
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987FieldDataConstructionGuardW1450
 
 namespace LeanLCAExactChallenge
 namespace Dbounded
@@ -165,6 +166,11 @@ structure OriginalFourTaskContractCompletion where
       w1007W989LocalizedUnitChoiceInputNamesW1447.length
   branchFullDataW987RewrappedStableRouteInputCount :
     w1007W987RewrappedInputNamesW1448.length = 1
+  branchFullDataW987FieldDataConstructionInputCount :
+    w987FieldDataConstructionInputNamesW1450.length = 4
+  branchFullDataW987FieldDataConstructionExpandsCurrentProviderInputCount :
+    w1007W987RewrappedInputNamesW1448.length <
+      w987FieldDataConstructionInputNamesW1450.length
   productSuccessClaimed : Bool
 
 /-- The current original-four-task completion witness surface is still nonterminal. -/
@@ -279,6 +285,10 @@ def originalFourTaskContractCompletion : OriginalFourTaskContractCompletion wher
     w1448W989LocalizedUnitChoicePackagesToW987FullData
   branchFullDataW987RewrappedStableRouteInputCount :=
     w1449W987RewrappedStableRouteInputCount
+  branchFullDataW987FieldDataConstructionInputCount :=
+    w987FieldDataConstructionInputNamesW1450_count
+  branchFullDataW987FieldDataConstructionExpandsCurrentProviderInputCount :=
+    w1450W987FieldDataConstructionExpandsCurrentProvider
   productSuccessClaimed := false
 
 theorem originalFourTaskContractCompletion_productSuccessClaimed :
