@@ -1,97 +1,97 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-30T14:20:01Z",
-  "git_head": "07444e2ee243b69e2d5105d64be520c3907d36de",
-  "source_tree_hash": "874431f874190f8b96a50199699e00e1f9db14d5de8019d1196e46b48b58e074",
+  "generated_utc": "2026-05-30T14:36:01Z",
+  "git_head": "7bb383f62ed0c7d101ad68aa7ca774e7489f765e",
+  "source_tree_hash": "375c509b36ab1b466792381a38105eb9597cb4c36d81d2bc5cf17035a2a73f8f",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1441 connects the W1440 W950 normalized-source/endpoint component to the canonical W1302 unpack: the W950 component from W1007 repacks judgmentally, feeds W985 with W948 normalized-source-triangulation data and W949 endpoint-localized-unit data, and exposes the five-input W730/W944/W973/W948/W949 surface; product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the final imported completion surface still proves productSuccessClaimed=false.",
+  "summary": "W1442 connects the W1441 W948 normalized-source-triangulation component to the canonical W1303 unpack: the W948 component from W1007 repacks judgmentally, exposes W719 normalized fixed-target data and W722 source-triangulation data, and exposes the six-input W730/W944/W973/W719/W722/W949 surface; product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the final imported completion surface still proves productSuccessClaimed=false.",
   "evidence_root": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "run/w1441_lake_build.log"
+      "evidence": "run/w1442_lake_build.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW950NormalizedEndpointUnpackBoundaryGuardW1441",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW948NormalizedSourceUnpackBoundaryGuardW1442",
       "status": "passed",
-      "evidence": "run/w1441_w1441_module_build.log"
+      "evidence": "run/w1442_w1442_module_build.log"
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.OriginalFourTaskContractCompletion",
       "status": "passed",
-      "evidence": "run/w1441_original_four_task_completion_module_build.log"
+      "evidence": "run/w1442_original_four_task_completion_module_build.log"
     },
     {
       "command": "lake build LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "run/w1441_root_module_build.log"
+      "evidence": "run/w1442_root_module_build.log"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "run/w1441_forbidden_token_audit.log"
+      "evidence": "run/w1442_forbidden_token_audit.log"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "run/w1441_required_declarations.log"
+      "evidence": "run/w1442_required_declarations.log"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "run/w1441_product_success_declarations.log"
+      "evidence": "run/w1442_product_success_declarations.log"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "run/w1441_original_four_task_completion_declarations.log"
+      "evidence": "run/w1442_original_four_task_completion_declarations.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean",
       "status": "passed",
-      "evidence": "run/w1441_original_four_task_completion_focused.log"
+      "evidence": "run/w1442_original_four_task_completion_focused.log"
     },
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW950NormalizedEndpointUnpackBoundaryGuardW1441.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW948NormalizedSourceUnpackBoundaryGuardW1442.lean",
       "status": "passed",
-      "evidence": "run/w1441_w1441_focused.log"
+      "evidence": "run/w1442_w1442_focused.log"
     },
     {
       "command": "python3 -m py_compile audit/original_four_task_contract_audit.py audit/external_audit.py",
       "status": "passed",
-      "evidence": "run/w1441_py_compile.log"
+      "evidence": "run/w1442_py_compile.log"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "run/w1441_git_diff_check.log"
+      "evidence": "run/w1442_git_diff_check.log"
     },
     {
       "command": "rg -n 'productSuccessClaimed\\s*:=\\s*true' LeanLCAExactChallenge audit",
       "status": "failed_expected",
-      "evidence": "run/w1441_product_success_true_source_scan.log"
+      "evidence": "run/w1442_product_success_true_source_scan.log"
     },
     {
       "command": "rg -n 'productSuccessClaimed\\s*:=\\s*false|productSuccessClaimed\\s*=\\s*false' LeanLCAExactChallenge audit",
       "status": "passed",
-      "evidence": "run/w1441_final_false_witness_source_scan.log"
+      "evidence": "run/w1442_final_false_witness_source_scan.log"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root \"$PWD\" --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "run/w1441_original_four_task_contract_audit.log"
+      "evidence": "run/w1442_original_four_task_contract_audit.log"
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "run/w1441_external_audit.log"
+      "evidence": "run/w1442_external_audit.log"
     }
   ],
   "known_gaps": [
     "Positive Lean witness is absent: ProductSuccessDeclarations.lean does not import or check an OriginalFourTaskProductSuccess surface with field-level evidence for the four original tasks.",
     "Final imported completion surface remains nonterminal: originalFourTaskContractCompletion.productSuccessClaimed = false still compiles.",
-    "Original four mathematical tasks remain open under the positive-witness supplement; W1441 identifies the W730/W944/W973/W948/W949 unpack of the W950 normalized-source/endpoint surface rather than completing the four-task product witness."
+    "Original four mathematical tasks remain open under the positive-witness supplement; W1442 identifies the W730/W944/W973/W719/W722/W949 unpack of the W948 normalized-source surface rather than completing the four-task product witness."
   ]
 }

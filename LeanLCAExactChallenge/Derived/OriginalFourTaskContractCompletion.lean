@@ -17,6 +17,7 @@ import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCo
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW986UnpackBoundaryGuardW1439
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW984TargetClosednessUnpackBoundaryGuardW1440
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW950NormalizedEndpointUnpackBoundaryGuardW1441
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW948NormalizedSourceUnpackBoundaryGuardW1442
 
 namespace LeanLCAExactChallenge
 namespace Dbounded
@@ -101,6 +102,16 @@ structure OriginalFourTaskContractCompletion where
   branchFullDataBridgeUnpackExpandsToW950NormalizedEndpointInputCount :
     branchFullDataInputNamesW1169.length <
       w1007W950NormalizedEndpointUnpackedInputNamesW1441.length
+  branchFullDataUnpackedW730W944W973W719W722W949InputCount :
+    w1007W948NormalizedSourceUnpackedInputNamesW1442.length = 6
+  branchFullDataW948NormalizedSourceInnerInputCount :
+    canonicalW948NormalizedSourceTriangulationInnerInputNamesW1303.length = 2
+  branchFullDataW950NormalizedEndpointUnpackExpandsToW948NormalizedSourceInputCount :
+    w1007W950NormalizedEndpointUnpackedInputNamesW1441.length <
+      w1007W948NormalizedSourceUnpackedInputNamesW1442.length
+  branchFullDataBridgeUnpackExpandsToW948NormalizedSourceInputCount :
+    branchFullDataInputNamesW1169.length <
+      w1007W948NormalizedSourceUnpackedInputNamesW1442.length
   productSuccessClaimed : Bool
 
 /-- The current original-four-task completion witness surface is still nonterminal. -/
@@ -169,6 +180,14 @@ def originalFourTaskContractCompletion : OriginalFourTaskContractCompletion wher
     w1441W1440UnpackExpandsToW950NormalizedEndpoint
   branchFullDataBridgeUnpackExpandsToW950NormalizedEndpointInputCount :=
     w1441W1169UnpackExpandsToW950NormalizedEndpoint
+  branchFullDataUnpackedW730W944W973W719W722W949InputCount :=
+    w1442BranchFullDataUnpackedW730W944W973W719W722W949InputCount
+  branchFullDataW948NormalizedSourceInnerInputCount :=
+    w1442W948NormalizedSourceInnerInputCount
+  branchFullDataW950NormalizedEndpointUnpackExpandsToW948NormalizedSourceInputCount :=
+    w1442W1441UnpackExpandsToW948NormalizedSource
+  branchFullDataBridgeUnpackExpandsToW948NormalizedSourceInputCount :=
+    w1442W1169UnpackExpandsToW948NormalizedSource
   productSuccessClaimed := false
 
 theorem originalFourTaskContractCompletion_productSuccessClaimed :

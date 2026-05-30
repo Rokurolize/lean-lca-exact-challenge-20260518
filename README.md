@@ -52,4 +52,6 @@ W1440 connects the W984 target/closedness component from W1439 to W1300: W984 re
 
 W1441 connects the W950 normalized-source/endpoint component from W1440 to W1302: W950 repacks judgmentally, feeds W985 with W948 normalized-source-triangulation data and W949 endpoint-localized-unit data, and exposes the five-input W730/W944/W973/W948/W949 surface. Product success remains false.
 
+W1442 connects the W948 normalized-source-triangulation component from W1441 to W1303: W948 repacks judgmentally, exposes W719 normalized fixed-target data and W722 source-triangulation data, and exposes the six-input W730/W944/W973/W719/W722/W949 surface. Product success remains false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
