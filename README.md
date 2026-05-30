@@ -42,4 +42,6 @@ W1435 moves the checked bridge another step upstream: W1006 target/closedness/no
 
 W1436 moves the checked bridge another step upstream: W1007 branch-full-data constructs W1006 through W1169, then delegates direct calculus and the stable package through W1168. The route now records one remaining branch-full-data input, while product success remains false.
 
+W1437 pins that last branch-full-data input to the W987 surface: W1169's one-input surface is the W1007 surface, W1007's wrapped input is the W987 branch-specific full-data provider, and its count matches the W1270/W1271 current-full-data cycle. This is nonterminal boundary evidence, not a positive completion witness.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.

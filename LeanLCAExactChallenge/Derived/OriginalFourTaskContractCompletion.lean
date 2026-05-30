@@ -12,6 +12,7 @@ import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCo
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapTargetClosedEmbeddingClosednessStableConvergenceFieldSplitGuardW1434
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapTargetClosedEmbeddingClosednessNormalizedSourceEndpointStableConvergenceFieldSplitGuardW1435
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataStableConvergenceFieldSplitGuardW1436
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataOneInputCycleGuardW1437
 
 namespace LeanLCAExactChallenge
 namespace Dbounded
@@ -50,6 +51,16 @@ structure OriginalFourTaskContractCompletion where
     targetClosedEmbeddingClosednessNormalizedSourceEndpointInputNamesW1168.length = 2
   branchFullDataBridgeInputCount :
     branchFullDataInputNamesW1169.length = 1
+  branchFullDataUnderlyingW987InputCount :
+    branchFullDataInputNamesW1007.length = 1
+  branchFullDataBridgeMatchesW987InputCount :
+    branchFullDataInputNamesW1169.length = branchFullDataInputNamesW1007.length
+  branchFullDataBridgeMatchesCurrentPayloadInputCount :
+    branchFullDataInputNamesW1169.length =
+      currentFullDataPayloadFromBranchFullDataInputNamesW1270.length
+  branchFullDataBridgeMatchesCurrentFullDataCycleInputCount :
+    branchFullDataInputNamesW1169.length =
+      branchFullDataCurrentFullDataCycleInputNamesW1271.length
   productSuccessClaimed : Bool
 
 /-- The current original-four-task completion witness surface is still nonterminal. -/
@@ -82,6 +93,14 @@ def originalFourTaskContractCompletion : OriginalFourTaskContractCompletion wher
     w1435ClosedMapTargetClosedEmbeddingClosednessNormalizedSourceEndpointInputCount
   branchFullDataBridgeInputCount :=
     w1436ClosedMapBranchFullDataInputCount
+  branchFullDataUnderlyingW987InputCount :=
+    w1437ClosedMapBranchFullDataUnderlyingW987InputCount
+  branchFullDataBridgeMatchesW987InputCount :=
+    w1169BranchFullDataInputCountMatchesW1007W1437
+  branchFullDataBridgeMatchesCurrentPayloadInputCount :=
+    w1169BranchFullDataInputCountMatchesW1270W1437
+  branchFullDataBridgeMatchesCurrentFullDataCycleInputCount :=
+    w1169BranchFullDataInputCountMatchesW1271W1437
   productSuccessClaimed := false
 
 theorem originalFourTaskContractCompletion_productSuccessClaimed :

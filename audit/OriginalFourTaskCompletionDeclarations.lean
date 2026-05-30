@@ -14962,6 +14962,41 @@ theorem originalFourTaskContract_branchFullDataBridge_nonterminalW1436 :
       false :=
   LeanLCAExactChallenge.Dbounded.currentW1436ClosedMapBranchFullDataStableConvergence_productSuccess
 
+#check LeanLCAExactChallenge.Dbounded.w1007BranchFullDataInputIsW987W1437
+#check LeanLCAExactChallenge.Dbounded.w1169BranchFullDataInputNamesMatchW1007W1437
+#check LeanLCAExactChallenge.Dbounded.w1169BranchFullDataInputCountMatchesW1007W1437
+#check LeanLCAExactChallenge.Dbounded.w1169BranchFullDataInputCountMatchesW1270W1437
+#check LeanLCAExactChallenge.Dbounded.w1169BranchFullDataInputCountMatchesW1271W1437
+#check LeanLCAExactChallenge.Dbounded.w1007BranchFullDataInputCountMatchesW1270W1437
+#check LeanLCAExactChallenge.Dbounded.w1437ClosedMapBranchFullDataUnderlyingW987InputCount
+#check LeanLCAExactChallenge.Dbounded.ClosedMapBranchFullDataOneInputCycleStateW1437
+#check LeanLCAExactChallenge.Dbounded.currentClosedMapBranchFullDataOneInputCycleStateW1437
+#check LeanLCAExactChallenge.Dbounded.currentW1437ClosedMapBranchFullDataOneInputCycle_productSuccess
+
+theorem originalFourTaskContract_branchFullDataUnderlyingW987_inputCountW1437 :
+    LeanLCAExactChallenge.Dbounded.branchFullDataInputNamesW1007.length = 1 :=
+  LeanLCAExactChallenge.Dbounded.w1437ClosedMapBranchFullDataUnderlyingW987InputCount
+
+theorem originalFourTaskContract_branchFullDataBridge_matchesW987InputW1437 :
+    LeanLCAExactChallenge.Dbounded.branchFullDataInputNamesW1169.length =
+      LeanLCAExactChallenge.Dbounded.branchFullDataInputNamesW1007.length :=
+  LeanLCAExactChallenge.Dbounded.w1169BranchFullDataInputCountMatchesW1007W1437
+
+theorem originalFourTaskContract_branchFullDataBridge_matchesCurrentPayloadW1437 :
+    LeanLCAExactChallenge.Dbounded.branchFullDataInputNamesW1169.length =
+      LeanLCAExactChallenge.Dbounded.currentFullDataPayloadFromBranchFullDataInputNamesW1270.length :=
+  LeanLCAExactChallenge.Dbounded.w1169BranchFullDataInputCountMatchesW1270W1437
+
+theorem originalFourTaskContract_branchFullDataBridge_matchesCycleW1437 :
+    LeanLCAExactChallenge.Dbounded.branchFullDataInputNamesW1169.length =
+      LeanLCAExactChallenge.Dbounded.branchFullDataCurrentFullDataCycleInputNamesW1271.length :=
+  LeanLCAExactChallenge.Dbounded.w1169BranchFullDataInputCountMatchesW1271W1437
+
+theorem originalFourTaskContract_branchFullDataOneInputCycle_nonterminalW1437 :
+    LeanLCAExactChallenge.Dbounded.currentClosedMapBranchFullDataOneInputCycleStateW1437.productSuccessClaimed =
+      false :=
+  LeanLCAExactChallenge.Dbounded.currentW1437ClosedMapBranchFullDataOneInputCycle_productSuccess
+
 #check LeanLCAExactChallenge.Dbounded.OriginalFourTaskContractCompletion
 #check LeanLCAExactChallenge.Dbounded.originalFourTaskContractCompletion
 #check LeanLCAExactChallenge.Dbounded.originalFourTaskContractCompletion_productSuccessClaimed

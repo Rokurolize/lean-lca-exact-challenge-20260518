@@ -1,22 +1,23 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-30T12:44:28Z",
-  "git_head": "38d573c02bcbb1ff7cf9a50fa6d445eda66ef354",
-  "source_tree_hash": "7e918369ff331e3eef03d8c751e3268c3ac6a597dff12e48cf2c47cc16b8135a",
+  "generated_utc": "2026-05-30T13:14:56Z",
+  "git_head": "5161e62235dbfbdaea236ded24be70bfb56de0f7",
+  "source_tree_hash": "124e91794c9efbc081fd176d3a7a05c0de8d684928905cd827fc0661322b0c6b",
   "outcome": "mathematical_frontier_nonterminal",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W1436 moves the checked nonterminal route upstream: W1007 branch-full-data constructs W1006 through W1169, then delegates direct calculus and the stable package through W1168; product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the final imported completion surface still proves productSuccessClaimed=false.",
+  "summary": "W1437 pins the W1436/W1169 one-input branch-full-data surface to W1007 and the wrapped W987 branch-specific full-data provider, and proves that this one-input count matches the W1270/W1271 current-full-data cycle; product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the final imported completion surface still proves productSuccessClaimed=false.",
   "reference_route_log": "docs/research/reference_route_log.md",
   "known_gaps": [
-    "Positive Lean witness is absent: ProductSuccessDeclarations.lean does not import or check an OriginalFourTaskProductSuccess surface with field-level evidence for the four tasks.",
+    "Positive Lean witness is absent: ProductSuccessDeclarations.lean does not import or check an OriginalFourTaskProductSuccess surface with field-level evidence for the four original tasks.",
     "Final imported completion surface remains nonterminal: originalFourTaskContractCompletion.productSuccessClaimed = false still compiles.",
-    "Original four mathematical tasks remain open under the positive-witness supplement; W1436 is an upstream branch-full-data route bridge, not a completed product-success witness."
+    "Original four mathematical tasks remain open under the positive-witness supplement; W1437 identifies the W987 one-input surface/cycle rather than completing the four-task product witness."
   ],
   "remaining_work": [
     "Continue Lean implementation toward a positive OriginalFourTaskProductSuccess-style declaration backed by actual exact-category, metrizable LCA exact-category, Yoneda-Ext, and bounded derived infinity-category constructions.",
+    "Break the remaining W987 branch-specific full-data surface with a real constructor or an alternate route that satisfies the positive-witness supplement instead of cycling through W1270/W1271.",
     "Before any future product-success claim, rerun the source-contradiction gate, negative fixtures, clean checkout verification, root external audit, and clean-extracted packet audit."
   ],
   "goal_identity": "run/goal_identity_20260530_positive_witness_recovery.json"
