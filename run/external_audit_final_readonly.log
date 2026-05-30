@@ -1,0 +1,1 @@
+external_audit: FAIL: terminal_outcome.outcome must be product_success for this Goal, got 'nonterminal'
