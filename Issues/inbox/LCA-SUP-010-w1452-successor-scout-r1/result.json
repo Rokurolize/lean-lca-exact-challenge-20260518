@@ -1,0 +1,156 @@
+{
+  "schema": "lean_lca_support_issue_result.v1",
+  "issue_id": "LCA-SUP-010",
+  "base_head": "3b4cf5906e2ebead9b5ea0b6e01a15cbaccae251",
+  "target_head_observed": "3b4cf5906e2ebead9b5ea0b6e01a15cbaccae251",
+  "dirty_context": "clean_w1452_pushed_impl_session_live_or_waiting",
+  "role": "w1452_successor_route_scout",
+  "status": "accepted_candidate",
+  "audited_paths": [
+    "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryRelationFieldDataConstructionGuardW1452.lean",
+    "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryFieldDataConstructionGuardW1451.lean",
+    "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987FieldDataConstructionGuardW1450.lean",
+    "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW984TargetClosednessUnpackBoundaryGuardW1440.lean",
+    "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW950NormalizedEndpointUnpackBoundaryGuardW1441.lean",
+    "LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean",
+    "audit/ProductSuccessDeclarations.lean",
+    "audit/RequiredDeclarations.lean",
+    "terminal_outcome/terminal_outcome.json",
+    "run/verification.json",
+    "docs/research/reference_route_log.md",
+    "Issues/proof_search_cache.tsv",
+    "Issues/accepted_for_impl.md",
+    "codex-progress-thread-019e5c90-4877-77a1-a792-34feb85174ab.tsv"
+  ],
+  "commands_run": [
+    "sed -n '1,240p' /home/roku/codex-consultant-20260517/outputs/lean_lca_support_issue_governor_20260531/round3_workers/LCA-SUP-010-w1452-successor-scout-r1/instructions.md",
+    "ls -la /home/roku/codex-consultant-20260517/outputs/lean_lca_support_issue_governor_20260531/round3_workers/LCA-SUP-010-w1452-successor-scout-r1",
+    "git status --short",
+    "rg -n 'theorem|def|axiom|sorry|W1452|W1451|W1450|W987|W984|W950|admit|by' LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryRelationFieldDataConstructionGuardW1452.lean",
+    "rg -n 'theorem|def|axiom|sorry|W1451|W1450|W987|W716|W717|W984|W950|by' LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryFieldDataConstructionGuardW1451.lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987FieldDataConstructionGuardW1450.lean",
+    "rg -n 'theorem|def|axiom|sorry|W1440|W1441|W984|W950|ClosedMapBranch|NormalizedEndpoint|TargetClosedness|by' LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW984TargetClosednessUnpackBoundaryGuardW1440.lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW950NormalizedEndpointUnpackBoundaryGuardW1441.lean",
+    "jq '.' terminal_outcome/terminal_outcome.json run/verification.json",
+    "git rev-parse HEAD",
+    "sed -n '1,220p' LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean",
+    "sed -n '1,220p' audit/ProductSuccessDeclarations.lean && sed -n '1,220p' audit/RequiredDeclarations.lean",
+    "sed -n '1,220p' Issues/accepted_for_impl.md && tail -n 40 Issues/proof_search_cache.tsv && tail -n 30 codex-progress-thread-019e5c90-4877-77a1-a792-34feb85174ab.tsv",
+    "rg -n 'W1450|W1451|W1452|W984|W950|raw boundary|raw relation|productSuccessClaimed|product success' docs/research/reference_route_log.md",
+    "rg -n 'productSuccessClaimed\\s*:=\\s*false|productSuccessClaimed\\s*=\\s*false|productSuccessClaimed\\s*:=\\s*true|OriginalFourTaskProductSuccess' LeanLCAExactChallenge audit",
+    "sed -n '217,270p' LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryRelationFieldDataConstructionGuardW1452.lean",
+    "sed -n '126,190p' LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987FieldDataConstructionGuardW1450.lean && sed -n '166,232p' LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryFieldDataConstructionGuardW1451.lean"
+  ],
+  "frontier_summary": "W1452 is a nonterminal but useful frontier shift: it assembles W987 from two raw W716 boundary fields, two raw W717 relation fields, carried W984 target/closedness data, and carried W950 normalized-source/endpoint data. W716 and W717 are already split to raw fields; the remaining bundled assumptions at the W1452 surface are W984 and W950, with product success still false.",
+  "route_decision": {
+    "recommended_surface": "W984 internals: replace the carried TargetNoUnivClosedEmbeddingClosednessDataProviderW984 input in the W1452-style construction surface with its W944 target-no-univ and W973 closed-embedding closedness components.",
+    "why_this_reduces_frontier": "W1452 has already split the W716 and W717 inputs, while W1450/W1452 still carry W984 as one bundled provider. W1440 proves the W984 component unpacks to W944 and W973, so a direct W1453-style construction that carries raw W716/W717 plus W944/W973 plus W950 would remove one of the two remaining bundled provider assumptions without replaying wrapper or rewrap machinery.",
+    "why_not_wrapper_cycle": "W1440-W1449 unpack, package, rewrap, and stable-output routes are documented as nonterminal or rejected cycles. W1450-W1452 moved to field-data construction; the next increment should continue discharging carried fields rather than rebuilding W987/W1007 or repeating provider packaging.",
+    "confidence": "medium_high"
+  },
+  "source_refs": [
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryRelationFieldDataConstructionGuardW1452.lean",
+      "line": 21,
+      "reason": "W1452 input still carries raw boundary fields, raw relation fields, W984, and W950."
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryRelationFieldDataConstructionGuardW1452.lean",
+      "line": 228,
+      "reason": "Current W1452 state records construction from raw relation fields into W1451."
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryRelationFieldDataConstructionGuardW1452.lean",
+      "line": 255,
+      "reason": "Construction result says W717 is assembled from raw relation-pullback and target-relation-lifts providers before W1451."
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryRelationFieldDataConstructionGuardW1452.lean",
+      "line": 258,
+      "reason": "Projection result confirms W1452 projects back to relation fields, boundary fields, and carried W984/W950 data."
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryRelationFieldDataConstructionGuardW1452.lean",
+      "line": 265,
+      "reason": "W1452 explicitly proves productSuccessClaimed=false."
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987FieldDataConstructionGuardW1450.lean",
+      "line": 126,
+      "reason": "W1450 names W984 and W950 as bundled W987 construction inputs alongside W716/W717."
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryFieldDataConstructionGuardW1451.lean",
+      "line": 201,
+      "reason": "W1451 construction result shows W716 is already split into raw boundary fields."
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW984TargetClosednessUnpackBoundaryGuardW1440.lean",
+      "line": 95,
+      "reason": "W1440 records W984 target/closedness inner input count as two components."
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW984TargetClosednessUnpackBoundaryGuardW1440.lean",
+      "line": 139,
+      "reason": "Current W1440 state says W984 projects to W944 target no-univ and W973 closed-embedding closedness data."
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW950NormalizedEndpointUnpackBoundaryGuardW1441.lean",
+      "line": 83,
+      "reason": "W1441 records W950 normalized-source/endpoint inner input count as two components, making it a viable secondary route."
+    },
+    {
+      "path": "docs/research/reference_route_log.md",
+      "line": 1393,
+      "reason": "Route log confirms W1452 splits W717 and leaves raw fields plus W984/W950 assumptions, with no product success claim."
+    },
+    {
+      "path": "terminal_outcome/terminal_outcome.json",
+      "line": 1,
+      "reason": "Terminal outcome summary records W1452 as product_success=false and product_complete=false."
+    },
+    {
+      "path": "Issues/proof_search_cache.tsv",
+      "line": 4,
+      "reason": "Cache rejects W1448 W987 rewrap as an explicit nonterminal cycle."
+    },
+    {
+      "path": "Issues/accepted_for_impl.md",
+      "line": 16,
+      "reason": "Accepted notes tell implementation not to resample W1440-W1449 unpacking/packaging/rewrap cycles."
+    }
+  ],
+  "rejected_routes": [
+    {
+      "surface": "remaining raw W716/W717 field assumptions",
+      "reason": "W1451 and W1452 already split W716 and W717 into their two raw fields and prove projections back to those fields; targeting the same split again would duplicate LCA-SUP-009/W1451-W1452 rather than reduce the next bundled assumption."
+    },
+    {
+      "surface": "W950 internals",
+      "reason": "Viable but second choice: W1441 provides the W950 split into W948/W949, but W984 is earlier in the W1450/W1452 carried-provider pair and has a simple two-field W1440 target/closedness unpack already recorded."
+    },
+    {
+      "surface": "final product witness surface",
+      "reason": "Too broad for the next small implementation increment; terminal_outcome and audit evidence still say no positive OriginalFourTaskProductSuccess witness exists."
+    },
+    {
+      "surface": "metadata freshness",
+      "reason": "The source head matches the launched W1452 base head, so metadata refresh alone would not reduce the Lean frontier."
+    },
+    {
+      "surface": "W1447-W1452 wrapper/unpack/rewrap/provider cycle replay",
+      "reason": "Rejected by accepted notes and proof-search cache as nonreducing, nonterminal, or explicit cycle work."
+    }
+  ],
+  "metadata_freshness_observations": [
+    "git rev-parse HEAD observed 3b4cf5906e2ebead9b5ea0b6e01a15cbaccae251, matching the instructed base head.",
+    "git status --short returned no output in the target repo.",
+    "terminal_outcome/terminal_outcome.json and run/verification.json still report product_success=false and product_complete=false for W1452.",
+    "Issues/accepted_for_impl.md has not accepted LCA-SUP-010 yet; it still only lists earlier accepted audit notes.",
+    "The progress TSV has a W1452 pushed_product_false row whose next step says W984/W950 plus raw W716/W717 fields remain assumed."
+  ],
+  "candidate_next_action": "Implement a W1453-style nonterminal guard that takes the W1452 raw W716/W717 fields, replaces the carried W984 provider with W944 target-no-univ data and W973 closed-embedding closedness data, constructs W984 through the existing W1300/W1440 route, then feeds the resulting W984 plus carried W950 into the W1452/W1451/W1450 construction and proves projections back to W944/W973, W950, and the raw W716/W717 fields. Keep productSuccessClaimed=false.",
+  "lean_command_to_rerun": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryRelationFieldDataConstructionGuardW1452.lean",
+  "parent_command_to_rerun": "jq '.' /home/roku/codex-consultant-20260517/outputs/lean_lca_support_issue_governor_20260531/round3_workers/LCA-SUP-010-w1452-successor-scout-r1/result.json",
+  "failure_signature": "",
+  "product_success_claimed": false,
+  "implementation_note": "This is an audit-only route decision. Do not edit the target repo from this worker result alone; parent/governor should verify and, if accepted, add an implementation note before the Lean implementation role consumes it."
+}
