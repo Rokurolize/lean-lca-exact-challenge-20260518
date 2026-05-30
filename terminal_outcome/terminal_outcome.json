@@ -1,23 +1,23 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-30T19:41:25Z",
-  "git_head": "8f44ecca5732e6aac3926a74e08e3fb0eb9ee0be",
-  "source_tree_hash": "7f7e676b42552cabb66ce53fd2e7f4990f678aa44f61240e14b278fda5b584ce",
+  "generated_utc": "2026-05-30T20:05:00Z",
+  "git_head": "20aa384789306e38ca66abcc007b0eb913273055",
+  "source_tree_hash": "281379c4e8ddd8f7b17548e504ffa41b215827143bad2d857b8947c205bd06bb",
   "outcome": "mathematical_frontier_nonterminal",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W1452 refines the W1451 W987 construction by building its W717 relation-data input from the two raw W908 relation fields, then feeding the resulting W1451 input to assemble W716, W730, W986, and W987 with projection theorems back to those relation fields, boundary fields, and the carried W984/W950 data. Product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the final imported completion surface still proves productSuccessClaimed=false.",
+  "summary": "W1453 refines the W1452 W987 construction by building its W984 target/closedness input from the W944 target no-univ provider and W973 closed-embedding closedness provider, then feeding the resulting W1452 input to assemble W717, W716, W730, W986, and W987 with projection theorems back to those target fields, relation fields, boundary fields, and the carried W950 data. Product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the final imported completion surface still proves productSuccessClaimed=false.",
   "reference_route_log": "docs/research/reference_route_log.md",
   "known_gaps": [
     "Positive Lean witness is absent: ProductSuccessDeclarations.lean does not import or check an OriginalFourTaskProductSuccess surface with field-level evidence for the four original tasks.",
     "Final imported completion surface remains nonterminal: originalFourTaskContractCompletion.productSuccessClaimed = false still compiles.",
-    "Original four mathematical tasks remain open under the positive-witness supplement; W1452 constructs W987 from two raw boundary fields, two raw relation fields, and assumed W984/W950 field-data inputs rather than proving those inputs from a positive product witness."
+    "Original four mathematical tasks remain open under the positive-witness supplement; W1453 constructs W987 from two raw boundary fields, two raw relation fields, W944 target no-univ data, W973 closed-embedding closedness data, and assumed W950 data rather than proving those inputs from a positive product witness."
   ],
   "remaining_work": [
     "Continue Lean implementation toward a positive OriginalFourTaskProductSuccess-style declaration backed by actual exact-category, metrizable LCA exact-category, Yoneda-Ext, and bounded derived infinity-category constructions.",
-    "Discharge the W1452 raw boundary-field, raw relation-field, W984, and W950 construction inputs with real Lean constructions satisfying the positive-witness supplement, or replace them with an explicit positive witness.",
+    "Discharge the W1453 raw boundary-field, raw relation-field, W944, W973, and W950 construction inputs with real Lean constructions satisfying the positive-witness supplement, or replace them with an explicit positive witness.",
     "Before any future product-success claim, rerun the source-contradiction gate, negative fixtures, clean checkout verification, root external audit, and clean-extracted packet audit."
   ],
   "goal_identity": "run/goal_identity_20260530_positive_witness_recovery.json"
