@@ -1,22 +1,22 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-30T00:50:57Z",
-  "git_head": "dfa40f5316afdf154bc9c3689b01683ac14ec466",
-  "source_tree_hash": "21d702c413059fd1eb9115f2f2d839c06d4542c6228ab5f7658e1e6efccc95dd",
+  "generated_utc": "2026-05-30T00:55:56Z",
+  "git_head": "6b8bacf68f9861c401adb0b5ff3473ae9b6879ab",
+  "source_tree_hash": "9c09b86644a400f743a0c6231edb159ecfb8c66c5673270d48f6841551e43628",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1421 adds a checked closed-map split-full-data component-fields stable convergence guard tying W979 through W978 into the closed-map route chain. The original four-task product goal remains open.",
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260530T004911Z_codex_parent_w1421_split_full_data_component_fields_stable_convergence_guard",
+  "summary": "W1422 adds a checked closed-map endpoint-strict-exact full-data stable convergence guard tying W980 through W979 into the closed-map route chain. The original four-task product goal remains open.",
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260530T005426Z_codex_parent_w1422_endpoint_strict_exact_full_data_stable_convergence_guard",
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapSplitFullDataComponentFieldsStableConvergenceFieldSplitGuardW1421.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapEndpointStrictExactFullDataStableConvergenceFieldSplitGuardW1422.lean",
       "status": "passed",
-      "evidence": "run/w1421_focused_lean.log"
+      "evidence": "run/w1422_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapSplitFullDataComponentFieldsStableConvergenceFieldSplitGuardW1421",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapEndpointStrictExactFullDataStableConvergenceFieldSplitGuardW1422",
       "status": "passed",
-      "evidence": "run/w1421_module_build.log"
+      "evidence": "run/w1422_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -71,6 +71,6 @@
     "External final readonly audit is expected to fail until terminal_outcome.outcome is product_success."
   ],
   "remaining_work": [
-    "Advance the remaining Lean route blockers after W1421, including downstream W980+ field splits, packet blockers, and any completion-contract blockers still recorded by the audits."
+    "Advance the remaining Lean route blockers after W1422, including downstream W981+ field splits, packet blockers, and any completion-contract blockers still recorded by the audits."
   ]
 }
