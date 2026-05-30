@@ -58,4 +58,6 @@ W1443 connects the W949 endpoint-localized-unit component from W1442 to W1301: W
 
 W1444 connects the W945 localized-unit component from W1443 to W1306: W945 repacks judgmentally, exposes the localized right adjoint, localized adjunction, and W939 unit-component witness, and exposes the nine-input W730/W944/W973/W719/W722/endpoint/right-adjoint/adjunction/W939 surface. Product success remains false.
 
+W1445 aligns the W1444 unpacked surface with the W990 primitive unit-components route: W1007's W730/W944/W973/endpoint/right-adjoint/adjunction/W939 data plus the W1303 W948 repack form the W990 provider, W990 preserves the localized adjunction fields, and the route delegates through W989. This is checked route alignment, not a positive product witness.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
