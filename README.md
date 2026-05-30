@@ -28,4 +28,6 @@ W1424 adds a checked nonterminal bridge from the W982 localized-unit-choice prov
 
 W1425 extends that checked W982 surface to the component-field, current-full-data, branch-full-data, and target surjective-compact projections exposed by W1164/W1163. This is still route evidence only; no positive product-success witness is claimed.
 
+W1430 records the nested W982 target/closedness/normalized-source/endpoint and rebuilt W982/W981/W971 projections exposed by W1164/W1163. It deliberately skips the historical W1426 number because W1426 was the reopened false-positive product-success promotion.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.

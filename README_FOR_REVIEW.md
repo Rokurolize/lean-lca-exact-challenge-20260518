@@ -8,6 +8,8 @@ W1424では、W982 localized-unit-choice providerから既存のW1164/W1163 unit
 
 W1425では、同じW982 surfaceからW1164/W1163が露出するcomponent-field、current-full-data、branch-full-data、target surjective-compact projectionの定義的一致を追加確認した。これもroute evidenceに留まり、product successはfalseのままである。
 
+W1430では、W1426が偽陽性product-success promotionとして再オープン済みであることを避けるため番号を飛ばし、W982からW1164/W1163を通るtarget/closedness/normalized-source/endpoint、および再構成されたW982/W981/W971 projectionの定義的一致を記録した。これも正のproduct witnessではない。
+
 この成果物はproduct successではない。更新後のgoalではsource-patch-needed handoffで完了できないため、このpacketは歴史的な調査証跡と未完了診断として読む。
 
 2026-05-27のW1002更新では、W1001で残っていたW981 endpoint/unit-strict-exact provider surfaceを、既存W982のlocalized-unit-choice surfaceからW988でW987 branch full dataへ構成し、W998へ渡すrouteを追加した。これにより最新の非終端frontierは、W981の7項目ではなく、W730 boundary/relation data、W944 target no-univ data、W973 closed-embedding closedness data、endpoint strict short-exact family、W945 localized-unit data、W948 normalized-source-triangulation dataの6項目へ戻った。ただしこれら6項目自体はまだ仮定であり、original four-task completion witness、product-success terminal outcome、clean review packetは未完成なので、product successは引き続きfalseである。
