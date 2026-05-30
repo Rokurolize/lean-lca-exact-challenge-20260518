@@ -4,6 +4,15 @@ This directory is the local support-issue handoff surface for the Lean LCA exact
 
 It is operational state, not proof evidence. A support issue, worker result, accepted row, clean build, audit pass, or HTML report is never a substitute for a positive `OriginalFourTaskProductSuccess` Lean witness.
 
+## Canonical Surfaces
+
+- `support_issues.tsv`: parent-owned issue ledger and dispatch queue.
+- `worker_registry.tsv`: parent-owned map from issue rows to bounded worker runs.
+- `accepted_for_impl.md`: the only human-readable support surface the implementation role should inspect.
+- `proof_search_cache.tsv`: parent-verified rejected route/cache rows that can prevent duplicate proof searches.
+- `inbox/`: copied worker results after parent verification. Workers write to their own external run directories first.
+- `traces/`, `rejected/`, `stale/`: parent-curated evidence summaries; do not put raw worker logs here.
+
 ## Ownership
 
 - The implementation role remains the only live proof writer for the target repository.
@@ -65,3 +74,7 @@ Every support worker result must include at least:
 ```
 
 `product_success_claimed` must be `false` for ordinary support rows.
+
+## Implementation Consumption
+
+The implementation role should read only `accepted_for_impl.md` or a parent-named accepted row. It should not inspect raw worker logs, unverified `result.json` files, stale rows, or worker scratch directories.
