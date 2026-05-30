@@ -35399,3 +35399,8 @@ LeanLCAExactChallenge.Dbounded.currentW1271BranchFullDataCurrentFullDataCycleGua
   (have state := LeanLCAExactChallenge.Dbounded.currentMetrizableBranchFullDataCurrentFullDataCycleGuardStateW1271;
     state.productSuccessClaimed) =
     false
+LeanLCAExactChallenge.Dbounded.OriginalFourTaskContractCompletion : Type
+LeanLCAExactChallenge.Dbounded.originalFourTaskContractCompletion :
+  LeanLCAExactChallenge.Dbounded.OriginalFourTaskContractCompletion
+LeanLCAExactChallenge.Dbounded.originalFourTaskContractCompletion_productSuccessClaimed :
+  LeanLCAExactChallenge.Dbounded.originalFourTaskContractCompletion.productSuccessClaimed = false

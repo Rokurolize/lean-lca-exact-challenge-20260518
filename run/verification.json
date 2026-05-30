@@ -1,13 +1,23 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-30T01:08:53Z",
-  "git_head": "f5f59ee1925d20b100e72bfe8179b42e43d34df2",
-  "source_tree_hash": "f85314977a415996995486d0519e1c782d90aa57d4f61882e2b49541ee2a4122",
+  "generated_utc": "2026-05-30T01:18:15Z",
+  "git_head": "b6e81d3734ed8a1a53de3ae34c0abca27f4a3e22",
+  "source_tree_hash": "c73c21def7629b9fb3a7dd83701a640ef76bf39d31f89f64697c2dff135f64db",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1424 syncs the required negative fixtures into the review packet so the immutable contract audit no longer reports missing packet fixture blockers. The original four-task product goal remains open.",
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260530T010642Z_codex_parent_w1424_packet_negative_fixture_sync",
+  "summary": "W1425 adds a source-level original-four-task completion witness surface and wires both audit declaration files to check it while explicitly preserving productSuccessClaimed = false. The immutable contract audit now reports no blockers, but the terminal outcome remains nonterminal.",
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260530T011333Z_codex_parent_w1425_original_four_completion_witness",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean",
+      "status": "passed",
+      "evidence": "run/w1425_focused_lean.log"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.OriginalFourTaskContractCompletion",
+      "status": "passed",
+      "evidence": "run/w1425_module_build.log"
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
       "status": "passed",
@@ -65,12 +75,11 @@
     }
   ],
   "known_gaps": [
-    "ProductSuccessDeclarations only checks the bounded-derived name without an original-four-task completion witness.",
-    "OriginalFourTaskCompletionDeclarations lacks the original-four-task completion witness.",
+    "Terminal outcome remains nonterminal and product_success is false, so update_goal is not allowed.",
     "External final readonly audit is expected to fail until terminal_outcome.outcome is product_success."
   ],
   "remaining_work": [
-    "Build and expose the original four-task completion witness in Lean, then tighten ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations around that witness.",
-    "Continue the downstream Lean route increments after W1423 where they contribute to the original four-task witness surface."
+    "Promote the audited original-four completion witness from a nonterminal witness surface to product-success evidence only after the Lean, packet, and terminal-outcome evidence all satisfy the immutable contract.",
+    "Rerun the clean extraction and external readonly audits after product_success is intentionally claimed."
   ]
 }

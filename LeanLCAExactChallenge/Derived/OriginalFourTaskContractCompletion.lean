@@ -1,0 +1,47 @@
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataCurrentFullDataPayloadFromTargetClosedEmbeddingClosednessW1267
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataCurrentFullDataPayloadFromNormalizedSourceEndpointLocalizedUnitW1268
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataCurrentFullDataPayloadFromTargetNormalizedEndpointW1269
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataCurrentFullDataPayloadFromBranchFullDataW1270
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataBranchFullDataCurrentFullDataCycleGuardW1271
+
+namespace LeanLCAExactChallenge
+namespace Dbounded
+
+/-- Current original-four-task completion witness surface audited by the contract gates.
+
+This packages the checked W1267-W1271 route evidence that remains nonterminal:
+it records the current reduction counts and explicitly does not claim product
+success. -/
+structure OriginalFourTaskContractCompletion where
+  targetClosedEmbeddingClosednessInputCount :
+    currentFullDataPayloadFromTargetClosedEmbeddingClosednessInputNamesW1267.length = 4
+  normalizedSourceEndpointLocalizedUnitInputCount :
+    currentFullDataPayloadFromNormalizedSourceEndpointLocalizedUnitInputNamesW1268.length = 3
+  targetNormalizedEndpointInputCount :
+    currentFullDataPayloadFromTargetNormalizedEndpointInputNamesW1269.length = 2
+  branchFullDataInputCount :
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270.length = 1
+  branchFullDataCurrentFullDataCycleInputCount :
+    branchFullDataCurrentFullDataCycleInputNamesW1271.length = 1
+  productSuccessClaimed : Bool
+
+/-- The current original-four-task completion witness surface is still nonterminal. -/
+def originalFourTaskContractCompletion : OriginalFourTaskContractCompletion where
+  targetClosedEmbeddingClosednessInputCount :=
+    currentFullDataPayloadFromTargetClosedEmbeddingClosednessInputNamesW1267_count
+  normalizedSourceEndpointLocalizedUnitInputCount :=
+    currentFullDataPayloadFromNormalizedSourceEndpointLocalizedUnitInputNamesW1268_count
+  targetNormalizedEndpointInputCount :=
+    currentFullDataPayloadFromTargetNormalizedEndpointInputNamesW1269_count
+  branchFullDataInputCount :=
+    currentFullDataPayloadFromBranchFullDataInputNamesW1270_count
+  branchFullDataCurrentFullDataCycleInputCount :=
+    branchFullDataCurrentFullDataCycleInputNamesW1271_count
+  productSuccessClaimed := false
+
+theorem originalFourTaskContractCompletion_productSuccessClaimed :
+    originalFourTaskContractCompletion.productSuccessClaimed = false :=
+  rfl
+
+end Dbounded
+end LeanLCAExactChallenge
