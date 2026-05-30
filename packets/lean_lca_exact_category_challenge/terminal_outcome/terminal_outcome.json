@@ -1,25 +1,23 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-30T01:26:02Z",
-  "git_head": "f87a9c5b6fe01eb20e0b805da8a81b4151a15b4c",
-  "source_tree_hash": "c73c21def7629b9fb3a7dd83701a640ef76bf39d31f89f64697c2dff135f64db",
-  "outcome": "product_success",
-  "product_success": true,
-  "product_success_claimed": true,
-  "product_complete": true,
-  "update_goal_allowed": true,
-  "summary": "W1426 promotes the audited original-four-task completion witness to product success after the immutable contract audit, root external audit, clean-extracted packet audit, and packet sidecar check all pass with refreshed evidence.",
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260530T012221Z_codex_parent_w1426_product_success_promotion",
+  "generated_utc": "2026-05-30T10:28:25Z",
+  "git_head": "38eb01f11da6abb774fe0c2b71d7de234a3f8c24",
+  "source_tree_hash": "349ad65f5846a1b7c4571744513e39bb479f2c2de7791bd3f49c70d262e9e2e5",
+  "outcome": "nonterminal_recovery_baseline",
+  "product_success": false,
+  "product_success_claimed": false,
+  "product_complete": false,
+  "update_goal_allowed": false,
+  "summary": "W1426 product-success metadata was reopened as a false-positive recovery baseline because current Lean has no positive OriginalFourTaskProductSuccess witness and the final imported completion surface still proves productSuccessClaimed=false.",
   "reference_route_log": "docs/research/reference_route_log.md",
-  "known_gaps": [],
-  "remaining_work": [],
-  "verified_commands": [
-    "lake build",
-    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-    "lake env lean audit/RequiredDeclarations.lean",
-    "lake env lean audit/ProductSuccessDeclarations.lean",
-    "git diff --check"
+  "known_gaps": [
+    "Positive Lean witness is absent: ProductSuccessDeclarations.lean does not import or check an OriginalFourTaskProductSuccess surface with field-level evidence for the four tasks.",
+    "Final imported completion surface remains nonterminal: originalFourTaskContractCompletion.productSuccessClaimed = false still compiles.",
+    "Original four mathematical tasks remain open under the positive-witness supplement; metadata, audit logs, packet sidecars, and remote durability are not completion evidence."
   ],
-  "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
-  "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256"
+  "remaining_work": [
+    "Continue Lean implementation toward a positive OriginalFourTaskProductSuccess-style declaration backed by actual exact-category, metrizable LCA exact-category, Yoneda-Ext, and bounded derived infinity-category constructions.",
+    "Before any future product-success claim, rerun the source-contradiction gate, negative fixtures, clean checkout verification, root external audit, and clean-extracted packet audit."
+  ],
+  "goal_identity": "run/goal_identity_20260530_positive_witness_recovery.json"
 }

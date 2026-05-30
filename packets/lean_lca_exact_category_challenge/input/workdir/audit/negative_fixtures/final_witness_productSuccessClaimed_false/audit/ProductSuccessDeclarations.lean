@@ -1,0 +1,2 @@
+#check LeanLCAExactChallenge.Dbounded.originalFourTaskContractCompletion
+#check LeanLCAExactChallenge.Dbounded.originalFourTaskContractCompletion_productSuccessClaimed

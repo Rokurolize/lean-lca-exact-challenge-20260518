@@ -20,6 +20,8 @@ scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge
 `LeanLCAExactChallenge/MathlibSurvey.lean` records checked mathlib anchors. It
 is a starting point, not a solution.
 
-## Current Frontier
+## Current Status
 
-W1271 is the latest checked nonterminal increment. It records that W999 constructs W987 branch full data only from a W977 current full-data payload, while W1270 constructs that W977 payload from W987. This is a one-input cycle guard, not a completion witness. Product success remains false.
+The W1426 product-success metadata was reopened as a false positive under the positive-witness recovery contract. Current terminal metadata is `nonterminal_recovery_baseline`: product success is false, the W1425/W1426 `originalFourTaskContractCompletion` surface still proves `productSuccessClaimed = false`, and the repository now requires a positive Lean-native `OriginalFourTaskProductSuccess`-style witness before product success may be claimed.
+
+The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.

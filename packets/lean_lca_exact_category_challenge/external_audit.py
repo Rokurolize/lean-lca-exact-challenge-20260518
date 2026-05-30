@@ -44,6 +44,29 @@ REQUIRED_COMMANDS = [
     "git diff --check",
 ]
 
+POSITIVE_COMPLETION_SYMBOLS = [
+    "OriginalFourTaskProductSuccess",
+    "originalFourTaskProductSuccess",
+    "originalFourTaskProductSuccess_quillenExactCategory",
+    "originalFourTaskProductSuccess_metrizableLCAExactCategory",
+    "originalFourTaskProductSuccess_yonedaExt",
+    "originalFourTaskProductSuccess_boundedDerivedInfinityCategory",
+]
+
+FINAL_FALSE_COMPLETION_MARKERS = [
+    "originalFourTaskContractCompletion_productSuccessClaimed",
+    "originalFourTaskContractCompletion.productSuccessClaimed = false",
+    "productSuccessClaimed := false",
+]
+
+ALLOWED_NONTERMINAL_OUTCOMES = {
+    "nonterminal_recovery_baseline",
+    "mathematical_frontier_nonterminal",
+    "source_patch_needed_handoff",
+    "failed",
+    "nonterminal",
+}
+
 ALLOWED_VERIFICATION_STATUSES = {"passed", "failed_expected"}
 UNRESOLVED_VERIFICATION_STATUSES = {
     "pending",
@@ -338,6 +361,66 @@ def terminal_claims_product_success(terminal_outcome_path: Path) -> bool:
     return outcome.get("outcome") == "product_success" or outcome.get("product_complete") is True
 
 
+def current_git_head(root: Path) -> str | None:
+    if not (root / ".git").exists():
+        return None
+    proc = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=root,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=False,
+    )
+    if proc.returncode != 0:
+        return None
+    return proc.stdout.strip()
+
+
+def positive_witness_present(product_audit_text: str, original_audit_text: str) -> bool:
+    combined = product_audit_text + "\n" + original_audit_text
+    return all(symbol in combined for symbol in POSITIVE_COMPLETION_SYMBOLS)
+
+
+def final_false_witness_present(project_root: Path, product_audit_text: str, original_audit_text: str) -> bool:
+    final_source = strip_lean_comments_and_strings(
+        (project_root / "LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean").read_text(
+            encoding="utf-8"
+        )
+        if (project_root / "LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean").is_file()
+        else ""
+    )
+    final_surface = product_audit_text + "\n" + original_audit_text + "\n" + final_source
+    if "originalFourTaskContractCompletion" in product_audit_text + "\n" + original_audit_text:
+        return any(marker in final_surface for marker in FINAL_FALSE_COMPLETION_MARKERS)
+    return False
+
+
+def check_positive_witness_source_gate(
+    root: Path, project_root: Path, terminal_outcome_path: Path
+) -> None:
+    if not terminal_claims_product_success(terminal_outcome_path):
+        return
+    outcome = load_json(terminal_outcome_path)
+    head = current_git_head(root)
+    if head is not None and outcome.get("git_head") != head:
+        fail("terminal_outcome.git_head does not match current HEAD while claiming product success")
+    product_audit = strip_lean_comments_and_strings(
+        (project_root / "audit/ProductSuccessDeclarations.lean").read_text(encoding="utf-8")
+    )
+    original_audit = strip_lean_comments_and_strings(
+        (project_root / "audit/OriginalFourTaskCompletionDeclarations.lean").read_text(
+            encoding="utf-8"
+        )
+        if (project_root / "audit/OriginalFourTaskCompletionDeclarations.lean").is_file()
+        else ""
+    )
+    if not positive_witness_present(product_audit, original_audit):
+        fail("product_success lacks a positive OriginalFourTaskProductSuccess Lean witness")
+    if final_false_witness_present(project_root, product_audit, original_audit):
+        fail("product_success imports a final witness proving productSuccessClaimed=false")
+
+
 def check_derived_infinity_product_contract(
     project_root: Path, terminal_outcome_path: Path, require_product_contract: bool
 ) -> None:
@@ -565,13 +648,47 @@ def check_negative_fixture(root: Path) -> None:
         "stable_certificate_name_without_field_evidence",
         "stable certificate placeholder without field evidence failure",
     )
+    run_fixture(
+        "final_witness_productSuccessClaimed_false",
+        "final false witness contradiction failure",
+    )
+    run_fixture(
+        "product_success_without_positive_lean_witness",
+        "missing positive Lean witness failure",
+    )
+    run_fixture(
+        "symbol_only_completion_check",
+        "symbol-only completion check failure",
+    )
+    run_fixture(
+        "metadata_only_w1426_promotion",
+        "metadata-only product-success promotion failure",
+    )
+    run_fixture(
+        "terminal_git_head_stale",
+        "stale terminal git_head product-success failure",
+    )
 
 
 def check_terminal_outcome(root: Path, terminal_outcome_path: Path, packet_mode: bool) -> None:
     outcome = load_json(terminal_outcome_path)
     terminal = outcome.get("outcome")
     if terminal != "product_success":
-        fail(f"terminal_outcome.outcome must be product_success for this Goal, got {terminal!r}")
+        if terminal not in ALLOWED_NONTERMINAL_OUTCOMES:
+            fail(f"unsupported terminal_outcome.outcome: {terminal!r}")
+        if outcome.get("product_success") is True:
+            fail("nonterminal outcome must not set product_success=true")
+        if outcome.get("product_complete") is True:
+            fail("nonterminal outcome must not set product_complete=true")
+        if outcome.get("update_goal_allowed") is True:
+            fail("nonterminal outcome must not set update_goal_allowed=true")
+        known_gaps = outcome.get("known_gaps")
+        remaining_work = outcome.get("remaining_work")
+        if not isinstance(known_gaps, list) or not known_gaps:
+            fail("nonterminal outcome must record known_gaps")
+        if not isinstance(remaining_work, list) or not remaining_work:
+            fail("nonterminal outcome must record remaining_work")
+        return
     product_complete = outcome.get("product_complete")
     update_goal_allowed = outcome.get("update_goal_allowed")
     if product_complete is not True or update_goal_allowed is not True:
@@ -624,6 +741,7 @@ def main() -> None:
         check_derived_infinity_product_contract(
             project_root, terminal_outcome, terminal_claims_product_success(terminal_outcome)
         )
+        check_positive_witness_source_gate(root, project_root, terminal_outcome)
         print("external_audit: self-check passed")
         return
 
@@ -636,6 +754,7 @@ def main() -> None:
     check_derived_infinity_product_contract(
         project_root, terminal_outcome, terminal_claims_product_success(terminal_outcome)
     )
+    check_positive_witness_source_gate(root, project_root, terminal_outcome)
     check_no_internal_zip_sha(root, terminal_outcome)
     check_manifest(root)
     check_verification(root, project_root, terminal_outcome)

@@ -1,0 +1,1 @@
+#check LeanLCAExactChallenge.Dbounded.originalFourTaskContractCompletion

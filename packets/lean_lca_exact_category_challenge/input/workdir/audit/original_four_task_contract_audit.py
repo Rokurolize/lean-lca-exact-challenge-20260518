@@ -14,13 +14,34 @@ from typing import Any
 
 
 EXPECTED_CONTRACT_SHA256 = "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
+EXPECTED_POSITIVE_WITNESS_CONTRACT_SHA256 = (
+    "3120c014b83e0c7c8f8160ca90447a1a73588096a354ace109e2fca4e4eab5ec"
+)
 ORIGINAL_COMPLETION_SYMBOL = "originalFourTaskContractCompletion"
+POSITIVE_COMPLETION_SYMBOLS = [
+    "OriginalFourTaskProductSuccess",
+    "originalFourTaskProductSuccess",
+    "originalFourTaskProductSuccess_quillenExactCategory",
+    "originalFourTaskProductSuccess_metrizableLCAExactCategory",
+    "originalFourTaskProductSuccess_yonedaExt",
+    "originalFourTaskProductSuccess_boundedDerivedInfinityCategory",
+]
+FINAL_FALSE_COMPLETION_MARKERS = [
+    "originalFourTaskContractCompletion_productSuccessClaimed",
+    "originalFourTaskContractCompletion.productSuccessClaimed = false",
+    "productSuccessClaimed := false",
+]
 REQUIRED_NEGATIVE_FIXTURES = [
     "self_referential_zip_sha_authoritative",
     "ordinary_nerve_claimed_product_success",
     "stable_certificate_name_without_field_evidence",
     "semantic_input_claimed_product_success",
     "prop_field_wrapper_claimed_product_success",
+    "final_witness_productSuccessClaimed_false",
+    "product_success_without_positive_lean_witness",
+    "symbol_only_completion_check",
+    "metadata_only_w1426_promotion",
+    "terminal_git_head_stale",
 ]
 
 
@@ -216,6 +237,24 @@ def product_success_blockers(root: Path, outcome: dict[str, Any]) -> list[str]:
     elif ORIGINAL_COMPLETION_SYMBOL not in original_audit_text:
         blockers.append("OriginalFourTaskCompletionDeclarations lacks the original-four-task completion witness")
 
+    if terminal_claims_product_success(outcome):
+        head = current_git_head(root)
+        recorded_head = outcome.get("git_head")
+        if head is not None and recorded_head != head:
+            blockers.append(
+                "terminal_outcome.git_head does not match current HEAD while claiming product success"
+            )
+        if not positive_witness_present(product_audit_text, original_audit_text):
+            blockers.append("product_success lacks a positive OriginalFourTaskProductSuccess Lean witness")
+        if final_false_witness_present(root, product_audit_text, original_audit_text):
+            blockers.append("product_success imports a final witness proving productSuccessClaimed=false")
+        if ORIGINAL_COMPLETION_SYMBOL in product_audit_text and not positive_witness_present(
+            product_audit_text, original_audit_text
+        ):
+            blockers.append(
+                "ProductSuccessDeclarations symbol-checks completion without positive Lean content"
+            )
+
     packet_root = root / "packets/lean_lca_exact_category_challenge"
     if not packet_root.is_dir():
         blockers.append("review packet directory is missing")
@@ -293,10 +332,56 @@ def check_contract(contract: Path) -> str:
     return actual
 
 
+def check_positive_witness_contract(contract: Path | None) -> str | None:
+    if contract is None:
+        return None
+    if not contract.is_file():
+        fail(f"missing positive-witness contract: {contract}")
+    actual = sha256_file(contract)
+    if actual != EXPECTED_POSITIVE_WITNESS_CONTRACT_SHA256:
+        fail(
+            "positive-witness contract SHA256 changed: "
+            f"expected {EXPECTED_POSITIVE_WITNESS_CONTRACT_SHA256}, got {actual}"
+        )
+    return actual
+
+
+def current_git_head(root: Path) -> str | None:
+    if not (root / ".git").exists():
+        return None
+    proc = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=root,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=False,
+    )
+    if proc.returncode != 0:
+        return None
+    return proc.stdout.strip()
+
+
+def positive_witness_present(product_audit_text: str, original_audit_text: str) -> bool:
+    combined = product_audit_text + "\n" + original_audit_text
+    return all(symbol in combined for symbol in POSITIVE_COMPLETION_SYMBOLS)
+
+
+def final_false_witness_present(root: Path, product_audit_text: str, original_audit_text: str) -> bool:
+    final_source = strip_lean_comments_and_strings(
+        read_text_if_present(root / "LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean")
+    )
+    final_surface = product_audit_text + "\n" + original_audit_text + "\n" + final_source
+    if ORIGINAL_COMPLETION_SYMBOL in product_audit_text + "\n" + original_audit_text:
+        return any(marker in final_surface for marker in FINAL_FALSE_COMPLETION_MARKERS)
+    return False
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", required=True)
     parser.add_argument("--contract", required=True)
+    parser.add_argument("--positive-witness-contract")
     parser.add_argument("--terminal-outcome", default="terminal_outcome/terminal_outcome.json")
     parser.add_argument("--self-check-only", action="store_true")
     args = parser.parse_args()
@@ -308,6 +393,11 @@ def main() -> None:
         terminal_outcome = root / terminal_outcome
 
     contract_sha = check_contract(contract)
+    positive_contract_sha = check_positive_witness_contract(
+        Path(args.positive_witness_contract).resolve()
+        if args.positive_witness_contract
+        else None
+    )
     outcome = load_json(terminal_outcome)
     check_no_internal_zip_sha(root, terminal_outcome)
 
@@ -329,6 +419,10 @@ def main() -> None:
         "root": str(root),
         "contract": str(contract),
         "contract_sha256": contract_sha,
+        "positive_witness_contract": str(Path(args.positive_witness_contract).resolve())
+        if args.positive_witness_contract
+        else None,
+        "positive_witness_contract_sha256": positive_contract_sha,
         "terminal_claims_product_success": terminal_claims_product_success(outcome),
         "blockers": blockers,
     }
