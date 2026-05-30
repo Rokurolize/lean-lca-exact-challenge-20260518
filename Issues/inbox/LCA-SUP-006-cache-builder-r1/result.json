@@ -1,0 +1,87 @@
+{
+  "schema": "lean_lca_support_issue_result.v1",
+  "issue_id": "LCA-SUP-006",
+  "base_head": "f08e8d914b47ade3e95745850251c82ef255796f",
+  "target_head_observed": "c26604d9efd5c734d5a4a311101f3d4682271e51",
+  "dirty_context": "clean_w1449_issue_ledger_installed_quiescent_impl_session",
+  "role": "proof_search_cache_builder",
+  "status": "accepted_candidate",
+  "audited_paths": [
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/Issues/support_issues.tsv",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/docs/research/reference_route_log.md",
+    "/home/roku/codex-consultant-20260517/issues/ISSUE-20260524-lean-lca-w-code-naming.md",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW984TargetClosednessUnpackBoundaryGuardW1440.lean",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW950NormalizedEndpointUnpackBoundaryGuardW1441.lean",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW948NormalizedSourceUnpackBoundaryGuardW1442.lean",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW949EndpointLocalizedUnitUnpackBoundaryGuardW1443.lean",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW945LocalizedUnitUnpackBoundaryGuardW1444.lean",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW990PrimitiveUnitComponentsAlignmentGuardW1445.lean",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW990UnitStrictExactIsoPackagingGuardW1446.lean",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW989LocalizedUnitChoiceFullDataPackagingGuardW1447.lean",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrapCycleGuardW1448.lean",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrappedStableRouteGuardW1449.lean"
+  ],
+  "commands_run": [
+    "sed -n '1,240p' /home/roku/codex-consultant-20260517/outputs/lean_lca_support_issue_governor_20260531/round1_workers/LCA-SUP-006-cache-builder-r1/instructions.md",
+    "find /home/roku/codex-consultant-20260517/outputs/lean_lca_support_issue_governor_20260531/round1_workers/LCA-SUP-006-cache-builder-r1 -maxdepth 2 -type f -printf '%p\\n' | sort",
+    "git status --short",
+    "git show --no-patch --format='%H %s' HEAD",
+    "rg -n 'LCA-SUP-006|proof-search|cache|wrapper|provider|field-split|W144[0-9]|W987|W1449' Issues/support_issues.tsv docs/research/reference_route_log.md",
+    "rg -n 'W144[0-9]|wrapper|provider|field|Eq|naming|W-code|W987' /home/roku/codex-consultant-20260517/issues/ISSUE-20260524-lean-lca-w-code-naming.md",
+    "find LeanLCAExactChallenge/Derived -maxdepth 1 -type f \\( -name '*W1440*' -o -name '*W1441*' -o -name '*W1442*' -o -name '*W1443*' -o -name '*W1444*' -o -name '*W1445*' -o -name '*W1446*' -o -name '*W1447*' -o -name '*W1448*' -o -name '*W1449*' \\) -printf '%f\\n' | sort",
+    "rg -n '^--|^/-|theorem|lemma|def|structure|class|abbrev|example' LeanLCAExactChallenge/Derived/*W1440*.lean LeanLCAExactChallenge/Derived/*W1441*.lean LeanLCAExactChallenge/Derived/*W1442*.lean LeanLCAExactChallenge/Derived/*W1443*.lean LeanLCAExactChallenge/Derived/*W1444*.lean",
+    "rg -n '^--|^/-|theorem|lemma|def|structure|class|abbrev|example' LeanLCAExactChallenge/Derived/*W1445*.lean LeanLCAExactChallenge/Derived/*W1446*.lean LeanLCAExactChallenge/Derived/*W1447*.lean LeanLCAExactChallenge/Derived/*W1448*.lean LeanLCAExactChallenge/Derived/*W1449*.lean",
+    "sha256sum LeanLCAExactChallenge/Derived/*W1440*.lean LeanLCAExactChallenge/Derived/*W1441*.lean LeanLCAExactChallenge/Derived/*W1442*.lean LeanLCAExactChallenge/Derived/*W1443*.lean LeanLCAExactChallenge/Derived/*W1444*.lean LeanLCAExactChallenge/Derived/*W1445*.lean LeanLCAExactChallenge/Derived/*W1446*.lean LeanLCAExactChallenge/Derived/*W1447*.lean LeanLCAExactChallenge/Derived/*W1448*.lean LeanLCAExactChallenge/Derived/*W1449*.lean docs/research/reference_route_log.md /home/roku/codex-consultant-20260517/issues/ISSUE-20260524-lean-lca-w-code-naming.md Issues/support_issues.tsv",
+    "wc -l LeanLCAExactChallenge/Derived/*W1440*.lean LeanLCAExactChallenge/Derived/*W1441*.lean LeanLCAExactChallenge/Derived/*W1442*.lean LeanLCAExactChallenge/Derived/*W1443*.lean LeanLCAExactChallenge/Derived/*W1444*.lean LeanLCAExactChallenge/Derived/*W1445*.lean LeanLCAExactChallenge/Derived/*W1446*.lean LeanLCAExactChallenge/Derived/*W1447*.lean LeanLCAExactChallenge/Derived/*W1448*.lean LeanLCAExactChallenge/Derived/*W1449*.lean",
+    "sed -n '1,18p;140,154p' LeanLCAExactChallenge/Derived/*W1440*.lean",
+    "sed -n '1,18p;136,150p' LeanLCAExactChallenge/Derived/*W1448*.lean",
+    "sed -n '1,18p;160,175p' LeanLCAExactChallenge/Derived/*W1449*.lean",
+    "sed -n '1,40p' /home/roku/codex-consultant-20260517/issues/ISSUE-20260524-lean-lca-w-code-naming.md"
+  ],
+  "frontier_summary": "Accepted cache candidates for repeated non-reducing W987/W1007 route history. W1440-W1444 unpack the W1007 branch-full-data route into W984/W950/W948/W949/W945 component fields but leave larger multi-input surfaces and explicitly keep productSuccessClaimed=false. W1445-W1447 package those fields through W990/W981/W989/W988 back into W987 full data without producing a positive OriginalFourTaskProductSuccess witness. W1448 proves the W987 full data can be rewrapped as a W1007 provider and that W1438 repacking is identity on the rewrapped provider, so the route is a cycle. W1449 exposes stable-route outputs through W1007 but still leaves the one-input W987 provider surface and productSuccessClaimed=false.",
+  "proof_search_cache_rows": [
+    {
+      "route_id": "W1440-W1444-unpack-w987-provider-into-component-field-surface",
+      "route_hash": "sha256:aae762c277f9d09ff49ebbcf8e8f6a93ac247114a7106f824f6ebf74e5e5e9fa+43fa720c73d267412c0e17c79a813e87376a7efccce08f5793c9f0423087b9b7+c5fb1776ce8170719aa1c4b1a2f8c6661b4d6dd181be6115aaefe6f375b676f7+7ee898a67fbf60bc5ee2eabc7f4036441ef501752496fccf503d1dfdc93995ff+6f3b040444230495ab1b5c596a2effaf3f8f9bde57f3882430baf4868ee817ae",
+      "base_head": "f08e8d914b47ade3e95745850251c82ef255796f",
+      "result_status": "rejected_nonreducing_nonterminal_unpack",
+      "rejected_reason": "W1440-W1444 unpack W1007/W987 data into W944/W973/W948/W949/W945 and related fields, increasing or preserving the exposed input frontier instead of closing the one-input W987 provider; each current state records productSuccessClaimed=false.",
+      "evidence_path": "docs/research/reference_route_log.md:1369,1371,1373,1375,1377; LeanLCAExactChallenge/Derived/*W1440*.lean; LeanLCAExactChallenge/Derived/*W1441*.lean; LeanLCAExactChallenge/Derived/*W1442*.lean; LeanLCAExactChallenge/Derived/*W1443*.lean; LeanLCAExactChallenge/Derived/*W1444*.lean"
+    },
+    {
+      "route_id": "W1445-W1447-w990-w981-w989-w988-provider-packaging-loop",
+      "route_hash": "sha256:c09430adb1830466f6b7dda0209f0bace842a64647b4c9b93da7916e131a5540+253b62bba02a64419f679a9364acddd3b4d2d1e09c5c021ca102c53c4464b96e+83557d5eacb31d433b43095bd6feeddc25f9c913d7c5b0ade27cf3c2f94219e3",
+      "base_head": "f08e8d914b47ade3e95745850251c82ef255796f",
+      "result_status": "rejected_provider_packaging_nonterminal",
+      "rejected_reason": "W1445 aligns existing fields to the W990 primitive unit-components route; W1446 packages W990 into W981/W989; W1447 packages W989 localized-unit-choice data through W988 back to W987 full data. This preserves and repackages provider data but does not construct a positive product-success witness.",
+      "evidence_path": "docs/research/reference_route_log.md:1379,1381,1383; LeanLCAExactChallenge/Derived/*W1445*.lean; LeanLCAExactChallenge/Derived/*W1446*.lean; LeanLCAExactChallenge/Derived/*W1447*.lean"
+    },
+    {
+      "route_id": "W1448-w987-rewrap-cycle-guard",
+      "route_hash": "sha256:5a775c4ea04a2226e30324fe219423648d27d8491429f66dde7271671e9d259e",
+      "base_head": "f08e8d914b47ade3e95745850251c82ef255796f",
+      "result_status": "rejected_explicit_cycle",
+      "rejected_reason": "W1448 wraps W1447's rebuilt W987 full data as a W1007 provider and proves W1438's W987 repack is identity on that rewrapped provider, explicitly recording a nonterminal cycle with productSuccessClaimed=false.",
+      "evidence_path": "docs/research/reference_route_log.md:1385; LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrapCycleGuardW1448.lean"
+    },
+    {
+      "route_id": "W1449-w987-rewrapped-stable-route-still-one-input",
+      "route_hash": "sha256:666a4e61ea916d202304b1a0647ddae5ef148660bd6b7ee6326ea383aef6749f",
+      "base_head": "f08e8d914b47ade3e95745850251c82ef255796f",
+      "result_status": "rejected_stable_output_from_same_w987_surface",
+      "rejected_reason": "W1449 exposes component fields, endpoint strict exactness, unit exactness/isomorphism data, direct bounded left calculus, and bounded-derived infinity-category object through the rewrapped W1007 route, but the remaining surface is still one W987 provider and productSuccessClaimed=false.",
+      "evidence_path": "docs/research/reference_route_log.md:1387; LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrappedStableRouteGuardW1449.lean"
+    }
+  ],
+  "candidate_next_action": "Parent may append these four rows to a proof_search_cache.tsv draft, using the descriptive W labels as primary names and the W codes as stable anchors. Route scouts should not resample W1440-W1444 unpacking, W1445-W1447 provider packaging, W1448 W987 rewrap, or W1449 same-surface stable-output routes unless the W registry, route naming, or target HEAD changes.",
+  "lean_command_to_rerun": "",
+  "rejected_routes": [
+    "W1440-W1444 W987/W1007 component-field unpack route",
+    "W1445-W1447 W990/W981/W989/W988 provider-packaging route",
+    "W1448 W987 rewrap cycle route",
+    "W1449 W987 rewrapped stable-output route"
+  ],
+  "failure_signature": "Repeated wrapper/provider packaging leaves productSuccessClaimed=false and either expands the W987/W1007 provider into more component fields, packages existing fields back into W987 full data, or returns to the same one-input W987 provider surface.",
+  "product_success_claimed": false,
+  "implementation_note": "Read-only cache-builder audit only. No Lean builds were run, no target repo files were edited, and no large Lean bodies were copied into the result."
+}

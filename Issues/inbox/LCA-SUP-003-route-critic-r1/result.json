@@ -1,0 +1,103 @@
+{
+  "schema": "lean_lca_support_issue_result.v1",
+  "issue_id": "LCA-SUP-003",
+  "base_head": "f08e8d914b47ade3e95745850251c82ef255796f",
+  "target_head_observed": "c26604d9efd5c734d5a4a311101f3d4682271e51",
+  "dirty_context": "clean_w1449_issue_ledger_installed_quiescent_impl_session",
+  "role": "proof_route_critic",
+  "status": "rejected_candidate",
+  "audited_paths": [
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/Issues/support_issues.tsv",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/Issues/proof_search_cache.tsv",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/docs/research/reference_route_log.md",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/docs/research/w987_provider_search_ledger.md",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW989LocalizedUnitChoiceFullDataPackagingGuardW1447.lean",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrapCycleGuardW1448.lean",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrappedStableRouteGuardW1449.lean",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/terminal_outcome/terminal_outcome.json",
+    "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/run/verification.json"
+  ],
+  "commands_run": [
+    "sed -n '1,240p' /home/roku/codex-consultant-20260517/outputs/lean_lca_support_issue_governor_20260531/round1_workers/LCA-SUP-003-route-critic-r1/instructions.md",
+    "find /home/roku/codex-consultant-20260517/outputs/lean_lca_support_issue_governor_20260531/round1_workers/LCA-SUP-003-route-critic-r1 -maxdepth 2 -type f -printf '%p\\n' | sort",
+    "pwd && git status --short && rg --files",
+    "awk -F '\\t' 'NR==1 || $1==\"LCA-SUP-003\" {print}' Issues/support_issues.tsv",
+    "rg -n 'W1449|W987|rewrapped|stable route|route hash|proof_search_cache|LCA-SUP-003' docs/research/reference_route_log.md Issues/proof_search_cache.tsv docs/research/w987_provider_search_ledger.md docs/research/w1149_provider_search_ledger.md",
+    "sed -n '1,260p' LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrappedStableRouteGuardW1449.lean",
+    "jq '.' terminal_outcome/terminal_outcome.json run/verification.json",
+    "git status --short && git rev-parse HEAD && sha256sum LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrappedStableRouteGuardW1449.lean LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean docs/research/reference_route_log.md terminal_outcome/terminal_outcome.json run/verification.json",
+    "sed -n '1,260p' LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrapCycleGuardW1448.lean",
+    "sed -n '1,220p' LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW989LocalizedUnitChoiceFullDataPackagingGuardW1447.lean",
+    "sed -n '1,180p' LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean",
+    "sed -n '1,40p' Issues/proof_search_cache.tsv",
+    "rg -n 'W1449|w1449|rewrapped-stable|stable-route|W987-rewrapped|W1448|W1447' Issues/proof_search_cache.tsv Issues/support_issues.tsv docs/research/reference_route_log.md",
+    "sha256sum LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW989LocalizedUnitChoiceFullDataPackagingGuardW1447.lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrapCycleGuardW1448.lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrappedStableRouteGuardW1449.lean",
+    "rg -n 'productSuccessClaimed :=|productSuccessClaimed =|branchFullDataW987RewrappedInputCount|branchFullDataW987RewrappedStableRouteInputCount' LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean",
+    "sed -n '180,360p' LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean"
+  ],
+  "frontier_summary": "W1449 is not meaningful frontier movement. It exposes component fields, endpoint strict exactness, unit exactness/isomorphism data, direct bounded left calculus, and the bounded-derived infinity-category object by applying W1007 output projections to the W1448 rewrapped W1007 provider. The remaining surface is still the one-input W987 provider.",
+  "duplicate_cycle_classification": "provider_packaging_rewrap_cycle: W1447 packages W989/W982 into W988 and rebuilds W987; W1448 rewraps that W987 as W1007 and records the W1438 W987 repack identity; W1449 only routes stable outputs through W1007 on that rewrapped provider. OriginalFourTaskContractCompletion keeps branchFullDataW987RewrappedStableRouteInputCount = 1 and productSuccessClaimed = false.",
+  "route_hashes": [
+    {
+      "route_id": "W1447-w989-localized-unit-choice-to-w988-full-data-packaging",
+      "route_hash": "83557d5eacb31d433b43095bd6feeddc25f9c913d7c5b0ade27cf3c2f94219e3",
+      "hash_basis": "sha256 of W1447 source file"
+    },
+    {
+      "route_id": "W1448-w987-rewrap-cycle",
+      "route_hash": "5a775c4ea04a2226e30324fe219423648d27d8491429f66dde7271671e9d259e",
+      "hash_basis": "sha256 of W1448 source file"
+    },
+    {
+      "route_id": "W1449-w987-rewrapped-stable-route",
+      "route_hash": "666a4e61ea916d202304b1a0647ddae5ef148660bd6b7ee6326ea383aef6749f",
+      "hash_basis": "sha256 of W1449 source file"
+    }
+  ],
+  "rejected_routes": [
+    {
+      "route_id": "W1447-w989-localized-unit-choice-to-w988-full-data-packaging",
+      "reason": "W1447 is packaging: it builds W982 localized-unit-choice data from W1446/W981 and rebuilds W987 through W988 while retaining a nonterminal provider surface."
+    },
+    {
+      "route_id": "W1448-w987-rewrap-cycle",
+      "reason": "W1448 rewraps W1447's rebuilt W987 as a W1007 provider and proves the W1438 repack identity; the remaining input list is fullDataInputNamesW987 with length 1."
+    },
+    {
+      "route_id": "W1449-w987-rewrapped-stable-route",
+      "reason": "W1449 exposes W1007 stable-route outputs through the W1448 wrapper, but proves w1007W987RewrappedInputNamesW1448.length = 1 and productSuccessClaimed = false."
+    }
+  ],
+  "proof_search_cache_rows": [
+    {
+      "route_id": "W1447-w989-localized-unit-choice-to-w988-full-data-packaging",
+      "route_hash": "83557d5eacb31d433b43095bd6feeddc25f9c913d7c5b0ade27cf3c2f94219e3",
+      "base_head": "f08e8d914b47ade3e95745850251c82ef255796f",
+      "result_status": "rejected_duplicate_packaging",
+      "rejected_reason": "Packages W989/W982 into W988 and rebuilds W987 full data; no positive witness and no terminal-surface reduction.",
+      "evidence_path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW989LocalizedUnitChoiceFullDataPackagingGuardW1447.lean"
+    },
+    {
+      "route_id": "W1448-w987-rewrap-cycle",
+      "route_hash": "5a775c4ea04a2226e30324fe219423648d27d8491429f66dde7271671e9d259e",
+      "base_head": "f08e8d914b47ade3e95745850251c82ef255796f",
+      "result_status": "rejected_rewrap_cycle",
+      "rejected_reason": "Rewraps rebuilt W987 as W1007 and proves repack identity; remaining W987 provider input count stays 1.",
+      "evidence_path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrapCycleGuardW1448.lean"
+    },
+    {
+      "route_id": "W1449-w987-rewrapped-stable-route",
+      "route_hash": "666a4e61ea916d202304b1a0647ddae5ef148660bd6b7ee6326ea383aef6749f",
+      "base_head": "f08e8d914b47ade3e95745850251c82ef255796f",
+      "result_status": "rejected_stable_output_projection",
+      "rejected_reason": "Projects W1007 stable outputs from the W1448 wrapper; remaining surface is still the one-input W987 provider and productSuccessClaimed remains false.",
+      "evidence_path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrappedStableRouteGuardW1449.lean"
+    }
+  ],
+  "candidate_next_action": "Do not resample W1447-W1449 wrapper, rewrap, or stable-output projection routes. Next proof-route work should target an actual construction that discharges the W987 provider input, preferably by replacing its W730/W986 subproviders with positive field-level evidence rather than repackaging W987/W1007.",
+  "lean_command_to_rerun": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrappedStableRouteGuardW1449.lean",
+  "failure_signature": "nonterminal_w987_one_input_rewrap_cycle_product_success_false",
+  "product_success_claimed": false,
+  "implementation_note": "Read-only critic result. No target repo files were edited and no Lean build was run in this worker."
+}
