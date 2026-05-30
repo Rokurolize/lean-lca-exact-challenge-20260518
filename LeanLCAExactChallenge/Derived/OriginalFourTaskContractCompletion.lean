@@ -13,6 +13,7 @@ import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCo
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapTargetClosedEmbeddingClosednessNormalizedSourceEndpointStableConvergenceFieldSplitGuardW1435
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataStableConvergenceFieldSplitGuardW1436
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataOneInputCycleGuardW1437
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987UnpackBoundaryGuardW1438
 
 namespace LeanLCAExactChallenge
 namespace Dbounded
@@ -61,6 +62,14 @@ structure OriginalFourTaskContractCompletion where
   branchFullDataBridgeMatchesCurrentFullDataCycleInputCount :
     branchFullDataInputNamesW1169.length =
       branchFullDataCurrentFullDataCycleInputNamesW1271.length
+  branchFullDataUnpackedW730W986InputCount :
+    canonicalFullDataUnpackedInputNamesW1298.length = 2
+  branchFullDataW1007UnpackExpandsInputCount :
+    branchFullDataInputNamesW1007.length <
+      canonicalFullDataUnpackedInputNamesW1298.length
+  branchFullDataBridgeUnpackExpandsInputCount :
+    branchFullDataInputNamesW1169.length <
+      canonicalFullDataUnpackedInputNamesW1298.length
   productSuccessClaimed : Bool
 
 /-- The current original-four-task completion witness surface is still nonterminal. -/
@@ -101,6 +110,12 @@ def originalFourTaskContractCompletion : OriginalFourTaskContractCompletion wher
     w1169BranchFullDataInputCountMatchesW1270W1437
   branchFullDataBridgeMatchesCurrentFullDataCycleInputCount :=
     w1169BranchFullDataInputCountMatchesW1271W1437
+  branchFullDataUnpackedW730W986InputCount :=
+    w1438BranchFullDataUnpackedW730W986InputCount
+  branchFullDataW1007UnpackExpandsInputCount :=
+    w1438W1007UnpackExpandsOneInputSurface
+  branchFullDataBridgeUnpackExpandsInputCount :=
+    w1438W1169UnpackExpandsOneInputSurface
   productSuccessClaimed := false
 
 theorem originalFourTaskContractCompletion_productSuccessClaimed :

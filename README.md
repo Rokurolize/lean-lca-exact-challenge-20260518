@@ -44,4 +44,6 @@ W1436 moves the checked bridge another step upstream: W1007 branch-full-data con
 
 W1437 pins that last branch-full-data input to the W987 surface: W1169's one-input surface is the W1007 surface, W1007's wrapped input is the W987 branch-specific full-data provider, and its count matches the W1270/W1271 current-full-data cycle. This is nonterminal boundary evidence, not a positive completion witness.
 
+W1438 connects that W1007/W987 input to the canonical W1298 unpack: the wrapped W987 provider projects to W730 boundary/relation data and W986 target/closedness/normalized-source/endpoint data, and unpacking the one-input package exposes a two-input W730/W986 surface. Product success remains false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
