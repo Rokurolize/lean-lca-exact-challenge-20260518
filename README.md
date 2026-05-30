@@ -38,4 +38,6 @@ W1433 moves the checked bridge another step upstream: W1004 normalized-source/en
 
 W1434 moves the checked bridge another step upstream: W1005 target/closed-embedding-closedness data constructs W1004 through W1167, then delegates direct calculus and the stable package through W1166. The route now records three remaining target/closed-embedding-closedness inputs, while product success remains false.
 
+W1435 moves the checked bridge another step upstream: W1006 target/closedness/normalized-source/endpoint data constructs W1005 through W1168, then delegates direct calculus and the stable package through W1167. The route now records two remaining target/closedness/normalized-source/endpoint inputs, while product success remains false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
