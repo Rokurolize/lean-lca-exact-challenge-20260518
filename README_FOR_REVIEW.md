@@ -4,6 +4,8 @@
 
 2026-05-30のpositive-witness recoveryで、W1426のproduct-success metadataは偽陽性として取り消した。現在のterminal outcomeは`nonterminal_recovery_baseline`であり、product success、product complete、update_goal allowedはいずれもfalseである。理由はLean側の最終面がまだ`originalFourTaskContractCompletion.productSuccessClaimed = false`を証明しており、positive-witness supplementが要求する`OriginalFourTaskProductSuccess`相当の正のLean証人が存在しないためである。監査はこの矛盾をproduct success時の失敗条件にし、W1426型のmetadata-only昇格、symbol-only completion check、stale git head、final false witnessをnegative fixtureで拒否する。
 
+W1424では、W982 localized-unit-choice providerから既存のW1164/W1163 unit-strict-exact routeを通してclosed-map stable packageへ到達する橋をLean上で確認し、その入力数証明をoriginal-four audit surfaceへ接続した。これは正の`OriginalFourTaskProductSuccess`証人ではなく、final surfaceは引き続き`productSuccessClaimed = false`を証明する。
+
 この成果物はproduct successではない。更新後のgoalではsource-patch-needed handoffで完了できないため、このpacketは歴史的な調査証跡と未完了診断として読む。
 
 2026-05-27のW1002更新では、W1001で残っていたW981 endpoint/unit-strict-exact provider surfaceを、既存W982のlocalized-unit-choice surfaceからW988でW987 branch full dataへ構成し、W998へ渡すrouteを追加した。これにより最新の非終端frontierは、W981の7項目ではなく、W730 boundary/relation data、W944 target no-univ data、W973 closed-embedding closedness data、endpoint strict short-exact family、W945 localized-unit data、W948 normalized-source-triangulation dataの6項目へ戻った。ただしこれら6項目自体はまだ仮定であり、original four-task completion witness、product-success terminal outcome、clean review packetは未完成なので、product successは引き続きfalseである。
