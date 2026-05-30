@@ -14,6 +14,8 @@ W1431では、W1164/W1163を通るさらに深いcurrent-full-data、branch-full
 
 W1432では、W1003 endpoint-localized-unit dataからW1165でW982 localized-choice surfaceを構成し、その後W1164経由でdirect calculusとstable packageへ接続する橋をfinal audit surfaceに追加した。残り入力はendpoint-localized-unit側の5入力として記録されるが、これは正のproduct witnessではない。
 
+W1433では、W1004 normalized-source/endpoint-localized-unit dataからW1166でW1003を構成し、その後W1165経由でdirect calculusとstable packageへ接続する橋を追加した。残り入力は4入力へ移るが、product successはfalseのままである。
+
 この成果物はproduct successではない。更新後のgoalではsource-patch-needed handoffで完了できないため、このpacketは歴史的な調査証跡と未完了診断として読む。
 
 2026-05-27のW1002更新では、W1001で残っていたW981 endpoint/unit-strict-exact provider surfaceを、既存W982のlocalized-unit-choice surfaceからW988でW987 branch full dataへ構成し、W998へ渡すrouteを追加した。これにより最新の非終端frontierは、W981の7項目ではなく、W730 boundary/relation data、W944 target no-univ data、W973 closed-embedding closedness data、endpoint strict short-exact family、W945 localized-unit data、W948 normalized-source-triangulation dataの6項目へ戻った。ただしこれら6項目自体はまだ仮定であり、original four-task completion witness、product-success terminal outcome、clean review packetは未完成なので、product successは引き続きfalseである。
