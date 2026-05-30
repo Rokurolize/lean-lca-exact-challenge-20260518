@@ -1,22 +1,22 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T23:53:39Z",
-  "git_head": "8eb9011335ae70d3fc3538797bd15250126f6f39",
-  "source_tree_hash": "2a27b88c806f0cd5fb355c9770e5a52f9f80213006eeedac196d4319ce43c533",
+  "generated_utc": "2026-05-29T23:59:25Z",
+  "git_head": "455c9baa2a736ae6bec9bf0aea650b6f317aae93",
+  "source_tree_hash": "3ac1f666ae227e82bfdd14b712ddafd5bac67f96ce5a7501685bd8cd6fff4a5d",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1410 adds a checked closed-map chosen unit-isomorphism stable convergence guard tying W968 through W967 into the closed-map route chain. The original four-task product goal remains open.",
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T235207Z_codex_parent_w1410_unit_iso_choice_stable_convergence_guard",
+  "summary": "W1411 adds a checked closed-map source-triangulation-data iso stable convergence guard tying W969 through W968 into the closed-map route chain. The original four-task product goal remains open.",
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T235719Z_codex_parent_w1411_source_triangulation_data_iso_stable_convergence_guard",
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapUnitIsoChoiceStableConvergenceFieldSplitGuardW1410.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapSourceTriangulationDataIsoStableConvergenceFieldSplitGuardW1411.lean",
       "status": "passed",
-      "evidence": "run/w1410_focused_lean.log"
+      "evidence": "run/w1411_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapUnitIsoChoiceStableConvergenceFieldSplitGuardW1410",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapSourceTriangulationDataIsoStableConvergenceFieldSplitGuardW1411",
       "status": "passed",
-      "evidence": "run/w1410_module_build.log"
+      "evidence": "run/w1411_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -70,5 +70,5 @@
     "Required negative fixtures remain incomplete for several premature-success patterns.",
     "External final readonly audit is expected to fail until terminal_outcome.outcome is product_success."
   ],
-  "remaining_work": "Advance the remaining Lean route blockers after W1410, including downstream W969+ field splits, packet blockers, and any completion-contract blockers still recorded by the audits."
+  "remaining_work": "Advance the remaining Lean route blockers after W1411, including downstream W970+ field splits, packet blockers, and any completion-contract blockers still recorded by the audits."
 }
