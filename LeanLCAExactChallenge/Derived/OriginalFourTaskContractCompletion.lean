@@ -23,6 +23,7 @@ import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCo
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW990PrimitiveUnitComponentsAlignmentGuardW1445
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW990UnitStrictExactIsoPackagingGuardW1446
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW989LocalizedUnitChoiceFullDataPackagingGuardW1447
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrapCycleGuardW1448
 
 namespace LeanLCAExactChallenge
 namespace Dbounded
@@ -156,6 +157,11 @@ structure OriginalFourTaskContractCompletion where
   branchFullDataW989UnitStrictExactIsoPackagesToW988InputCount :
     w1007W989LocalizedUnitChoiceInputNamesW1447.length <
       w1007W990UnitStrictExactIsoPackagedInputNamesW1446.length
+  branchFullDataW987RewrappedInputCount :
+    w1007W987RewrappedInputNamesW1448.length = 1
+  branchFullDataW989LocalizedUnitChoicePackagesToW987InputCount :
+    w1007W987RewrappedInputNamesW1448.length <
+      w1007W989LocalizedUnitChoiceInputNamesW1447.length
   productSuccessClaimed : Bool
 
 /-- The current original-four-task completion witness surface is still nonterminal. -/
@@ -264,6 +270,10 @@ def originalFourTaskContractCompletion : OriginalFourTaskContractCompletion wher
     w1447W988LocalizedUnitChoiceInputCount
   branchFullDataW989UnitStrictExactIsoPackagesToW988InputCount :=
     w1447W989UnitStrictExactIsoPackagesToW988LocalizedUnitChoice
+  branchFullDataW987RewrappedInputCount :=
+    w1448W987RewrappedInputCount
+  branchFullDataW989LocalizedUnitChoicePackagesToW987InputCount :=
+    w1448W989LocalizedUnitChoicePackagesToW987FullData
   productSuccessClaimed := false
 
 theorem originalFourTaskContractCompletion_productSuccessClaimed :
