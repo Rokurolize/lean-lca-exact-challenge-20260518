@@ -1,92 +1,92 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-30T23:39:06Z",
-  "git_head": "2c6d076b18788174ec2494a109a43c1b08d11877",
-  "source_tree_hash": "e460ed9b0f2e20f4bb2505c0ee2c18c0fd240109fb20dbc308ae73f42e019735",
+  "generated_utc": "2026-05-31T00:06:34Z",
+  "git_head": "05b8a5fc515b557dbc22e44bff10ef4ae3f99e93",
+  "source_tree_hash": "4c8b4ec469baa6d93e2b311eec09a13eb40a6c58a15c0a4f51c693902199bbee",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1461 refines the W1460 W987 construction by replacing the bundled localized-adjunction input with explicit localized unit, counit, and triangle-identity fields. It builds an Adjunction.CoreUnitCounit and then an actual localized adjunction using Adjunction.mkOfUnitCounit, feeds that constructed adjunction into the W1460 input, and reassembles W975, W981, W939, W945, W949, W950, W730, W986, and W987 with projection theorems back to the constructed localized adjunction, unit/counit data, boundary relation, and target/endpoint data. Product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the final imported original four-task completion surface still proves productSuccessClaimed=false.",
+  "summary": "W1462 refines the W1461 W987 construction by replacing the unit mapping-cone strict short-exact family with closed-embedding, open-map, cokernel-top, and kernel-equality families. It constructs the strict short-exact family using MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelSubgroup_eq_top, feeds that constructed strict exactness into the W1461 input, and reassembles W981, W939, W945, W949, W730, W986, and W987 with projection theorems back to the constructed localized adjunction, strict-exact construction, boundary relation, and target/endpoint data. Product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the final imported original four-task completion surface still proves productSuccessClaimed=false.",
   "evidence_root": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "run/w1461_lake_build.log"
+      "evidence": "run/w1462_lake_build.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryRelationTargetLocalizedAdjunctionCoreFieldDataConstructionGuardW1461",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryRelationTargetUnitKernelCokernelTopFieldDataConstructionGuardW1462",
       "status": "passed",
-      "evidence": "run/w1461_w1461_module_build.log"
+      "evidence": "run/w1462_w1462_module_build.log"
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.OriginalFourTaskContractCompletion",
       "status": "passed",
-      "evidence": "run/w1461_original_four_task_completion_module_build.log"
+      "evidence": "run/w1462_original_four_task_completion_module_build.log"
     },
     {
       "command": "lake build LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "run/w1461_root_module_build.log"
+      "evidence": "run/w1462_root_module_build.log"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "run/w1461_forbidden_lean_tokens.log"
+      "evidence": "run/w1462_forbidden_lean_tokens.log"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "run/w1461_required_declarations.log"
+      "evidence": "run/w1462_required_declarations.log"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "run/w1461_product_success_declarations.log"
+      "evidence": "run/w1462_product_success_declarations.log"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "run/w1461_original_four_task_completion_declarations.log"
+      "evidence": "run/w1462_original_four_task_completion_declarations.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean",
       "status": "passed",
-      "evidence": "run/w1461_original_four_task_completion_focused.log"
+      "evidence": "run/w1462_original_four_task_completion_focused.log"
     },
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryRelationTargetLocalizedAdjunctionCoreFieldDataConstructionGuardW1461.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryRelationTargetUnitKernelCokernelTopFieldDataConstructionGuardW1462.lean",
       "status": "passed",
-      "evidence": "run/w1461_w1461_focused.log"
+      "evidence": "run/w1462_w1462_focused.log"
     },
     {
       "command": "python3 -m py_compile audit/original_four_task_contract_audit.py audit/external_audit.py",
       "status": "passed",
-      "evidence": "run/w1461_py_compile.log"
+      "evidence": "run/w1462_py_compile.log"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "run/w1461_git_diff_check.log"
+      "evidence": "run/w1462_git_diff_check.log"
     },
     {
       "command": "rg -n 'productSuccessClaimed\\s*:=\\s*true' LeanLCAExactChallenge audit",
       "status": "failed_expected",
-      "evidence": "run/w1461_product_success_true_source_scan.log"
+      "evidence": "run/w1462_product_success_true_source_scan.log"
     },
     {
       "command": "rg -n 'productSuccessClaimed\\s*:=\\s*false|productSuccessClaimed\\s*=\\s*false' LeanLCAExactChallenge audit",
       "status": "passed",
-      "evidence": "run/w1461_final_false_witness_source_scan.log"
+      "evidence": "run/w1462_final_false_witness_source_scan.log"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root \"$PWD\" --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "run/w1461_original_four_task_contract_audit.log"
+      "evidence": "run/w1462_original_four_task_contract_audit.log"
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "run/w1461_external_audit.log"
+      "evidence": "run/w1462_external_audit.log"
     }
   ]
 }
