@@ -200,4 +200,6 @@ W1514 connects the W1513 W987 surface to the existing W1380 strict-preimage/boun
 
 W1515 connects the W1514 W987 surface to the existing W1379 localized/normalized strict-representative convergence guard. It specializes W1379's W890-to-W889 strict-representative, W889-to-W888 normalized-lift, W888-to-W887 normalized fixed-target, and W887-to-W886 localized-right-adjoint delegations to W1514 leaves, records concrete-leaf, route-data, direct-calculus, and stable-package convergence through W886, preserves the 74-input ledger, and keeps product success false.
 
+W1516 connects the W1515 W987 surface to the existing W1378 source/endpoint convergence guard. It specializes W1378's W886-to-W885 endpoint-field, W885-to-W884 source-field, W884-to-W883 source-triangulation, and W883-to-W882/W877 concrete-leaf route-data delegations to W1515 leaves, records concrete-leaf convergence through W884 and route-data/direct-calculus/stable-package convergence through W882/W877, preserves the 74-input ledger, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
