@@ -1,0 +1,34 @@
+# LCA-SUP-006 Cache Builder Result
+
+Status: accepted_candidate
+
+Target HEAD observed: `c26604d9efd5c734d5a4a311101f3d4682271e51` (`Add support issue operating surfaces`)
+
+Base proof/source head: `f08e8d914b47ade3e95745850251c82ef255796f`
+
+This read-only audit proposes four compact proof-search cache rows from the repeated W987/W1007 wrapper and provider-packaging history. It does not claim product success, does not edit the target repository, and does not run Lean.
+
+## Evidence Summary
+
+`Issues/support_issues.tsv` row `LCA-SUP-006` asks for cache rows with `route_id`, `route_hash`, `result_status`, `rejected_reason`, and `evidence_path`, so future support workers stop rediscovering known non-reducing wrapper/provider routes.
+
+`docs/research/reference_route_log.md` records the relevant sequence at lines 1369-1387. W1440-W1444 unpack the W1007 branch-full-data route into W984/W950/W948/W949/W945 component fields and leave larger exposed surfaces. W1445-W1447 package those fields through W990/W981/W989/W988 back into W987 full data. W1448 records the W987 rewrap cycle. W1449 records stable-route outputs through the same rewrapped W1007/W987 surface while still leaving product success unclaimed.
+
+`/home/roku/codex-consultant-20260517/issues/ISSUE-20260524-lean-lca-w-code-naming.md` says operator-facing artifacts should use descriptive labels on first mention and keep W codes as stable correlation keys. The route IDs below follow that pattern.
+
+## Proposed Cache Rows
+
+| route_id | route_hash | result_status | rejected_reason | evidence_path |
+|---|---|---|---|---|
+| `W1440-W1444-unpack-w987-provider-into-component-field-surface` | `sha256:aae762c277f9d09ff49ebbcf8e8f6a93ac247114a7106f824f6ebf74e5e5e9fa+43fa720c73d267412c0e17c79a813e87376a7efccce08f5793c9f0423087b9b7+c5fb1776ce8170719aa1c4b1a2f8c6661b4d6dd181be6115aaefe6f375b676f7+7ee898a67fbf60bc5ee2eabc7f4036441ef501752496fccf503d1dfdc93995ff+6f3b040444230495ab1b5c596a2effaf3f8f9bde57f3882430baf4868ee817ae` | `rejected_nonreducing_nonterminal_unpack` | W1440-W1444 unpack W1007/W987 data into W944/W973/W948/W949/W945 and related fields, increasing or preserving the exposed input frontier instead of closing the one-input W987 provider; each current state records `productSuccessClaimed=false`. | `docs/research/reference_route_log.md:1369,1371,1373,1375,1377`; `LeanLCAExactChallenge/Derived/*W1440*.lean` through `*W1444*.lean` |
+| `W1445-W1447-w990-w981-w989-w988-provider-packaging-loop` | `sha256:c09430adb1830466f6b7dda0209f0bace842a64647b4c9b93da7916e131a5540+253b62bba02a64419f679a9364acddd3b4d2d1e09c5c021ca102c53c4464b96e+83557d5eacb31d433b43095bd6feeddc25f9c913d7c5b0ade27cf3c2f94219e3` | `rejected_provider_packaging_nonterminal` | W1445 aligns existing fields to W990; W1446 packages W990 into W981/W989; W1447 packages W989 localized-unit-choice data through W988 back to W987 full data. This preserves and repackages provider data but does not construct a positive product-success witness. | `docs/research/reference_route_log.md:1379,1381,1383`; `LeanLCAExactChallenge/Derived/*W1445*.lean` through `*W1447*.lean` |
+| `W1448-w987-rewrap-cycle-guard` | `sha256:5a775c4ea04a2226e30324fe219423648d27d8491429f66dde7271671e9d259e` | `rejected_explicit_cycle` | W1448 wraps W1447's rebuilt W987 full data as a W1007 provider and proves W1438's W987 repack is identity on that rewrapped provider, explicitly recording a nonterminal cycle with `productSuccessClaimed=false`. | `docs/research/reference_route_log.md:1385`; `LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrapCycleGuardW1448.lean` |
+| `W1449-w987-rewrapped-stable-route-still-one-input` | `sha256:666a4e61ea916d202304b1a0647ddae5ef148660bd6b7ee6326ea383aef6749f` | `rejected_stable_output_from_same_w987_surface` | W1449 exposes component fields, endpoint strict exactness, unit exactness/isomorphism data, direct bounded left calculus, and bounded-derived infinity-category object through the rewrapped W1007 route, but the remaining surface is still one W987 provider and `productSuccessClaimed=false`. | `docs/research/reference_route_log.md:1387`; `LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrappedStableRouteGuardW1449.lean` |
+
+## Candidate Next Action
+
+Parent may append these rows to a `proof_search_cache.tsv` draft. Route scouts should not resample the W1440-W1444 unpack route, W1445-W1447 provider-packaging route, W1448 W987 rewrap cycle, or W1449 same-surface stable-output route unless the W registry, route naming, or target HEAD changes.
+
+## Verification Notes
+
+No large Lean bodies were copied. The audit used read-only inspection commands only for the target repository. The target worktree reported clean via `git status --short`.
