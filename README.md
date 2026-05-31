@@ -98,4 +98,6 @@ W1463 refines the W1462 construction by replacing the endpoint strict short-exac
 
 W1464 refines the W1463 construction by replacing the chosen unit mapping-cone isomorphism with explicit hom, inv, hom-inv, and inv-hom fields. It constructs the `Iso` from those four fields, feeds the resulting W1463 input, and proves the constructed W987 projection keeps the unit mapping-cone model, localized-unit data, boundary data, and target/endpoint data. Product success remains false because these thirty inputs are still assumed data, not a positive `OriginalFourTaskProductSuccess` witness.
 
+W1465 refines the W1464 construction by replacing the localized-adjunction unit and counit natural transformations with component maps and naturality proofs. It constructs those two natural transformations, feeds the resulting W1464 input, and proves the constructed W987 projection keeps the localized right adjoint, unit mapping-cone model, boundary data, and target/endpoint data. Product success remains false because these thirty-two inputs are still assumed data, not a positive `OriginalFourTaskProductSuccess` witness.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
