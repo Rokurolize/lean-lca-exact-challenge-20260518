@@ -191,6 +191,8 @@ git diff --check
 
 2026-05-31T13:30:06Z時点で、W1487として`W987UnitMappingConeClosedEmbeddingFieldDataConstructionGuardW1487.lean`を追加した。W1487はW1486のunit mapping-cone closed-embedding family入力をunit mapping-cone embedding familyとunit mapping-cone closed-range familyへ分け、`IsClosedEmbedding.mk`で元のunit mapping-cone closed-embedding familyを再構成してW1477経路へ渡す。入力数は69から70へ増え、endpoint、selected-difference pi1/pi2/pi3、mapped-cokernel、target-surjectivity、target-compactness、right-adjoint、object-imageの各分割は保持される。これら70入力はまだ仮定されたdataであり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
 
+2026-05-31T13:39:52Z時点で、W1488として`W987UnitMappingConeKernelEqualityFieldDataConstructionGuardW1488.lean`を追加した。W1488はW1487のunit mapping-cone kernel-equality family入力をforward implication familyとbackward implication familyへ分け、その二つから元のkernel equivalenceを再構成してW1477経路へ渡す。入力数は70から71へ増え、unit mapping-cone closed-embedding、endpoint、selected-difference pi1/pi2/pi3、mapped-cokernel、target-surjectivity、target-compactness、right-adjoint、object-imageの各分割は保持される。これら71入力はまだ仮定されたdataであり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
