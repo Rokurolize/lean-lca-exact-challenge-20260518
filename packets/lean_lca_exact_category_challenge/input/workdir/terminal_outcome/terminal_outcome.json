@@ -1,24 +1,24 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-31T18:04:25Z",
-  "git_head": "f0442a0ce7019fd2646a8dde38ddb0ba584cc60d",
-  "source_tree_hash": "86eac05d25125d296676bc4f8a8634c113548fdda70cdada8428c163f89420fe",
+  "generated_utc": "2026-05-31T18:19:28Z",
+  "git_head": "2f2e92e8ca5bfcea90b17f106fc5986eb54e7e90",
+  "source_tree_hash": "fb0bf0f6f04a4e57984feb8b26e446f406a31c72495045308031af8fbc9527bd",
   "outcome": "mathematical_frontier_nonterminal",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W1499 feeds the W1498/W1495 surface through the W885 explicit source-triangulation-fields comparison route. It reuses W1498's boundary/relation, target-surjective-compact, closedness, normalized fixed-target, endpoint strict-topology, and localized-right-adjoint projections while passing the source pretriangulated, triangulated, and triangle-completion fields directly from the 74-field input. It proves that the W885-built W722 source-triangulation provider matches W1495's W722 provider, the W885-derived W884 leaves and concrete leaves match W1498 definitionally, preserves the 74-input ledger, and leaves the final original four-task completion surface nonterminal with productSuccessClaimed=false.",
+  "summary": "W1500 feeds the W1499/W1498 surface through the W886 explicit endpoint-fields comparison route. It derives endpoint forget-preserves-homology from the W856 closedness branch, reuses W1498's endpoint closed-embedding, open-map, epi, closedness, boundary/relation, target-surjective-compact, normalized fixed-target, and localized-right-adjoint facts, proves that the W886-built W720 endpoint data matches W1498, proves that the W886-to-W885 source-triangulation leaves and concrete leaves match W1499 definitionally, preserves the 74-input ledger, and leaves the final original four-task completion surface nonterminal with productSuccessClaimed=false.",
   "reference_route_log": "docs/research/reference_route_log.md",
   "known_gaps": [
     "Positive Lean witness is absent: ProductSuccessDeclarations.lean does not import or check an OriginalFourTaskProductSuccess surface with field-level evidence for the original four-task contract.",
     "Final imported completion surface remains nonterminal: originalFourTaskContractCompletion.productSuccessClaimed = false still compiles.",
-    "W1499 only routes W1498's 74-field surface through W885 explicit source-triangulation fields and proves definitional agreement with W1498/W1495 outputs; it does not prove the 74 constructor inputs from independent mathematical data.",
+    "W1500 only routes W1499/W1498's 74-field surface through W886 explicit endpoint fields and proves definitional agreement with W1498/W1499 outputs; it does not prove the 74 constructor inputs from independent mathematical data.",
     "Original four mathematical tasks remain open under the positive-witness supplement; the current route still relies on assumed boundary, relation, target-surjectivity, target-compactness, mapped-cokernel, selected-difference, normalized-lift, fixed-target uniqueness, source-triangulation, endpoint, localized-unit, and unit mapping-cone fields rather than a positive product witness."
   ],
   "remaining_work": [
     "Continue Lean implementation toward a positive OriginalFourTaskProductSuccess-style declaration backed by actual exact-category, metrizable LCA exact-category, Yoneda-Ext, and bounded derived infinity-category constructions.",
-    "Discharge the W1499/W1498/W1497/W1496/W1495 route inputs and remaining W1494 constructor inputs, or replace the field-ledger route with an explicit positive witness satisfying the positive-witness supplement.",
+    "Discharge the W1500/W1499/W1498/W1497/W1496/W1495 route inputs and remaining W1494 constructor inputs, or replace the field-ledger route with an explicit positive witness satisfying the positive-witness supplement.",
     "Before any product-success claim, rerun the source-contradiction gate, negative fixtures, clean checkout verification, root external audit, and clean-extracted packet audit."
   ],
   "goal_identity": "run/goal_identity_20260530_positive_witness_recovery.json"

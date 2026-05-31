@@ -1,0 +1,232 @@
+import LeanLCAExactChallenge.Derived.W987SourceTriangulationFieldsComparisonGuardW1499
+import LeanLCAExactChallenge.Derived.EndpointStrictTopologyFieldsComparisonStableExactAtRoute
+
+/-!
+W1500 feeds the W1499/W1498 surface through the W886 explicit endpoint-field
+comparison route.  W1498 reconstructed W720 endpoint strict-topology data from
+W856; W1500 exposes those W856 components as the four W886 endpoint fields and
+checks that the resulting W885 leaves agree with W1499.
+-/
+
+set_option autoImplicit false
+set_option linter.style.longLine false
+
+namespace LeanLCAExactChallenge
+
+open CategoryTheory
+open CategoryTheory.Limits
+open Topology
+open DirectWppLimitFiniteShapeTransfer
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpSelectedW461TransportedPointIsoProviderV370SupportW506
+open WppOpClosedNatTransOrdinaryRelationTopologyV370SupportW511
+open WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512
+open WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+open WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484
+open WppOpClosedRangeMappedCokernelPreservationV370SupportW519
+
+namespace Dbounded
+
+noncomputable section
+
+/-- W1500 reuses the W1499 74-field source-triangulation-field comparison surface. -/
+abbrev W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonInputW1500 :
+    Type 2 :=
+  W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputW1499
+
+/-- W1500 extracts W720's forgetful homology-preservation field through W856. -/
+@[reducible]
+def endpointForgetPreservesHomologyOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonW1500
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonInputW1500) :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology :=
+  endpointForgetPreservesHomologyOfClosednessBranchW856
+    (diagramAndMappedCokernelClosednessDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input)
+
+/-- W1500 assembles the W886 explicit endpoint-field leaves from W1498 data. -/
+def endpointStrictTopologyFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1500
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonInputW1500) :
+    MetrizableWppEndpointStrictTopologyFieldLeavesW886 where
+  boundaryData :=
+    (boundaryRelationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).boundaryData
+  relationData :=
+    (boundaryRelationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).relationData
+  targetSurjectiveCompactForTargetProvider :=
+    targetSurjectiveCompactDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input
+  diagramAndMappedCokernelClosednessData :=
+    diagramAndMappedCokernelClosednessDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input
+  normalizedFixedTargetData :=
+    normalizedFixedTargetDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input
+  sourcePretriangulated := input.sourcePretriangulated
+  sourceTriangulated := input.sourceTriangulated
+  triangleCompletion := input.triangleCompletion
+  endpointForgetPreservesHomology :=
+    endpointForgetPreservesHomologyOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonW1500
+      input
+  endpointClosedEmbedding :=
+    (endpointTopologyFactsOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).endpointClosedEmbedding
+  endpointOpenMap :=
+    (endpointTopologyFactsOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).endpointOpenMap
+  endpointEpiOfExactAt :=
+    (endpointTopologyFactsOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).endpointEpiOfExactAt
+  localizedRightAdjointData :=
+    localizedRightAdjointDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input
+
+/-- W1500 rebuilds W720 endpoint strict-topology data through W886 fields. -/
+def endpointStrictTopologyDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonW1500
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonInputW1500) :
+    MetrizableWppEndpointStrictTopologyDataProviderW720 :=
+  endpointStrictTopologyDataOfFieldsW886
+    (endpointStrictTopologyFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1500
+      input)
+
+/-- W1500 exposes the W885 leaves obtained by passing W1498 data through W886. -/
+def sourceTriangulationFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonW1500
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonInputW1500) :
+    MetrizableWppSourceTriangulationFieldComparisonLeavesW885 :=
+  sourceTriangulationFieldLeavesOfEndpointFieldsW886
+    (endpointStrictTopologyFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1500
+      input)
+
+/-- W1500 exposes W886's concrete leaves. -/
+def concreteLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonW1500
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonInputW1500) :
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733 :=
+  concreteLeavesOfEndpointFieldsComparisonW886
+    (endpointStrictTopologyFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1500
+      input)
+
+/-- W1500 exposes W886's W732 route data. -/
+def routeDataProviderOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonW1500
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonInputW1500) :
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732 :=
+  routeDataProviderOfEndpointFieldsComparisonW886
+    (endpointStrictTopologyFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1500
+      input)
+
+/-- W1500 feeds W886 explicit endpoint fields to direct bounded left calculus. -/
+theorem directBoundedLeftCalculusOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonW1500
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonInputW1500) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+  directBoundedLeftCalculusOfEndpointFieldsComparisonStableExactAtW886
+    (endpointStrictTopologyFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1500
+      input)
+
+/-- W1500 exposes W886's bounded derived infinity-category package. -/
+def boundedDerivedInfinityCategoryOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonW1500
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonInputW1500) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedInfinityCategoryOfEndpointFieldsComparisonStableExactAtW886
+    (endpointStrictTopologyFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1500
+      input)
+
+/-- W1500's W886 endpoint data is definitionally W1498's W720 endpoint data. -/
+theorem w1500EndpointStrictTopologyDataMatchesW1498
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonInputW1500) :
+    endpointStrictTopologyDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonW1500
+        input =
+      endpointStrictTopologyDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+        input :=
+  rfl
+
+/-- W1500's W886-to-W885 leaves are definitionally W1499's W885 leaves. -/
+theorem w1500SourceTriangulationFieldLeavesMatchW1499
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonInputW1500) :
+    sourceTriangulationFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonW1500
+        input =
+      sourceTriangulationFieldComparisonLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1499
+        input :=
+  rfl
+
+/-- W1500's W886 concrete leaves are definitionally W1499's W885 concrete leaves. -/
+theorem w1500ConcreteLeavesMatchW1499
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonInputW1500) :
+    concreteLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonW1500
+        input =
+      concreteLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonW1499
+        input :=
+  rfl
+
+/-- W1500 keeps the W1499 constructor-ledger input names. -/
+def w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonInputNamesW1500 :
+    List String :=
+  w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputNamesW1499
+
+theorem w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonInputNamesW1500_count :
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonInputNamesW1500.length =
+      74 := by
+  simpa [
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonInputNamesW1500]
+    using
+      w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputNamesW1499_count
+
+/-- Current W1500 nonterminal explicit endpoint-fields route state. -/
+structure W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonStateW1500 :
+    Type where
+  seed : String
+  declarations : List String
+  endpointFieldAssemblyResult : String
+  comparisonResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- W1500 records the W886 explicit endpoint-field route reached from W1499. -/
+def currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonStateW1500 :
+    W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonStateW1500 where
+  seed :=
+    "w1500-w987-boundary-relation-target-strict-preimage-object-image-right-adjoint-target-compactness-mapped-cokernel-pi1-pi2-pi3-endpoint-fields-comparison"
+  declarations :=
+    ["W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonInputW1500",
+      "endpointForgetPreservesHomologyOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonW1500",
+      "endpointStrictTopologyFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1500",
+      "endpointStrictTopologyDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonW1500",
+      "sourceTriangulationFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonW1500",
+      "concreteLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonW1500",
+      "routeDataProviderOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonW1500",
+      "directBoundedLeftCalculusOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonW1500",
+      "boundedDerivedInfinityCategoryOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonW1500",
+      "w1500EndpointStrictTopologyDataMatchesW1498",
+      "w1500SourceTriangulationFieldLeavesMatchW1499",
+      "w1500ConcreteLeavesMatchW1499",
+      "w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonInputNamesW1500_count"]
+  endpointFieldAssemblyResult :=
+    "proved: W1498's W856 closedness branch and endpoint facts supply the four\
+      explicit W886 endpoint strict-topology fields"
+  comparisonResult :=
+    "proved: W1500's W886 endpoint-field route rebuilds the same W885 leaves\
+      and concrete leaves reached by W1499"
+  remainingInputs :=
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonInputNamesW1500
+  productSuccessClaimed := false
+
+theorem currentW1500W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparison_productSuccess :
+    currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonStateW1500.productSuccessClaimed =
+      false :=
+  rfl
+
+end
+
+end Dbounded
+
+end LeanLCAExactChallenge
