@@ -132,4 +132,6 @@ W1480 refines the W1479 surface by replacing the target-difference surjectivity 
 
 W1481 refines the W1480 surface by replacing the target-codomain compact no-univ membership primitive family with an explicit point chooser for each non-bottom filter and a neighbourhood-meet non-bottom equation family. It reconstructs the compactness primitive from those witness fields, feeds the resulting data through the W1477 route while preserving the target-surjectivity, object-image, and right-adjoint splits, and keeps product success false because the remaining inputs are still assumed data rather than a positive `OriginalFourTaskProductSuccess` witness.
 
+W1482 refines the W1481 surface by replacing the mapped explicit cokernel closed-embedding raw field with separate embedding and closed-range raw fields. It reconstructs `IsClosedEmbedding` from those component fields before feeding W1477, keeps the target-surjectivity and target-compactness witness splits intact, records 65 remaining constructor inputs, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
