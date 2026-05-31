@@ -138,4 +138,6 @@ W1483 refines the W1482 surface by replacing the first selected-difference close
 
 W1484 refines the W1483 surface by replacing the second selected-difference closed-embedding diagram component field with separate embedding and closed-range component fields. It reconstructs the W714 pi2 component with `IsClosedEmbedding.mk`, keeps the pi1, mapped-cokernel, target-surjectivity, target-compactness, right-adjoint, and object-image splits intact, records 67 remaining constructor inputs, and keeps product success false.
 
+W1485 refines the W1484 surface by replacing the third selected-difference closed-embedding diagram component field with separate embedding and closed-range component fields. It reconstructs the W714 pi3 component with `IsClosedEmbedding.mk`, keeps the pi1, pi2, mapped-cokernel, target-surjectivity, target-compactness, right-adjoint, and object-image splits intact, records 68 remaining constructor inputs, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
