@@ -187,6 +187,8 @@ git diff --check
 
 2026-05-30T19:38:00Z時点で、W1452として`ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryRelationFieldDataConstructionGuardW1452.lean`を追加した。W1452はW1451のW717 relation-data入力を、W908で使われるrelation-pullback providerとtarget-relation-lifts providerから構成する。構成したW717をW1451入力へ渡し、W717/W730/W987のprojectionが二つのraw relation field、二つのraw boundary field、保持されたW984/W950 dataへ戻ることをLean上で確認した。これはW1451入力の一部をより具体化する非終端の構成であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
 
+2026-05-31T13:14:35Z時点で、W1486として`W987EndpointClosedEmbeddingFieldDataConstructionGuardW1486.lean`を追加した。W1486はW1485のendpoint closed-embedding family入力をendpoint embedding familyとendpoint closed-range familyへ分け、`IsClosedEmbedding.mk`で元のendpoint closed-embedding familyを再構成してW1477経路へ渡す。入力数は68から69へ増え、selected-difference pi1/pi2/pi3、mapped-cokernel、target-surjectivity、target-compactness、right-adjoint、object-imageの各分割は保持される。これら69入力はまだ仮定されたdataであり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
