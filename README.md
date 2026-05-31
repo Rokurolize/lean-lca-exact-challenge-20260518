@@ -170,4 +170,6 @@ W1499 feeds the W1498/W1495 surface through the W885 explicit source-triangulati
 
 W1500 feeds the W1499/W1498 surface through the W886 explicit endpoint-fields comparison route. It derives endpoint forget-preserves-homology from the W856 closedness branch, reuses W1498's endpoint closed-embedding, open-map, epi, closedness, boundary/relation, target-surjective-compact, normalized fixed-target, and localized-right-adjoint facts, proves the W886-built W720 endpoint data matches W1498, proves the W886-to-W885 source-triangulation leaves and concrete leaves match W1499, preserves the 74-input ledger, and keeps product success false.
 
+W1501 feeds the W1500/W1498 surface through the W887 explicit localized-right-adjoint-fields comparison route. It projects W1498's W721 localized-right-adjoint provider into its right-adjoint functor, adjunction, and unit-membership fields, rebuilds W721 through W887, proves the W887-built W886 endpoint-field leaves and concrete leaves match W1500, preserves the 74-input ledger, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.

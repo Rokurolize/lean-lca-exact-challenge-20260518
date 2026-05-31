@@ -217,6 +217,8 @@ git diff --check
 
 2026-05-31T18:13:56Z時点で、W1500として`W987EndpointFieldsComparisonGuardW1500.lean`を追加した。W1500はW1499/W1498 surfaceをW886 explicit endpoint-fields comparison routeへ渡す。W856 closedness branchからendpoint forget-preserves-homologyを導き、W1498側のendpoint closed-embedding、open-map、epi、closedness、boundary/relation、target surjective-compact、normalized fixed-target、localized right-adjointを再利用してW886 endpoint fieldsを作る。Lean上ではW886で再構成したW720 endpoint dataがW1498側と一致し、W886からW885へ渡したsource-triangulation leavesとconcrete leavesがW1499側と定義的に一致することを確認した。入力数は74のまま保持される。これはendpoint fields comparison routeへの非終端接続であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
 
+2026-05-31T18:32:51Z時点で、W1501として`W987LocalizedRightAdjointFieldsComparisonGuardW1501.lean`を追加した。W1501はW1500/W1498 surfaceをW887 explicit localized-right-adjoint-fields comparison routeへ渡す。W1498で回収したW721 localized-right-adjoint providerからright-adjoint functor、adjunction、unit-membershipの3 fieldを射影し、W887でW721を再構成してW886 endpoint-field leavesへ渡す。Lean上ではW887で再構成したW721 dataがW1498側と一致し、W887からW886へ渡したendpoint-field leavesとconcrete leavesがW1500側と定義的に一致することを確認した。入力数は74のまま保持される。これはlocalized-right-adjoint fields comparison routeへの非終端接続であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
