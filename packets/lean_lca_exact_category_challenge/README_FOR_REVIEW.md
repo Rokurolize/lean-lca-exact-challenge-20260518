@@ -237,6 +237,8 @@ git diff --check
 
 2026-05-31T21:08:20Z時点で、W1510として`W987ClosedEmbeddingClosednessFieldsComparisonGuardW1510.lean`を追加した。W1510はW1509/W1498 surfaceをW897 explicit closed-embedding closedness-fields comparison routeへ渡す。W1498がW973 closed-embedding closedness dataから作るW725 closed-embedding branchをselected-difference closed-embedding componentsとW519 mapped-cokernel closed-embedding providerに分け、W897でW895 leavesへ戻す。Lean上ではW897で再構成したW725 closedness branchがW1498/W1509側のclosed-embedding branchと一致し、W897 concrete leavesがW895 projectionへ委譲することを確認した。入力数は74のまま保持される。これはclosed-embedding closedness-fields comparison routeへの非終端接続であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
 
+2026-05-31T21:24:36Z時点で、W1511として`W987ClosedEmbeddingEndpointHomologyFreeComparisonGuardW1511.lean`を追加した。W1511はW1510/W1498 surfaceをW898 explicit closed-embedding endpoint-homology-free comparison routeへ渡す。W1510で得たW897 closedness-field leavesからendpoint forgetful homology fieldだけを外し、W1510側のW519 mapped-cokernel closed-embedding providerからW856経由でそのfieldを再構成してW897 leavesへ戻す。Lean上ではW898 projectionがW1510のW897 leavesへ戻り、W898 concrete leavesがW897 projectionへ委譲することを確認した。入力数は74のまま保持される。これはendpoint homology fieldを明示入力から外す非終端接続であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
