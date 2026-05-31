@@ -192,4 +192,6 @@ W1510 feeds the W1509/W1498 surface through the W897 explicit closed-embedding c
 
 W1511 feeds the W1510/W1498 surface through the W898 explicit closed-embedding endpoint-homology-free comparison route. It removes W897's explicit endpoint forgetful homology field, lets W898 reconstruct it from W1510's W519 mapped-cokernel closed-embedding provider through W856, proves the W898 projection returns to the same W897 leaves used by W1510, records the W898-to-W897 concrete-leaf delegation, preserves the 74-input ledger, and keeps product success false.
 
+W1512 connects the W1511 W987 surface to the existing W1382 endpoint-homology-free comparison convergence guard. It specializes W1382's W856 endpoint-homology derivation and W898-to-W897 delegation theorems to W1511 leaves, records concrete-leaf, route-data, direct-calculus, and stable-package convergence, preserves the 74-input ledger, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.

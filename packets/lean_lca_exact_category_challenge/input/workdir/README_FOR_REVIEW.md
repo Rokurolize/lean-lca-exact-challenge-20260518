@@ -239,6 +239,8 @@ git diff --check
 
 2026-05-31T21:24:36Z時点で、W1511として`W987ClosedEmbeddingEndpointHomologyFreeComparisonGuardW1511.lean`を追加した。W1511はW1510/W1498 surfaceをW898 explicit closed-embedding endpoint-homology-free comparison routeへ渡す。W1510で得たW897 closedness-field leavesからendpoint forgetful homology fieldだけを外し、W1510側のW519 mapped-cokernel closed-embedding providerからW856経由でそのfieldを再構成してW897 leavesへ戻す。Lean上ではW898 projectionがW1510のW897 leavesへ戻り、W898 concrete leavesがW897 projectionへ委譲することを確認した。入力数は74のまま保持される。これはendpoint homology fieldを明示入力から外す非終端接続であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
 
+2026-05-31T21:43:47Z時点で、W1512として`W987ClosedEmbeddingEndpointHomologyFreeConvergenceGuardW1512.lean`を追加した。W1512はW1511のW987 surfaceを既存W1382 endpoint-homology-free comparison convergence guardへ接続する。W1511が作るW898 leavesについて、W856経由のendpoint homology導出、W898からW897へのconcrete leaves、route data、direct calculus、stable packageの委譲がW1382の収束補題に乗ることをLean上で確認した。入力数は74のまま保持される。これはW1511 surfaceをW1382 convergenceへ接続する非終端incrementであり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
