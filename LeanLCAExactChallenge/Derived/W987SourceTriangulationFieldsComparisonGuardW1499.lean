@@ -1,0 +1,213 @@
+import LeanLCAExactChallenge.Derived.W987SourceTriangulationComparisonLeavesGuardW1498
+import LeanLCAExactChallenge.Derived.SourceTriangulationFieldsComparisonStableExactAtRoute
+
+/-!
+W1499 feeds the W1498/W1495 surface through the W885 explicit
+source-triangulation-field comparison route.  W1498 assembled W884 from the
+W1495 bundled W722 provider; W1499 shows the same surface also assembles the
+W885 leaves whose explicit source pretriangulated, triangulated, and
+triangle-completion fields rebuild that W722 provider.
+-/
+
+set_option autoImplicit false
+set_option linter.style.longLine false
+
+namespace LeanLCAExactChallenge
+
+open CategoryTheory
+open CategoryTheory.Limits
+open Topology
+open DirectWppLimitFiniteShapeTransfer
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpSelectedW461TransportedPointIsoProviderV370SupportW506
+open WppOpClosedNatTransOrdinaryRelationTopologyV370SupportW511
+open WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512
+open WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+open WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484
+open WppOpClosedRangeMappedCokernelPreservationV370SupportW519
+
+namespace Dbounded
+
+noncomputable section
+
+/-- W1499 reuses the W1498 74-field source-triangulation comparison surface. -/
+abbrev W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputW1499 :
+    Type 2 :=
+  W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesInputW1498
+
+/-- W1499 assembles the W885 explicit source-triangulation-field leaves. -/
+def sourceTriangulationFieldComparisonLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1499
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputW1499) :
+    MetrizableWppSourceTriangulationFieldComparisonLeavesW885 where
+  boundaryData :=
+    (boundaryRelationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).boundaryData
+  relationData :=
+    (boundaryRelationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).relationData
+  targetSurjectiveCompactForTargetProvider :=
+    targetSurjectiveCompactDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input
+  diagramAndMappedCokernelClosednessData :=
+    diagramAndMappedCokernelClosednessDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input
+  normalizedFixedTargetData :=
+    normalizedFixedTargetDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input
+  sourcePretriangulated := input.sourcePretriangulated
+  sourceTriangulated := input.sourceTriangulated
+  triangleCompletion := input.triangleCompletion
+  endpointStrictTopologyData :=
+    endpointStrictTopologyDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input
+  localizedRightAdjointData :=
+    localizedRightAdjointDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input
+
+/-- W1499 rebuilds the W722 source-triangulation provider through W885 fields. -/
+def sourceTriangulationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonW1499
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputW1499) :
+    MetrizableWppSourceTriangulationDataProviderW722 :=
+  sourceTriangulationDataOfFieldsW885
+    (sourceTriangulationFieldComparisonLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1499
+      input)
+
+/-- W1499 exposes the W884 leaves obtained by passing W1498 data through W885. -/
+def sourceTriangulationComparisonLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonW1499
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputW1499) :
+    MetrizableWppSourceTriangulationComparisonLeavesW884 :=
+  sourceTriangulationLeavesOfFieldsW885
+    (sourceTriangulationFieldComparisonLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1499
+      input)
+
+/-- W1499 exposes W885's concrete leaves. -/
+def concreteLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonW1499
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputW1499) :
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733 :=
+  concreteLeavesOfSourceTriangulationFieldsComparisonW885
+    (sourceTriangulationFieldComparisonLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1499
+      input)
+
+/-- W1499 exposes W885's W732 route data. -/
+def routeDataProviderOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonW1499
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputW1499) :
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732 :=
+  routeDataProviderOfSourceTriangulationFieldsComparisonW885
+    (sourceTriangulationFieldComparisonLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1499
+      input)
+
+/-- W1499 feeds W885 explicit source-triangulation fields to direct bounded left calculus. -/
+theorem directBoundedLeftCalculusOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonW1499
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputW1499) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+  directBoundedLeftCalculusOfSourceTriangulationFieldsComparisonStableExactAtW885
+    (sourceTriangulationFieldComparisonLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1499
+      input)
+
+/-- W1499 exposes W885's bounded derived infinity-category package. -/
+def boundedDerivedInfinityCategoryOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonW1499
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputW1499) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedInfinityCategoryOfSourceTriangulationFieldsComparisonStableExactAtW885
+    (sourceTriangulationFieldComparisonLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1499
+      input)
+
+/-- W1499's W885 source-triangulation provider is W1495's constructed W722 data. -/
+theorem w1499SourceTriangulationDataMatchesW1495
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputW1499) :
+    sourceTriangulationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonW1499
+        input =
+      sourceTriangulationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+        input :=
+  rfl
+
+/-- W1499's W885-to-W884 leaves are definitionally W1498's W884 leaves. -/
+theorem w1499SourceTriangulationFieldsComparisonLeavesMatchW1498
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputW1499) :
+    sourceTriangulationComparisonLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonW1499
+        input =
+      sourceTriangulationComparisonLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1498
+        input :=
+  rfl
+
+/-- W1499's W885 concrete leaves are definitionally W1498's W884 concrete leaves. -/
+theorem w1499ConcreteLeavesMatchW1498
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputW1499) :
+    concreteLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonW1499
+        input =
+      concreteLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+        input :=
+  rfl
+
+/-- W1499 keeps the W1498 constructor-ledger input names. -/
+def w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputNamesW1499 :
+    List String :=
+  w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesInputNamesW1498
+
+theorem w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputNamesW1499_count :
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputNamesW1499.length =
+      74 := by
+  simpa [
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputNamesW1499]
+    using
+      w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesInputNamesW1498_count
+
+/-- Current W1499 nonterminal explicit source-triangulation-fields route state. -/
+structure W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonStateW1499 :
+    Type where
+  seed : String
+  declarations : List String
+  explicitFieldAssemblyResult : String
+  comparisonResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- W1499 records the W885 explicit source-triangulation-field route reached from W1498. -/
+def currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonStateW1499 :
+    W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonStateW1499 where
+  seed :=
+    "w1499-w987-boundary-relation-target-strict-preimage-object-image-right-adjoint-target-compactness-mapped-cokernel-pi1-pi2-pi3-source-triangulation-fields-comparison"
+  declarations :=
+    ["W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputW1499",
+      "sourceTriangulationFieldComparisonLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1499",
+      "sourceTriangulationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonW1499",
+      "sourceTriangulationComparisonLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonW1499",
+      "concreteLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonW1499",
+      "routeDataProviderOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonW1499",
+      "directBoundedLeftCalculusOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonW1499",
+      "boundedDerivedInfinityCategoryOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonW1499",
+      "w1499SourceTriangulationDataMatchesW1495",
+      "w1499SourceTriangulationFieldsComparisonLeavesMatchW1498",
+      "w1499ConcreteLeavesMatchW1498",
+      "w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputNamesW1499_count"]
+  explicitFieldAssemblyResult :=
+    "proved: the W1498/W1495 surface supplies the explicit source\
+      pretriangulated, triangulated, and triangle-completion fields consumed by W885"
+  comparisonResult :=
+    "proved: W1499's W885 source-triangulation-field route rebuilds the same\
+      W884 leaves and concrete leaves reached by W1498"
+  remainingInputs :=
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonInputNamesW1499
+  productSuccessClaimed := false
+
+theorem currentW1499W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparison_productSuccess :
+    currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldsComparisonStateW1499.productSuccessClaimed =
+      false :=
+  rfl
+
+end
+
+end Dbounded
+
+end LeanLCAExactChallenge

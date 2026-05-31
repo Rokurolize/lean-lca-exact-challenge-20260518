@@ -213,6 +213,8 @@ git diff --check
 
 2026-05-31T17:38:52Z時点で、W1498として`W987SourceTriangulationComparisonLeavesGuardW1498.lean`を追加した。W1498はW1497/W1495 surfaceからW884 source-triangulation comparison leavesを組み立てる。W1495のW730 boundary/relation dataとW986 target/closedness/normalized-source/endpoint dataをW1006へ包装し、W715 target surjective-compact providerを回収し、W973 closed-embedding branchをW725へ写し、W856とW935/W938由来のendpoint factsでW720 endpoint strict-topology dataを再構成する。Lean上ではW884のconcrete leaves、route data、direct bounded-left-calculus、bounded derived infinity category packageに到達し、W884のsource-homological outputがW1496のW724 outputと一致すること、入力数が74のまま保たれることを確認した。これはsource-triangulation comparison leavesへの非終端接続であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
 
+2026-05-31T18:07:30Z時点で、W1499として`W987SourceTriangulationFieldsComparisonGuardW1499.lean`を追加した。W1499はW1498/W1495 surfaceをW885 explicit source-triangulation-fields comparison routeへ渡す。W1498で回収したboundary/relation、target surjective-compact、closedness、normalized fixed-target、endpoint strict-topology、localized right-adjointの各projectionを再利用し、source pretriangulated、source triangulated、triangle-completionの3 fieldを74-field inputから直接渡してW885 leavesを作る。Lean上ではW885で作ったW722 source-triangulation providerがW1495のW722 providerと一致すること、W885から得るW884 leavesとconcrete leavesがW1498側と定義的に一致すること、入力数が74のまま保たれることを確認した。これはsource-triangulation field routeへの非終端接続であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
