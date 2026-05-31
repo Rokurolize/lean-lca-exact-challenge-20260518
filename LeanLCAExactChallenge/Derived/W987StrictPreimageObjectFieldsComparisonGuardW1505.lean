@@ -1,0 +1,340 @@
+import LeanLCAExactChallenge.Derived.W987StrictRepresentativeLiftFieldsComparisonGuardW1504
+import LeanLCAExactChallenge.Derived.StrictPreimageObjectFieldsComparisonStableExactAtRoute
+
+/-!
+W1505 feeds the W1504/W1498 surface through the W891 explicit strict-preimage
+object-fields comparison route. W1498 recovered W719 normalized fixed-target
+data from W948; W1505 exposes the eight constructor fields of the strict
+preimage object data inside its strict-representative lift blueprint and checks
+that W891 rebuilds the same W890 strict-representative lift leaves reached by
+W1504.
+-/
+
+set_option autoImplicit false
+set_option linter.style.longLine false
+
+namespace LeanLCAExactChallenge
+
+open CategoryTheory
+open CategoryTheory.Limits
+open Topology
+open DirectWppLimitFiniteShapeTransfer
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpSelectedW461TransportedPointIsoProviderV370SupportW506
+open WppOpClosedNatTransOrdinaryRelationTopologyV370SupportW511
+open WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512
+open WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+open WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484
+open WppOpClosedRangeMappedCokernelPreservationV370SupportW519
+
+namespace Dbounded
+
+noncomputable section
+
+/-- W1505 reuses the W1504 74-field strict-representative lift comparison surface. -/
+abbrev W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputW1505 :
+    Type 2 :=
+  W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictRepresentativeLiftFieldsComparisonInputW1504
+
+/-- W1505 assembles the W891 explicit strict-preimage object-field leaves from W1498 data. -/
+def strictPreimageObjectFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1505
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputW1505) :
+    MetrizableWppStrictPreimageObjectFieldLeavesW891 where
+  boundaryData :=
+    (boundaryRelationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).boundaryData
+  relationData :=
+    (boundaryRelationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).relationData
+  targetSurjectiveCompactForTargetProvider :=
+    targetSurjectiveCompactDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input
+  diagramAndMappedCokernelClosednessData :=
+    diagramAndMappedCokernelClosednessDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input
+  strictPreimageZeroSrc :=
+    fun Y =>
+      ((normalizedFixedTargetDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+        input).normalizedLiftBlueprint.blueprint.objData Y).zeroSrc
+  strictPreimageOneSrc :=
+    fun Y =>
+      ((normalizedFixedTargetDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+        input).normalizedLiftBlueprint.blueprint.objData Y).oneSrc
+  strictPreimageZeroIso :=
+    fun Y =>
+      ((normalizedFixedTargetDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+        input).normalizedLiftBlueprint.blueprint.objData Y).zeroIso
+  strictPreimageOneIso :=
+    fun Y =>
+      ((normalizedFixedTargetDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+        input).normalizedLiftBlueprint.blueprint.objData Y).oneIso
+  strictPreimageLeftSrc :=
+    fun Y =>
+      ((normalizedFixedTargetDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+        input).normalizedLiftBlueprint.blueprint.objData Y).leftSrc
+  strictPreimageRightSrc :=
+    fun Y =>
+      ((normalizedFixedTargetDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+        input).normalizedLiftBlueprint.blueprint.objData Y).rightSrc
+  strictPreimageLeftFac :=
+    fun Y =>
+      ((normalizedFixedTargetDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+        input).normalizedLiftBlueprint.blueprint.objData Y).left_fac
+  strictPreimageRightFac :=
+    fun Y =>
+      ((normalizedFixedTargetDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+        input).normalizedLiftBlueprint.blueprint.objData Y).right_fac
+  strictRepresentativeMapData :=
+    (normalizedFixedTargetDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).normalizedLiftBlueprint.blueprint.mapData
+  strictRepresentativeMapId :=
+    (normalizedFixedTargetDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).normalizedLiftBlueprint.blueprint.map_id
+  strictRepresentativeMapComp :=
+    (normalizedFixedTargetDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).normalizedLiftBlueprint.blueprint.map_comp
+  sourceImageObjectNormalization :=
+    (normalizedFixedTargetDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).normalizedLiftBlueprint.obj_image
+  sourceImageMapNormalization :=
+    (normalizedFixedTargetDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).normalizedLiftBlueprint.map_image
+  targetFixedTargetUniq :=
+    (normalizedFixedTargetDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).targetFixedTargetUniq
+  localizationModelFixedTargetUniq :=
+    (normalizedFixedTargetDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).localizationModelFixedTargetUniq
+  sourcePretriangulated := input.sourcePretriangulated
+  sourceTriangulated := input.sourceTriangulated
+  triangleCompletion := input.triangleCompletion
+  endpointForgetPreservesHomology :=
+    endpointForgetPreservesHomologyOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3EndpointFieldsComparisonW1500
+      input
+  endpointClosedEmbedding :=
+    (endpointTopologyFactsOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).endpointClosedEmbedding
+  endpointOpenMap :=
+    (endpointTopologyFactsOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).endpointOpenMap
+  endpointEpiOfExactAt :=
+    (endpointTopologyFactsOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).endpointEpiOfExactAt
+  boundedHomotopyLocalizedRightAdjoint :=
+    (localizedRightAdjointDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).boundedHomotopyLocalizedRightAdjoint
+  boundedHomotopyLocalizedAdjunction :=
+    (localizedRightAdjointDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).boundedHomotopyLocalizedAdjunction
+  boundedHomotopyLocalizedUnitMem :=
+    (localizedRightAdjointDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+      input).boundedHomotopyLocalizedUnitMem
+
+/-- W1505 rebuilds the strict preimage object-data family through W891 fields. -/
+def strictRepresentativeObjectDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputW1505) :
+    ∀ (Y : WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0}),
+      Dbounded.MetrizableWalkingParallelPairStrictPreimageData Y :=
+  strictRepresentativeObjectDataOfFieldsW891
+    (strictPreimageObjectFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1505
+      input)
+
+/-- W1505 rebuilds the W890 strict-representative lift leaves through W891 fields. -/
+def strictRepresentativeLiftBlueprintFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputW1505) :
+    MetrizableWppStrictRepresentativeLiftBlueprintFieldLeavesW890 :=
+  strictRepresentativeFieldLeavesOfObjectFieldsW891
+    (strictPreimageObjectFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1505
+      input)
+
+/-- W1505 rebuilds the strict-representative lift blueprint through W891 fields. -/
+def strictRepresentativeLiftBlueprintOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputW1505) :
+    Dbounded.MetrizableWalkingParallelPairLiftBlueprint :=
+  strictRepresentativeLiftBlueprintOfFieldsW890
+    (strictRepresentativeLiftBlueprintFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+      input)
+
+/-- W1505 rebuilds W889 normalized lift-blueprint leaves through W891 fields. -/
+def normalizedLiftBlueprintFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputW1505) :
+    MetrizableWppNormalizedLiftBlueprintFieldLeavesW889 :=
+  normalizedLiftBlueprintFieldLeavesOfStrictRepresentativeFieldsW890
+    (strictRepresentativeLiftBlueprintFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+      input)
+
+/-- W1505 rebuilds the normalized lift blueprint after the W891 decomposition. -/
+def normalizedLiftBlueprintOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputW1505) :
+    Dbounded.MetrizableWalkingParallelPairNormalizedLiftBlueprint :=
+  normalizedLiftBlueprintOfFieldsW889
+    (normalizedLiftBlueprintFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+      input)
+
+/-- W1505 rebuilds W888 normalized fixed-target leaves through W891 fields. -/
+def normalizedFixedTargetFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputW1505) :
+    MetrizableWppNormalizedFixedTargetFieldLeavesW888 :=
+  normalizedFixedTargetFieldLeavesOfNormalizedLiftBlueprintFieldsW889
+    (normalizedLiftBlueprintFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+      input)
+
+/-- W1505 rebuilds W719 normalized fixed-target data after the W891 decomposition. -/
+def normalizedFixedTargetDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputW1505) :
+    MetrizableWppNormalizedFixedTargetDataProviderW719 :=
+  normalizedFixedTargetDataOfFieldsW888
+    (normalizedFixedTargetFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+      input)
+
+/-- W1505 rebuilds W887 localized-right-adjoint leaves through W891 fields. -/
+def localizedRightAdjointFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputW1505) :
+    MetrizableWppLocalizedRightAdjointFieldLeavesW887 :=
+  localizedRightAdjointFieldLeavesOfNormalizedFixedTargetFieldsW888
+    (normalizedFixedTargetFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+      input)
+
+/-- W1505 exposes W891's concrete leaves. -/
+def concreteLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputW1505) :
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733 :=
+  concreteLeavesOfStrictPreimageObjectFieldsComparisonW891
+    (strictPreimageObjectFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1505
+      input)
+
+/-- W1505 exposes W891's W732 route data. -/
+def routeDataProviderOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputW1505) :
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732 :=
+  routeDataProviderOfStrictPreimageObjectFieldsComparisonW891
+    (strictPreimageObjectFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1505
+      input)
+
+/-- W1505 feeds W891 explicit strict-preimage object fields to direct bounded left calculus. -/
+theorem directBoundedLeftCalculusOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputW1505) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+  directBoundedLeftCalculusOfStrictPreimageObjectFieldsComparisonStableExactAtW891
+    (strictPreimageObjectFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1505
+      input)
+
+/-- W1505 exposes W891's bounded derived infinity-category package. -/
+def boundedDerivedInfinityCategoryOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputW1505) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedInfinityCategoryOfStrictPreimageObjectFieldsComparisonStableExactAtW891
+    (strictPreimageObjectFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1505
+      input)
+
+/-- W1505's W891 strict preimage object-data family is definitionally W1498's object data. -/
+theorem w1505StrictRepresentativeObjectDataMatchesW1498
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputW1505) :
+    strictRepresentativeObjectDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+        input =
+      (normalizedFixedTargetDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationComparisonLeavesW1498
+        input).normalizedLiftBlueprint.blueprint.objData :=
+  rfl
+
+/-- W1505's W891-to-W890 leaves are definitionally W1504's W890 leaves. -/
+theorem w1505StrictRepresentativeFieldLeavesMatchW1504
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputW1505) :
+    strictRepresentativeLiftBlueprintFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+        input =
+      strictRepresentativeLiftBlueprintFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1504
+        input :=
+  rfl
+
+/-- W1505's W891 concrete leaves are definitionally W1504's W890 concrete leaves. -/
+theorem w1505ConcreteLeavesMatchW1504
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputW1505) :
+    concreteLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505
+        input =
+      concreteLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictRepresentativeLiftFieldsComparisonW1504
+        input :=
+  rfl
+
+/-- W1505 keeps the W1504 constructor-ledger input names. -/
+def w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputNamesW1505 :
+    List String :=
+  w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictRepresentativeLiftFieldsComparisonInputNamesW1504
+
+theorem w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputNamesW1505_count :
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputNamesW1505.length =
+      74 := by
+  simpa [
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputNamesW1505]
+    using
+      w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictRepresentativeLiftFieldsComparisonInputNamesW1504_count
+
+/-- Current W1505 nonterminal explicit strict-preimage object-fields route state. -/
+structure W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonStateW1505 :
+    Type where
+  seed : String
+  declarations : List String
+  strictPreimageObjectFieldAssemblyResult : String
+  comparisonResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- W1505 records the W891 explicit strict-preimage object route reached from W1504. -/
+def currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonStateW1505 :
+    W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonStateW1505 where
+  seed :=
+    "w1505-w987-boundary-relation-target-strict-preimage-object-image-right-adjoint-target-compactness-mapped-cokernel-pi1-pi2-pi3-strict-preimage-object-fields-comparison"
+  declarations :=
+    ["W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputW1505",
+      "strictPreimageObjectFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1505",
+      "strictRepresentativeObjectDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505",
+      "strictRepresentativeLiftBlueprintFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505",
+      "strictRepresentativeLiftBlueprintOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505",
+      "normalizedLiftBlueprintFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505",
+      "normalizedLiftBlueprintOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505",
+      "normalizedFixedTargetFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505",
+      "normalizedFixedTargetDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505",
+      "localizedRightAdjointFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505",
+      "concreteLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505",
+      "routeDataProviderOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505",
+      "directBoundedLeftCalculusOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505",
+      "boundedDerivedInfinityCategoryOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonW1505",
+      "w1505StrictRepresentativeObjectDataMatchesW1498",
+      "w1505StrictRepresentativeFieldLeavesMatchW1504",
+      "w1505ConcreteLeavesMatchW1504",
+      "w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputNamesW1505_count"]
+  strictPreimageObjectFieldAssemblyResult :=
+    "proved: W1498's W948 normalized-source branch supplies the eight explicit\
+      W891 strict-preimage object fields"
+  comparisonResult :=
+    "proved: W1505's W891 strict-preimage-object-field route rebuilds the\
+      same W890 strict-representative lift leaves and concrete leaves reached by W1504"
+  remainingInputs :=
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonInputNamesW1505
+  productSuccessClaimed := false
+
+theorem currentW1505W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparison_productSuccess :
+    currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageObjectFieldsComparisonStateW1505.productSuccessClaimed =
+      false :=
+  rfl
+
+end
+
+end Dbounded
+
+end LeanLCAExactChallenge

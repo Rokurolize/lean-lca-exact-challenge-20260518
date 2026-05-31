@@ -225,6 +225,8 @@ git diff --check
 
 2026-05-31T19:14:26Z時点で、W1504として`W987StrictRepresentativeLiftFieldsComparisonGuardW1504.lean`を追加した。W1504はW1503/W1498 surfaceをW890 explicit strict-representative-lift-fields comparison routeへ渡す。W1498で回収したW719 strict-representative lift blueprintからobject-data、map-data、identity-coherence、composition-coherenceの4 fieldを射影し、W890でstrict-representative lift blueprintを再構成してW889 normalized lift-blueprint leavesへ渡す。Lean上ではW890で再構成したstrict-representative lift blueprintがW1498側と一致し、W890からW889へ渡したnormalized lift-blueprint leavesとconcrete leavesがW1503側と定義的に一致することを確認した。入力数は74のまま保持される。これはstrict-representative-lift fields comparison routeへの非終端接続であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
 
+2026-05-31T19:26:02Z時点で、W1505として`W987StrictPreimageObjectFieldsComparisonGuardW1505.lean`を追加した。W1505はW1504/W1498 surfaceをW891 explicit strict-preimage-object-fields comparison routeへ渡す。W1498で回収したW719 strict-representative lift blueprintのobject dataからzero/one source object、zero/one localization isomorphism、left/right source map、left/right localization factorizationの8 fieldを射影し、W891でstrict-preimage object dataを再構成してW890 strict-representative lift leavesへ渡す。Lean上ではW891で再構成したstrict-preimage object dataがW1498側と一致し、W891からW890へ渡したstrict-representative lift leavesとconcrete leavesがW1504側と定義的に一致することを確認した。入力数は74のまま保持される。これはstrict-preimage-object fields comparison routeへの非終端接続であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
