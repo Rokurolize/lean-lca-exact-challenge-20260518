@@ -122,4 +122,6 @@ W1475 refines the W1474 construction by replacing the map strict-preimage data f
 
 W1476 refines the W1475 construction by replacing the raw lift map identity and composition laws with four componentwise functoriality laws: zero and one source-map identity laws, and zero and one source-map composition laws. It reconstructs the raw lift map identity and composition laws, feeds the resulting W1475 input, and preserves the W987 projections through the W1475 route. Product success remains false because these fifty-eight inputs are still assumed data, not a positive `OriginalFourTaskProductSuccess` witness.
 
+W1477 refines the W1476 construction by replacing the normalized lift map-image normalization law with two componentwise map-image laws: zero and one component map-image normalization. It reconstructs the bundled map-image law, feeds the resulting W1476 input, and preserves the W987 projections through the W1476 route. Product success remains false because these fifty-nine inputs are still assumed data, not a positive `OriginalFourTaskProductSuccess` witness.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.

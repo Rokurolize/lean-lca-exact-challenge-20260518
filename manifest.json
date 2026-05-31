@@ -1,6 +1,6 @@
 {
   "schema": "lean_lca_exact_challenge.manifest.v1",
-  "generated_utc": "2026-05-31T08:12:50Z",
+  "generated_utc": "2026-05-31T08:41:37Z",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -134,8 +134,8 @@
     },
     {
       "path": "LeanLCAExactChallenge.lean",
-      "sha256": "a8695d88349402e87a75898422898868991ed4ac929bc7f69b5454af20c82e3a",
-      "bytes": 131815
+      "sha256": "5cc6566abcbbb9ab3194e866373afbefd01b3f7aad399ceda2d07da8aa8b824d",
+      "bytes": 132050
     },
     {
       "path": "LeanLCAExactChallenge/AlternatingTailExtendTransport.lean",
@@ -2748,6 +2748,11 @@
       "bytes": 74880
     },
     {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryRelationTargetStrictPreimageMapImageFieldDataConstructionGuardW1477.lean",
+      "sha256": "2e4eddd33ac962a078b96374db6d0352cdbd6a72fb7779f03d11c29403b26d80",
+      "bytes": 78707
+    },
+    {
       "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryRelationTargetStrictPreimageObjectFieldDataConstructionGuardW1474.lean",
       "sha256": "ba73de15c1b112832575e80b254cc61ff345b6fd7496cee530309356a45d5713",
       "bytes": 53215
@@ -3369,8 +3374,8 @@
     },
     {
       "path": "LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean",
-      "sha256": "303c5125d2f9d0192755848781ace810cfc233895d5fff1cbad7d5bdb8f5f67c",
-      "bytes": 75380
+      "sha256": "0e2318c1017f5550f23ca470cae72b4c0ee2346aff11d2d813a290fdde3feae3",
+      "bytes": 77549
     },
     {
       "path": "LeanLCAExactChallenge/Derived/RelationFieldsComparisonStableExactAtRoute.lean",
@@ -3779,8 +3784,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "62fc30c9a467e99c63004a7634948629c7479f1732f62702d8a6ca33db1a8bea",
-      "bytes": 23839
+      "sha256": "0b49dd7139c03ed8df267698d81cd6455c4fbdf5aabd76d0544aa020fe1116ef",
+      "bytes": 24304
     },
     {
       "path": "README_FOR_REVIEW.md",
@@ -3794,13 +3799,13 @@
     },
     {
       "path": "audit/OriginalFourTaskCompletionDeclarations.lean",
-      "sha256": "383f373b0535a42dc06c5f54dcaf1ad9f1d549bbe06225f1d031cd2ba4e64d9f",
-      "bytes": 1509490
+      "sha256": "d0d124d80e20de83f9acdaaf68fa65988e84d6a4f89d988d7d5dd86ff761ca4c",
+      "bytes": 1514881
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
-      "sha256": "05bc28bcfd5de587bf546d69bf9a530f1d0caefb2836145045b0fbeb3c789e7e",
-      "bytes": 1777769
+      "sha256": "a5084a9edcc80f1d6341f8ef5688af94c5a5c5c66ee183596bc88825ec648af5",
+      "bytes": 1780775
     },
     {
       "path": "audit/RequiredDeclarations.lean",
@@ -5679,8 +5684,8 @@
     },
     {
       "path": "docs/research/reference_route_log.md",
-      "sha256": "ff9ab591856bf3b0c9d37b40d61663607ed4df3fbcfb4de04d3e9ad599558b8f",
-      "bytes": 711052
+      "sha256": "fdd3fe0270054846efb4ddfeefe9bde361d6e2da9ae478d331ebf29da34fb0d0",
+      "bytes": 712271
     },
     {
       "path": "docs/research/sources.md",
@@ -17209,8 +17214,8 @@
     },
     {
       "path": "run/verification.json",
-      "sha256": "71ad2b82ab15c55decd6fc39c2830f2b0b17b3ccf81d630e1e163f632eb41c9e",
-      "bytes": 5044
+      "sha256": "461bfe377e2801a11ca6c4c10478c8cf2bc39f140b3ccb6052748b96e25e27f2",
+      "bytes": 4996
     },
     {
       "path": "run/w1342_focused_lean.log",
@@ -21828,6 +21833,11 @@
       "bytes": 3409033
     },
     {
+      "path": "run/w1476_external_audit.log",
+      "sha256": "c5a24ad6620318c3bfcedc8ac7313d776f8ba21b39f5ad34beefca65eddf8930",
+      "bytes": 23
+    },
+    {
       "path": "run/w1476_final_false_witness_source_scan.log",
       "sha256": "9fecdd904fe5d7993c4471efff9e28b3368aa6e847abc5a82ae10dfe9f01298b",
       "bytes": 252647
@@ -21908,6 +21918,86 @@
       "bytes": 3409033
     },
     {
+      "path": "run/w1477_final_false_witness_source_scan.log",
+      "sha256": "b6a7ad14c070c492628e10c586f64f90b3e64cedec2f841e337c5cc75df3b3d0",
+      "bytes": 252918
+    },
+    {
+      "path": "run/w1477_forbidden_lean_tokens.log",
+      "sha256": "05a269cd79fad4b3979703de8ea85bb0e4ca8c9fc07ba9a9f082afa20d150dcf",
+      "bytes": 60
+    },
+    {
+      "path": "run/w1477_git_diff_check.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "run/w1477_lake_build.log",
+      "sha256": "2f5ce2ed7764c2510ab1951f10dcf479ae0d7fbcf93d8bc66e1963dea08e3147",
+      "bytes": 3476150
+    },
+    {
+      "path": "run/w1477_original_four_task_completion_declarations.log",
+      "sha256": "e487f03b8fad68f1d8bc2260f147c6616067e3580e81b68807f456527b08b2df",
+      "bytes": 3982566
+    },
+    {
+      "path": "run/w1477_original_four_task_completion_focused.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "run/w1477_original_four_task_completion_module_build.log",
+      "sha256": "ab4fd648882add1e62fe379427b772c5d1d7020ff55a6ff382352fb3e5f9078e",
+      "bytes": 3469414
+    },
+    {
+      "path": "run/w1477_original_four_task_contract_audit.log",
+      "sha256": "f6e476a2519125b5517fa89941a61ef0317a0780764100bbbe422c7071aa68b5",
+      "bytes": 734
+    },
+    {
+      "path": "run/w1477_product_success_declarations.log",
+      "sha256": "b1216c9d7c1d8784936f9d89601cf040a453a357adaf8f6884ec237f3dac80c6",
+      "bytes": 5613827
+    },
+    {
+      "path": "run/w1477_product_success_true_source_scan.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "run/w1477_py_compile.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "run/w1477_required_declarations.log",
+      "sha256": "9309489fee0cc2ed01eb577e76c1145843bcb90c1372be6aca3187f2f5a6d724",
+      "bytes": 3851225
+    },
+    {
+      "path": "run/w1477_root_focused.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "run/w1477_root_module_build.log",
+      "sha256": "04e3770ff071b430c1fc02b7710edc0fd99092d629c92688b96258d992e791fa",
+      "bytes": 3476095
+    },
+    {
+      "path": "run/w1477_w1477_focused.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "run/w1477_w1477_module_build.log",
+      "sha256": "194dc82af76a79421fa1f2d58a59325c5fe2ebfcdc12f17996896d41aa015232",
+      "bytes": 3409033
+    },
+    {
       "path": "scratch-log.html",
       "sha256": "be336f1f7c297c637b626c4cd19cd7962812e4653ab589afbf329bc13073e785",
       "bytes": 12231
@@ -21924,8 +22014,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "sha256": "cda69353e166d285ca1ded8297ca92e178607b8dc932e8379351aab4c40f7fcf",
-      "bytes": 5457
+      "sha256": "6092eb89a6e7e94fbcfe6b5252fa3d07e37c085317080fcf6d98aeaa3e0e104b",
+      "bytes": 5615
     },
     {
       "path": "workers/README.md",
@@ -21933,5 +22023,5 @@
       "bytes": 131
     }
   ],
-  "content_hash_tree": "7e988db29ed46f8ef36b7a5f3bb895c6947ae1689870dcf9c5a6202d89b294b9"
+  "content_hash_tree": "713b0e8fab9580f65282f0aec441b6f3209074780d885e51165abbd6038aa32d"
 }
