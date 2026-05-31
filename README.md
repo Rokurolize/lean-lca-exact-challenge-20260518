@@ -180,4 +180,6 @@ W1504 feeds the W1503/W1498 surface through the W890 explicit strict-representat
 
 W1505 feeds the W1504/W1498 surface through the W891 explicit strict-preimage-object-fields comparison route. It projects W1498's W719 strict-representative lift blueprint object data into zero/one source objects, zero/one localization isomorphisms, left/right source maps, and left/right localization factorizations, rebuilds the strict-preimage object data through W891, proves the W891-built W890 strict-representative lift leaves and concrete leaves match W1504, preserves the 74-input ledger, and keeps product success false.
 
+W1506 feeds the W1505/W1498 surface through the W892 explicit strict-preimage-map-fields comparison route. It projects W1498's W719 strict-representative lift blueprint map data into zero/one component maps, zero/one localization factorizations, and left/right naturality fields, rebuilds the strict-preimage map data through W892, proves the W892-built W891 strict-preimage object leaves and concrete leaves match W1505, preserves the 74-input ledger, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.

@@ -227,6 +227,8 @@ git diff --check
 
 2026-05-31T19:26:02Z時点で、W1505として`W987StrictPreimageObjectFieldsComparisonGuardW1505.lean`を追加した。W1505はW1504/W1498 surfaceをW891 explicit strict-preimage-object-fields comparison routeへ渡す。W1498で回収したW719 strict-representative lift blueprintのobject dataからzero/one source object、zero/one localization isomorphism、left/right source map、left/right localization factorizationの8 fieldを射影し、W891でstrict-preimage object dataを再構成してW890 strict-representative lift leavesへ渡す。Lean上ではW891で再構成したstrict-preimage object dataがW1498側と一致し、W891からW890へ渡したstrict-representative lift leavesとconcrete leavesがW1504側と定義的に一致することを確認した。入力数は74のまま保持される。これはstrict-preimage-object fields comparison routeへの非終端接続であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
 
+2026-05-31T19:48:28Z時点で、W1506として`W987StrictPreimageMapFieldsComparisonGuardW1506.lean`を追加した。W1506はW1505/W1498 surfaceをW892 explicit strict-preimage-map-fields comparison routeへ渡す。W1498で回収したW719 strict-representative lift blueprintのmap dataからzero/one component map、zero/one localization factorization、left/right naturalityの6 fieldを射影し、W892でstrict-preimage map dataを再構成してW891 strict-preimage object leavesへ渡す。Lean上ではW892で再構成したstrict-preimage map dataがW1498側と一致し、W892からW891へ渡したstrict-preimage object leavesとconcrete leavesがW1505側と定義的に一致することを確認した。入力数は74のまま保持される。これはstrict-preimage-map fields comparison routeへの非終端接続であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
