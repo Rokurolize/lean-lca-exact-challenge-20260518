@@ -1,112 +1,112 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-31T20:59:23Z",
-  "git_head": "de0b7e3e0045d047b58d428ed179b05eb260631e",
-  "source_tree_hash": "c886b92e9495bab192ab57f46a2135f11dbe8c176fe885bdb38a4133096a9250",
+  "generated_utc": "2026-05-31T21:12:47Z",
+  "git_head": "e79d4acd11081d3e8e4f795b0f1b9fbde22c55cb",
+  "source_tree_hash": "11ebfd4b326232645a0827f98fcb5271707128d435d0243c033b8974d2b3db94",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1509 feeds the W1508/W1498 surface through the W895 explicit target-surjective-compact fields comparison route. It splits W1508's bundled W715 target data into target-difference-surjectivity and target-codomain-compactness fields, feeds those fields through W895, proves the rebuilt W895 target data matches W1508's bundled W715 target data, records the W895-to-W894 concrete-leaf delegation, preserves the 74-input ledger, and leaves the final original four-task completion surface nonterminal with productSuccessClaimed=false.",
+  "summary": "W1510 feeds the W1509/W1498 surface through the W897 explicit closed-embedding closedness-fields comparison route. It splits W1498's W973 closed-embedding closedness data into selected-difference closed-embedding components and the W519 mapped-cokernel closed-embedding provider, feeds those fields through W897, proves the rebuilt W897 W725 closedness branch matches the W1498/W1509 branch, records the W897-to-W895 concrete-leaf delegation, preserves the 74-input ledger, and leaves the final original four-task completion surface nonterminal with productSuccessClaimed=false.",
   "evidence_root": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "run/w1509_lake_build.log"
+      "evidence": "run/w1510_lake_build.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.W987TargetSurjectiveCompactFieldsComparisonGuardW1509",
+      "command": "lake build LeanLCAExactChallenge.Derived.W987ClosedEmbeddingClosednessFieldsComparisonGuardW1510",
       "status": "passed",
-      "evidence": "run/w1509_w1509_module_build.log"
+      "evidence": "run/w1510_module_build.log"
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.OriginalFourTaskContractCompletion",
       "status": "passed",
-      "evidence": "run/w1509_original_four_task_completion_module_build.log"
+      "evidence": "run/w1510_original_four_task_completion_module_build.log"
     },
     {
       "command": "lake build LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "run/w1509_root_module_build.log"
+      "evidence": "run/w1510_root_module_build.log"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "run/w1509_forbidden_lean_tokens.log"
+      "evidence": "run/w1510_forbidden_lean_tokens.log"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "run/w1509_required_declarations.log"
+      "evidence": "run/w1510_required_declarations.log"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "run/w1509_product_success_declarations.log"
+      "evidence": "run/w1510_product_success_declarations.log"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "run/w1509_original_four_task_completion_declarations.log"
+      "evidence": "run/w1510_original_four_task_completion_declarations.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean",
       "status": "passed",
-      "evidence": "run/w1509_original_four_task_completion_focused.log"
+      "evidence": "run/w1510_original_four_task_completion_focused.log"
     },
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/W987TargetSurjectiveCompactFieldsComparisonGuardW1509.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/W987ClosedEmbeddingClosednessFieldsComparisonGuardW1510.lean",
       "status": "passed",
-      "evidence": "run/w1509_w1509_focused.log"
+      "evidence": "run/w1510_focused.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
       "status": "passed",
-      "evidence": "run/w1509_root_focused.log"
+      "evidence": "run/w1510_root_focused.log"
     },
     {
       "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m py_compile audit/original_four_task_contract_audit.py audit/external_audit.py packets/lean_lca_exact_category_challenge/external_audit.py",
       "status": "passed",
-      "evidence": "run/w1509_py_compile.log"
+      "evidence": "run/w1510_py_compile.log"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "run/w1509_git_diff_check.log"
+      "evidence": "run/w1510_git_diff_check.log"
     },
     {
       "command": "rg -n 'productSuccessClaimed\\s*:=\\s*true' LeanLCAExactChallenge audit",
       "status": "failed_expected",
-      "evidence": "run/w1509_product_success_true_source_scan.log"
+      "evidence": "run/w1510_product_success_true_source_scan.log"
     },
     {
       "command": "rg -n 'productSuccessClaimed\\s*:=\\s*false|productSuccessClaimed\\s*=\\s*false' LeanLCAExactChallenge audit",
       "status": "passed",
-      "evidence": "run/w1509_final_false_witness_source_scan.log"
+      "evidence": "run/w1510_final_false_witness_source_scan.log"
     },
     {
       "command": "PYTHONDONTWRITEBYTECODE=1 python3 audit/original_four_task_contract_audit.py --root \"$PWD\" --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "run/w1509_original_four_task_contract_audit.log"
+      "evidence": "run/w1510_original_four_task_contract_audit.log"
     },
     {
       "command": "PYTHONDONTWRITEBYTECODE=1 python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "run/w1509_external_audit.log"
+      "evidence": "run/w1510_external_audit.log"
     },
     {
       "command": "PYTHONDONTWRITEBYTECODE=1 python3 packets/lean_lca_exact_category_challenge/external_audit.py --root packets/lean_lca_exact_category_challenge --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "run/w1509_packet_external_audit.log"
+      "evidence": "run/w1510_packet_external_audit.log"
     },
     {
-      "command": "python3 /home/roku/.agents/skills/clean-review-packet/scripts/packet_audit.py --packet-root /tmp/lean_lca_w1509_clean/lean_lca_exact_category_challenge --zip packets/lean_lca_exact_category_challenge.zip --sha256-sidecar packets/lean_lca_exact_category_challenge.zip.sha256 --require README_FOR_REVIEW.md --require manifest.json",
+      "command": "python3 /home/roku/.agents/skills/clean-review-packet/scripts/packet_audit.py --packet-root /tmp/lean_lca_w1510_clean/lean_lca_exact_category_challenge --zip packets/lean_lca_exact_category_challenge.zip --sha256-sidecar packets/lean_lca_exact_category_challenge.zip.sha256 --require README_FOR_REVIEW.md --require manifest.json",
       "status": "passed",
-      "evidence": "run/w1509_clean_packet_audit.log"
+      "evidence": "run/w1510_clean_packet_audit.log"
     },
     {
       "command": "(cd packets && sha256sum -c lean_lca_exact_category_challenge.zip.sha256)",
       "status": "passed",
-      "evidence": "run/w1509_packet_zip_sha256_check.log"
+      "evidence": "run/w1510_packet_zip_sha256_check.log"
     }
   ]
 }

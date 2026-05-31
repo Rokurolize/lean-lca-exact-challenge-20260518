@@ -235,6 +235,8 @@ git diff --check
 
 2026-05-31T20:45:30Z時点で、W1509として`W987TargetSurjectiveCompactFieldsComparisonGuardW1509.lean`を追加した。W1509はW1508/W1498 surfaceをW895 explicit target-surjective-compact fields comparison routeへ渡す。W1508で得たW894 relation-field leavesのW715 target dataをtarget-difference-surjectivity fieldとtarget-codomain-compactness fieldに分け、W895でW894 leavesへ戻す。Lean上ではW895で再構成したtarget dataがW1508側のbundled W715 target dataと一致し、W895 concrete leavesがW894 projectionへ委譲することを確認した。入力数は74のまま保持される。これはtarget-surjective-compact fields comparison routeへの非終端接続であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
 
+2026-05-31T21:08:20Z時点で、W1510として`W987ClosedEmbeddingClosednessFieldsComparisonGuardW1510.lean`を追加した。W1510はW1509/W1498 surfaceをW897 explicit closed-embedding closedness-fields comparison routeへ渡す。W1498がW973 closed-embedding closedness dataから作るW725 closed-embedding branchをselected-difference closed-embedding componentsとW519 mapped-cokernel closed-embedding providerに分け、W897でW895 leavesへ戻す。Lean上ではW897で再構成したW725 closedness branchがW1498/W1509側のclosed-embedding branchと一致し、W897 concrete leavesがW895 projectionへ委譲することを確認した。入力数は74のまま保持される。これはclosed-embedding closedness-fields comparison routeへの非終端接続であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
