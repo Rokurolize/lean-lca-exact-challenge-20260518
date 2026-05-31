@@ -194,4 +194,6 @@ W1511 feeds the W1510/W1498 surface through the W898 explicit closed-embedding e
 
 W1512 connects the W1511 W987 surface to the existing W1382 endpoint-homology-free comparison convergence guard. It specializes W1382's W856 endpoint-homology derivation and W898-to-W897 delegation theorems to W1511 leaves, records concrete-leaf, route-data, direct-calculus, and stable-package convergence, preserves the 74-input ledger, and keeps product success false.
 
+W1513 connects the W1512 W987 surface to the existing W1381 target-closedness branch convergence guard. It composes W1512's W898-to-W897 endpoint-homology-free convergence with W1381's W897-to-W895 closed-embedding branch delegation and W895-to-W894 target-field delegation, records concrete-leaf, route-data, direct-calculus, and stable-package convergence through W894, preserves the 74-input ledger, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
