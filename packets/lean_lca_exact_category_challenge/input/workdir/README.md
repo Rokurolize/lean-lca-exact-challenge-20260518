@@ -196,4 +196,6 @@ W1512 connects the W1511 W987 surface to the existing W1382 endpoint-homology-fr
 
 W1513 connects the W1512 W987 surface to the existing W1381 target-closedness branch convergence guard. It composes W1512's W898-to-W897 endpoint-homology-free convergence with W1381's W897-to-W895 closed-embedding branch delegation and W895-to-W894 target-field delegation, records concrete-leaf, route-data, direct-calculus, and stable-package convergence through W894, preserves the 74-input ledger, and keeps product success false.
 
+W1514 connects the W1513 W987 surface to the existing W1380 strict-preimage/boundary/relation convergence guard. It specializes W1380's W894-to-W893 relation-field, W893-to-W892 boundary-field, W892-to-W891 strict-preimage-map, and W891-to-W890 strict-preimage-object delegations to W1513 leaves, records concrete-leaf, route-data, direct-calculus, and stable-package convergence through W890, preserves the 74-input ledger, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
