@@ -160,4 +160,6 @@ W1494 refines the W1493 surface by replacing the two bundled fixed-target unique
 
 W1495 refines the W1494 surface by reassembling its source pretriangulated, source triangulated, and source triangle-completion fields into the W722 source-triangulation provider used by earlier routes. It proves that the constructed W722 provider and the W1477 input produced through W1494 project back to the same three source-triangulation fields, while preserving the W1494 74-input ledger and keeping product success false.
 
+W1496 refines the W1495 surface by carrying the constructed W722 source-triangulation provider into W724 source-homological-triangulation data through the existing W855/W821 comparison-bijectivity route. This records that `CategoryWithHomology MetrizableLCA` is supplied by the comparison-bijectivity theorem rather than a new caller input, proves the W724 projection returns to the W1495 source-triangulation data and the W1477-side data, preserves the 74-input ledger, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.

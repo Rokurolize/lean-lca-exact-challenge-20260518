@@ -1,0 +1,166 @@
+import LeanLCAExactChallenge.Derived.W987SourceTriangulationFieldDataConstructionGuardW1495
+import LeanLCAExactChallenge.Derived.SourceTriangulationComparisonStableExactAtRoute
+
+/-!
+W1496 carries the W1495-constructed W722 source-triangulation provider into the
+W724 source-homological-triangulation provider, using the W855/W821 comparison
+bijectivity route to supply `CategoryWithHomology MetrizableLCA` without adding
+a new caller-supplied homology input.
+-/
+
+set_option autoImplicit false
+set_option linter.style.longLine false
+
+namespace LeanLCAExactChallenge
+
+open CategoryTheory
+open CategoryTheory.Limits
+open Topology
+open DirectWppLimitFiniteShapeTransfer
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpSelectedW461TransportedPointIsoProviderV370SupportW506
+open WppOpClosedNatTransOrdinaryRelationTopologyV370SupportW511
+open WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512
+open WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+open WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484
+open WppOpClosedRangeMappedCokernelPreservationV370SupportW519
+
+namespace Dbounded
+
+noncomputable section
+
+/-- W1496 reuses W1495's 74-field source-triangulation surface. -/
+abbrev W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputW1496 :
+    Type 2 :=
+  W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputW1495
+
+/-- W1496 builds W724 data from W1495's constructed W722 source-triangulation data. -/
+def sourceHomologicalTriangulationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataW1496
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputW1496) :
+    MetrizableWppSourceHomologicalTriangulationDataProviderW724 :=
+  sourceHomologicalTriangulationDataOfComparisonBijectivityW855
+    (sourceTriangulationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+      input)
+
+/--
+W1496 also builds W724 data from the W1477 input obtained through W1494, so the
+W1495/W1477 source-triangulation boundary is visible at the homological layer.
+-/
+def sourceHomologicalTriangulationDataOfW1477InputW1496
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputW1496) :
+    MetrizableWppSourceHomologicalTriangulationDataProviderW724 :=
+  sourceHomologicalTriangulationDataOfComparisonBijectivityW855
+    (sourceTriangulationDataOfW1477InputW1495 input)
+
+/-- W1496's W724 data keeps W1495's constructed W722 source-triangulation data. -/
+theorem w1496SourceHomologicalTriangulationDataKeepsSourceTriangulationData
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputW1496) :
+    sourceTriangulationData_of_sourceHomologicalTriangulationDataW724
+        (sourceHomologicalTriangulationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataW1496
+          input) =
+      sourceTriangulationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+        input :=
+  rfl
+
+/-- W1496's W724 data uses the W855/W821 category-homology provider. -/
+theorem w1496SourceHomologicalTriangulationDataUsesComparisonBijectivityHomology
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputW1496) :
+    categoryWithHomologyProvider_of_sourceHomologicalTriangulationDataW724
+        (sourceHomologicalTriangulationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataW1496
+          input) =
+      categoryWithHomologyProviderOfComparisonBijectivityW855 :=
+  rfl
+
+/-- W1496's W1477-side W724 data keeps the W1477-side W722 source-triangulation data. -/
+theorem w1496W1477SourceHomologicalTriangulationDataKeepsSourceTriangulationData
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputW1496) :
+    sourceTriangulationData_of_sourceHomologicalTriangulationDataW724
+        (sourceHomologicalTriangulationDataOfW1477InputW1496 input) =
+      sourceTriangulationDataOfW1477InputW1495 input :=
+  rfl
+
+/-- W1496's W1477-side W724 data matches the W1495-constructed W724 data. -/
+theorem w1496W1477SourceHomologicalTriangulationDataKeepsConstructedData
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputW1496) :
+    sourceHomologicalTriangulationDataOfW1477InputW1496 input =
+      sourceHomologicalTriangulationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataW1496
+        input :=
+  rfl
+
+/-- W1496 keeps the W1495 constructor-ledger input names. -/
+def w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputNamesW1496 :
+    List String :=
+  w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputNamesW1495
+
+theorem w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputNamesW1496_count :
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputNamesW1496.length =
+      74 := by
+  simpa [
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputNamesW1496]
+    using
+      w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputNamesW1495_count
+
+/-- W1496 records the homological provider that W855 supplies without a new input. -/
+def w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionRemovedHomologyInputNamesW1496 :
+    List String :=
+  ["caller-supplied CategoryWithHomology MetrizableLCA provider"]
+
+theorem w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionRemovedHomologyInputNamesW1496_count :
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionRemovedHomologyInputNamesW1496.length =
+      1 :=
+  rfl
+
+/-- Current W1496 nonterminal source-homological construction state. -/
+structure W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionStateW1496 :
+    Type where
+  seed : String
+  declarations : List String
+  homologyProviderResult : String
+  sourceHomologicalResult : String
+  removedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- W1496 records that W855 supplies the homology provider for the W1495 source data. -/
+def currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionStateW1496 :
+    W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionStateW1496 where
+  seed :=
+    "w1496-w987-boundary-relation-target-strict-preimage-object-image-right-adjoint-target-compactness-mapped-cokernel-pi1-pi2-pi3-source-homological-triangulation-data-construction"
+  declarations :=
+    ["W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputW1496",
+      "sourceHomologicalTriangulationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataW1496",
+      "sourceHomologicalTriangulationDataOfW1477InputW1496",
+      "w1496SourceHomologicalTriangulationDataKeepsSourceTriangulationData",
+      "w1496SourceHomologicalTriangulationDataUsesComparisonBijectivityHomology",
+      "w1496W1477SourceHomologicalTriangulationDataKeepsSourceTriangulationData",
+      "w1496W1477SourceHomologicalTriangulationDataKeepsConstructedData",
+      "w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputNamesW1496_count",
+      "w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionRemovedHomologyInputNamesW1496_count"]
+  homologyProviderResult :=
+    "proved: W855/W821 supplies the W723 CategoryWithHomology provider used by\
+      W724, without a new caller-supplied homology input"
+  sourceHomologicalResult :=
+    "proved: the W1495-constructed W722 source-triangulation provider builds\
+      W724 source-homological-triangulation data and the W1477-side data matches"
+  removedInputs :=
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionRemovedHomologyInputNamesW1496
+  remainingInputs :=
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputNamesW1496
+  productSuccessClaimed := false
+
+theorem currentW1496W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstruction_productSuccess :
+    currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionStateW1496.productSuccessClaimed =
+      false :=
+  rfl
+
+end
+
+end Dbounded
+
+end LeanLCAExactChallenge

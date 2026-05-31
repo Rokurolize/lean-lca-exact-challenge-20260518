@@ -1,24 +1,24 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-31T16:36:08Z",
-  "git_head": "9c951ca1d80004d5dc619735adedb61ff37430be",
-  "source_tree_hash": "a45071002aa1db37422a9be5407c52c1b9eabb7ec29a539ec943007b898be3d3",
+  "generated_utc": "2026-05-31T16:57:59Z",
+  "git_head": "f674df9d198d034cfa209374556bda40db1e0f69",
+  "source_tree_hash": "3d446f4cab524e4a2d9209f00e578fa9120649d84f6037f48e1b3cd758ecec58",
   "outcome": "mathematical_frontier_nonterminal",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W1495 refines the W1494 W987 construction surface by reassembling the source pretriangulated, source triangulated, and source triangle-completion fields into the W722 source-triangulation provider used by earlier routes. It proves that both the constructed W722 provider and the W1477 input produced through W1494 project back to the same three source-triangulation fields, while preserving the W1494 74-input ledger, fixed-target uniqueness split, endpoint open-map split, unit mapping-cone open-map split, endpoint and unit mapping-cone kernel/cokernel/closed-embedding splits, selected-difference pi1/pi2/pi3 splits, mapped-cokernel split, target-surjectivity split, target-compactness split, normalized lift object-image split, and localized right-adjoint functor split. Product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the final imported original four-task completion surface still proves productSuccessClaimed=false.",
+  "summary": "W1496 carries the W1495-constructed W722 source-triangulation provider into the W724 source-homological-triangulation provider by using the existing W855/W821 comparison-bijectivity route to supply CategoryWithHomology MetrizableLCA. It proves that both the constructed W724 provider and the W1477-side W724 provider project back to the W1495/W1477 W722 source-triangulation data, records that no new caller-supplied homology-provider input is added, preserves the W1495 74-input ledger, and leaves the final original four-task completion surface nonterminal with productSuccessClaimed=false.",
   "reference_route_log": "docs/research/reference_route_log.md",
   "known_gaps": [
     "Positive Lean witness is absent: ProductSuccessDeclarations.lean does not import or check an OriginalFourTaskProductSuccess surface with field-level evidence for the original four-task contract.",
     "Final imported completion surface remains nonterminal: originalFourTaskContractCompletion.productSuccessClaimed = false still compiles.",
-    "W1495 only packages existing source-triangulation fields into the W722 provider and verifies their projections through W1494 and W1477; it does not prove sourcePretriangulated, sourceTriangulated, triangleCompletion, or any of the other remaining 74 constructor inputs from mathematical data.",
+    "W1496 only routes W1495's W722 source-triangulation data through the W855/W821 source-homological construction; it does not prove sourcePretriangulated, sourceTriangulated, triangleCompletion, or the remaining 74 constructor inputs from mathematical data.",
     "Original four mathematical tasks remain open under the positive-witness supplement; the current route still relies on assumed boundary, relation, target-surjectivity, target-compactness, mapped-cokernel, selected-difference, normalized-lift, fixed-target uniqueness, source-triangulation, endpoint, localized-unit, and unit mapping-cone fields rather than a positive product witness."
   ],
   "remaining_work": [
     "Continue Lean implementation toward a positive OriginalFourTaskProductSuccess-style declaration backed by actual exact-category, metrizable LCA exact-category, Yoneda-Ext, and bounded derived infinity-category constructions.",
-    "Discharge the W1495 source-pretriangulated, source-triangulated, and triangle-completion fields together with the remaining W1494 constructor inputs, or replace the field-ledger route with an explicit positive witness satisfying the positive-witness supplement.",
+    "Discharge the W1496/W1495 source-homological, source-pretriangulated, source-triangulated, and triangle-completion fields together with the remaining W1494 constructor inputs, or replace the field-ledger route with an explicit positive witness satisfying the positive-witness supplement.",
     "Before any product-success claim, rerun the source-contradiction gate, negative fixtures, clean checkout verification, root external audit, and clean-extracted packet audit."
   ],
   "goal_identity": "run/goal_identity_20260530_positive_witness_recovery.json"

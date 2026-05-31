@@ -207,6 +207,8 @@ git diff --check
 
 2026-05-31T16:31:22Z時点で、W1495として`W987SourceTriangulationFieldDataConstructionGuardW1495.lean`を追加した。W1495はW1494 surfaceが保持するsource pretriangulated structure、source triangulated structure、source triangle-completion inputをW722 source-triangulation providerへ再包装し、そのW722 providerとW1494経由で作るW1477 inputが同じ三つのsource-triangulation fieldへ戻ることをLean上で確認した。入力数は74のままで、W1494のfixed-target uniqueness、endpoint open-map、unit mapping-cone open-map、endpointとunit mapping-coneのkernel/cokernel/closed-embedding、selected-difference pi1/pi2/pi3、mapped-cokernel、target-surjectivity、target-compactness、right-adjoint、object-imageの各分割は保持される。これら74入力はまだ仮定されたdataであり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
 
+2026-05-31T16:53:33Z時点で、W1496として`W987SourceHomologicalTriangulationDataConstructionGuardW1496.lean`を追加した。W1496はW1495で構成したW722 source-triangulation providerを、W855/W821 comparison-bijectivity経路で与えられる`CategoryWithHomology MetrizableLCA` providerと合わせてW724 source-homological-triangulation dataへ運ぶ。Lean上ではW724 projectionがW1495のW722 providerへ戻ること、W1477側のW724 dataも同じsource-triangulation dataへ戻ること、caller-supplied homology inputを追加せずにW855のhomology providerを使うことを確認した。入力数は74のままで、これはpositive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
