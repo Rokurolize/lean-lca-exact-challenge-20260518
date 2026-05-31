@@ -134,4 +134,6 @@ W1481 refines the W1480 surface by replacing the target-codomain compact no-univ
 
 W1482 refines the W1481 surface by replacing the mapped explicit cokernel closed-embedding raw field with separate embedding and closed-range raw fields. It reconstructs `IsClosedEmbedding` from those component fields before feeding W1477, keeps the target-surjectivity and target-compactness witness splits intact, records 65 remaining constructor inputs, and keeps product success false.
 
+W1483 refines the W1482 surface by replacing the first selected-difference closed-embedding diagram component field with separate embedding and closed-range component fields. It reconstructs the W714 pi1 component with `IsClosedEmbedding.mk`, keeps the mapped-cokernel, target-surjectivity, target-compactness, right-adjoint, and object-image splits intact, records 66 remaining constructor inputs, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
