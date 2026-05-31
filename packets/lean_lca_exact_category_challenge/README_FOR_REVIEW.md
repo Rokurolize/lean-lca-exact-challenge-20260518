@@ -231,6 +231,8 @@ git diff --check
 
 2026-05-31T20:10:38Z時点で、W1507として`W987BoundaryFieldsComparisonGuardW1507.lean`を追加した。W1507はW1506/W1498 surfaceをW893 explicit WPP boundary-fields comparison routeへ渡す。W1506で得たW892 strict-preimage map-field leavesのW716 boundary dataをright-open quotient-cover boundary fieldとsource-pi-zero boundary fieldに分け、W893でW892 leavesへ戻す。Lean上ではW893で再構成したboundary dataがW1506側のbundled W716 boundary dataと一致し、W893 concrete leavesがW892 projectionへ委譲することを確認した。入力数は74のまま保持される。これはboundary fields comparison routeへの非終端接続であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
 
+2026-05-31T20:30:50Z時点で、W1508として`W987RelationFieldsComparisonGuardW1508.lean`を追加した。W1508はW1507/W1498 surfaceをW894 explicit closed-natural-transformation relation-fields comparison routeへ渡す。W1507で得たW893 boundary-field leavesのW717 relation dataをrelation-pullback provider fieldとtarget-relation-lift provider fieldに分け、W894でW893 leavesへ戻す。Lean上ではW894で再構成したrelation dataがW1507側のbundled W717 relation dataと一致し、W894 concrete leavesがW893 projectionへ委譲することを確認した。入力数は74のまま保持される。これはrelation fields comparison routeへの非終端接続であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。

@@ -1,0 +1,302 @@
+import LeanLCAExactChallenge.Derived.W987BoundaryFieldsComparisonGuardW1507
+import LeanLCAExactChallenge.Derived.RelationFieldsComparisonStableExactAtRoute
+
+/-!
+W1508 feeds the W1507/W1498 surface through the W894 explicit
+closed-natural-transformation relation-fields comparison route. W1507 already
+reaches W893 boundary-field leaves; W1508 splits their W717 relation data into
+the relation-pullback and target-relation-lift fields consumed by W894.
+-/
+
+set_option autoImplicit false
+set_option linter.style.longLine false
+
+namespace LeanLCAExactChallenge
+
+open CategoryTheory
+open CategoryTheory.Limits
+
+namespace Dbounded
+
+noncomputable section
+
+/-- W1508 reuses the W1507 74-field boundary comparison surface. -/
+abbrev W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonInputW1508 :
+    Type 2 :=
+  W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputW1507
+
+/-- W1508 names the W1507 W893 boundary-field leaves used by the projections. -/
+def boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonInputW1508) :
+    MetrizableWppBoundaryFieldLeavesW893 :=
+  boundaryFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1507
+    input
+
+/-- W1508 assembles W894 relation-field leaves by splitting W1507's W717 relation data. -/
+def relationFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1508
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonInputW1508) :
+    MetrizableWppRelationFieldLeavesW894 where
+  rightOpenBoundary :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).rightOpenBoundary
+  sourcePiZeroBoundary :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).sourcePiZeroBoundary
+  relationPullbackProvider :=
+    relationPullbackProvider_of_relationDataW717
+      (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+        input).relationData
+  targetRelationLiftsProvider :=
+    targetRelationLiftsProvider_of_relationDataW717
+      (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+        input).relationData
+  targetSurjectiveCompactForTargetProvider :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).targetSurjectiveCompactForTargetProvider
+  diagramAndMappedCokernelClosednessData :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).diagramAndMappedCokernelClosednessData
+  strictPreimageZeroSrc :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).strictPreimageZeroSrc
+  strictPreimageOneSrc :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).strictPreimageOneSrc
+  strictPreimageZeroIso :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).strictPreimageZeroIso
+  strictPreimageOneIso :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).strictPreimageOneIso
+  strictPreimageLeftSrc :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).strictPreimageLeftSrc
+  strictPreimageRightSrc :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).strictPreimageRightSrc
+  strictPreimageLeftFac :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).strictPreimageLeftFac
+  strictPreimageRightFac :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).strictPreimageRightFac
+  strictPreimageZeroMap :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).strictPreimageZeroMap
+  strictPreimageOneMap :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).strictPreimageOneMap
+  strictPreimageZeroMapFac :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).strictPreimageZeroMapFac
+  strictPreimageOneMapFac :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).strictPreimageOneMapFac
+  strictPreimageLeftNaturality :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).strictPreimageLeftNaturality
+  strictPreimageRightNaturality :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).strictPreimageRightNaturality
+  strictRepresentativeMapId :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).strictRepresentativeMapId
+  strictRepresentativeMapComp :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).strictRepresentativeMapComp
+  sourceImageObjectNormalization :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).sourceImageObjectNormalization
+  sourceImageMapNormalization :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).sourceImageMapNormalization
+  targetFixedTargetUniq :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).targetFixedTargetUniq
+  localizationModelFixedTargetUniq :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).localizationModelFixedTargetUniq
+  sourcePretriangulated :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).sourcePretriangulated
+  sourceTriangulated :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).sourceTriangulated
+  triangleCompletion :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).triangleCompletion
+  endpointForgetPreservesHomology :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).endpointForgetPreservesHomology
+  endpointClosedEmbedding :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).endpointClosedEmbedding
+  endpointOpenMap :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).endpointOpenMap
+  endpointEpiOfExactAt :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).endpointEpiOfExactAt
+  boundedHomotopyLocalizedRightAdjoint :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).boundedHomotopyLocalizedRightAdjoint
+  boundedHomotopyLocalizedAdjunction :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).boundedHomotopyLocalizedAdjunction
+  boundedHomotopyLocalizedUnitMem :=
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).boundedHomotopyLocalizedUnitMem
+
+/-- W1508 projects W894 back to the W893 leaves consumed by W1507. -/
+def boundaryFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonInputW1508) :
+    MetrizableWppBoundaryFieldLeavesW893 :=
+  boundaryFieldLeavesOfRelationFieldsW894
+    (relationFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1508
+      input)
+
+/-- W1508 exposes W894's W733 concrete leaves. -/
+def concreteLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonInputW1508) :
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733 :=
+  concreteLeavesOfRelationFieldsComparisonW894
+    (relationFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1508
+      input)
+
+/-- W1508 exposes W894's W732 route data. -/
+def routeDataProviderOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonInputW1508) :
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732 :=
+  routeDataProviderOfRelationFieldsComparisonW894
+    (relationFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1508
+      input)
+
+/-- W1508 feeds W894 explicit relation fields to direct bounded left calculus. -/
+theorem directBoundedLeftCalculusOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonInputW1508) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+  directBoundedLeftCalculusOfRelationFieldsComparisonStableExactAtW894
+    (relationFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1508
+      input)
+
+/-- W1508 exposes W894's bounded derived infinity-category package. -/
+def boundedDerivedInfinityCategoryOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonInputW1508) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedInfinityCategoryOfRelationFieldsComparisonStableExactAtW894
+    (relationFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1508
+      input)
+
+/-- W1508's split W894 relation data rebuilds W1507's bundled W717 relation data. -/
+theorem w1508RelationDataMatchesW1507
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonInputW1508) :
+    relationDataOfFieldsW894
+        (relationPullbackProvider_of_relationDataW717
+          (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+            input).relationData)
+        (targetRelationLiftsProvider_of_relationDataW717
+          (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+            input).relationData) =
+      (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+        input).relationData := by
+  cases
+    (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+      input).relationData
+  rfl
+
+/-- W1508's W894-to-W893 projection carries W1507's bundled W717 relation data. -/
+theorem w1508BoundaryFieldLeavesRelationDataMatchesW1507
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonInputW1508) :
+    (boundaryFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+        input).relationData =
+      (boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+        input).relationData := by
+  simpa [
+    boundaryFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508,
+    relationFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1508,
+    boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508,
+    boundaryFieldLeavesOfRelationFieldsW894]
+    using w1508RelationDataMatchesW1507 input
+
+/-- W1508's W894 concrete leaves delegate to W893 after relation-field assembly. -/
+theorem w1508ConcreteLeavesRunThroughW893
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonInputW1508) :
+    concreteLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+        input =
+      concreteLeavesOfBoundaryFieldsComparisonW893
+        (boundaryFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508
+          input) :=
+  rfl
+
+/-- W1508 keeps the W1507 constructor-ledger input names. -/
+def w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonInputNamesW1508 :
+    List String :=
+  w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputNamesW1507
+
+theorem w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonInputNamesW1508_count :
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonInputNamesW1508.length =
+      74 := by
+  simpa [
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonInputNamesW1508]
+    using
+      w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputNamesW1507_count
+
+/-- Current W1508 nonterminal explicit closed-natural-transformation relation-fields route state. -/
+structure W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonStateW1508 :
+    Type where
+  seed : String
+  declarations : List String
+  relationFieldAssemblyResult : String
+  comparisonResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- W1508 records the W894 explicit relation-field route reached from W1507. -/
+def currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonStateW1508 :
+    W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonStateW1508 where
+  seed :=
+    "w1508-w987-boundary-relation-target-strict-preimage-object-image-right-adjoint-target-compactness-mapped-cokernel-pi1-pi2-pi3-relation-fields-comparison"
+  declarations :=
+    ["W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonInputW1508",
+      "boundaryFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508",
+      "relationFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1508",
+      "boundaryFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508",
+      "concreteLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508",
+      "routeDataProviderOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508",
+      "directBoundedLeftCalculusOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508",
+      "boundedDerivedInfinityCategoryOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonW1508",
+      "w1508RelationDataMatchesW1507",
+      "w1508BoundaryFieldLeavesRelationDataMatchesW1507",
+      "w1508ConcreteLeavesRunThroughW893",
+      "w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonInputNamesW1508_count"]
+  relationFieldAssemblyResult :=
+    "proved: W1507's bundled W717 relation data supplies the W894\
+      relation-pullback and target-relation-lift fields"
+  comparisonResult :=
+    "proved: W1508's W894 relation-field route delegates to W893 while its\
+      rebuilt relation data matches W1507's bundled W717 relation data"
+  remainingInputs :=
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonInputNamesW1508
+  productSuccessClaimed := false
+
+theorem currentW1508W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparison_productSuccess :
+    currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3RelationFieldsComparisonStateW1508.productSuccessClaimed =
+      false :=
+  rfl
+
+end
+
+end Dbounded
+
+end LeanLCAExactChallenge
