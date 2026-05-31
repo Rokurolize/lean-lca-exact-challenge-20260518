@@ -199,6 +199,8 @@ git diff --check
 
 2026-05-31T14:55:16Z時点で、W1491として`W987EndpointKernelEqualityFieldDataConstructionGuardW1491.lean`を追加した。W1491はW1490のendpoint kernel-equality family入力をforward implication familyとbackward implication familyへ分け、その二つから元のkernel equivalenceを再構成してW1477経路へ渡す。入力数は73から74へ増え、endpoint cokernel-top、unit mapping-cone cokernel-top、unit mapping-cone kernel-equality、unit mapping-cone closed-embedding、endpoint closed-embedding、selected-difference pi1/pi2/pi3、mapped-cokernel、target-surjectivity、target-compactness、right-adjoint、object-imageの各分割は保持される。これら74入力はまだ仮定されたdataであり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
 
+2026-05-31T15:31:12Z時点で、W1492として`W987EndpointOpenMapFieldDataConstructionGuardW1492.lean`を追加した。W1492はW1491のbundled endpoint open-map family入力をimage-openness familyへ展開し、そのfieldから`IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)`を再構成してW1477経路へ渡す。入力数は74のままで、endpoint kernel-equality、endpoint cokernel-top、unit mapping-cone cokernel-top、unit mapping-cone kernel-equality、unit mapping-cone closed-embedding、endpoint closed-embedding、selected-difference pi1/pi2/pi3、mapped-cokernel、target-surjectivity、target-compactness、right-adjoint、object-imageの各分割は保持される。これら74入力はまだ仮定されたdataであり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
