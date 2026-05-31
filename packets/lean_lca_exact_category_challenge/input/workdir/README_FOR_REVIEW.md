@@ -211,6 +211,8 @@ git diff --check
 
 2026-05-31T17:14:58Z時点で、W1497として`W987StableExactAtRouteConnectionGuardW1497.lean`を追加した。W1497はW1496/W1495 surfaceからW1495で構成したW987 full-data providerを取り出し、既存のW987 stable ExactAt routeに渡してendpoint strict exactness、unit mapping-cone strict exactness、unit mapping-cone isomorphism nonemptiness、direct bounded-left-calculus、bounded derived infinity category packageへ接続する。Lean上ではW987 full-data providerがW1495のboundary/relation dataとW986 target/closedness/normalized-source/endpoint dataへ戻ること、入力数が74のまま保たれることを確認した。これは既存のstable ExactAt routeへの非終端接続であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
 
+2026-05-31T17:38:52Z時点で、W1498として`W987SourceTriangulationComparisonLeavesGuardW1498.lean`を追加した。W1498はW1497/W1495 surfaceからW884 source-triangulation comparison leavesを組み立てる。W1495のW730 boundary/relation dataとW986 target/closedness/normalized-source/endpoint dataをW1006へ包装し、W715 target surjective-compact providerを回収し、W973 closed-embedding branchをW725へ写し、W856とW935/W938由来のendpoint factsでW720 endpoint strict-topology dataを再構成する。Lean上ではW884のconcrete leaves、route data、direct bounded-left-calculus、bounded derived infinity category packageに到達し、W884のsource-homological outputがW1496のW724 outputと一致すること、入力数が74のまま保たれることを確認した。これはsource-triangulation comparison leavesへの非終端接続であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
