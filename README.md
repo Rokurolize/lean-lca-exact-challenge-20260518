@@ -172,4 +172,6 @@ W1500 feeds the W1499/W1498 surface through the W886 explicit endpoint-fields co
 
 W1501 feeds the W1500/W1498 surface through the W887 explicit localized-right-adjoint-fields comparison route. It projects W1498's W721 localized-right-adjoint provider into its right-adjoint functor, adjunction, and unit-membership fields, rebuilds W721 through W887, proves the W887-built W886 endpoint-field leaves and concrete leaves match W1500, preserves the 74-input ledger, and keeps product success false.
 
+W1502 feeds the W1501/W1498 surface through the W888 explicit normalized fixed-target-fields comparison route. It projects W1498's W719 normalized fixed-target provider into its normalized-lift blueprint, target fixed-target uniqueness, and localization-model fixed-target uniqueness fields, rebuilds W719 through W888, proves the W888-built W887 localized-right-adjoint leaves and concrete leaves match W1501, preserves the 74-input ledger, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
