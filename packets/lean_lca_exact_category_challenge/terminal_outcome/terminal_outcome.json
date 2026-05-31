@@ -1,30 +1,30 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-31T20:33:39Z",
-  "git_head": "4bbb8654b13b9247c84f94808239308794256135",
-  "source_tree_hash": "9f722245cfa7a63f66006fe229fc75eac2f3f78e4d44a2090fe557cdeaa4fb86",
+  "generated_utc": "2026-05-31T20:59:23Z",
+  "git_head": "de0b7e3e0045d047b58d428ed179b05eb260631e",
+  "source_tree_hash": "c886b92e9495bab192ab57f46a2135f11dbe8c176fe885bdb38a4133096a9250",
   "outcome": "mathematical_frontier_nonterminal",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W1508 feeds the W1507/W1498 surface through the W894 explicit closed-natural-transformation relation-fields comparison route. It splits W1507's bundled W717 relation data into relation-pullback and target-relation-lift fields, feeds those fields through W894, proves the rebuilt W894 relation data matches W1507's bundled W717 relation data, records the W894-to-W893 concrete-leaf delegation, preserves the 74-input ledger, and leaves the final original four-task completion surface nonterminal with productSuccessClaimed=false.",
+  "summary": "W1509 feeds the W1508/W1498 surface through the W895 explicit target-surjective-compact fields comparison route. It splits W1508's bundled W715 target data into target-difference-surjectivity and target-codomain-compactness fields, feeds those fields through W895, proves the rebuilt W895 target data matches W1508's bundled W715 target data, records the W895-to-W894 concrete-leaf delegation, preserves the 74-input ledger, and leaves the final original four-task completion surface nonterminal with productSuccessClaimed=false.",
   "positive_witness_declarations": [],
   "reference_route_log": "docs/research/reference_route_log.md",
   "known_gaps": [
     "Positive Lean witness is absent: ProductSuccessDeclarations.lean does not import or check an OriginalFourTaskProductSuccess surface with field-level evidence for the original four-task contract.",
     "Final imported completion surface remains nonterminal: originalFourTaskContractCompletion.productSuccessClaimed = false still compiles.",
-    "W1508 only routes W1507/W1498's 74-field surface through W894 explicit closed-natural-transformation relation fields and proves the rebuilt relation data agrees with W1507's bundled W717 relation data; it does not prove the 74 constructor inputs from independent mathematical data.",
+    "W1509 only routes W1508/W1498's 74-field surface through W895 explicit target-surjective-compact fields and proves the rebuilt target data agrees with W1508's bundled W715 target data; it does not prove the 74 constructor inputs from independent mathematical data.",
     "Original four mathematical tasks remain open under the positive-witness supplement; the current route still relies on assumed boundary, relation, target-surjectivity, target-compactness, mapped-cokernel, selected-difference, strict-preimage, normalized-lift, fixed-target uniqueness, source-triangulation, endpoint, localized-unit, and unit mapping-cone fields rather than a positive product witness."
   ],
   "remaining_work": [
     "Continue Lean implementation toward a positive OriginalFourTaskProductSuccess-style declaration backed by actual exact-category, metrizable LCA exact-category, Yoneda-Ext, and bounded derived infinity-category constructions.",
-    "Discharge the W1508/W1507/W1506/W1505/W1504/W1503/W1502/W1501/W1500/W1499/W1498/W1497/W1496/W1495 route inputs and remaining W1494 constructor inputs, or replace the field-ledger route with an explicit positive witness satisfying the positive-witness supplement.",
+    "Discharge the W1509/W1508/W1507/W1506/W1505/W1504/W1503/W1502/W1501/W1500/W1499/W1498/W1497/W1496/W1495 route inputs and remaining W1494 constructor inputs, or replace the field-ledger route with an explicit positive witness satisfying the positive-witness supplement.",
     "Before any product-success claim, rerun the source-contradiction gate, negative fixtures, clean checkout verification, root external audit, and clean-extracted packet audit."
   ],
   "verified_commands": [
     "lake build",
-    "lake build LeanLCAExactChallenge.Derived.W987RelationFieldsComparisonGuardW1508",
+    "lake build LeanLCAExactChallenge.Derived.W987TargetSurjectiveCompactFieldsComparisonGuardW1509",
     "lake build LeanLCAExactChallenge.Derived.OriginalFourTaskContractCompletion",
     "lake build LeanLCAExactChallenge",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -32,7 +32,7 @@
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
     "lake env lean LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean",
-    "lake env lean LeanLCAExactChallenge/Derived/W987RelationFieldsComparisonGuardW1508.lean",
+    "lake env lean LeanLCAExactChallenge/Derived/W987TargetSurjectiveCompactFieldsComparisonGuardW1509.lean",
     "lake env lean LeanLCAExactChallenge.lean",
     "PYTHONDONTWRITEBYTECODE=1 python3 -m py_compile audit/original_four_task_contract_audit.py audit/external_audit.py packets/lean_lca_exact_category_challenge/external_audit.py",
     "git diff --check",
@@ -41,10 +41,9 @@
     "PYTHONDONTWRITEBYTECODE=1 python3 audit/original_four_task_contract_audit.py --root \"$PWD\" --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
     "PYTHONDONTWRITEBYTECODE=1 python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
     "PYTHONDONTWRITEBYTECODE=1 python3 packets/lean_lca_exact_category_challenge/external_audit.py --root packets/lean_lca_exact_category_challenge --terminal-outcome terminal_outcome/terminal_outcome.json",
-    "python3 /home/roku/.agents/skills/clean-review-packet/scripts/packet_audit.py --packet-root /tmp/lean_lca_w1508_clean/lean_lca_exact_category_challenge --zip packets/lean_lca_exact_category_challenge.zip --sha256-sidecar packets/lean_lca_exact_category_challenge.zip.sha256 --require README_FOR_REVIEW.md --require manifest.json",
+    "python3 /home/roku/.agents/skills/clean-review-packet/scripts/packet_audit.py --packet-root /tmp/lean_lca_w1509_clean/lean_lca_exact_category_challenge --zip packets/lean_lca_exact_category_challenge.zip --sha256-sidecar packets/lean_lca_exact_category_challenge.zip.sha256 --require README_FOR_REVIEW.md --require manifest.json",
     "(cd packets && sha256sum -c lean_lca_exact_category_challenge.zip.sha256)"
   ],
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
-  "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "goal_identity": "run/goal_identity_20260530_positive_witness_recovery.json"
+  "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256"
 }

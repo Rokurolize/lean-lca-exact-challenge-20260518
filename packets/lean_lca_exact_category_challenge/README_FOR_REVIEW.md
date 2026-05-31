@@ -233,6 +233,8 @@ git diff --check
 
 2026-05-31T20:30:50Z時点で、W1508として`W987RelationFieldsComparisonGuardW1508.lean`を追加した。W1508はW1507/W1498 surfaceをW894 explicit closed-natural-transformation relation-fields comparison routeへ渡す。W1507で得たW893 boundary-field leavesのW717 relation dataをrelation-pullback provider fieldとtarget-relation-lift provider fieldに分け、W894でW893 leavesへ戻す。Lean上ではW894で再構成したrelation dataがW1507側のbundled W717 relation dataと一致し、W894 concrete leavesがW893 projectionへ委譲することを確認した。入力数は74のまま保持される。これはrelation fields comparison routeへの非終端接続であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
 
+2026-05-31T20:45:30Z時点で、W1509として`W987TargetSurjectiveCompactFieldsComparisonGuardW1509.lean`を追加した。W1509はW1508/W1498 surfaceをW895 explicit target-surjective-compact fields comparison routeへ渡す。W1508で得たW894 relation-field leavesのW715 target dataをtarget-difference-surjectivity fieldとtarget-codomain-compactness fieldに分け、W895でW894 leavesへ戻す。Lean上ではW895で再構成したtarget dataがW1508側のbundled W715 target dataと一致し、W895 concrete leavesがW894 projectionへ委譲することを確認した。入力数は74のまま保持される。これはtarget-surjective-compact fields comparison routeへの非終端接続であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。

@@ -186,4 +186,6 @@ W1507 feeds the W1506/W1498 surface through the W893 explicit WPP boundary-field
 
 W1508 feeds the W1507/W1498 surface through the W894 explicit closed-natural-transformation relation-fields comparison route. It splits W1507's bundled W717 relation data into relation-pullback and target-relation-lift fields, feeds those fields through W894, proves the rebuilt W894 relation data matches W1507's bundled W717 relation data, records the W894-to-W893 concrete-leaf delegation, preserves the 74-input ledger, and keeps product success false.
 
+W1509 feeds the W1508/W1498 surface through the W895 explicit target-surjective-compact fields comparison route. It splits W1508's bundled W715 target data into target-difference-surjectivity and target-codomain-compactness fields, feeds those fields through W895, proves the rebuilt W895 target data matches W1508's bundled W715 target data, records the W895-to-W894 concrete-leaf delegation, preserves the 74-input ledger, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
