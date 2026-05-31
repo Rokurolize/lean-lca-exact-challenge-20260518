@@ -162,4 +162,6 @@ W1495 refines the W1494 surface by reassembling its source pretriangulated, sour
 
 W1496 refines the W1495 surface by carrying the constructed W722 source-triangulation provider into W724 source-homological-triangulation data through the existing W855/W821 comparison-bijectivity route. This records that `CategoryWithHomology MetrizableLCA` is supplied by the comparison-bijectivity theorem rather than a new caller input, proves the W724 projection returns to the W1495 source-triangulation data and the W1477-side data, preserves the 74-input ledger, and keeps product success false.
 
+W1497 connects the W1496/W1495 surface back to the existing W987 stable ExactAt route by feeding W1495's constructed W987 full-data provider into the W987 endpoint strict-exactness, unit mapping-cone strict-exactness, unit mapping-cone isomorphism, direct bounded-left-calculus, and bounded-derived infinity category packages. It proves the full-data provider still projects to W1495's boundary/relation data and W986 target/closedness/normalized-source/endpoint data, preserves the 74-input ledger, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.

@@ -209,6 +209,8 @@ git diff --check
 
 2026-05-31T16:53:33Z時点で、W1496として`W987SourceHomologicalTriangulationDataConstructionGuardW1496.lean`を追加した。W1496はW1495で構成したW722 source-triangulation providerを、W855/W821 comparison-bijectivity経路で与えられる`CategoryWithHomology MetrizableLCA` providerと合わせてW724 source-homological-triangulation dataへ運ぶ。Lean上ではW724 projectionがW1495のW722 providerへ戻ること、W1477側のW724 dataも同じsource-triangulation dataへ戻ること、caller-supplied homology inputを追加せずにW855のhomology providerを使うことを確認した。入力数は74のままで、これはpositive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
 
+2026-05-31T17:14:58Z時点で、W1497として`W987StableExactAtRouteConnectionGuardW1497.lean`を追加した。W1497はW1496/W1495 surfaceからW1495で構成したW987 full-data providerを取り出し、既存のW987 stable ExactAt routeに渡してendpoint strict exactness、unit mapping-cone strict exactness、unit mapping-cone isomorphism nonemptiness、direct bounded-left-calculus、bounded derived infinity category packageへ接続する。Lean上ではW987 full-data providerがW1495のboundary/relation dataとW986 target/closedness/normalized-source/endpoint dataへ戻ること、入力数が74のまま保たれることを確認した。これは既存のstable ExactAt routeへの非終端接続であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
