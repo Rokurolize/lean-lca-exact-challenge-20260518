@@ -1,0 +1,293 @@
+import LeanLCAExactChallenge.Derived.W987FixedTargetUniqFieldDataConstructionGuardW1494
+
+/-!
+W1495 carries the current W987 surface's source-triangulation fields back into
+the explicit W722 source-triangulation provider used by earlier routes, while
+preserving W1494's fixed-target uniqueness, endpoint, unit mapping-cone,
+selected-difference, mapped-cokernel, target-surjectivity, target-compactness,
+localized right-adjoint, and normalized-lift splits.
+-/
+
+set_option autoImplicit false
+set_option linter.style.longLine false
+
+namespace LeanLCAExactChallenge
+
+open CategoryTheory
+open CategoryTheory.Limits
+open Topology
+open DirectWppLimitFiniteShapeTransfer
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpSelectedW461TransportedPointIsoProviderV370SupportW506
+open WppOpClosedNatTransOrdinaryRelationTopologyV370SupportW511
+open WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512
+open WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+open WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484
+open WppOpClosedRangeMappedCokernelPreservationV370SupportW519
+
+namespace Dbounded
+
+noncomputable section
+
+/-- W1495 reuses W1494's 74-field constructor surface. -/
+abbrev W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputW1495 :
+    Type 2 :=
+  W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataConstructionInputW1494
+
+/-- W1495 views its input as the W1494 input consumed by the previous guard. -/
+def w1494InputOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputW1495) :
+    W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataConstructionInputW1494 :=
+  input
+
+/-- W1495 assembles the W722 source-triangulation provider from three fields. -/
+def sourceTriangulationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputW1495) :
+    MetrizableWppSourceTriangulationDataProviderW722 where
+  sourcePretriangulated := input.sourcePretriangulated
+  sourceTriangulated := input.sourceTriangulated
+  triangleCompletion := input.triangleCompletion
+
+/--
+W1495 also assembles W722 from the W1477 input produced by the W1494 route, so
+the latest route can be checked at the W1477 boundary.
+-/
+def sourceTriangulationDataOfW1477InputW1495
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputW1495) :
+    MetrizableWppSourceTriangulationDataProviderW722 where
+  sourcePretriangulated :=
+    (w1477InputOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataW1494
+      input).sourcePretriangulated
+  sourceTriangulated :=
+    (w1477InputOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataW1494
+      input).sourceTriangulated
+  triangleCompletion :=
+    (w1477InputOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataW1494
+      input).triangleCompletion
+
+/-- W1495's constructed W722 provider keeps the source pretriangulated field. -/
+theorem w1495SourceTriangulationDataKeepsSourcePretriangulated
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputW1495) :
+    sourcePretriangulated_of_sourceTriangulationDataW722
+        (sourceTriangulationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+          input) =
+      input.sourcePretriangulated :=
+  rfl
+
+/-- W1495's constructed W722 provider keeps the source triangulated field. -/
+theorem w1495SourceTriangulationDataKeepsSourceTriangulated
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputW1495) :
+    sourceTriangulated_of_sourceTriangulationDataW722
+        (sourceTriangulationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+          input) =
+      input.sourceTriangulated :=
+  rfl
+
+/-- W1495's constructed W722 provider keeps the triangle-completion field. -/
+theorem w1495SourceTriangulationDataKeepsTriangleCompletion
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputW1495) :
+    triangleCompletion_of_sourceTriangulationDataW722
+        (sourceTriangulationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+          input) =
+      input.triangleCompletion :=
+  rfl
+
+/-- W1495 builds the W1477 input through W1494. -/
+def w1477InputOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputW1495) :
+    W987BoundaryRelationTargetStrictPreimageMapImageFieldDataConstructionInputW1477 :=
+  w1477InputOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataW1494
+    (w1494InputOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+      input)
+
+/-- W1495's W1477 input keeps the source pretriangulated field. -/
+theorem w1495W1477InputKeepsSourcePretriangulated
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputW1495) :
+    (w1477InputOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+        input).sourcePretriangulated =
+      input.sourcePretriangulated :=
+  rfl
+
+/-- W1495's W1477 input keeps the source triangulated field. -/
+theorem w1495W1477InputKeepsSourceTriangulated
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputW1495) :
+    (w1477InputOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+        input).sourceTriangulated =
+      input.sourceTriangulated :=
+  rfl
+
+/-- W1495's W1477 input keeps the triangle-completion field. -/
+theorem w1495W1477InputKeepsTriangleCompletion
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputW1495) :
+    (w1477InputOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+        input).triangleCompletion =
+      input.triangleCompletion :=
+  rfl
+
+/-- W1495's W1477 boundary keeps the constructed W722 source-triangulation data. -/
+theorem w1495W1477InputKeepsConstructedSourceTriangulationData
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputW1495) :
+    sourceTriangulationDataOfW1477InputW1495 input =
+      sourceTriangulationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+        input :=
+  rfl
+
+/-- W1495 builds W945 localized-unit data through W1494. -/
+def localizedUnitDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputW1495) :
+    BoundedHomotopyLocalizedEndpointStrictExactUnitComponentsProviderW945 :=
+  localizedUnitDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataW1494
+    input
+
+/-- W1495 builds W730 boundary/relation data through W1494. -/
+def boundaryRelationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputW1495) :
+    MetrizableWppBoundaryRelationDataProviderW730 :=
+  boundaryRelationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataW1494
+    input
+
+/-- W1495 builds W986 target/endpoint data through W1494. -/
+def targetNormalizedEndpointDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputW1495) :
+    TargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataProviderW986 :=
+  targetNormalizedEndpointDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataW1494
+    input
+
+/-- W1495 builds W987 full data through W1494. -/
+noncomputable def fullDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputW1495) :
+    BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataProviderW987 :=
+  fullDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataW1494
+    input
+
+/-- W1495 records the current 74-field constructor ledger. -/
+def w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputNamesW1495 :
+    List String :=
+  w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataConstructionInputNamesW1494
+
+theorem w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputNamesW1495_count :
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputNamesW1495.length =
+      74 := by
+  simpa [
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputNamesW1495]
+    using
+      w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataConstructionInputNamesW1494_count
+
+/-- W1495 records the bundled W722 source-triangulation input. -/
+def w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionBundledSourceTriangulationInputNamesW1495 :
+    List String :=
+  ["W722 source-triangulation data provider"]
+
+theorem w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionBundledSourceTriangulationInputNamesW1495_count :
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionBundledSourceTriangulationInputNamesW1495.length =
+      1 :=
+  rfl
+
+/-- W1495 records the three component source-triangulation fields. -/
+def w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionComponentSourceTriangulationInputNamesW1495 :
+    List String :=
+  ["source pretriangulated structure",
+    "source triangulated structure",
+    "source triangle-completion input"]
+
+theorem w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionComponentSourceTriangulationInputNamesW1495_count :
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionComponentSourceTriangulationInputNamesW1495.length =
+      3 :=
+  rfl
+
+/-- W1495 expands the bundled W722 source-triangulation provider into three fields. -/
+theorem w1495BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataConstructionSplitsSourceTriangulationInput :
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionBundledSourceTriangulationInputNamesW1495.length <
+      w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionComponentSourceTriangulationInputNamesW1495.length := by
+  rw [
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionBundledSourceTriangulationInputNamesW1495_count,
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionComponentSourceTriangulationInputNamesW1495_count]
+  decide
+
+/-- W1495 preserves the W1494 input count while naming the source-triangulation provider. -/
+theorem w1495BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataConstructionPreservesW1494InputCount :
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataConstructionInputNamesW1494.length =
+      w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputNamesW1495.length := by
+  rw [
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataConstructionInputNamesW1494_count,
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputNamesW1495_count]
+
+/-- Current W1495 nonterminal source-triangulation construction state. -/
+structure W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionStateW1495 :
+    Type where
+  seed : String
+  declarations : List String
+  constructionResult : String
+  projectionResult : String
+  sourceTriangulationInputNames : List String
+  componentSourceTriangulationInputNames : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- W1495 records the source-triangulation provider packaging path. -/
+def currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionStateW1495 :
+    W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionStateW1495 where
+  seed :=
+    "w1495-w987-boundary-relation-target-strict-preimage-object-image-right-adjoint-target-compactness-mapped-cokernel-pi1-pi2-pi3-source-triangulation-field-data-construction"
+  declarations :=
+    ["W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputW1495",
+      "sourceTriangulationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495",
+      "sourceTriangulationDataOfW1477InputW1495",
+      "w1495SourceTriangulationDataKeepsSourcePretriangulated",
+      "w1495SourceTriangulationDataKeepsSourceTriangulated",
+      "w1495SourceTriangulationDataKeepsTriangleCompletion",
+      "w1477InputOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495",
+      "w1495W1477InputKeepsSourcePretriangulated",
+      "w1495W1477InputKeepsSourceTriangulated",
+      "w1495W1477InputKeepsTriangleCompletion",
+      "w1495W1477InputKeepsConstructedSourceTriangulationData",
+      "localizedUnitDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495",
+      "boundaryRelationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495",
+      "targetNormalizedEndpointDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495",
+      "fullDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495",
+      "w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputNamesW1495_count",
+      "w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionBundledSourceTriangulationInputNamesW1495_count",
+      "w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionComponentSourceTriangulationInputNamesW1495_count",
+      "w1495BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataConstructionSplitsSourceTriangulationInput",
+      "w1495BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataConstructionPreservesW1494InputCount"]
+  constructionResult :=
+    "proved: W1495 constructs the W722 source-triangulation provider from the\
+      source pretriangulated, source triangulated, and source triangle-completion\
+      fields carried by the W1494 surface"
+  projectionResult :=
+    "proved: the constructed W722 source-triangulation provider and the W1477\
+      input produced through W1494 project back to the same three source fields;\
+      product success is still not claimed"
+  sourceTriangulationInputNames :=
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionBundledSourceTriangulationInputNamesW1495
+  componentSourceTriangulationInputNames :=
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionComponentSourceTriangulationInputNamesW1495
+  remainingInputs :=
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionInputNamesW1495
+  productSuccessClaimed := false
+
+theorem currentW1495W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstruction_productSuccess :
+    currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataConstructionStateW1495.productSuccessClaimed =
+      false :=
+  rfl
+
+end
+
+end Dbounded
+
+end LeanLCAExactChallenge
