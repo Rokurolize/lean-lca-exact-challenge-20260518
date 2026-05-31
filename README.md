@@ -128,4 +128,6 @@ W1478 refines the W1477 construction by replacing the normalized lift object-ima
 
 W1479 refines the W1478 surface by making the localized right-adjoint functor package explicit as object map, morphism map, identity law, and composition law fields while preserving the W1478 object-image split. It reconstructs the functor package, feeds the resulting data through the W1477 route, and keeps product success false because the remaining inputs are still assumed data rather than a positive `OriginalFourTaskProductSuccess` witness.
 
+W1480 refines the W1479 surface by replacing the target-difference surjectivity primitive family with an explicit preimage chooser and preimage equation family. It reconstructs the surjectivity primitive from those witness fields, feeds the resulting data through the W1477 route while preserving the object-image and right-adjoint splits, and keeps product success false because the remaining inputs are still assumed data rather than a positive `OriginalFourTaskProductSuccess` witness.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
