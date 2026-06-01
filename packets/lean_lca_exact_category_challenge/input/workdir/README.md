@@ -22,7 +22,7 @@ is a starting point, not a solution.
 
 ## Current Status
 
-The W1426 product-success metadata was reopened as a false positive under the positive-witness recovery contract. Current terminal metadata is `nonterminal_recovery_baseline`: product success is false, the W1425/W1426 `originalFourTaskContractCompletion` surface still proves `productSuccessClaimed = false`, and the repository now requires a positive Lean-native `OriginalFourTaskProductSuccess`-style witness before product success may be claimed.
+The W1426 product-success metadata was reopened as a false positive under the positive-witness recovery contract. Current terminal metadata is `mathematical_frontier_nonterminal`: product success is false, the `originalFourTaskContractCompletion` surface still proves `productSuccessClaimed = false`, and the repository now requires a positive Lean-native `OriginalFourTaskProductSuccess`-style witness before product success may be claimed.
 
 W1424 adds a checked nonterminal bridge from the W982 localized-unit-choice provider through the existing W1164/W1163 unit-strict-exact route into the closed-map stable package, and wires that bridge into the original-four audit surface without changing the final false product-success flag.
 
@@ -249,5 +249,7 @@ W1538 compares the W1537 typeclass-route packages with the W1533 direct-source p
 W1539 compares the legacy semantic-input adapter with the W1537 typeclass-route packages. It turns W1537 direct-source stable instance facts into `MetrizableOrdinaryStableSemanticInput`, proves the semantic adapter has ready accepted certificate evidence, and proves the resulting package is definitionally the same as the W1537 typeclass package, the W1533 direct package, and the W1534 accepted package on both branches. The 74-input ledger is preserved and product success remains false.
 
 W1540 compares the W1534 stable-certificate route with the W1539 semantic-adapter route. It proves that the W1539 semantic input, accepted evidence, certificate, package, and reprojected fields are definitionally the same as the corresponding W1534 stable-certificate and W1535 accepted-projection objects on both branches. The 74-input ledger is preserved and product success remains false.
+
+W1541 brings the final nonterminal `OriginalFourTaskContractCompletion` surface forward to W1540. It records the W1540 74-input count, the W1539-to-W1540 count preservation, the 10 named certificate/semantic-adapter comparison facts, and the W1540 `productSuccessClaimed = false` proof directly on the final completion structure. This is a final-surface bookkeeping catch-up, not a positive `OriginalFourTaskProductSuccess` witness, so product success remains false.
 
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
