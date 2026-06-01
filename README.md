@@ -240,4 +240,6 @@ W1534 packages the W1533 W829 direct-source stable fields as explicit W528-style
 
 W1535 unpacks the W1534 accepted stable bounded-derived packages into concrete field-level projections of `BoundedDerivedInfinityCategory`. It exposes the carrier equality, finite-limit and finite-colimit fields, and pretriangulated and triangulated fields on both branches, preserves the 74-input ledger, and keeps product success false.
 
+W1536 compares the W1535 accepted-package projections with the W1533 direct-source stable package. It proves the W1534 accepted package erases to the W1533 direct package and exposes matching direct-source projection facts for carrier equality, finite limits, finite colimits, pretriangulated structure, and triangulated structure on both branches, preserves the 74-input ledger, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
