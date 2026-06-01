@@ -1,24 +1,24 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-06-01T14:56:51Z",
-  "git_head": "70cccb90239d720a70efa7b1ada625d0ff0d9273",
-  "source_tree_hash": "bbc9adddba21fcdfd54967e309d4fdabf17e6c3c311449963d68a45b29e976d9",
+  "generated_utc": "2026-06-01T15:11:32Z",
+  "git_head": "c75eda88eb222e3a4f9e35cf424a8942076dd7f7",
+  "source_tree_hash": "6c288c397feba14252ef748a902d5d55359dbf61c76531ad99b0f89542422ee1",
   "outcome": "mathematical_frontier_nonterminal",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W1564 exposes W1497 stable ExactAt route-connection evidence on the final OriginalFourTaskContractCompletion surface: the W1497 74-input count, preservation of the W1496 74-input ledger, equality with the W1495 constructed W987 full-data provider, boundary/relation and target-normalized-endpoint projection facts, endpoint strict exactness, unit mapping-cone strict exactness, unit mapping-cone isomorphism nonemptiness, direct bounded-left calculus, the bounded derived infinity-category package, and the nonterminal productSuccessClaimed=false witness. Product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the constructor-input ledger remains nonterminal evidence rather than a completed product proof.",
+  "summary": "W1565 exposes W1498 source-triangulation comparison-leaves evidence on the final OriginalFourTaskContractCompletion surface: the W1498 74-input count, preservation of the W1497 74-input ledger, W715 target-surjective-compact recovery, W725 closed-embedding branch data, W720 endpoint strict-topology reconstruction, assembled W884 comparison leaves, W724 source-homological output, W733 concrete leaves, W732 route data, endpoint strict exactness, direct bounded-left calculus, the bounded derived infinity-category package, W1006 projection equalities back to W1495, W884 source-triangulation equality back to W1495, W884 source-homological equality with W1496, and the nonterminal productSuccessClaimed=false witness. Product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the constructor-input ledger remains nonterminal evidence rather than a completed product proof.",
   "positive_witness_declarations": [],
   "reference_route_log": "docs/research/reference_route_log.md",
   "known_gaps": [
     "Positive Lean witness is absent: ProductSuccessDeclarations.lean does not import or check an OriginalFourTaskProductSuccess surface with field-level evidence for the original four-task contract.",
-    "Final imported completion surface remains nonterminal: originalFourTaskContractCompletion.productSuccessClaimed = false still compiles, now with W1564/W1563/W1562/W1561/W1560/W1559/W1558/W1557/W1556/W1555/W1554/W1553/W1552/W1551/W1550/W1549/W1548/W1547/W1546/W1545/W1544/W1543/W1542 fields exposing intermediate W987 and W1539/W1540 route evidence on the final surface.",
-    "W1564 exposes W1497 stable ExactAt route-connection evidence on the final nonterminal surface, but it still records a constructor-input ledger rather than constructing all inputs from independent mathematical data.",
+    "Final imported completion surface remains nonterminal: originalFourTaskContractCompletion.productSuccessClaimed = false still compiles, now with W1565/W1564/W1563/W1562/W1561/W1560/W1559/W1558/W1557/W1556/W1555/W1554/W1553/W1552/W1551/W1550/W1549/W1548/W1547/W1546/W1545/W1544/W1543/W1542 fields exposing intermediate W987 and W1539/W1540 route evidence on the final surface.",
+    "W1565 exposes W1498 source-triangulation comparison-leaves evidence on the final nonterminal surface, but it still records a constructor-input ledger rather than constructing all inputs from independent mathematical data.",
     "Original four mathematical tasks remain open under the positive-witness supplement; the current route still relies on constructor-field ledgers and stable-route comparison wrappers rather than a positive product witness."
   ],
   "remaining_work": [
-    "Discharge the W1564/W1563/W1562/W1561/W1560/W1559/W1558/W1557/W1556/W1555/W1554/W1553/W1552/W1551/W1550/W1549/W1548/W1547/W1546/W1545/W1544/W1543/W1542/W1541/W1540/W1539 route inputs and remaining W987 constructor inputs, or replace the field-ledger route with an explicit positive witness satisfying the positive-witness supplement.",
+    "Discharge the W1565/W1564/W1563/W1562/W1561/W1560/W1559/W1558/W1557/W1556/W1555/W1554/W1553/W1552/W1551/W1550/W1549/W1548/W1547/W1546/W1545/W1544/W1543/W1542/W1541/W1540/W1539 route inputs and remaining W987 constructor inputs, or replace the field-ledger route with an explicit positive witness satisfying the positive-witness supplement.",
     "Continue Lean implementation toward a positive OriginalFourTaskProductSuccess-style declaration backed by actual exact-category, metrizable LCA exact-category, Yoneda-Ext, and bounded derived infinity-category constructions.",
     "Before any product-success claim, rerun the source-contradiction gate, negative fixtures, clean checkout verification, root external audit, and clean-extracted packet audit."
   ],
@@ -30,7 +30,7 @@
     "lake env lean audit/RequiredDeclarations.lean",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
-    "lake env lean LeanLCAExactChallenge/Derived/W987StableExactAtRouteConnectionGuardW1497.lean",
+    "lake env lean LeanLCAExactChallenge/Derived/W987SourceTriangulationComparisonLeavesGuardW1498.lean",
     "lake env lean LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean",
     "lake env lean LeanLCAExactChallenge.lean",
     "PYTHONDONTWRITEBYTECODE=1 python3 -m py_compile audit/external_audit.py audit/original_four_task_contract_audit.py packets/lean_lca_exact_category_challenge/external_audit.py",
@@ -41,7 +41,7 @@
     "PYTHONDONTWRITEBYTECODE=1 python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
     "PYTHONDONTWRITEBYTECODE=1 python3 packets/lean_lca_exact_category_challenge/external_audit.py --root packets/lean_lca_exact_category_challenge --terminal-outcome terminal_outcome/terminal_outcome.json",
     "(cd packets && sha256sum -c lean_lca_exact_category_challenge.zip.sha256)",
-    "python3 /home/roku/.agents/skills/clean-review-packet/scripts/packet_audit.py --packet-root /tmp/lean_lca_w1564_clean/lean_lca_exact_category_challenge --zip packets/lean_lca_exact_category_challenge.zip --sha256-sidecar packets/lean_lca_exact_category_challenge.zip.sha256 --require README_FOR_REVIEW.md --require manifest.json"
+    "python3 /home/roku/.agents/skills/clean-review-packet/scripts/packet_audit.py --packet-root /tmp/lean_lca_w1565_clean/lean_lca_exact_category_challenge --zip packets/lean_lca_exact_category_challenge.zip --sha256-sidecar packets/lean_lca_exact_category_challenge.zip.sha256 --require README_FOR_REVIEW.md --require manifest.json"
   ],
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256"
