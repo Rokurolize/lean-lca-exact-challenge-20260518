@@ -214,4 +214,6 @@ W1521 connects the W1520 W987 surface to the existing W1373 W872-to-W870 branch-
 
 W1522 connects the W1521 W987 surface to the existing W1372 W870/W869/W868 selected-cochain convergence guard. It builds the W850/W849 selected-cochain direct-source W847 data from the W1521 W870 exact-input branches, records the W870-to-W869 specialization through the W831 universal comparison isomorphism, composes both closed-map and closed-embedding direct-calculus and stable-package paths through W869 and W868, preserves the 74-input ledger, and keeps product success false.
 
+W1523 connects the W1522 W987 surface to the existing W1371 W847-to-W846 and W868-to-W867 strict-realization convergence guard. It names the W846 strict-realization data induced by the W1522 W847 selected-cochain data, records preservation of the W1521 W870 exact-input branches and W847-selected triangle realization, composes the W1519/W1522 direct-calculus and stable-package paths through W867 on both closed-map and closed-embedding branches, preserves the 74-input ledger, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
