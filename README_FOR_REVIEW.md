@@ -333,6 +333,8 @@ git diff --check
 
 2026-06-01T12:58:33Zに、W1558としてW1491のendpoint kernel-equality constructor-refinement evidenceを最終surfaceへ追加した。W1491の74入力count、selected-difference pi1/pi2/pi3、object-image/right-adjoint/target-surjectivity/target-compactness/mapped-cokernel/endpoint closed-embedding/endpoint cokernel-top/unit mapping-cone closed-embedding/unit mapping-cone cokernel-top/unit mapping-cone kernel-equality component splitの保持、endpoint kernel-equality inputをforward implication fieldとbackward implication fieldへ分けるsplit、W1490/W1477からのexpansion proof、`productSuccessClaimed = false` witnessを`originalFourTaskContractCompletion_branchFullDataW987EndpointKernelEquality...W1558`定理として露出させた。`audit/ProductSuccessDeclarations.lean`と`audit/OriginalFourTaskCompletionDeclarations.lean`にも同じ32定理の`#check`を追加した。これはW1491までのfinal surfaceをLean上の構成証拠で埋める非終端更新だが、constructor input ledgerをpositive witnessへ変換するものではなく、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
 
+2026-06-01T13:25:36Zに、W1559としてW1492のendpoint open-map constructor-refinement evidenceを最終surfaceへ追加した。W1492の74入力count、endpoint open-mapをimage-openness fieldとして展開したcomponent ledger、そのbundled endpoint open-map familyとcomponent ledgerの同数性、W1491の74入力ledgerを保つproof、W1490/W1477からのexpansion proof、`productSuccessClaimed = false` witnessを`originalFourTaskContractCompletion_branchFullDataW987EndpointOpenMap...W1559`定理として露出させた。`audit/ProductSuccessDeclarations.lean`と`audit/OriginalFourTaskCompletionDeclarations.lean`にも同じ7定理の`#check`を追加した。これはW1492 endpoint open-map reconstructionをfinal surfaceから参照できるようにする非終端更新だが、constructor input ledgerをpositive witnessへ変換するものではなく、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
