@@ -242,4 +242,6 @@ W1535 unpacks the W1534 accepted stable bounded-derived packages into concrete f
 
 W1536 compares the W1535 accepted-package projections with the W1533 direct-source stable package. It proves the W1534 accepted package erases to the W1533 direct package and exposes matching direct-source projection facts for carrier equality, finite limits, finite colimits, pretriangulated structure, and triangulated structure on both branches, preserves the 74-input ledger, and keeps product success false.
 
+W1537 arranges the W1536 direct-source projections as the stable instance-family facts required by the typeclass route `boundedDerivedInfinityCategoryOfMetrizableStableInstances`. It exposes preadditive, finite-limit, finite-colimit, zero-object, shift-additive, pretriangulated, and triangulated evidence and builds a typeclass-route bounded-derived package on both branches, preserves the 74-input ledger, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
