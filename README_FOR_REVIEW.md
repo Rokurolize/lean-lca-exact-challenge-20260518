@@ -309,6 +309,8 @@ git diff --check
 
 2026-06-01T09:32:20Zに、W1546としてW1539 semantic-adapter routeのready/accepted証拠を最終surfaceへ追加した。closed-map branchとclosed-embedding branchのそれぞれについて、semantic-adapter certificateがreadyであること、および対応する`StableRouteAttempt.accepted`が`true`を返すことを`originalFourTaskContractCompletion`上のfieldと定理として確認する。これは現在のstable route evidenceをLean上で直接読めるようにする更新だが、routeは引き続きW987の74入力ledgerに依存しており、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
 
+2026-06-01T09:47:02Zに、W1547としてW1478/W1479のconstructor-refinement evidenceを最終surfaceへ追加した。W1478のobject-image split、W1479のright-adjoint functor split、それぞれの62入力count、W1477からのexpansion proof、`productSuccessClaimed = false` witnessを`originalFourTaskContractCompletion_branchFullDataW987StrictPreimageObjectImage...W1547`定理として露出させた。`audit/ProductSuccessDeclarations.lean`と`audit/OriginalFourTaskCompletionDeclarations.lean`にも同じ13定理の`#check`を追加した。これはW1477からW1540へ飛んでいたfinal surfaceの間を実際のLean構成証拠で埋める非終端更新だが、W987のconstructor input ledgerを解消するものではなく、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
