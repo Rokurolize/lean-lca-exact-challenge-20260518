@@ -1,0 +1,382 @@
+import LeanLCAExactChallenge.Derived.W987ClosedEmbeddingEndpointHomologyFreeComparisonConcreteLeavesConvergenceGuardW1517
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataConcreteLeavesSelectedCochainStableConvergenceFieldSplitGuardW1376
+
+/-!
+W1518 specializes the W1517 W987 comparison concrete-leaves convergence surface
+to the existing W1376 selected-cochain concrete-leaves guard. W1517 reaches the
+W879/W878 branch boundary; W1518 records the W878-to-W877/W855 and
+W877-to-W875 delegations on both closed-map and closed-embedding branches.
+-/
+
+set_option autoImplicit false
+set_option linter.style.longLine false
+
+namespace LeanLCAExactChallenge
+
+open CategoryTheory
+open CategoryTheory.Limits
+open WppOpClosedRangeMappedCokernelPreservationV370SupportW519
+
+namespace Dbounded
+
+noncomputable section
+
+/-- W1518 reuses the W1517 comparison concrete-leaves convergence surface. -/
+abbrev W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputW1518 :
+    Type 2 :=
+  W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3ComparisonConcreteLeavesConvergenceInputW1517
+
+/-- W1518 exposes the same direct bounded left calculus proof as W1517. -/
+theorem directBoundedLeftCalculusOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputW1518) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+  directBoundedLeftCalculusOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3ComparisonConcreteLeavesConvergenceW1517
+    input
+
+/-- W1518 exposes the same bounded derived infinity-category package as W1517. -/
+def boundedDerivedInfinityCategoryOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputW1518) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedInfinityCategoryOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3ComparisonConcreteLeavesConvergenceW1517
+    input
+
+/-- W1518 closed-map W847 selected-cochain data from the W1517 W853 branch. -/
+def closedMapSelectedCochainDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputW1518)
+    (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+    (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519) :
+    MetrizableClosedMapExactAcyclicSelectedCochainDirectSourceStableRouteDataW847 :=
+  closedMapSelectedCochainDataOfComparisonW879
+    (closedMapExactInputsOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3ComparisonConcreteLeavesConvergenceW1517
+      input globalClosedMapComponents mappedCokernelClosedMapProvider)
+
+/-- W1518 closed-embedding W847 selected-cochain data from the W1517 W853 branch. -/
+def closedEmbeddingSelectedCochainDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputW1518)
+    (globalClosedEmbeddingComponents :
+      SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+    (mappedCokernelClosedEmbeddingProvider :
+      MappedExplicitCokernelClosedEmbeddingProviderW519) :
+    MetrizableClosedEmbeddingExactAcyclicSelectedCochainDirectSourceStableRouteDataW847 :=
+  closedEmbeddingSelectedCochainDataOfComparisonW879
+    (closedEmbeddingExactInputsOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3ComparisonConcreteLeavesConvergenceW1517
+      input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider)
+
+/-- W1518 closed-map W733 concrete leaves from the W1517 selected-cochain branch. -/
+def concreteLeavesOfClosedMapSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputW1518)
+    (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+    (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519) :
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733 :=
+  concreteLeavesOfClosedMapSelectedCochainDirectSourceW878
+    (closedMapSelectedCochainDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+      input globalClosedMapComponents mappedCokernelClosedMapProvider)
+
+/-- W1518 closed-embedding W733 concrete leaves from the W1517 selected-cochain branch. -/
+def concreteLeavesOfClosedEmbeddingSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputW1518)
+    (globalClosedEmbeddingComponents :
+      SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+    (mappedCokernelClosedEmbeddingProvider :
+      MappedExplicitCokernelClosedEmbeddingProviderW519) :
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733 :=
+  concreteLeavesOfClosedEmbeddingSelectedCochainDirectSourceW878
+    (closedEmbeddingSelectedCochainDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+      input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider)
+
+/-- W1518 closed-map branch specializes W1376's W878-to-W855 concrete-leaf step. -/
+theorem w1518ClosedMapConcreteLeavesRunsThroughW855W1376
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputW1518)
+    (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+    (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519) :
+    concreteLeavesOfClosedMapSelectedCochainDirectSourceW878
+        (closedMapSelectedCochainDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+          input globalClosedMapComponents mappedCokernelClosedMapProvider) =
+      closedMapConcreteLeavesOfComparisonBijectivityW855
+        (closedMapSelectedCochainDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+          input globalClosedMapComponents mappedCokernelClosedMapProvider).exactInputs :=
+  w878ClosedMapConcreteLeavesRunsThroughW855W1376
+    (closedMapSelectedCochainDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+      input globalClosedMapComponents mappedCokernelClosedMapProvider)
+
+/-- W1518 closed-embedding branch specializes W1376's W878-to-W855 concrete-leaf step. -/
+theorem w1518ClosedEmbeddingConcreteLeavesRunsThroughW855W1376
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputW1518)
+    (globalClosedEmbeddingComponents :
+      SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+    (mappedCokernelClosedEmbeddingProvider :
+      MappedExplicitCokernelClosedEmbeddingProviderW519) :
+    concreteLeavesOfClosedEmbeddingSelectedCochainDirectSourceW878
+        (closedEmbeddingSelectedCochainDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+          input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider) =
+      closedEmbeddingConcreteLeavesOfComparisonBijectivityW855
+        (closedEmbeddingSelectedCochainDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+          input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider).exactInputs :=
+  w878ClosedEmbeddingConcreteLeavesRunsThroughW855W1376
+    (closedEmbeddingSelectedCochainDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+      input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider)
+
+/-- W1518 closed-map branch specializes W1376's W878-to-W877 direct-calculus step. -/
+theorem w1518ClosedMapDirectCalculusRunsThroughW877W1376
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputW1518)
+    (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+    (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519) :
+    directBoundedLeftCalculusOfClosedMapSelectedCochainConcreteLeavesStableExactAtW878
+        (closedMapSelectedCochainDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+          input globalClosedMapComponents mappedCokernelClosedMapProvider) =
+      directBoundedLeftCalculusOfConcreteLeavesSelectedCochainStableExactAtW877
+        (concreteLeavesOfClosedMapSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+          input globalClosedMapComponents mappedCokernelClosedMapProvider) :=
+  w878ClosedMapDirectCalculusRunsThroughW877W1376
+    (closedMapSelectedCochainDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+      input globalClosedMapComponents mappedCokernelClosedMapProvider)
+
+/-- W1518 closed-embedding branch specializes W1376's W878-to-W877 direct-calculus step. -/
+theorem w1518ClosedEmbeddingDirectCalculusRunsThroughW877W1376
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputW1518)
+    (globalClosedEmbeddingComponents :
+      SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+    (mappedCokernelClosedEmbeddingProvider :
+      MappedExplicitCokernelClosedEmbeddingProviderW519) :
+    directBoundedLeftCalculusOfClosedEmbeddingSelectedCochainConcreteLeavesStableExactAtW878
+        (closedEmbeddingSelectedCochainDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+          input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider) =
+      directBoundedLeftCalculusOfConcreteLeavesSelectedCochainStableExactAtW877
+        (concreteLeavesOfClosedEmbeddingSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+          input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider) :=
+  w878ClosedEmbeddingDirectCalculusRunsThroughW877W1376
+    (closedEmbeddingSelectedCochainDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+      input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider)
+
+/-- W1518 closed-map branch specializes W1376's W878-to-W877 stable-package step. -/
+theorem w1518ClosedMapStablePackageRunsThroughW877W1376
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputW1518)
+    (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+    (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519) :
+    boundedDerivedInfinityCategoryOfClosedMapSelectedCochainConcreteLeavesStableExactAtW878
+        (closedMapSelectedCochainDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+          input globalClosedMapComponents mappedCokernelClosedMapProvider) =
+      boundedDerivedInfinityCategoryOfConcreteLeavesSelectedCochainStableExactAtW877
+        (concreteLeavesOfClosedMapSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+          input globalClosedMapComponents mappedCokernelClosedMapProvider) :=
+  w878ClosedMapStablePackageRunsThroughW877W1376
+    (closedMapSelectedCochainDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+      input globalClosedMapComponents mappedCokernelClosedMapProvider)
+
+/-- W1518 closed-embedding branch specializes W1376's W878-to-W877 stable-package step. -/
+theorem w1518ClosedEmbeddingStablePackageRunsThroughW877W1376
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputW1518)
+    (globalClosedEmbeddingComponents :
+      SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+    (mappedCokernelClosedEmbeddingProvider :
+      MappedExplicitCokernelClosedEmbeddingProviderW519) :
+    boundedDerivedInfinityCategoryOfClosedEmbeddingSelectedCochainConcreteLeavesStableExactAtW878
+        (closedEmbeddingSelectedCochainDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+          input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider) =
+      boundedDerivedInfinityCategoryOfConcreteLeavesSelectedCochainStableExactAtW877
+        (concreteLeavesOfClosedEmbeddingSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+          input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider) :=
+  w878ClosedEmbeddingStablePackageRunsThroughW877W1376
+    (closedEmbeddingSelectedCochainDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+      input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider)
+
+/-- W1518 closed-map concrete-leaf route data is the W733 route-data constructor. -/
+theorem w1518ClosedMapRouteDataProviderRunsThroughW733W1376
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputW1518)
+    (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+    (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519) :
+    routeDataProviderOfConcreteLeavesW877
+        (concreteLeavesOfClosedMapSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+          input globalClosedMapComponents mappedCokernelClosedMapProvider) =
+      boundaryRelationTargetClosednessNormalizedDataProvider_of_concreteLeavesW733
+        (concreteLeavesOfClosedMapSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+          input globalClosedMapComponents mappedCokernelClosedMapProvider) :=
+  w877RouteDataProviderRunsThroughW733W1376
+    (concreteLeavesOfClosedMapSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+      input globalClosedMapComponents mappedCokernelClosedMapProvider)
+
+/-- W1518 closed-embedding concrete-leaf route data is the W733 route-data constructor. -/
+theorem w1518ClosedEmbeddingRouteDataProviderRunsThroughW733W1376
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputW1518)
+    (globalClosedEmbeddingComponents :
+      SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+    (mappedCokernelClosedEmbeddingProvider :
+      MappedExplicitCokernelClosedEmbeddingProviderW519) :
+    routeDataProviderOfConcreteLeavesW877
+        (concreteLeavesOfClosedEmbeddingSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+          input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider) =
+      boundaryRelationTargetClosednessNormalizedDataProvider_of_concreteLeavesW733
+        (concreteLeavesOfClosedEmbeddingSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+          input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider) :=
+  w877RouteDataProviderRunsThroughW733W1376
+    (concreteLeavesOfClosedEmbeddingSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+      input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider)
+
+/-- W1518 closed-map W877 direct calculus delegates to W875. -/
+theorem w1518ClosedMapDirectCalculusRunsThroughW875W1376
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputW1518)
+    (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+    (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519) :
+    directBoundedLeftCalculusOfConcreteLeavesSelectedCochainStableExactAtW877
+        (concreteLeavesOfClosedMapSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+          input globalClosedMapComponents mappedCokernelClosedMapProvider) =
+      directBoundedLeftCalculusOfW732SelectedCochainStableExactAtW875
+        (routeDataProviderOfConcreteLeavesW877
+          (concreteLeavesOfClosedMapSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+            input globalClosedMapComponents mappedCokernelClosedMapProvider)) :=
+  w877DirectCalculusRunsThroughW875W1376
+    (concreteLeavesOfClosedMapSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+      input globalClosedMapComponents mappedCokernelClosedMapProvider)
+
+/-- W1518 closed-embedding W877 direct calculus delegates to W875. -/
+theorem w1518ClosedEmbeddingDirectCalculusRunsThroughW875W1376
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputW1518)
+    (globalClosedEmbeddingComponents :
+      SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+    (mappedCokernelClosedEmbeddingProvider :
+      MappedExplicitCokernelClosedEmbeddingProviderW519) :
+    directBoundedLeftCalculusOfConcreteLeavesSelectedCochainStableExactAtW877
+        (concreteLeavesOfClosedEmbeddingSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+          input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider) =
+      directBoundedLeftCalculusOfW732SelectedCochainStableExactAtW875
+        (routeDataProviderOfConcreteLeavesW877
+          (concreteLeavesOfClosedEmbeddingSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+            input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider)) :=
+  w877DirectCalculusRunsThroughW875W1376
+    (concreteLeavesOfClosedEmbeddingSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+      input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider)
+
+/-- W1518 closed-map W877 stable package delegates to W875. -/
+theorem w1518ClosedMapStablePackageRunsThroughW875W1376
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputW1518)
+    (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+    (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519) :
+    boundedDerivedInfinityCategoryOfConcreteLeavesSelectedCochainStableExactAtW877
+        (concreteLeavesOfClosedMapSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+          input globalClosedMapComponents mappedCokernelClosedMapProvider) =
+      boundedDerivedInfinityCategoryOfW732SelectedCochainStableExactAtW875
+        (routeDataProviderOfConcreteLeavesW877
+          (concreteLeavesOfClosedMapSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+            input globalClosedMapComponents mappedCokernelClosedMapProvider)) :=
+  w877StablePackageRunsThroughW875W1376
+    (concreteLeavesOfClosedMapSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+      input globalClosedMapComponents mappedCokernelClosedMapProvider)
+
+/-- W1518 closed-embedding W877 stable package delegates to W875. -/
+theorem w1518ClosedEmbeddingStablePackageRunsThroughW875W1376
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputW1518)
+    (globalClosedEmbeddingComponents :
+      SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+    (mappedCokernelClosedEmbeddingProvider :
+      MappedExplicitCokernelClosedEmbeddingProviderW519) :
+    boundedDerivedInfinityCategoryOfConcreteLeavesSelectedCochainStableExactAtW877
+        (concreteLeavesOfClosedEmbeddingSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+          input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider) =
+      boundedDerivedInfinityCategoryOfW732SelectedCochainStableExactAtW875
+        (routeDataProviderOfConcreteLeavesW877
+          (concreteLeavesOfClosedEmbeddingSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+            input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider)) :=
+  w877StablePackageRunsThroughW875W1376
+    (concreteLeavesOfClosedEmbeddingSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518
+      input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider)
+
+/-- W1518 keeps the W1517 constructor-ledger input names. -/
+def w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputNamesW1518 :
+    List String :=
+  w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3ComparisonConcreteLeavesConvergenceInputNamesW1517
+
+theorem w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputNamesW1518_count :
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputNamesW1518.length =
+      74 := by
+  simpa [
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputNamesW1518]
+    using
+      w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3ComparisonConcreteLeavesConvergenceInputNamesW1517_count
+
+/-- Current W1518 nonterminal selected-cochain concrete-leaves convergence state. -/
+structure W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceStateW1518 :
+    Type where
+  seed : String
+  declarations : List String
+  selectedCochainDataResult : String
+  concreteLeavesResult : String
+  concreteLeavesRouteResult : String
+  remainingInputs : List String
+  w878RemainingInputs : List String
+  w877RemainingInputs : List String
+  w875RemainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- W1518 records the W1517-to-W1376 selected-cochain concrete-leaves bridge. -/
+def currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceStateW1518 :
+    W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceStateW1518 where
+  seed :=
+    "w1518-w987-boundary-relation-target-strict-preimage-object-image-right-adjoint-target-compactness-mapped-cokernel-pi1-pi2-pi3-selected-cochain-concrete-leaves-convergence"
+  declarations :=
+    ["W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputW1518",
+      "directBoundedLeftCalculusOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518",
+      "boundedDerivedInfinityCategoryOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518",
+      "closedMapSelectedCochainDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518",
+      "closedEmbeddingSelectedCochainDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518",
+      "concreteLeavesOfClosedMapSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518",
+      "concreteLeavesOfClosedEmbeddingSelectedCochainOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceW1518",
+      "w1518ClosedMapConcreteLeavesRunsThroughW855W1376",
+      "w1518ClosedEmbeddingConcreteLeavesRunsThroughW855W1376",
+      "w1518ClosedMapDirectCalculusRunsThroughW877W1376",
+      "w1518ClosedEmbeddingDirectCalculusRunsThroughW877W1376",
+      "w1518ClosedMapStablePackageRunsThroughW877W1376",
+      "w1518ClosedEmbeddingStablePackageRunsThroughW877W1376",
+      "w1518ClosedMapRouteDataProviderRunsThroughW733W1376",
+      "w1518ClosedEmbeddingRouteDataProviderRunsThroughW733W1376",
+      "w1518ClosedMapDirectCalculusRunsThroughW875W1376",
+      "w1518ClosedEmbeddingDirectCalculusRunsThroughW875W1376",
+      "w1518ClosedMapStablePackageRunsThroughW875W1376",
+      "w1518ClosedEmbeddingStablePackageRunsThroughW875W1376",
+      "w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputNamesW1518_count"]
+  selectedCochainDataResult :=
+    "proved: W1518 specializes W1517's W879 branch selected-cochain data"
+  concreteLeavesResult :=
+    "proved: W1518 closed-map and closed-embedding branches specialize W1376's\
+      W878-to-W855 and W878-to-W877 delegations"
+  concreteLeavesRouteResult :=
+    "proved: W1518 closed-map and closed-embedding W877 concrete-leaf branches\
+      construct W733 route data and delegate direct calculus/stable package to W875"
+  remainingInputs :=
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceInputNamesW1518
+  w878RemainingInputs :=
+    selectedCochainConcreteLeavesStableExactAtExpandedInputNamesW878
+  w877RemainingInputs :=
+    concreteLeavesSelectedCochainStableExactAtInputNamesW877
+  w875RemainingInputs :=
+    w732SelectedCochainStableExactAtInputNamesW875
+  productSuccessClaimed := false
+
+theorem currentW1518W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergence_productSuccess :
+    currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SelectedCochainConcreteLeavesConvergenceStateW1518.productSuccessClaimed =
+      false :=
+  rfl
+
+end
+
+end Dbounded
+
+end LeanLCAExactChallenge
