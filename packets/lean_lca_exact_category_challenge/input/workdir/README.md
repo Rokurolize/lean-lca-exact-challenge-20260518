@@ -210,4 +210,6 @@ W1519 connects the W1518 W987 surface to the existing W1375 W735/W732 selected-c
 
 W1520 connects the W1519 W987 surface to the existing W1374 endpoint-facts/localized selected-cochain convergence guard. It specializes W1374's W874-to-W873 endpoint-facts projection and W873-to-W872 homology-free selected-cochain delegation on both closed-map and closed-embedding branches, records preservation of W1519 boundary/closedness data and W726 endpoint/localized projections, composes the W1519 W875 path through W873/W872, preserves the 74-input ledger, and keeps product success false.
 
+W1521 connects the W1520 W987 surface to the existing W1373 W872-to-W870 branch-dispatch guard. It exposes the W1520 closed-map and closed-embedding W853 providers as explicit W870 exact-input branches, proves those W870 inputs recover the W1519 W735 branch data, records the W1520 closedness branch choice on both branches, composes the W1519/W1520 direct-calculus and stable-package paths through W870, preserves the 74-input ledger, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
