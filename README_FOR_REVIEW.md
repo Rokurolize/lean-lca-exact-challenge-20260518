@@ -339,6 +339,8 @@ git diff --check
 
 2026-06-01T14:04:05Zに、W1561としてW1494のfixed-target uniqueness constructor-refinement evidenceを最終surfaceへ追加した。W1494の74入力count、target fixed-target uniquenessとlocalization-model fixed-target uniquenessをraw objectwise-localization quantifier fieldとして展開したcomponent ledger、そのbundled fixed-target uniqueness obligationsとcomponent ledgerの同数性、W1493の74入力ledgerを保つproof、W1490/W1477からのexpansion proof、`productSuccessClaimed = false` witnessを`originalFourTaskContractCompletion_branchFullDataW987FixedTargetUniq...W1561`定理として露出させた。`audit/ProductSuccessDeclarations.lean`と`audit/OriginalFourTaskCompletionDeclarations.lean`にも同じ7定理の`#check`を追加した。これはW1494 fixed-target uniqueness reconstructionをfinal surfaceから参照できるようにする非終端更新だが、constructor input ledgerをpositive witnessへ変換するものではなく、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
 
+2026-06-01T14:18:25Zに、W1562としてW1495のsource-triangulation constructor-refinement evidenceを最終surfaceへ追加した。W1495の74入力count、bundled W722 source-triangulation provider、source pretriangulated/source triangulated/source triangle-completionの3 component fields、W1494入力countの保存、W1495 source-triangulation providerとW1477 inputが同じsource fieldsへ射影されること、constructed source-triangulation dataの同一性、`productSuccessClaimed = false` witnessを`originalFourTaskContractCompletion_branchFullDataW987SourceTriangulation...W1562`定理として露出させた。`audit/ProductSuccessDeclarations.lean`と`audit/OriginalFourTaskCompletionDeclarations.lean`にも同じ13定理の`#check`を追加した。これはW1495 source-triangulation reconstructionをfinal surfaceから参照できるようにする非終端更新だが、constructor input ledgerをpositive witnessへ変換するものではなく、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
