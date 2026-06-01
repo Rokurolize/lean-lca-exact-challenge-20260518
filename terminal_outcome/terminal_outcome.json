@@ -1,24 +1,24 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-06-01T10:59:01Z",
-  "git_head": "4bf77cb6f6c1b209272bd3f692e4821e030c4a31",
-  "source_tree_hash": "b69cf741fa4c9aa8c16acc7d9fcc3f3cd3f19941e823702f179f3359166e32f3",
+  "generated_utc": "2026-06-01T11:16:28Z",
+  "git_head": "0d883ea959e3bcc42c2fec46c01e772aeebeb01b",
+  "source_tree_hash": "e5275600b07628c3409a016e82d680fe041fe90f7f81e15e77aa79123a896aa1",
   "outcome": "mathematical_frontier_nonterminal",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W1551 exposes W1484 second selected-difference closed-embedding constructor-refinement evidence on the final OriginalFourTaskContractCompletion surface: the W1484 67-input count, the preserved first selected-difference pi1 split, the second selected-difference pi2 split into embedding and closed-range component fields, preserved object-image/right-adjoint/target-surjectivity/target-compactness/mapped-cokernel split evidence, the W1483/W1477 expansion proofs, and the nonterminal productSuccessClaimed=false witness. Product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the W1485+ constructor-input ledger remains undischarged.",
+  "summary": "W1552 exposes W1485 third selected-difference closed-embedding constructor-refinement evidence on the final OriginalFourTaskContractCompletion surface: the W1485 68-input count, the preserved first and second selected-difference splits, the third selected-difference pi3 split into embedding and closed-range component fields, preserved object-image/right-adjoint/target-surjectivity/target-compactness/mapped-cokernel split evidence, the W1484/W1477 expansion proofs, and the nonterminal productSuccessClaimed=false witness. Product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the W1486+ constructor-input ledger remains undischarged.",
   "positive_witness_declarations": [],
   "reference_route_log": "docs/research/reference_route_log.md",
   "known_gaps": [
     "Positive Lean witness is absent: ProductSuccessDeclarations.lean does not import or check an OriginalFourTaskProductSuccess surface with field-level evidence for the original four-task contract.",
-    "Final imported completion surface remains nonterminal: originalFourTaskContractCompletion.productSuccessClaimed = false still compiles, now with W1551/W1550/W1549/W1548/W1547/W1546/W1545/W1544/W1543/W1542 fields exposing intermediate W987 and W1539/W1540 route evidence on the final surface.",
-    "W1551 exposes W1484 selected-difference pi2 constructor-refinement evidence on the final nonterminal surface, but it still depends on the W1485+ W987 constructor-input ledger rather than constructing all inputs from independent mathematical data.",
+    "Final imported completion surface remains nonterminal: originalFourTaskContractCompletion.productSuccessClaimed = false still compiles, now with W1552/W1551/W1550/W1549/W1548/W1547/W1546/W1545/W1544/W1543/W1542 fields exposing intermediate W987 and W1539/W1540 route evidence on the final surface.",
+    "W1552 exposes W1485 selected-difference pi3 constructor-refinement evidence on the final nonterminal surface, but it still depends on the W1486+ W987 constructor-input ledger rather than constructing all inputs from independent mathematical data.",
     "Original four mathematical tasks remain open under the positive-witness supplement; the current route still relies on constructor-field ledgers and stable-route comparison wrappers rather than a positive product witness."
   ],
   "remaining_work": [
-    "Discharge the W1551/W1550/W1549/W1548/W1547/W1546/W1545/W1544/W1543/W1542/W1541/W1540/W1539 route inputs and remaining W987 constructor inputs, or replace the field-ledger route with an explicit positive witness satisfying the positive-witness supplement.",
+    "Discharge the W1552/W1551/W1550/W1549/W1548/W1547/W1546/W1545/W1544/W1543/W1542/W1541/W1540/W1539 route inputs and remaining W987 constructor inputs, or replace the field-ledger route with an explicit positive witness satisfying the positive-witness supplement.",
     "Continue Lean implementation toward a positive OriginalFourTaskProductSuccess-style declaration backed by actual exact-category, metrizable LCA exact-category, Yoneda-Ext, and bounded derived infinity-category constructions.",
     "Before any product-success claim, rerun the source-contradiction gate, negative fixtures, clean checkout verification, root external audit, and clean-extracted packet audit."
   ],
@@ -41,7 +41,7 @@
     "PYTHONDONTWRITEBYTECODE=1 python3 audit/original_four_task_contract_audit.py --root \"$PWD\" --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
     "PYTHONDONTWRITEBYTECODE=1 python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
     "PYTHONDONTWRITEBYTECODE=1 python3 packets/lean_lca_exact_category_challenge/external_audit.py --root packets/lean_lca_exact_category_challenge --terminal-outcome terminal_outcome/terminal_outcome.json",
-    "python3 /home/roku/.agents/skills/clean-review-packet/scripts/packet_audit.py --packet-root /tmp/lean_lca_w1551_clean/lean_lca_exact_category_challenge --zip packets/lean_lca_exact_category_challenge.zip --sha256-sidecar packets/lean_lca_exact_category_challenge.zip.sha256 --require README_FOR_REVIEW.md --require manifest.json",
+    "python3 /home/roku/.agents/skills/clean-review-packet/scripts/packet_audit.py --packet-root /tmp/lean_lca_w1552_clean/lean_lca_exact_category_challenge --zip packets/lean_lca_exact_category_challenge.zip --sha256-sidecar packets/lean_lca_exact_category_challenge.zip.sha256 --require README_FOR_REVIEW.md --require manifest.json",
     "(cd packets && sha256sum -c lean_lca_exact_category_challenge.zip.sha256)"
   ],
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
