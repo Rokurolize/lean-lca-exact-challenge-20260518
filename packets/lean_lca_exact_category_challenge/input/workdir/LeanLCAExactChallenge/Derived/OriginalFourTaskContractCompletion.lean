@@ -56,6 +56,9 @@ import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCo
 import LeanLCAExactChallenge.Derived.W987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW829StableCertificateSemanticAdapterComparisonW1540
 
 namespace LeanLCAExactChallenge
+
+open WppOpClosedRangeMappedCokernelPreservationV370SupportW519
+
 namespace Dbounded
 
 /-- Current original-four-task completion witness surface audited by the contract gates.
@@ -530,6 +533,56 @@ structure OriginalFourTaskContractCompletion where
   branchFullDataW829StableCertificateSemanticAdapterComparisonNonterminal :
     currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonStateW1540.productSuccessClaimed =
       false
+  branchFullDataW829StableCertificateSemanticAdapterComparisonClosedMapPackageEqAccepted :
+    ∀
+      (input :
+        W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonInputW1540)
+      (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+      (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519),
+      closedMapW829StableSemanticAdapterPackageW1539
+          input globalClosedMapComponents mappedCokernelClosedMapProvider =
+        closedMapBoundedDerivedInfinityCategoryOfW829AcceptedDirectSourceConvergenceW1534
+          input globalClosedMapComponents mappedCokernelClosedMapProvider
+  branchFullDataW829StableCertificateSemanticAdapterComparisonClosedEmbeddingPackageEqAccepted :
+    ∀
+      (input :
+        W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonInputW1540)
+      (globalClosedEmbeddingComponents :
+        SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+      (mappedCokernelClosedEmbeddingProvider :
+        MappedExplicitCokernelClosedEmbeddingProviderW519),
+      closedEmbeddingW829StableSemanticAdapterPackageW1539
+          input globalClosedEmbeddingComponents
+          mappedCokernelClosedEmbeddingProvider =
+        closedEmbeddingBoundedDerivedInfinityCategoryOfW829AcceptedDirectSourceConvergenceW1534
+          input globalClosedEmbeddingComponents
+          mappedCokernelClosedEmbeddingProvider
+  branchFullDataW829StableCertificateSemanticAdapterComparisonClosedMapProjectionFactsEqAccepted :
+    ∀
+      (input :
+        W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonInputW1540)
+      (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+      (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519),
+      stableProjectionFactsOfBoundedDerivedPackageW1535
+          (closedMapW829StableSemanticAdapterPackageW1539
+            input globalClosedMapComponents mappedCokernelClosedMapProvider) =
+        closedMapW829AcceptedDirectSourceStableProjectionFactsW1535
+          input globalClosedMapComponents mappedCokernelClosedMapProvider
+  branchFullDataW829StableCertificateSemanticAdapterComparisonClosedEmbeddingProjectionFactsEqAccepted :
+    ∀
+      (input :
+        W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonInputW1540)
+      (globalClosedEmbeddingComponents :
+        SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+      (mappedCokernelClosedEmbeddingProvider :
+        MappedExplicitCokernelClosedEmbeddingProviderW519),
+      stableProjectionFactsOfBoundedDerivedPackageW1535
+          (closedEmbeddingW829StableSemanticAdapterPackageW1539
+            input globalClosedEmbeddingComponents
+            mappedCokernelClosedEmbeddingProvider) =
+        closedEmbeddingW829AcceptedDirectSourceStableProjectionFactsW1535
+          input globalClosedEmbeddingComponents
+          mappedCokernelClosedEmbeddingProvider
   productSuccessClaimed : Bool
 
 /-- The current original-four-task completion witness surface is still nonterminal. -/
@@ -874,6 +927,14 @@ def originalFourTaskContractCompletion : OriginalFourTaskContractCompletion wher
     w829StableCertificateSemanticAdapterComparisonFactNamesW1540_count
   branchFullDataW829StableCertificateSemanticAdapterComparisonNonterminal :=
     currentW1540W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparison_productSuccess
+  branchFullDataW829StableCertificateSemanticAdapterComparisonClosedMapPackageEqAccepted :=
+    closedMapW829StableSemanticAdapterPackage_eq_W1534AcceptedPackageW1540
+  branchFullDataW829StableCertificateSemanticAdapterComparisonClosedEmbeddingPackageEqAccepted :=
+    closedEmbeddingW829StableSemanticAdapterPackage_eq_W1534AcceptedPackageW1540
+  branchFullDataW829StableCertificateSemanticAdapterComparisonClosedMapProjectionFactsEqAccepted :=
+    closedMapW829StableSemanticAdapterPackageProjectionFacts_eq_W1535AcceptedProjectionFactsW1540
+  branchFullDataW829StableCertificateSemanticAdapterComparisonClosedEmbeddingProjectionFactsEqAccepted :=
+    closedEmbeddingW829StableSemanticAdapterPackageProjectionFacts_eq_W1535AcceptedProjectionFactsW1540
   productSuccessClaimed := false
 
 theorem originalFourTaskContractCompletion_productSuccessClaimed :
@@ -898,6 +959,64 @@ theorem originalFourTaskContractCompletion_branchFullDataW829StableCertificateSe
     currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonStateW1540.productSuccessClaimed =
       false :=
   originalFourTaskContractCompletion.branchFullDataW829StableCertificateSemanticAdapterComparisonNonterminal
+
+theorem originalFourTaskContractCompletion_branchFullDataW829StableCertificateSemanticAdapterComparisonClosedMapPackageEqAcceptedW1542 :
+    ∀
+      (input :
+        W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonInputW1540)
+      (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+      (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519),
+      closedMapW829StableSemanticAdapterPackageW1539
+          input globalClosedMapComponents mappedCokernelClosedMapProvider =
+        closedMapBoundedDerivedInfinityCategoryOfW829AcceptedDirectSourceConvergenceW1534
+          input globalClosedMapComponents mappedCokernelClosedMapProvider :=
+  originalFourTaskContractCompletion.branchFullDataW829StableCertificateSemanticAdapterComparisonClosedMapPackageEqAccepted
+
+theorem originalFourTaskContractCompletion_branchFullDataW829StableCertificateSemanticAdapterComparisonClosedEmbeddingPackageEqAcceptedW1542 :
+    ∀
+      (input :
+        W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonInputW1540)
+      (globalClosedEmbeddingComponents :
+        SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+      (mappedCokernelClosedEmbeddingProvider :
+        MappedExplicitCokernelClosedEmbeddingProviderW519),
+      closedEmbeddingW829StableSemanticAdapterPackageW1539
+          input globalClosedEmbeddingComponents
+          mappedCokernelClosedEmbeddingProvider =
+        closedEmbeddingBoundedDerivedInfinityCategoryOfW829AcceptedDirectSourceConvergenceW1534
+          input globalClosedEmbeddingComponents
+          mappedCokernelClosedEmbeddingProvider :=
+  originalFourTaskContractCompletion.branchFullDataW829StableCertificateSemanticAdapterComparisonClosedEmbeddingPackageEqAccepted
+
+theorem originalFourTaskContractCompletion_branchFullDataW829StableCertificateSemanticAdapterComparisonClosedMapProjectionFactsEqAcceptedW1542 :
+    ∀
+      (input :
+        W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonInputW1540)
+      (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+      (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519),
+      stableProjectionFactsOfBoundedDerivedPackageW1535
+          (closedMapW829StableSemanticAdapterPackageW1539
+            input globalClosedMapComponents mappedCokernelClosedMapProvider) =
+        closedMapW829AcceptedDirectSourceStableProjectionFactsW1535
+          input globalClosedMapComponents mappedCokernelClosedMapProvider :=
+  originalFourTaskContractCompletion.branchFullDataW829StableCertificateSemanticAdapterComparisonClosedMapProjectionFactsEqAccepted
+
+theorem originalFourTaskContractCompletion_branchFullDataW829StableCertificateSemanticAdapterComparisonClosedEmbeddingProjectionFactsEqAcceptedW1542 :
+    ∀
+      (input :
+        W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonInputW1540)
+      (globalClosedEmbeddingComponents :
+        SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+      (mappedCokernelClosedEmbeddingProvider :
+        MappedExplicitCokernelClosedEmbeddingProviderW519),
+      stableProjectionFactsOfBoundedDerivedPackageW1535
+          (closedEmbeddingW829StableSemanticAdapterPackageW1539
+            input globalClosedEmbeddingComponents
+            mappedCokernelClosedEmbeddingProvider) =
+        closedEmbeddingW829AcceptedDirectSourceStableProjectionFactsW1535
+          input globalClosedEmbeddingComponents
+          mappedCokernelClosedEmbeddingProvider :=
+  originalFourTaskContractCompletion.branchFullDataW829StableCertificateSemanticAdapterComparisonClosedEmbeddingProjectionFactsEqAccepted
 
 end Dbounded
 end LeanLCAExactChallenge

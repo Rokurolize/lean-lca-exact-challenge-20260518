@@ -252,4 +252,6 @@ W1540 compares the W1534 stable-certificate route with the W1539 semantic-adapte
 
 W1541 brings the final nonterminal `OriginalFourTaskContractCompletion` surface forward to W1540. It records the W1540 74-input count, the W1539-to-W1540 count preservation, the 10 named certificate/semantic-adapter comparison facts, and the W1540 `productSuccessClaimed = false` proof directly on the final completion structure. This is a final-surface bookkeeping catch-up, not a positive `OriginalFourTaskProductSuccess` witness, so product success remains false.
 
+W1542 strengthens that same final nonterminal surface with four direct W1540 equality facts: closed-map and closed-embedding W1539 semantic-adapter packages equal the W1534 accepted packages, and their projection facts equal the W1535 accepted projection facts. This exposes actual route equality evidence on `originalFourTaskContractCompletion`, but it is still not a positive `OriginalFourTaskProductSuccess` witness because the W987 74-input ledger remains undischarged.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.

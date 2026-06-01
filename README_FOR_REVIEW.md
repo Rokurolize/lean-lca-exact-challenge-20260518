@@ -299,6 +299,8 @@ git diff --check
 
 2026-06-01T08:02:32Zに、W1541として`OriginalFourTaskContractCompletion.lean`の最終非終端surfaceをW1540へ追随させた。W1541はW1540の入力数74、W1539からW1540への入力数保持、10個のcertificate/semantic-adapter comparison fact、W1540 stateの`productSuccessClaimed = false`を`originalFourTaskContractCompletion`上のfieldと定理として記録する。これはfinal audit surfaceの帳尻を最新route evidenceへ合わせるための更新であり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
 
+2026-06-01T08:23:46Zに、W1542として`OriginalFourTaskContractCompletion.lean`の最終非終端surfaceへW1540の実質的な等式証拠を4つ追加した。closed-map branchとclosed-embedding branchのそれぞれで、W1539 semantic-adapter packageがW1534 accepted packageと等しいこと、またそのprojection factsがW1535 accepted projection factsと等しいことを`originalFourTaskContractCompletion`上のfieldと定理として確認する。これは最終監査surfaceが単なる個数記録だけでなくpackage/projection等式も直接保持するようにする更新だが、W987の74入力ledgerはまだ解消しておらず、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
