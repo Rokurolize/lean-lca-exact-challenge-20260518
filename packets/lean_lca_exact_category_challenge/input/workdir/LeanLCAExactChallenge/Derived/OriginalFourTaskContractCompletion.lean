@@ -72,15 +72,68 @@ import LeanLCAExactChallenge.Derived.W987UnitMappingConeOpenMapFieldDataConstruc
 import LeanLCAExactChallenge.Derived.W987FixedTargetUniqFieldDataConstructionGuardW1494
 import LeanLCAExactChallenge.Derived.W987SourceTriangulationFieldDataConstructionGuardW1495
 import LeanLCAExactChallenge.Derived.W987SourceHomologicalTriangulationDataConstructionGuardW1496
+import LeanLCAExactChallenge.Derived.W987StableExactAtRouteConnectionGuardW1497
 import LeanLCAExactChallenge.Derived.W987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW829StableCertificateSemanticAdapterComparisonW1540
 
 set_option linter.style.longLine false
+set_option maxRecDepth 10000
 
 namespace LeanLCAExactChallenge
 
 open WppOpClosedRangeMappedCokernelPreservationV370SupportW519
 
 namespace Dbounded
+
+/-- W1564 statement wrapper for the W1497 endpoint strict-exact route output. -/
+def w1497StableExactAtRouteConnectionEndpointStrictExactStatementW1564 : Prop :=
+  ∀
+    (_input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionInputW1497)
+    (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+    MetrizableLCA.strictShortExact (K.sc i)
+
+/-- W1564 statement wrapper for the W1497 unit mapping-cone strict-exact output. -/
+def w1497StableExactAtRouteConnectionUnitMappingConeStrictExactStatementW1564 : Prop :=
+  ∀
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionInputW1497)
+    (X : BoundedComplexCategory MetrizableLCA.{0}) (i : ℤ),
+    MetrizableLCA.strictShortExact
+      (((componentFieldsOfFullDataW987
+            (fullDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionW1497
+              input)).unitMappingConeModel X).as.sc i)
+
+/-- W1564 statement wrapper for the W1497 unit mapping-cone isomorphism nonemptiness output. -/
+def w1497StableExactAtRouteConnectionUnitMappingConeIsoNonemptyStatementW1564 : Prop :=
+  ∀
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionInputW1497)
+    (X : BoundedComplexCategory MetrizableLCA.{0}),
+    Nonempty
+      (((HomotopyCategory.quotient MetrizableLCA.{0} (ComplexShape.up ℤ)).obj
+          (CochainComplex.mappingCone
+            ((BoundedComplexCategory.ι MetrizableLCA.{0}).map
+              ((componentFieldsOfFullDataW987
+                  (fullDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionW1497
+                    input)).boundedHomotopyLocalizedAdjunction.unit.app X)))) ≅
+        (componentFieldsOfFullDataW987
+          (fullDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionW1497
+            input)).unitMappingConeModel X)
+
+/-- W1564 statement wrapper for the W1497 direct bounded-left-calculus output. -/
+def w1497StableExactAtRouteConnectionDirectBoundedLeftCalculusStatementW1564 : Prop :=
+  ∀
+    (_input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionInputW1497),
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions
+
+/-- W1564 statement wrapper for the W1497 bounded derived infinity-category output. -/
+def w1497StableExactAtRouteConnectionBoundedDerivedInfinityCategoryStatementW1564 :=
+  ∀
+    (_input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionInputW1497),
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0})
 
 /-- Current original-four-task completion witness surface audited by the contract gates.
 
@@ -1514,6 +1567,51 @@ structure OriginalFourTaskContractCompletion where
   branchFullDataW987SourceHomologicalTriangulationDataConstructionNonterminal :
     currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionStateW1496.productSuccessClaimed =
       false
+  branchFullDataW987StableExactAtRouteConnectionInputCount :
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionInputNamesW1497.length =
+      74
+  branchFullDataW987StableExactAtRouteConnectionPreservesW1496InputCount :
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputNamesW1496.length =
+      w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionInputNamesW1497.length
+  branchFullDataW987StableExactAtRouteConnectionKeepsW1495ConstructedFullData :
+    ∀
+      (input :
+        W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionInputW1497),
+      fullDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionW1497
+          input =
+        fullDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+          input
+  branchFullDataW987StableExactAtRouteConnectionKeepsBoundaryRelationData :
+    ∀
+      (input :
+        W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionInputW1497),
+      boundaryRelationDataOfFullDataW987
+          (fullDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionW1497
+            input) =
+        boundaryRelationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+          input
+  branchFullDataW987StableExactAtRouteConnectionKeepsTargetNormalizedEndpointData :
+    ∀
+      (input :
+        W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionInputW1497),
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataOfFullDataW987
+          (fullDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionW1497
+            input) =
+        targetNormalizedEndpointDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+          input
+  branchFullDataW987StableExactAtRouteConnectionEndpointStrictExact :
+    w1497StableExactAtRouteConnectionEndpointStrictExactStatementW1564
+  branchFullDataW987StableExactAtRouteConnectionUnitMappingConeStrictExact :
+    w1497StableExactAtRouteConnectionUnitMappingConeStrictExactStatementW1564
+  branchFullDataW987StableExactAtRouteConnectionUnitMappingConeIsoNonempty :
+    w1497StableExactAtRouteConnectionUnitMappingConeIsoNonemptyStatementW1564
+  branchFullDataW987StableExactAtRouteConnectionDirectBoundedLeftCalculus :
+    w1497StableExactAtRouteConnectionDirectBoundedLeftCalculusStatementW1564
+  branchFullDataW987StableExactAtRouteConnectionBoundedDerivedInfinityCategory :
+    w1497StableExactAtRouteConnectionBoundedDerivedInfinityCategoryStatementW1564
+  branchFullDataW987StableExactAtRouteConnectionNonterminal :
+    currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionStateW1497.productSuccessClaimed =
+      false
   branchFullDataW829StableCertificateSemanticAdapterComparisonInputCount :
     w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonInputNamesW1540.length =
       74
@@ -1714,7 +1812,7 @@ structure OriginalFourTaskContractCompletion where
   productSuccessClaimed : Bool
 
 /-- The current original-four-task completion witness surface is still nonterminal. -/
-def originalFourTaskContractCompletion : OriginalFourTaskContractCompletion where
+noncomputable def originalFourTaskContractCompletion : OriginalFourTaskContractCompletion where
   targetClosedEmbeddingClosednessInputCount :=
     currentFullDataPayloadFromTargetClosedEmbeddingClosednessInputNamesW1267_count
   normalizedSourceEndpointLocalizedUnitInputCount :=
@@ -2661,6 +2759,30 @@ def originalFourTaskContractCompletion : OriginalFourTaskContractCompletion wher
     w1496W1477SourceHomologicalTriangulationDataKeepsConstructedData
   branchFullDataW987SourceHomologicalTriangulationDataConstructionNonterminal :=
     currentW1496W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstruction_productSuccess
+  branchFullDataW987StableExactAtRouteConnectionInputCount :=
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionInputNamesW1497_count
+  branchFullDataW987StableExactAtRouteConnectionPreservesW1496InputCount := by
+    rw [
+      w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputNamesW1496_count,
+      w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionInputNamesW1497_count]
+  branchFullDataW987StableExactAtRouteConnectionKeepsW1495ConstructedFullData :=
+    w1497FullDataKeepsW1495ConstructedFullData
+  branchFullDataW987StableExactAtRouteConnectionKeepsBoundaryRelationData :=
+    w1497FullDataKeepsBoundaryRelationData
+  branchFullDataW987StableExactAtRouteConnectionKeepsTargetNormalizedEndpointData :=
+    w1497FullDataKeepsTargetNormalizedEndpointData
+  branchFullDataW987StableExactAtRouteConnectionEndpointStrictExact :=
+    endpointStrictExactOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionW1497
+  branchFullDataW987StableExactAtRouteConnectionUnitMappingConeStrictExact :=
+    unitMappingConeStrictExactOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionW1497
+  branchFullDataW987StableExactAtRouteConnectionUnitMappingConeIsoNonempty :=
+    unitMappingConeIsoNonemptyOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionW1497
+  branchFullDataW987StableExactAtRouteConnectionDirectBoundedLeftCalculus :=
+    directBoundedLeftCalculusOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionW1497
+  branchFullDataW987StableExactAtRouteConnectionBoundedDerivedInfinityCategory :=
+    boundedDerivedInfinityCategoryOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionW1497
+  branchFullDataW987StableExactAtRouteConnectionNonterminal :=
+    currentW1497W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnection_productSuccess
   branchFullDataW829StableCertificateSemanticAdapterComparisonInputCount :=
     w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonInputNamesW1540_count
   branchFullDataW829StableCertificateSemanticAdapterComparisonPreservesW1539InputCount := by
@@ -4303,6 +4425,73 @@ theorem originalFourTaskContractCompletion_branchFullDataW987SourceHomologicalTr
     currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionStateW1496.productSuccessClaimed =
       false :=
   originalFourTaskContractCompletion.branchFullDataW987SourceHomologicalTriangulationDataConstructionNonterminal
+
+theorem originalFourTaskContractCompletion_branchFullDataW987StableExactAtRouteConnectionInputCountW1564 :
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionInputNamesW1497.length =
+      74 :=
+  originalFourTaskContractCompletion.branchFullDataW987StableExactAtRouteConnectionInputCount
+
+theorem originalFourTaskContractCompletion_branchFullDataW987StableExactAtRouteConnectionPreservesW1496InputCountW1564 :
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputNamesW1496.length =
+      w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionInputNamesW1497.length :=
+  originalFourTaskContractCompletion.branchFullDataW987StableExactAtRouteConnectionPreservesW1496InputCount
+
+theorem originalFourTaskContractCompletion_branchFullDataW987StableExactAtRouteConnectionKeepsW1495ConstructedFullDataW1564 :
+    ∀
+      (input :
+        W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionInputW1497),
+      fullDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionW1497
+          input =
+        fullDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+          input :=
+  originalFourTaskContractCompletion.branchFullDataW987StableExactAtRouteConnectionKeepsW1495ConstructedFullData
+
+theorem originalFourTaskContractCompletion_branchFullDataW987StableExactAtRouteConnectionKeepsBoundaryRelationDataW1564 :
+    ∀
+      (input :
+        W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionInputW1497),
+      boundaryRelationDataOfFullDataW987
+          (fullDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionW1497
+            input) =
+        boundaryRelationDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+          input :=
+  originalFourTaskContractCompletion.branchFullDataW987StableExactAtRouteConnectionKeepsBoundaryRelationData
+
+theorem originalFourTaskContractCompletion_branchFullDataW987StableExactAtRouteConnectionKeepsTargetNormalizedEndpointDataW1564 :
+    ∀
+      (input :
+        W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionInputW1497),
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataOfFullDataW987
+          (fullDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionW1497
+            input) =
+        targetNormalizedEndpointDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+          input :=
+  originalFourTaskContractCompletion.branchFullDataW987StableExactAtRouteConnectionKeepsTargetNormalizedEndpointData
+
+theorem originalFourTaskContractCompletion_branchFullDataW987StableExactAtRouteConnectionEndpointStrictExactW1564 :
+    w1497StableExactAtRouteConnectionEndpointStrictExactStatementW1564 :=
+  originalFourTaskContractCompletion.branchFullDataW987StableExactAtRouteConnectionEndpointStrictExact
+
+theorem originalFourTaskContractCompletion_branchFullDataW987StableExactAtRouteConnectionUnitMappingConeStrictExactW1564 :
+    w1497StableExactAtRouteConnectionUnitMappingConeStrictExactStatementW1564 :=
+  originalFourTaskContractCompletion.branchFullDataW987StableExactAtRouteConnectionUnitMappingConeStrictExact
+
+theorem originalFourTaskContractCompletion_branchFullDataW987StableExactAtRouteConnectionUnitMappingConeIsoNonemptyW1564 :
+    w1497StableExactAtRouteConnectionUnitMappingConeIsoNonemptyStatementW1564 :=
+  originalFourTaskContractCompletion.branchFullDataW987StableExactAtRouteConnectionUnitMappingConeIsoNonempty
+
+theorem originalFourTaskContractCompletion_branchFullDataW987StableExactAtRouteConnectionDirectBoundedLeftCalculusW1564 :
+    w1497StableExactAtRouteConnectionDirectBoundedLeftCalculusStatementW1564 :=
+  originalFourTaskContractCompletion.branchFullDataW987StableExactAtRouteConnectionDirectBoundedLeftCalculus
+
+noncomputable def originalFourTaskContractCompletion_branchFullDataW987StableExactAtRouteConnectionBoundedDerivedInfinityCategoryW1564 :
+    w1497StableExactAtRouteConnectionBoundedDerivedInfinityCategoryStatementW1564 :=
+  originalFourTaskContractCompletion.branchFullDataW987StableExactAtRouteConnectionBoundedDerivedInfinityCategory
+
+theorem originalFourTaskContractCompletion_branchFullDataW987StableExactAtRouteConnectionNonterminalW1564 :
+    currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionStateW1497.productSuccessClaimed =
+      false :=
+  originalFourTaskContractCompletion.branchFullDataW987StableExactAtRouteConnectionNonterminal
 
 theorem originalFourTaskContractCompletion_branchFullDataW829StableCertificateSemanticAdapterComparisonInputCountW1541 :
     w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonInputNamesW1540.length =
