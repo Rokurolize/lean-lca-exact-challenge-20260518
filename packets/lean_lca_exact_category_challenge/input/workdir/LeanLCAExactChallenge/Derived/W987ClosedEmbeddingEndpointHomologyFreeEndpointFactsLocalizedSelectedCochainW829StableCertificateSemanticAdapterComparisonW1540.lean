@@ -187,6 +187,25 @@ theorem w829StableCertificateSemanticAdapterComparisonFactNamesW1540_count :
     w829StableCertificateSemanticAdapterComparisonFactNamesW1540.length = 10 :=
   rfl
 
+/-- W1545 names the declarations that make up the W1540 comparison surface. -/
+def w829StableCertificateSemanticAdapterComparisonDeclarationNamesW1545 : List String :=
+  ["closedMapW829StableSemanticAdapterInput_eq_W1534SemanticInputW1540",
+    "closedEmbeddingW829StableSemanticAdapterInput_eq_W1534SemanticInputW1540",
+    "closedMapW829StableSemanticAdapterAccepted_eq_W1534AcceptedW1540",
+    "closedEmbeddingW829StableSemanticAdapterAccepted_eq_W1534AcceptedW1540",
+    "closedMapW829StableSemanticAdapterCertificate_eq_W1534CertificateW1540",
+    "closedEmbeddingW829StableSemanticAdapterCertificate_eq_W1534CertificateW1540",
+    "closedMapW829StableSemanticAdapterPackage_eq_W1534AcceptedPackageW1540",
+    "closedEmbeddingW829StableSemanticAdapterPackage_eq_W1534AcceptedPackageW1540",
+    "closedMapW829StableSemanticAdapterPackageProjectionFacts_eq_W1535AcceptedProjectionFactsW1540",
+    "closedEmbeddingW829StableSemanticAdapterPackageProjectionFacts_eq_W1535AcceptedProjectionFactsW1540",
+    "w829StableCertificateSemanticAdapterComparisonFactNamesW1540_count",
+    "w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonInputNamesW1540_count"]
+
+theorem w829StableCertificateSemanticAdapterComparisonDeclarationNamesW1545_count :
+    w829StableCertificateSemanticAdapterComparisonDeclarationNamesW1545.length = 12 :=
+  rfl
+
 /-- W1540 keeps the W1539 constructor-ledger input names. -/
 def w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonInputNamesW1540 :
     List String :=
@@ -217,18 +236,7 @@ def currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFuncto
   seed :=
     "w1540-w987-boundary-relation-target-strict-preimage-object-image-right-adjoint-target-compactness-mapped-cokernel-pi1-pi2-pi3-w829-stable-certificate-semantic-adapter-comparison"
   declarations :=
-    ["closedMapW829StableSemanticAdapterInput_eq_W1534SemanticInputW1540",
-      "closedEmbeddingW829StableSemanticAdapterInput_eq_W1534SemanticInputW1540",
-      "closedMapW829StableSemanticAdapterAccepted_eq_W1534AcceptedW1540",
-      "closedEmbeddingW829StableSemanticAdapterAccepted_eq_W1534AcceptedW1540",
-      "closedMapW829StableSemanticAdapterCertificate_eq_W1534CertificateW1540",
-      "closedEmbeddingW829StableSemanticAdapterCertificate_eq_W1534CertificateW1540",
-      "closedMapW829StableSemanticAdapterPackage_eq_W1534AcceptedPackageW1540",
-      "closedEmbeddingW829StableSemanticAdapterPackage_eq_W1534AcceptedPackageW1540",
-      "closedMapW829StableSemanticAdapterPackageProjectionFacts_eq_W1535AcceptedProjectionFactsW1540",
-      "closedEmbeddingW829StableSemanticAdapterPackageProjectionFacts_eq_W1535AcceptedProjectionFactsW1540",
-      "w829StableCertificateSemanticAdapterComparisonFactNamesW1540_count",
-      "w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonInputNamesW1540_count"]
+    w829StableCertificateSemanticAdapterComparisonDeclarationNamesW1545
   comparisonResult :=
     "proved: W1534 stable-certificate and accepted-route evidence erase \
       definitionally to the same W1539 semantic-adapter input, accepted \
@@ -271,6 +279,11 @@ theorem currentW1540W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjo
 theorem currentW1540W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparison_declarations_countW1544 :
     currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonStateW1540.declarations.length =
       12 :=
+  rfl
+
+theorem currentW1540W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparison_declarations_eq_declarationNamesW1545 :
+    currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonStateW1540.declarations =
+      w829StableCertificateSemanticAdapterComparisonDeclarationNamesW1545 :=
   rfl
 
 end

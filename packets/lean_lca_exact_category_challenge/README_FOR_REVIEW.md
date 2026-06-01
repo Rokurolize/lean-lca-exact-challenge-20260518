@@ -305,6 +305,8 @@ git diff --check
 
 2026-06-01T09:08:55Zに、W1544としてW1540 state自体の非終端ledgerを最終surfaceへ追加した。W1540 stateの`remainingInputs`がcanonicalな74入力リストと等しいこと、`comparisonFacts`がcanonicalな10 factリストと等しいこと、declaration ledgerが12項目であることを`originalFourTaskContractCompletion`上のfieldと定理として確認する。これによりW987の74入力ledgerとW1540の10 comparison fact ledgerが最終監査surfaceで直接読めるようになったが、74入力を独立した数学的構成から解消したわけではなく、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
 
+2026-06-01T09:22:07Zに、W1545としてW1540のdeclaration-name ledgerもcanonicalなLean定義にした。W1540 comparison surfaceを構成する12個の宣言名リストを定義し、その長さが12であること、さらにW1540 stateの`declarations`がそのcanonical listと等しいことを`originalFourTaskContractCompletion`上のfieldと定理として確認する。これによりdeclaration ledgerの確認も自然言語ではなくLean surfaceで読めるようになったが、W987の74入力ledgerはまだ解消しておらず、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。

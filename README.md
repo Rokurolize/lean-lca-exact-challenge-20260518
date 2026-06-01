@@ -258,4 +258,6 @@ W1543 completes the final nonterminal surface for W1540 equality facts. It adds 
 
 W1544 makes the W1540 nonterminal state ledger explicit on the final completion surface. It proves that the W1540 state's `remainingInputs` field is exactly the canonical 74-input list, that `comparisonFacts` is exactly the canonical 10-fact list, and that the W1540 declaration ledger has 12 entries. This turns the unresolved W987 constructor ledger into Lean-visible final-surface evidence, but it still does not construct a positive `OriginalFourTaskProductSuccess` witness.
 
+W1545 makes the W1540 declaration ledger itself canonical. It names the 12 declarations that constitute the W1540 certificate/semantic-adapter comparison surface, proves the declaration-name list has length 12, and proves the W1540 state's `declarations` field is exactly that canonical list on the final completion surface. This removes another natural-language ledger check from review, but it still leaves the W987 74-input ledger undischarged and product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
