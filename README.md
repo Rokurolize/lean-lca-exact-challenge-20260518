@@ -226,4 +226,6 @@ W1527 connects the W1526 W987 surface to the W863 target-homology-zero stable-Ex
 
 W1528 connects the W1527 W987 surface to the W862 concrete-leaves target-ExactAt route. It names the W861 concrete-leaves target-ExactAt data induced by the W1527 W839 target-homology-zero data, records preservation of the W1521 W870 exact-input branches through W855 concrete leaves and the W839/W861 target-ExactAt payload, composes the W1519/W1527 direct-calculus paths through W862 on both closed-map and closed-embedding branches, preserves the 74-input ledger, and keeps product success false.
 
+W1529 connects the W1528 W987 surface to the W860 endpoint-localized target-ExactAt route. It names the W860 endpoint-localized data induced by the W1528 W861 concrete-leaves data, records preservation of the W1528 closedness projection, endpoint-localized right-adjoint projection, and target-ExactAt payload, composes the W1519/W1528 direct-calculus paths through W860 on both closed-map and closed-embedding branches, preserves the 74-input ledger, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
