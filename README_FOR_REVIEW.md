@@ -307,6 +307,8 @@ git diff --check
 
 2026-06-01T09:22:07Zに、W1545としてW1540のdeclaration-name ledgerもcanonicalなLean定義にした。W1540 comparison surfaceを構成する12個の宣言名リストを定義し、その長さが12であること、さらにW1540 stateの`declarations`がそのcanonical listと等しいことを`originalFourTaskContractCompletion`上のfieldと定理として確認する。これによりdeclaration ledgerの確認も自然言語ではなくLean surfaceで読めるようになったが、W987の74入力ledgerはまだ解消しておらず、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
 
+2026-06-01T09:32:20Zに、W1546としてW1539 semantic-adapter routeのready/accepted証拠を最終surfaceへ追加した。closed-map branchとclosed-embedding branchのそれぞれについて、semantic-adapter certificateがreadyであること、および対応する`StableRouteAttempt.accepted`が`true`を返すことを`originalFourTaskContractCompletion`上のfieldと定理として確認する。これは現在のstable route evidenceをLean上で直接読めるようにする更新だが、routeは引き続きW987の74入力ledgerに依存しており、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。

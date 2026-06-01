@@ -260,4 +260,6 @@ W1544 makes the W1540 nonterminal state ledger explicit on the final completion 
 
 W1545 makes the W1540 declaration ledger itself canonical. It names the 12 declarations that constitute the W1540 certificate/semantic-adapter comparison surface, proves the declaration-name list has length 12, and proves the W1540 state's `declarations` field is exactly that canonical list on the final completion surface. This removes another natural-language ledger check from review, but it still leaves the W987 74-input ledger undischarged and product success false.
 
+W1546 exposes actual W1539 semantic-adapter route evidence on the final completion surface. It adds final projection theorems showing that the closed-map and closed-embedding semantic-adapter certificates are ready and that the corresponding `StableRouteAttempt.accepted` checks return `true`. These are Lean proofs about the current route evidence, not product success, because the route remains parameterized by the W987 74-input ledger.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
