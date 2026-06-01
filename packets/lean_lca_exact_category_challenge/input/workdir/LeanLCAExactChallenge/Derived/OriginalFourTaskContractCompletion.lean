@@ -82,6 +82,7 @@ import LeanLCAExactChallenge.Derived.W987NormalizedLiftBlueprintFieldsComparison
 import LeanLCAExactChallenge.Derived.W987StrictRepresentativeLiftFieldsComparisonGuardW1504
 import LeanLCAExactChallenge.Derived.W987StrictPreimageObjectFieldsComparisonGuardW1505
 import LeanLCAExactChallenge.Derived.W987StrictPreimageMapFieldsComparisonGuardW1506
+import LeanLCAExactChallenge.Derived.W987BoundaryFieldsComparisonGuardW1507
 import LeanLCAExactChallenge.Derived.W987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW829StableCertificateSemanticAdapterComparisonW1540
 
 set_option linter.style.longLine false
@@ -777,6 +778,56 @@ def w1506StrictPreimageMapFieldsComparisonBoundedDerivedInfinityCategoryStatemen
   ∀
     (_input :
       W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageMapFieldsComparisonInputW1506),
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0})
+
+/-- W1574 statement wrapper for W1507's W1506 source W892 leaves. -/
+def w1507BoundaryFieldsComparisonSourceStrictPreimageMapFieldLeavesStatementW1574 :=
+  ∀
+    (_input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputW1507),
+    MetrizableWppStrictPreimageMapFieldLeavesW892
+
+/-- W1574 statement wrapper for W1507's W893 explicit boundary fields. -/
+def w1507BoundaryFieldsComparisonBoundaryFieldLeavesStatementW1574 :=
+  ∀
+    (_input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputW1507),
+    MetrizableWppBoundaryFieldLeavesW893
+
+/-- W1574 statement wrapper for W1507's rebuilt W892 strict-preimage map leaves. -/
+def w1507BoundaryFieldsComparisonStrictPreimageMapFieldLeavesStatementW1574 :=
+  ∀
+    (_input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputW1507),
+    MetrizableWppStrictPreimageMapFieldLeavesW892
+
+/-- W1574 statement wrapper for W1507's W733 concrete leaves. -/
+def w1507BoundaryFieldsComparisonConcreteLeavesStatementW1574 :=
+  ∀
+    (_input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputW1507),
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733
+
+/-- W1574 statement wrapper for W1507's W732 route data. -/
+def w1507BoundaryFieldsComparisonRouteDataProviderStatementW1574 :=
+  ∀
+    (_input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputW1507),
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732
+
+/-- W1574 statement wrapper for W1507 direct bounded-left-calculus output. -/
+def w1507BoundaryFieldsComparisonDirectBoundedLeftCalculusStatementW1574 : Prop :=
+  ∀
+    (_input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputW1507),
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions
+
+/-- W1574 statement wrapper for W1507 bounded derived infinity-category output. -/
+def w1507BoundaryFieldsComparisonBoundedDerivedInfinityCategoryStatementW1574 :=
+  ∀
+    (_input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputW1507),
     BoundedDerivedInfinityCategory MetrizableLCA.{0}
       (Dbounded.infinityCategory MetrizableLCA.{0})
 
@@ -2733,6 +2784,59 @@ structure OriginalFourTaskContractCompletion where
   branchFullDataW987StrictPreimageMapFieldsComparisonNonterminal :
     currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageMapFieldsComparisonStateW1506.productSuccessClaimed =
       false
+  branchFullDataW987BoundaryFieldsComparisonInputCount :
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputNamesW1507.length =
+      74
+  branchFullDataW987BoundaryFieldsComparisonPreservesW1506InputCount :
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageMapFieldsComparisonInputNamesW1506.length =
+      w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputNamesW1507.length
+  branchFullDataW987BoundaryFieldsComparisonSourceStrictPreimageMapFieldLeaves :
+    w1507BoundaryFieldsComparisonSourceStrictPreimageMapFieldLeavesStatementW1574
+  branchFullDataW987BoundaryFieldsComparisonBoundaryFieldLeaves :
+    w1507BoundaryFieldsComparisonBoundaryFieldLeavesStatementW1574
+  branchFullDataW987BoundaryFieldsComparisonStrictPreimageMapFieldLeaves :
+    w1507BoundaryFieldsComparisonStrictPreimageMapFieldLeavesStatementW1574
+  branchFullDataW987BoundaryFieldsComparisonConcreteLeaves :
+    w1507BoundaryFieldsComparisonConcreteLeavesStatementW1574
+  branchFullDataW987BoundaryFieldsComparisonRouteDataProvider :
+    w1507BoundaryFieldsComparisonRouteDataProviderStatementW1574
+  branchFullDataW987BoundaryFieldsComparisonDirectBoundedLeftCalculus :
+    w1507BoundaryFieldsComparisonDirectBoundedLeftCalculusStatementW1574
+  branchFullDataW987BoundaryFieldsComparisonBoundedDerivedInfinityCategory :
+    w1507BoundaryFieldsComparisonBoundedDerivedInfinityCategoryStatementW1574
+  branchFullDataW987BoundaryFieldsComparisonBoundaryDataMatchesW1506 :
+    ∀
+      (input :
+        W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputW1507),
+      boundaryDataOfFieldsW893
+          (rightOpenBoundary_of_boundaryDataW716
+            (strictPreimageMapFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonW1507
+              input).boundaryData)
+          (sourcePiZeroBoundary_of_boundaryDataW716
+            (strictPreimageMapFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonW1507
+              input).boundaryData) =
+        (strictPreimageMapFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonW1507
+          input).boundaryData
+  branchFullDataW987BoundaryFieldsComparisonStrictPreimageMapFieldLeavesBoundaryDataMatchesW1506 :
+    ∀
+      (input :
+        W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputW1507),
+      (strictPreimageMapFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonW1507
+          input).boundaryData =
+        (strictPreimageMapFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1506
+          input).boundaryData
+  branchFullDataW987BoundaryFieldsComparisonConcreteLeavesRunThroughW892 :
+    ∀
+      (input :
+        W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputW1507),
+      concreteLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonW1507
+          input =
+        concreteLeavesOfStrictPreimageMapFieldsComparisonW892
+          (strictPreimageMapFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonW1507
+            input)
+  branchFullDataW987BoundaryFieldsComparisonNonterminal :
+    currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonStateW1507.productSuccessClaimed =
+      false
   branchFullDataW829StableCertificateSemanticAdapterComparisonInputCount :
     w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonInputNamesW1540.length =
       74
@@ -4202,6 +4306,34 @@ noncomputable def originalFourTaskContractCompletion : OriginalFourTaskContractC
     w1506ConcreteLeavesMatchW1505
   branchFullDataW987StrictPreimageMapFieldsComparisonNonterminal :=
     currentW1506W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageMapFieldsComparison_productSuccess
+  branchFullDataW987BoundaryFieldsComparisonInputCount :=
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputNamesW1507_count
+  branchFullDataW987BoundaryFieldsComparisonPreservesW1506InputCount := by
+    rw [
+      w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageMapFieldsComparisonInputNamesW1506_count,
+      w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputNamesW1507_count]
+  branchFullDataW987BoundaryFieldsComparisonSourceStrictPreimageMapFieldLeaves :=
+    strictPreimageMapFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonW1507
+  branchFullDataW987BoundaryFieldsComparisonBoundaryFieldLeaves :=
+    boundaryFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1507
+  branchFullDataW987BoundaryFieldsComparisonStrictPreimageMapFieldLeaves :=
+    strictPreimageMapFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonW1507
+  branchFullDataW987BoundaryFieldsComparisonConcreteLeaves :=
+    concreteLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonW1507
+  branchFullDataW987BoundaryFieldsComparisonRouteDataProvider :=
+    routeDataProviderOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonW1507
+  branchFullDataW987BoundaryFieldsComparisonDirectBoundedLeftCalculus :=
+    directBoundedLeftCalculusOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonW1507
+  branchFullDataW987BoundaryFieldsComparisonBoundedDerivedInfinityCategory :=
+    boundedDerivedInfinityCategoryOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonW1507
+  branchFullDataW987BoundaryFieldsComparisonBoundaryDataMatchesW1506 :=
+    w1507BoundaryDataMatchesW1506
+  branchFullDataW987BoundaryFieldsComparisonStrictPreimageMapFieldLeavesBoundaryDataMatchesW1506 :=
+    w1507StrictPreimageMapFieldLeavesBoundaryDataMatchesW1506
+  branchFullDataW987BoundaryFieldsComparisonConcreteLeavesRunThroughW892 :=
+    w1507ConcreteLeavesRunThroughW892
+  branchFullDataW987BoundaryFieldsComparisonNonterminal :=
+    currentW1507W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparison_productSuccess
   branchFullDataW829StableCertificateSemanticAdapterComparisonInputCount :=
     w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonInputNamesW1540_count
   branchFullDataW829StableCertificateSemanticAdapterComparisonPreservesW1539InputCount := by
@@ -6667,6 +6799,85 @@ theorem originalFourTaskContractCompletion_branchFullDataW987StrictPreimageMapFi
     currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageMapFieldsComparisonStateW1506.productSuccessClaimed =
       false :=
   originalFourTaskContractCompletion.branchFullDataW987StrictPreimageMapFieldsComparisonNonterminal
+
+theorem originalFourTaskContractCompletion_branchFullDataW987BoundaryFieldsComparisonInputCountW1574 :
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputNamesW1507.length =
+      74 :=
+  originalFourTaskContractCompletion.branchFullDataW987BoundaryFieldsComparisonInputCount
+
+theorem originalFourTaskContractCompletion_branchFullDataW987BoundaryFieldsComparisonPreservesW1506InputCountW1574 :
+    w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StrictPreimageMapFieldsComparisonInputNamesW1506.length =
+      w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputNamesW1507.length :=
+  originalFourTaskContractCompletion.branchFullDataW987BoundaryFieldsComparisonPreservesW1506InputCount
+
+noncomputable def originalFourTaskContractCompletion_branchFullDataW987BoundaryFieldsComparisonSourceStrictPreimageMapFieldLeavesW1574 :
+    w1507BoundaryFieldsComparisonSourceStrictPreimageMapFieldLeavesStatementW1574 :=
+  originalFourTaskContractCompletion.branchFullDataW987BoundaryFieldsComparisonSourceStrictPreimageMapFieldLeaves
+
+noncomputable def originalFourTaskContractCompletion_branchFullDataW987BoundaryFieldsComparisonBoundaryFieldLeavesW1574 :
+    w1507BoundaryFieldsComparisonBoundaryFieldLeavesStatementW1574 :=
+  originalFourTaskContractCompletion.branchFullDataW987BoundaryFieldsComparisonBoundaryFieldLeaves
+
+noncomputable def originalFourTaskContractCompletion_branchFullDataW987BoundaryFieldsComparisonStrictPreimageMapFieldLeavesW1574 :
+    w1507BoundaryFieldsComparisonStrictPreimageMapFieldLeavesStatementW1574 :=
+  originalFourTaskContractCompletion.branchFullDataW987BoundaryFieldsComparisonStrictPreimageMapFieldLeaves
+
+noncomputable def originalFourTaskContractCompletion_branchFullDataW987BoundaryFieldsComparisonConcreteLeavesW1574 :
+    w1507BoundaryFieldsComparisonConcreteLeavesStatementW1574 :=
+  originalFourTaskContractCompletion.branchFullDataW987BoundaryFieldsComparisonConcreteLeaves
+
+noncomputable def originalFourTaskContractCompletion_branchFullDataW987BoundaryFieldsComparisonRouteDataProviderW1574 :
+    w1507BoundaryFieldsComparisonRouteDataProviderStatementW1574 :=
+  originalFourTaskContractCompletion.branchFullDataW987BoundaryFieldsComparisonRouteDataProvider
+
+theorem originalFourTaskContractCompletion_branchFullDataW987BoundaryFieldsComparisonDirectBoundedLeftCalculusW1574 :
+    w1507BoundaryFieldsComparisonDirectBoundedLeftCalculusStatementW1574 :=
+  originalFourTaskContractCompletion.branchFullDataW987BoundaryFieldsComparisonDirectBoundedLeftCalculus
+
+noncomputable def originalFourTaskContractCompletion_branchFullDataW987BoundaryFieldsComparisonBoundedDerivedInfinityCategoryW1574 :
+    w1507BoundaryFieldsComparisonBoundedDerivedInfinityCategoryStatementW1574 :=
+  originalFourTaskContractCompletion.branchFullDataW987BoundaryFieldsComparisonBoundedDerivedInfinityCategory
+
+theorem originalFourTaskContractCompletion_branchFullDataW987BoundaryFieldsComparisonBoundaryDataMatchesW1506W1574 :
+    ∀
+      (input :
+        W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputW1507),
+      boundaryDataOfFieldsW893
+          (rightOpenBoundary_of_boundaryDataW716
+            (strictPreimageMapFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonW1507
+              input).boundaryData)
+          (sourcePiZeroBoundary_of_boundaryDataW716
+            (strictPreimageMapFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonW1507
+              input).boundaryData) =
+        (strictPreimageMapFieldLeavesForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonW1507
+          input).boundaryData :=
+  originalFourTaskContractCompletion.branchFullDataW987BoundaryFieldsComparisonBoundaryDataMatchesW1506
+
+theorem originalFourTaskContractCompletion_branchFullDataW987BoundaryFieldsComparisonStrictPreimageMapFieldLeavesBoundaryDataMatchesW1506W1574 :
+    ∀
+      (input :
+        W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputW1507),
+      (strictPreimageMapFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonW1507
+          input).boundaryData =
+        (strictPreimageMapFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W1506
+          input).boundaryData :=
+  originalFourTaskContractCompletion.branchFullDataW987BoundaryFieldsComparisonStrictPreimageMapFieldLeavesBoundaryDataMatchesW1506
+
+theorem originalFourTaskContractCompletion_branchFullDataW987BoundaryFieldsComparisonConcreteLeavesRunThroughW892W1574 :
+    ∀
+      (input :
+        W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonInputW1507),
+      concreteLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonW1507
+          input =
+        concreteLeavesOfStrictPreimageMapFieldsComparisonW892
+          (strictPreimageMapFieldLeavesOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonW1507
+            input) :=
+  originalFourTaskContractCompletion.branchFullDataW987BoundaryFieldsComparisonConcreteLeavesRunThroughW892
+
+theorem originalFourTaskContractCompletion_branchFullDataW987BoundaryFieldsComparisonNonterminalW1574 :
+    currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3BoundaryFieldsComparisonStateW1507.productSuccessClaimed =
+      false :=
+  originalFourTaskContractCompletion.branchFullDataW987BoundaryFieldsComparisonNonterminal
 
 theorem originalFourTaskContractCompletion_branchFullDataW829StableCertificateSemanticAdapterComparisonInputCountW1541 :
     w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonInputNamesW1540.length =
