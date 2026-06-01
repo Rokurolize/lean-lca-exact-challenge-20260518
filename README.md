@@ -206,4 +206,6 @@ W1517 connects the W1516 W987 surface to the existing W1377 comparison concrete-
 
 W1518 connects the W1517 W987 surface to the existing W1376 selected-cochain concrete-leaves convergence guard. It specializes W1376's W878-to-W855 concrete-leaf construction, W878-to-W877 direct-calculus/stable-package delegation, W877-to-W733 route-data construction, and W877-to-W875 selected-cochain stable delegation on both closed-map and closed-embedding branches, preserves the 74-input ledger, and keeps product success false.
 
+W1519 connects the W1518 W987 surface to the existing W1375 W735/W732 selected-cochain convergence guard. It specializes W1375's W876 W735-to-W732 route-data construction and W875 W732-to-W874 endpoint-localized reconstruction on both closed-map and closed-embedding branches, proves the W876 route data agrees with the W1518 W877 concrete-leaf route data, records direct-calculus and stable-package convergence through W875/W874, preserves the 74-input ledger, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
