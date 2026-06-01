@@ -323,6 +323,8 @@ git diff --check
 
 2026-06-01T11:33:24Zに、W1553としてW1486のendpoint closed-embedding constructor-refinement evidenceを最終surfaceへ追加した。W1486の69入力count、selected-difference pi1/pi2/pi3 split、object-image/right-adjoint/target-surjectivity/target-compactness/mapped-cokernel component splitの保持、endpoint closed-embedding inputをembedding fieldとclosed-range fieldへ分けるsplit、W1485/W1477からのexpansion proof、`productSuccessClaimed = false` witnessを`originalFourTaskContractCompletion_branchFullDataW987EndpointClosedEmbedding...W1553`定理として露出させた。`audit/ProductSuccessDeclarations.lean`と`audit/OriginalFourTaskCompletionDeclarations.lean`にも同じ22定理の`#check`を追加した。これはW1486までのfinal surfaceをLean上の構成証拠で埋める非終端更新だが、W1487以降のconstructor input ledgerを解消するものではなく、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
 
+2026-06-01T11:49:48Zに、W1554としてW1487のunit mapping-cone closed-embedding constructor-refinement evidenceを最終surfaceへ追加した。W1487の70入力count、selected-difference pi1/pi2/pi3、object-image/right-adjoint/target-surjectivity/target-compactness/mapped-cokernel/endpoint closed-embedding component splitの保持、unit mapping-cone closed-embedding inputをembedding fieldとclosed-range fieldへ分けるsplit、W1486/W1477からのexpansion proof、`productSuccessClaimed = false` witnessを`originalFourTaskContractCompletion_branchFullDataW987UnitMappingConeClosedEmbedding...W1554`定理として露出させた。`audit/ProductSuccessDeclarations.lean`と`audit/OriginalFourTaskCompletionDeclarations.lean`にも同じ24定理の`#check`を追加した。これはW1487までのfinal surfaceをLean上の構成証拠で埋める非終端更新だが、W1488以降のconstructor input ledgerを解消するものではなく、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
