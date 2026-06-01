@@ -269,6 +269,8 @@ git diff --check
 
 2026-06-01T03:30:56Z時点で、W1526として`W987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW864TargetExactAtConvergenceGuardW1526.lean`を追加した。W1526はW1525のW987 surfaceをW864 target-ExactAt stable-ExactAt routeへ接続する。W1525で明示したclosed-map branchとclosed-embedding branchのW844 target-isomorphism dataからW843 target-ExactAt direct-source dataを組み立て、W1521のW870 exact-input branchが保持されること、W844/W808経路からW785 target-ExactAt payloadが得られること、direct calculusとstable packageがW1519/W1524/W1525経路からW864まで到達することをLean上で確認した。入力数は74のまま保持される。これはW1525 surfaceをW864 target-ExactAt convergenceへ接続する非終端incrementであり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
 
+2026-06-01T03:43:19Z時点で、W1527として`W987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW863TargetHomologyZeroConvergenceGuardW1527.lean`を追加した。W1527はW1526のW987 surfaceをW863 target-homology-zero stable-ExactAt routeへ接続する。W1526で明示したclosed-map branchとclosed-embedding branchのW843 target-ExactAt dataからW839 target-homology-zero dataを組み立て、W1521のW870 exact-input branchが保持されること、W843/W803経路からW790 target-homology-zero payloadが得られること、direct calculusとstable packageがW1519/W1525/W1526経路からW863まで到達することをLean上で確認した。入力数は74のまま保持される。これはW1526 surfaceをW863 target-homology-zero convergenceへ接続する非終端incrementであり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
