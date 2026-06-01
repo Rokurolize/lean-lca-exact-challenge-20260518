@@ -389,6 +389,8 @@ git diff --check
 
 2026-06-01T22:07:51Zに、W1586としてW1516のsource/endpoint convergence route-equality surfaceを最終surfaceへ追加した。W1516のW886 endpoint strict-topology assembly、W885 source-triangulation assembly、W855 source-homological assembly、W886からW885とW885からW884へのconcrete-leaf委譲、W886からW885、W885からW884、W884からW883、W883からW877へのroute-data委譲、W886からW885、W885からW884、W884からW883、W883からW882へのdirect-calculus委譲とstable-package委譲を`originalFourTaskContractCompletion_branchFullDataW987ClosedEmbeddingEndpointHomologyFreeSourceEndpointConvergence...W1586`定理として露出させた。`audit/ProductSuccessDeclarations.lean`と`audit/OriginalFourTaskCompletionDeclarations.lean`にも対応する17個の`#check`を追加した。これはW1585で残っていたW1516 equality liftをfinal surfaceで閉じる非終端更新だが、constructor input ledgerを独立した数学的構成で解消したものではなく、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
 
+2026-06-01T22:30:41Zに、W1587としてW1517のcomparison concrete-leaves convergence surfaceを最終surfaceへ追加した。W1517の74入力count、W1516入力ledgerの保存、W732/W874/W853 route-data outputs、direct bounded-left calculus、bounded derived infinity category package、closed-map/closed-embedding W735 exact-input branches、W1516-to-W732 route-data equality、W1377経由のW882/W881/W880/W879 delegations、およびW879-to-W878 closed-map/closed-embedding branch delegationsを`originalFourTaskContractCompletion_branchFullDataW987ClosedEmbeddingEndpointHomologyFreeComparisonConcreteLeavesConvergence...W1587`定義または定理として露出させた。`audit/ProductSuccessDeclarations.lean`と`audit/OriginalFourTaskCompletionDeclarations.lean`にも対応する27個の`#check`を追加した。これはW1517 bridgeをfinal surfaceから参照できるようにする非終端更新だが、constructor input ledgerをpositive witnessへ変換するものではなく、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
