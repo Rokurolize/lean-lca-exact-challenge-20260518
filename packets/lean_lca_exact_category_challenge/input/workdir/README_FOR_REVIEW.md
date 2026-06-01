@@ -385,6 +385,8 @@ git diff --check
 
 2026-06-01T21:09:49Zに、W1584としてW1515のlocalized-right-adjoint convergence route-equality surfaceを最終surfaceへ追加した。W1515のW890 strict-representative assembly、W889 normalized-lift assembly、W888 normalized fixed-target assembly、W887 localized-right-adjoint assembly、およびW890-to-W889、W889-to-W888、W888-to-W887、W887-to-W886のconcrete-leaf、route-data、direct-calculus、stable-package delegationsを`originalFourTaskContractCompletion_branchFullDataW987ClosedEmbeddingEndpointHomologyFreeLocalizedRightAdjointConvergence...W1584`定理として露出させた。`audit/ProductSuccessDeclarations.lean`と`audit/OriginalFourTaskCompletionDeclarations.lean`にも20宣言の`#check`を追加した。これによりW1583で残っていたW1515 equality-lift gapは閉じたが、まだpositive OriginalFourTaskProductSuccess witnessではなく、product successは主張しない。
 
+2026-06-01T21:38:29Zに、W1585としてW1516のclosed-embedding endpoint-homology-free source/endpoint convergence output surfaceを最終surfaceへ追加した。W1516の74入力count、W1515入力ledgerの保存、W886 endpoint strict-topology leaves、W885 source-triangulation field leaves、W884 source-triangulation leaves、W884 source-triangulation concrete leaves、W733 concrete leaves、W732 route data、direct bounded-left calculus、bounded derived infinity category package、`productSuccessClaimed = false` witnessを`originalFourTaskContractCompletion_branchFullDataW987ClosedEmbeddingEndpointHomologyFreeSourceEndpointConvergence...W1585`定義または定理として露出させた。`audit/ProductSuccessDeclarations.lean`と`audit/OriginalFourTaskCompletionDeclarations.lean`にも同じ11宣言の`#check`を追加した。これはW1516 source/endpoint convergence output layerをfinal surfaceから参照できるようにする非終端更新であり、W1516のroute equality群はsource audit上で確認済みだが、まだpositive witnessへ変換するものではなく、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。

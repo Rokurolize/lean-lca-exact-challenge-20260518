@@ -1,0 +1,8 @@
+{
+  "outcome": "product_success",
+  "product_success": true,
+  "product_complete": true,
+  "update_goal_allowed": true,
+  "known_gaps": [],
+  "summary": "Negative fixture: metadata is promoted to product success while the proof-plane witness remains unchanged and false."
+}
