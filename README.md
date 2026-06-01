@@ -256,4 +256,6 @@ W1542 strengthens that same final nonterminal surface with four direct W1540 equ
 
 W1543 completes the final nonterminal surface for W1540 equality facts. It adds the remaining six semantic-input, accepted-evidence, and certificate equalities for closed-map and closed-embedding branches to `OriginalFourTaskContractCompletion`, complementing W1542 package/projection equalities. This exposes all 10 W1540 comparison facts on the final audit surface, but it remains nonterminal because the W987 74-input ledger is still undischarged and no positive `OriginalFourTaskProductSuccess` witness exists.
 
+W1544 makes the W1540 nonterminal state ledger explicit on the final completion surface. It proves that the W1540 state's `remainingInputs` field is exactly the canonical 74-input list, that `comparisonFacts` is exactly the canonical 10-fact list, and that the W1540 declaration ledger has 12 entries. This turns the unresolved W987 constructor ledger into Lean-visible final-surface evidence, but it still does not construct a positive `OriginalFourTaskProductSuccess` witness.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
