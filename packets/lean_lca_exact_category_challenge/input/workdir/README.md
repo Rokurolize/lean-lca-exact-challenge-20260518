@@ -220,4 +220,6 @@ W1524 connects the W1523 W987 surface to the W866 iso-closure stable-ExactAt rou
 
 W1525 connects the W1524 W987 surface to the W865 target-isomorphism stable-ExactAt route. It names the W844 target-isomorphism data induced by the W1524 W845 iso-closure data, records preservation of the W1521 W870 exact-input branches and the W845/W810/W809 target-isomorphism realization, composes the W1519/W1522/W1523/W1524 direct-calculus and stable-package paths through W865 on both closed-map and closed-embedding branches, preserves the 74-input ledger, and keeps product success false.
 
+W1526 connects the W1525 W987 surface to the W864 target-ExactAt stable-ExactAt route. It names the W843 target-ExactAt direct-source data induced by the W1525 W844 target-isomorphism data, records preservation of the W1521 W870 exact-input branches and the W844/W808 target-ExactAt payload, composes the W1519/W1524/W1525 direct-calculus and stable-package paths through W864 on both closed-map and closed-embedding branches, preserves the 74-input ledger, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
