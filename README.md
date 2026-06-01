@@ -238,4 +238,6 @@ W1533 discharges the four W829 stable-route fields for the W1532 W987 surface fr
 
 W1534 packages the W1533 W829 direct-source stable fields as explicit W528-style stable certificate evidence. It builds ordinary stable semantic inputs, stable four-projection certificates, readiness proofs, accepted stable-route evidence, and accepted guarded stable bounded-derived packages on both closed-map and closed-embedding branches, preserves the 74-input ledger, and keeps product success false.
 
+W1535 unpacks the W1534 accepted stable bounded-derived packages into concrete field-level projections of `BoundedDerivedInfinityCategory`. It exposes the carrier equality, finite-limit and finite-colimit fields, and pretriangulated and triangulated fields on both branches, preserves the 74-input ledger, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
