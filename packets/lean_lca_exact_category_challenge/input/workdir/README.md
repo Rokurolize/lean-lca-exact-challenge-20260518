@@ -232,4 +232,6 @@ W1530 connects the W1529 W987 surface to the W859 closedness-branch target-Exact
 
 W1531 connects the W1530 W987 surface to the W831 comparison-bijectivity left-calculus route and the W830 direct-bounded-left-calculus data beneath it. It names the W831 data induced by W1530's W832 target-ExactAt data, names the W830 data induced by W831, records preservation of the exact-closed, kernel/cokernel topology, localized-right-adjoint, and comparison-isomorphism fields, composes the W1519/W1530 direct-calculus paths through W831 and W830 on both closed-map and closed-embedding branches, preserves the 74-input ledger, and keeps product success false.
 
+W1532 connects the W1531 W987 surface to the W829 left-calculus stable route. It names the W829 left-calculus premise induced by the W1531 W830 direct-left-calculus data, records the semantic fields supplied by that premise, exposes the stable bounded-derived package route that still requires finite limits, finite colimits, pretriangulated structure, and triangulated structure, preserves the 74-input ledger, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
