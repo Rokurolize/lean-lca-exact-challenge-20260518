@@ -337,6 +337,8 @@ git diff --check
 
 2026-06-01T13:44:06Zに、W1560としてW1493のunit mapping-cone open-map constructor-refinement evidenceを最終surfaceへ追加した。W1493の74入力count、unit mapping-cone open-mapをimage-openness fieldとして展開したcomponent ledger、そのbundled unit mapping-cone open-map familyとcomponent ledgerの同数性、W1492の74入力ledgerを保つproof、W1490/W1477からのexpansion proof、`productSuccessClaimed = false` witnessを`originalFourTaskContractCompletion_branchFullDataW987UnitMappingConeOpenMap...W1560`定理として露出させた。`audit/ProductSuccessDeclarations.lean`と`audit/OriginalFourTaskCompletionDeclarations.lean`にも同じ7定理の`#check`を追加した。これはW1493 unit mapping-cone open-map reconstructionをfinal surfaceから参照できるようにする非終端更新だが、constructor input ledgerをpositive witnessへ変換するものではなく、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
 
+2026-06-01T14:04:05Zに、W1561としてW1494のfixed-target uniqueness constructor-refinement evidenceを最終surfaceへ追加した。W1494の74入力count、target fixed-target uniquenessとlocalization-model fixed-target uniquenessをraw objectwise-localization quantifier fieldとして展開したcomponent ledger、そのbundled fixed-target uniqueness obligationsとcomponent ledgerの同数性、W1493の74入力ledgerを保つproof、W1490/W1477からのexpansion proof、`productSuccessClaimed = false` witnessを`originalFourTaskContractCompletion_branchFullDataW987FixedTargetUniq...W1561`定理として露出させた。`audit/ProductSuccessDeclarations.lean`と`audit/OriginalFourTaskCompletionDeclarations.lean`にも同じ7定理の`#check`を追加した。これはW1494 fixed-target uniqueness reconstructionをfinal surfaceから参照できるようにする非終端更新だが、constructor input ledgerをpositive witnessへ変換するものではなく、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。

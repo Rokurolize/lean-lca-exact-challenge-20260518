@@ -1,24 +1,24 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-06-01T13:48:34Z",
-  "git_head": "14301317aa9fc1db41110287c731caa37f426a35",
-  "source_tree_hash": "8d0ebaf5f09a4b547857c61ba600c361df2d020207d1ad3523a656d85e849ebc",
+  "generated_utc": "2026-06-01T14:06:54Z",
+  "git_head": "82aa809308b1b6a5ab1cb82743e63b0e297fa3f8",
+  "source_tree_hash": "618aa216079fbc38cae9b8021c6e389837b4a589e14ce50627267855c060601b",
   "outcome": "mathematical_frontier_nonterminal",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W1560 exposes W1493 unit mapping-cone open-map constructor-refinement evidence on the final OriginalFourTaskContractCompletion surface: the W1493 74-input count, the unit mapping-cone open-map image-openness component ledger, the equality between the bundled unit mapping-cone open-map family and that component ledger, preservation of the W1492 74-input ledger, the W1490/W1477 expansion proofs, and the nonterminal productSuccessClaimed=false witness. Product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the constructor-input ledger remains nonterminal evidence rather than a completed product proof.",
+  "summary": "W1561 exposes W1494 fixed-target uniqueness constructor-refinement evidence on the final OriginalFourTaskContractCompletion surface: the W1494 74-input count, the fixed-target uniqueness raw quantifier component ledger, the equality between the bundled fixed-target uniqueness obligations and that component ledger, preservation of the W1493 74-input ledger, the W1490/W1477 expansion proofs, and the nonterminal productSuccessClaimed=false witness. Product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the constructor-input ledger remains nonterminal evidence rather than a completed product proof.",
   "positive_witness_declarations": [],
   "reference_route_log": "docs/research/reference_route_log.md",
   "known_gaps": [
     "Positive Lean witness is absent: ProductSuccessDeclarations.lean does not import or check an OriginalFourTaskProductSuccess surface with field-level evidence for the original four-task contract.",
-    "Final imported completion surface remains nonterminal: originalFourTaskContractCompletion.productSuccessClaimed = false still compiles, now with W1560/W1559/W1558/W1557/W1556/W1555/W1554/W1553/W1552/W1551/W1550/W1549/W1548/W1547/W1546/W1545/W1544/W1543/W1542 fields exposing intermediate W987 and W1539/W1540 route evidence on the final surface.",
-    "W1560 exposes W1493 unit mapping-cone open-map constructor-refinement evidence on the final nonterminal surface, but it still records a constructor-input ledger rather than constructing all inputs from independent mathematical data.",
+    "Final imported completion surface remains nonterminal: originalFourTaskContractCompletion.productSuccessClaimed = false still compiles, now with W1561/W1560/W1559/W1558/W1557/W1556/W1555/W1554/W1553/W1552/W1551/W1550/W1549/W1548/W1547/W1546/W1545/W1544/W1543/W1542 fields exposing intermediate W987 and W1539/W1540 route evidence on the final surface.",
+    "W1561 exposes W1494 fixed-target uniqueness constructor-refinement evidence on the final nonterminal surface, but it still records a constructor-input ledger rather than constructing all inputs from independent mathematical data.",
     "Original four mathematical tasks remain open under the positive-witness supplement; the current route still relies on constructor-field ledgers and stable-route comparison wrappers rather than a positive product witness."
   ],
   "remaining_work": [
-    "Discharge the W1560/W1559/W1558/W1557/W1556/W1555/W1554/W1553/W1552/W1551/W1550/W1549/W1548/W1547/W1546/W1545/W1544/W1543/W1542/W1541/W1540/W1539 route inputs and remaining W987 constructor inputs, or replace the field-ledger route with an explicit positive witness satisfying the positive-witness supplement.",
+    "Discharge the W1561/W1560/W1559/W1558/W1557/W1556/W1555/W1554/W1553/W1552/W1551/W1550/W1549/W1548/W1547/W1546/W1545/W1544/W1543/W1542/W1541/W1540/W1539 route inputs and remaining W987 constructor inputs, or replace the field-ledger route with an explicit positive witness satisfying the positive-witness supplement.",
     "Continue Lean implementation toward a positive OriginalFourTaskProductSuccess-style declaration backed by actual exact-category, metrizable LCA exact-category, Yoneda-Ext, and bounded derived infinity-category constructions.",
     "Before any product-success claim, rerun the source-contradiction gate, negative fixtures, clean checkout verification, root external audit, and clean-extracted packet audit."
   ],
@@ -30,7 +30,7 @@
     "lake env lean audit/RequiredDeclarations.lean",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
-    "lake env lean LeanLCAExactChallenge/Derived/W987UnitMappingConeOpenMapFieldDataConstructionGuardW1493.lean",
+    "lake env lean LeanLCAExactChallenge/Derived/W987FixedTargetUniqFieldDataConstructionGuardW1494.lean",
     "lake env lean LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean",
     "lake env lean LeanLCAExactChallenge.lean",
     "PYTHONDONTWRITEBYTECODE=1 python3 -m py_compile audit/external_audit.py audit/original_four_task_contract_audit.py packets/lean_lca_exact_category_challenge/external_audit.py",
@@ -41,7 +41,7 @@
     "PYTHONDONTWRITEBYTECODE=1 python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
     "PYTHONDONTWRITEBYTECODE=1 python3 packets/lean_lca_exact_category_challenge/external_audit.py --root packets/lean_lca_exact_category_challenge --terminal-outcome terminal_outcome/terminal_outcome.json",
     "(cd packets && sha256sum -c lean_lca_exact_category_challenge.zip.sha256)",
-    "python3 /home/roku/.agents/skills/clean-review-packet/scripts/packet_audit.py --packet-root /tmp/lean_lca_w1560_clean/lean_lca_exact_category_challenge --zip packets/lean_lca_exact_category_challenge.zip --sha256-sidecar packets/lean_lca_exact_category_challenge.zip.sha256 --require README_FOR_REVIEW.md --require manifest.json"
+    "python3 /home/roku/.agents/skills/clean-review-packet/scripts/packet_audit.py --packet-root /tmp/lean_lca_w1561_clean/lean_lca_exact_category_challenge --zip packets/lean_lca_exact_category_challenge.zip --sha256-sidecar packets/lean_lca_exact_category_challenge.zip.sha256 --require README_FOR_REVIEW.md --require manifest.json"
   ],
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256"
