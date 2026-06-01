@@ -1,1 +1,0 @@
-#check LeanLCAExactChallenge.BoundedDerivedInfinityCategory

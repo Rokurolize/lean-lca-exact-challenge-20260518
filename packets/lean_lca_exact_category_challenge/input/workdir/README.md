@@ -212,4 +212,6 @@ W1520 connects the W1519 W987 surface to the existing W1374 endpoint-facts/local
 
 W1521 connects the W1520 W987 surface to the existing W1373 W872-to-W870 branch-dispatch guard. It exposes the W1520 closed-map and closed-embedding W853 providers as explicit W870 exact-input branches, proves those W870 inputs recover the W1519 W735 branch data, records the W1520 closedness branch choice on both branches, composes the W1519/W1520 direct-calculus and stable-package paths through W870, preserves the 74-input ledger, and keeps product success false.
 
+W1522 connects the W1521 W987 surface to the existing W1372 W870/W869/W868 selected-cochain convergence guard. It builds the W850/W849 selected-cochain direct-source W847 data from the W1521 W870 exact-input branches, records the W870-to-W869 specialization through the W831 universal comparison isomorphism, composes both closed-map and closed-embedding direct-calculus and stable-package paths through W869 and W868, preserves the 74-input ledger, and keeps product success false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.

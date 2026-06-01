@@ -259,6 +259,8 @@ git diff --check
 
 2026-06-01T01:36:20Z時点で、W1521として`W987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW870BranchDispatchGuardW1521.lean`を追加した。W1521はW1520のW987 surfaceを既存W1373 W872-to-W870 branch-dispatch guardへ接続する。W1520で得たclosed-map branchとclosed-embedding branchのW853 providerをW870 exact-input branchとして明示し、そのexact inputがW1519のW735 branch dataへ戻ること、W853 providerが対応するclosedness branchを持つこと、direct calculusとstable packageがW1519/W1520経路からW870まで到達することをLean上で確認した。入力数は74のまま保持される。これはW1520 surfaceをW1373/W870 branch-dispatchへ接続する非終端incrementであり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
 
+2026-06-01T02:09:34Z時点で、W1522として`W987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW869W868ConvergenceGuardW1522.lean`を追加した。W1522はW1521のW987 surfaceを既存W1372 W870/W869/W868 selected-cochain convergence guardへ接続する。W1521で明示したW870 exact-input branchから、W850/W849を通じてW847 selected-cochain direct-source dataを組み立て、W831 universal comparison isomorphismでW870からW869へ、さらにW850/W868へdirect calculusとstable packageを委譲することをclosed-map branchとclosed-embedding branchの両方で確認した。入力数は74のまま保持される。これはW1521 surfaceをW1372/W869/W868 convergenceへ接続する非終端incrementであり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
