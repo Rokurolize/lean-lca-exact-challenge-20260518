@@ -254,4 +254,6 @@ W1541 brings the final nonterminal `OriginalFourTaskContractCompletion` surface 
 
 W1542 strengthens that same final nonterminal surface with four direct W1540 equality facts: closed-map and closed-embedding W1539 semantic-adapter packages equal the W1534 accepted packages, and their projection facts equal the W1535 accepted projection facts. This exposes actual route equality evidence on `originalFourTaskContractCompletion`, but it is still not a positive `OriginalFourTaskProductSuccess` witness because the W987 74-input ledger remains undischarged.
 
+W1543 completes the final nonterminal surface for W1540 equality facts. It adds the remaining six semantic-input, accepted-evidence, and certificate equalities for closed-map and closed-embedding branches to `OriginalFourTaskContractCompletion`, complementing W1542 package/projection equalities. This exposes all 10 W1540 comparison facts on the final audit surface, but it remains nonterminal because the W987 74-input ledger is still undischarged and no positive `OriginalFourTaskProductSuccess` witness exists.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.

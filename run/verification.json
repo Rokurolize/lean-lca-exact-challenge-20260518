@@ -1,102 +1,102 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-06-01T08:23:46Z",
-  "git_head": "f223bc566b499310c1738bbebfb6b4441f97a2eb",
-  "source_tree_hash": "3d47de6a04477ecc46308a36eb720218b3bf88aae5498e27ee01f17d53549549",
+  "generated_utc": "2026-06-01T08:40:33Z",
+  "git_head": "a55d359419f5ed92ec252cf685fbfd0e1b01dd2e",
+  "source_tree_hash": "8c27828ba32f70c0efe1a6c358cb5f1e856c2c891a328caa92e53a706ac84134",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1542 strengthens the final nonterminal OriginalFourTaskContractCompletion surface with four W1540 equality facts: closed-map and closed-embedding W1539 semantic-adapter packages equal the W1534 accepted packages, and their projection facts equal the W1535 accepted projection facts. Product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the W987 74-input ledger remains undischarged.",
+  "summary": "W1543 completes exposing all 10 W1540 equality facts on the final nonterminal OriginalFourTaskContractCompletion surface by adding semantic-input, accepted-evidence, and certificate equality fields for both branches, complementing W1542 package/projection equality fields. Product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the W987 74-input ledger remains undischarged.",
   "evidence_root": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "run/w1542_lake_build.log"
+      "evidence": "run/w1543_lake_build.log"
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.OriginalFourTaskContractCompletion",
       "status": "passed",
-      "evidence": "run/w1542_original_four_task_completion_module_build.log"
+      "evidence": "run/w1543_original_four_task_completion_module_build.log"
     },
     {
       "command": "lake build LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "run/w1542_root_module_build.log"
+      "evidence": "run/w1543_root_module_build.log"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "run/w1542_forbidden_lean_tokens.log"
+      "evidence": "run/w1543_forbidden_lean_tokens.log"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "run/w1542_required_declarations.log"
+      "evidence": "run/w1543_required_declarations.log"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "run/w1542_product_success_declarations.log"
+      "evidence": "run/w1543_product_success_declarations.log"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "run/w1542_original_four_task_completion_declarations.log"
+      "evidence": "run/w1543_original_four_task_completion_declarations.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean",
       "status": "passed",
-      "evidence": "run/w1542_original_four_task_completion_focused.log"
+      "evidence": "run/w1543_original_four_task_completion_focused.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
       "status": "passed",
-      "evidence": "run/w1542_root_focused.log"
+      "evidence": "run/w1543_root_focused.log"
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py audit/original_four_task_contract_audit.py packets/lean_lca_exact_category_challenge/external_audit.py",
       "status": "passed",
-      "evidence": "run/w1542_py_compile.log"
+      "evidence": "run/w1543_py_compile.log"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "run/w1542_git_diff_check.log"
+      "evidence": "run/w1543_git_diff_check.log"
     },
     {
       "command": "rg -n 'productSuccessClaimed\\s*:=\\s*true' LeanLCAExactChallenge audit",
       "status": "failed_expected",
-      "evidence": "run/w1542_product_success_true_source_scan.log"
+      "evidence": "run/w1543_product_success_true_source_scan.log"
     },
     {
       "command": "rg -n 'productSuccessClaimed\\s*:=\\s*false|productSuccessClaimed\\s*=\\s*false' LeanLCAExactChallenge audit",
       "status": "passed",
-      "evidence": "run/w1542_final_false_witness_source_scan.log"
+      "evidence": "run/w1543_final_false_witness_source_scan.log"
     },
     {
       "command": "PYTHONDONTWRITEBYTECODE=1 python3 audit/original_four_task_contract_audit.py --root \"$PWD\" --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "run/w1542_original_four_task_contract_audit.log"
+      "evidence": "run/w1543_original_four_task_contract_audit.log"
     },
     {
       "command": "PYTHONDONTWRITEBYTECODE=1 python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "run/w1542_external_audit.log"
+      "evidence": "run/w1543_external_audit.log"
     },
     {
       "command": "PYTHONDONTWRITEBYTECODE=1 python3 packets/lean_lca_exact_category_challenge/external_audit.py --root packets/lean_lca_exact_category_challenge --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "run/w1542_packet_external_audit.log"
+      "evidence": "run/w1543_packet_external_audit.log"
     },
     {
-      "command": "python3 /home/roku/.agents/skills/clean-review-packet/scripts/packet_audit.py --packet-root /tmp/lean_lca_w1542_clean/lean_lca_exact_category_challenge --zip packets/lean_lca_exact_category_challenge.zip --sha256-sidecar packets/lean_lca_exact_category_challenge.zip.sha256 --require README_FOR_REVIEW.md --require manifest.json",
+      "command": "python3 /home/roku/.agents/skills/clean-review-packet/scripts/packet_audit.py --packet-root /tmp/lean_lca_w1543_clean/lean_lca_exact_category_challenge --zip packets/lean_lca_exact_category_challenge.zip --sha256-sidecar packets/lean_lca_exact_category_challenge.zip.sha256 --require README_FOR_REVIEW.md --require manifest.json",
       "status": "passed",
-      "evidence": "run/w1542_clean_packet_audit.log"
+      "evidence": "run/w1543_clean_packet_audit.log"
     },
     {
       "command": "(cd packets && sha256sum -c lean_lca_exact_category_challenge.zip.sha256)",
       "status": "passed",
-      "evidence": "run/w1542_packet_zip_sha256_check.log"
+      "evidence": "run/w1543_packet_zip_sha256_check.log"
     }
   ]
 }
