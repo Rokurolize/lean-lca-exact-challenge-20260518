@@ -249,6 +249,8 @@ git diff --check
 
 2026-05-31T23:22:50Z時点で、W1516として`W987ClosedEmbeddingEndpointHomologyFreeSourceEndpointConvergenceGuardW1516.lean`を追加した。W1516はW1515のW987 surfaceを既存W1378 source/endpoint convergence guardへ接続する。W1515で到達したW886 endpoint strict-topology leavesを、W1378のW886からW885、W885からW884、W884からW883、W883からW882/W877への委譲列に合成する。Lean上ではconcrete leavesがW884 source-triangulation routeまで、route data、direct calculus、stable packageがW882/W877 concrete-leaf routeまで到達することを確認した。入力数は74のまま保持される。これはW1515 surfaceをW1378/W882 convergenceへ接続する非終端incrementであり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
 
+2026-05-31T23:41:53Z時点で、W1517として`W987ClosedEmbeddingEndpointHomologyFreeComparisonConcreteLeavesConvergenceGuardW1517.lean`を追加した。W1517はW1516のW987 surfaceを既存W1377 comparison concrete-leaves convergence guardへ接続する。W1516で到達したW732 route-data surfaceを、W1377のW882からW881、W881からW880、W880からW879、W879からW878への委譲列に合成する。Lean上ではendpoint-localized provider、homology-free provider、direct calculus、stable packageがW879 branch matchまで到達し、closed-map branchとclosed-embedding branchのselected-cochain delegationsがW878へ到達することを確認した。入力数は74のまま保持される。これはW1516 surfaceをW1377/W879/W878 convergenceへ接続する非終端incrementであり、positive OriginalFourTaskProductSuccess witnessではないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
