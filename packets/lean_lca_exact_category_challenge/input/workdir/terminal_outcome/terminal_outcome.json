@@ -1,24 +1,24 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-06-01T23:33:25Z",
-  "git_head": "c6805e7b8bf10b0c85450eb04eee6deee0a8735e",
-  "source_tree_hash": "19363dd9483f602d49b65e2909e22393ada477d85f5cfdaf2e433cc822904053",
+  "generated_utc": "2026-06-01T23:50:20Z",
+  "git_head": "5126c236ed40165557ff942c7bd889547f1ac1b1",
+  "source_tree_hash": "9f956a230411275bf5a9b7117f0b7fde9f70a02ff77fe5037d15e72df9ba2e73",
   "outcome": "mathematical_frontier_nonterminal",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W1590 exposes the W1520 endpoint-facts/localized selected-cochain route on the final OriginalFourTaskContractCompletion surface: W856 endpoint-facts providers, W853 homology-free selected-cochain providers, W1519 input preservation, endpoint-facts boundary/closedness/topology/localized field equalities, W874-to-W873 and W873-to-W872 direct/stable delegations, and composed W1519-to-W872 direct/stable paths. Product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the original four-task contract still requires constructor-input discharge or a positive witness.",
+  "summary": "W1591 exposes the W1521 W870 branch-dispatch route on the final OriginalFourTaskContractCompletion surface: closed-map and closed-embedding W870 exact inputs, W1520 input preservation, W870 exact-input equality with W1519 W735 branch data, W853 closedness-branch equalities, W872-to-W870 direct/stable delegations, and composed W1519/W1520-to-W870 direct/stable paths. Product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the original four-task contract still requires constructor-input discharge or a positive witness.",
   "positive_witness_declarations": [],
   "reference_route_log": "docs/research/reference_route_log.md",
   "known_gaps": [
     "Positive Lean witness is absent: ProductSuccessDeclarations.lean does not import or check an OriginalFourTaskProductSuccess surface with field-level evidence for the original four-task contract.",
-    "Final imported completion surface remains nonterminal: originalFourTaskContractCompletion.productSuccessClaimed = false still compiles, now with W1590 W1520 endpoint-facts/localized selected-cochain projections on top of the W1519 bridge.",
-    "W1590 only closes the W1520 endpoint-facts/localized selected-cochain bridge from W1519 branch data toward W1374 homology-free selected-cochain evidence; it does not discharge the constructor-input ledger.",
+    "Final imported completion surface remains nonterminal: originalFourTaskContractCompletion.productSuccessClaimed = false still compiles, now with W1591 W1521 W870 branch-dispatch projections on top of the W1590/W1520 bridge.",
+    "W1591 only closes the W1521 W870 branch-dispatch bridge from W1520 homology-free selected-cochain providers toward W1373 branch-dispatch evidence; it does not discharge the constructor-input ledger.",
     "Original four mathematical tasks remain open under the positive-witness supplement; the current route is still a checked nonterminal field-ledger surface rather than a positive product witness."
   ],
   "remaining_work": [
-    "Continue with the smallest checked W1521/W1373 follow-on increment that moves the final surface toward a positive OriginalFourTaskProductSuccess witness.",
+    "Continue with the smallest checked W1522/W1372 follow-on increment that moves the final surface toward a positive OriginalFourTaskProductSuccess witness.",
     "Discharge the remaining W987 constructor inputs, or replace the field-ledger route with an explicit positive witness satisfying the positive-witness supplement.",
     "Before any product-success claim, rerun the source-contradiction gate, negative fixtures, clean checkout verification, root external audit, and clean-extracted packet audit."
   ],
@@ -30,7 +30,7 @@
     "lake env lean audit/RequiredDeclarations.lean",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
-    "lake env lean LeanLCAExactChallenge/Derived/W987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainConvergenceGuardW1520.lean",
+    "lake env lean LeanLCAExactChallenge/Derived/W987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW870BranchDispatchGuardW1521.lean",
     "lake env lean LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean",
     "lake env lean LeanLCAExactChallenge.lean",
     "PYTHONDONTWRITEBYTECODE=1 python3 -m py_compile audit/external_audit.py audit/original_four_task_contract_audit.py packets/lean_lca_exact_category_challenge/external_audit.py",
@@ -41,7 +41,7 @@
     "PYTHONDONTWRITEBYTECODE=1 python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
     "PYTHONDONTWRITEBYTECODE=1 python3 packets/lean_lca_exact_category_challenge/external_audit.py --root packets/lean_lca_exact_category_challenge --terminal-outcome terminal_outcome/terminal_outcome.json",
     "(cd packets && sha256sum -c lean_lca_exact_category_challenge.zip.sha256)",
-    "python3 /home/roku/.agents/skills/clean-review-packet/scripts/packet_audit.py --packet-root /tmp/lean_lca_w1590_clean/lean_lca_exact_category_challenge --zip packets/lean_lca_exact_category_challenge.zip --sha256-sidecar packets/lean_lca_exact_category_challenge.zip.sha256 --require README_FOR_REVIEW.md --require manifest.json"
+    "python3 /home/roku/.agents/skills/clean-review-packet/scripts/packet_audit.py --packet-root /tmp/lean_lca_w1591_clean/lean_lca_exact_category_challenge --zip packets/lean_lca_exact_category_challenge.zip --sha256-sidecar packets/lean_lca_exact_category_challenge.zip.sha256 --require README_FOR_REVIEW.md --require manifest.json"
   ],
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256"
