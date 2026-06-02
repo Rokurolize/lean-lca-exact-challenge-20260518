@@ -403,6 +403,8 @@ git diff --check
 
 2026-06-02T00:32:16Zに、W1593としてW1523のW867 strict-realization convergence surfaceを最終surfaceへ追加した。W1523の74入力count、W1522入力ledgerの保存、closed-map/closed-embedding W846 strict-realization data、W1371 exact-input fields、W847 triangle-realization fields、W868-to-W867 direct/stable delegations、およびW1519/W1522からW867までの合成direct/stable pathsを`originalFourTaskContractCompletion_branchFullDataW987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW867StrictRealizationConvergence...W1593`定義または定理として露出させた。`audit/ProductSuccessDeclarations.lean`と`audit/OriginalFourTaskCompletionDeclarations.lean`にも対応する17個の`#check`を追加した。これはW1523 bridgeをfinal surfaceから参照できるようにする非終端更新だが、constructor input ledgerをpositive witnessへ変換するものではなく、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
 
+2026-06-02T00:52:41Zに、W1594としてW1524のW866 iso-closure convergence surfaceを最終surfaceへ追加した。W1524の74入力count、W1523入力ledgerの保存、closed-map/closed-embedding W845 iso-closure data、W845 exact-input fields、W812/W847 iso-closure realization fields、W867-to-W866 direct/stable delegations、およびW1519/W1522/W1523からW866までの合成direct/stable pathsを`originalFourTaskContractCompletion_branchFullDataW987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW866IsoClosureConvergence...W1594`定義または定理として露出させた。`audit/ProductSuccessDeclarations.lean`と`audit/OriginalFourTaskCompletionDeclarations.lean`にも対応する17個の`#check`を追加した。これはW1524 bridgeをfinal surfaceから参照できるようにする非終端更新だが、constructor input ledgerをpositive witnessへ変換するものではなく、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
