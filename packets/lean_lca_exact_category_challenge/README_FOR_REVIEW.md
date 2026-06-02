@@ -399,6 +399,8 @@ git diff --check
 
 2026-06-01T23:50:20Zに、W1591としてW1521のW870 branch-dispatch surfaceを最終surfaceへ追加した。W1521の74入力count、W1520入力ledgerの保存、closed-map/closed-embedding W870 exact inputs、W870 exact inputsがW1519 W735 branch dataへ戻る同一性、W853 homology-free providerのclosedness branch同一性、W872-to-W870 direct/stable delegations、およびW1519/W1520からW870までの合成direct/stable pathsを`originalFourTaskContractCompletion_branchFullDataW987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW870BranchDispatch...W1591`定義または定理として露出させた。`audit/ProductSuccessDeclarations.lean`と`audit/OriginalFourTaskCompletionDeclarations.lean`にも対応する17個の`#check`を追加した。これはW1521 bridgeをfinal surfaceから参照できるようにする非終端更新だが、constructor input ledgerをpositive witnessへ変換するものではなく、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
 
+2026-06-02T00:12:09Zに、W1592としてW1522のW869/W868 convergence surfaceを最終surfaceへ追加した。W1522の74入力count、W1521入力ledgerの保存、closed-map/closed-embedding W847 selected-cochain direct-source data、W850 exact-input fields、W849 strictification fields、W870-to-W869 direct/stable delegations、W869-to-W868 direct/stable delegations、およびW1519/W1521からW869/W868までの合成direct/stable pathsを`originalFourTaskContractCompletion_branchFullDataW987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW869W868Convergence...W1592`定義または定理として露出させた。`audit/ProductSuccessDeclarations.lean`と`audit/OriginalFourTaskCompletionDeclarations.lean`にも対応する25個の`#check`を追加した。これはW1522 bridgeをfinal surfaceから参照できるようにする非終端更新だが、constructor input ledgerをpositive witnessへ変換するものではなく、positive OriginalFourTaskProductSuccess witnessでもないため、product successはまだ主張しない。
+
 ## レビューpacket
 
 レビューpacketは次の場所に生成される。
