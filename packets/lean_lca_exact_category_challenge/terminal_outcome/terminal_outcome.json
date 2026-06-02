@@ -1,24 +1,24 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-06-02T00:13:58Z",
-  "git_head": "c6cbd4e3f6d381e81cb7d6a4dfc5b87034c135fe",
-  "source_tree_hash": "60fa83f3e91f5a18800f40ff5994161ff139eea7e1b528287b58ed1a2c703351",
+  "generated_utc": "2026-06-02T00:32:16Z",
+  "git_head": "afe153b3574e64a4597b43d8557dc7e81bb44ea8",
+  "source_tree_hash": "09595e7cfad6e4c039ef178c5f4f5c0e3509e35a7c84d6e9a011f50a04c4e88a",
   "outcome": "mathematical_frontier_nonterminal",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W1592 exposes the W1522 W869/W868 selected-cochain convergence route on the final OriginalFourTaskContractCompletion surface: closed-map and closed-embedding W847 selected-cochain direct-source data, W1521 input preservation, W850 exact-input fields, W849 strictification fields, W870-to-W869 direct/stable delegations, W869-to-W868 direct/stable delegations, and composed W1519/W1521-to-W869/W868 direct/stable paths. Product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the original four-task contract still requires constructor-input discharge or a positive witness.",
+  "summary": "W1593 exposes the W1523 W867 strict-realization convergence route on the final OriginalFourTaskContractCompletion surface: closed-map and closed-embedding W846 strict-realization data, W1522 input preservation, W1371 exact-input fields, W847 triangle-realization fields, W868-to-W867 direct/stable delegations, and composed W1519/W1522-to-W867 direct/stable paths. Product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the original four-task contract still requires constructor-input discharge or a positive witness.",
   "positive_witness_declarations": [],
   "reference_route_log": "docs/research/reference_route_log.md",
   "known_gaps": [
     "Positive Lean witness is absent: ProductSuccessDeclarations.lean does not import or check an OriginalFourTaskProductSuccess surface with field-level evidence for the original four-task contract.",
-    "Final imported completion surface remains nonterminal: originalFourTaskContractCompletion.productSuccessClaimed = false still compiles, now with W1592 W1522 W869/W868 selected-cochain convergence projections on top of the W1591/W1521 bridge.",
-    "W1592 only closes the W1522 W869/W868 bridge from W1521 branch-dispatch providers toward W1372 convergence evidence; it does not discharge the constructor-input ledger.",
+    "Final imported completion surface remains nonterminal: originalFourTaskContractCompletion.productSuccessClaimed = false still compiles, now with W1593 W1523 W867 strict-realization convergence projections on top of the W1592/W1522 bridge.",
+    "W1593 only closes the W1523 W867 strict-realization bridge from W1522 selected-cochain direct-source data toward W1371 convergence evidence; it does not discharge the constructor-input ledger.",
     "Original four mathematical tasks remain open under the positive-witness supplement; the current route is still a checked nonterminal field-ledger surface rather than a positive product witness."
   ],
   "remaining_work": [
-    "Continue with the smallest checked W1523/W1371 strict-realization follow-on increment that moves the final surface toward a positive OriginalFourTaskProductSuccess witness.",
+    "Continue with the smallest checked W1524/W866 iso-closure follow-on increment that moves the final surface toward a positive OriginalFourTaskProductSuccess witness.",
     "Discharge the remaining W987 constructor inputs, or replace the field-ledger route with an explicit positive witness satisfying the positive-witness supplement.",
     "Before any product-success claim, rerun the source-contradiction gate, negative fixtures, clean checkout verification, root external audit, and clean-extracted packet audit."
   ],
@@ -30,7 +30,7 @@
     "lake env lean audit/RequiredDeclarations.lean",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
-    "lake env lean LeanLCAExactChallenge/Derived/W987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW869W868ConvergenceGuardW1522.lean",
+    "lake env lean LeanLCAExactChallenge/Derived/W987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW867StrictRealizationConvergenceGuardW1523.lean",
     "lake env lean LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean",
     "lake env lean LeanLCAExactChallenge.lean",
     "PYTHONDONTWRITEBYTECODE=1 python3 -m py_compile audit/external_audit.py audit/original_four_task_contract_audit.py packets/lean_lca_exact_category_challenge/external_audit.py",
@@ -41,7 +41,7 @@
     "PYTHONDONTWRITEBYTECODE=1 python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
     "PYTHONDONTWRITEBYTECODE=1 python3 packets/lean_lca_exact_category_challenge/external_audit.py --root packets/lean_lca_exact_category_challenge --terminal-outcome terminal_outcome/terminal_outcome.json",
     "(cd packets && sha256sum -c lean_lca_exact_category_challenge.zip.sha256)",
-    "python3 /home/roku/.agents/skills/clean-review-packet/scripts/packet_audit.py --packet-root /tmp/lean_lca_w1592_clean/lean_lca_exact_category_challenge --zip packets/lean_lca_exact_category_challenge.zip --sha256-sidecar packets/lean_lca_exact_category_challenge.zip.sha256 --require README_FOR_REVIEW.md --require manifest.json"
+    "python3 /home/roku/.agents/skills/clean-review-packet/scripts/packet_audit.py --packet-root /tmp/lean_lca_w1593_clean/lean_lca_exact_category_challenge --zip packets/lean_lca_exact_category_challenge.zip --sha256-sidecar packets/lean_lca_exact_category_challenge.zip.sha256 --require README_FOR_REVIEW.md --require manifest.json"
   ],
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256"
