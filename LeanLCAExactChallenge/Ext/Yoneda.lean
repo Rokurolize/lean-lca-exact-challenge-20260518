@@ -6091,6 +6091,29 @@ theorem yonedaProduct_ofExtension_ofExtension
           (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f) a b) := by
   rw [yonedaProduct_ofExtension, leftProductByYonedaExtension_metrizable_ofExtension]
 
+/-- Yoneda product on two strict short exact sequence generators. -/
+theorem yonedaProduct_ofStrictShortExact_ofStrictShortExact
+    {X Y Z M N : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero))
+    (j : Z ⟶ N) (q : N ⟶ Y) (zero' : j ≫ q = 0)
+    (h' : MetrizableLCA.strictShortExact (ShortComplex.mk j q zero')) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) 0 0
+        (ofStrictShortExact (X := X) (Y := Y) i p zero h)
+        (ofStrictShortExact (X := Y) (Y := Z) j q zero' h') =
+      ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Z) (n := 1)
+        (YonedaExtension.spliceLeftWith
+          (C := MetrizableLCA.{u})
+          (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f)
+          (ShortExactExtension.toYonedaExtension
+            (MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h))
+          (ShortExactExtension.toYonedaExtension
+            (MetrizableLCA.shortExactExtensionOfStrictShortExact j q zero' h'))) := by
+  rw [ofStrictShortExact_eq_ofExtension, ofStrictShortExact_eq_ofExtension]
+  exact yonedaProduct_ofExtension_ofExtension
+    ((MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h).toYonedaExtension)
+    ((MetrizableLCA.shortExactExtensionOfStrictShortExact j q zero' h').toYonedaExtension)
+
 /-- The quotient cast bridges the two parenthesizations of a triple splice. -/
 theorem positiveYonedaExtCast_spliceLeftWith_assoc
     {X W Y Z : MetrizableLCA.{u}} {m n l : ℕ}
@@ -6161,6 +6184,35 @@ theorem yonedaProduct_ofExtension_assoc_cast
     yonedaProduct_ofExtension_ofExtension,
     yonedaProduct_ofExtension_ofExtension]
   exact positiveYonedaExtCast_spliceLeftWith_assoc (a := a) (b := b) (c := c) (hdeg := hdeg)
+
+/-- Product-level associativity on strict short exact sequence generators. -/
+theorem yonedaProduct_ofStrictShortExact_assoc_cast
+    {X W Y Z M N P : MetrizableLCA.{u}} (i : W ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero))
+    (j : Y ⟶ N) (q : N ⟶ W) (zero' : j ≫ q = 0)
+    (h' : MetrizableLCA.strictShortExact (ShortComplex.mk j q zero'))
+    (k : Z ⟶ P) (r : P ⟶ Y) (zero'' : k ≫ r = 0)
+    (h'' : MetrizableLCA.strictShortExact (ShortComplex.mk k r zero'')) :
+    positiveYonedaExtCast (C := MetrizableLCA.{u}) (X := X) (Y := Z)
+        (show 0 + (0 + (0 + 1) + 1) = (0 + (0 + 1)) + (0 + 1) by rfl)
+        (yonedaProduct (X := X) (Y := Y) (Z := Z) 1 0
+          (yonedaProduct (X := X) (Y := W) (Z := Y) 0 0
+            (ofStrictShortExact (X := X) (Y := W) i p zero h)
+            (ofStrictShortExact (X := W) (Y := Y) j q zero' h'))
+          (ofStrictShortExact (X := Y) (Y := Z) k r zero'' h'')) =
+      yonedaProduct (X := X) (Y := W) (Z := Z) 0 1
+        (ofStrictShortExact (X := X) (Y := W) i p zero h)
+        (yonedaProduct (X := W) (Y := Y) (Z := Z) 0 0
+          (ofStrictShortExact (X := W) (Y := Y) j q zero' h')
+          (ofStrictShortExact (X := Y) (Y := Z) k r zero'' h'')) := by
+  rw [ofStrictShortExact_eq_ofExtension, ofStrictShortExact_eq_ofExtension,
+    ofStrictShortExact_eq_ofExtension]
+  exact yonedaProduct_ofExtension_assoc_cast
+    (a := ((MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h).toYonedaExtension))
+    (b := ((MetrizableLCA.shortExactExtensionOfStrictShortExact j q zero' h').toYonedaExtension))
+    (c := ((MetrizableLCA.shortExactExtensionOfStrictShortExact k r zero'' h'').toYonedaExtension))
+    (hdeg := by rfl)
 
 theorem yonedaProduct_add_left
     {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
