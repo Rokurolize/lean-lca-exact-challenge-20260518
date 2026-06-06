@@ -201,6 +201,8 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.QuillenExactCategory.split_conflation
 #check LeanLCAExactChallenge.QuillenExactCategory.pushout_inflation
 #check LeanLCAExactChallenge.QuillenExactCategory.pullback_deflation
+#check LeanLCAExactChallenge.QuillenExactCategory.pushout_inflation_of_inflation
+#check LeanLCAExactChallenge.QuillenExactCategory.pullback_deflation_of_deflation
 
 #check LeanLCAExactChallenge.MetrizableLCA
 #check LeanLCAExactChallenge.MetrizableLCA.Hom
@@ -297,6 +299,8 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.MetrizableLCA.strictShortExact_categorical_pullback
 #check LeanLCAExactChallenge.MetrizableLCA.quillenExactCategory
 #check LeanLCAExactChallenge.MetrizableLCA.instQuillenExactCategory
+#check LeanLCAExactChallenge.MetrizableLCA.quillenInflation_pushout
+#check LeanLCAExactChallenge.MetrizableLCA.quillenDeflation_pullback
 #check LeanLCAExactChallenge.MetrizableLCA.forgottenAlgebraicRangeSubgroup
 #check LeanLCAExactChallenge.MetrizableLCA.ClosureKernelInput
 #check LeanLCAExactChallenge.MetrizableLCA.forgottenMappedExplicitCokernelCocone

@@ -474,6 +474,8 @@ open CategoryTheory.Limits
 #check LeanLCAExactChallenge.QuillenExactCategory.inflation_of_splitting
 #check LeanLCAExactChallenge.QuillenExactCategory.deflation_of_splitting
 #check LeanLCAExactChallenge.QuillenExactCategory.conflation_iso_transport
+#check LeanLCAExactChallenge.QuillenExactCategory.pushout_inflation_of_inflation
+#check LeanLCAExactChallenge.QuillenExactCategory.pullback_deflation_of_deflation
 
 /--
 The strict metrizable LCA exact-category structure is now available without
@@ -516,6 +518,7 @@ example : HasFiniteColimits MetrizableLCA := by infer_instance
 #check MetrizableLCA.pushoutCokernelMap_kernel_iff_range_inr
 #check MetrizableLCA.shortExactExtensionPushout_kernel_iff_range_i
 #check MetrizableLCA.strictShortExact_pushout
+#check MetrizableLCA.quillenInflation_pushout
 #check MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict
 #check (inferInstance : HasForget₂ MetrizableLCA AddCommGrpCat)
 #check (inferInstance : (forget₂ MetrizableLCA AddCommGrpCat).Additive)
@@ -549,6 +552,7 @@ example : HasFiniteColimits MetrizableLCA := by infer_instance
 #check MetrizableLCA.strictShortExact_of_kernel_open_closed_epi
 #check MetrizableLCA.kernelForkOfStrictShortExact
 #check MetrizableLCA.cokernelCoforkOfStrictShortExact
+#check MetrizableLCA.quillenDeflation_pullback
 
 noncomputable example (A B : MetrizableLCA) :
     MetrizableLCA.biprodObj A B ≅ A ⊞ B :=

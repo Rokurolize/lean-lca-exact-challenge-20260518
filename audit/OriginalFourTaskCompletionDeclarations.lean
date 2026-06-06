@@ -400,6 +400,8 @@ contract-completing stable bounded derived infinity-category witness.
 #check LeanLCAExactChallenge.QuillenExactCategory.split_conflation
 #check LeanLCAExactChallenge.QuillenExactCategory.pushout_inflation
 #check LeanLCAExactChallenge.QuillenExactCategory.pullback_deflation
+#check LeanLCAExactChallenge.QuillenExactCategory.pushout_inflation_of_inflation
+#check LeanLCAExactChallenge.QuillenExactCategory.pullback_deflation_of_deflation
 
 #check LeanLCAExactChallenge.MetrizableLCA
 #check LeanLCAExactChallenge.MetrizableLCA.Hom
@@ -409,6 +411,8 @@ contract-completing stable bounded derived infinity-category witness.
 #check LeanLCAExactChallenge.MetrizableLCA.algebraic_kernel_of_strict
 #check LeanLCAExactChallenge.MetrizableLCA.algebraic_cokernel_of_strict
 #check LeanLCAExactChallenge.MetrizableLCA.quillenExactCategory
+#check LeanLCAExactChallenge.MetrizableLCA.quillenInflation_pushout
+#check LeanLCAExactChallenge.MetrizableLCA.quillenDeflation_pullback
 
 #check LeanLCAExactChallenge.YonedaExt
 #check LeanLCAExactChallenge.YonedaExt.zero_equiv_hom

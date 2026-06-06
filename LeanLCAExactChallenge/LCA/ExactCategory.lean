@@ -75,6 +75,18 @@ theorem quillenDeflation_iff_exists_strictShortExact {X Y : MetrizableLCA.{u}}
   · rintro ⟨W, f, zero, hS⟩
     exact ⟨W, f, zero, quillenConflation_of_strictShortExact hS⟩
 
+/-- In the canonical metrizable LCA exact category, pushouts preserve inflations. -/
+theorem quillenInflation_pushout {X Y Y' : MetrizableLCA.{u}} {i : X ⟶ Y}
+    (hi : QuillenExactCategory.inflation i) (a : X ⟶ Y') [HasPushout i a] :
+    QuillenExactCategory.inflation (pushout.inr i a) :=
+  QuillenExactCategory.pushout_inflation_of_inflation hi a
+
+/-- In the canonical metrizable LCA exact category, pullbacks preserve deflations. -/
+theorem quillenDeflation_pullback {X Y Y' : MetrizableLCA.{u}} {p : X ⟶ Y}
+    (hp : QuillenExactCategory.deflation p) (a : Y' ⟶ Y) [HasPullback a p] :
+    QuillenExactCategory.deflation (pullback.fst a p) :=
+  QuillenExactCategory.pullback_deflation_of_deflation hp a
+
 end MetrizableLCA
 
 end LeanLCAExactChallenge

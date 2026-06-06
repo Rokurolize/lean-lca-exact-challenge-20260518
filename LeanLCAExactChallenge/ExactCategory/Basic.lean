@@ -82,6 +82,24 @@ theorem deflation_of_splitting (S : ShortComplex C) (hS : S.Splitting) :
     deflation S.g :=
   deflation_of_conflation (conflation_of_splitting S hS)
 
+/-- Pushouts preserve the first-class inflation predicate. -/
+theorem pushout_inflation_of_inflation {X Y : C} {i : X ⟶ Y}
+    (hi : inflation i) {Y' : C} (a : X ⟶ Y') [HasPushout i a] :
+    inflation (pushout.inr i a) := by
+  rcases hi with ⟨Z, g, zero, hS⟩
+  simpa [inflation] using
+    (QuillenExactCategory.pushout_inflation
+      (S := ShortComplex.mk i g zero) hS (Y := Y') a)
+
+/-- Pullbacks preserve the first-class deflation predicate. -/
+theorem pullback_deflation_of_deflation {X Y : C} {p : X ⟶ Y}
+    (hp : deflation p) {Y' : C} (a : Y' ⟶ Y) [HasPullback a p] :
+    deflation (pullback.fst a p) := by
+  rcases hp with ⟨W, f, zero, hS⟩
+  simpa [deflation] using
+    (QuillenExactCategory.pullback_deflation
+      (S := ShortComplex.mk f p zero) hS (Y := Y') a)
+
 end QuillenExactCategory
 
 end LeanLCAExactChallenge
