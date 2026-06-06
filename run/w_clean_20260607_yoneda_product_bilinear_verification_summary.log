@@ -1,0 +1,13 @@
+Yoneda product bilinear checkpoint verification summary
+generated_utc=2026-06-06T22:30:23Z
+lake env lean LeanLCAExactChallenge/Ext/Yoneda.lean: exit=0, lines=6
+lake build LeanLCAExactChallenge.Ext.Yoneda: exit=0, lines=21
+lake env lean audit/RequiredDeclarations.lean: exit=0, lines=38112
+lake env lean audit/OriginalFourTaskCompletionDeclarations.lean: exit=0, lines=51071
+lake env lean audit/ProductSuccessDeclarations.lean: exit=0, lines=70149
+lake env lean LeanLCAExactChallenge.lean: exit=0, lines=0
+git diff --check scoped files: exit=0
+scripts/audit_no_forbidden_lean_tokens.sh per changed Lean/audit file: exit=0
+rg forbidden-token fallback over changed Lean/audit files: 0 hits
+true product scan lines=27
+false product scan lines=1526

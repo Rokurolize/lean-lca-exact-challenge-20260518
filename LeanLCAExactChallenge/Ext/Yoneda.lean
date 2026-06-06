@@ -6179,6 +6179,48 @@ theorem yonedaProduct_add_right
         yonedaProduct (X := X) (Y := Y) (Z := Z) m n a c :=
   map_add (yonedaProduct (X := X) (Y := Y) (Z := Z) m n a) b c
 
+/-- Zero in the left Ext variable gives the zero Yoneda product homomorphism. -/
+theorem yonedaProduct_zero_left
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ} :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n
+        (0 : YonedaExt (C := MetrizableLCA.{u}) X Y (m + 1)) =
+      0 :=
+  map_zero (yonedaProduct (X := X) (Y := Y) (Z := Z) m n)
+
+/-- Zero in the right Ext variable is killed by the Yoneda product. -/
+theorem yonedaProduct_zero_right
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (a : YonedaExt (C := MetrizableLCA.{u}) X Y (m + 1)) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n a
+        (0 : YonedaExt (C := MetrizableLCA.{u}) Y Z (n + 1)) =
+      0 :=
+  map_zero (yonedaProduct (X := X) (Y := Y) (Z := Z) m n a)
+
+/-- The public `baer_sum` API is additive in the left Ext variable of the Yoneda product. -/
+theorem yonedaProduct_baer_sum_left
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (a b : YonedaExt (C := MetrizableLCA.{u}) X Y (m + 1))
+    (c : YonedaExt (C := MetrizableLCA.{u}) Y Z (n + 1)) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n (baer_sum a b) c =
+      baer_sum
+        (yonedaProduct (X := X) (Y := Y) (Z := Z) m n a c)
+        (yonedaProduct (X := X) (Y := Y) (Z := Z) m n b c) := by
+  simpa [baer_sum] using
+    congrArg (fun f => f c)
+      (yonedaProduct_add_left (X := X) (Y := Y) (Z := Z) (m := m) (n := n) a b)
+
+/-- The public `baer_sum` API is additive in the right Ext variable of the Yoneda product. -/
+theorem yonedaProduct_baer_sum_right
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (a : YonedaExt (C := MetrizableLCA.{u}) X Y (m + 1))
+    (b c : YonedaExt (C := MetrizableLCA.{u}) Y Z (n + 1)) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n a (baer_sum b c) =
+      baer_sum
+        (yonedaProduct (X := X) (Y := Y) (Z := Z) m n a b)
+        (yonedaProduct (X := X) (Y := Y) (Z := Z) m n a c) := by
+  simpa [baer_sum] using
+    yonedaProduct_add_right (X := X) (Y := Y) (Z := Z) (m := m) (n := n) a b c
+
 /-- The free abelian group map induced by splicing a positive one-fold chain on the left. -/
 def positiveChainLeftFreeHom :
     {X Y Z : C} → {m : ℕ} →

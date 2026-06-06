@@ -2780,6 +2780,10 @@ example (X Y Z : MetrizableLCA) {m n : ℕ}
 #check YonedaExt.yonedaProduct_ofExtension_assoc_cast
 #check YonedaExt.yonedaProduct_add_left
 #check YonedaExt.yonedaProduct_add_right
+#check YonedaExt.yonedaProduct_zero_left
+#check YonedaExt.yonedaProduct_zero_right
+#check YonedaExt.yonedaProduct_baer_sum_left
+#check YonedaExt.yonedaProduct_baer_sum_right
 
 noncomputable example (X Y Z : MetrizableLCA) {m n : ℕ}
     {a b : YonedaExtension (C := MetrizableLCA) X Y (m + 1)}
@@ -2787,6 +2791,39 @@ noncomputable example (X Y Z : MetrizableLCA) {m n : ℕ}
     YonedaExt.yonedaProductLeftFreeHom (X := X) (Y := Y) (Z := Z) m n
         (FreeAbelianGroup.of a - FreeAbelianGroup.of b) = 0 :=
   YonedaExt.yonedaProductLeftFreeHom_relIso_eq_zero h
+
+example (X Y Z : MetrizableLCA) {m n : ℕ} :
+    YonedaExt.yonedaProduct (X := X) (Y := Y) (Z := Z) m n
+        (0 : YonedaExt (C := MetrizableLCA) X Y (m + 1)) =
+      0 :=
+  YonedaExt.yonedaProduct_zero_left
+
+example (X Y Z : MetrizableLCA) {m n : ℕ}
+    (a : YonedaExt (C := MetrizableLCA) X Y (m + 1)) :
+    YonedaExt.yonedaProduct (X := X) (Y := Y) (Z := Z) m n a
+        (0 : YonedaExt (C := MetrizableLCA) Y Z (n + 1)) =
+      0 :=
+  YonedaExt.yonedaProduct_zero_right a
+
+example (X Y Z : MetrizableLCA) {m n : ℕ}
+    (a b : YonedaExt (C := MetrizableLCA) X Y (m + 1))
+    (c : YonedaExt (C := MetrizableLCA) Y Z (n + 1)) :
+    YonedaExt.yonedaProduct (X := X) (Y := Y) (Z := Z) m n
+        (YonedaExt.baer_sum a b) c =
+      YonedaExt.baer_sum
+        (YonedaExt.yonedaProduct (X := X) (Y := Y) (Z := Z) m n a c)
+        (YonedaExt.yonedaProduct (X := X) (Y := Y) (Z := Z) m n b c) :=
+  YonedaExt.yonedaProduct_baer_sum_left a b c
+
+example (X Y Z : MetrizableLCA) {m n : ℕ}
+    (a : YonedaExt (C := MetrizableLCA) X Y (m + 1))
+    (b c : YonedaExt (C := MetrizableLCA) Y Z (n + 1)) :
+    YonedaExt.yonedaProduct (X := X) (Y := Y) (Z := Z) m n a
+        (YonedaExt.baer_sum b c) =
+      YonedaExt.baer_sum
+        (YonedaExt.yonedaProduct (X := X) (Y := Y) (Z := Z) m n a b)
+        (YonedaExt.yonedaProduct (X := X) (Y := Y) (Z := Z) m n a c) :=
+  YonedaExt.yonedaProduct_baer_sum_right a b c
 
 noncomputable example (X Y : MetrizableLCA) :
     AddCommGroup (YonedaExt (C := MetrizableLCA) X Y 1) := by
