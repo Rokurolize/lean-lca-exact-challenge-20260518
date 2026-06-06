@@ -1331,6 +1331,63 @@ example (X Y Y' M : MetrizableLCA) (f : Y ⟶ Y') [HasBinaryBiproduct Y' Y']
           ((MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h).toYonedaExtension)) :=
   YonedaExt.composeTailHomMap_metrizable_ofStrictShortExact f i p zero h
 
+noncomputable example (X Y M₁ M₂ Msum : MetrizableLCA)
+    [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+    (i₁ : Y ⟶ M₁) (p₁ : M₁ ⟶ X) (zero₁ : i₁ ≫ p₁ = 0)
+    (h₁ : MetrizableLCA.strictShortExact (ShortComplex.mk i₁ p₁ zero₁))
+    (i₂ : Y ⟶ M₂) (p₂ : M₂ ⟶ X) (zero₂ : i₂ ≫ p₂ = 0)
+    (h₂ : MetrizableLCA.strictShortExact (ShortComplex.mk i₂ p₂ zero₂))
+    (isum : Y ⟶ Msum) (psum : Msum ⟶ X) (zerosum : isum ≫ psum = 0)
+    (hsum : MetrizableLCA.strictShortExact (ShortComplex.mk isum psum zerosum))
+    (hBaer :
+      ShortExactExtension.BaerSumData
+        (C := MetrizableLCA)
+        (MetrizableLCA.shortExactExtensionOfStrictShortExact i₁ p₁ zero₁ h₁)
+        (MetrizableLCA.shortExactExtensionOfStrictShortExact i₂ p₂ zero₂ h₂)
+        (MetrizableLCA.shortExactExtensionOfStrictShortExact isum psum zerosum hsum)) :
+    YonedaExt.ofStrictShortExact (X := X) (Y := Y) isum psum zerosum hsum =
+      YonedaExt.ofStrictShortExact (X := X) (Y := Y) i₁ p₁ zero₁ h₁ +
+        YonedaExt.ofStrictShortExact (X := X) (Y := Y) i₂ p₂ zero₂ h₂ :=
+  YonedaExt.ofStrictShortExact_eq_add_of_baer i₁ p₁ zero₁ h₁ i₂ p₂ zero₂ h₂
+    isum psum zerosum hsum hBaer
+
+noncomputable example (X Y M₁ M₂ Msum : MetrizableLCA)
+    [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+    (i₁ : Y ⟶ M₁) (p₁ : M₁ ⟶ X) (zero₁ : i₁ ≫ p₁ = 0)
+    (h₁ : MetrizableLCA.strictShortExact (ShortComplex.mk i₁ p₁ zero₁))
+    (i₂ : Y ⟶ M₂) (p₂ : M₂ ⟶ X) (zero₂ : i₂ ≫ p₂ = 0)
+    (h₂ : MetrizableLCA.strictShortExact (ShortComplex.mk i₂ p₂ zero₂))
+    (isum : Y ⟶ Msum) (psum : Msum ⟶ X) (zerosum : isum ≫ psum = 0)
+    (hsum : MetrizableLCA.strictShortExact (ShortComplex.mk isum psum zerosum))
+    (hBaer :
+      ShortExactExtension.BaerSumData
+        (C := MetrizableLCA)
+        (MetrizableLCA.shortExactExtensionOfStrictShortExact i₁ p₁ zero₁ h₁)
+        (MetrizableLCA.shortExactExtensionOfStrictShortExact i₂ p₂ zero₂ h₂)
+        (MetrizableLCA.shortExactExtensionOfStrictShortExact isum psum zerosum hsum)) :
+    YonedaExt.baer_sum
+        (YonedaExt.ofStrictShortExact (X := X) (Y := Y) i₁ p₁ zero₁ h₁)
+        (YonedaExt.ofStrictShortExact (X := X) (Y := Y) i₂ p₂ zero₂ h₂) =
+      YonedaExt.ofStrictShortExact (X := X) (Y := Y) isum psum zerosum hsum :=
+  YonedaExt.baer_sum_ofStrictShortExact_eq_of_baer i₁ p₁ zero₁ h₁ i₂ p₂ zero₂ h₂
+    isum psum zerosum hsum hBaer
+
+noncomputable example (X Y M₁ M₂ : MetrizableLCA)
+    [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+    (i₁ : Y ⟶ M₁) (p₁ : M₁ ⟶ X) (zero₁ : i₁ ≫ p₁ = 0)
+    (h₁ : MetrizableLCA.strictShortExact (ShortComplex.mk i₁ p₁ zero₁))
+    (i₂ : Y ⟶ M₂) (p₂ : M₂ ⟶ X) (zero₂ : i₂ ≫ p₂ = 0)
+    (h₂ : MetrizableLCA.strictShortExact (ShortComplex.mk i₂ p₂ zero₂)) :
+    YonedaExt.baer_sum
+        (YonedaExt.ofStrictShortExact (X := X) (Y := Y) i₁ p₁ zero₁ h₁)
+        (YonedaExt.ofStrictShortExact (X := X) (Y := Y) i₂ p₂ zero₂ h₂) =
+      YonedaExt.ofExtension (C := MetrizableLCA) (X := X) (Y := Y) (n := 0)
+        (MetrizableLCA.shortExactExtensionBaerSum
+          (MetrizableLCA.shortExactExtensionOfStrictShortExact i₁ p₁ zero₁ h₁)
+          (MetrizableLCA.shortExactExtensionOfStrictShortExact i₂ p₂ zero₂ h₂)).toYonedaExtension :=
+  YonedaExt.baer_sum_ofStrictShortExact_eq_canonicalBaerSum i₁ p₁ zero₁ h₁
+    i₂ p₂ zero₂ h₂
+
 noncomputable example (X₁ Y₁ X₂ Y₂ : MetrizableLCA)
     (e₁ : ShortExactExtension (C := MetrizableLCA) X₁ Y₁)
     (e₂ : ShortExactExtension (C := MetrizableLCA) X₂ Y₂) :

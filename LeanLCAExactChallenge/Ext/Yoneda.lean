@@ -4474,6 +4474,77 @@ theorem baer_sum_ofExtension_eq_of_baer [HasBinaryBiproduct X X] [HasBinaryBipro
   dsimp [baer_sum]
   exact (ofExtension_eq_add_of_baer h).symm
 
+/-- A witnessed Baer sum of strict short exact sequences is addition in `Ext¹`. -/
+theorem ofStrictShortExact_eq_add_of_baer
+    {X Y M₁ M₂ Msum : MetrizableLCA.{u}}
+    [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+    (i₁ : Y ⟶ M₁) (p₁ : M₁ ⟶ X) (zero₁ : i₁ ≫ p₁ = 0)
+    (h₁ : MetrizableLCA.strictShortExact (ShortComplex.mk i₁ p₁ zero₁))
+    (i₂ : Y ⟶ M₂) (p₂ : M₂ ⟶ X) (zero₂ : i₂ ≫ p₂ = 0)
+    (h₂ : MetrizableLCA.strictShortExact (ShortComplex.mk i₂ p₂ zero₂))
+    (isum : Y ⟶ Msum) (psum : Msum ⟶ X) (zerosum : isum ≫ psum = 0)
+    (hsum : MetrizableLCA.strictShortExact (ShortComplex.mk isum psum zerosum))
+    (hBaer :
+      ShortExactExtension.BaerSumData
+        (C := MetrizableLCA.{u})
+        (MetrizableLCA.shortExactExtensionOfStrictShortExact i₁ p₁ zero₁ h₁)
+        (MetrizableLCA.shortExactExtensionOfStrictShortExact i₂ p₂ zero₂ h₂)
+        (MetrizableLCA.shortExactExtensionOfStrictShortExact isum psum zerosum hsum)) :
+    ofStrictShortExact (X := X) (Y := Y) isum psum zerosum hsum =
+      ofStrictShortExact (X := X) (Y := Y) i₁ p₁ zero₁ h₁ +
+        ofStrictShortExact (X := X) (Y := Y) i₂ p₂ zero₂ h₂ := by
+  simpa [ofStrictShortExact_eq_ofExtension] using
+    (ofExtension_eq_add_of_baer (C := MetrizableLCA.{u}) hBaer)
+
+/-- The public `baer_sum` operation computes witnessed Baer sums of strict short exact sequences. -/
+theorem baer_sum_ofStrictShortExact_eq_of_baer
+    {X Y M₁ M₂ Msum : MetrizableLCA.{u}}
+    [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+    (i₁ : Y ⟶ M₁) (p₁ : M₁ ⟶ X) (zero₁ : i₁ ≫ p₁ = 0)
+    (h₁ : MetrizableLCA.strictShortExact (ShortComplex.mk i₁ p₁ zero₁))
+    (i₂ : Y ⟶ M₂) (p₂ : M₂ ⟶ X) (zero₂ : i₂ ≫ p₂ = 0)
+    (h₂ : MetrizableLCA.strictShortExact (ShortComplex.mk i₂ p₂ zero₂))
+    (isum : Y ⟶ Msum) (psum : Msum ⟶ X) (zerosum : isum ≫ psum = 0)
+    (hsum : MetrizableLCA.strictShortExact (ShortComplex.mk isum psum zerosum))
+    (hBaer :
+      ShortExactExtension.BaerSumData
+        (C := MetrizableLCA.{u})
+        (MetrizableLCA.shortExactExtensionOfStrictShortExact i₁ p₁ zero₁ h₁)
+        (MetrizableLCA.shortExactExtensionOfStrictShortExact i₂ p₂ zero₂ h₂)
+        (MetrizableLCA.shortExactExtensionOfStrictShortExact isum psum zerosum hsum)) :
+    baer_sum
+        (ofStrictShortExact (X := X) (Y := Y) i₁ p₁ zero₁ h₁)
+        (ofStrictShortExact (X := X) (Y := Y) i₂ p₂ zero₂ h₂) =
+      ofStrictShortExact (X := X) (Y := Y) isum psum zerosum hsum := by
+  dsimp [baer_sum]
+  exact (ofStrictShortExact_eq_add_of_baer i₁ p₁ zero₁ h₁ i₂ p₂ zero₂ h₂
+    isum psum zerosum hsum hBaer).symm
+
+/--
+The Baer sum of two strict short exact sequences is represented by the canonical
+Baer-sum extension.
+-/
+theorem baer_sum_ofStrictShortExact_eq_canonicalBaerSum
+    {X Y M₁ M₂ : MetrizableLCA.{u}}
+    [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+    (i₁ : Y ⟶ M₁) (p₁ : M₁ ⟶ X) (zero₁ : i₁ ≫ p₁ = 0)
+    (h₁ : MetrizableLCA.strictShortExact (ShortComplex.mk i₁ p₁ zero₁))
+    (i₂ : Y ⟶ M₂) (p₂ : M₂ ⟶ X) (zero₂ : i₂ ≫ p₂ = 0)
+    (h₂ : MetrizableLCA.strictShortExact (ShortComplex.mk i₂ p₂ zero₂)) :
+    baer_sum
+        (ofStrictShortExact (X := X) (Y := Y) i₁ p₁ zero₁ h₁)
+        (ofStrictShortExact (X := X) (Y := Y) i₂ p₂ zero₂ h₂) =
+      ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Y) (n := 0)
+        (ShortExactExtension.toYonedaExtension
+          (MetrizableLCA.shortExactExtensionBaerSum
+            (MetrizableLCA.shortExactExtensionOfStrictShortExact i₁ p₁ zero₁ h₁)
+            (MetrizableLCA.shortExactExtensionOfStrictShortExact i₂ p₂ zero₂ h₂))) := by
+  simpa [ofStrictShortExact_eq_ofExtension] using
+    (baer_sum_ofExtension_eq_of_baer (C := MetrizableLCA.{u})
+      (MetrizableLCA.shortExactExtensionBaerSumData
+        (MetrizableLCA.shortExactExtensionOfStrictShortExact i₁ p₁ zero₁ h₁)
+        (MetrizableLCA.shortExactExtensionOfStrictShortExact i₂ p₂ zero₂ h₂)))
+
 /-- A witnessed positive-degree Baer sum computes the `baer_sum` operation. -/
 theorem baer_sum_ofExtension_eq_of_baerChain
     {a b sum : YonedaExtension X Y (n + 1)}
