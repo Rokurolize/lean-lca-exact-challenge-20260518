@@ -1302,6 +1302,35 @@ example (X Y M : MetrizableLCA) (i : Y ⟶ M) (p : M ⟶ X)
     YonedaExt (C := MetrizableLCA) X Y 1 :=
   YonedaExt.ofStrictShortExact i p zero h
 
+example (X Y M : MetrizableLCA) (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero))
+    (s : (ShortComplex.mk i p zero).Splitting) :
+    YonedaExt.ofStrictShortExact i p zero h =
+      (0 : YonedaExt (C := MetrizableLCA) X Y 1) :=
+  YonedaExt.ofStrictShortExact_eq_zero_of_split i p zero h s
+
+example (X X' Y M : MetrizableLCA) (f : X' ⟶ X) [HasBinaryBiproduct X' X']
+    (i : Y ⟶ M) (p : M ⟶ X) (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero)) :
+    YonedaExt.pullbackHeadMap_metrizable (X := X) f 0
+        (YonedaExt.ofStrictShortExact (X := X) (Y := Y) i p zero h) =
+      YonedaExt.ofExtension (C := MetrizableLCA) (X := X') (Y := Y) (n := 0)
+        (YonedaExtension.pullbackHeadWith (C := MetrizableLCA) f
+          (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f)
+          ((MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h).toYonedaExtension)) :=
+  YonedaExt.pullbackHeadMap_metrizable_ofStrictShortExact f i p zero h
+
+example (X Y Y' M : MetrizableLCA) (f : Y ⟶ Y') [HasBinaryBiproduct Y' Y']
+    (i : Y ⟶ M) (p : M ⟶ X) (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero)) :
+    YonedaExt.composeTailHomMap_metrizable (X := X) f 0
+        (YonedaExt.ofStrictShortExact (X := X) (Y := Y) i p zero h) =
+      YonedaExt.ofExtension (C := MetrizableLCA) (X := X) (Y := Y') (n := 0)
+        (YonedaExtension.composeTailHom f
+          ((MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h).toYonedaExtension)) :=
+  YonedaExt.composeTailHomMap_metrizable_ofStrictShortExact f i p zero h
+
 noncomputable example (X₁ Y₁ X₂ Y₂ : MetrizableLCA)
     (e₁ : ShortExactExtension (C := MetrizableLCA) X₁ Y₁)
     (e₂ : ShortExactExtension (C := MetrizableLCA) X₂ Y₂) :

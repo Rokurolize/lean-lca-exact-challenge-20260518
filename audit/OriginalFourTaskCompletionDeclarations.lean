@@ -419,6 +419,9 @@ contract-completing stable bounded derived infinity-category witness.
 #check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionOfStrictShortExact
 #check LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_shortExactExtension
 #check LeanLCAExactChallenge.YonedaExt.ofStrictShortExact
+#check LeanLCAExactChallenge.YonedaExt.ofStrictShortExact_eq_zero_of_split
+#check LeanLCAExactChallenge.YonedaExt.pullbackHeadMap_metrizable_ofStrictShortExact
+#check LeanLCAExactChallenge.YonedaExt.composeTailHomMap_metrizable_ofStrictShortExact
 #check LeanLCAExactChallenge.YonedaExt.baer_sum
 #check LeanLCAExactChallenge.YonedaExt.instAddCommGroup
 

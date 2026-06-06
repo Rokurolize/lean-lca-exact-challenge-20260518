@@ -4060,6 +4060,23 @@ theorem pullbackHeadMap_metrizable_ofExtension
       MetrizableLCA.shortExactExtensionPullbackPushoutDataOfPushoutData e f g h)
     a
 
+/-- Head pullback on Ext sends the strict-sequence constructor to the pulled-back generator. -/
+@[simp]
+theorem pullbackHeadMap_metrizable_ofStrictShortExact
+    {X X' Y M : MetrizableLCA.{u}} (f : X' ⟶ X)
+    [HasBinaryBiproduct X' X'] (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero)) :
+    pullbackHeadMap_metrizable (X := X) f 0
+        (ofStrictShortExact (X := X) (Y := Y) i p zero h) =
+      ofExtension (C := MetrizableLCA.{u}) (X := X') (Y := Y) (n := 0)
+        (YonedaExtension.pullbackHeadWith (C := MetrizableLCA.{u}) f
+          (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f)
+          (MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h).toYonedaExtension) := by
+  rw [ofStrictShortExact_eq_ofExtension]
+  exact pullbackHeadMap_metrizable_ofExtension (X := X) (Y := Y) f 0
+    ((MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h).toYonedaExtension)
+
 /-- Termwise-related extension chains define equal classes in positive-degree Ext. -/
 theorem ofExtension_eq_ofExtension_of_rel {a b : YonedaExtension X Y (n + 1)}
     (h : YonedaExtension.Rel a b) :
@@ -4092,6 +4109,19 @@ theorem ofExtension_eq_zero_of_split (e : ShortExactExtension X Y)
     PositiveYonedaExt X Y 0) = 0
   rw [QuotientAddGroup.eq_zero_iff]
   exact AddSubgroup.subset_closure (YonedaRelGenerator.split e s)
+
+/-- A split strict short exact sequence represents zero under the strict `Ext¹` constructor. -/
+theorem ofStrictShortExact_eq_zero_of_split
+    {X Y M : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero))
+    (s : (ShortComplex.mk i p zero).Splitting) :
+    ofStrictShortExact (X := X) (Y := Y) i p zero h =
+      (0 : YonedaExt (C := MetrizableLCA.{u}) X Y 1) := by
+  rw [ofStrictShortExact_eq_ofExtension]
+  exact ofExtension_eq_zero_of_split
+    (MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h)
+    (by simpa using s)
 
 /-- Splicing a split right-hand one-fold extension after another one-fold extension is zero. -/
 theorem ofExtension_cons_eq_zero_of_right_split {Z : C}
@@ -5399,6 +5429,22 @@ theorem composeTailHomMap_metrizable_ofExtension
       ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Y') (n := n)
         (YonedaExtension.composeTailHom f a) :=
   rfl
+
+/-- Tail hom composition on Ext sends the strict-sequence constructor to the composed generator. -/
+@[simp]
+theorem composeTailHomMap_metrizable_ofStrictShortExact
+    {X Y Y' M : MetrizableLCA.{u}} (f : Y ⟶ Y')
+    [HasBinaryBiproduct Y' Y'] (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero)) :
+    composeTailHomMap_metrizable (X := X) f 0
+        (ofStrictShortExact (X := X) (Y := Y) i p zero h) =
+      ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Y') (n := 0)
+        (YonedaExtension.composeTailHom f
+          (MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h).toYonedaExtension) := by
+  rw [ofStrictShortExact_eq_ofExtension]
+  exact composeTailHomMap_metrizable_ofExtension (X := X) f 0
+    ((MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h).toYonedaExtension)
 
 /-- Left Yoneda product by a fixed one-fold extension, descended to the quotient group. -/
 noncomputable def leftProductByExtension (e : ShortExactExtension X Y) (n : ℕ) :
