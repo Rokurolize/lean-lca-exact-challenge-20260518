@@ -3779,6 +3779,12 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
 #check Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitOpClosure
 #check Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectLimitOpClosure_ready
 #check Dbounded.metrizableStableInstanceBoundaryDirectLimitOpClosureInputNames_count
+#check Dbounded.MetrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputs
+#check Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directLimitFieldsOpClosure
+#check
+  Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitFieldsOpClosure
+#check Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectLimitFieldsOpClosure_ready
+#check Dbounded.metrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputNames_count
 
 noncomputable example
     (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLimitOpClosureInputs) :
@@ -3810,6 +3816,37 @@ example
 example :
     Dbounded.metrizableStableInstanceBoundaryDirectLimitOpClosureInputNames.length = 6 :=
   Dbounded.metrizableStableInstanceBoundaryDirectLimitOpClosureInputNames_count
+
+noncomputable example
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputs) :
+    Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directLimitFieldsOpClosure
+    inputs
+
+noncomputable example
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputs) :
+    BoundedDerivedInfinityCategory MetrizableLCA
+      (Dbounded.infinityCategory MetrizableLCA) :=
+  Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitFieldsOpClosure
+    inputs
+
+example
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputs) :
+    let localizedInputs :=
+      Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directLimitFieldsOpClosure
+        inputs
+    letI : (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions :=
+      localizedInputs.directLeftCalculus
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer
+        (Dbounded.metrizableWalkingParallelPairTransferStableSemanticInputsOfDirectLocalization
+          localizedInputs))).ready :=
+  Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectLimitFieldsOpClosure_ready
+    inputs
+
+example :
+    Dbounded.metrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputNames.length = 9 :=
+  Dbounded.metrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputNames_count
 #check Dbounded.metrizableWppLimitAlgebraicExactInput_direct
 #check Dbounded.metrizableWppLimitComparisonInput_of_limitConeComparison
 #check Dbounded.metrizableWppLimitConeComparisonInput_of_canonicalCone

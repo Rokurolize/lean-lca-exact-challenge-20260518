@@ -1,0 +1,10 @@
+audit/external_audit.py:680:            fail("nonterminal outcome must not set product_success=true")
+audit/external_audit.py:695:        fail("product_success must set product_complete and update_goal_allowed true")
+audit/original_four_task_contract_audit.py:277:        fail("nonterminal outcome must not set product_success=true")
+audit/negative_fixtures/terminal_git_head_stale/terminal_outcome.json:3:  "product_success": true,
+audit/negative_fixtures/semantic_input_claimed_product_success/terminal_outcome.json:3:  "product_success": true,
+audit/negative_fixtures/symbol_only_completion_check/terminal_outcome.json:3:  "product_success": true,
+audit/negative_fixtures/final_witness_productSuccessClaimed_false/terminal_outcome.json:3:  "product_success": true,
+audit/negative_fixtures/metadata_only_w1426_promotion/terminal_outcome.json:3:  "product_success": true,
+audit/negative_fixtures/prop_field_wrapper_claimed_product_success/terminal_outcome.json:3:  "product_success": true,
+audit/negative_fixtures/product_success_without_positive_lean_witness/terminal_outcome.json:3:  "product_success": true,
