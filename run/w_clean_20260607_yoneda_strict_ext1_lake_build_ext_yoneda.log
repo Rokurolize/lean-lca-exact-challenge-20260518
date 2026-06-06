@@ -1,0 +1,14 @@
+⚠ [1476/1509] Replayed LeanLCAExactChallenge.LCA.Cokernel
+warning: LeanLCAExactChallenge/LCA/Cokernel.lean:222:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: LeanLCAExactChallenge/LCA/Cokernel.lean:236:2: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: LeanLCAExactChallenge/LCA/Cokernel.lean:265:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: LeanLCAExactChallenge/LCA/Cokernel.lean:295:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+Build completed successfully (1750 jobs).

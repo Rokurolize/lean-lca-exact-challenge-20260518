@@ -1283,6 +1283,25 @@ generators.
 #check (ShortExactExtension.PushoutData.iso (C := MetrizableLCA))
 #check (ShortExactExtension.PushoutData.isoOut (C := MetrizableLCA))
 
+example (X Y M : MetrizableLCA) (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero)) :
+    ShortExactExtension (C := MetrizableLCA) X Y :=
+  MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h
+
+example (X Y M : MetrizableLCA) (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero)) :
+    MetrizableLCA.strictShortExact
+      (MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h).shortComplex :=
+  MetrizableLCA.strictShortExact_shortExactExtensionOfStrictShortExact i p zero h
+
+example (X Y M : MetrizableLCA) (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero)) :
+    YonedaExt (C := MetrizableLCA) X Y 1 :=
+  YonedaExt.ofStrictShortExact i p zero h
+
 noncomputable example (X₁ Y₁ X₂ Y₂ : MetrizableLCA)
     (e₁ : ShortExactExtension (C := MetrizableLCA) X₁ Y₁)
     (e₂ : ShortExactExtension (C := MetrizableLCA) X₂ Y₂) :

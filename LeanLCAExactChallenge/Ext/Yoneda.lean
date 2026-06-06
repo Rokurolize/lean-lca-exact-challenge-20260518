@@ -339,6 +339,41 @@ end ShortExactExtension
 
 namespace MetrizableLCA
 
+/--
+Build a one-fold exact-category extension from a strict short exact sequence in
+the canonical metrizable LCA exact category.
+-/
+def shortExactExtensionOfStrictShortExact
+    {X Y M : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0) (h : strictShortExact (ShortComplex.mk i p zero)) :
+    ShortExactExtension (C := MetrizableLCA.{u}) X Y where
+  middle := M
+  i := i
+  p := p
+  zero := zero
+  conflation := quillenConflation_of_strictShortExact h
+
+@[simp]
+lemma shortExactExtensionOfStrictShortExact_shortComplex
+    {X Y M : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0) (h : strictShortExact (ShortComplex.mk i p zero)) :
+    (shortExactExtensionOfStrictShortExact i p zero h).shortComplex =
+      ShortComplex.mk i p zero :=
+  rfl
+
+/-- A one-fold extension over `MetrizableLCA` recovers a strict short exact sequence. -/
+theorem strictShortExact_of_shortExactExtension
+    {X Y : MetrizableLCA.{u}} (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) :
+    strictShortExact e.shortComplex :=
+  strictShortExact_of_quillenConflation e.conflation
+
+/-- The strict sequence used to build the one-fold extension is recovered immediately. -/
+theorem strictShortExact_shortExactExtensionOfStrictShortExact
+    {X Y M : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0) (h : strictShortExact (ShortComplex.mk i p zero)) :
+    strictShortExact (shortExactExtensionOfStrictShortExact i p zero h).shortComplex := by
+  simpa using h
+
 /-- Coordinatewise product of one-fold short exact extensions in `MetrizableLCA`. -/
 noncomputable def shortExactExtensionBiprod
     {X₁ Y₁ X₂ Y₂ : MetrizableLCA.{u}}
@@ -3295,6 +3330,27 @@ noncomputable def zero_equiv_hom : YonedaExt X Y 0 ≃ (X ⟶ Y) :=
 /-- The generator associated to a positive-degree extension chain. -/
 def ofExtension (e : YonedaExtension X Y (n + 1)) : YonedaExt X Y (n + 1) :=
   QuotientAddGroup.mk' (yonedaRelationSubgroup X Y n) (FreeAbelianGroup.of e)
+
+/--
+The `Ext¹` class represented by a strict short exact sequence of metrizable
+LCA groups, using the canonical exact-category structure.
+-/
+def ofStrictShortExact {X Y M : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero)) :
+    YonedaExt (C := MetrizableLCA.{u}) X Y 1 :=
+  ofExtension (C := MetrizableLCA.{u})
+    ((MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h).toYonedaExtension)
+
+@[simp]
+theorem ofStrictShortExact_eq_ofExtension
+    {X Y M : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero)) :
+    ofStrictShortExact i p zero h =
+      ofExtension (C := MetrizableLCA.{u})
+        ((MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h).toYonedaExtension) :=
+  rfl
 
 /-- Transport formal positive-degree generators across propositionally equal degrees. -/
 def positiveYonedaExtFreeCast {X Y : C} {n n' : ℕ} (h : n = n') :
