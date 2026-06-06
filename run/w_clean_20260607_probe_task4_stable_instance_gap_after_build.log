@@ -1,0 +1,41 @@
+LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstances
+  [Preadditive (Dbounded MetrizableLCA)] [HasFiniteLimits (Dbounded MetrizableLCA)]
+  [HasFiniteColimits (Dbounded MetrizableLCA)] [HasZeroObject (Dbounded MetrizableLCA)]
+  [∀ (n : ℤ), (shiftFunctor (Dbounded MetrizableLCA) n).Additive] [Pretriangulated (Dbounded MetrizableLCA)]
+  [IsTriangulated (Dbounded MetrizableLCA)] :
+  BoundedDerivedInfinityCategory MetrizableLCA (Dbounded.infinityCategory MetrizableLCA)
+LeanLCAExactChallenge.Dbounded.metrizableStableInstanceFieldNames : List String
+LeanLCAExactChallenge.Dbounded.metrizableStableInstanceFieldNames_count :
+  Dbounded.metrizableStableInstanceFieldNames.length = 7
+run/probe_task4_stable_instance_gap_20260607.lean:14:0: error: failed to synthesize
+  Preadditive (Dbounded MetrizableLCA)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+run/probe_task4_stable_instance_gap_20260607.lean:15:0: error: failed to synthesize
+  HasFiniteLimits (Dbounded MetrizableLCA)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+run/probe_task4_stable_instance_gap_20260607.lean:16:0: error: failed to synthesize
+  HasFiniteColimits (Dbounded MetrizableLCA)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+run/probe_task4_stable_instance_gap_20260607.lean:17:0: error: failed to synthesize
+  HasZeroObject (Dbounded MetrizableLCA)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+run/probe_task4_stable_instance_gap_20260607.lean:18:16: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Preadditive (Dbounded MetrizableLCA)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+run/probe_task4_stable_instance_gap_20260607.lean:19:7: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  HasZeroObject (Dbounded MetrizableLCA)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+run/probe_task4_stable_instance_gap_20260607.lean:20:7: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Preadditive (Dbounded MetrizableLCA)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+run/probe_task4_stable_instance_gap_20260607.lean:25:2: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Preadditive (Dbounded MetrizableLCA)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
