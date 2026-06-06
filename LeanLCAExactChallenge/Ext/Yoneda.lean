@@ -3401,6 +3401,18 @@ theorem positiveYonedaExtCast_ofExtension {X Y : C} {n n' : ℕ} (h : n = n')
       ofExtension (C := C) (X := X) (Y := Y) (n := n') (cast (by rw [h]) a) := by
   exact positiveYonedaExtCast_mk (C := C) (X := X) (Y := Y) h (FreeAbelianGroup.of a)
 
+@[simp]
+theorem positiveYonedaExtCast_refl {X Y : C} {n : ℕ}
+    (a : PositiveYonedaExt (C := C) X Y n) :
+    positiveYonedaExtCast (C := C) (X := X) (Y := Y) (by rfl : n = n) a = a := by
+  induction a using QuotientAddGroup.induction_on with
+  | H x =>
+      rw [positiveYonedaExtCast_mk]
+      change ((FreeAbelianGroup.map id x :
+        PositiveYonedaExtFree (C := C) X Y n) : PositiveYonedaExt (C := C) X Y n) =
+        (x : PositiveYonedaExt (C := C) X Y n)
+      simp [FreeAbelianGroup.map_id_apply]
+
 /-- Generator-level pullback action by a degree-zero head hom, before quotient descent. -/
 noncomputable def pullbackHeadOfExtensionWith {X X' Y : C} (f : X' ⟶ X)
     (pull : {Z : C} → ShortExactExtension X Z → ShortExactExtension X' Z)
@@ -6213,6 +6225,28 @@ theorem yonedaProduct_ofStrictShortExact_assoc_cast
     (b := ((MetrizableLCA.shortExactExtensionOfStrictShortExact j q zero' h').toYonedaExtension))
     (c := ((MetrizableLCA.shortExactExtensionOfStrictShortExact k r zero'' h'').toYonedaExtension))
     (hdeg := by rfl)
+
+/-- Product-level associativity on strict `Ext¹` generators without a visible degree cast. -/
+theorem yonedaProduct_ofStrictShortExact_assoc
+    {X W Y Z M N P : MetrizableLCA.{u}} (i : W ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero))
+    (j : Y ⟶ N) (q : N ⟶ W) (zero' : j ≫ q = 0)
+    (h' : MetrizableLCA.strictShortExact (ShortComplex.mk j q zero'))
+    (k : Z ⟶ P) (r : P ⟶ Y) (zero'' : k ≫ r = 0)
+    (h'' : MetrizableLCA.strictShortExact (ShortComplex.mk k r zero'')) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) 1 0
+        (yonedaProduct (X := X) (Y := W) (Z := Y) 0 0
+          (ofStrictShortExact (X := X) (Y := W) i p zero h)
+          (ofStrictShortExact (X := W) (Y := Y) j q zero' h'))
+        (ofStrictShortExact (X := Y) (Y := Z) k r zero'' h'') =
+      yonedaProduct (X := X) (Y := W) (Z := Z) 0 1
+        (ofStrictShortExact (X := X) (Y := W) i p zero h)
+        (yonedaProduct (X := W) (Y := Y) (Z := Z) 0 0
+          (ofStrictShortExact (X := W) (Y := Y) j q zero' h')
+          (ofStrictShortExact (X := Y) (Y := Z) k r zero'' h'')) := by
+  simpa using
+    yonedaProduct_ofStrictShortExact_assoc_cast i p zero h j q zero' h' k r zero'' h''
 
 theorem yonedaProduct_add_left
     {X Y Z : MetrizableLCA.{u}} {m n : ℕ}

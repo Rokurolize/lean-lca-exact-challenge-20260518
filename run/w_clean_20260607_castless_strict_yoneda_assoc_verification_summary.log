@@ -1,0 +1,67 @@
+checkpoint: castless_strict_yoneda_assoc
+utc_start: 2026-06-06T23:19:29Z
+commit_base: 54cdcfad151626fc1688141a9d7368f860289671
+
+command[yoneda_lean]: lake env lean LeanLCAExactChallenge/Ext/Yoneda.lean
+exit[yoneda_lean]: 0
+raw_lines[yoneda_lean]: 6
+warnings[yoneda_lean]: 2
+
+command[yoneda_build]: lake build LeanLCAExactChallenge.Ext.Yoneda
+exit[yoneda_build]: 0
+raw_lines[yoneda_build]: 21
+warnings[yoneda_build]: 6
+
+command[required]: lake env lean audit/RequiredDeclarations.lean
+exit[required]: 0
+raw_lines[required]: 38172
+warnings[required]: 0
+
+command[original_four]: lake env lean audit/OriginalFourTaskCompletionDeclarations.lean
+exit[original_four]: 0
+raw_lines[original_four]: 51128
+warnings[original_four]: 0
+
+command[product_success]: lake env lean audit/ProductSuccessDeclarations.lean
+exit[product_success]: 0
+raw_lines[product_success]: 70191
+warnings[product_success]: 0
+
+command[root]: lake env lean LeanLCAExactChallenge.lean
+exit[root]: 0
+raw_lines[root]: 0
+warnings[root]: 0
+
+command[diff_check]: git diff --check
+exit[diff_check]: 0
+raw_lines[diff_check]: 0
+warnings[diff_check]: 0
+
+command[forbidden_yoneda]: scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Ext/Yoneda.lean
+exit[forbidden_yoneda]: 0
+raw_lines[forbidden_yoneda]: 1
+warnings[forbidden_yoneda]: 0
+
+command[forbidden_required]: scripts/audit_no_forbidden_lean_tokens.sh audit/RequiredDeclarations.lean
+exit[forbidden_required]: 0
+raw_lines[forbidden_required]: 1
+warnings[forbidden_required]: 0
+
+command[forbidden_original]: scripts/audit_no_forbidden_lean_tokens.sh audit/OriginalFourTaskCompletionDeclarations.lean
+exit[forbidden_original]: 0
+raw_lines[forbidden_original]: 1
+warnings[forbidden_original]: 0
+
+command[forbidden_product]: scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean
+exit[forbidden_product]: 0
+raw_lines[forbidden_product]: 1
+warnings[forbidden_product]: 0
+
+command[product_true_scan]: rg -n OriginalFourTaskProductSuccess|originalFourTaskProductSuccess|productSuccessClaimed\s*:=\s*true|productSuccessClaimed\s*=\s*true LeanLCAExactChallenge audit -g !audit/negative_fixtures/**
+exit[product_true_scan]: 0
+raw_lines[product_true_scan]: 15
+warnings[product_true_scan]: 0
+
+interpretation[product_true_scan]: hits are limited to audit scripts and existing non-claim guard text; no changed Lean/audit declaration claims product success.
+utc_end: 2026-06-06T23:20:49Z
+overall_exit: 0

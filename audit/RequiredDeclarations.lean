@@ -542,6 +542,7 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtCast
 #check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtCast_mk
 #check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtCast_ofExtension
+#check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtCast_refl
 #check LeanLCAExactChallenge.YonedaExt.yonedaProductLeftFreeHom
 #check LeanLCAExactChallenge.YonedaExt.yonedaProductLeftFreeHom_of
 #check LeanLCAExactChallenge.YonedaExt.yonedaProductLeftFreeHom_rel_eq_zero
@@ -562,6 +563,7 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtCast_spliceLeftWith_assoc
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_ofExtension_assoc_cast
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_ofStrictShortExact_assoc_cast
+#check LeanLCAExactChallenge.YonedaExt.yonedaProduct_ofStrictShortExact_assoc
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_add_left
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_add_right
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_zero_left

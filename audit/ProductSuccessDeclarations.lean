@@ -2776,10 +2776,12 @@ example (X Y Z : MetrizableLCA) {m n : ℕ}
 #check YonedaExt.yonedaProduct_ofExtension_ofExtension
 #check YonedaExt.positiveYonedaExtCast
 #check YonedaExt.positiveYonedaExtCast_ofExtension
+#check YonedaExt.positiveYonedaExtCast_refl
 #check YonedaExt.positiveYonedaExtCast_spliceLeftWith_assoc
 #check YonedaExt.yonedaProduct_ofExtension_assoc_cast
 #check YonedaExt.yonedaProduct_ofStrictShortExact_ofStrictShortExact
 #check YonedaExt.yonedaProduct_ofStrictShortExact_assoc_cast
+#check YonedaExt.yonedaProduct_ofStrictShortExact_assoc
 #check YonedaExt.yonedaProduct_add_left
 #check YonedaExt.yonedaProduct_add_right
 #check YonedaExt.yonedaProduct_zero_left
@@ -2863,6 +2865,31 @@ noncomputable example {X W Y Z M N P : MetrizableLCA}
           (YonedaExt.ofStrictShortExact (X := W) (Y := Y) j q zero' h')
           (YonedaExt.ofStrictShortExact (X := Y) (Y := Z) k r zero'' h'')) :=
   YonedaExt.yonedaProduct_ofStrictShortExact_assoc_cast i p zero h j q zero' h' k r zero'' h''
+
+noncomputable example {X W Y Z M N P : MetrizableLCA}
+    (i : W ⟶ M) (p : M ⟶ X) (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero))
+    (j : Y ⟶ N) (q : N ⟶ W) (zero' : j ≫ q = 0)
+    (h' : MetrizableLCA.strictShortExact (ShortComplex.mk j q zero'))
+    (k : Z ⟶ P) (r : P ⟶ Y) (zero'' : k ≫ r = 0)
+    (h'' : MetrizableLCA.strictShortExact (ShortComplex.mk k r zero'')) :
+    YonedaExt.yonedaProduct (X := X) (Y := Y) (Z := Z) 1 0
+        (YonedaExt.yonedaProduct (X := X) (Y := W) (Z := Y) 0 0
+          (YonedaExt.ofStrictShortExact (X := X) (Y := W) i p zero h)
+          (YonedaExt.ofStrictShortExact (X := W) (Y := Y) j q zero' h'))
+        (YonedaExt.ofStrictShortExact (X := Y) (Y := Z) k r zero'' h'') =
+      YonedaExt.yonedaProduct (X := X) (Y := W) (Z := Z) 0 1
+        (YonedaExt.ofStrictShortExact (X := X) (Y := W) i p zero h)
+        (YonedaExt.yonedaProduct (X := W) (Y := Y) (Z := Z) 0 0
+          (YonedaExt.ofStrictShortExact (X := W) (Y := Y) j q zero' h')
+          (YonedaExt.ofStrictShortExact (X := Y) (Y := Z) k r zero'' h'')) :=
+  YonedaExt.yonedaProduct_ofStrictShortExact_assoc i p zero h j q zero' h' k r zero'' h''
+
+example (X Y : MetrizableLCA) {n : ℕ}
+    (a : PositiveYonedaExt (C := MetrizableLCA) X Y n) :
+    YonedaExt.positiveYonedaExtCast (C := MetrizableLCA) (X := X) (Y := Y)
+        (by rfl : n = n) a = a :=
+  YonedaExt.positiveYonedaExtCast_refl a
 
 noncomputable example (X Y : MetrizableLCA) :
     AddCommGroup (YonedaExt (C := MetrizableLCA) X Y 1) := by
