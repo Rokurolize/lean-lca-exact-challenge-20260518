@@ -2521,6 +2521,41 @@ example (X Y Z : MetrizableLCA) {n : ℕ}
       0 :=
   YonedaExt.leftProductByExtension_eq_zero_of_split e s n
 
+example (X Y Z M : MetrizableLCA) {n : ℕ}
+    (i : Y ⟶ M) (p : M ⟶ X) (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero))
+    (a : YonedaExtension (C := MetrizableLCA) Y Z (n + 1)) :
+    YonedaExt.leftProductByExtension (C := MetrizableLCA) (X := X) (Y := Y) (Z := Z)
+        (MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h) n
+        (YonedaExt.ofExtension (C := MetrizableLCA) a) =
+      YonedaExt.ofExtension (C := MetrizableLCA)
+        (YonedaExtension.consLeftMap
+          (MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h) n a) :=
+  YonedaExt.leftProductByStrictShortExact_ofExtension i p zero h n a
+
+example (X Y Z M N : MetrizableLCA)
+    (i : Y ⟶ M) (p : M ⟶ X) (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero))
+    (j : Z ⟶ N) (q : N ⟶ Y) (zero' : j ≫ q = 0)
+    (h' : MetrizableLCA.strictShortExact (ShortComplex.mk j q zero')) :
+    YonedaExt.leftProductByExtension (C := MetrizableLCA) (X := X) (Y := Y) (Z := Z)
+        (MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h) 0
+        (YonedaExt.ofStrictShortExact (X := Y) (Y := Z) j q zero' h') =
+      YonedaExt.ofExtension (C := MetrizableLCA) (X := X) (Y := Z) (n := 1)
+        (YonedaExtension.consLeftMap
+          (MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h) 0
+          ((MetrizableLCA.shortExactExtensionOfStrictShortExact j q zero' h').toYonedaExtension)) :=
+  YonedaExt.leftProductByStrictShortExact_ofStrictShortExact i p zero h j q zero' h'
+
+example (X Y Z M : MetrizableLCA) {n : ℕ}
+    (i : Y ⟶ M) (p : M ⟶ X) (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero))
+    (s : (ShortComplex.mk i p zero).Splitting) :
+    YonedaExt.leftProductByExtension (C := MetrizableLCA) (X := X) (Y := Y) (Z := Z)
+        (MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h) n =
+      0 :=
+  YonedaExt.leftProductByStrictShortExact_eq_zero_of_split i p zero h s n
+
 example (X Y Z : MetrizableLCA) {n : ℕ}
     {e e' : ShortExactExtension (C := MetrizableLCA) X Y}
     (h : ShortExactExtension.Iso e e') :

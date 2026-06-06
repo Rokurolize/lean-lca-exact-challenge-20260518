@@ -5599,6 +5599,58 @@ theorem leftProductByExtension_eq_zero_of_split
       (ofExtension (X := Y) (Y := Z) (n := n) a) = 0
   exact leftProductByExtension_ofExtension_eq_zero_of_split e s a
 
+/--
+Left splicing by a strict short exact sequence sends a generator to the
+corresponding cons extension.
+-/
+theorem leftProductByStrictShortExact_ofExtension
+    {X Y Z M : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero))
+    (n : ℕ) (a : YonedaExtension (C := MetrizableLCA.{u}) Y Z (n + 1)) :
+    leftProductByExtension (C := MetrizableLCA.{u}) (X := X) (Y := Y) (Z := Z)
+        (MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h) n
+        (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := n) a) =
+      ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Z) (n := n + 1)
+        (YonedaExtension.consLeftMap
+          (MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h) n a) :=
+  leftProductByExtension_ofExtension
+    (MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h) a
+
+/--
+Left splicing by a strict short exact sequence sends a strict right `Ext¹`
+generator to the corresponding two-fold Yoneda extension.
+-/
+theorem leftProductByStrictShortExact_ofStrictShortExact
+    {X Y Z M N : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero))
+    (j : Z ⟶ N) (q : N ⟶ Y) (zero' : j ≫ q = 0)
+    (h' : MetrizableLCA.strictShortExact (ShortComplex.mk j q zero')) :
+    leftProductByExtension (C := MetrizableLCA.{u}) (X := X) (Y := Y) (Z := Z)
+        (MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h) 0
+        (ofStrictShortExact (X := Y) (Y := Z) j q zero' h') =
+      ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Z) (n := 1)
+        (YonedaExtension.consLeftMap
+          (MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h) 0
+          (ShortExactExtension.toYonedaExtension
+            (MetrizableLCA.shortExactExtensionOfStrictShortExact j q zero' h'))) := by
+  rw [ofStrictShortExact_eq_ofExtension]
+  exact leftProductByStrictShortExact_ofExtension i p zero h 0
+    ((MetrizableLCA.shortExactExtensionOfStrictShortExact j q zero' h').toYonedaExtension)
+
+/-- A split strict short exact sequence gives the zero left-product map. -/
+theorem leftProductByStrictShortExact_eq_zero_of_split
+    {X Y Z M : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero))
+    (s : (ShortComplex.mk i p zero).Splitting) (n : ℕ) :
+    leftProductByExtension (C := MetrizableLCA.{u}) (X := X) (Y := Y) (Z := Z)
+        (MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h) n = 0 := by
+  exact leftProductByExtension_eq_zero_of_split
+    (MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h)
+    (by simpa using s) n
+
 /-- Isomorphic one-fold left factors induce the same homomorphism on right Ext. -/
 theorem leftProductByExtension_eq_of_isoLeft
     {e e' : ShortExactExtension X Y} (h : ShortExactExtension.Iso e e') (n : ℕ) :
