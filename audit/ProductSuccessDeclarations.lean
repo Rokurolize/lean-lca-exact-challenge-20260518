@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge
+import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundaryDirectLocalization
 import LeanLCAExactChallenge.Derived.OriginalFourTaskContractCompletion
 import LeanLCAExactChallenge.Derived.W987ClosedEmbeddingEndpointHomologyFreeTargetBranchConvergenceGuardW1513
 import LeanLCAExactChallenge.Derived.W987ClosedEmbeddingEndpointHomologyFreeStrictPreimageConvergenceGuardW1514
@@ -3773,6 +3774,42 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
 #check Dbounded.metrizableWppLimitRightSurjectiveInput_of_sourceDifferenceCokernelPiZeroBoundary
 #check Dbounded.metrizableWppLimitRightSurjectiveInput_of_sourceDifferenceEpiBoundary
 #check Dbounded.metrizableWppLimitAlgebraicExactInput_of_lca
+#check Dbounded.MetrizableStableInstanceBoundaryDirectLimitOpClosureInputs
+#check Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directLimitOpClosure
+#check Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitOpClosure
+#check Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectLimitOpClosure_ready
+#check Dbounded.metrizableStableInstanceBoundaryDirectLimitOpClosureInputNames_count
+
+noncomputable example
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLimitOpClosureInputs) :
+    Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directLimitOpClosure
+    inputs
+
+noncomputable example
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLimitOpClosureInputs) :
+    BoundedDerivedInfinityCategory MetrizableLCA
+      (Dbounded.infinityCategory MetrizableLCA) :=
+  Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitOpClosure
+    inputs
+
+example
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLimitOpClosureInputs) :
+    let localizedInputs :=
+      Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directLimitOpClosure
+        inputs
+    letI : (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions :=
+      localizedInputs.directLeftCalculus
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer
+        (Dbounded.metrizableWalkingParallelPairTransferStableSemanticInputsOfDirectLocalization
+          localizedInputs))).ready :=
+  Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectLimitOpClosure_ready
+    inputs
+
+example :
+    Dbounded.metrizableStableInstanceBoundaryDirectLimitOpClosureInputNames.length = 6 :=
+  Dbounded.metrizableStableInstanceBoundaryDirectLimitOpClosureInputNames_count
 #check Dbounded.metrizableWppLimitAlgebraicExactInput_direct
 #check Dbounded.metrizableWppLimitComparisonInput_of_limitConeComparison
 #check Dbounded.metrizableWppLimitConeComparisonInput_of_canonicalCone
