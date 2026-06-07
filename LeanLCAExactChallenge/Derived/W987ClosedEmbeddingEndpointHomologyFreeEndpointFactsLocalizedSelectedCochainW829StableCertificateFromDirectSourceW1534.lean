@@ -109,6 +109,55 @@ theorem closedEmbeddingStableFourProjectionCertificateW829DirectSource_readyW153
       input globalClosedEmbeddingComponents
       mappedCokernelClosedEmbeddingProvider)
 
+/-- W1534 closed-map stable projection-gate evidence under a final-surface neutral name. -/
+noncomputable def closedMapStableProjectionGateCertificateW829DirectSourceW1534
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateFromDirectSourceInputW1534)
+    (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+    (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519) :
+    Dbounded.StableFourProjectionCertificate MetrizableLCA.{0} :=
+  closedMapStableFourProjectionCertificateW829DirectSourceW1534
+    input globalClosedMapComponents mappedCokernelClosedMapProvider
+
+/-- W1534 closed-embedding stable projection-gate evidence under a final-surface neutral name. -/
+noncomputable def closedEmbeddingStableProjectionGateCertificateW829DirectSourceW1534
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateFromDirectSourceInputW1534)
+    (globalClosedEmbeddingComponents :
+      SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+    (mappedCokernelClosedEmbeddingProvider :
+      MappedExplicitCokernelClosedEmbeddingProviderW519) :
+    Dbounded.StableFourProjectionCertificate MetrizableLCA.{0} :=
+  closedEmbeddingStableFourProjectionCertificateW829DirectSourceW1534
+    input globalClosedEmbeddingComponents
+    mappedCokernelClosedEmbeddingProvider
+
+/-- W1534 closed-map stable projection-gate readiness under a final-surface neutral name. -/
+theorem closedMapStableProjectionGateCertificateW829DirectSource_readyW1534
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateFromDirectSourceInputW1534)
+    (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+    (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519) :
+    (closedMapStableProjectionGateCertificateW829DirectSourceW1534
+      input globalClosedMapComponents mappedCokernelClosedMapProvider).ready :=
+  closedMapStableFourProjectionCertificateW829DirectSource_readyW1534
+    input globalClosedMapComponents mappedCokernelClosedMapProvider
+
+/-- W1534 closed-embedding stable projection-gate readiness under a final-surface neutral name. -/
+theorem closedEmbeddingStableProjectionGateCertificateW829DirectSource_readyW1534
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateFromDirectSourceInputW1534)
+    (globalClosedEmbeddingComponents :
+      SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+    (mappedCokernelClosedEmbeddingProvider :
+      MappedExplicitCokernelClosedEmbeddingProviderW519) :
+    (closedEmbeddingStableProjectionGateCertificateW829DirectSourceW1534
+      input globalClosedEmbeddingComponents
+      mappedCokernelClosedEmbeddingProvider).ready :=
+  closedEmbeddingStableFourProjectionCertificateW829DirectSource_readyW1534
+    input globalClosedEmbeddingComponents
+    mappedCokernelClosedEmbeddingProvider
+
 /-- W1534 closed-map accepted stable package evidence from W1533 fields. -/
 noncomputable def closedMapAcceptedStableBoundedDerivedInfinityCategoryW829DirectSourceW1534
     (input :
@@ -134,6 +183,29 @@ noncomputable def
     (closedEmbeddingOrdinaryStableSemanticInputW829DirectSourceW1534
       input globalClosedEmbeddingComponents
       mappedCokernelClosedEmbeddingProvider)
+
+/-- W1534 closed-map accepted stable package evidence under a final-surface neutral name. -/
+noncomputable def closedMapAcceptedStableDboundedInfinityCategoryW829DirectSourceW1534
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateFromDirectSourceInputW1534)
+    (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+    (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  closedMapAcceptedStableBoundedDerivedInfinityCategoryW829DirectSourceW1534
+    input globalClosedMapComponents mappedCokernelClosedMapProvider
+
+/-- W1534 closed-embedding accepted stable package evidence under a final-surface neutral name. -/
+noncomputable def closedEmbeddingAcceptedStableDboundedInfinityCategoryW829DirectSourceW1534
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateFromDirectSourceInputW1534)
+    (globalClosedEmbeddingComponents :
+      SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+    (mappedCokernelClosedEmbeddingProvider :
+      MappedExplicitCokernelClosedEmbeddingProviderW519) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  closedEmbeddingAcceptedStableBoundedDerivedInfinityCategoryW829DirectSourceW1534
+    input globalClosedEmbeddingComponents
+    mappedCokernelClosedEmbeddingProvider
 
 /-- W1534 closed-map certificate evidence is accepted by the stable route checker. -/
 theorem closedMapStableRouteAcceptedW829DirectSourceW1534

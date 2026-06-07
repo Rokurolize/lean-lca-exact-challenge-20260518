@@ -5562,7 +5562,7 @@ structure OriginalFourTaskContractCompletion where
       (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519),
       closedMapW829StableSemanticAdapterAcceptedW1539
           input globalClosedMapComponents mappedCokernelClosedMapProvider =
-        closedMapAcceptedStableBoundedDerivedInfinityCategoryW829DirectSourceW1534
+        closedMapAcceptedStableDboundedInfinityCategoryW829DirectSourceW1534
           input globalClosedMapComponents mappedCokernelClosedMapProvider
   branchFullDataW829StableCertificateSemanticAdapterComparisonClosedEmbeddingAcceptedEqW1534 :
     ∀
@@ -5575,7 +5575,7 @@ structure OriginalFourTaskContractCompletion where
       closedEmbeddingW829StableSemanticAdapterAcceptedW1539
           input globalClosedEmbeddingComponents
           mappedCokernelClosedEmbeddingProvider =
-        closedEmbeddingAcceptedStableBoundedDerivedInfinityCategoryW829DirectSourceW1534
+        closedEmbeddingAcceptedStableDboundedInfinityCategoryW829DirectSourceW1534
           input globalClosedEmbeddingComponents
           mappedCokernelClosedEmbeddingProvider
   branchFullDataW829StableCertificateSemanticAdapterComparisonClosedMapCertificateEqW1534 :
@@ -5586,7 +5586,7 @@ structure OriginalFourTaskContractCompletion where
       (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519),
       (closedMapW829StableSemanticAdapterAcceptedW1539
           input globalClosedMapComponents mappedCokernelClosedMapProvider).certificate =
-        closedMapStableFourProjectionCertificateW829DirectSourceW1534
+        closedMapStableProjectionGateCertificateW829DirectSourceW1534
           input globalClosedMapComponents mappedCokernelClosedMapProvider
   branchFullDataW829StableCertificateSemanticAdapterComparisonClosedEmbeddingCertificateEqW1534 :
     ∀
@@ -5599,7 +5599,7 @@ structure OriginalFourTaskContractCompletion where
       (closedEmbeddingW829StableSemanticAdapterAcceptedW1539
           input globalClosedEmbeddingComponents
           mappedCokernelClosedEmbeddingProvider).certificate =
-        closedEmbeddingStableFourProjectionCertificateW829DirectSourceW1534
+        closedEmbeddingStableProjectionGateCertificateW829DirectSourceW1534
           input globalClosedEmbeddingComponents
           mappedCokernelClosedEmbeddingProvider
   branchFullDataW829StableCertificateSemanticAdapterComparisonClosedMapPackageEqAccepted :
@@ -12027,7 +12027,7 @@ theorem originalFourTaskContractCompletion_branchFullDataW829StableCertificateSe
       (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519),
       closedMapW829StableSemanticAdapterAcceptedW1539
           input globalClosedMapComponents mappedCokernelClosedMapProvider =
-        closedMapAcceptedStableBoundedDerivedInfinityCategoryW829DirectSourceW1534
+        closedMapAcceptedStableDboundedInfinityCategoryW829DirectSourceW1534
           input globalClosedMapComponents mappedCokernelClosedMapProvider :=
   originalFourTaskContractCompletion.branchFullDataW829StableCertificateSemanticAdapterComparisonClosedMapAcceptedEqW1534
 
@@ -12042,7 +12042,7 @@ theorem originalFourTaskContractCompletion_branchFullDataW829StableCertificateSe
       closedEmbeddingW829StableSemanticAdapterAcceptedW1539
           input globalClosedEmbeddingComponents
           mappedCokernelClosedEmbeddingProvider =
-        closedEmbeddingAcceptedStableBoundedDerivedInfinityCategoryW829DirectSourceW1534
+        closedEmbeddingAcceptedStableDboundedInfinityCategoryW829DirectSourceW1534
           input globalClosedEmbeddingComponents
           mappedCokernelClosedEmbeddingProvider :=
   originalFourTaskContractCompletion.branchFullDataW829StableCertificateSemanticAdapterComparisonClosedEmbeddingAcceptedEqW1534
@@ -12055,7 +12055,7 @@ theorem originalFourTaskContractCompletion_branchFullDataW829StableCertificateSe
       (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519),
       (closedMapW829StableSemanticAdapterAcceptedW1539
           input globalClosedMapComponents mappedCokernelClosedMapProvider).certificate =
-        closedMapStableFourProjectionCertificateW829DirectSourceW1534
+        closedMapStableProjectionGateCertificateW829DirectSourceW1534
           input globalClosedMapComponents mappedCokernelClosedMapProvider :=
   originalFourTaskContractCompletion.branchFullDataW829StableCertificateSemanticAdapterComparisonClosedMapCertificateEqW1534
 
@@ -12070,7 +12070,7 @@ theorem originalFourTaskContractCompletion_branchFullDataW829StableCertificateSe
       (closedEmbeddingW829StableSemanticAdapterAcceptedW1539
           input globalClosedEmbeddingComponents
           mappedCokernelClosedEmbeddingProvider).certificate =
-        closedEmbeddingStableFourProjectionCertificateW829DirectSourceW1534
+        closedEmbeddingStableProjectionGateCertificateW829DirectSourceW1534
           input globalClosedEmbeddingComponents
           mappedCokernelClosedEmbeddingProvider :=
   originalFourTaskContractCompletion.branchFullDataW829StableCertificateSemanticAdapterComparisonClosedEmbeddingCertificateEqW1534
