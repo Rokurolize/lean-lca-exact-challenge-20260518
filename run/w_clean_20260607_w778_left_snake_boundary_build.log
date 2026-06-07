@@ -1,0 +1,46 @@
+file=run/w_clean_20260607_w778_left_snake_boundary_build.raw.log
+exit_status=0
+error_count=warning_count=7721
+line_count=32490
+--- first 20 lines ---
+⚠ [1878/2018] Replayed LeanLCAExactChallenge.LCA.Cokernel
+warning: LeanLCAExactChallenge/LCA/Cokernel.lean:222:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: LeanLCAExactChallenge/LCA/Cokernel.lean:236:2: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: LeanLCAExactChallenge/LCA/Cokernel.lean:265:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: LeanLCAExactChallenge/LCA/Cokernel.lean:295:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [2026/2077] Replayed LeanLCAExactChallenge.Derived.Bounded
+warning: LeanLCAExactChallenge/Derived/Bounded.lean:320:14: This simp argument is unused:
+  strictShortExactBiprodComplex
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵s̵t̵r̵i̵c̵t̵S̵h̵o̵r̵t̵E̵x̵a̵c̵t̵B̵i̵p̵r̵o̵d̵C̵o̵m̵p̵l̵e̵x̵]̵
+
+--- last 20 lines ---
+info: LeanLCAExactChallenge/Derived/DirectFiniteShapeProductRoute.lean:303:0: LeanLCAExactChallenge.Dbounded.directLeftCalculusOfLeftRightComparisonDirectFiniteShapeW769
+  (data : MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769) :
+  (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions
+info: LeanLCAExactChallenge/Derived/DirectFiniteShapeProductRoute.lean:304:0: LeanLCAExactChallenge.Dbounded.stableBoundaryInputsOfLeftRightComparisonDirectFiniteShapeW769
+  (data : MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769) :
+  MetrizableStableInstanceBoundaryInputs
+info: LeanLCAExactChallenge/Derived/DirectFiniteShapeProductRoute.lean:305:0: LeanLCAExactChallenge.Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfLeftRightComparisonDirectFiniteShapeW769
+  (data : MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769) :
+  AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA
+info: LeanLCAExactChallenge/Derived/DirectFiniteShapeProductRoute.lean:307:0: LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfLeftRightComparisonDirectFiniteShapeStableBoundaryW769
+  (data : MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769) :
+  BoundedDerivedInfinityCategory MetrizableLCA (infinityCategory MetrizableLCA)
+info: LeanLCAExactChallenge/Derived/DirectFiniteShapeProductRoute.lean:309:0: LeanLCAExactChallenge.Dbounded.leftRightComparisonDirectFiniteShapeStableBoundaryInputNamesW769_count :
+  leftRightComparisonDirectFiniteShapeStableBoundaryInputNamesW769.length = 6
+info: LeanLCAExactChallenge/Derived/DirectFiniteShapeProductRoute.lean:310:0: LeanLCAExactChallenge.Dbounded.currentMetrizableLeftRightComparisonDirectFiniteShapeProductRouteStateW769_productSuccess :
+  (have state := currentMetrizableLeftRightComparisonDirectFiniteShapeProductRouteSupportStateW769;
+    state.productSuccessClaimed) =
+    false
+✔ [2077/2077] Built LeanLCAExactChallenge.Derived.LeftSnakeDirectRightLcaNormalizedClosedRangeProductRoute (11s)
+Build completed successfully (2077 jobs).
