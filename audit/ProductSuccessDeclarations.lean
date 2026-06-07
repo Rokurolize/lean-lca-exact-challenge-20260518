@@ -9656,6 +9656,19 @@ example :
   #check Dbounded.productEvidence_of_closedMapTargetHomologyZeroBoundaryDataRouteW791
   #check
     Dbounded.productEvidence_of_closedEmbeddingTargetHomologyZeroBoundaryDataRouteW791
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedMapTargetHomologyZeroBoundaryDataW791
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroBoundaryDataW791
+  #check Dbounded.stableBoundaryInputsOfClosedMapTargetHomologyZeroBoundaryDataW791
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroBoundaryDataW791
+  #check Dbounded.acceptedStableOfClosedMapTargetHomologyZeroBoundaryDataW791
+  #check Dbounded.acceptedStableOfClosedEmbeddingTargetHomologyZeroBoundaryDataW791
+  #check
+    Dbounded.boundedDerivedOfClosedMapTargetHomologyZeroBoundaryDataStableBoundaryW791
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingTargetHomologyZeroBoundaryDataStableBoundaryW791
   #check Dbounded.targetHomologyZeroBoundaryDataProductRouteInputNamesW791
   #check Dbounded.targetHomologyZeroBoundaryDataProductRouteInputNamesW791_count
   #check Dbounded.MetrizableTargetHomologyZeroBoundaryDataRouteStateW791
