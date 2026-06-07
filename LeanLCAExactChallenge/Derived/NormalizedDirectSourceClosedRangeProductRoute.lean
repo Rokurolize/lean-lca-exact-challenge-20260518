@@ -144,6 +144,75 @@ noncomputable def
   productEvidence_of_closedEmbeddingSourceTriangulationClosedRangeDirectFiniteShapeRouteW773
     (closedEmbeddingSourceTriangulationDataOfNormalizedW774 data)
 
+/-- W774 closed-map branch converted to the W769 stable-data surface. -/
+noncomputable def
+    directFiniteShapeStableDataOfClosedMapNormalizedDirectSourceClosedRangeW774
+    (data : MetrizableClosedMapNormalizedDirectSourceClosedRangeBranchDataW774) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapSourceTriangulationClosedRangeW773
+    (closedMapSourceTriangulationDataOfNormalizedW774 data)
+
+/-- W774 closed-embedding branch converted to the W769 stable-data surface. -/
+noncomputable def
+    directFiniteShapeStableDataOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+    (data :
+      MetrizableClosedEmbeddingNormalizedDirectSourceClosedRangeBranchDataW774) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingSourceTriangulationClosedRangeW773
+    (closedEmbeddingSourceTriangulationDataOfNormalizedW774 data)
+
+/-- W774 closed-map branch as canonical stable-instance boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedMapNormalizedDirectSourceClosedRangeW774
+    (data : MetrizableClosedMapNormalizedDirectSourceClosedRangeBranchDataW774) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapSourceTriangulationClosedRangeW773
+    (closedMapSourceTriangulationDataOfNormalizedW774 data)
+
+/-- W774 closed-embedding branch as canonical stable-instance boundary inputs. -/
+noncomputable def
+    stableBoundaryInputsOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+    (data :
+      MetrizableClosedEmbeddingNormalizedDirectSourceClosedRangeBranchDataW774) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingSourceTriangulationClosedRangeW773
+    (closedEmbeddingSourceTriangulationDataOfNormalizedW774 data)
+
+/-- W774 closed-map branch passes the canonical accepted stable boundary gate. -/
+noncomputable def
+    acceptedStableOfClosedMapNormalizedDirectSourceClosedRangeW774
+    (data : MetrizableClosedMapNormalizedDirectSourceClosedRangeBranchDataW774) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableBoundedDerivedInfinityCategoryOfClosedMapSourceTriangulationClosedRangeW773
+    (closedMapSourceTriangulationDataOfNormalizedW774 data)
+
+/-- W774 closed-embedding branch passes the canonical accepted stable boundary gate. -/
+noncomputable def
+    acceptedStableOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+    (data :
+      MetrizableClosedEmbeddingNormalizedDirectSourceClosedRangeBranchDataW774) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableBoundedDerivedInfinityCategoryOfClosedEmbeddingSourceTriangulationClosedRangeW773
+    (closedEmbeddingSourceTriangulationDataOfNormalizedW774 data)
+
+/-- W774 closed-map branch produces the canonical stable-boundary package. -/
+noncomputable def
+    boundedDerivedOfClosedMapNormalizedDirectSourceClosedRangeStableBoundaryW774
+    (data : MetrizableClosedMapNormalizedDirectSourceClosedRangeBranchDataW774) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedInfinityCategoryOfClosedMapSourceTriangulationClosedRangeStableBoundaryW773
+    (closedMapSourceTriangulationDataOfNormalizedW774 data)
+
+/-- W774 closed-embedding branch produces the canonical stable-boundary package. -/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingNormalizedDirectSourceClosedRangeStableBoundaryW774
+    (data :
+      MetrizableClosedEmbeddingNormalizedDirectSourceClosedRangeBranchDataW774) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedInfinityCategoryOfClosedEmbeddingSourceTriangulationClosedRangeStableBoundaryW773
+    (closedEmbeddingSourceTriangulationDataOfNormalizedW774 data)
+
 /-- W774 input names after W735 normalized data supplies direct-source localization. -/
 def normalizedDirectSourceClosedRangeProductRouteInputNamesW774 :
     List String :=
@@ -165,6 +234,7 @@ structure MetrizableNormalizedDirectSourceClosedRangeProductRouteStateW774 :
   seed : String
   declarations : List String
   normalizedSourceResult : String
+  stableBoundaryResult : String
   closedMapResult : String
   closedEmbeddingResult : String
   replacedInputs : List String
@@ -187,11 +257,22 @@ def currentMetrizableNormalizedDirectSourceClosedRangeProductRouteSupportStateW7
       "closedEmbeddingSourceTriangulationDataOfNormalizedW774",
       "productEvidence_of_closedMapNormalizedDirectSourceClosedRangeRouteW774",
       "productEvidence_of_closedEmbeddingNormalizedDirectSourceClosedRangeRouteW774",
+      "directFiniteShapeStableDataOfClosedMapNormalizedDirectSourceClosedRangeW774",
+      "directFiniteShapeStableDataOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774",
+      "stableBoundaryInputsOfClosedMapNormalizedDirectSourceClosedRangeW774",
+      "stableBoundaryInputsOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774",
+      "acceptedStableOfClosedMapNormalizedDirectSourceClosedRangeW774",
+      "acceptedStableOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774",
+      "boundedDerivedOfClosedMapNormalizedDirectSourceClosedRangeStableBoundaryW774",
+      "boundedDerivedOfClosedEmbeddingNormalizedDirectSourceClosedRangeStableBoundaryW774",
       "normalizedDirectSourceClosedRangeProductRouteInputNamesW774",
       "normalizedDirectSourceClosedRangeProductRouteInputNamesW774_count"]
   normalizedSourceResult :=
     "proved: W735 normalized fixed-target data supplies the localization\
       portion of the W653 direct finite-shape source"
+  stableBoundaryResult :=
+    "proved: W774 normalized direct-source closed-range branches pass the W773\
+      and W769 canonical stable-boundary accepted gate"
   closedMapResult :=
     "proved: closed-map W735 branch data plus WPP stability and W696 topology\
       feed the W773 route"
@@ -199,7 +280,8 @@ def currentMetrizableNormalizedDirectSourceClosedRangeProductRouteSupportStateW7
     "proved: closed-embedding W735 branch data plus WPP stability and W696\
       topology feed the W773 route"
   replacedInputs :=
-    ["separate MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653 field"]
+    ["separate MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653 field",
+      "separate W773 direct finite-shape stable-boundary branch input"]
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",

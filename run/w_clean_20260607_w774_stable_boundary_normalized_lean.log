@@ -1,0 +1,2 @@
+command: lake env lean LeanLCAExactChallenge/Derived/NormalizedDirectSourceClosedRangeProductRoute.lean
+exit: 0
