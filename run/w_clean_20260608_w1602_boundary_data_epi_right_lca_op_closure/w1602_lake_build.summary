@@ -1,0 +1,5 @@
+command: lake build LeanLCAExactChallenge.Derived.BoundaryDataEpiDirectComparisonRightLcaOpClosureProductRoute
+exit_code: 0
+status: passed
+last_line: Build completed successfully (2095 jobs).
+note: Full build output was not retained; the command completed successfully after replaying existing imported modules.
