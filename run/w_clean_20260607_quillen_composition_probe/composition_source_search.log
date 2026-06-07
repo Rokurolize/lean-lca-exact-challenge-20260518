@@ -1,0 +1,8 @@
+LeanLCAExactChallenge/LCA/Pushout.lean:517:noncomputable def pushoutIsoPushoutObj (hS : strictShortExact S) (a : S.X₁ ⟶ Y)
+LeanLCAExactChallenge/LCA/Pushout.lean:573:      (pushoutCokernelMap_openMap hS a hN).comp e₂.toHomeomorph.isOpenMap
+LeanLCAExactChallenge/LCA/Cokernel.lean:239:lemma openMap_comp_iso {A B C : MetrizableLCA.{u}} (q : A ⟶ B) (e : B ≅ C)
+LeanLCAExactChallenge/LCA/Cokernel.lean:242:  (iso_hom_openMap e).comp hq
+LeanLCAExactChallenge/LCA/Cokernel.lean:300:    exact openMap_comp_iso (cokernelπ (f - g)) e
+LeanLCAExactChallenge/LCA/Cokernel.lean:333:    exact openMap_comp_iso (coequalizer.π f g) e (coequalizerπ_openMap f g)
+LeanLCAExactChallenge/LCA/Pullback.lean:279:    (equalizerι_closedEmbedding_explicit r s).comp e.toHomeomorph.isClosedEmbedding
+LeanLCAExactChallenge/LCA/Pullback.lean:295:    (equalizer_ι_closedEmbedding r s).comp e.toHomeomorph.isClosedEmbedding
