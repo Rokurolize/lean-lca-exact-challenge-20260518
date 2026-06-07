@@ -95,6 +95,127 @@ noncomputable def boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalcu
   exact Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusStableRoute
     finiteLimits finiteColimits pretriangulated triangulated
 
+/--
+W831 supplies the left-calculus semantic fields after comparison bijectivity discharges the
+W830 comparison-isomorphism input.
+-/
+noncomputable def metrizableLeftCalculusFieldsOfComparisonBijectivityW831
+    (data : MetrizableDirectBoundedLeftCalculusDataWithoutComparisonW831) :
+    Dbounded.MetrizableLeftCalculusSemanticFields :=
+  Dbounded.metrizableLeftCalculusFieldsOfDirectBoundedRouteW830
+    (Dbounded.directBoundedLeftCalculusDataOfComparisonBijectivityW831 data)
+
+/--
+W831 semantic-field stable route with comparison bijectivity bundled and the remaining stable
+fields supplied as the canonical semantic-field record.
+-/
+noncomputable def boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusFieldsW831
+    (data : MetrizableDirectBoundedLeftCalculusDataWithoutComparisonW831)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      (Dbounded.metrizableLeftCalculusFieldsOfComparisonBijectivityW831 data)) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields
+    (Dbounded.metrizableLeftCalculusFieldsOfComparisonBijectivityW831 data) remaining
+
+/-- The W831 semantic-field route preserves the ordinary `Dbounded MetrizableLCA` carrier. -/
+theorem
+boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusFieldsW831_quasicategoryCarrier
+    (data : MetrizableDirectBoundedLeftCalculusDataWithoutComparisonW831)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      (Dbounded.metrizableLeftCalculusFieldsOfComparisonBijectivityW831 data)) :
+    (Dbounded.boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusFieldsW831
+      data remaining).quasicategoryCarrier = rfl :=
+  rfl
+
+/-- The W831 semantic-field route preserves the comparison-bijectivity preadditive field. -/
+theorem
+boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusFieldsW831_preadditive
+    (data : MetrizableDirectBoundedLeftCalculusDataWithoutComparisonW831)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      (Dbounded.metrizableLeftCalculusFieldsOfComparisonBijectivityW831 data)) :
+    (Dbounded.boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusFieldsW831
+      data remaining).preadditive =
+      (Dbounded.metrizableLeftCalculusFieldsOfComparisonBijectivityW831 data).preadditive :=
+  rfl
+
+/-- The W831 semantic-field route preserves the remaining finite-limit field. -/
+theorem
+boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusFieldsW831_finiteLimitInstance
+    (data : MetrizableDirectBoundedLeftCalculusDataWithoutComparisonW831)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      (Dbounded.metrizableLeftCalculusFieldsOfComparisonBijectivityW831 data)) :
+    (Dbounded.boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusFieldsW831
+      data remaining).finiteLimitInstance = remaining.finiteLimits :=
+  rfl
+
+/-- The W831 semantic-field route preserves the remaining finite-colimit field. -/
+theorem
+boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusFieldsW831_finiteColimitInstance
+    (data : MetrizableDirectBoundedLeftCalculusDataWithoutComparisonW831)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      (Dbounded.metrizableLeftCalculusFieldsOfComparisonBijectivityW831 data)) :
+    (Dbounded.boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusFieldsW831
+      data remaining).finiteColimitInstance = remaining.finiteColimits :=
+  rfl
+
+/-- The W831 semantic-field route preserves the comparison-bijectivity zero-object field. -/
+theorem
+boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusFieldsW831_zeroObjectInstance
+    (data : MetrizableDirectBoundedLeftCalculusDataWithoutComparisonW831)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      (Dbounded.metrizableLeftCalculusFieldsOfComparisonBijectivityW831 data)) :
+    (Dbounded.boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusFieldsW831
+      data remaining).zeroObjectInstance =
+      (Dbounded.metrizableLeftCalculusFieldsOfComparisonBijectivityW831 data).zeroObject :=
+  rfl
+
+/--
+The W831 semantic-field route preserves the comparison-bijectivity all-shift additivity field.
+-/
+theorem
+boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusFieldsW831_shiftAdditiveAll
+    (data : MetrizableDirectBoundedLeftCalculusDataWithoutComparisonW831)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      (Dbounded.metrizableLeftCalculusFieldsOfComparisonBijectivityW831 data)) :
+    (Dbounded.boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusFieldsW831
+      data remaining).shiftAdditiveAll =
+      (Dbounded.metrizableLeftCalculusFieldsOfComparisonBijectivityW831 data).shiftAdditiveAll :=
+  rfl
+
+/--
+The W831 semantic-field route preserves the comparison-bijectivity suspension-additivity field.
+-/
+theorem
+boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusFieldsW831_suspensionAdditive
+    (data : MetrizableDirectBoundedLeftCalculusDataWithoutComparisonW831)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      (Dbounded.metrizableLeftCalculusFieldsOfComparisonBijectivityW831 data)) :
+    (Dbounded.boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusFieldsW831
+      data remaining).suspensionAdditive =
+      (Dbounded.metrizableLeftCalculusFieldsOfComparisonBijectivityW831 data).suspensionAdditive :=
+  rfl
+
+/-- The W831 semantic-field route preserves the remaining pretriangulated field. -/
+theorem
+boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusFieldsW831_pretriangulatedStructure
+    (data : MetrizableDirectBoundedLeftCalculusDataWithoutComparisonW831)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      (Dbounded.metrizableLeftCalculusFieldsOfComparisonBijectivityW831 data)) :
+    (Dbounded.boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusFieldsW831
+      data remaining).pretriangulatedStructure = remaining.pretriangulated :=
+  rfl
+
+/-- The W831 semantic-field route preserves the remaining triangulated field. -/
+theorem
+boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusFieldsW831_triangulatedStructure
+    (data : MetrizableDirectBoundedLeftCalculusDataWithoutComparisonW831)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      (Dbounded.metrizableLeftCalculusFieldsOfComparisonBijectivityW831 data)) :
+    (Dbounded.boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusFieldsW831
+      data remaining).triangulatedStructure = remaining.triangulated :=
+  rfl
+
 /-- Remaining direct-left-calculus inputs after W831 derives comparison isomorphisms. -/
 def metrizableComparisonBijectivityLeftCalculusInputNamesW831 : List String :=
   ["exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
@@ -155,6 +276,8 @@ def currentMetrizableComparisonBijectivityLeftCalculusRouteStateW831 :
       "directBoundedLeftCalculusDataOfComparisonBijectivityW831",
       "directBoundedLeftCalculusOfComparisonBijectivityW831",
       "boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusW831",
+      "metrizableLeftCalculusFieldsOfComparisonBijectivityW831",
+      "boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusFieldsW831",
       "metrizableComparisonBijectivityLeftCalculusInputNamesW831",
       "metrizableComparisonBijectivityLeftCalculusInputNamesW831_count",
       "metrizableComparisonBijectivityLeftCalculusStableRouteRequiredFieldNamesW831",
