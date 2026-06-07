@@ -1,0 +1,16 @@
+verification line counts for W806 logs
+       0 run/w_clean_20260607_w806_target_exactat_w663_bundle_reduction_boundary_target_lean.log
+       1 run/w_clean_20260607_w806_target_exactat_w663_bundle_reduction_boundary_forbidden_tokens.log
+       0 run/w_clean_20260607_w806_target_exactat_w663_bundle_reduction_boundary_diff_check.log
+   32490 run/w_clean_20260607_w806_target_exactat_w663_bundle_reduction_boundary_build.log
+   39346 run/w_clean_20260607_w806_target_exactat_w663_bundle_reduction_boundary_required_audit.log
+   71182 run/w_clean_20260607_w806_target_exactat_w663_bundle_reduction_boundary_product_success_audit.log
+   52278 run/w_clean_20260607_w806_target_exactat_w663_bundle_reduction_boundary_original_four_audit.log
+      84 run/w_clean_20260607_w806_target_exactat_w663_bundle_reduction_boundary_warning_scan.log
+      83 run/w_clean_20260607_w806_target_exactat_w663_bundle_reduction_boundary_declaration_presence.log
+       6 run/w_clean_20260607_w806_target_exactat_w663_bundle_reduction_boundary_completion_claim_post_scan.log
+       1 run/w_clean_20260607_w806_target_exactat_w663_bundle_reduction_boundary_true_boolean_scan.log
+    1085 run/w_clean_20260607_w806_target_exactat_w663_bundle_reduction_boundary_false_claim_scan.log
+      23 run/w_clean_20260607_w806_target_exactat_w663_bundle_reduction_boundary_goal_identity_after.log
+      33 run/w_clean_20260607_w806_target_exactat_w663_bundle_reduction_boundary_checkpoint.md
+  196612 total

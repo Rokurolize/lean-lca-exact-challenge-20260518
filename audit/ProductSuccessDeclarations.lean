@@ -10103,6 +10103,27 @@ example :
   #check Dbounded.productEvidence_of_closedMapShortExactBundleReducedRouteW806
   #check
     Dbounded.productEvidence_of_closedEmbeddingShortExactBundleReducedRouteW806
+  #check Dbounded.directFiniteShapeStableDataOfClosedMapEndpointBundleReducedW806
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingEndpointBundleReducedW806
+  #check Dbounded.directFiniteShapeStableDataOfClosedMapShortExactBundleReducedW806
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingShortExactBundleReducedW806
+  #check Dbounded.stableBoundaryInputsOfClosedMapEndpointBundleReducedW806
+  #check Dbounded.stableBoundaryInputsOfClosedEmbeddingEndpointBundleReducedW806
+  #check Dbounded.stableBoundaryInputsOfClosedMapShortExactBundleReducedW806
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingShortExactBundleReducedW806
+  #check Dbounded.acceptedStableOfClosedMapEndpointBundleReducedW806
+  #check Dbounded.acceptedStableOfClosedEmbeddingEndpointBundleReducedW806
+  #check Dbounded.acceptedStableOfClosedMapShortExactBundleReducedW806
+  #check Dbounded.acceptedStableOfClosedEmbeddingShortExactBundleReducedW806
+  #check Dbounded.boundedDerivedOfClosedMapEndpointBundleReducedStableBoundaryW806
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingEndpointBundleReducedStableBoundaryW806
+  #check Dbounded.boundedDerivedOfClosedMapShortExactBundleReducedStableBoundaryW806
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingShortExactBundleReducedStableBoundaryW806
   #check Dbounded.targetExactAtW663BundleReductionInputNamesW806
   #check Dbounded.targetExactAtW663BundleReductionInputNamesW806_count
   #check Dbounded.MetrizableTargetExactAtW663BundleReductionStateW806
