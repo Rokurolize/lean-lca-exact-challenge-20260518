@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.Derived.W987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW829LeftCalculusStableRouteConvergenceGuardW1532
+import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundaryDirectLocalization
 
 /-!
 W1533 discharges the four W829 stable-route fields for the W1532 W987
@@ -420,6 +421,81 @@ noncomputable def
       input globalClosedEmbeddingComponents
       mappedCokernelClosedEmbeddingProvider).triangulated
 
+/--
+W1533 closed-map source data packaged as the canonical three-input
+direct-localization stable-instance boundary.
+-/
+noncomputable def
+    closedMapStableInstanceBoundaryDirectLocalizationInputsW829OfW843ConvergenceW1533
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableFieldsFromDirectSourceInputW1533)
+    (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+    (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519) :
+    Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs where
+  transferInputs :=
+    (closedMapDirectSourceW829OfW843ConvergenceW1533
+      input globalClosedMapComponents mappedCokernelClosedMapProvider).finiteShapeInputs
+  directLeftCalculus :=
+    closedMapLeftCalculusPremiseW829OfW830ConvergenceW1532
+      input globalClosedMapComponents mappedCokernelClosedMapProvider
+  directLocalization :=
+    closedMapDirectLocalizationW829OfW843ConvergenceW1533
+      input globalClosedMapComponents mappedCokernelClosedMapProvider
+
+/--
+W1533 closed-embedding source data packaged as the canonical three-input
+direct-localization stable-instance boundary.
+-/
+noncomputable def
+    closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsW829OfW843ConvergenceW1533
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableFieldsFromDirectSourceInputW1533)
+    (globalClosedEmbeddingComponents :
+      SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+    (mappedCokernelClosedEmbeddingProvider :
+      MappedExplicitCokernelClosedEmbeddingProviderW519) :
+    Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs where
+  transferInputs :=
+    (closedEmbeddingDirectSourceW829OfW843ConvergenceW1533
+      input globalClosedEmbeddingComponents
+      mappedCokernelClosedEmbeddingProvider).finiteShapeInputs
+  directLeftCalculus :=
+    closedEmbeddingLeftCalculusPremiseW829OfW830ConvergenceW1532
+      input globalClosedEmbeddingComponents
+      mappedCokernelClosedEmbeddingProvider
+  directLocalization :=
+    closedEmbeddingDirectLocalizationW829OfW843ConvergenceW1533
+      input globalClosedEmbeddingComponents
+      mappedCokernelClosedEmbeddingProvider
+
+/-- W1533 closed-map stable package through the canonical direct-localization boundary. -/
+noncomputable def
+    closedMapBoundedDerivedInfinityCategoryOfW829DirectLocalizationBoundaryW1533
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableFieldsFromDirectSourceInputW1533)
+    (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+    (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (Dbounded.closedMapStableInstanceBoundaryDirectLocalizationInputsW829OfW843ConvergenceW1533
+      input globalClosedMapComponents mappedCokernelClosedMapProvider)
+
+/-- W1533 closed-embedding stable package through the canonical direct-localization boundary. -/
+noncomputable def
+    closedEmbeddingBoundedDerivedInfinityCategoryOfW829DirectLocalizationBoundaryW1533
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableFieldsFromDirectSourceInputW1533)
+    (globalClosedEmbeddingComponents :
+      SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+    (mappedCokernelClosedEmbeddingProvider :
+      MappedExplicitCokernelClosedEmbeddingProviderW519) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (Dbounded.closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsW829OfW843ConvergenceW1533
+      input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider)
+
 /-- W1533 closed-map direct calculus agrees with the earlier W843 route. -/
 theorem w1533ClosedMapDirectCalculusRunsThroughW843W829
     (input :
@@ -548,6 +624,10 @@ def currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFuncto
       "closedEmbeddingRemainingStableFieldsW829OfW843ConvergenceW1533",
       "closedMapBoundedDerivedInfinityCategoryOfW829DirectSourceConvergenceW1533",
       "closedEmbeddingBoundedDerivedInfinityCategoryOfW829DirectSourceConvergenceW1533",
+      "closedMapStableInstanceBoundaryDirectLocalizationInputsW829OfW843ConvergenceW1533",
+      "closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsW829OfW843ConvergenceW1533",
+      "closedMapBoundedDerivedInfinityCategoryOfW829DirectLocalizationBoundaryW1533",
+      "closedEmbeddingBoundedDerivedInfinityCategoryOfW829DirectLocalizationBoundaryW1533",
       "w1533ClosedMapDirectCalculusRunsThroughW843W829",
       "w1533ClosedEmbeddingDirectCalculusRunsThroughW843W829",
       "w829StableFieldsSuppliedFromDirectSourceNamesW1533_count",
@@ -564,7 +644,9 @@ def currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFuncto
       triangulated structure are assembled for both W829 branches"
   stablePackageResult :=
     "proved: the W1532 W829 stable package can now be built without separate \
-      W829 stable-field parameters on both branches"
+      W829 stable-field parameters on both branches; the same source data also \
+      feeds the canonical three-input direct-localization stable-instance \
+      boundary"
   remainingInputs :=
     w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableFieldsFromDirectSourceInputNamesW1533
   w829SuppliedStableFields :=
