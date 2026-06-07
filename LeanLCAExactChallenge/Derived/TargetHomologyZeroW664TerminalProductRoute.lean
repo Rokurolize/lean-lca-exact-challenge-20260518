@@ -116,6 +116,81 @@ theorem closedEmbeddingStableCertificateAcceptedOfW664TerminalW799
   closedEmbeddingStableCertificateAcceptedOfTargetHomologyZeroTerminalW798
     (closedEmbeddingComparisonHomologyDataOfW664PayloadW799 data)
 
+/-- W799 closed-map W664-explicit terminal evidence as W769 stable data. -/
+noncomputable def directFiniteShapeStableDataOfClosedMapTargetHomologyZeroW664TerminalW799
+    (data : MetrizableClosedMapTargetHomologyZeroW664TerminalBranchDataW799) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapTargetHomologyZeroTerminalEvidenceW798
+    (closedMapComparisonHomologyDataOfW664PayloadW799 data)
+
+/-- W799 closed-embedding W664-explicit terminal evidence as W769 stable data. -/
+noncomputable def
+    directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroW664TerminalW799
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroW664TerminalBranchDataW799) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroTerminalEvidenceW798
+    (closedEmbeddingComparisonHomologyDataOfW664PayloadW799 data)
+
+/-- W799 closed-map W664-explicit terminal evidence as stable-boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedMapTargetHomologyZeroW664TerminalW799
+    (data : MetrizableClosedMapTargetHomologyZeroW664TerminalBranchDataW799) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapTargetHomologyZeroTerminalEvidenceW798
+    (closedMapComparisonHomologyDataOfW664PayloadW799 data)
+
+/--
+W799 closed-embedding W664-explicit terminal evidence as stable-boundary
+inputs.
+-/
+noncomputable def
+    stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroW664TerminalW799
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroW664TerminalBranchDataW799) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroTerminalEvidenceW798
+    (closedEmbeddingComparisonHomologyDataOfW664PayloadW799 data)
+
+/-- W799 closed-map W664-explicit terminal evidence passes the stable boundary. -/
+noncomputable def acceptedStableOfClosedMapTargetHomologyZeroW664TerminalW799
+    (data : MetrizableClosedMapTargetHomologyZeroW664TerminalBranchDataW799) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapTargetHomologyZeroTerminalEvidenceW798
+    (closedMapComparisonHomologyDataOfW664PayloadW799 data)
+
+/--
+W799 closed-embedding W664-explicit terminal evidence passes the stable
+boundary.
+-/
+noncomputable def acceptedStableOfClosedEmbeddingTargetHomologyZeroW664TerminalW799
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroW664TerminalBranchDataW799) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingTargetHomologyZeroTerminalEvidenceW798
+    (closedEmbeddingComparisonHomologyDataOfW664PayloadW799 data)
+
+/-- W799 closed-map W664-explicit terminal evidence produces the stable-boundary package. -/
+noncomputable def
+    boundedDerivedOfClosedMapTargetHomologyZeroW664TerminalStableBoundaryW799
+    (data : MetrizableClosedMapTargetHomologyZeroW664TerminalBranchDataW799) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapTargetHomologyZeroTerminalEvidenceStableBoundaryW798
+    (closedMapComparisonHomologyDataOfW664PayloadW799 data)
+
+/--
+W799 closed-embedding W664-explicit terminal evidence produces the
+stable-boundary package.
+-/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingTargetHomologyZeroW664TerminalStableBoundaryW799
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroW664TerminalBranchDataW799) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingTargetHomologyZeroTerminalEvidenceStableBoundaryW798
+    (closedEmbeddingComparisonHomologyDataOfW664PayloadW799 data)
+
 def targetHomologyZeroW664TerminalProductRouteInputNamesW799 :
     List String :=
   ["universal IsIso for every MetrizableLCA left-right homology comparison",
@@ -132,6 +207,7 @@ structure MetrizableTargetHomologyZeroW664TerminalRouteStateW799 : Type where
   declarations : List String
   branchDataResult : String
   terminalEvidenceResult : String
+  stableBoundaryResult : String
   replacedInputs : List String
   remainingInputs : List String
   productSuccessClaimed : Bool
@@ -153,14 +229,26 @@ def currentMetrizableTargetHomologyZeroW664TerminalRouteStateW799 :
       "closedEmbeddingStableCertificateReadyOfW664TerminalW799",
       "closedMapStableCertificateAcceptedOfW664TerminalW799",
       "closedEmbeddingStableCertificateAcceptedOfW664TerminalW799",
+      "directFiniteShapeStableDataOfClosedMapTargetHomologyZeroW664TerminalW799",
+      "directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroW664TerminalW799",
+      "stableBoundaryInputsOfClosedMapTargetHomologyZeroW664TerminalW799",
+      "stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroW664TerminalW799",
+      "acceptedStableOfClosedMapTargetHomologyZeroW664TerminalW799",
+      "acceptedStableOfClosedEmbeddingTargetHomologyZeroW664TerminalW799",
+      "boundedDerivedOfClosedMapTargetHomologyZeroW664TerminalStableBoundaryW799",
+      "boundedDerivedOfClosedEmbeddingTargetHomologyZeroW664TerminalStableBoundaryW799",
       "targetHomologyZeroW664TerminalProductRouteInputNamesW799",
       "targetHomologyZeroW664TerminalProductRouteInputNamesW799_count"]
   branchDataResult :=
     "proved: W664 target homology-zero payload data converts to W794 data"
   terminalEvidenceResult :=
     "proved: W664-explicit data feed W798 terminal exact/stable evidence"
+  stableBoundaryResult :=
+    "proved: W799 W664 terminal branches expose the W798/W794/W774/W773/W769\
+      canonical stable-boundary gate"
   replacedInputs :=
-    ["target homology-zero realization data alias stack from W798"]
+    ["target homology-zero realization data alias stack from W798",
+      "separate W798 terminal-evidence stable-boundary branch input"]
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",

@@ -1,0 +1,9 @@
+verification log line counts
+       0 run/w_clean_20260607_w799_target_homology_zero_w664_terminal_boundary_target_lean.log
+       1 run/w_clean_20260607_w799_target_homology_zero_w664_terminal_boundary_forbidden_tokens.log
+       0 run/w_clean_20260607_w799_target_homology_zero_w664_terminal_boundary_diff_check.log
+   32490 run/w_clean_20260607_w799_target_homology_zero_w664_terminal_boundary_build.log
+   39022 run/w_clean_20260607_w799_target_homology_zero_w664_terminal_boundary_required_audit.log
+   70910 run/w_clean_20260607_w799_target_homology_zero_w664_terminal_boundary_product_success_audit.log
+   51954 run/w_clean_20260607_w799_target_homology_zero_w664_terminal_boundary_original_four_audit.log
+  194377 total

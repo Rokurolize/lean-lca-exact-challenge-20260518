@@ -9857,6 +9857,21 @@ example :
   #check Dbounded.closedEmbeddingStableCertificateReadyOfW664TerminalW799
   #check Dbounded.closedMapStableCertificateAcceptedOfW664TerminalW799
   #check Dbounded.closedEmbeddingStableCertificateAcceptedOfW664TerminalW799
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedMapTargetHomologyZeroW664TerminalW799
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroW664TerminalW799
+  #check
+    Dbounded.stableBoundaryInputsOfClosedMapTargetHomologyZeroW664TerminalW799
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroW664TerminalW799
+  #check Dbounded.acceptedStableOfClosedMapTargetHomologyZeroW664TerminalW799
+  #check
+    Dbounded.acceptedStableOfClosedEmbeddingTargetHomologyZeroW664TerminalW799
+  #check
+    Dbounded.boundedDerivedOfClosedMapTargetHomologyZeroW664TerminalStableBoundaryW799
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingTargetHomologyZeroW664TerminalStableBoundaryW799
   #check Dbounded.targetHomologyZeroW664TerminalProductRouteInputNamesW799
   #check Dbounded.targetHomologyZeroW664TerminalProductRouteInputNamesW799_count
   #check Dbounded.MetrizableTargetHomologyZeroW664TerminalRouteStateW799
