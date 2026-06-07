@@ -1,0 +1,3 @@
+target_file_warning_hits=0
+imported_or_preexisting_warning_lines=7721
+note=verification logs contained imported/preexisting warnings only; no W794 target-file warning or error was found

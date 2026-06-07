@@ -9747,6 +9747,21 @@ example :
   #check Dbounded.closedEmbeddingNormalizedDataOfComparisonHomologyW794
   #check Dbounded.productEvidence_of_closedMapComparisonHomologyRouteW794
   #check Dbounded.productEvidence_of_closedEmbeddingComparisonHomologyRouteW794
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedMapTargetHomologyZeroComparisonHomologyW794
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroComparisonHomologyW794
+  #check
+    Dbounded.stableBoundaryInputsOfClosedMapTargetHomologyZeroComparisonHomologyW794
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroComparisonHomologyW794
+  #check Dbounded.acceptedStableOfClosedMapTargetHomologyZeroComparisonHomologyW794
+  #check
+    Dbounded.acceptedStableOfClosedEmbeddingTargetHomologyZeroComparisonHomologyW794
+  #check
+    Dbounded.boundedDerivedOfClosedMapTargetHomologyZeroComparisonHomologyStableBoundaryW794
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingTargetHomologyZeroComparisonHomologyStableBoundaryW794
   #check Dbounded.targetHomologyZeroComparisonHomologyProductRouteInputNamesW794
   #check Dbounded.targetHomologyZeroComparisonHomologyProductRouteInputNamesW794_count
   #check Dbounded.MetrizableTargetHomologyZeroComparisonHomologyRouteStateW794

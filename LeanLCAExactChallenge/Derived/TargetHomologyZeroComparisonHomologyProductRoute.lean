@@ -106,6 +106,83 @@ noncomputable def productEvidence_of_closedEmbeddingComparisonHomologyRouteW794
   productEvidence_of_closedEmbeddingNormalizedDirectSourceClosedRangeRouteW774
     (closedEmbeddingNormalizedDataOfComparisonHomologyW794 data)
 
+/-- W794 closed-map branch converted to the W769 stable-data surface. -/
+noncomputable def
+    directFiniteShapeStableDataOfClosedMapTargetHomologyZeroComparisonHomologyW794
+    (data :
+      MetrizableClosedMapTargetHomologyZeroComparisonHomologyBranchDataW794) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapNormalizedDirectSourceClosedRangeW774
+    (closedMapNormalizedDataOfComparisonHomologyW794 data)
+
+/-- W794 closed-embedding branch converted to the W769 stable-data surface. -/
+noncomputable def
+    directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroComparisonHomologyW794
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroComparisonHomologyBranchDataW794) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+    (closedEmbeddingNormalizedDataOfComparisonHomologyW794 data)
+
+/-- W794 closed-map branch as canonical stable-instance boundary inputs. -/
+noncomputable def
+    stableBoundaryInputsOfClosedMapTargetHomologyZeroComparisonHomologyW794
+    (data :
+      MetrizableClosedMapTargetHomologyZeroComparisonHomologyBranchDataW794) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapNormalizedDirectSourceClosedRangeW774
+    (closedMapNormalizedDataOfComparisonHomologyW794 data)
+
+/-- W794 closed-embedding branch as canonical stable-instance boundary inputs. -/
+noncomputable def
+    stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroComparisonHomologyW794
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroComparisonHomologyBranchDataW794) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+    (closedEmbeddingNormalizedDataOfComparisonHomologyW794 data)
+
+/-- W794 closed-map branch passes the canonical accepted stable boundary gate. -/
+noncomputable def acceptedStableOfClosedMapTargetHomologyZeroComparisonHomologyW794
+    (data :
+      MetrizableClosedMapTargetHomologyZeroComparisonHomologyBranchDataW794) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapNormalizedDirectSourceClosedRangeW774
+    (closedMapNormalizedDataOfComparisonHomologyW794 data)
+
+/--
+W794 closed-embedding branch passes the canonical accepted stable boundary gate.
+-/
+noncomputable def
+    acceptedStableOfClosedEmbeddingTargetHomologyZeroComparisonHomologyW794
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroComparisonHomologyBranchDataW794) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+    (closedEmbeddingNormalizedDataOfComparisonHomologyW794 data)
+
+/-- W794 closed-map branch produces the canonical stable-boundary package. -/
+noncomputable def
+    boundedDerivedOfClosedMapTargetHomologyZeroComparisonHomologyStableBoundaryW794
+    (data :
+      MetrizableClosedMapTargetHomologyZeroComparisonHomologyBranchDataW794) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapNormalizedDirectSourceClosedRangeStableBoundaryW774
+    (closedMapNormalizedDataOfComparisonHomologyW794 data)
+
+/--
+W794 closed-embedding branch produces the canonical stable-boundary package.
+-/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingTargetHomologyZeroComparisonHomologyStableBoundaryW794
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroComparisonHomologyBranchDataW794) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingNormalizedDirectSourceClosedRangeStableBoundaryW774
+    (closedEmbeddingNormalizedDataOfComparisonHomologyW794 data)
+
 /-- W794 input names after deriving global homology existence from comparison. -/
 def targetHomologyZeroComparisonHomologyProductRouteInputNamesW794 :
     List String :=
@@ -124,6 +201,7 @@ structure MetrizableTargetHomologyZeroComparisonHomologyRouteStateW794 :
   seed : String
   declarations : List String
   homologyResult : String
+  stableBoundaryResult : String
   closedMapResult : String
   closedEmbeddingResult : String
   replacedInputs : List String
@@ -142,17 +220,29 @@ def currentMetrizableTargetHomologyZeroComparisonHomologyRouteStateW794 :
       "closedEmbeddingNormalizedDataOfComparisonHomologyW794",
       "productEvidence_of_closedMapComparisonHomologyRouteW794",
       "productEvidence_of_closedEmbeddingComparisonHomologyRouteW794",
+      "directFiniteShapeStableDataOfClosedMapTargetHomologyZeroComparisonHomologyW794",
+      "directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroComparisonHomologyW794",
+      "stableBoundaryInputsOfClosedMapTargetHomologyZeroComparisonHomologyW794",
+      "stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroComparisonHomologyW794",
+      "acceptedStableOfClosedMapTargetHomologyZeroComparisonHomologyW794",
+      "acceptedStableOfClosedEmbeddingTargetHomologyZeroComparisonHomologyW794",
+      "boundedDerivedOfClosedMapTargetHomologyZeroComparisonHomologyStableBoundaryW794",
+      "boundedDerivedOfClosedEmbeddingTargetHomologyZeroComparisonHomologyStableBoundaryW794",
       "targetHomologyZeroComparisonHomologyProductRouteInputNamesW794",
       "targetHomologyZeroComparisonHomologyProductRouteInputNamesW794_count"]
   homologyResult :=
     "proved: W768 derives global HasHomology from the universal comparison"
+  stableBoundaryResult :=
+    "proved: W794 target homology-zero comparison-homology branches pass the\
+      W774/W773/W769 canonical stable-boundary gate"
   closedMapResult :=
     "proved: closed-map comparison-derived homology route feeds W774"
   closedEmbeddingResult :=
     "proved: closed-embedding comparison-derived homology route feeds W774"
   replacedInputs :=
     ["separate homology existence for all MetrizableLCA cochain complexes in\
-      every degree"]
+      every degree",
+      "separate W774 normalized direct-source stable-boundary branch input"]
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",
