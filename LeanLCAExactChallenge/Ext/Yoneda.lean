@@ -6522,6 +6522,76 @@ theorem yonedaProduct_ofPositiveChainClass_assoc
       (ofPositiveChain (X := Y) (Y := Z) r)) := by
   exact yonedaProduct_ofPositiveChainClass_assoc_cast p q r (by omega)
 
+/--
+Quotient-wide product-level associativity in positive degrees after casting the
+target degree.
+-/
+theorem yonedaProduct_assoc_cast
+    {X W Y Z : MetrizableLCA.{u}} {m n l : ℕ}
+    (a : YonedaExt (C := MetrizableLCA.{u}) X W (m + 1))
+    (b : YonedaExt (C := MetrizableLCA.{u}) W Y (n + 1))
+    (c : YonedaExt (C := MetrizableLCA.{u}) Y Z (l + 1))
+    (hdeg : l + (n + (m + 1) + 1) = (l + (n + 1)) + (m + 1)) :
+    positiveYonedaExtCast (C := MetrizableLCA.{u}) (X := X) (Y := Z) hdeg
+        (yonedaProduct (X := X) (Y := Y) (Z := Z) (n + (m + 1)) l
+          (yonedaProduct (X := X) (Y := W) (Z := Y) m n a b) c) =
+      yonedaProduct (X := X) (Y := W) (Z := Z) m (l + (n + 1)) a
+        (yonedaProduct (X := W) (Y := Y) (Z := Z) n l b c) := by
+  let lhsA : YonedaExt (C := MetrizableLCA.{u}) X W (m + 1) →+
+      PositiveYonedaExt (C := MetrizableLCA.{u}) X Z ((l + (n + 1)) + (m + 1)) :=
+    (positiveYonedaExtCast (C := MetrizableLCA.{u}) (X := X) (Y := Z) hdeg).comp
+      (((yonedaProduct (X := X) (Y := Y) (Z := Z) (n + (m + 1)) l).flip c).comp
+        ((yonedaProduct (X := X) (Y := W) (Z := Y) m n).flip b))
+  let rhsA : YonedaExt (C := MetrizableLCA.{u}) X W (m + 1) →+
+      PositiveYonedaExt (C := MetrizableLCA.{u}) X Z ((l + (n + 1)) + (m + 1)) :=
+    (yonedaProduct (X := X) (Y := W) (Z := Z) m (l + (n + 1))).flip
+      (yonedaProduct (X := W) (Y := Y) (Z := Z) n l b c)
+  have hA : lhsA = rhsA := by
+    apply QuotientAddGroup.addMonoidHom_ext
+    apply FreeAbelianGroup.lift_ext
+    intro a'
+    let a₀ := ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := W) (n := m) a'
+    let lhsB : YonedaExt (C := MetrizableLCA.{u}) W Y (n + 1) →+
+        PositiveYonedaExt (C := MetrizableLCA.{u}) X Z ((l + (n + 1)) + (m + 1)) :=
+      (positiveYonedaExtCast (C := MetrizableLCA.{u}) (X := X) (Y := Z) hdeg).comp
+        (((yonedaProduct (X := X) (Y := Y) (Z := Z) (n + (m + 1)) l).flip c).comp
+          (yonedaProduct (X := X) (Y := W) (Z := Y) m n a₀))
+    let rhsB : YonedaExt (C := MetrizableLCA.{u}) W Y (n + 1) →+
+        PositiveYonedaExt (C := MetrizableLCA.{u}) X Z ((l + (n + 1)) + (m + 1)) :=
+      (yonedaProduct (X := X) (Y := W) (Z := Z) m (l + (n + 1)) a₀).comp
+        ((yonedaProduct (X := W) (Y := Y) (Z := Z) n l).flip c)
+    have hB : lhsB = rhsB := by
+      apply QuotientAddGroup.addMonoidHom_ext
+      apply FreeAbelianGroup.lift_ext
+      intro b'
+      let b₀ := ofExtension (C := MetrizableLCA.{u}) (X := W) (Y := Y) (n := n) b'
+      let lhsC : YonedaExt (C := MetrizableLCA.{u}) Y Z (l + 1) →+
+          PositiveYonedaExt (C := MetrizableLCA.{u}) X Z ((l + (n + 1)) + (m + 1)) :=
+        (positiveYonedaExtCast (C := MetrizableLCA.{u}) (X := X) (Y := Z) hdeg).comp
+          (yonedaProduct (X := X) (Y := Y) (Z := Z) (n + (m + 1)) l
+            (yonedaProduct (X := X) (Y := W) (Z := Y) m n a₀ b₀))
+      let rhsC : YonedaExt (C := MetrizableLCA.{u}) Y Z (l + 1) →+
+          PositiveYonedaExt (C := MetrizableLCA.{u}) X Z ((l + (n + 1)) + (m + 1)) :=
+        (yonedaProduct (X := X) (Y := W) (Z := Z) m (l + (n + 1)) a₀).comp
+          (yonedaProduct (X := W) (Y := Y) (Z := Z) n l b₀)
+      have hC : lhsC = rhsC := by
+        apply QuotientAddGroup.addMonoidHom_ext
+        apply FreeAbelianGroup.lift_ext
+        intro c'
+        change
+          positiveYonedaExtCast (C := MetrizableLCA.{u}) (X := X) (Y := Z) hdeg
+              (yonedaProduct (X := X) (Y := Y) (Z := Z) (n + (m + 1)) l
+                (yonedaProduct (X := X) (Y := W) (Z := Y) m n a₀ b₀)
+                (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := l) c')) =
+            yonedaProduct (X := X) (Y := W) (Z := Z) m (l + (n + 1)) a₀
+              (yonedaProduct (X := W) (Y := Y) (Z := Z) n l b₀
+                (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := l) c'))
+        exact yonedaProduct_ofExtension_assoc_cast
+          (a := a') (b := b') (c := c') (hdeg := hdeg)
+      exact congrArg (fun f => f c) hC
+    exact congrArg (fun f => f b) hB
+  exact congrArg (fun f => f a) hA
+
 theorem yonedaProduct_add_left
     {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
     (a b : YonedaExt (C := MetrizableLCA.{u}) X Y (m + 1)) :

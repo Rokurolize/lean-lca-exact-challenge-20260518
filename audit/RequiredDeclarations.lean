@@ -658,6 +658,7 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_ofPositiveChainClass_assoc_cast
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_ofPositiveChain_assoc
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_ofPositiveChainClass_assoc
+#check LeanLCAExactChallenge.YonedaExt.yonedaProduct_assoc_cast
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_add_left
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_add_right
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_zero_left
