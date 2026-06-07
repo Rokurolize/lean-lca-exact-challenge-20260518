@@ -9369,6 +9369,18 @@ example :
   #check Dbounded.closedEmbeddingClosedQuotientEpiDataOfSelectedW461RowsW781
   #check Dbounded.productEvidence_of_closedMapSelectedW461RowsRouteW781
   #check Dbounded.productEvidence_of_closedEmbeddingSelectedW461RowsRouteW781
+  #check Dbounded.directFiniteShapeStableDataOfClosedMapSelectedW461RowsW781
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingSelectedW461RowsW781
+  #check Dbounded.stableBoundaryInputsOfClosedMapSelectedW461RowsW781
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingSelectedW461RowsW781
+  #check Dbounded.acceptedStableOfClosedMapSelectedW461RowsW781
+  #check Dbounded.acceptedStableOfClosedEmbeddingSelectedW461RowsW781
+  #check
+    Dbounded.boundedDerivedOfClosedMapSelectedW461RowsStableBoundaryW781
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingSelectedW461RowsStableBoundaryW781
   #check Dbounded.selectedW461RowsClosedQuotientEpiProductRouteInputNamesW781
   #check Dbounded.selectedW461RowsClosedQuotientEpiProductRouteInputNamesW781_count
   #check Dbounded.MetrizableSelectedW461RowsClosedQuotientEpiRouteStateW781

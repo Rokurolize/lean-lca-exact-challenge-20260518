@@ -1,0 +1,28 @@
+checkpoint=w_clean_20260607_w781_selected_w461_rows_boundary
+terminal_outcome=nonterminal
+product_success=false
+overall=0
+
+commands:
+- lake env lean LeanLCAExactChallenge/Derived/SelectedW461RowsClosedQuotientEpiProductRoute.lean
+- lake build LeanLCAExactChallenge.Derived.SelectedW461RowsClosedQuotientEpiProductRoute
+- lake env lean audit/RequiredDeclarations.lean
+- lake env lean audit/ProductSuccessDeclarations.lean
+- lake env lean audit/OriginalFourTaskCompletionDeclarations.lean
+- git diff --check
+- scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/SelectedW461RowsClosedQuotientEpiProductRoute.lean
+
+results:
+- W781 Lean file: exit 0, no output.
+- W781 Lake build: exit 0; dependency warnings are pre-existing and the local W781 warning scan is empty.
+- RequiredDeclarations: exit 0.
+- ProductSuccessDeclarations: exit 0.
+- OriginalFourTaskCompletionDeclarations: exit 0.
+- git diff --check: exit 0.
+- forbidden Lean token audit: exit 0.
+- declaration presence scan: all 8 W781 stable-boundary declarations found in source and audit surfaces.
+- true/product-success scan: empty.
+- terminal false scan: productSuccessClaimed remains false and terminal_outcome remains nonterminal.
+
+notes:
+- This checkpoint connects W781 selected-W461/rows closed-quotient/Epi branch data to the existing W780/W779/W778/W774/W773/W769 canonical stable-boundary gate. It does not claim full product success.

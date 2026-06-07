@@ -137,6 +137,68 @@ noncomputable def productEvidence_of_closedEmbeddingSelectedW461RowsRouteW781
   productEvidence_of_closedEmbeddingClosedQuotientEpiRouteW780
     (closedEmbeddingClosedQuotientEpiDataOfSelectedW461RowsW781 data)
 
+/-- W781 closed-map branch converted to the W769 stable-data surface. -/
+noncomputable def directFiniteShapeStableDataOfClosedMapSelectedW461RowsW781
+    (data : MetrizableClosedMapSelectedW461RowsClosedQuotientEpiBranchDataW781) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapClosedQuotientEpiW780
+    (closedMapClosedQuotientEpiDataOfSelectedW461RowsW781 data)
+
+/-- W781 closed-embedding branch converted to the W769 stable-data surface. -/
+noncomputable def directFiniteShapeStableDataOfClosedEmbeddingSelectedW461RowsW781
+    (data :
+      MetrizableClosedEmbeddingSelectedW461RowsClosedQuotientEpiBranchDataW781) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingClosedQuotientEpiW780
+    (closedEmbeddingClosedQuotientEpiDataOfSelectedW461RowsW781 data)
+
+/-- W781 closed-map branch as canonical stable-instance boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedMapSelectedW461RowsW781
+    (data : MetrizableClosedMapSelectedW461RowsClosedQuotientEpiBranchDataW781) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapClosedQuotientEpiW780
+    (closedMapClosedQuotientEpiDataOfSelectedW461RowsW781 data)
+
+/-- W781 closed-embedding branch as canonical stable-instance boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedEmbeddingSelectedW461RowsW781
+    (data :
+      MetrizableClosedEmbeddingSelectedW461RowsClosedQuotientEpiBranchDataW781) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingClosedQuotientEpiW780
+    (closedEmbeddingClosedQuotientEpiDataOfSelectedW461RowsW781 data)
+
+/-- W781 closed-map branch passes the canonical accepted stable boundary gate. -/
+noncomputable def acceptedStableOfClosedMapSelectedW461RowsW781
+    (data : MetrizableClosedMapSelectedW461RowsClosedQuotientEpiBranchDataW781) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapClosedQuotientEpiW780
+    (closedMapClosedQuotientEpiDataOfSelectedW461RowsW781 data)
+
+/-- W781 closed-embedding branch passes the canonical accepted stable boundary gate. -/
+noncomputable def acceptedStableOfClosedEmbeddingSelectedW461RowsW781
+    (data :
+      MetrizableClosedEmbeddingSelectedW461RowsClosedQuotientEpiBranchDataW781) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingClosedQuotientEpiW780
+    (closedEmbeddingClosedQuotientEpiDataOfSelectedW461RowsW781 data)
+
+/-- W781 closed-map branch produces the canonical stable-boundary package. -/
+noncomputable def boundedDerivedOfClosedMapSelectedW461RowsStableBoundaryW781
+    (data : MetrizableClosedMapSelectedW461RowsClosedQuotientEpiBranchDataW781) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapClosedQuotientEpiStableBoundaryW780
+    (closedMapClosedQuotientEpiDataOfSelectedW461RowsW781 data)
+
+/-- W781 closed-embedding branch produces the canonical stable-boundary package. -/
+noncomputable def boundedDerivedOfClosedEmbeddingSelectedW461RowsStableBoundaryW781
+    (data :
+      MetrizableClosedEmbeddingSelectedW461RowsClosedQuotientEpiBranchDataW781) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingClosedQuotientEpiStableBoundaryW780
+    (closedEmbeddingClosedQuotientEpiDataOfSelectedW461RowsW781 data)
+
 /-- W781 input names after W483/W527 adapters supply WPP-op left/Snake fields. -/
 def selectedW461RowsClosedQuotientEpiProductRouteInputNamesW781 :
     List String :=
@@ -162,6 +224,7 @@ structure MetrizableSelectedW461RowsClosedQuotientEpiRouteStateW781 :
   selectedW461Result : String
   closedMapRowsResult : String
   closedEmbeddingRowsResult : String
+  stableBoundaryResult : String
   closedMapResult : String
   closedEmbeddingResult : String
   replacedInputs : List String
@@ -186,6 +249,14 @@ def currentMetrizableSelectedW461RowsClosedQuotientEpiRouteStateW781 :
       "closedEmbeddingClosedQuotientEpiDataOfSelectedW461RowsW781",
       "productEvidence_of_closedMapSelectedW461RowsRouteW781",
       "productEvidence_of_closedEmbeddingSelectedW461RowsRouteW781",
+      "directFiniteShapeStableDataOfClosedMapSelectedW461RowsW781",
+      "directFiniteShapeStableDataOfClosedEmbeddingSelectedW461RowsW781",
+      "stableBoundaryInputsOfClosedMapSelectedW461RowsW781",
+      "stableBoundaryInputsOfClosedEmbeddingSelectedW461RowsW781",
+      "acceptedStableOfClosedMapSelectedW461RowsW781",
+      "acceptedStableOfClosedEmbeddingSelectedW461RowsW781",
+      "boundedDerivedOfClosedMapSelectedW461RowsStableBoundaryW781",
+      "boundedDerivedOfClosedEmbeddingSelectedW461RowsStableBoundaryW781",
       "selectedW461RowsClosedQuotientEpiProductRouteInputNamesW781",
       "selectedW461RowsClosedQuotientEpiProductRouteInputNamesW781_count"]
   selectedW461Result :=
@@ -194,13 +265,17 @@ def currentMetrizableSelectedW461RowsClosedQuotientEpiRouteStateW781 :
     "proved: row-aware closed-map provider supplies W780's Snake field"
   closedEmbeddingRowsResult :=
     "proved: row-aware closed-embedding provider supplies W780's Snake field"
+  stableBoundaryResult :=
+    "proved: W781 selected-W461/rows closed-quotient/Epi branches pass the\
+      W780/W779/W778/W774/W773/W769 canonical stable-boundary accepted gate"
   closedMapResult :=
     "proved: closed-map selected-W461/rows branch data feeds W780"
   closedEmbeddingResult :=
     "proved: closed-embedding selected-W461/rows branch data feeds W780"
   replacedInputs :=
     ["WPP-op colimit left closed-embedding certificate",
-      "WPP-op AddCommGrp SnakeInput cokernel-row certificate"]
+      "WPP-op AddCommGrp SnakeInput cokernel-row certificate",
+      "separate W780 closed-quotient/Epi stable-boundary branch input"]
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",
