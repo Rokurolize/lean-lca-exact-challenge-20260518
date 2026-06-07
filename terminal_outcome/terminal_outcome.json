@@ -1,14 +1,14 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-06-07T11:36:39Z",
-  "git_head": "d7b0f0aa7a679fd10bbe3b9a965c68fa9e8a139c",
+  "generated_utc": "2026-06-07T11:46:33Z",
+  "git_head": "8d4f72ee1dbf1bf4bf13e446ef260f8b575cd716",
   "source_tree_hash": "not_applicable_self_referential_partial_checkpoint",
-  "outcome": "source_progress_partial_yoneda_ext_positive_chain_baer_bridge",
+  "outcome": "source_progress_partial_yoneda_product_of_positive_chain_class_bridge",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "Current-state reconciliation continues away from surface-only W-route exposure. The source now exposes composition stability as product-facing QuillenExactCategory class API, instantiates those fields for canonical MetrizableLCA strict exact sequences, exposes exact maps of positive-degree Yoneda representatives, and adds a direct YonedaExt.ofPositiveChain bridge whose relation, split-factor, and Baer-sum laws descend to Ext classes. This is real exact-category/Yoneda API progress, but not product completion because the full Yoneda Ext and bounded derived infinity-category obligations remain open.",
+  "summary": "Current-state reconciliation continues away from surface-only W-route exposure. The source now exposes composition stability as product-facing QuillenExactCategory class API, instantiates those fields for canonical MetrizableLCA strict exact sequences, exposes exact maps of positive-degree Yoneda representatives, adds a direct YonedaExt.ofPositiveChain bridge whose relation, split-factor, and Baer-sum laws descend to Ext classes, and connects those Ext classes to public Yoneda product additivity. This is real exact-category/Yoneda API progress, but not product completion because the full Yoneda Ext and bounded derived infinity-category obligations remain open.",
   "positive_witness_declarations": [
     "LeanLCAExactChallenge.QuillenExactCategory.comp_inflation",
     "LeanLCAExactChallenge.QuillenExactCategory.comp_deflation",
@@ -31,22 +31,24 @@
     "LeanLCAExactChallenge.YonedaExt.ofPositiveChain_eq_ofPositiveChain_of_rel",
     "LeanLCAExactChallenge.YonedaExt.ofPositiveChain_eq_zero_of_splitFactor",
     "LeanLCAExactChallenge.YonedaExt.ofPositiveChain_eq_add_of_baerChain",
-    "LeanLCAExactChallenge.YonedaExt.baer_sum_ofPositiveChain_eq_of_baerChain"
+    "LeanLCAExactChallenge.YonedaExt.baer_sum_ofPositiveChain_eq_of_baerChain",
+    "LeanLCAExactChallenge.YonedaExt.yonedaProduct_ofPositiveChainClass_eq_add_of_baerLeftChain",
+    "LeanLCAExactChallenge.YonedaExt.yonedaProduct_baer_sum_left_ofPositiveChainClass"
   ],
   "contracts": {
     "human_centered_goal_sha256": "a91bb2afdd4f171a181186e6a5bf7da55e751a932fb3b360472288837fbd9260",
     "original_four_task_contract_sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1",
     "positive_witness_contract_sha256": "3120c014b83e0c7c8f8160ca90447a1a73588096a354ace109e2fca4e4eab5ec"
   },
-  "proof_search_checkpoint": "run/w_clean_20260607_yoneda_ext_positive_chain_baer_bridge/checkpoint.md",
+  "proof_search_checkpoint": "run/w_clean_20260607_yoneda_product_of_positive_chain_class_bridge/checkpoint.md",
   "known_gaps": [
     "Positive Lean witness is absent: no OriginalFourTaskProductSuccess surface with field-level evidence for the original four-task contract exists.",
     "The exact-category core now exposes class-level composition-stability fields and the canonical MetrizableLCA instance fills them, but the complete original four-task witness is still absent.",
-    "Yoneda one-fold extensions and positive-degree chains now expose their ambient exact-category head inflation/deflation maps and descend relation/split-factor/Baer-sum laws through YonedaExt.ofPositiveChain, but the full Yoneda Ext group obligation is not yet audited as a final positive witness.",
+    "Yoneda one-fold extensions and positive-degree chains now expose their ambient exact-category head inflation/deflation maps and descend relation/split-factor/Baer-sum laws through YonedaExt.ofPositiveChain and into public Yoneda product additivity, but the full Yoneda Ext group obligation is not yet audited as a final positive witness.",
     "Bounded derived infinity-category integration remains incomplete as an original-contract obligation."
   ],
   "remaining_work": [
-    "Continue from the strengthened exact-category core and ofPositiveChain additive bridge into higher Yoneda Ext group integration.",
+    "Continue from the strengthened exact-category core and ofPositiveChain product bridge into higher Yoneda Ext group integration.",
     "Continue the bounded derived infinity-category positive witness integration only after the exact-category and Yoneda obligations are represented by honest Lean declarations."
   ],
   "verified_commands": [
@@ -59,7 +61,7 @@
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Ext/Yoneda.lean audit/RequiredDeclarations.lean audit/OriginalFourTaskCompletionDeclarations.lean",
     "jq empty run/goal_identity_20260602_human_centered_positive_witness.json terminal_outcome/terminal_outcome.json",
-    "git diff --check -- LeanLCAExactChallenge/Ext/Yoneda.lean audit/RequiredDeclarations.lean audit/OriginalFourTaskCompletionDeclarations.lean terminal_outcome/terminal_outcome.json run/goal_identity_20260602_human_centered_positive_witness.json run/resumption_gate_20260607_yoneda_ext_positive_chain_baer_bridge run/w_clean_20260607_yoneda_ext_positive_chain_baer_bridge/checkpoint.md"
+    "git diff --check -- LeanLCAExactChallenge/Ext/Yoneda.lean audit/RequiredDeclarations.lean audit/OriginalFourTaskCompletionDeclarations.lean terminal_outcome/terminal_outcome.json run/goal_identity_20260602_human_centered_positive_witness.json run/resumption_gate_20260607_yoneda_product_of_positive_chain_class_bridge run/w_clean_20260607_yoneda_product_of_positive_chain_class_bridge/checkpoint.md"
   ],
   "packet_zip": null,
   "packet_sha256_sidecar": null

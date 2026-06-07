@@ -6834,6 +6834,21 @@ theorem yonedaProduct_ofPositiveChain_eq_add_of_baerLeftChain
     yonedaProduct_ofPositiveChain]
   exact leftProductByPositiveChain_eq_add_of_baerLeftChain h n
 
+/-- A positive-chain Baer sum is additive for the public Yoneda product on Ext classes. -/
+theorem yonedaProduct_ofPositiveChainClass_eq_add_of_baerLeftChain
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    {p₁ p₂ sum : YonedaExtension.PositiveChain (C := MetrizableLCA.{u}) X Y m}
+    (h : YonedaExtension.PositiveChain.BaerSumData p₁ p₂ sum) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n
+        (ofPositiveChain (X := X) (Y := Y) sum) =
+      yonedaProduct (X := X) (Y := Y) (Z := Z) m n
+          (ofPositiveChain (X := X) (Y := Y) p₁) +
+        yonedaProduct (X := X) (Y := Y) (Z := Z) m n
+          (ofPositiveChain (X := X) (Y := Y) p₂) := by
+  rw [ofPositiveChain_eq_ofExtension, ofPositiveChain_eq_ofExtension,
+    ofPositiveChain_eq_ofExtension]
+  exact yonedaProduct_ofPositiveChain_eq_add_of_baerLeftChain h
+
 /-- The public `baer_sum` API in the left Ext variable respects positive-chain Baer sums. -/
 theorem yonedaProduct_baer_sum_left_ofPositiveChain
     {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
@@ -6849,6 +6864,21 @@ theorem yonedaProduct_baer_sum_left_ofPositiveChain
         (ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Y) (n := m)
           sum.toYonedaExtension) := by
   rw [baer_sum_ofExtension_eq_of_baerChain h.toYonedaExtension]
+
+/-- The public `baer_sum` API in the left Ext variable respects `ofPositiveChain` Baer sums. -/
+theorem yonedaProduct_baer_sum_left_ofPositiveChainClass
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    {p₁ p₂ sum : YonedaExtension.PositiveChain (C := MetrizableLCA.{u}) X Y m}
+    (h : YonedaExtension.PositiveChain.BaerSumData p₁ p₂ sum) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n
+        (baer_sum
+          (ofPositiveChain (X := X) (Y := Y) p₁)
+          (ofPositiveChain (X := X) (Y := Y) p₂)) =
+      yonedaProduct (X := X) (Y := Y) (Z := Z) m n
+        (ofPositiveChain (X := X) (Y := Y) sum) := by
+  rw [ofPositiveChain_eq_ofExtension, ofPositiveChain_eq_ofExtension,
+    ofPositiveChain_eq_ofExtension]
+  exact yonedaProduct_baer_sum_left_ofPositiveChain h
 
 end LeftProduct
 
