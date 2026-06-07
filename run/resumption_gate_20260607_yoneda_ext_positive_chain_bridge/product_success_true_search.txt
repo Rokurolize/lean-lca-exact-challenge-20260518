@@ -1,0 +1,34 @@
+bounded_summary_for	product_success_true_search
+original_line_count	27
+original_byte_count	3656
+retained_head_lines	200
+note	Full unbounded rg output intentionally not retained; representative head plus counts are sufficient for resumption gate evidence.
+
+--- retained_head ---
+audit/original_four_task_contract_audit.py:22:    "OriginalFourTaskProductSuccess",
+audit/original_four_task_contract_audit.py:23:    "originalFourTaskProductSuccess",
+audit/original_four_task_contract_audit.py:24:    "originalFourTaskProductSuccess_quillenExactCategory",
+audit/original_four_task_contract_audit.py:25:    "originalFourTaskProductSuccess_metrizableLCAExactCategory",
+audit/original_four_task_contract_audit.py:26:    "originalFourTaskProductSuccess_yonedaExt",
+audit/original_four_task_contract_audit.py:27:    "originalFourTaskProductSuccess_boundedDerivedInfinityCategory",
+audit/original_four_task_contract_audit.py:248:            blockers.append("product_success lacks a positive OriginalFourTaskProductSuccess Lean witness")
+audit/external_audit.py:48:    "OriginalFourTaskProductSuccess",
+audit/external_audit.py:49:    "originalFourTaskProductSuccess",
+audit/external_audit.py:50:    "originalFourTaskProductSuccess_quillenExactCategory",
+audit/external_audit.py:51:    "originalFourTaskProductSuccess_metrizableLCAExactCategory",
+audit/external_audit.py:52:    "originalFourTaskProductSuccess_yonedaExt",
+audit/external_audit.py:53:    "originalFourTaskProductSuccess_boundedDerivedInfinityCategory",
+audit/external_audit.py:419:        fail("product_success lacks a positive OriginalFourTaskProductSuccess Lean witness")
+audit/negative_fixtures/terminal_git_head_stale/audit/ProductSuccessDeclarations.lean:1:#check LeanLCAExactChallenge.OriginalFourTaskProductSuccess
+audit/negative_fixtures/terminal_git_head_stale/audit/ProductSuccessDeclarations.lean:2:#check LeanLCAExactChallenge.originalFourTaskProductSuccess
+audit/negative_fixtures/terminal_git_head_stale/audit/ProductSuccessDeclarations.lean:3:#check LeanLCAExactChallenge.originalFourTaskProductSuccess_quillenExactCategory
+audit/negative_fixtures/terminal_git_head_stale/audit/ProductSuccessDeclarations.lean:4:#check LeanLCAExactChallenge.originalFourTaskProductSuccess_metrizableLCAExactCategory
+audit/negative_fixtures/terminal_git_head_stale/audit/ProductSuccessDeclarations.lean:5:#check LeanLCAExactChallenge.originalFourTaskProductSuccess_yonedaExt
+audit/negative_fixtures/terminal_git_head_stale/audit/ProductSuccessDeclarations.lean:6:#check LeanLCAExactChallenge.originalFourTaskProductSuccess_boundedDerivedInfinityCategory
+audit/negative_fixtures/terminal_git_head_stale/audit/OriginalFourTaskCompletionDeclarations.lean:1:#check LeanLCAExactChallenge.OriginalFourTaskProductSuccess
+audit/negative_fixtures/terminal_git_head_stale/audit/OriginalFourTaskCompletionDeclarations.lean:2:#check LeanLCAExactChallenge.originalFourTaskProductSuccess
+audit/negative_fixtures/terminal_git_head_stale/audit/OriginalFourTaskCompletionDeclarations.lean:3:#check LeanLCAExactChallenge.originalFourTaskProductSuccess_quillenExactCategory
+audit/negative_fixtures/terminal_git_head_stale/audit/OriginalFourTaskCompletionDeclarations.lean:4:#check LeanLCAExactChallenge.originalFourTaskProductSuccess_metrizableLCAExactCategory
+audit/negative_fixtures/terminal_git_head_stale/audit/OriginalFourTaskCompletionDeclarations.lean:5:#check LeanLCAExactChallenge.originalFourTaskProductSuccess_yonedaExt
+audit/negative_fixtures/terminal_git_head_stale/audit/OriginalFourTaskCompletionDeclarations.lean:6:#check LeanLCAExactChallenge.originalFourTaskProductSuccess_boundedDerivedInfinityCategory
+LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW990PrimitiveUnitComponentsAlignmentGuardW1445.lean:195:      positive OriginalFourTaskProductSuccess witness"

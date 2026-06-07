@@ -3387,6 +3387,16 @@ noncomputable def zero_equiv_hom : YonedaExt X Y 0 ≃ (X ⟶ Y) :=
 def ofExtension (e : YonedaExtension X Y (n + 1)) : YonedaExt X Y (n + 1) :=
   QuotientAddGroup.mk' (yonedaRelationSubgroup X Y n) (FreeAbelianGroup.of e)
 
+/-- The generator associated to a positive chain whose factors are one-fold extensions. -/
+def ofPositiveChain (p : YonedaExtension.PositiveChain X Y n) : YonedaExt X Y (n + 1) :=
+  ofExtension p.toYonedaExtension
+
+@[simp]
+theorem ofPositiveChain_eq_ofExtension (p : YonedaExtension.PositiveChain X Y n) :
+    ofPositiveChain (X := X) (Y := Y) p =
+      ofExtension (X := X) (Y := Y) p.toYonedaExtension :=
+  rfl
+
 /--
 The `Ext¹` class represented by a strict short exact sequence of metrizable
 LCA groups, using the canonical exact-category structure.
@@ -4156,6 +4166,14 @@ theorem ofExtension_eq_ofExtension_of_rel {a b : YonedaExtension X Y (n + 1)}
   rw [QuotientAddGroup.eq_iff_sub_mem]
   exact AddSubgroup.subset_closure (YonedaRelGenerator.iso (X := X) (Y := Y) h)
 
+/-- Termwise-related positive chains represent the same Yoneda Ext class. -/
+theorem ofPositiveChain_eq_ofPositiveChain_of_rel
+    {p q : YonedaExtension.PositiveChain X Y n}
+    (h : YonedaExtension.PositiveChain.Rel p q) :
+    ofPositiveChain (X := X) (Y := Y) p =
+      ofPositiveChain (X := X) (Y := Y) q :=
+  ofExtension_eq_ofExtension_of_rel h.toYonedaExtension
+
 /-- Isomorphic extension chains define equal classes in positive-degree Ext. -/
 theorem ofExtension_eq_ofExtension_of_relIso {a b : YonedaExtension X Y (n + 1)}
     (h : YonedaExtension.RelIso (CategoryTheory.Iso.refl X) a b) :
@@ -4225,6 +4243,13 @@ theorem ofExtension_eq_zero_of_splitFactorData {a : YonedaExtension X Y (n + 1)}
     PositiveYonedaExt X Y n) = 0
   rw [QuotientAddGroup.eq_zero_iff]
   exact AddSubgroup.subset_closure (YonedaRelGenerator.splitFactor h)
+
+/-- A positive chain with a split factor represents zero in Yoneda Ext. -/
+theorem ofPositiveChain_eq_zero_of_splitFactor
+    {p : YonedaExtension.PositiveChain X Y n}
+    (h : YonedaExtension.PositiveChain.SplitFactorData p) :
+    ofPositiveChain (X := X) (Y := Y) p = 0 :=
+  ofExtension_eq_zero_of_splitFactorData h.toYonedaExtension
 
 /-- Hom-tail pushout data identifies a chain with the pushed-out chain in local Yoneda Ext. -/
 theorem ofExtension_eq_ofExtension_of_homTailData

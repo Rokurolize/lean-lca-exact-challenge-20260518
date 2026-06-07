@@ -522,6 +522,10 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.ShortExactExtension.deflation_p
 #check LeanLCAExactChallenge.YonedaExt.zero_equiv_hom
 #check LeanLCAExactChallenge.YonedaExt.ofExtension
+#check LeanLCAExactChallenge.YonedaExt.ofPositiveChain
+#check LeanLCAExactChallenge.YonedaExt.ofPositiveChain_eq_ofExtension
+#check LeanLCAExactChallenge.YonedaExt.ofPositiveChain_eq_ofPositiveChain_of_rel
+#check LeanLCAExactChallenge.YonedaExt.ofPositiveChain_eq_zero_of_splitFactor
 #check LeanLCAExactChallenge.YonedaExt.pullbackHeadOfExtensionWith
 #check LeanLCAExactChallenge.YonedaExt.pushoutTailOfExtensionWith
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_ofExtension_of_rel
