@@ -9720,6 +9720,21 @@ example :
   #check Dbounded.closedEmbeddingNormalizedDataOfConcreteLeafColimitW793
   #check Dbounded.productEvidence_of_closedMapConcreteLeafColimitRouteW793
   #check Dbounded.productEvidence_of_closedEmbeddingConcreteLeafColimitRouteW793
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedMapTargetHomologyZeroConcreteLeafColimitW793
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroConcreteLeafColimitW793
+  #check
+    Dbounded.stableBoundaryInputsOfClosedMapTargetHomologyZeroConcreteLeafColimitW793
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroConcreteLeafColimitW793
+  #check Dbounded.acceptedStableOfClosedMapTargetHomologyZeroConcreteLeafColimitW793
+  #check
+    Dbounded.acceptedStableOfClosedEmbeddingTargetHomologyZeroConcreteLeafColimitW793
+  #check
+    Dbounded.boundedDerivedOfClosedMapTargetHomologyZeroConcreteLeafColimitStableBoundaryW793
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingTargetHomologyZeroConcreteLeafColimitStableBoundaryW793
   #check Dbounded.targetHomologyZeroConcreteLeafColimitProductRouteInputNamesW793
   #check Dbounded.targetHomologyZeroConcreteLeafColimitProductRouteInputNamesW793_count
   #check Dbounded.MetrizableTargetHomologyZeroConcreteLeafColimitRouteStateW793

@@ -138,6 +138,83 @@ noncomputable def productEvidence_of_closedEmbeddingConcreteLeafColimitRouteW793
   productEvidence_of_closedEmbeddingNormalizedDirectSourceClosedRangeRouteW774
     (closedEmbeddingNormalizedDataOfConcreteLeafColimitW793 data)
 
+/-- W793 closed-map branch converted to the W769 stable-data surface. -/
+noncomputable def
+    directFiniteShapeStableDataOfClosedMapTargetHomologyZeroConcreteLeafColimitW793
+    (data :
+      MetrizableClosedMapTargetHomologyZeroConcreteLeafColimitBranchDataW793) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapNormalizedDirectSourceClosedRangeW774
+    (closedMapNormalizedDataOfConcreteLeafColimitW793 data)
+
+/-- W793 closed-embedding branch converted to the W769 stable-data surface. -/
+noncomputable def
+    directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroConcreteLeafColimitW793
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroConcreteLeafColimitBranchDataW793) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+    (closedEmbeddingNormalizedDataOfConcreteLeafColimitW793 data)
+
+/-- W793 closed-map branch as canonical stable-instance boundary inputs. -/
+noncomputable def
+    stableBoundaryInputsOfClosedMapTargetHomologyZeroConcreteLeafColimitW793
+    (data :
+      MetrizableClosedMapTargetHomologyZeroConcreteLeafColimitBranchDataW793) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapNormalizedDirectSourceClosedRangeW774
+    (closedMapNormalizedDataOfConcreteLeafColimitW793 data)
+
+/-- W793 closed-embedding branch as canonical stable-instance boundary inputs. -/
+noncomputable def
+    stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroConcreteLeafColimitW793
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroConcreteLeafColimitBranchDataW793) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+    (closedEmbeddingNormalizedDataOfConcreteLeafColimitW793 data)
+
+/-- W793 closed-map branch passes the canonical accepted stable boundary gate. -/
+noncomputable def acceptedStableOfClosedMapTargetHomologyZeroConcreteLeafColimitW793
+    (data :
+      MetrizableClosedMapTargetHomologyZeroConcreteLeafColimitBranchDataW793) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapNormalizedDirectSourceClosedRangeW774
+    (closedMapNormalizedDataOfConcreteLeafColimitW793 data)
+
+/--
+W793 closed-embedding branch passes the canonical accepted stable boundary gate.
+-/
+noncomputable def
+    acceptedStableOfClosedEmbeddingTargetHomologyZeroConcreteLeafColimitW793
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroConcreteLeafColimitBranchDataW793) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+    (closedEmbeddingNormalizedDataOfConcreteLeafColimitW793 data)
+
+/-- W793 closed-map branch produces the canonical stable-boundary package. -/
+noncomputable def
+    boundedDerivedOfClosedMapTargetHomologyZeroConcreteLeafColimitStableBoundaryW793
+    (data :
+      MetrizableClosedMapTargetHomologyZeroConcreteLeafColimitBranchDataW793) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapNormalizedDirectSourceClosedRangeStableBoundaryW774
+    (closedMapNormalizedDataOfConcreteLeafColimitW793 data)
+
+/--
+W793 closed-embedding branch produces the canonical stable-boundary package.
+-/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingTargetHomologyZeroConcreteLeafColimitStableBoundaryW793
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroConcreteLeafColimitBranchDataW793) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingNormalizedDirectSourceClosedRangeStableBoundaryW774
+    (closedEmbeddingNormalizedDataOfConcreteLeafColimitW793 data)
+
 /-- W793 input names after deriving colimit stability from W735 leaf data. -/
 def targetHomologyZeroConcreteLeafColimitProductRouteInputNamesW793 :
     List String :=
@@ -159,6 +236,7 @@ structure MetrizableTargetHomologyZeroConcreteLeafColimitRouteStateW793 :
   declarations : List String
   colimitStabilityResult : String
   limitStabilityResult : String
+  stableBoundaryResult : String
   closedMapResult : String
   closedEmbeddingResult : String
   replacedInputs : List String
@@ -179,6 +257,14 @@ def currentMetrizableTargetHomologyZeroConcreteLeafColimitRouteStateW793 :
       "closedEmbeddingNormalizedDataOfConcreteLeafColimitW793",
       "productEvidence_of_closedMapConcreteLeafColimitRouteW793",
       "productEvidence_of_closedEmbeddingConcreteLeafColimitRouteW793",
+      "directFiniteShapeStableDataOfClosedMapTargetHomologyZeroConcreteLeafColimitW793",
+      "directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroConcreteLeafColimitW793",
+      "stableBoundaryInputsOfClosedMapTargetHomologyZeroConcreteLeafColimitW793",
+      "stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroConcreteLeafColimitW793",
+      "acceptedStableOfClosedMapTargetHomologyZeroConcreteLeafColimitW793",
+      "acceptedStableOfClosedEmbeddingTargetHomologyZeroConcreteLeafColimitW793",
+      "boundedDerivedOfClosedMapTargetHomologyZeroConcreteLeafColimitStableBoundaryW793",
+      "boundedDerivedOfClosedEmbeddingTargetHomologyZeroConcreteLeafColimitStableBoundaryW793",
       "targetHomologyZeroConcreteLeafColimitProductRouteInputNamesW793",
       "targetHomologyZeroConcreteLeafColimitProductRouteInputNamesW793_count"]
   colimitStabilityResult :=
@@ -186,13 +272,17 @@ def currentMetrizableTargetHomologyZeroConcreteLeafColimitRouteStateW793 :
       W757 exact-acyclic WPP-op colimit closure"
   limitStabilityResult :=
     "reused: W792 W716 boundary data supplies WPP limit stability"
+  stableBoundaryResult :=
+    "proved: W793 target homology-zero concrete-leaf colimit branches pass the\
+      W774/W773/W769 canonical stable-boundary gate"
   closedMapResult :=
     "proved: closed-map concrete-leaf colimit route feeds W774"
   closedEmbeddingResult :=
     "proved: closed-embedding concrete-leaf colimit route feeds W774"
   replacedInputs :=
     ["separate selected W461 provider field",
-      "separate row-aware closed-map or closed-embedding provider field"]
+      "separate row-aware closed-map or closed-embedding provider field",
+      "separate W774 normalized direct-source stable-boundary branch input"]
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",
