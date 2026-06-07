@@ -4607,6 +4607,38 @@ theorem ofExtension_eq_add_of_baerHead [HasBinaryBiproduct X X] [HasBinaryBiprod
 noncomputable def baer_sum (a b : YonedaExt X Y n) : YonedaExt X Y n :=
   a + b
 
+theorem baer_sum_eq_add (a b : YonedaExt X Y n) :
+    baer_sum a b = a + b :=
+  rfl
+
+@[simp]
+theorem baer_sum_zero_left (a : YonedaExt X Y n) :
+    baer_sum 0 a = a := by
+  simp [baer_sum]
+
+@[simp]
+theorem baer_sum_zero_right (a : YonedaExt X Y n) :
+    baer_sum a 0 = a := by
+  simp [baer_sum]
+
+theorem baer_sum_comm (a b : YonedaExt X Y n) :
+    baer_sum a b = baer_sum b a := by
+  simp [baer_sum, add_comm]
+
+theorem baer_sum_assoc (a b c : YonedaExt X Y n) :
+    baer_sum (baer_sum a b) c = baer_sum a (baer_sum b c) := by
+  simp [baer_sum, add_assoc]
+
+@[simp]
+theorem baer_sum_neg_left (a : YonedaExt X Y n) :
+    baer_sum (-a) a = 0 := by
+  simp [baer_sum]
+
+@[simp]
+theorem baer_sum_neg_right (a : YonedaExt X Y n) :
+    baer_sum a (-a) = 0 := by
+  simp [baer_sum]
+
 theorem positiveYonedaExtCast_baer_sum {X Y : C} {n n' : ℕ} (h : n = n')
     (a b : YonedaExt (C := C) X Y (Nat.succ n)) :
     positiveYonedaExtCast (C := C) (X := X) (Y := Y) h

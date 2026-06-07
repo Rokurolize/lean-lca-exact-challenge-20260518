@@ -503,6 +503,13 @@ contract-completing stable bounded derived infinity-category witness.
 #check LeanLCAExactChallenge.YonedaExt.baer_sum_ofStrictShortExact_eq_of_baer
 #check LeanLCAExactChallenge.YonedaExt.baer_sum_ofStrictShortExact_eq_canonicalBaerSum
 #check LeanLCAExactChallenge.YonedaExt.baer_sum
+#check LeanLCAExactChallenge.YonedaExt.baer_sum_eq_add
+#check LeanLCAExactChallenge.YonedaExt.baer_sum_zero_left
+#check LeanLCAExactChallenge.YonedaExt.baer_sum_zero_right
+#check LeanLCAExactChallenge.YonedaExt.baer_sum_comm
+#check LeanLCAExactChallenge.YonedaExt.baer_sum_assoc
+#check LeanLCAExactChallenge.YonedaExt.baer_sum_neg_left
+#check LeanLCAExactChallenge.YonedaExt.baer_sum_neg_right
 #check LeanLCAExactChallenge.YonedaExt.instAddCommGroup
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_ofStrictShortExact_ofStrictShortExact
