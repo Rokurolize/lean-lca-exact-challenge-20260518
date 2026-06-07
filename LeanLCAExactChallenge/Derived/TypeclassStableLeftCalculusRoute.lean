@@ -96,6 +96,90 @@ noncomputable def boundedDerivedInfinityCategoryOfMetrizableLeftCalculusStableRo
   pretriangulatedStructure := pretriangulated
   triangulatedStructure := triangulated
 
+/--
+Semantic-field route from direct-left-calculus evidence plus the remaining stable fields to the
+product-facing bounded-derived package.
+-/
+noncomputable def boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields
+    (available : Dbounded.MetrizableLeftCalculusSemanticFields)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields available) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  Dbounded.boundedDerivedInfinityCategoryOfMetrizableOrdinaryInput
+    (Dbounded.metrizableOrdinaryStableSemanticInputOfLeftCalculusFields available remaining)
+
+/-- The semantic-field route uses the ordinary `Dbounded MetrizableLCA` quasicategory carrier. -/
+theorem boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields_quasicategoryCarrier
+    (available : Dbounded.MetrizableLeftCalculusSemanticFields)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields available) :
+    (Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields
+      available remaining).quasicategoryCarrier = rfl :=
+  rfl
+
+/-- The semantic-field route preserves the left-calculus preadditive field. -/
+theorem boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields_preadditive
+    (available : Dbounded.MetrizableLeftCalculusSemanticFields)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields available) :
+    (Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields
+      available remaining).preadditive = available.preadditive :=
+  rfl
+
+/-- The semantic-field route preserves the remaining finite-limit field. -/
+theorem boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields_finiteLimitInstance
+    (available : Dbounded.MetrizableLeftCalculusSemanticFields)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields available) :
+    (Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields
+      available remaining).finiteLimitInstance = remaining.finiteLimits :=
+  rfl
+
+/-- The semantic-field route preserves the remaining finite-colimit field. -/
+theorem boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields_finiteColimitInstance
+    (available : Dbounded.MetrizableLeftCalculusSemanticFields)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields available) :
+    (Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields
+      available remaining).finiteColimitInstance = remaining.finiteColimits :=
+  rfl
+
+/-- The semantic-field route preserves the left-calculus zero-object field. -/
+theorem boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields_zeroObjectInstance
+    (available : Dbounded.MetrizableLeftCalculusSemanticFields)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields available) :
+    (Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields
+      available remaining).zeroObjectInstance = available.zeroObject :=
+  rfl
+
+/-- The semantic-field route preserves the left-calculus all-shift additivity field. -/
+theorem boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields_shiftAdditiveAll
+    (available : Dbounded.MetrizableLeftCalculusSemanticFields)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields available) :
+    (Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields
+      available remaining).shiftAdditiveAll = available.shiftAdditiveAll :=
+  rfl
+
+/-- The semantic-field route preserves the left-calculus suspension-additivity field. -/
+theorem boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields_suspensionAdditive
+    (available : Dbounded.MetrizableLeftCalculusSemanticFields)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields available) :
+    (Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields
+      available remaining).suspensionAdditive = available.suspensionAdditive :=
+  rfl
+
+/-- The semantic-field route preserves the remaining pretriangulated field. -/
+theorem boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields_pretriangulatedStructure
+    (available : Dbounded.MetrizableLeftCalculusSemanticFields)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields available) :
+    (Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields
+      available remaining).pretriangulatedStructure = remaining.pretriangulated :=
+  rfl
+
+/-- The semantic-field route preserves the remaining triangulated field. -/
+theorem boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields_triangulatedStructure
+    (available : Dbounded.MetrizableLeftCalculusSemanticFields)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields available) :
+    (Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields
+      available remaining).triangulatedStructure = remaining.triangulated :=
+  rfl
+
 end Dbounded
 
 end LeanLCAExactChallenge
