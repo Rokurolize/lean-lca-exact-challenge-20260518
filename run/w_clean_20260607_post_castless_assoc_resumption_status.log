@@ -1,0 +1,7 @@
+command: git status --short --branch --untracked-files=all
+utc: 2026-06-06T23:24:55Z
+--- output ---
+## goal-clean-positive-witness-20260607...origin/goal-clean-positive-witness-20260607
+?? run/w_clean_20260607_post_castless_assoc_resumption_status.log
+
+--- exit: 0 ---

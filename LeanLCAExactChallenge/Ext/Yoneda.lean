@@ -6384,6 +6384,90 @@ theorem leftProductByPositiveChain_ofExtension {m : ℕ}
           PositiveYonedaExt X Z (n + (m + 1))) := by
           rw [positiveChainLeftFreeHom_of]
 
+/--
+MetrizableLCA left splicing by a positive chain agrees in Ext with the
+canonical arbitrary-left splice representative.
+-/
+theorem ofExtension_spliceLeftWith_positiveChain_eq
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (p : YonedaExtension.PositiveChain (C := MetrizableLCA.{u}) X Y m)
+    (a : YonedaExtension (C := MetrizableLCA.{u}) Y Z (n + 1)) :
+    ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Z) (n := n + (m + 1))
+        (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u})
+          (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f)
+          p.toYonedaExtension a) =
+      ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Z) (n := n + (m + 1))
+        (YonedaExtension.PositiveChain.consLeftMap p a) := by
+  induction p generalizing Z n with
+  | @one X0 Y0 e =>
+      change ofExtension (C := MetrizableLCA.{u}) (X := X0) (Y := Z) (n := n + 1)
+          (YonedaExtension.cons e
+            (YonedaExtension.pullbackHeadWith (C := MetrizableLCA.{u}) (𝟙 Y0)
+              (fun {_} e => MetrizableLCA.shortExactExtensionPullback e (𝟙 Y0)) a)) =
+        ofExtension (C := MetrizableLCA.{u}) (X := X0) (Y := Z) (n := n + 1)
+          (YonedaExtension.cons e a)
+      exact ofExtension_eq_ofExtension_of_rel
+        (YonedaExtension.Rel.cons (ShortExactExtension.Iso.refl e)
+          (MetrizableLCA.yonedaExtensionPullbackHeadIdRel a))
+  | @cons X0 Y0 W0 m0 e tail ih =>
+      calc
+        ofExtension (C := MetrizableLCA.{u}) (X := X0) (Y := Z)
+            (n := n + ((m0 + 1) + 1))
+            (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u})
+              (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f)
+              (YonedaExtension.PositiveChain.cons e tail).toYonedaExtension a) =
+          leftProductByExtension (C := MetrizableLCA.{u}) (X := X0) (Y := W0)
+            (Z := Z) e (n + (m0 + 1))
+            (ofExtension (C := MetrizableLCA.{u}) (X := W0) (Y := Z)
+              (n := n + (m0 + 1))
+              (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u})
+                (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f)
+                tail.toYonedaExtension a)) := by
+            rw [leftProductByExtension_ofExtension]
+            simp [YonedaExtension.PositiveChain.toYonedaExtension, YonedaExtension.consLeftMap]
+        _ = leftProductByExtension (C := MetrizableLCA.{u}) (X := X0) (Y := W0)
+            (Z := Z) e (n + (m0 + 1))
+            (ofExtension (C := MetrizableLCA.{u}) (X := W0) (Y := Z)
+              (n := n + (m0 + 1))
+              (YonedaExtension.PositiveChain.consLeftMap tail a)) := by
+            rw [ih]
+        _ = ofExtension (C := MetrizableLCA.{u}) (X := X0) (Y := Z)
+            (n := n + ((m0 + 1) + 1))
+            (YonedaExtension.PositiveChain.consLeftMap
+              (YonedaExtension.PositiveChain.cons e tail) a) := by
+            rw [leftProductByExtension_ofExtension]
+            simp [YonedaExtension.PositiveChain.consLeftMap, YonedaExtension.consLeftMap]
+
+/-- Arbitrary-left MetrizableLCA product by a positive chain equals the positive-chain action. -/
+theorem leftProductByYonedaExtension_metrizable_ofPositiveChain
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (p : YonedaExtension.PositiveChain (C := MetrizableLCA.{u}) X Y m) :
+    leftProductByYonedaExtension_metrizable
+        (X := X) (Y := Y) (Z := Z) p.toYonedaExtension n =
+      leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p n := by
+  apply QuotientAddGroup.addMonoidHom_ext
+  apply FreeAbelianGroup.lift_ext
+  intro a
+  change leftProductByYonedaExtension_metrizable
+      (X := X) (Y := Y) (Z := Z) p.toYonedaExtension n
+      (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := n) a) =
+    leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p n
+      (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := n) a)
+  rw [leftProductByYonedaExtension_metrizable_ofExtension,
+    leftProductByPositiveChain_ofExtension]
+  exact ofExtension_spliceLeftWith_positiveChain_eq p a
+
+/-- Yoneda product by a positive one-fold chain agrees with the positive-chain action. -/
+theorem yonedaProduct_ofPositiveChain
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (p : YonedaExtension.PositiveChain (C := MetrizableLCA.{u}) X Y m) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n
+        (ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Y) (n := m)
+          p.toYonedaExtension) =
+      leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p n := by
+  rw [yonedaProduct_ofExtension]
+  exact leftProductByYonedaExtension_metrizable_ofPositiveChain p
+
 /-- Termwise-related positive left chains give the same spliced class on generators. -/
 theorem leftProductByPositiveChain_ofExtension_eq_of_rel {m : ℕ}
     {p q : YonedaExtension.PositiveChain X Y m}

@@ -2617,6 +2617,15 @@ example (X Y Z : MetrizableLCA) {m n : ℕ}
   YonedaExt.leftProductByPositiveChain_ofExtension p a
 
 example (X Y Z : MetrizableLCA) {m n : ℕ}
+    (p : YonedaExtension.PositiveChain (C := MetrizableLCA) X Y m) :
+    YonedaExt.yonedaProduct (X := X) (Y := Y) (Z := Z) m n
+        (YonedaExt.ofExtension (C := MetrizableLCA) (X := X) (Y := Y) (n := m)
+          p.toYonedaExtension) =
+      YonedaExt.leftProductByPositiveChain
+        (C := MetrizableLCA) (X := X) (Y := Y) (Z := Z) p n :=
+  YonedaExt.yonedaProduct_ofPositiveChain p
+
+example (X Y Z : MetrizableLCA) {m n : ℕ}
     {p : YonedaExtension.PositiveChain (C := MetrizableLCA) X Y m}
     (h : YonedaExtension.PositiveChain.SplitFactorData p)
     (a : YonedaExtension (C := MetrizableLCA) Y Z (n + 1)) :
@@ -2752,6 +2761,9 @@ example (X Y Z : MetrizableLCA) {m n : ℕ}
   (C := MetrizableLCA))
 #check (YonedaExt.leftProductByPositiveChain_eq_of_rel (C := MetrizableLCA))
 #check (YonedaExt.leftProductByPositiveChain_eq_add_of_baerLeftChain (C := MetrizableLCA))
+#check YonedaExt.ofExtension_spliceLeftWith_positiveChain_eq
+#check YonedaExt.leftProductByYonedaExtension_metrizable_ofPositiveChain
+#check YonedaExt.yonedaProduct_ofPositiveChain
 
 #check MetrizableLCA.shortExactExtensionPullbackDomainIsoBetween
 #check YonedaExtension.RelIso.refl
