@@ -252,6 +252,10 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.QuillenExactCategory.split_conflation
 #check LeanLCAExactChallenge.QuillenExactCategory.pushout_inflation
 #check LeanLCAExactChallenge.QuillenExactCategory.pullback_deflation
+#check LeanLCAExactChallenge.QuillenExactCategory.comp_inflation
+#check LeanLCAExactChallenge.QuillenExactCategory.comp_deflation
+#check LeanLCAExactChallenge.QuillenExactCategory.inflation_comp
+#check LeanLCAExactChallenge.QuillenExactCategory.deflation_comp
 #check LeanLCAExactChallenge.QuillenExactCategory.pushout_inflation_of_inflation
 #check LeanLCAExactChallenge.QuillenExactCategory.pullback_deflation_of_deflation
 

@@ -36,6 +36,22 @@ class QuillenExactCategory (C : Type u) [Category.{v} C] [Preadditive C] where
     (a : Y ⟶ S.X₃) [HasPullback a S.g] :
     ∃ (X : C) (f : X ⟶ pullback a S.g) (zero : f ≫ pullback.fst a S.g = 0),
       Conflation (ShortComplex.mk f (pullback.fst a S.g) zero)
+  /-- Composites of inflations remain inflations. -/
+  comp_inflation {X Y Z : C} {i : X ⟶ Y} {j : Y ⟶ Z} :
+    (∃ (Zi : C) (gi : Y ⟶ Zi) (zeroi : i ≫ gi = 0),
+      Conflation (ShortComplex.mk i gi zeroi)) →
+    (∃ (Zj : C) (gj : Z ⟶ Zj) (zeroj : j ≫ gj = 0),
+      Conflation (ShortComplex.mk j gj zeroj)) →
+    ∃ (Zij : C) (gij : Z ⟶ Zij) (zeroij : (i ≫ j) ≫ gij = 0),
+      Conflation (ShortComplex.mk (i ≫ j) gij zeroij)
+  /-- Composites of deflations remain deflations. -/
+  comp_deflation {X Y Z : C} {p : X ⟶ Y} {q : Y ⟶ Z} :
+    (∃ (Wp : C) (fp : Wp ⟶ X) (zerop : fp ≫ p = 0),
+      Conflation (ShortComplex.mk fp p zerop)) →
+    (∃ (Wq : C) (fq : Wq ⟶ Y) (zeroq : fq ≫ q = 0),
+      Conflation (ShortComplex.mk fq q zeroq)) →
+    ∃ (Wpq : C) (fpq : Wpq ⟶ X) (zeropq : fpq ≫ (p ≫ q) = 0),
+      Conflation (ShortComplex.mk fpq (p ≫ q) zeropq)
 
 namespace QuillenExactCategory
 
@@ -81,6 +97,16 @@ theorem inflation_of_splitting (S : ShortComplex C) (hS : S.Splitting) :
 theorem deflation_of_splitting (S : ShortComplex C) (hS : S.Splitting) :
     deflation S.g :=
   deflation_of_conflation (conflation_of_splitting S hS)
+
+/-- Composites preserve the first-class inflation predicate. -/
+theorem inflation_comp {X Y Z : C} {i : X ⟶ Y} {j : Y ⟶ Z}
+    (hi : inflation i) (hj : inflation j) : inflation (i ≫ j) :=
+  QuillenExactCategory.comp_inflation hi hj
+
+/-- Composites preserve the first-class deflation predicate. -/
+theorem deflation_comp {X Y Z : C} {p : X ⟶ Y} {q : Y ⟶ Z}
+    (hp : deflation p) (hq : deflation q) : deflation (p ≫ q) :=
+  QuillenExactCategory.comp_deflation hp hq
 
 /-- Pushouts preserve the first-class inflation predicate. -/
 theorem pushout_inflation_of_inflation {X Y : C} {i : X ⟶ Y}

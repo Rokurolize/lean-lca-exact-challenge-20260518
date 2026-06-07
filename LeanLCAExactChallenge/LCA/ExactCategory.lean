@@ -30,6 +30,65 @@ def quillenExactCategory : QuillenExactCategory MetrizableLCA.{u} where
     strictShortExact_categorical_pushout (S := S) hS (Y := Y) a
   pullback_deflation {S} hS {Y} a :=
     strictShortExact_categorical_pullback (S := S) hS (Y := Y) a
+  comp_inflation {X} {Y} {Z} {i} {j} hi hj := by
+    rcases hi with ⟨Zi, gi, zi, hSi⟩
+    rcases hj with ⟨Zj, gj, zj, hSj⟩
+    refine ⟨cokernelObj (i ≫ j), cokernelπ (i ≫ j), comp_cokernelπ (i ≫ j), ?_⟩
+    refine
+      { closed_inclusion := ?_
+        open_map := ?_
+        surjective := ?_
+        algebraic_exact := ?_ }
+    · exact hSj.closed_inclusion.comp hSi.closed_inclusion
+    · exact quotientMap_openMap Z (cokernelSubgroup (i ≫ j))
+        (AddSubgroup.isClosed_topologicalClosure _)
+    · exact quotientMap_surjective Z (cokernelSubgroup (i ≫ j))
+        (AddSubgroup.isClosed_topologicalClosure _)
+    · intro z hz
+      have hmem : z ∈ cokernelSubgroup (i ≫ j) := by
+        change ((z : Z) : Z ⧸ cokernelSubgroup (i ≫ j)) = 0 at hz
+        rwa [QuotientAddGroup.eq_zero_iff] at hz
+      let R : AddSubgroup Z :=
+        AddSubgroup.map (i ≫ j).hom.toAddMonoidHom (⊤ : AddSubgroup X)
+      have hR_closed : IsClosed (R : Set Z) := by
+        have hset : IsClosed (Set.range ((i ≫ j) : X → Z)) :=
+          (hSj.closed_inclusion.comp hSi.closed_inclusion).isClosed_range
+        have hR_set : (R : Set Z) = Set.range ((i ≫ j) : X → Z) := by
+          ext z
+          constructor
+          · rintro ⟨x, _hx, rfl⟩
+            exact ⟨x, rfl⟩
+          · rintro ⟨x, rfl⟩
+            exact ⟨x, trivial, rfl⟩
+        rwa [hR_set]
+      have hle : cokernelSubgroup (i ≫ j) ≤ R := by
+        rw [cokernelSubgroup]
+        apply AddSubgroup.topologicalClosure_minimal
+        · intro _ hy
+          exact hy
+        · exact hR_closed
+      rcases hle hmem with ⟨x, _hx, hx⟩
+      exact ⟨x, hx⟩
+  comp_deflation {X} {Y} {Z} {p} {q} hp hq := by
+    rcases hp with ⟨Wp, fp, zp, hSp⟩
+    rcases hq with ⟨Wq, fq, zq, hSq⟩
+    let f : equalizerObj (p ≫ q) 0 ⟶ X := equalizerι (p ≫ q) 0
+    have zero : f ≫ (p ≫ q) = 0 := by
+      dsimp [f]
+      simpa using equalizerι_condition (p ≫ q) (0 : X ⟶ Z)
+    refine ⟨equalizerObj (p ≫ q) 0, f, zero, ?_⟩
+    refine
+      { closed_inclusion := ?_
+        open_map := ?_
+        surjective := ?_
+        algebraic_exact := ?_ }
+    · dsimp [f]
+      exact equalizerι_closedEmbedding_explicit (p ≫ q) (0 : X ⟶ Z)
+    · exact hSq.open_map.comp hSp.open_map
+    · exact hSq.surjective.comp hSp.surjective
+    · intro x hx
+      refine ⟨⟨x, ?_⟩, rfl⟩
+      simpa [equalizerSubgroup] using hx
 
 instance instQuillenExactCategory : QuillenExactCategory MetrizableLCA.{u} :=
   quillenExactCategory
@@ -159,46 +218,8 @@ composition.  The composite's displayed cokernel is the explicit LCA quotient
 by the closed algebraic range of the composite. -/
 theorem quillenInflation_comp {X Y Z : MetrizableLCA.{u}} {i : X ⟶ Y} {j : Y ⟶ Z}
     (hi : QuillenExactCategory.inflation i) (hj : QuillenExactCategory.inflation j) :
-    QuillenExactCategory.inflation (i ≫ j) := by
-  rw [quillenInflation_iff_exists_strictShortExact] at hi hj ⊢
-  rcases hi with ⟨Zi, gi, zi, hSi⟩
-  rcases hj with ⟨Zj, gj, zj, hSj⟩
-  refine ⟨cokernelObj (i ≫ j), cokernelπ (i ≫ j), comp_cokernelπ (i ≫ j), ?_⟩
-  refine
-    { closed_inclusion := ?_
-      open_map := ?_
-      surjective := ?_
-      algebraic_exact := ?_ }
-  · exact hSj.closed_inclusion.comp hSi.closed_inclusion
-  · exact quotientMap_openMap Z (cokernelSubgroup (i ≫ j))
-      (AddSubgroup.isClosed_topologicalClosure _)
-  · exact quotientMap_surjective Z (cokernelSubgroup (i ≫ j))
-      (AddSubgroup.isClosed_topologicalClosure _)
-  · intro z hz
-    have hmem : z ∈ cokernelSubgroup (i ≫ j) := by
-      change ((z : Z) : Z ⧸ cokernelSubgroup (i ≫ j)) = 0 at hz
-      rwa [QuotientAddGroup.eq_zero_iff] at hz
-    let R : AddSubgroup Z :=
-      AddSubgroup.map (i ≫ j).hom.toAddMonoidHom (⊤ : AddSubgroup X)
-    have hR_closed : IsClosed (R : Set Z) := by
-      have hset : IsClosed (Set.range ((i ≫ j) : X → Z)) :=
-        (hSj.closed_inclusion.comp hSi.closed_inclusion).isClosed_range
-      have hR_set : (R : Set Z) = Set.range ((i ≫ j) : X → Z) := by
-        ext z
-        constructor
-        · rintro ⟨x, _hx, rfl⟩
-          exact ⟨x, rfl⟩
-        · rintro ⟨x, rfl⟩
-          exact ⟨x, trivial, rfl⟩
-      rwa [hR_set]
-    have hle : cokernelSubgroup (i ≫ j) ≤ R := by
-      rw [cokernelSubgroup]
-      apply AddSubgroup.topologicalClosure_minimal
-      · intro _ hy
-        exact hy
-      · exact hR_closed
-    rcases hle hmem with ⟨x, _hx, hx⟩
-    exact ⟨x, hx⟩
+    QuillenExactCategory.inflation (i ≫ j) :=
+  QuillenExactCategory.inflation_comp hi hj
 
 /-- In the canonical exact-category instance, deflations are precisely maps that
 occur as the right map of a strict short exact sequence. -/
@@ -218,27 +239,8 @@ composition.  The displayed kernel of the composite is the explicit equalizer
 of the composite with zero. -/
 theorem quillenDeflation_comp {X Y Z : MetrizableLCA.{u}} {p : X ⟶ Y} {q : Y ⟶ Z}
     (hp : QuillenExactCategory.deflation p) (hq : QuillenExactCategory.deflation q) :
-    QuillenExactCategory.deflation (p ≫ q) := by
-  rw [quillenDeflation_iff_exists_strictShortExact] at hp hq ⊢
-  rcases hp with ⟨Wp, fp, zp, hSp⟩
-  rcases hq with ⟨Wq, fq, zq, hSq⟩
-  let f : equalizerObj (p ≫ q) 0 ⟶ X := equalizerι (p ≫ q) 0
-  have zero : f ≫ (p ≫ q) = 0 := by
-    dsimp [f]
-    simpa using equalizerι_condition (p ≫ q) (0 : X ⟶ Z)
-  refine ⟨equalizerObj (p ≫ q) 0, f, zero, ?_⟩
-  refine
-    { closed_inclusion := ?_
-      open_map := ?_
-      surjective := ?_
-      algebraic_exact := ?_ }
-  · dsimp [f]
-    exact equalizerι_closedEmbedding_explicit (p ≫ q) (0 : X ⟶ Z)
-  · exact hSq.open_map.comp hSp.open_map
-  · exact hSq.surjective.comp hSp.surjective
-  · intro x hx
-    refine ⟨⟨x, ?_⟩, rfl⟩
-    simpa [equalizerSubgroup] using hx
+    QuillenExactCategory.deflation (p ≫ q) :=
+  QuillenExactCategory.deflation_comp hp hq
 
 /-- In the canonical metrizable LCA exact category, pushouts preserve inflations. -/
 theorem quillenInflation_pushout {X Y Y' : MetrizableLCA.{u}} {i : X ⟶ Y}
