@@ -9398,6 +9398,16 @@ example :
   #check Dbounded.productEvidence_of_closedMapHomotopyObjectTriangulatedRouteW782
   #check
     Dbounded.productEvidence_of_closedEmbeddingHomotopyObjectTriangulatedRouteW782
+  #check Dbounded.directFiniteShapeStableDataOfClosedMapHomotopyObjectW782
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingHomotopyObjectW782
+  #check Dbounded.stableBoundaryInputsOfClosedMapHomotopyObjectW782
+  #check Dbounded.stableBoundaryInputsOfClosedEmbeddingHomotopyObjectW782
+  #check Dbounded.acceptedStableOfClosedMapHomotopyObjectW782
+  #check Dbounded.acceptedStableOfClosedEmbeddingHomotopyObjectW782
+  #check Dbounded.boundedDerivedOfClosedMapHomotopyObjectStableBoundaryW782
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingHomotopyObjectStableBoundaryW782
   #check
     Dbounded.homotopyObjectTriangulatedSelectedW461RowsProductRouteInputNamesW782
   #check

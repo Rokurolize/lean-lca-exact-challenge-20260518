@@ -128,6 +128,72 @@ noncomputable def
   productEvidence_of_closedEmbeddingSelectedW461RowsRouteW781
     (closedEmbeddingSelectedW461RowsDataOfHomotopyObjectTriangulatedW782 data)
 
+/-- W782 closed-map branch converted to the W769 stable-data surface. -/
+noncomputable def directFiniteShapeStableDataOfClosedMapHomotopyObjectW782
+    (data :
+      MetrizableClosedMapHomotopyObjectTriangulatedSelectedW461RowsBranchDataW782) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapSelectedW461RowsW781
+    (closedMapSelectedW461RowsDataOfHomotopyObjectTriangulatedW782 data)
+
+/-- W782 closed-embedding branch converted to the W769 stable-data surface. -/
+noncomputable def directFiniteShapeStableDataOfClosedEmbeddingHomotopyObjectW782
+    (data :
+      MetrizableClosedEmbeddingHomotopyObjectTriangulatedSelectedW461RowsBranchDataW782) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingSelectedW461RowsW781
+    (closedEmbeddingSelectedW461RowsDataOfHomotopyObjectTriangulatedW782 data)
+
+/-- W782 closed-map branch as canonical stable-instance boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedMapHomotopyObjectW782
+    (data :
+      MetrizableClosedMapHomotopyObjectTriangulatedSelectedW461RowsBranchDataW782) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapSelectedW461RowsW781
+    (closedMapSelectedW461RowsDataOfHomotopyObjectTriangulatedW782 data)
+
+/-- W782 closed-embedding branch as canonical stable-instance boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedEmbeddingHomotopyObjectW782
+    (data :
+      MetrizableClosedEmbeddingHomotopyObjectTriangulatedSelectedW461RowsBranchDataW782) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingSelectedW461RowsW781
+    (closedEmbeddingSelectedW461RowsDataOfHomotopyObjectTriangulatedW782 data)
+
+/-- W782 closed-map branch passes the canonical accepted stable boundary gate. -/
+noncomputable def acceptedStableOfClosedMapHomotopyObjectW782
+    (data :
+      MetrizableClosedMapHomotopyObjectTriangulatedSelectedW461RowsBranchDataW782) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapSelectedW461RowsW781
+    (closedMapSelectedW461RowsDataOfHomotopyObjectTriangulatedW782 data)
+
+/-- W782 closed-embedding branch passes the canonical accepted stable boundary gate. -/
+noncomputable def acceptedStableOfClosedEmbeddingHomotopyObjectW782
+    (data :
+      MetrizableClosedEmbeddingHomotopyObjectTriangulatedSelectedW461RowsBranchDataW782) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingSelectedW461RowsW781
+    (closedEmbeddingSelectedW461RowsDataOfHomotopyObjectTriangulatedW782 data)
+
+/-- W782 closed-map branch produces the canonical stable-boundary package. -/
+noncomputable def boundedDerivedOfClosedMapHomotopyObjectStableBoundaryW782
+    (data :
+      MetrizableClosedMapHomotopyObjectTriangulatedSelectedW461RowsBranchDataW782) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapSelectedW461RowsStableBoundaryW781
+    (closedMapSelectedW461RowsDataOfHomotopyObjectTriangulatedW782 data)
+
+/-- W782 closed-embedding branch produces the canonical stable-boundary package. -/
+noncomputable def boundedDerivedOfClosedEmbeddingHomotopyObjectStableBoundaryW782
+    (data :
+      MetrizableClosedEmbeddingHomotopyObjectTriangulatedSelectedW461RowsBranchDataW782) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingSelectedW461RowsStableBoundaryW781
+    (closedEmbeddingSelectedW461RowsDataOfHomotopyObjectTriangulatedW782 data)
+
 /-- W782 input names after replacing W781's isomorphism-closure `Closed₂` premise. -/
 def homotopyObjectTriangulatedSelectedW461RowsProductRouteInputNamesW782 :
     List String :=
@@ -151,6 +217,7 @@ structure MetrizableHomotopyObjectTriangulatedSelectedW461RowsRouteStateW782 :
   seed : String
   declarations : List String
   transportResult : String
+  stableBoundaryResult : String
   closedMapResult : String
   closedEmbeddingResult : String
   replacedInputs : List String
@@ -171,16 +238,28 @@ def currentMetrizableHomotopyObjectTriangulatedSelectedW461RowsRouteStateW782 :
       "closedEmbeddingSelectedW461RowsDataOfHomotopyObjectTriangulatedW782",
       "productEvidence_of_closedMapHomotopyObjectTriangulatedRouteW782",
       "productEvidence_of_closedEmbeddingHomotopyObjectTriangulatedRouteW782",
+      "directFiniteShapeStableDataOfClosedMapHomotopyObjectW782",
+      "directFiniteShapeStableDataOfClosedEmbeddingHomotopyObjectW782",
+      "stableBoundaryInputsOfClosedMapHomotopyObjectW782",
+      "stableBoundaryInputsOfClosedEmbeddingHomotopyObjectW782",
+      "acceptedStableOfClosedMapHomotopyObjectW782",
+      "acceptedStableOfClosedEmbeddingHomotopyObjectW782",
+      "boundedDerivedOfClosedMapHomotopyObjectStableBoundaryW782",
+      "boundedDerivedOfClosedEmbeddingHomotopyObjectStableBoundaryW782",
       "homotopyObjectTriangulatedSelectedW461RowsProductRouteInputNamesW782",
       "homotopyObjectTriangulatedSelectedW461RowsProductRouteInputNamesW782_count"]
   transportResult :=
     "proved: exact-acyclic homotopy-object Closed2 supplies W781's closure Closed2"
+  stableBoundaryResult :=
+    "proved: W782 homotopy-object triangulated selected-W461/rows branches pass\
+      the W781/W780/W779/W778/W774/W773/W769 canonical stable-boundary gate"
   closedMapResult :=
     "proved: closed-map homotopy-object Closed2 branch data feeds W781"
   closedEmbeddingResult :=
     "proved: closed-embedding homotopy-object Closed2 branch data feeds W781"
   replacedInputs :=
-    ["exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed"]
+    ["exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+      "separate W781 selected-W461/rows stable-boundary branch input"]
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",
