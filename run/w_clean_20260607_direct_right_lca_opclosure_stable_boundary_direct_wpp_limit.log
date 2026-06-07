@@ -1,0 +1,6 @@
+LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean:671:6: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean:677:8: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`

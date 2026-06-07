@@ -1,0 +1,37 @@
+verification_started_utc=2026-06-07T01:44:11Z
+
+$ lake env lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean
+exit=0 log=run/w_clean_20260607_direct_right_lca_opclosure_stable_boundary_direct_wpp_limit.log
+
+$ lake build LeanLCAExactChallenge.Derived.DirectWppLimitFiniteShapeTransfer
+exit=0 log=run/w_clean_20260607_direct_right_lca_opclosure_stable_boundary_lake_build_direct_wpp_limit.log
+
+$ lake env lean LeanLCAExactChallenge/Derived/MetrizableStableInstanceBoundaryDirectLocalization.lean
+exit=0 log=run/w_clean_20260607_direct_right_lca_opclosure_stable_boundary_stable_boundary.log
+
+$ lake build LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundaryDirectLocalization
+exit=0 log=run/w_clean_20260607_direct_right_lca_opclosure_stable_boundary_lake_build_stable_boundary.log
+
+$ lake env lean audit/RequiredDeclarations.lean
+exit=0 log=run/w_clean_20260607_direct_right_lca_opclosure_stable_boundary_required_declarations.log
+
+$ lake env lean audit/ProductSuccessDeclarations.lean
+exit=0 log=run/w_clean_20260607_direct_right_lca_opclosure_stable_boundary_product_success_declarations.log
+
+$ lake env lean audit/OriginalFourTaskCompletionDeclarations.lean
+exit=0 log=run/w_clean_20260607_direct_right_lca_opclosure_stable_boundary_original_four_task_completion.log
+
+$ git diff --check -- LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean LeanLCAExactChallenge/Derived/MetrizableStableInstanceBoundaryDirectLocalization.lean audit/RequiredDeclarations.lean audit/ProductSuccessDeclarations.lean audit/OriginalFourTaskCompletionDeclarations.lean
+exit=0 log=run/w_clean_20260607_direct_right_lca_opclosure_stable_boundary_diff_check.log
+
+$ scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean LeanLCAExactChallenge/Derived/MetrizableStableInstanceBoundaryDirectLocalization.lean audit/RequiredDeclarations.lean audit/ProductSuccessDeclarations.lean audit/OriginalFourTaskCompletionDeclarations.lean
+exit=0 log=run/w_clean_20260607_direct_right_lca_opclosure_stable_boundary_forbidden_tokens.log
+
+$ rg -n \(\"product_success\"\|\"product_success_claimed\"\|\"product_complete\"\|\"update_goal_allowed\"\)\[\[:space:\]\]\*:\[\[:space:\]\]\*true\|\(productSuccessClaimed\|product_success\|product_success_claimed\|product_complete\|update_goal_allowed\)\[\[:space:\]\]\*:\?=\[\[:space:\]\]\*true LeanLCAExactChallenge audit terminal_outcome run/verification.json -g \!audit/negative_fixtures/\*\* -g \!audit/external_audit.py -g \!audit/original_four_task_contract_audit.py -g \!run/\*.log -g \!run/\*.md
+exit=1 expected_no_matches log=run/w_clean_20260607_direct_right_lca_opclosure_stable_boundary_true_product_scan.log
+
+$ rg -n product_success\|product_complete\|update_goal_allowed\|product_success_claimed terminal_outcome/terminal_outcome.json run/verification.json
+exit=0 log=run/w_clean_20260607_direct_right_lca_opclosure_stable_boundary_terminal_outcome_scan.log
+
+verification_finished_utc=2026-06-07T01:46:08Z
+overall=0

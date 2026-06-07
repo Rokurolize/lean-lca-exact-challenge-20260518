@@ -2590,6 +2590,37 @@ noncomputable def
   functorCategoryLocalization := inputs.functorCategoryLocalization
 
 /--
+W532 finite-shape transfer inputs with WPP limit stability supplied by the
+W551 direct comparison plus W555 direct left/algebraic proofs, and WPP colimit
+stability supplied by WPP-op closure.
+-/
+structure MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectRightLcaOpClosure :
+    Type 1 where
+  rightOpenLca : MetrizableWppLimitRightOpenLcaInput
+  rightSurjectiveLca : MetrizableWppLimitRightSurjectiveLcaInput
+  opExactAcyclicClosure : MetrizableWppOpExactAcyclicClosureInput
+  functorCategoryLocalization :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+/--
+Build W532's transfer record from direct right-LCA WPP limit data and WPP-op
+colimit closure.
+-/
+noncomputable def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_directRightLcaOpClosure
+    (inputs :
+      MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectRightLcaOpClosure) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_directLeftAlgebraicRightLca
+      { rightOpenLca := inputs.rightOpenLca
+        rightSurjectiveLca := inputs.rightSurjectiveLca }
+  colimitStability :=
+    DirectWppOpColimitFiniteShapeTransfer.walkingParallelPairColimitStability_of_exactAcyclicClosure
+      inputs.opExactAcyclicClosure
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
 W532 finite-shape transfer inputs with WPP limit stability supplied by direct
 limit comparison and WPP colimit stability supplied by the left/Snake route.
 -/
@@ -2628,6 +2659,21 @@ def
 theorem
     metrizableWalkingParallelPairFiniteShapeTransferFromLimitAndOpClosureInputNames_count :
     metrizableWalkingParallelPairFiniteShapeTransferFromLimitAndOpClosureInputNames.length = 4 :=
+  rfl
+
+/-- Input names for the direct-right-LCA plus WPP-op closure transfer form. -/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferFromDirectRightLcaOpClosureInputNames :
+    List String :=
+  ["WPP limit right open-map pure LCA certificate",
+    "WPP limit right-surjectivity pure LCA certificate",
+    "WPP-op exact-acyclic colimit closure",
+    "WalkingParallelPair functor-category localization"]
+
+theorem
+    metrizableWalkingParallelPairFiniteShapeTransferFromDirectRightLcaOpClosureInputNames_count :
+    metrizableWalkingParallelPairFiniteShapeTransferFromDirectRightLcaOpClosureInputNames.length =
+      4 :=
   rfl
 
 /-- Input names for the direct-limit plus left/Snake form of W532 finite-shape transfer. -/

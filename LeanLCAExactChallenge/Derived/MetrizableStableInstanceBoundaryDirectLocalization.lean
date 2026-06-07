@@ -304,6 +304,80 @@ theorem metrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputNames_cou
     Dbounded.metrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputNames.length = 9 :=
   rfl
 
+/--
+Direct right-LCA WPP limit data and WPP-op colimit closure data refine the finite-shape
+transfer input in the direct-localization stable-instance boundary. The W551 comparison
+and W555 left/algebraic fields are supplied by the direct route.
+-/
+structure MetrizableStableInstanceBoundaryDirectRightLcaOpClosureInputs : Type 1 where
+  transferInputs :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectRightLcaOpClosure
+  directLeftCalculus :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/--
+Build the direct-localization boundary inputs from direct right-LCA WPP limit/op-closure data.
+-/
+noncomputable def
+    metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directRightLcaOpClosure
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectRightLcaOpClosureInputs) :
+    Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs where
+  transferInputs :=
+    Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_directRightLcaOpClosure
+      inputs.transferInputs
+  directLeftCalculus := inputs.directLeftCalculus
+  directLocalization := inputs.directLocalization
+
+/--
+Bounded-derived infinity-category package from the direct right-LCA/op-closure refinement of
+the stable-instance boundary.
+-/
+noncomputable def
+    boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectRightLcaOpClosure
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectRightLcaOpClosureInputs) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directRightLcaOpClosure
+      inputs)
+
+/--
+The direct right-LCA/op-closure refinement produces the ready four-projection stable certificate.
+-/
+theorem stableCertificateOfMetrizableStableInstanceBoundaryDirectRightLcaOpClosure_ready
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectRightLcaOpClosureInputs) :
+    let localizedInputs :=
+      Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directRightLcaOpClosure
+        inputs
+    letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+      localizedInputs.directLeftCalculus
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer
+        (Dbounded.metrizableWalkingParallelPairTransferStableSemanticInputsOfDirectLocalization
+          localizedInputs))).ready := by
+  exact
+    Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectLocalization_ready
+      (Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directRightLcaOpClosure
+        inputs)
+
+/-- Source-facing input names for the direct right-LCA/op-closure stable-instance boundary. -/
+def metrizableStableInstanceBoundaryDirectRightLcaOpClosureInputNames : List String :=
+  ["direct bounded left calculus of fractions",
+    "WPP limit right open-map pure LCA certificate",
+    "WPP limit right-surjectivity pure LCA certificate",
+    "WPP-op exact-acyclic colimit closure",
+    "WalkingParallelPair functor-category localization",
+    "direct-localization triangulated source core"]
+
+/--
+The direct right-LCA/op-closure stable-instance boundary has six source-facing input families.
+-/
+theorem metrizableStableInstanceBoundaryDirectRightLcaOpClosureInputNames_count :
+    Dbounded.metrizableStableInstanceBoundaryDirectRightLcaOpClosureInputNames.length = 6 :=
+  rfl
+
 /-- Remaining source-facing inputs for the direct-localization stable-instance boundary. -/
 def metrizableStableInstanceBoundaryDirectLocalizationInputNames : List String :=
   ["direct bounded left calculus of fractions",
@@ -389,6 +463,14 @@ section Checks
 #check Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectLimitFieldsOpClosure_ready
 #check Dbounded.metrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputNames
 #check Dbounded.metrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputNames_count
+#check Dbounded.MetrizableStableInstanceBoundaryDirectRightLcaOpClosureInputs
+#check
+  Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directRightLcaOpClosure
+#check
+  Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectRightLcaOpClosure
+#check Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectRightLcaOpClosure_ready
+#check Dbounded.metrizableStableInstanceBoundaryDirectRightLcaOpClosureInputNames
+#check Dbounded.metrizableStableInstanceBoundaryDirectRightLcaOpClosureInputNames_count
 #check Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputNames
 #check Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputNames_count
 #check Dbounded.metrizableStableInstanceBoundaryDirectLocalizationDerivedFieldNames

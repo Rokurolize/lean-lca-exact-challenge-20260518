@@ -3904,6 +3904,12 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitFieldsOpClosure
 #check Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectLimitFieldsOpClosure_ready
 #check Dbounded.metrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputNames_count
+#check Dbounded.MetrizableStableInstanceBoundaryDirectRightLcaOpClosureInputs
+#check Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directRightLcaOpClosure
+#check
+  Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectRightLcaOpClosure
+#check Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectRightLcaOpClosure_ready
+#check Dbounded.metrizableStableInstanceBoundaryDirectRightLcaOpClosureInputNames_count
 
 noncomputable example
     (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLimitOpClosureInputs) :
@@ -3966,6 +3972,37 @@ example
 example :
     Dbounded.metrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputNames.length = 9 :=
   Dbounded.metrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputNames_count
+
+noncomputable example
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectRightLcaOpClosureInputs) :
+    Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directRightLcaOpClosure
+    inputs
+
+noncomputable example
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectRightLcaOpClosureInputs) :
+    BoundedDerivedInfinityCategory MetrizableLCA
+      (Dbounded.infinityCategory MetrizableLCA) :=
+  Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectRightLcaOpClosure
+    inputs
+
+example
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectRightLcaOpClosureInputs) :
+    let localizedInputs :=
+      Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directRightLcaOpClosure
+        inputs
+    letI : (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions :=
+      localizedInputs.directLeftCalculus
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer
+        (Dbounded.metrizableWalkingParallelPairTransferStableSemanticInputsOfDirectLocalization
+          localizedInputs))).ready :=
+  Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectRightLcaOpClosure_ready
+    inputs
+
+example :
+    Dbounded.metrizableStableInstanceBoundaryDirectRightLcaOpClosureInputNames.length = 6 :=
+  Dbounded.metrizableStableInstanceBoundaryDirectRightLcaOpClosureInputNames_count
 #check Dbounded.metrizableWppLimitAlgebraicExactInput_direct
 #check Dbounded.metrizableWppLimitComparisonInput_of_limitConeComparison
 #check Dbounded.metrizableWppLimitConeComparisonInput_of_canonicalCone
@@ -4009,10 +4046,14 @@ example :
 #check Dbounded.metrizableWalkingParallelPairLimitStability_of_directLeftAlgebraicRightLca
 #check Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromLimitAndOpClosure
 #check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_limitAndOpClosure
+#check Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectRightLcaOpClosure
+#check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_directRightLcaOpClosure
 #check Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromLimitAndLeftSnake
 #check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_limitAndLeftSnake
 #check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferFromLimitAndOpClosureInputNames
 #check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferFromLimitAndOpClosureInputNames_count
+#check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferFromDirectRightLcaOpClosureInputNames
+#check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferFromDirectRightLcaOpClosureInputNames_count
 #check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferFromLimitAndLeftSnakeInputNames
 #check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferFromLimitAndLeftSnakeInputNames_count
 #check Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromLimitFieldsAndOpClosure

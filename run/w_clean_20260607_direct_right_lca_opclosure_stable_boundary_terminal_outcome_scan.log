@@ -1,0 +1,12 @@
+run/verification.json:6:  "product_success": false,
+run/verification.json:7:  "product_success_claimed": false,
+run/verification.json:39:      "evidence": "run/w1594_product_success_declarations.log"
+run/verification.json:72:      "command": "rg -n 'productSuccessClaimed\\s*:=\\s*true|\"product_success\"\\s*:\\s*true|\"product_complete\"\\s*:\\s*true|\"update_goal_allowed\"\\s*:\\s*true' LeanLCAExactChallenge audit docs README.md README_FOR_REVIEW.md terminal_outcome run/verification.json -g '!audit/negative_fixtures/**'",
+run/verification.json:74:      "evidence": "run/w1594_product_success_true_source_scan.log"
+run/verification.json:77:      "command": "rg -n 'productSuccessClaimed\\s*:=\\s*false|productSuccessClaimed\\s*=\\s*false|\"product_success\"\\s*:\\s*false|\"product_complete\"\\s*:\\s*false|\"update_goal_allowed\"\\s*:\\s*false' LeanLCAExactChallenge audit docs README.md README_FOR_REVIEW.md terminal_outcome run/verification.json -g '!audit/negative_fixtures/**'",
+terminal_outcome/terminal_outcome.json:7:  "product_success": false,
+terminal_outcome/terminal_outcome.json:8:  "product_success_claimed": false,
+terminal_outcome/terminal_outcome.json:9:  "product_complete": false,
+terminal_outcome/terminal_outcome.json:10:  "update_goal_allowed": false,
+terminal_outcome/terminal_outcome.json:38:    "rg -n 'productSuccessClaimed\\s*:=\\s*true|\"product_success\"\\s*:\\s*true|\"product_complete\"\\s*:\\s*true|\"update_goal_allowed\"\\s*:\\s*true' LeanLCAExactChallenge audit docs README.md README_FOR_REVIEW.md terminal_outcome run/verification.json -g '!audit/negative_fixtures/**'",
+terminal_outcome/terminal_outcome.json:39:    "rg -n 'productSuccessClaimed\\s*:=\\s*false|productSuccessClaimed\\s*=\\s*false|\"product_success\"\\s*:\\s*false|\"product_complete\"\\s*:\\s*false|\"update_goal_allowed\"\\s*:\\s*false' LeanLCAExactChallenge audit docs README.md README_FOR_REVIEW.md terminal_outcome run/verification.json -g '!audit/negative_fixtures/**'",
