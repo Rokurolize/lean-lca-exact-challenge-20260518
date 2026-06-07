@@ -512,6 +512,8 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaRelGenerator
 #check LeanLCAExactChallenge.YonedaRelGenerator.homTailLeft
 #check LeanLCAExactChallenge.yonedaRelationSubgroup
+#check LeanLCAExactChallenge.ShortExactExtension.inflation_i
+#check LeanLCAExactChallenge.ShortExactExtension.deflation_p
 #check LeanLCAExactChallenge.YonedaExt.zero_equiv_hom
 #check LeanLCAExactChallenge.YonedaExt.ofExtension
 #check LeanLCAExactChallenge.YonedaExt.pullbackHeadOfExtensionWith

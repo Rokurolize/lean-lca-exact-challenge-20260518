@@ -43,6 +43,16 @@ lemma conflation_shortComplex {X Y : C} (e : ShortExactExtension X Y) :
     QuillenExactCategory.Conflation e.shortComplex :=
   e.conflation
 
+/-- The kernel map in a one-fold Yoneda extension is an inflation in the ambient exact category. -/
+theorem inflation_i {X Y : C} (e : ShortExactExtension X Y) :
+    QuillenExactCategory.inflation e.i :=
+  QuillenExactCategory.inflation_of_conflation e.conflation
+
+/-- The quotient map in a one-fold Yoneda extension is a deflation in the ambient exact category. -/
+theorem deflation_p {X Y : C} (e : ShortExactExtension X Y) :
+    QuillenExactCategory.deflation e.p :=
+  QuillenExactCategory.deflation_of_conflation e.conflation
+
 /-- An isomorphism of one-fold extensions with fixed endpoints. -/
 structure Iso {X Y : C} (e e' : ShortExactExtension X Y) where
   middleIso : e.middle ≅ e'.middle
@@ -373,6 +383,20 @@ theorem strictShortExact_shortExactExtensionOfStrictShortExact
     (zero : i ≫ p = 0) (h : strictShortExact (ShortComplex.mk i p zero)) :
     strictShortExact (shortExactExtensionOfStrictShortExact i p zero h).shortComplex := by
   simpa using h
+
+/-- The strict short exact sequence extension has an inflation as its left map. -/
+theorem shortExactExtensionOfStrictShortExact_inflation_i
+    {X Y M : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0) (h : strictShortExact (ShortComplex.mk i p zero)) :
+    QuillenExactCategory.inflation i :=
+  (shortExactExtensionOfStrictShortExact i p zero h).inflation_i
+
+/-- The strict short exact sequence extension has a deflation as its right map. -/
+theorem shortExactExtensionOfStrictShortExact_deflation_p
+    {X Y M : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0) (h : strictShortExact (ShortComplex.mk i p zero)) :
+    QuillenExactCategory.deflation p :=
+  (shortExactExtensionOfStrictShortExact i p zero h).deflation_p
 
 /-- Coordinatewise product of one-fold short exact extensions in `MetrizableLCA`. -/
 noncomputable def shortExactExtensionBiprod

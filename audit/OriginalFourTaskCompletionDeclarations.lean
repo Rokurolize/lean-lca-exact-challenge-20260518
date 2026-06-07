@@ -477,7 +477,11 @@ contract-completing stable bounded derived infinity-category witness.
 
 #check LeanLCAExactChallenge.YonedaExt
 #check LeanLCAExactChallenge.YonedaExt.zero_equiv_hom
+#check LeanLCAExactChallenge.ShortExactExtension.inflation_i
+#check LeanLCAExactChallenge.ShortExactExtension.deflation_p
 #check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionOfStrictShortExact
+#check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionOfStrictShortExact_inflation_i
+#check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionOfStrictShortExact_deflation_p
 #check LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_shortExactExtension
 #check LeanLCAExactChallenge.YonedaExt.ofStrictShortExact
 #check LeanLCAExactChallenge.YonedaExt.ofStrictShortExact_eq_zero_of_split
