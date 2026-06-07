@@ -6957,6 +6957,75 @@ theorem yonedaProduct_baer_sum_right_ofPositiveChainClass
         (ofPositiveChain (X := Y) (Y := Z) sum) := by
   rw [baer_sum_ofPositiveChain_eq_of_baerChain h]
 
+/-- Termwise-related positive-chain representatives in the right variable give the same product. -/
+theorem yonedaProduct_right_ofPositiveChain_eq_of_rel
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (a : YonedaExt X Y (m + 1))
+    {p q : YonedaExtension.PositiveChain (C := MetrizableLCA.{u}) Y Z n}
+    (h : YonedaExtension.PositiveChain.Rel p q) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n a
+        (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := n)
+          p.toYonedaExtension) =
+      yonedaProduct (X := X) (Y := Y) (Z := Z) m n a
+        (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := n)
+          q.toYonedaExtension) := by
+  rw [← ofPositiveChain_eq_ofExtension p, ← ofPositiveChain_eq_ofExtension q]
+  exact yonedaProduct_right_ofPositiveChainClass_eq_of_rel a h
+
+/-- A right positive-chain representative with a split factor gives the zero product. -/
+theorem yonedaProduct_right_ofPositiveChain_eq_zero_of_splitFactor
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (a : YonedaExt X Y (m + 1))
+    {p : YonedaExtension.PositiveChain (C := MetrizableLCA.{u}) Y Z n}
+    (h : YonedaExtension.PositiveChain.SplitFactorData p) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n a
+        (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := n)
+          p.toYonedaExtension) =
+      0 := by
+  rw [← ofPositiveChain_eq_ofExtension p]
+  exact yonedaProduct_right_ofPositiveChainClass_eq_zero_of_splitFactor a h
+
+/-- A right positive-chain representative Baer sum is additive for the public Yoneda product. -/
+theorem yonedaProduct_right_ofPositiveChain_eq_add_of_baerRightChain
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (a : YonedaExt X Y (m + 1))
+    {p₁ p₂ sum : YonedaExtension.PositiveChain (C := MetrizableLCA.{u}) Y Z n}
+    (h : YonedaExtension.PositiveChain.BaerSumData p₁ p₂ sum) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n a
+        (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := n)
+          sum.toYonedaExtension) =
+      yonedaProduct (X := X) (Y := Y) (Z := Z) m n a
+          (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := n)
+            p₁.toYonedaExtension) +
+        yonedaProduct (X := X) (Y := Y) (Z := Z) m n a
+          (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := n)
+            p₂.toYonedaExtension) := by
+  rw [← ofPositiveChain_eq_ofExtension sum, ← ofPositiveChain_eq_ofExtension p₁,
+    ← ofPositiveChain_eq_ofExtension p₂]
+  exact yonedaProduct_right_ofPositiveChainClass_eq_add_of_baerRightChain a h
+
+/--
+The public `baer_sum` API in the right Ext variable respects positive-chain
+representative Baer sums.
+-/
+theorem yonedaProduct_baer_sum_right_ofPositiveChain
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (a : YonedaExt X Y (m + 1))
+    {p₁ p₂ sum : YonedaExtension.PositiveChain (C := MetrizableLCA.{u}) Y Z n}
+    (h : YonedaExtension.PositiveChain.BaerSumData p₁ p₂ sum) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n a
+        (baer_sum
+          (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := n)
+            p₁.toYonedaExtension)
+          (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := n)
+            p₂.toYonedaExtension)) =
+      yonedaProduct (X := X) (Y := Y) (Z := Z) m n a
+        (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := n)
+          sum.toYonedaExtension) := by
+  rw [← ofPositiveChain_eq_ofExtension p₁, ← ofPositiveChain_eq_ofExtension p₂,
+    ← ofPositiveChain_eq_ofExtension sum]
+  exact yonedaProduct_baer_sum_right_ofPositiveChainClass a h
+
 end LeftProduct
 
 end YonedaExt

@@ -1,0 +1,9 @@
+     3 run/resumption_gate_20260607_post_right_bridge_next_yoneda_api/contract_hashes.txt
+     2 run/resumption_gate_20260607_post_right_bridge_next_yoneda_api/git_status.txt
+     1 run/resumption_gate_20260607_post_right_bridge_next_yoneda_api/head.txt
+     2 run/resumption_gate_20260607_post_right_bridge_next_yoneda_api/origin_heads_remote.txt
+     1 run/resumption_gate_20260607_post_right_bridge_next_yoneda_api/origin_main_local.txt
+  1526 run/resumption_gate_20260607_post_right_bridge_next_yoneda_api/product_success_false_search.txt
+    27 run/resumption_gate_20260607_post_right_bridge_next_yoneda_api/product_success_true_search.txt
+    11 run/resumption_gate_20260607_post_right_bridge_next_yoneda_api/terminal_outcome_summary.json
+  1573 total
