@@ -154,6 +154,85 @@ noncomputable def
   productEvidence_of_closedEmbeddingTargetIsoRealizationRouteW784
     (closedEmbeddingTargetIsoDataOfTargetHomologyZeroKernelCokernelW788 data)
 
+/-- W788 closed-map branch converted to the W769 stable-data surface. -/
+noncomputable def
+    directFiniteShapeStableDataOfClosedMapTargetHomologyZeroKernelCokernelW788
+    (data :
+      MetrizableClosedMapTargetHomologyZeroKernelCokernelBranchDataW788) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapTargetIsoRealizationW784
+    (closedMapTargetIsoDataOfTargetHomologyZeroKernelCokernelW788 data)
+
+/-- W788 closed-embedding branch converted to the W769 stable-data surface. -/
+noncomputable def
+    directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroKernelCokernelW788
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroKernelCokernelBranchDataW788) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingTargetIsoRealizationW784
+    (closedEmbeddingTargetIsoDataOfTargetHomologyZeroKernelCokernelW788
+      data)
+
+/-- W788 closed-map branch as canonical stable-instance boundary inputs. -/
+noncomputable def
+    stableBoundaryInputsOfClosedMapTargetHomologyZeroKernelCokernelW788
+    (data :
+      MetrizableClosedMapTargetHomologyZeroKernelCokernelBranchDataW788) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapTargetIsoRealizationW784
+    (closedMapTargetIsoDataOfTargetHomologyZeroKernelCokernelW788 data)
+
+/-- W788 closed-embedding branch as canonical stable-instance boundary inputs. -/
+noncomputable def
+    stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroKernelCokernelW788
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroKernelCokernelBranchDataW788) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingTargetIsoRealizationW784
+    (closedEmbeddingTargetIsoDataOfTargetHomologyZeroKernelCokernelW788
+      data)
+
+/-- W788 closed-map branch passes the canonical accepted stable boundary gate. -/
+noncomputable def acceptedStableOfClosedMapTargetHomologyZeroKernelCokernelW788
+    (data :
+      MetrizableClosedMapTargetHomologyZeroKernelCokernelBranchDataW788) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapTargetIsoRealizationW784
+    (closedMapTargetIsoDataOfTargetHomologyZeroKernelCokernelW788 data)
+
+/--
+W788 closed-embedding branch passes the canonical accepted stable boundary gate.
+-/
+noncomputable def
+    acceptedStableOfClosedEmbeddingTargetHomologyZeroKernelCokernelW788
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroKernelCokernelBranchDataW788) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingTargetIsoRealizationW784
+    (closedEmbeddingTargetIsoDataOfTargetHomologyZeroKernelCokernelW788
+      data)
+
+/-- W788 closed-map branch produces the canonical stable-boundary package. -/
+noncomputable def
+    boundedDerivedOfClosedMapTargetHomologyZeroKernelCokernelStableBoundaryW788
+    (data :
+      MetrizableClosedMapTargetHomologyZeroKernelCokernelBranchDataW788) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapTargetIsoRealizationStableBoundaryW784
+    (closedMapTargetIsoDataOfTargetHomologyZeroKernelCokernelW788 data)
+
+/-- W788 closed-embedding branch produces the canonical stable-boundary package. -/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingTargetHomologyZeroKernelCokernelStableBoundaryW788
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroKernelCokernelBranchDataW788) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingTargetIsoRealizationStableBoundaryW784
+    (closedEmbeddingTargetIsoDataOfTargetHomologyZeroKernelCokernelW788
+      data)
+
 /-- W788 input names after replacing W787's conditioned endpoint topology. -/
 def targetHomologyZeroKernelCokernelProductRouteInputNamesW788 :
     List String :=
@@ -179,6 +258,7 @@ structure MetrizableTargetHomologyZeroKernelCokernelRouteStateW788 :
   seed : String
   declarations : List String
   transportResult : String
+  stableBoundaryResult : String
   closedMapResult : String
   closedEmbeddingResult : String
   replacedInputs : List String
@@ -199,18 +279,30 @@ def currentMetrizableTargetHomologyZeroKernelCokernelRouteStateW788 :
       "closedEmbeddingTargetIsoDataOfTargetHomologyZeroKernelCokernelW788",
       "productEvidence_of_closedMapTargetHomologyZeroKernelRouteW788",
       "productEvidence_of_closedEmbeddingTargetHomologyZeroKernelRouteW788",
+      "directFiniteShapeStableDataOfClosedMapTargetHomologyZeroKernelCokernelW788",
+      "directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroKernelCokernelW788",
+      "stableBoundaryInputsOfClosedMapTargetHomologyZeroKernelCokernelW788",
+      "stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroKernelCokernelW788",
+      "acceptedStableOfClosedMapTargetHomologyZeroKernelCokernelW788",
+      "acceptedStableOfClosedEmbeddingTargetHomologyZeroKernelCokernelW788",
+      "boundedDerivedOfClosedMapTargetHomologyZeroKernelCokernelStableBoundaryW788",
+      "boundedDerivedOfClosedEmbeddingTargetHomologyZeroKernelCokernelStableBoundaryW788",
       "targetHomologyZeroKernelCokernelProductRouteInputNamesW788",
       "targetHomologyZeroKernelCokernelProductRouteInputNamesW788_count"]
   transportResult :=
     "proved: W668 kernel/cokernel conditioned topology supplies W784's\
       target-isomorphism input from target homology-zero data"
+  stableBoundaryResult :=
+    "proved: W788 target homology-zero kernel/cokernel branches pass the\
+      W784/W783/W782/W781/W780/W779/W778/W774/W773/W769 canonical stable-boundary gate"
   closedMapResult :=
     "proved: closed-map target homology-zero kernel/cokernel data feeds W784"
   closedEmbeddingResult :=
     "proved: closed-embedding target homology-zero kernel/cokernel data feeds\
       W784"
   replacedInputs :=
-    ["ExactAt-conditioned endpoint topology data"]
+    ["ExactAt-conditioned endpoint topology data",
+      "separate W784 target-isomorphism stable-boundary branch input"]
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",

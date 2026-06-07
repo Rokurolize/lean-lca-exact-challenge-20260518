@@ -9562,6 +9562,21 @@ example :
   #check Dbounded.productEvidence_of_closedMapTargetHomologyZeroKernelRouteW788
   #check
     Dbounded.productEvidence_of_closedEmbeddingTargetHomologyZeroKernelRouteW788
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedMapTargetHomologyZeroKernelCokernelW788
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroKernelCokernelW788
+  #check
+    Dbounded.stableBoundaryInputsOfClosedMapTargetHomologyZeroKernelCokernelW788
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroKernelCokernelW788
+  #check Dbounded.acceptedStableOfClosedMapTargetHomologyZeroKernelCokernelW788
+  #check
+    Dbounded.acceptedStableOfClosedEmbeddingTargetHomologyZeroKernelCokernelW788
+  #check
+    Dbounded.boundedDerivedOfClosedMapTargetHomologyZeroKernelCokernelStableBoundaryW788
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingTargetHomologyZeroKernelCokernelStableBoundaryW788
   #check Dbounded.targetHomologyZeroKernelCokernelProductRouteInputNamesW788
   #check Dbounded.targetHomologyZeroKernelCokernelProductRouteInputNamesW788_count
   #check Dbounded.MetrizableTargetHomologyZeroKernelCokernelRouteStateW788

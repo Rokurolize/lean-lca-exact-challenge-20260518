@@ -1,0 +1,3 @@
+LeanLCAExactChallenge/Derived/TargetHomologyZeroKernelCokernelTargetIsoSelectedW461RowsProductRoute.lean:322:theorem currentW788TargetHomologyZeroKernelRoute_productSuccess :
+run/w_clean_20260607_w788_target_homology_zero_kernel_boundary_terminal_outcome_summary.log:3:  "product_success": false,
+audit/ProductSuccessDeclarations.lean:9584:  #check Dbounded.currentW788TargetHomologyZeroKernelRoute_productSuccess
