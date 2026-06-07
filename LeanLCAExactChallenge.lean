@@ -12,6 +12,7 @@ import LeanLCAExactChallenge.LCA.Pushout
 import LeanLCAExactChallenge.LCA.ExactCategory
 import LeanLCAExactChallenge.Ext.Yoneda
 import LeanLCAExactChallenge.Derived.Bounded
+import LeanLCAExactChallenge.BoundedDerived.Basic
 import LeanLCAExactChallenge.Derived.TypeclassStableLeftCalculusRoute
 import LeanLCAExactChallenge.Derived.DirectLeftCalculusRoute
 import LeanLCAExactChallenge.Derived.OptionProductDecomposition

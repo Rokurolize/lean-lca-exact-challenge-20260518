@@ -1,9 +1,14 @@
 {
+  "thread_id": "019e5c90-4877-77a1-a792-34feb85174ab",
+  "objective": "follow the instructions in /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_human_centered_positive_witness_completion_goal_20260602.md",
   "branch": "goal-clean-positive-witness-20260607",
+  "worktree": "/home/roku/codex-thread-workspaces/019e5c90-4877-77a1-a792-34feb85174ab/worktrees/lean-lca-clean-positive-witness-20260607",
+  "generated_utc": "2026-06-07T20:05:45Z",
+  "git_head": "0611d496c1906d0c6ee53aca99bc4f24c143c913",
   "contracts": {
     "human_centered_goal": {
       "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_human_centered_positive_witness_completion_goal_20260602.md",
-      "sha256": "a91bb2afdd4f171a181186e6a5bf7da55e751a932fb3b360472288837fbd9260"
+      "sha256": "196f52a805897475ec0b193f692f5a255ac4695077480b330b76cfb50c537d10"
     },
     "original_four_task_contract": {
       "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
@@ -13,10 +18,5 @@
       "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md",
       "sha256": "3120c014b83e0c7c8f8160ca90447a1a73588096a354ace109e2fca4e4eab5ec"
     }
-  },
-  "generated_utc": "2026-06-07T17:53:15Z",
-  "git_head": "5f61412eb661acdef489da0c45625c508f1dc42a",
-  "objective": "follow the instructions in /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_human_centered_positive_witness_completion_goal_20260602.md",
-  "thread_id": "019e5c90-4877-77a1-a792-34feb85174ab",
-  "worktree": "/home/roku/codex-thread-workspaces/019e5c90-4877-77a1-a792-34feb85174ab/worktrees/lean-lca-clean-positive-witness-20260607"
+  }
 }

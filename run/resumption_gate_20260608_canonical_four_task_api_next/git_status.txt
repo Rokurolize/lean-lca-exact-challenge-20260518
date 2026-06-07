@@ -1,0 +1,3 @@
+## goal-clean-positive-witness-20260607...origin/goal-clean-positive-witness-20260607
+ M run/goal_identity_20260602_human_centered_positive_witness.json
+?? run/resumption_gate_20260608_canonical_four_task_api_next/git_status.txt
