@@ -9450,6 +9450,16 @@ example :
   #check Dbounded.closedEmbeddingTrianglehDataOfTargetIsoRealizationW784
   #check Dbounded.productEvidence_of_closedMapTargetIsoRealizationRouteW784
   #check Dbounded.productEvidence_of_closedEmbeddingTargetIsoRealizationRouteW784
+  #check Dbounded.directFiniteShapeStableDataOfClosedMapTargetIsoRealizationW784
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingTargetIsoRealizationW784
+  #check Dbounded.stableBoundaryInputsOfClosedMapTargetIsoRealizationW784
+  #check Dbounded.stableBoundaryInputsOfClosedEmbeddingTargetIsoRealizationW784
+  #check Dbounded.acceptedStableOfClosedMapTargetIsoRealizationW784
+  #check Dbounded.acceptedStableOfClosedEmbeddingTargetIsoRealizationW784
+  #check Dbounded.boundedDerivedOfClosedMapTargetIsoRealizationStableBoundaryW784
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingTargetIsoRealizationStableBoundaryW784
   #check Dbounded.targetIsoRealizationTrianglehProductRouteInputNamesW784
   #check Dbounded.targetIsoRealizationTrianglehProductRouteInputNamesW784_count
   #check Dbounded.MetrizableTargetIsoRealizationTrianglehRouteStateW784

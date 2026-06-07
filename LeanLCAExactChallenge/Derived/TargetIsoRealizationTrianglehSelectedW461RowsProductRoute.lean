@@ -119,6 +119,67 @@ noncomputable def productEvidence_of_closedEmbeddingTargetIsoRealizationRouteW78
   productEvidence_of_closedEmbeddingTrianglehRealizationRouteW783
     (closedEmbeddingTrianglehDataOfTargetIsoRealizationW784 data)
 
+/-- W784 closed-map branch converted to the W769 stable-data surface. -/
+noncomputable def directFiniteShapeStableDataOfClosedMapTargetIsoRealizationW784
+    (data : MetrizableClosedMapTargetIsoRealizationTrianglehBranchDataW784) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapTrianglehRealizationW783
+    (closedMapTrianglehDataOfTargetIsoRealizationW784 data)
+
+/-- W784 closed-embedding branch converted to the W769 stable-data surface. -/
+noncomputable def directFiniteShapeStableDataOfClosedEmbeddingTargetIsoRealizationW784
+    (data : MetrizableClosedEmbeddingTargetIsoRealizationTrianglehBranchDataW784) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingTrianglehRealizationW783
+    (closedEmbeddingTrianglehDataOfTargetIsoRealizationW784 data)
+
+/-- W784 closed-map branch as canonical stable-instance boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedMapTargetIsoRealizationW784
+    (data : MetrizableClosedMapTargetIsoRealizationTrianglehBranchDataW784) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapTrianglehRealizationW783
+    (closedMapTrianglehDataOfTargetIsoRealizationW784 data)
+
+/-- W784 closed-embedding branch as canonical stable-instance boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedEmbeddingTargetIsoRealizationW784
+    (data : MetrizableClosedEmbeddingTargetIsoRealizationTrianglehBranchDataW784) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingTrianglehRealizationW783
+    (closedEmbeddingTrianglehDataOfTargetIsoRealizationW784 data)
+
+/-- W784 closed-map branch passes the canonical accepted stable boundary gate. -/
+noncomputable def acceptedStableOfClosedMapTargetIsoRealizationW784
+    (data : MetrizableClosedMapTargetIsoRealizationTrianglehBranchDataW784) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapTrianglehRealizationW783
+    (closedMapTrianglehDataOfTargetIsoRealizationW784 data)
+
+/--
+W784 closed-embedding branch passes the canonical accepted stable boundary gate.
+-/
+noncomputable def acceptedStableOfClosedEmbeddingTargetIsoRealizationW784
+    (data : MetrizableClosedEmbeddingTargetIsoRealizationTrianglehBranchDataW784) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingTrianglehRealizationW783
+    (closedEmbeddingTrianglehDataOfTargetIsoRealizationW784 data)
+
+/-- W784 closed-map branch produces the canonical stable-boundary package. -/
+noncomputable def boundedDerivedOfClosedMapTargetIsoRealizationStableBoundaryW784
+    (data : MetrizableClosedMapTargetIsoRealizationTrianglehBranchDataW784) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapTrianglehRealizationStableBoundaryW783
+    (closedMapTrianglehDataOfTargetIsoRealizationW784 data)
+
+/-- W784 closed-embedding branch produces the canonical stable-boundary package. -/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingTargetIsoRealizationStableBoundaryW784
+    (data : MetrizableClosedEmbeddingTargetIsoRealizationTrianglehBranchDataW784) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingTrianglehRealizationStableBoundaryW783
+    (closedEmbeddingTrianglehDataOfTargetIsoRealizationW784 data)
+
 /-- W784 input names after replacing W783's strict triangleh realization premise. -/
 def targetIsoRealizationTrianglehProductRouteInputNamesW784 : List String :=
   ["universal IsIso for every MetrizableLCA left-right homology comparison",
@@ -140,6 +201,7 @@ structure MetrizableTargetIsoRealizationTrianglehRouteStateW784 : Type where
   seed : String
   declarations : List String
   transportResult : String
+  stableBoundaryResult : String
   closedMapResult : String
   closedEmbeddingResult : String
   replacedInputs : List String
@@ -160,16 +222,28 @@ def currentMetrizableTargetIsoRealizationTrianglehRouteStateW784 :
       "closedEmbeddingTrianglehDataOfTargetIsoRealizationW784",
       "productEvidence_of_closedMapTargetIsoRealizationRouteW784",
       "productEvidence_of_closedEmbeddingTargetIsoRealizationRouteW784",
+      "directFiniteShapeStableDataOfClosedMapTargetIsoRealizationW784",
+      "directFiniteShapeStableDataOfClosedEmbeddingTargetIsoRealizationW784",
+      "stableBoundaryInputsOfClosedMapTargetIsoRealizationW784",
+      "stableBoundaryInputsOfClosedEmbeddingTargetIsoRealizationW784",
+      "acceptedStableOfClosedMapTargetIsoRealizationW784",
+      "acceptedStableOfClosedEmbeddingTargetIsoRealizationW784",
+      "boundedDerivedOfClosedMapTargetIsoRealizationStableBoundaryW784",
+      "boundedDerivedOfClosedEmbeddingTargetIsoRealizationStableBoundaryW784",
       "targetIsoRealizationTrianglehProductRouteInputNamesW784",
       "targetIsoRealizationTrianglehProductRouteInputNamesW784_count"]
   transportResult :=
     "proved: exact-acyclic target-isomorphism realization supplies W783's triangleh input"
+  stableBoundaryResult :=
+    "proved: W784 target-isomorphism realization branches pass the\
+      W783/W782/W781/W780/W779/W778/W774/W773/W769 canonical stable-boundary gate"
   closedMapResult :=
     "proved: closed-map target-isomorphism realization branch data feeds W783"
   closedEmbeddingResult :=
     "proved: closed-embedding target-isomorphism realization branch data feeds W783"
   replacedInputs :=
-    ["exact-acyclic homotopy-object triangleh iso13 realization data"]
+    ["exact-acyclic homotopy-object triangleh iso13 realization data",
+      "separate W783 triangleh-realization stable-boundary branch input"]
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",
