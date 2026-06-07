@@ -621,6 +621,9 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaExtension.spliceLeftWith_assoc_heq
 #check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtFreeCast
 #check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtFreeCast_relationSubgroup_mem
+#check LeanLCAExactChallenge.YonedaExt.positiveYonedaExt_mk_zero
+#check LeanLCAExactChallenge.YonedaExt.positiveYonedaExt_mk_neg
+#check LeanLCAExactChallenge.YonedaExt.positiveYonedaExt_mk_add
 #check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtCast
 #check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtCast_mk
 #check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtCast_ofExtension

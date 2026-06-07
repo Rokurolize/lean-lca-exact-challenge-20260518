@@ -3397,6 +3397,32 @@ theorem ofPositiveChain_eq_ofExtension (p : YonedaExtension.PositiveChain X Y n)
       ofExtension (X := X) (Y := Y) p.toYonedaExtension :=
   rfl
 
+@[simp]
+theorem positiveYonedaExt_mk_zero {X Y : C} {n : ℕ} :
+    (((0 : PositiveYonedaExtFree (C := C) X Y n) :
+      PositiveYonedaExt (C := C) X Y n)) = 0 :=
+  QuotientAddGroup.mk_zero (yonedaRelationSubgroup X Y n)
+
+@[simp]
+theorem positiveYonedaExt_mk_neg {X Y : C} {n : ℕ}
+    (x : PositiveYonedaExtFree (C := C) X Y n) :
+    (((-x : PositiveYonedaExtFree (C := C) X Y n) :
+      PositiveYonedaExt (C := C) X Y n)) =
+      -((x : PositiveYonedaExtFree (C := C) X Y n) :
+        PositiveYonedaExt (C := C) X Y n) :=
+  QuotientAddGroup.mk_neg (yonedaRelationSubgroup X Y n) x
+
+@[simp]
+theorem positiveYonedaExt_mk_add {X Y : C} {n : ℕ}
+    (x y : PositiveYonedaExtFree (C := C) X Y n) :
+    (((x + y : PositiveYonedaExtFree (C := C) X Y n) :
+      PositiveYonedaExt (C := C) X Y n)) =
+      ((x : PositiveYonedaExtFree (C := C) X Y n) :
+        PositiveYonedaExt (C := C) X Y n) +
+        ((y : PositiveYonedaExtFree (C := C) X Y n) :
+          PositiveYonedaExt (C := C) X Y n) :=
+  QuotientAddGroup.mk_add (yonedaRelationSubgroup X Y n) x y
+
 /--
 The `Ext¹` class represented by a strict short exact sequence of metrizable
 LCA groups, using the canonical exact-category structure.
@@ -6491,9 +6517,9 @@ theorem yonedaProduct_ofPositiveChainClass_assoc
           (ofPositiveChain (X := Y) (Y := Z) r)) =
       yonedaProduct (X := X) (Y := W) (Z := Z) m (l + (n + 1))
         (ofPositiveChain (X := X) (Y := W) p)
-        (yonedaProduct (X := W) (Y := Y) (Z := Z) n l
-          (ofPositiveChain (X := W) (Y := Y) q)
-          (ofPositiveChain (X := Y) (Y := Z) r)) := by
+    (yonedaProduct (X := W) (Y := Y) (Z := Z) n l
+      (ofPositiveChain (X := W) (Y := Y) q)
+      (ofPositiveChain (X := Y) (Y := Z) r)) := by
   exact yonedaProduct_ofPositiveChainClass_assoc_cast p q r (by omega)
 
 theorem yonedaProduct_add_left
