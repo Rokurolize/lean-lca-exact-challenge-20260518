@@ -1,0 +1,11 @@
+{
+  "outcome": "source_progress_partial_yoneda_exact_maps",
+  "product_success": false,
+  "product_complete": false,
+  "update_goal_allowed": false,
+  "git_head": "805f059a0542c67d168cb14cd3faf8b7b9d14fa8",
+  "latest_checkpoint": null,
+  "obligations_discharged": null,
+  "obligations_derived_or_eliminated": null,
+  "new_frontier_input_count": null
+}

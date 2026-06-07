@@ -2480,6 +2480,22 @@ def consLeftMap {X Y Z : C} (e : ShortExactExtension X Y) (n : ℕ) :
     YonedaExtension Y Z (n + 1) → YonedaExtension X Z ((n + 1) + 1) :=
   fun a => YonedaExtension.cons e a
 
+/-- The head one-fold extension of a positive-degree Yoneda chain. -/
+def headExtension :
+    {X Y : C} → {n : ℕ} → YonedaExtension X Y (n + 1) →
+      Σ Z : C, ShortExactExtension X Z
+  | _, _, _, YonedaExtension.cons e _ => ⟨_, e⟩
+
+/-- The head left map of a positive-degree Yoneda chain is an inflation. -/
+theorem head_inflation_i {X Y : C} {n : ℕ} (a : YonedaExtension X Y (n + 1)) :
+    QuillenExactCategory.inflation (headExtension a).2.i :=
+  (headExtension a).2.inflation_i
+
+/-- The head right map of a positive-degree Yoneda chain is a deflation. -/
+theorem head_deflation_p {X Y : C} {n : ℕ} (a : YonedaExtension X Y (n + 1)) :
+    QuillenExactCategory.deflation (headExtension a).2.p :=
+  (headExtension a).2.deflation_p
+
 /-- Pull back the head one-fold extension using a supplied pullback operation. -/
 def pullbackHeadWith {X X' Y : C} (_f : X' ⟶ X)
     (pull : {Z : C} → ShortExactExtension X Z → ShortExactExtension X' Z) :
@@ -2812,6 +2828,22 @@ def consLeftMap :
   | _, _, _, m + 1, n, cons e tail, a => by
       simpa [Nat.add_assoc] using
         YonedaExtension.cons e (consLeftMap (m := m) (n := n) tail a)
+
+/-- The head one-fold extension of a positive chain. -/
+def headExtension :
+    {X Y : C} → {n : ℕ} → PositiveChain X Y n → Σ Z : C, ShortExactExtension X Z
+  | _, _, 0, one e => ⟨_, e⟩
+  | _, _, _ + 1, cons e _ => ⟨_, e⟩
+
+/-- The head left map of a positive chain is an inflation. -/
+theorem head_inflation_i {X Y : C} {n : ℕ} (p : PositiveChain X Y n) :
+    QuillenExactCategory.inflation (headExtension p).2.i :=
+  (headExtension p).2.inflation_i
+
+/-- The head right map of a positive chain is a deflation. -/
+theorem head_deflation_p {X Y : C} {n : ℕ} (p : PositiveChain X Y n) :
+    QuillenExactCategory.deflation (headExtension p).2.p :=
+  (headExtension p).2.deflation_p
 
 /-- Positive one-fold chains containing a split factor. -/
 inductive SplitFactorData :

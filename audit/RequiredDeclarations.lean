@@ -459,6 +459,9 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionBaerSumData
 #check LeanLCAExactChallenge.YonedaExtension
 #check LeanLCAExactChallenge.YonedaExtension.consLeftMap
+#check LeanLCAExactChallenge.YonedaExtension.headExtension
+#check LeanLCAExactChallenge.YonedaExtension.head_inflation_i
+#check LeanLCAExactChallenge.YonedaExtension.head_deflation_p
 #check LeanLCAExactChallenge.YonedaExtension.pullbackHeadWith
 #check LeanLCAExactChallenge.YonedaExtension.composeTailHom
 #check LeanLCAExactChallenge.YonedaExtension.pushoutTailWith
@@ -504,6 +507,9 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaExtension.PositiveChain
 #check LeanLCAExactChallenge.YonedaExtension.PositiveChain.toYonedaExtension
 #check LeanLCAExactChallenge.YonedaExtension.PositiveChain.consLeftMap
+#check LeanLCAExactChallenge.YonedaExtension.PositiveChain.headExtension
+#check LeanLCAExactChallenge.YonedaExtension.PositiveChain.head_inflation_i
+#check LeanLCAExactChallenge.YonedaExtension.PositiveChain.head_deflation_p
 #check LeanLCAExactChallenge.YonedaExtension.PositiveChain.SplitFactorData
 #check LeanLCAExactChallenge.YonedaExtension.PositiveChain.SplitFactorData.toYonedaExtension
 #check LeanLCAExactChallenge.YonedaExtension.PositiveChain.SplitFactorData.consLeftMap
