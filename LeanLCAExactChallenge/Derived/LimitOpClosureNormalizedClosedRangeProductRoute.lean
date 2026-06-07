@@ -105,6 +105,73 @@ noncomputable def
   productEvidence_of_closedEmbeddingOpClosureNormalizedClosedRangeRouteW775
     (closedEmbeddingOpClosureDataOfLimitClosureW776 data)
 
+/-- W776 closed-map branch converted to the W769 stable-data surface. -/
+noncomputable def
+    directFiniteShapeStableDataOfClosedMapLimitOpClosureNormalizedClosedRangeW776
+    (data : MetrizableClosedMapLimitOpClosureNormalizedClosedRangeBranchDataW776) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapOpClosureNormalizedClosedRangeW775
+    (closedMapOpClosureDataOfLimitClosureW776 data)
+
+/-- W776 closed-embedding branch converted to the W769 stable-data surface. -/
+noncomputable def
+    directFiniteShapeStableDataOfClosedEmbeddingLimitOpClosureNormalizedClosedRangeW776
+    (data :
+      MetrizableClosedEmbeddingLimitOpClosureNormalizedClosedRangeBranchDataW776) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingOpClosureNormalizedClosedRangeW775
+    (closedEmbeddingOpClosureDataOfLimitClosureW776 data)
+
+/-- W776 closed-map branch as canonical stable-instance boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedMapLimitOpClosureNormalizedClosedRangeW776
+    (data : MetrizableClosedMapLimitOpClosureNormalizedClosedRangeBranchDataW776) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapOpClosureNormalizedClosedRangeW775
+    (closedMapOpClosureDataOfLimitClosureW776 data)
+
+/-- W776 closed-embedding branch as canonical stable-instance boundary inputs. -/
+noncomputable def
+    stableBoundaryInputsOfClosedEmbeddingLimitOpClosureNormalizedClosedRangeW776
+    (data :
+      MetrizableClosedEmbeddingLimitOpClosureNormalizedClosedRangeBranchDataW776) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingOpClosureNormalizedClosedRangeW775
+    (closedEmbeddingOpClosureDataOfLimitClosureW776 data)
+
+/-- W776 closed-map branch passes the canonical accepted stable boundary gate. -/
+noncomputable def acceptedStableOfClosedMapLimitOpClosureNormalizedClosedRangeW776
+    (data : MetrizableClosedMapLimitOpClosureNormalizedClosedRangeBranchDataW776) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapOpClosureNormalizedClosedRangeW775
+    (closedMapOpClosureDataOfLimitClosureW776 data)
+
+/-- W776 closed-embedding branch passes the canonical accepted stable boundary gate. -/
+noncomputable def
+    acceptedStableOfClosedEmbeddingLimitOpClosureNormalizedClosedRangeW776
+    (data :
+      MetrizableClosedEmbeddingLimitOpClosureNormalizedClosedRangeBranchDataW776) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingOpClosureNormalizedClosedRangeW775
+    (closedEmbeddingOpClosureDataOfLimitClosureW776 data)
+
+/-- W776 closed-map branch produces the canonical stable-boundary package. -/
+noncomputable def boundedDerivedOfClosedMapLimitOpClosureNormalizedClosedRangeStableBoundaryW776
+    (data : MetrizableClosedMapLimitOpClosureNormalizedClosedRangeBranchDataW776) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapOpClosureNormalizedClosedRangeStableBoundaryW775
+    (closedMapOpClosureDataOfLimitClosureW776 data)
+
+/-- W776 closed-embedding branch produces the canonical stable-boundary package. -/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingLimitOpClosureNormalizedClosedRangeStableBoundaryW776
+    (data :
+      MetrizableClosedEmbeddingLimitOpClosureNormalizedClosedRangeBranchDataW776) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingOpClosureNormalizedClosedRangeStableBoundaryW775
+    (closedEmbeddingOpClosureDataOfLimitClosureW776 data)
+
 /-- W776 input names after WPP limit closure supplies WPP limit stability. -/
 def limitOpClosureNormalizedClosedRangeProductRouteInputNamesW776 :
     List String :=
@@ -127,6 +194,7 @@ structure MetrizableLimitOpClosureNormalizedClosedRangeProductRouteStateW776 :
   seed : String
   declarations : List String
   limitClosureResult : String
+  stableBoundaryResult : String
   closedMapResult : String
   closedEmbeddingResult : String
   replacedInputs : List String
@@ -147,17 +215,29 @@ def currentMetrizableLimitOpClosureNormalizedClosedRangeProductRouteSupportState
       "closedEmbeddingOpClosureDataOfLimitClosureW776",
       "productEvidence_of_closedMapLimitOpClosureNormalizedClosedRangeRouteW776",
       "productEvidence_of_closedEmbeddingLimitOpClosureNormalizedClosedRangeRouteW776",
+      "directFiniteShapeStableDataOfClosedMapLimitOpClosureNormalizedClosedRangeW776",
+      "directFiniteShapeStableDataOfClosedEmbeddingLimitOpClosureNormalizedClosedRangeW776",
+      "stableBoundaryInputsOfClosedMapLimitOpClosureNormalizedClosedRangeW776",
+      "stableBoundaryInputsOfClosedEmbeddingLimitOpClosureNormalizedClosedRangeW776",
+      "acceptedStableOfClosedMapLimitOpClosureNormalizedClosedRangeW776",
+      "acceptedStableOfClosedEmbeddingLimitOpClosureNormalizedClosedRangeW776",
+      "boundedDerivedOfClosedMapLimitOpClosureNormalizedClosedRangeStableBoundaryW776",
+      "boundedDerivedOfClosedEmbeddingLimitOpClosureNormalizedClosedRangeStableBoundaryW776",
       "limitOpClosureNormalizedClosedRangeProductRouteInputNamesW776",
       "limitOpClosureNormalizedClosedRangeProductRouteInputNamesW776_count"]
   limitClosureResult :=
     "proved: direct WPP limit comparison plus exact-acyclic limit closure\
       supplies the W775 limit-stability field"
+  stableBoundaryResult :=
+    "proved: W776 limit/op-closure normalized closed-range branches pass the\
+      W775/W774/W773/W769 canonical stable-boundary accepted gate"
   closedMapResult :=
     "proved: closed-map W735 branch data plus WPP limit/op closure feed W775"
   closedEmbeddingResult :=
     "proved: closed-embedding W735 branch data plus WPP limit/op closure feed W775"
   replacedInputs :=
-    ["abstract WPP limit-stability field for WalkingParallelPair"]
+    ["abstract WPP limit-stability field for WalkingParallelPair",
+      "separate W775 WPP-op-closure stable-boundary branch input"]
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",

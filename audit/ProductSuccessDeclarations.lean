@@ -9206,6 +9206,20 @@ example :
     Dbounded.productEvidence_of_closedMapLimitOpClosureNormalizedClosedRangeRouteW776
   #check
     Dbounded.productEvidence_of_closedEmbeddingLimitOpClosureNormalizedClosedRangeRouteW776
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedMapLimitOpClosureNormalizedClosedRangeW776
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingLimitOpClosureNormalizedClosedRangeW776
+  #check Dbounded.stableBoundaryInputsOfClosedMapLimitOpClosureNormalizedClosedRangeW776
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingLimitOpClosureNormalizedClosedRangeW776
+  #check Dbounded.acceptedStableOfClosedMapLimitOpClosureNormalizedClosedRangeW776
+  #check
+    Dbounded.acceptedStableOfClosedEmbeddingLimitOpClosureNormalizedClosedRangeW776
+  #check
+    Dbounded.boundedDerivedOfClosedMapLimitOpClosureNormalizedClosedRangeStableBoundaryW776
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingLimitOpClosureNormalizedClosedRangeStableBoundaryW776
   #check Dbounded.limitOpClosureNormalizedClosedRangeProductRouteInputNamesW776
   #check Dbounded.limitOpClosureNormalizedClosedRangeProductRouteInputNamesW776_count
   #check Dbounded.MetrizableLimitOpClosureNormalizedClosedRangeProductRouteStateW776

@@ -1,0 +1,43 @@
+checkpoint=w_clean_20260607_w776_limit_boundary
+pre_commit_head=b773c0105cd149f69da50c5f5478b7ad9e499657
+product_success=false
+product_complete=false
+update_goal_allowed=false
+
+source_changes:
+- W776 closed-map and closed-embedding limit/op-closure normalized closed-range data now project to the W769 stable-data surface through W775, W774, and W773.
+- W776 branch data now produces canonical MetrizableStableInstanceBoundaryInputs through the W775 stable-boundary bridge.
+- W776 branch data now reaches AcceptedStableBoundedDerivedInfinityCategory and BoundedDerivedInfinityCategory packages through the canonical accepted stable gate.
+- W776 state metadata records the stable-boundary result and keeps productSuccessClaimed=false.
+
+obligations_discharged_or_derived:
+- Derived W769 stable data from W776 via the existing W776 -> W775 -> W774 -> W773 -> W769 route.
+- Derived stable-boundary inputs, accepted stable category, and bounded derived infinity category packages for both closed-map and closed-embedding W776 branches.
+- Eliminated the abstract WPP limit-stability field on this stable-boundary surface by deriving it from direct WPP limit comparison plus exact-acyclic limit closure.
+
+obligations_still_carried:
+- Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.
+- Construct concrete values for one W735 branch.
+- Prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed.
+- Construct mapping-cone WPP limit comparison.
+- Construct WPP exact-acyclic limit closure.
+- Construct WPP-op exact-acyclic colimit closure.
+- Construct W696 closed-range endpoint topology data.
+- Provide a positive OriginalFourTaskProductSuccess-style Lean witness before any product-success claim.
+
+verification:
+- lake env lean LeanLCAExactChallenge/Derived/LimitOpClosureNormalizedClosedRangeProductRoute.lean: exit 0
+- lake build LeanLCAExactChallenge.Derived.LimitOpClosureNormalizedClosedRangeProductRoute: exit 0
+- lake env lean audit/RequiredDeclarations.lean: exit 0
+- lake env lean audit/ProductSuccessDeclarations.lean: exit 0
+- lake env lean audit/OriginalFourTaskCompletionDeclarations.lean: exit 0
+- git diff --check: exit 0
+- scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/LimitOpClosureNormalizedClosedRangeProductRoute.lean: exit 0
+- changed-file completion-claim scan: rg_exit=1
+- true-boolean completion-claim scan: rg_exit=1
+- terminal outcome false scan: false false false, jq_exit=0
+- source/audit warning-error scan: rg_exit=1
+- build local warning-error scan for the touched W776 module or errors: rg_exit=1
+
+notes:
+- This checkpoint is nonterminal and does not authorize update_goal.
