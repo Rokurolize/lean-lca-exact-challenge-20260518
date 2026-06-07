@@ -1,0 +1,45 @@
+file=run/w_clean_20260607_w780_closed_quotient_epi_boundary_original_four_task_declarations.raw.log
+exit_status=0
+error_count=warning_count=line_count=51526
+--- first 20 lines ---
+LeanLCAExactChallenge.QuillenExactCategory.{v, u} (C : Type u) [CategoryTheory.Category.{v, u} C]
+  [CategoryTheory.Preadditive C] : Type (max u v)
+LeanLCAExactChallenge.QuillenExactCategory.Conflation.{v, u} {C : Type u} {inst✝ : CategoryTheory.Category.{v, u} C}
+  {inst✝¹ : CategoryTheory.Preadditive C} [self : LeanLCAExactChallenge.QuillenExactCategory C] :
+  CategoryTheory.ShortComplex C → Prop
+LeanLCAExactChallenge.QuillenExactCategory.inflation.{v, u} {C : Type u} [CategoryTheory.Category.{v, u} C]
+  [CategoryTheory.Preadditive C] [LeanLCAExactChallenge.QuillenExactCategory C] {X Y : C} (i : X ⟶ Y) : Prop
+LeanLCAExactChallenge.QuillenExactCategory.deflation.{v, u} {C : Type u} [CategoryTheory.Category.{v, u} C]
+  [CategoryTheory.Preadditive C] [LeanLCAExactChallenge.QuillenExactCategory C] {X Y : C} (p : X ⟶ Y) : Prop
+LeanLCAExactChallenge.QuillenExactCategory.split_conflation.{v, u} {C : Type u}
+  {inst✝ : CategoryTheory.Category.{v, u} C} {inst✝¹ : CategoryTheory.Preadditive C}
+  [self : LeanLCAExactChallenge.QuillenExactCategory C] (S : CategoryTheory.ShortComplex C) :
+  ∀ (a : S.Splitting), LeanLCAExactChallenge.QuillenExactCategory.Conflation S
+LeanLCAExactChallenge.QuillenExactCategory.pushout_inflation.{v, u} {C : Type u}
+  {inst✝ : CategoryTheory.Category.{v, u} C} {inst✝¹ : CategoryTheory.Preadditive C}
+  [self : LeanLCAExactChallenge.QuillenExactCategory C] {S : CategoryTheory.ShortComplex C}
+  (hS : LeanLCAExactChallenge.QuillenExactCategory.Conflation S) {Y : C} (a : S.X₁ ⟶ Y)
+  [CategoryTheory.Limits.HasPushout S.f a] :
+  ∃ Z g,
+    ∃ (zero : CategoryTheory.CategoryStruct.comp (CategoryTheory.Limits.pushout.inr S.f a) g = 0),
+--- last 20 lines ---
+  (globalClosedMapComponents : LeanLCAExactChallenge.Dbounded.SelectedDifferenceClosedMapDiagramComponentProviderW718)
+  (mappedCokernelClosedMapProvider :
+    LeanLCAExactChallenge.WppOpClosedRangeMappedCokernelPreservationV370SupportW519.MappedExplicitCokernelClosedMapProviderW519) :
+  LeanLCAExactChallenge.Dbounded.stableProjectionFactsOfBoundedDerivedPackageW1535
+      (LeanLCAExactChallenge.Dbounded.closedMapW829StableSemanticAdapterPackageW1539 input globalClosedMapComponents
+        mappedCokernelClosedMapProvider) =
+    LeanLCAExactChallenge.Dbounded.closedMapW829AcceptedDirectSourceStableProjectionFactsW1535 input
+      globalClosedMapComponents mappedCokernelClosedMapProvider
+LeanLCAExactChallenge.Dbounded.originalFourTaskContractCompletion_branchFullDataW829StableCertificateSemanticAdapterComparisonClosedEmbeddingProjectionFactsEqAcceptedW1542
+  (input :
+    LeanLCAExactChallenge.Dbounded.W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonInputW1540)
+  (globalClosedEmbeddingComponents :
+    LeanLCAExactChallenge.Dbounded.SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+  (mappedCokernelClosedEmbeddingProvider :
+    LeanLCAExactChallenge.WppOpClosedRangeMappedCokernelPreservationV370SupportW519.MappedExplicitCokernelClosedEmbeddingProviderW519) :
+  LeanLCAExactChallenge.Dbounded.stableProjectionFactsOfBoundedDerivedPackageW1535
+      (LeanLCAExactChallenge.Dbounded.closedEmbeddingW829StableSemanticAdapterPackageW1539 input
+        globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider) =
+    LeanLCAExactChallenge.Dbounded.closedEmbeddingW829AcceptedDirectSourceStableProjectionFactsW1535 input
+      globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider

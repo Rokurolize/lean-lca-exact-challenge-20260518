@@ -9336,6 +9336,20 @@ example :
   #check Dbounded.closedEmbeddingDirectComparisonDataOfClosedQuotientEpiW780
   #check Dbounded.productEvidence_of_closedMapClosedQuotientEpiRouteW780
   #check Dbounded.productEvidence_of_closedEmbeddingClosedQuotientEpiRouteW780
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedMapClosedQuotientEpiW780
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingClosedQuotientEpiW780
+  #check
+    Dbounded.stableBoundaryInputsOfClosedMapClosedQuotientEpiW780
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingClosedQuotientEpiW780
+  #check Dbounded.acceptedStableOfClosedMapClosedQuotientEpiW780
+  #check Dbounded.acceptedStableOfClosedEmbeddingClosedQuotientEpiW780
+  #check
+    Dbounded.boundedDerivedOfClosedMapClosedQuotientEpiStableBoundaryW780
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingClosedQuotientEpiStableBoundaryW780
   #check Dbounded.closedQuotientEpiDirectComparisonLeftSnakeInputNamesW780
   #check Dbounded.closedQuotientEpiDirectComparisonLeftSnakeInputNamesW780_count
   #check Dbounded.MetrizableClosedQuotientEpiDirectComparisonLeftSnakeRouteStateW780

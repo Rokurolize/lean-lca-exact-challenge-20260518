@@ -1,0 +1,45 @@
+file=run/w_clean_20260607_w780_closed_quotient_epi_boundary_product_success_declarations.raw.log
+exit_status=0
+error_count=warning_count=line_count=70526
+--- first 20 lines ---
+LeanLCAExactChallenge.QuillenExactCategory.inflation_of_conflation.{v, u} {C : Type u} [Category.{v, u} C]
+  [Preadditive C] [QuillenExactCategory C] {S : ShortComplex C} (hS : QuillenExactCategory.Conflation S) :
+  QuillenExactCategory.inflation S.f
+LeanLCAExactChallenge.QuillenExactCategory.deflation_of_conflation.{v, u} {C : Type u} [Category.{v, u} C]
+  [Preadditive C] [QuillenExactCategory C] {S : ShortComplex C} (hS : QuillenExactCategory.Conflation S) :
+  QuillenExactCategory.deflation S.g
+LeanLCAExactChallenge.QuillenExactCategory.conflation_of_splitting.{v, u} {C : Type u} [Category.{v, u} C]
+  [Preadditive C] [QuillenExactCategory C] (S : ShortComplex C) (hS : S.Splitting) : QuillenExactCategory.Conflation S
+LeanLCAExactChallenge.QuillenExactCategory.inflation_of_splitting.{v, u} {C : Type u} [Category.{v, u} C]
+  [Preadditive C] [QuillenExactCategory C] (S : ShortComplex C) (hS : S.Splitting) : QuillenExactCategory.inflation S.f
+LeanLCAExactChallenge.QuillenExactCategory.deflation_of_splitting.{v, u} {C : Type u} [Category.{v, u} C]
+  [Preadditive C] [QuillenExactCategory C] (S : ShortComplex C) (hS : S.Splitting) : QuillenExactCategory.deflation S.g
+LeanLCAExactChallenge.QuillenExactCategory.conflation_iso_transport.{v, u} {C : Type u} [Category.{v, u} C]
+  [Preadditive C] [QuillenExactCategory C] {S T : ShortComplex C} (e : S ≅ T) (hS : QuillenExactCategory.Conflation S) :
+  QuillenExactCategory.Conflation T
+LeanLCAExactChallenge.QuillenExactCategory.pushout_inflation_of_inflation.{v, u} {C : Type u} [Category.{v, u} C]
+  [Preadditive C] [QuillenExactCategory C] {X Y : C} {i : X ⟶ Y} (hi : QuillenExactCategory.inflation i) {Y' : C}
+  (a : X ⟶ Y') [HasPushout i a] : QuillenExactCategory.inflation (pushout.inr i a)
+LeanLCAExactChallenge.QuillenExactCategory.pullback_deflation_of_deflation.{v, u} {C : Type u} [Category.{v, u} C]
+  [Preadditive C] [QuillenExactCategory C] {X Y : C} {p : X ⟶ Y} (hp : QuillenExactCategory.deflation p) {Y' : C}
+--- last 20 lines ---
+  (globalClosedMapComponents : LeanLCAExactChallenge.Dbounded.SelectedDifferenceClosedMapDiagramComponentProviderW718)
+  (mappedCokernelClosedMapProvider :
+    LeanLCAExactChallenge.WppOpClosedRangeMappedCokernelPreservationV370SupportW519.MappedExplicitCokernelClosedMapProviderW519) :
+  LeanLCAExactChallenge.Dbounded.stableProjectionFactsOfBoundedDerivedPackageW1535
+      (LeanLCAExactChallenge.Dbounded.closedMapW829StableSemanticAdapterPackageW1539 input globalClosedMapComponents
+        mappedCokernelClosedMapProvider) =
+    LeanLCAExactChallenge.Dbounded.closedMapW829AcceptedDirectSourceStableProjectionFactsW1535 input
+      globalClosedMapComponents mappedCokernelClosedMapProvider
+LeanLCAExactChallenge.Dbounded.originalFourTaskContractCompletion_branchFullDataW829StableCertificateSemanticAdapterComparisonClosedEmbeddingProjectionFactsEqAcceptedW1542
+  (input :
+    LeanLCAExactChallenge.Dbounded.W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateSemanticAdapterComparisonInputW1540)
+  (globalClosedEmbeddingComponents :
+    LeanLCAExactChallenge.Dbounded.SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+  (mappedCokernelClosedEmbeddingProvider :
+    LeanLCAExactChallenge.WppOpClosedRangeMappedCokernelPreservationV370SupportW519.MappedExplicitCokernelClosedEmbeddingProviderW519) :
+  LeanLCAExactChallenge.Dbounded.stableProjectionFactsOfBoundedDerivedPackageW1535
+      (LeanLCAExactChallenge.Dbounded.closedEmbeddingW829StableSemanticAdapterPackageW1539 input
+        globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider) =
+    LeanLCAExactChallenge.Dbounded.closedEmbeddingW829AcceptedDirectSourceStableProjectionFactsW1535 input
+      globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider
