@@ -207,6 +207,32 @@ noncomputable def closedEmbeddingAcceptedStableDboundedInfinityCategoryW829Direc
     input globalClosedEmbeddingComponents
     mappedCokernelClosedEmbeddingProvider
 
+/-- W1534 closed-map accepted stable package through the W1533 direct-localization boundary. -/
+noncomputable def
+    closedMapAcceptedStableBoundedDerivedInfinityCategoryW829DirectLocalizationBoundaryW1534
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateFromDirectSourceInputW1534)
+    (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+    (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (Dbounded.closedMapStableInstanceBoundaryDirectLocalizationInputsW829OfW843ConvergenceW1533
+      input globalClosedMapComponents mappedCokernelClosedMapProvider)
+
+/-- W1534 closed-embedding accepted stable package through the W1533 direct-localization boundary. -/
+noncomputable def
+    closedEmbeddingAcceptedStableBoundedDerivedInfinityCategoryW829DirectLocalizationBoundaryW1534
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateFromDirectSourceInputW1534)
+    (globalClosedEmbeddingComponents :
+      SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+    (mappedCokernelClosedEmbeddingProvider :
+      MappedExplicitCokernelClosedEmbeddingProviderW519) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (Dbounded.closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsW829OfW843ConvergenceW1533
+      input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider)
+
 /-- W1534 closed-map certificate evidence is accepted by the stable route checker. -/
 theorem closedMapStableRouteAcceptedW829DirectSourceW1534
     (input :
@@ -238,6 +264,40 @@ theorem closedEmbeddingStableRouteAcceptedW829DirectSourceW1534
             mappedCokernelClosedEmbeddingProvider).certificate) =
       true :=
   (closedEmbeddingAcceptedStableBoundedDerivedInfinityCategoryW829DirectSourceW1534
+    input globalClosedEmbeddingComponents
+    mappedCokernelClosedEmbeddingProvider).accepted
+
+/-- W1534 closed-map boundary-routed certificate evidence is accepted. -/
+theorem closedMapStableRouteAcceptedW829DirectLocalizationBoundaryW1534
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateFromDirectSourceInputW1534)
+    (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+    (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519) :
+    Dbounded.StableRouteAttempt.accepted
+        (C := MetrizableLCA.{0})
+        (.fullCertificate
+          (closedMapAcceptedStableBoundedDerivedInfinityCategoryW829DirectLocalizationBoundaryW1534
+            input globalClosedMapComponents mappedCokernelClosedMapProvider).certificate) =
+      true :=
+  (closedMapAcceptedStableBoundedDerivedInfinityCategoryW829DirectLocalizationBoundaryW1534
+    input globalClosedMapComponents mappedCokernelClosedMapProvider).accepted
+
+/-- W1534 closed-embedding boundary-routed certificate evidence is accepted. -/
+theorem closedEmbeddingStableRouteAcceptedW829DirectLocalizationBoundaryW1534
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateFromDirectSourceInputW1534)
+    (globalClosedEmbeddingComponents :
+      SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+    (mappedCokernelClosedEmbeddingProvider :
+      MappedExplicitCokernelClosedEmbeddingProviderW519) :
+    Dbounded.StableRouteAttempt.accepted
+        (C := MetrizableLCA.{0})
+        (.fullCertificate
+          (closedEmbeddingAcceptedStableBoundedDerivedInfinityCategoryW829DirectLocalizationBoundaryW1534
+            input globalClosedEmbeddingComponents
+            mappedCokernelClosedEmbeddingProvider).certificate) =
+      true :=
+  (closedEmbeddingAcceptedStableBoundedDerivedInfinityCategoryW829DirectLocalizationBoundaryW1534
     input globalClosedEmbeddingComponents
     mappedCokernelClosedEmbeddingProvider).accepted
 
@@ -274,6 +334,44 @@ noncomputable def
     (closedEmbeddingBoundedDerivedInfinityCategoryOfW829DirectSourceConvergenceW1533
       input globalClosedEmbeddingComponents
       mappedCokernelClosedEmbeddingProvider)
+
+/--
+W1534 closed-map product-facing package guarded by the boundary-routed accepted
+stable certificate.
+-/
+noncomputable def
+    closedMapBoundedDerivedInfinityCategoryOfW829AcceptedDirectLocalizationBoundaryW1534
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateFromDirectSourceInputW1534)
+    (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+    (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  Dbounded.stableBoundedDerivedInfinityCategoryOfAccepted MetrizableLCA.{0}
+    (closedMapAcceptedStableBoundedDerivedInfinityCategoryW829DirectLocalizationBoundaryW1534
+      input globalClosedMapComponents mappedCokernelClosedMapProvider)
+    (closedMapBoundedDerivedInfinityCategoryOfW829DirectLocalizationBoundaryW1533
+      input globalClosedMapComponents mappedCokernelClosedMapProvider)
+
+/--
+W1534 closed-embedding product-facing package guarded by the boundary-routed
+accepted stable certificate.
+-/
+noncomputable def
+    closedEmbeddingBoundedDerivedInfinityCategoryOfW829AcceptedDirectLocalizationBoundaryW1534
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateFromDirectSourceInputW1534)
+    (globalClosedEmbeddingComponents :
+      SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+    (mappedCokernelClosedEmbeddingProvider :
+      MappedExplicitCokernelClosedEmbeddingProviderW519) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  Dbounded.stableBoundedDerivedInfinityCategoryOfAccepted MetrizableLCA.{0}
+    (closedEmbeddingAcceptedStableBoundedDerivedInfinityCategoryW829DirectLocalizationBoundaryW1534
+      input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider)
+    (closedEmbeddingBoundedDerivedInfinityCategoryOfW829DirectLocalizationBoundaryW1533
+      input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider)
 
 /-- W1534 names the four stable certificate projections supplied from W1533. -/
 def w829StableCertificateProjectionNamesW1534 : List String :=
@@ -327,10 +425,16 @@ def currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFuncto
       "closedEmbeddingStableFourProjectionCertificateW829DirectSource_readyW1534",
       "closedMapAcceptedStableBoundedDerivedInfinityCategoryW829DirectSourceW1534",
       "closedEmbeddingAcceptedStableBoundedDerivedInfinityCategoryW829DirectSourceW1534",
+      "closedMapAcceptedStableBoundedDerivedInfinityCategoryW829DirectLocalizationBoundaryW1534",
+      "closedEmbeddingAcceptedStableBoundedDerivedInfinityCategoryW829DirectLocalizationBoundaryW1534",
       "closedMapStableRouteAcceptedW829DirectSourceW1534",
       "closedEmbeddingStableRouteAcceptedW829DirectSourceW1534",
+      "closedMapStableRouteAcceptedW829DirectLocalizationBoundaryW1534",
+      "closedEmbeddingStableRouteAcceptedW829DirectLocalizationBoundaryW1534",
       "closedMapBoundedDerivedInfinityCategoryOfW829AcceptedDirectSourceConvergenceW1534",
       "closedEmbeddingBoundedDerivedInfinityCategoryOfW829AcceptedDirectSourceConvergenceW1534",
+      "closedMapBoundedDerivedInfinityCategoryOfW829AcceptedDirectLocalizationBoundaryW1534",
+      "closedEmbeddingBoundedDerivedInfinityCategoryOfW829AcceptedDirectLocalizationBoundaryW1534",
       "w829StableCertificateProjectionNamesW1534_count",
       "w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateFromDirectSourceInputNamesW1534_count"]
   semanticInputResult :=
@@ -341,10 +445,11 @@ def currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFuncto
       and pushout-pullback certificate is ready on both branches"
   acceptedRouteResult :=
     "proved: the stable route checker accepts the W1533-derived certificate on \
-      both branches"
+      both branches, including the direct-localization boundary route"
   stablePackageResult :=
     "proved: the W1533 stable bounded-derived package is guarded by accepted \
-      stable certificate evidence on both branches"
+      stable certificate evidence on both branches, including the \
+      direct-localization boundary package"
   remainingInputs :=
     w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableCertificateFromDirectSourceInputNamesW1534
   stableCertificateProjections := w829StableCertificateProjectionNamesW1534

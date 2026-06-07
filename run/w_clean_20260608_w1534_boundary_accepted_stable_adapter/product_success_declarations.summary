@@ -1,0 +1,3 @@
+command: lake env lean audit/ProductSuccessDeclarations.lean
+exit_code: 0
+summary: passed after registering the W1534 boundary-routed accepted stable declarations; product success remains false.
