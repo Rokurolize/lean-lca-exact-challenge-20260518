@@ -6657,6 +6657,38 @@ theorem yonedaProduct_add_right
         yonedaProduct (X := X) (Y := Y) (Z := Z) m n a c :=
   map_add (yonedaProduct (X := X) (Y := Y) (Z := Z) m n a) b c
 
+theorem yonedaProduct_neg_left
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (a : YonedaExt (C := MetrizableLCA.{u}) X Y (m + 1)) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n (-a) =
+      -yonedaProduct (X := X) (Y := Y) (Z := Z) m n a :=
+  map_neg (yonedaProduct (X := X) (Y := Y) (Z := Z) m n) a
+
+theorem yonedaProduct_neg_right
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (a : YonedaExt (C := MetrizableLCA.{u}) X Y (m + 1))
+    (b : YonedaExt (C := MetrizableLCA.{u}) Y Z (n + 1)) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n a (-b) =
+      -yonedaProduct (X := X) (Y := Y) (Z := Z) m n a b :=
+  map_neg (yonedaProduct (X := X) (Y := Y) (Z := Z) m n a) b
+
+theorem yonedaProduct_sub_left
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (a b : YonedaExt (C := MetrizableLCA.{u}) X Y (m + 1)) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n (a - b) =
+      yonedaProduct (X := X) (Y := Y) (Z := Z) m n a -
+        yonedaProduct (X := X) (Y := Y) (Z := Z) m n b :=
+  map_sub (yonedaProduct (X := X) (Y := Y) (Z := Z) m n) a b
+
+theorem yonedaProduct_sub_right
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (a : YonedaExt (C := MetrizableLCA.{u}) X Y (m + 1))
+    (b c : YonedaExt (C := MetrizableLCA.{u}) Y Z (n + 1)) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n a (b - c) =
+      yonedaProduct (X := X) (Y := Y) (Z := Z) m n a b -
+        yonedaProduct (X := X) (Y := Y) (Z := Z) m n a c :=
+  map_sub (yonedaProduct (X := X) (Y := Y) (Z := Z) m n a) b c
+
 /-- Zero in the left Ext variable gives the zero Yoneda product homomorphism. -/
 theorem yonedaProduct_zero_left
     {X Y Z : MetrizableLCA.{u}} {m n : ℕ} :

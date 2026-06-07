@@ -669,6 +669,10 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_assoc
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_add_left
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_add_right
+#check LeanLCAExactChallenge.YonedaExt.yonedaProduct_neg_left
+#check LeanLCAExactChallenge.YonedaExt.yonedaProduct_neg_right
+#check LeanLCAExactChallenge.YonedaExt.yonedaProduct_sub_left
+#check LeanLCAExactChallenge.YonedaExt.yonedaProduct_sub_right
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_zero_left
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_zero_right
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_baer_sum_left

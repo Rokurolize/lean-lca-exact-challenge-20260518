@@ -546,6 +546,10 @@ contract-completing stable bounded derived infinity-category witness.
 #check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtCast_neg
 #check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtCast_sub
 #check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtCast_baer_sum
+#check LeanLCAExactChallenge.YonedaExt.yonedaProduct_neg_left
+#check LeanLCAExactChallenge.YonedaExt.yonedaProduct_neg_right
+#check LeanLCAExactChallenge.YonedaExt.yonedaProduct_sub_left
+#check LeanLCAExactChallenge.YonedaExt.yonedaProduct_sub_right
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_zero_left
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_zero_right
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_baer_sum_left
