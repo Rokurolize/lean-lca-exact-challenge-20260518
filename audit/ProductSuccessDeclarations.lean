@@ -520,6 +520,14 @@ example : HasFiniteColimits MetrizableLCA := by infer_instance
 #check MetrizableLCA.shortExactExtensionPushout_kernel_iff_range_i
 #check MetrizableLCA.strictShortExact_pushout
 #check MetrizableLCA.quillenInflation_pushout
+#check MetrizableLCA.quillenConflation_iff_closed_inclusion_open_surjection_algebraic_exact
+#check MetrizableLCA.quillenConflation_of_closed_inclusion_open_surjection_algebraic_exact
+#check MetrizableLCA.closed_inclusion_of_quillenConflation
+#check MetrizableLCA.open_surjection_of_quillenConflation
+#check MetrizableLCA.algebraic_kernel_of_quillenConflation
+#check MetrizableLCA.forgetToAddCommGrpCat_exact_of_quillenConflation
+#check MetrizableLCA.kernelForkOfQuillenConflation
+#check MetrizableLCA.cokernelCoforkOfQuillenConflation
 #check MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict
 #check (inferInstance : HasForget₂ MetrizableLCA AddCommGrpCat)
 #check (inferInstance : (forget₂ MetrizableLCA AddCommGrpCat).Additive)

@@ -16,6 +16,7 @@ namespace LeanLCAExactChallenge
 
 open CategoryTheory
 open CategoryTheory.Limits
+open Topology
 
 namespace MetrizableLCA
 
@@ -48,6 +49,79 @@ theorem strictShortExact_of_quillenConflation {S : ShortComplex MetrizableLCA.{u
 theorem quillenConflation_of_strictShortExact {S : ShortComplex MetrizableLCA.{u}}
     (hS : strictShortExact S) : QuillenExactCategory.Conflation S :=
   quillenConflation_iff_strictShortExact.mpr hS
+
+/-- In the canonical exact-category instance, conflations are exactly the
+challenge's closed-inclusion/open-surjection algebraically exact sequences. -/
+theorem quillenConflation_iff_closed_inclusion_open_surjection_algebraic_exact
+    {S : ShortComplex MetrizableLCA.{u}} :
+    QuillenExactCategory.Conflation S ↔
+      IsClosedEmbedding (S.f : S.X₁ → S.X₂) ∧
+      IsOpenMap (S.g : S.X₂ → S.X₃) ∧
+      Function.Surjective (S.g : S.X₂ → S.X₃) ∧
+      ∀ x₂ : S.X₂, S.g x₂ = 0 → ∃ x₁ : S.X₁, S.f x₁ = x₂ := by
+  constructor
+  · intro hS
+    have hStrict := strictShortExact_of_quillenConflation hS
+    exact ⟨hStrict.closed_inclusion, hStrict.open_map, hStrict.surjective,
+      hStrict.algebraic_exact⟩
+  · rintro ⟨hclosed, hopen, hsurj, hexact⟩
+    exact quillenConflation_of_strictShortExact
+      { closed_inclusion := hclosed
+        open_map := hopen
+        surjective := hsurj
+        algebraic_exact := hexact }
+
+/-- Build a canonical Quillen conflation from the closed-inclusion/open-
+surjection algebraically exact data stated in the challenge. -/
+theorem quillenConflation_of_closed_inclusion_open_surjection_algebraic_exact
+    {S : ShortComplex MetrizableLCA.{u}}
+    (hclosed : IsClosedEmbedding (S.f : S.X₁ → S.X₂))
+    (hopen : IsOpenMap (S.g : S.X₂ → S.X₃))
+    (hsurj : Function.Surjective (S.g : S.X₂ → S.X₃))
+    (hexact : ∀ x₂ : S.X₂, S.g x₂ = 0 → ∃ x₁ : S.X₁, S.f x₁ = x₂) :
+    QuillenExactCategory.Conflation S :=
+  quillenConflation_iff_closed_inclusion_open_surjection_algebraic_exact.mpr
+    ⟨hclosed, hopen, hsurj, hexact⟩
+
+/-- The left map of a canonical Quillen conflation is a closed embedding. -/
+theorem closed_inclusion_of_quillenConflation {S : ShortComplex MetrizableLCA.{u}}
+    (hS : QuillenExactCategory.Conflation S) :
+    IsClosedEmbedding (S.f : S.X₁ → S.X₂) :=
+  (quillenConflation_iff_closed_inclusion_open_surjection_algebraic_exact.mp hS).1
+
+/-- The right map of a canonical Quillen conflation is an open surjection. -/
+theorem open_surjection_of_quillenConflation {S : ShortComplex MetrizableLCA.{u}}
+    (hS : QuillenExactCategory.Conflation S) :
+    IsOpenMap (S.g : S.X₂ → S.X₃) ∧ Function.Surjective (S.g : S.X₂ → S.X₃) := by
+  have hfields :=
+    quillenConflation_iff_closed_inclusion_open_surjection_algebraic_exact.mp hS
+  exact ⟨hfields.2.1, hfields.2.2.1⟩
+
+/-- A canonical Quillen conflation has the expected algebraic kernel. -/
+theorem algebraic_kernel_of_quillenConflation {S : ShortComplex MetrizableLCA.{u}}
+    (hS : QuillenExactCategory.Conflation S) :
+    Function.Injective (S.f : S.X₁ → S.X₂) ∧
+      ∀ x₂ : S.X₂, S.g x₂ = 0 ↔ ∃ x₁ : S.X₁, S.f x₁ = x₂ :=
+  algebraic_kernel_of_strict (strictShortExact_of_quillenConflation hS)
+
+/-- After forgetting topology, a canonical Quillen conflation is exact as a
+short complex of abelian groups. -/
+theorem forgetToAddCommGrpCat_exact_of_quillenConflation
+    {S : ShortComplex MetrizableLCA.{u}} (hS : QuillenExactCategory.Conflation S) :
+    (S.map forgetToAddCommGrpCat).Exact :=
+  forgetToAddCommGrpCat_exact_of_strict (strictShortExact_of_quillenConflation hS)
+
+/-- A canonical Quillen conflation has the expected categorical kernel fork. -/
+noncomputable def kernelForkOfQuillenConflation {S : ShortComplex MetrizableLCA.{u}}
+    (hS : QuillenExactCategory.Conflation S) :
+    IsLimit (KernelFork.ofι S.f S.zero) :=
+  kernelForkOfStrictShortExact (strictShortExact_of_quillenConflation hS)
+
+/-- A canonical Quillen conflation has the expected categorical cokernel cofork. -/
+noncomputable def cokernelCoforkOfQuillenConflation {S : ShortComplex MetrizableLCA.{u}}
+    (hS : QuillenExactCategory.Conflation S) :
+    IsColimit (CokernelCofork.ofπ S.g S.zero) :=
+  cokernelCoforkOfStrictShortExact (strictShortExact_of_quillenConflation hS)
 
 /-- In the canonical exact-category instance, inflations are precisely maps that
 occur as the left map of a strict short exact sequence. -/
