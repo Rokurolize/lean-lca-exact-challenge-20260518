@@ -593,6 +593,10 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaExt.baer_sum_assoc
 #check LeanLCAExactChallenge.YonedaExt.baer_sum_neg_left
 #check LeanLCAExactChallenge.YonedaExt.baer_sum_neg_right
+#check LeanLCAExactChallenge.YonedaExt.baer_sum_neg_right_eq_sub
+#check LeanLCAExactChallenge.YonedaExt.baer_sum_neg_left_eq_sub
+#check LeanLCAExactChallenge.YonedaExt.baer_sum_sub_left
+#check LeanLCAExactChallenge.YonedaExt.baer_sum_sub_right
 #check LeanLCAExactChallenge.YonedaExt.baer_sum_ofExtension_eq_of_relation_mem
 #check LeanLCAExactChallenge.YonedaExt.baer_sum_ofExtension_eq_of_baer
 #check LeanLCAExactChallenge.YonedaExt.baer_sum_ofExtension_eq_of_baerChain

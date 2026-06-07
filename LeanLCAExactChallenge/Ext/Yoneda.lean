@@ -4639,6 +4639,22 @@ theorem baer_sum_neg_right (a : YonedaExt X Y n) :
     baer_sum a (-a) = 0 := by
   simp [baer_sum]
 
+theorem baer_sum_neg_right_eq_sub (a b : YonedaExt X Y n) :
+    baer_sum a (-b) = a - b := by
+  simp [baer_sum, sub_eq_add_neg]
+
+theorem baer_sum_neg_left_eq_sub (a b : YonedaExt X Y n) :
+    baer_sum (-a) b = b - a := by
+  simp [baer_sum, sub_eq_add_neg, add_comm]
+
+theorem baer_sum_sub_left (a b c : YonedaExt X Y n) :
+    baer_sum (a - b) c = baer_sum a c - b := by
+  simp [baer_sum, sub_eq_add_neg, add_assoc, add_comm, add_left_comm]
+
+theorem baer_sum_sub_right (a b c : YonedaExt X Y n) :
+    baer_sum a (b - c) = baer_sum a b - c := by
+  simp [baer_sum, sub_eq_add_neg, add_assoc]
+
 theorem positiveYonedaExtCast_baer_sum {X Y : C} {n n' : ℕ} (h : n = n')
     (a b : YonedaExt (C := C) X Y (Nat.succ n)) :
     positiveYonedaExtCast (C := C) (X := X) (Y := Y) h
