@@ -1,0 +1,3 @@
+## goal-clean-positive-witness-20260607...origin/goal-clean-positive-witness-20260607
+?? run/resumption_gate_20260608_stable_v4300_migration/contract_hashes.txt
+?? run/resumption_gate_20260608_stable_v4300_migration/git_status.txt

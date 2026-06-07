@@ -1,0 +1,27 @@
+⚠ [1792/1792] Built LeanLCAExactChallenge.MathlibSurvey (12s)
+warning: LeanLCAExactChallenge/MathlibSurvey.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+info: LeanLCAExactChallenge/MathlibSurvey.lean:21:0: TopCat.{u} : Type (u + 1)
+info: LeanLCAExactChallenge/MathlibSurvey.lean:22:0: TopCat.Hom.{u} (X Y : TopCat) : Type u
+info: LeanLCAExactChallenge/MathlibSurvey.lean:23:0: AddGroupTopology.{u} (α : Type u) [AddGroup α] : Type u
+info: LeanLCAExactChallenge/MathlibSurvey.lean:24:0: LocallyCompactSpace.{u_3} (X : Type u_3) [TopologicalSpace X] : Prop
+info: LeanLCAExactChallenge/MathlibSurvey.lean:25:0: MetricSpace.{u} (α : Type u) : Type u
+info: LeanLCAExactChallenge/MathlibSurvey.lean:26:0: AddCommGrpCat.{u} : Type (u + 1)
+info: LeanLCAExactChallenge/MathlibSurvey.lean:27:0: AddCommGrpCat.Hom.{u} (A B : AddCommGrpCat) : Type u
+info: LeanLCAExactChallenge/MathlibSurvey.lean:28:0: CategoryTheory.ShortComplex.{v_1, u_1} (C : Type u_1) [Category.{v_1, u_1} C] [Limits.HasZeroMorphisms C] :
+  Type (max u_1 v_1)
+info: LeanLCAExactChallenge/MathlibSurvey.lean:29:0: CategoryTheory.ShortComplex.Exact.{v_1, u_1} {C : Type u_1} [Category.{v_1, u_1} C] [Limits.HasZeroMorphisms C]
+  (S : ShortComplex C) : Prop
+info: LeanLCAExactChallenge/MathlibSurvey.lean:30:0: DerivedCategory.{w, v, u} (C : Type u) [Category.{v, u} C] [Abelian C] [HasDerivedCategory C] : Type (max u v)
+info: LeanLCAExactChallenge/MathlibSurvey.lean:31:0: HasDerivedCategory.{w, v, u} (C : Type u) [Category.{v, u} C] [Abelian C] : Type (max (max ((max u v) + 1) v) (w + 1))
+info: LeanLCAExactChallenge/MathlibSurvey.lean:32:0: CategoryTheory.Abelian.Ext.{w, v, u} {C : Type u} [Category.{v, u} C] [Abelian C] [HasExt C] (X Y : C) (n : ℕ) : Type w
+info: LeanLCAExactChallenge/MathlibSurvey.lean:33:0: CategoryTheory.Abelian.{v, u} (C : Type u) [Category.{v, u} C] : Type (max u v)
+info: LeanLCAExactChallenge/MathlibSurvey.lean:34:0: CategoryTheory.Preadditive.{v, u} (C : Type u) [Category.{v, u} C] : Type (max u v)
+info: LeanLCAExactChallenge/MathlibSurvey.lean:35:0: CategoryTheory.Limits.HasKernel.{v, u} {C : Type u} [Category.{v, u} C] [Limits.HasZeroMorphisms C] {X Y : C}
+  (f : X ⟶ Y) : Prop
+info: LeanLCAExactChallenge/MathlibSurvey.lean:36:0: CategoryTheory.Limits.HasCokernel.{v, u} {C : Type u} [Category.{v, u} C] [Limits.HasZeroMorphisms C] {X Y : C}
+  (f : X ⟶ Y) : Prop
+Build completed successfully (1792 jobs).
