@@ -90,6 +90,78 @@ noncomputable def productEvidence_of_closedEmbeddingStrictRealizationTerminalRou
   productEvidence_of_closedEmbeddingTargetIsoTerminalRouteW808
     (closedEmbeddingTargetIsoDataOfStrictRealizationW809 data)
 
+/-! W809 closed-map strict realization data as W808/W803 direct stable data. -/
+noncomputable def directFiniteShapeStableDataOfClosedMapStrictRealizationTerminalW809
+    (data : MetrizableClosedMapStrictRealizationTerminalBranchDataW809) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapTargetIsoTerminalW808
+    (closedMapTargetIsoDataOfStrictRealizationW809 data)
+
+/-!
+W809 closed-embedding strict realization data as W808/W803 direct stable data.
+-/
+noncomputable def
+    directFiniteShapeStableDataOfClosedEmbeddingStrictRealizationTerminalW809
+    (data : MetrizableClosedEmbeddingStrictRealizationTerminalBranchDataW809) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingTargetIsoTerminalW808
+    (closedEmbeddingTargetIsoDataOfStrictRealizationW809 data)
+
+/-! W809 closed-map strict realization data as stable-boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedMapStrictRealizationTerminalW809
+    (data : MetrizableClosedMapStrictRealizationTerminalBranchDataW809) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapTargetIsoTerminalW808
+    (closedMapTargetIsoDataOfStrictRealizationW809 data)
+
+/-!
+W809 closed-embedding strict realization data as stable-boundary inputs.
+-/
+noncomputable def stableBoundaryInputsOfClosedEmbeddingStrictRealizationTerminalW809
+    (data : MetrizableClosedEmbeddingStrictRealizationTerminalBranchDataW809) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingTargetIsoTerminalW808
+    (closedEmbeddingTargetIsoDataOfStrictRealizationW809 data)
+
+/-! W809 closed-map strict realization data passes the stable boundary. -/
+noncomputable def acceptedStableOfClosedMapStrictRealizationTerminalW809
+    (data : MetrizableClosedMapStrictRealizationTerminalBranchDataW809) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapTargetIsoTerminalW808
+    (closedMapTargetIsoDataOfStrictRealizationW809 data)
+
+/-!
+W809 closed-embedding strict realization data passes the stable boundary.
+-/
+noncomputable def acceptedStableOfClosedEmbeddingStrictRealizationTerminalW809
+    (data : MetrizableClosedEmbeddingStrictRealizationTerminalBranchDataW809) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingTargetIsoTerminalW808
+    (closedEmbeddingTargetIsoDataOfStrictRealizationW809 data)
+
+/-!
+W809 closed-map strict realization data produces the stable-boundary package.
+-/
+noncomputable def
+    boundedDerivedOfClosedMapStrictRealizationTerminalStableBoundaryW809
+    (data : MetrizableClosedMapStrictRealizationTerminalBranchDataW809) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapTargetIsoTerminalStableBoundaryW808
+    (closedMapTargetIsoDataOfStrictRealizationW809 data)
+
+/-!
+W809 closed-embedding strict realization data produces the stable-boundary
+package.
+-/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingStrictRealizationTerminalStableBoundaryW809
+    (data : MetrizableClosedEmbeddingStrictRealizationTerminalBranchDataW809) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingTargetIsoTerminalStableBoundaryW808
+    (closedEmbeddingTargetIsoDataOfStrictRealizationW809 data)
+
 def strictRealizationTerminalProductRouteInputNamesW809 : List String :=
   ["universal IsIso for every MetrizableLCA left-right homology comparison",
     "W735 closed-map or closed-embedding branch data",
@@ -105,6 +177,7 @@ structure MetrizableStrictRealizationTerminalRouteStateW809 : Type where
   targetIsoReductionResult : String
   closedMapResult : String
   closedEmbeddingResult : String
+  stableBoundaryResult : String
   replacedInputs : List String
   remainingInputs : List String
   productSuccessClaimed : Bool
@@ -121,6 +194,14 @@ def currentMetrizableStrictRealizationTerminalRouteStateW809 :
       "closedEmbeddingTargetIsoDataOfStrictRealizationW809",
       "productEvidence_of_closedMapStrictRealizationTerminalRouteW809",
       "productEvidence_of_closedEmbeddingStrictRealizationTerminalRouteW809",
+      "directFiniteShapeStableDataOfClosedMapStrictRealizationTerminalW809",
+      "directFiniteShapeStableDataOfClosedEmbeddingStrictRealizationTerminalW809",
+      "stableBoundaryInputsOfClosedMapStrictRealizationTerminalW809",
+      "stableBoundaryInputsOfClosedEmbeddingStrictRealizationTerminalW809",
+      "acceptedStableOfClosedMapStrictRealizationTerminalW809",
+      "acceptedStableOfClosedEmbeddingStrictRealizationTerminalW809",
+      "boundedDerivedOfClosedMapStrictRealizationTerminalStableBoundaryW809",
+      "boundedDerivedOfClosedEmbeddingStrictRealizationTerminalStableBoundaryW809",
       "strictRealizationTerminalProductRouteInputNamesW809",
       "strictRealizationTerminalProductRouteInputNamesW809_count"]
   targetIsoReductionResult :=
@@ -132,6 +213,9 @@ def currentMetrizableStrictRealizationTerminalRouteStateW809 :
   closedEmbeddingResult :=
     "proved: closed-embedding strict realization branch data feed W808 terminal\
       product evidence"
+  stableBoundaryResult :=
+    "proved: strict-realization-derived W808 data expose the stable-boundary\
+      gate"
   replacedInputs :=
     ["exact-acyclic homotopy-object target-isomorphism realization data"]
   remainingInputs :=

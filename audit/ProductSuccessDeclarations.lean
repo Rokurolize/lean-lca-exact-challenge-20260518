@@ -10214,6 +10214,19 @@ example :
     Dbounded.productEvidence_of_closedMapStrictRealizationTerminalRouteW809
   #check
     Dbounded.productEvidence_of_closedEmbeddingStrictRealizationTerminalRouteW809
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedMapStrictRealizationTerminalW809
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingStrictRealizationTerminalW809
+  #check Dbounded.stableBoundaryInputsOfClosedMapStrictRealizationTerminalW809
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingStrictRealizationTerminalW809
+  #check Dbounded.acceptedStableOfClosedMapStrictRealizationTerminalW809
+  #check Dbounded.acceptedStableOfClosedEmbeddingStrictRealizationTerminalW809
+  #check
+    Dbounded.boundedDerivedOfClosedMapStrictRealizationTerminalStableBoundaryW809
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingStrictRealizationTerminalStableBoundaryW809
   #check Dbounded.strictRealizationTerminalProductRouteInputNamesW809
   #check Dbounded.strictRealizationTerminalProductRouteInputNamesW809_count
   #check Dbounded.MetrizableStrictRealizationTerminalRouteStateW809
