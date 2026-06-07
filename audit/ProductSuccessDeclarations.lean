@@ -9891,6 +9891,18 @@ example :
   #check Dbounded.closedEmbeddingLimitStabilityOfW664TerminalW800
   #check Dbounded.closedMapColimitStabilityOfW664TerminalW800
   #check Dbounded.closedEmbeddingColimitStabilityOfW664TerminalW800
+  #check Dbounded.directFiniteShapeStableDataOfClosedMapW664SourceTriangulationW800
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingW664SourceTriangulationW800
+  #check Dbounded.stableBoundaryInputsOfClosedMapW664SourceTriangulationW800
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingW664SourceTriangulationW800
+  #check Dbounded.acceptedStableOfClosedMapW664SourceTriangulationW800
+  #check Dbounded.acceptedStableOfClosedEmbeddingW664SourceTriangulationW800
+  #check
+    Dbounded.boundedDerivedOfClosedMapW664SourceTriangulationStableBoundaryW800
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingW664SourceTriangulationStableBoundaryW800
   #check
     Dbounded.targetHomologyZeroW664SourceTriangulationProductRouteInputNamesW800
   #check

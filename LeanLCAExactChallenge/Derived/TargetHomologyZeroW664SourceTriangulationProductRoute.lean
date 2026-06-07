@@ -120,6 +120,80 @@ theorem closedEmbeddingColimitStabilityOfW664TerminalW800
       WalkingParallelPair :=
   (closedEmbeddingNormalizedDataOfW664TerminalW800 data).colimitStability
 
+/-- W800 closed-map W664 terminal source-triangulation route as W769 stable data. -/
+noncomputable def directFiniteShapeStableDataOfClosedMapW664SourceTriangulationW800
+    (data : MetrizableClosedMapTargetHomologyZeroW664TerminalBranchDataW799) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapNormalizedDirectSourceClosedRangeW774
+    (closedMapNormalizedDataOfW664TerminalW800 data)
+
+/--
+W800 closed-embedding W664 terminal source-triangulation route as W769 stable
+data.
+-/
+noncomputable def
+    directFiniteShapeStableDataOfClosedEmbeddingW664SourceTriangulationW800
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroW664TerminalBranchDataW799) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+    (closedEmbeddingNormalizedDataOfW664TerminalW800 data)
+
+/-- W800 closed-map W664 terminal source-triangulation route as stable-boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedMapW664SourceTriangulationW800
+    (data : MetrizableClosedMapTargetHomologyZeroW664TerminalBranchDataW799) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapNormalizedDirectSourceClosedRangeW774
+    (closedMapNormalizedDataOfW664TerminalW800 data)
+
+/--
+W800 closed-embedding W664 terminal source-triangulation route as
+stable-boundary inputs.
+-/
+noncomputable def stableBoundaryInputsOfClosedEmbeddingW664SourceTriangulationW800
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroW664TerminalBranchDataW799) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+    (closedEmbeddingNormalizedDataOfW664TerminalW800 data)
+
+/-- W800 closed-map W664 source-triangulation route passes the stable boundary. -/
+noncomputable def acceptedStableOfClosedMapW664SourceTriangulationW800
+    (data : MetrizableClosedMapTargetHomologyZeroW664TerminalBranchDataW799) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapNormalizedDirectSourceClosedRangeW774
+    (closedMapNormalizedDataOfW664TerminalW800 data)
+
+/-- W800 closed-embedding W664 source-triangulation route passes the stable boundary. -/
+noncomputable def acceptedStableOfClosedEmbeddingW664SourceTriangulationW800
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroW664TerminalBranchDataW799) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+    (closedEmbeddingNormalizedDataOfW664TerminalW800 data)
+
+/-- W800 closed-map W664 source-triangulation route produces the stable-boundary package. -/
+noncomputable def
+    boundedDerivedOfClosedMapW664SourceTriangulationStableBoundaryW800
+    (data : MetrizableClosedMapTargetHomologyZeroW664TerminalBranchDataW799) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapNormalizedDirectSourceClosedRangeStableBoundaryW774
+    (closedMapNormalizedDataOfW664TerminalW800 data)
+
+/--
+W800 closed-embedding W664 source-triangulation route produces the
+stable-boundary package.
+-/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingW664SourceTriangulationStableBoundaryW800
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroW664TerminalBranchDataW799) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingNormalizedDirectSourceClosedRangeStableBoundaryW774
+    (closedEmbeddingNormalizedDataOfW664TerminalW800 data)
+
 def targetHomologyZeroW664SourceTriangulationProductRouteInputNamesW800 :
     List String :=
   ["universal IsIso for every MetrizableLCA left-right homology comparison",
@@ -140,6 +214,7 @@ structure MetrizableTargetHomologyZeroW664SourceTriangulationRouteStateW800 :
   declarations : List String
   normalizedDataResult : String
   sourceTriangulationResult : String
+  stableBoundaryResult : String
   projectedEvidence : List String
   remainingInputs : List String
   productSuccessClaimed : Bool
@@ -163,17 +238,29 @@ def currentMetrizableTargetHomologyZeroW664SourceTriangulationRouteStateW800 :
       "closedEmbeddingLimitStabilityOfW664TerminalW800",
       "closedMapColimitStabilityOfW664TerminalW800",
       "closedEmbeddingColimitStabilityOfW664TerminalW800",
+      "directFiniteShapeStableDataOfClosedMapW664SourceTriangulationW800",
+      "directFiniteShapeStableDataOfClosedEmbeddingW664SourceTriangulationW800",
+      "stableBoundaryInputsOfClosedMapW664SourceTriangulationW800",
+      "stableBoundaryInputsOfClosedEmbeddingW664SourceTriangulationW800",
+      "acceptedStableOfClosedMapW664SourceTriangulationW800",
+      "acceptedStableOfClosedEmbeddingW664SourceTriangulationW800",
+      "boundedDerivedOfClosedMapW664SourceTriangulationStableBoundaryW800",
+      "boundedDerivedOfClosedEmbeddingW664SourceTriangulationStableBoundaryW800",
       "targetHomologyZeroW664SourceTriangulationProductRouteInputNamesW800",
       "targetHomologyZeroW664SourceTriangulationProductRouteInputNamesW800_count"]
   normalizedDataResult :=
     "proved: W799 W664 terminal branch data projects to W774 normalized data"
   sourceTriangulationResult :=
     "proved: W799 W664 terminal branch data projects to W773 source data"
+  stableBoundaryResult :=
+    "proved: W800 W664 source-triangulation branches expose the W774/W773/W769\
+      canonical stable-boundary gate"
   projectedEvidence :=
     ["exact-acyclic closure Closed2",
       "W696 closed-range endpoint topology",
       "WalkingParallelPair limit stability",
-      "WalkingParallelPair colimit stability"]
+      "WalkingParallelPair colimit stability",
+      "W774/W773/W769 stable-boundary package"]
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",
