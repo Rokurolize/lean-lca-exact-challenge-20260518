@@ -213,6 +213,33 @@ theorem quillenDeflation_iff_exists_strictShortExact {X Y : MetrizableLCA.{u}}
   · rintro ⟨W, f, zero, hS⟩
     exact ⟨W, f, zero, quillenConflation_of_strictShortExact hS⟩
 
+/-- In the canonical metrizable LCA exact category, deflations are stable under
+composition.  The displayed kernel of the composite is the explicit equalizer
+of the composite with zero. -/
+theorem quillenDeflation_comp {X Y Z : MetrizableLCA.{u}} {p : X ⟶ Y} {q : Y ⟶ Z}
+    (hp : QuillenExactCategory.deflation p) (hq : QuillenExactCategory.deflation q) :
+    QuillenExactCategory.deflation (p ≫ q) := by
+  rw [quillenDeflation_iff_exists_strictShortExact] at hp hq ⊢
+  rcases hp with ⟨Wp, fp, zp, hSp⟩
+  rcases hq with ⟨Wq, fq, zq, hSq⟩
+  let f : equalizerObj (p ≫ q) 0 ⟶ X := equalizerι (p ≫ q) 0
+  have zero : f ≫ (p ≫ q) = 0 := by
+    dsimp [f]
+    simpa using equalizerι_condition (p ≫ q) (0 : X ⟶ Z)
+  refine ⟨equalizerObj (p ≫ q) 0, f, zero, ?_⟩
+  refine
+    { closed_inclusion := ?_
+      open_map := ?_
+      surjective := ?_
+      algebraic_exact := ?_ }
+  · dsimp [f]
+    exact equalizerι_closedEmbedding_explicit (p ≫ q) (0 : X ⟶ Z)
+  · exact hSq.open_map.comp hSp.open_map
+  · exact hSq.surjective.comp hSp.surjective
+  · intro x hx
+    refine ⟨⟨x, ?_⟩, rfl⟩
+    simpa [equalizerSubgroup] using hx
+
 /-- In the canonical metrizable LCA exact category, pushouts preserve inflations. -/
 theorem quillenInflation_pushout {X Y Y' : MetrizableLCA.{u}} {i : X ⟶ Y}
     (hi : QuillenExactCategory.inflation i) (a : X ⟶ Y') [HasPushout i a] :
