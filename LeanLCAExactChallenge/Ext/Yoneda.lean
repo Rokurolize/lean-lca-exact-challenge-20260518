@@ -4530,6 +4530,15 @@ theorem ofExtension_eq_add_of_baerChain {a b sum : YonedaExtension X Y (n + 1)}
     (sum := sum) <|
     AddSubgroup.subset_closure (YonedaRelGenerator.baerChain (X := X) (Y := Y) h)
 
+/-- A witnessed Baer sum of positive chains is addition in local Yoneda Ext. -/
+theorem ofPositiveChain_eq_add_of_baerChain
+    {a b sum : YonedaExtension.PositiveChain X Y n}
+    (h : YonedaExtension.PositiveChain.BaerSumData a b sum) :
+    ofPositiveChain (X := X) (Y := Y) sum =
+      ofPositiveChain (X := X) (Y := Y) a +
+        ofPositiveChain (X := X) (Y := Y) b :=
+  ofExtension_eq_add_of_baerChain h.toYonedaExtension
+
 /-- A Baer sum in the leftmost one-fold factor remains addition after a fixed positive tail. -/
 theorem ofExtension_eq_add_of_baerHead [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
     {Z : C} {e₁ e₂ sum : ShortExactExtension X Y}
@@ -4648,6 +4657,17 @@ theorem baer_sum_ofExtension_eq_of_baerChain
       ofExtension (X := X) (Y := Y) (n := n) sum := by
   dsimp [baer_sum]
   exact (ofExtension_eq_add_of_baerChain h).symm
+
+/-- A witnessed Baer sum of positive chains computes the public `baer_sum` operation. -/
+theorem baer_sum_ofPositiveChain_eq_of_baerChain
+    {a b sum : YonedaExtension.PositiveChain X Y n}
+    (h : YonedaExtension.PositiveChain.BaerSumData a b sum) :
+    baer_sum
+        (ofPositiveChain (X := X) (Y := Y) a)
+        (ofPositiveChain (X := X) (Y := Y) b) =
+      ofPositiveChain (X := X) (Y := Y) sum := by
+  dsimp [baer_sum]
+  exact (ofPositiveChain_eq_add_of_baerChain h).symm
 
 /-- A Baer sum in the leftmost one-fold factor computes `baer_sum` after a fixed positive tail. -/
 theorem baer_sum_ofExtension_eq_of_baerHead [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
