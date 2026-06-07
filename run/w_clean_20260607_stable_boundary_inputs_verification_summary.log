@@ -1,0 +1,58 @@
+checkpoint=stable-boundary-inputs-accepted-gate
+generated_utc=2026-06-07T03:03:57Z
+source_head_before_checkpoint_commit=4a10fe91b2e6625e0e5fb7612ad20a3ad8fb4847
+verification_tier=Tier B
+overall_exit=0
+product_success=false
+product_complete=false
+update_goal_allowed=false
+command: lake env lean LeanLCAExactChallenge/Derived/MetrizableStableInstanceBoundary.lean
+log: run/w_clean_20260607_stable_boundary_inputs_metrizable_stable_boundary_lean.log
+exit=0
+command: lake build LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundary
+log: run/w_clean_20260607_stable_boundary_inputs_metrizable_stable_boundary_build.log
+exit=0
+command: lake build LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundaryDirectLocalization
+log: run/w_clean_20260607_stable_boundary_inputs_direct_localization_build.log
+exit=0
+command: lake env lean LeanLCAExactChallenge/Derived/MetrizableStableInstanceBoundaryDirectLocalization.lean
+log: run/w_clean_20260607_stable_boundary_inputs_direct_localization_lean.log
+exit=0
+note: downstream direct-localization lean check was trusted only after the direct target build completed, to avoid stale or missing dependency `.olean` artifacts from concurrent rebuilds.
+command: lake env lean audit/RequiredDeclarations.lean
+log: run/w_clean_20260607_stable_boundary_inputs_required_declarations.log
+exit=0
+command: lake env lean audit/ProductSuccessDeclarations.lean
+log: run/w_clean_20260607_stable_boundary_inputs_product_success_declarations.log
+exit=0
+command: lake env lean audit/OriginalFourTaskCompletionDeclarations.lean
+log: run/w_clean_20260607_stable_boundary_inputs_original_four_task_declarations.log
+exit=0
+command: git diff --check -- LeanLCAExactChallenge/Derived/MetrizableStableInstanceBoundary.lean LeanLCAExactChallenge/Derived/MetrizableStableInstanceBoundaryDirectLocalization.lean audit/RequiredDeclarations.lean audit/ProductSuccessDeclarations.lean audit/OriginalFourTaskCompletionDeclarations.lean run/goal_identity_20260602_human_centered_positive_witness.json
+log: run/w_clean_20260607_stable_boundary_inputs_diff_check.log
+exit=0
+command: scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/MetrizableStableInstanceBoundary.lean LeanLCAExactChallenge/Derived/MetrizableStableInstanceBoundaryDirectLocalization.lean
+log: run/w_clean_20260607_stable_boundary_inputs_forbidden_tokens.log
+exit=0
+command: true completion-claim scan over changed Lean/audit files and checkpoint logs
+log: run/w_clean_20260607_stable_boundary_inputs_true_completion_claim_scan.log
+rg_exit=1
+exit=0
+command: new declaration presence scan
+log: run/w_clean_20260607_stable_boundary_inputs_new_declaration_presence.log
+exit=0
+changed_source: LeanLCAExactChallenge/Derived/MetrizableStableInstanceBoundary.lean
+changed_source: LeanLCAExactChallenge/Derived/MetrizableStableInstanceBoundaryDirectLocalization.lean
+changed_source: audit/RequiredDeclarations.lean
+changed_source: audit/ProductSuccessDeclarations.lean
+changed_source: audit/OriginalFourTaskCompletionDeclarations.lean
+changed_source: run/goal_identity_20260602_human_centered_positive_witness.json
+new_declaration: LeanLCAExactChallenge.Dbounded.MetrizableStableInstanceBoundaryInputs
+new_declaration: LeanLCAExactChallenge.Dbounded.MetrizableStableInstanceBoundaryInputs.ordinaryStableSemanticInput
+new_declaration: LeanLCAExactChallenge.Dbounded.MetrizableStableInstanceBoundaryInputs.stableCertificate
+new_declaration: LeanLCAExactChallenge.Dbounded.MetrizableStableInstanceBoundaryInputs.stableCertificate_ready
+new_declaration: LeanLCAExactChallenge.Dbounded.MetrizableStableInstanceBoundaryInputs.acceptedStable
+new_declaration: LeanLCAExactChallenge.Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
+new_declaration: LeanLCAExactChallenge.Dbounded.metrizableStableInstanceBoundaryInputs_of_directLocalization
+new_declaration: LeanLCAExactChallenge.Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+next_safe_action=continue source input inhabitation for direct bounded left calculus, WPP transfer-stable inputs, W657 direct localization, and remaining direct Limit/OpClosure obligations

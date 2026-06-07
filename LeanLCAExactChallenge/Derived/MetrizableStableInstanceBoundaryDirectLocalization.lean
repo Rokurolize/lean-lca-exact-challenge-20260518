@@ -133,6 +133,17 @@ noncomputable def
         Dbounded.triangulatedOfMetrizableStableInstanceBoundaryDirectLocalization
           inputs }
 
+/-- Direct-localization inputs as the explicit canonical stable-instance boundary inputs. -/
+noncomputable def metrizableStableInstanceBoundaryInputs_of_directLocalization
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs where
+  directLeftCalculus := inputs.directLeftCalculus
+  transferStableInputs := by
+    letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+      inputs.directLeftCalculus
+    exact Dbounded.metrizableWalkingParallelPairTransferStableSemanticInputsOfDirectLocalization
+      inputs
+
 /--
 Bounded-derived infinity-category package from the direct-localization refinement of the
 stable-instance boundary.
@@ -147,6 +158,17 @@ noncomputable def
   exact Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundary
     (Dbounded.metrizableWalkingParallelPairTransferStableSemanticInputsOfDirectLocalization
       inputs)
+
+/--
+Accepted stable `Dbounded` package from the direct-localization refinement of the canonical
+stable-instance boundary.
+-/
+noncomputable def
+    acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  Dbounded.MetrizableStableInstanceBoundaryInputs.acceptedStable
+    (Dbounded.metrizableStableInstanceBoundaryInputs_of_directLocalization inputs)
 
 /-- The direct-localization boundary produces the ready four-projection stable certificate. -/
 theorem stableCertificateOfMetrizableStableInstanceBoundaryDirectLocalization_ready
@@ -420,7 +442,9 @@ def currentMetrizableStableInstanceBoundaryDirectLocalizationRouteState :
       "pretriangulatedOfMetrizableStableInstanceBoundaryDirectLocalization",
       "triangulatedOfMetrizableStableInstanceBoundaryDirectLocalization",
       "metrizableWalkingParallelPairTransferStableSemanticInputsOfDirectLocalization",
+      "metrizableStableInstanceBoundaryInputs_of_directLocalization",
       "boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization",
+      "acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization",
       "stableCertificateOfMetrizableStableInstanceBoundaryDirectLocalization_ready",
       "metrizableStableInstanceBoundaryDirectLocalizationInputNames",
       "metrizableStableInstanceBoundaryDirectLocalizationInputNames_count",
@@ -448,7 +472,10 @@ section Checks
 #check Dbounded.pretriangulatedOfMetrizableStableInstanceBoundaryDirectLocalization
 #check Dbounded.triangulatedOfMetrizableStableInstanceBoundaryDirectLocalization
 #check Dbounded.metrizableWalkingParallelPairTransferStableSemanticInputsOfDirectLocalization
+#check Dbounded.metrizableStableInstanceBoundaryInputs_of_directLocalization
 #check Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+#check
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
 #check Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectLocalization_ready
 #check Dbounded.MetrizableStableInstanceBoundaryDirectLimitOpClosureInputs
 #check Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directLimitOpClosure
