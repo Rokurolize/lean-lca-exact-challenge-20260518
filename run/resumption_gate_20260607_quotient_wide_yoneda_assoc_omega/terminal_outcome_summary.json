@@ -1,0 +1,11 @@
+{
+  "outcome": "nonterminal_checkpoint_pushed",
+  "product_success": false,
+  "product_complete": false,
+  "update_goal_allowed": false,
+  "git_head": "9f78d208f6d1239414bdae80713ad89122c4959d",
+  "latest_checkpoint": null,
+  "obligations_discharged": null,
+  "obligations_derived_or_eliminated": null,
+  "new_frontier_input_count": null
+}

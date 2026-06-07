@@ -6592,6 +6592,22 @@ theorem yonedaProduct_assoc_cast
     exact congrArg (fun f => f b) hB
   exact congrArg (fun f => f a) hA
 
+/--
+Quotient-wide product-level associativity in positive degrees, using the
+canonical arithmetic cast between the two target degrees.
+-/
+theorem yonedaProduct_assoc
+    {X W Y Z : MetrizableLCA.{u}} {m n l : ℕ}
+    (a : YonedaExt (C := MetrizableLCA.{u}) X W (m + 1))
+    (b : YonedaExt (C := MetrizableLCA.{u}) W Y (n + 1))
+    (c : YonedaExt (C := MetrizableLCA.{u}) Y Z (l + 1)) :
+    positiveYonedaExtCast (C := MetrizableLCA.{u}) (X := X) (Y := Z) (by omega)
+        (yonedaProduct (X := X) (Y := Y) (Z := Z) (n + (m + 1)) l
+          (yonedaProduct (X := X) (Y := W) (Z := Y) m n a b) c) =
+      yonedaProduct (X := X) (Y := W) (Z := Z) m (l + (n + 1)) a
+        (yonedaProduct (X := W) (Y := Y) (Z := Z) n l b c) := by
+  exact yonedaProduct_assoc_cast a b c (by omega)
+
 theorem yonedaProduct_add_left
     {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
     (a b : YonedaExt (C := MetrizableLCA.{u}) X Y (m + 1)) :
