@@ -1,0 +1,16 @@
+       0 run/w_clean_20260607_w830_w831_left_calculus_boundary/completion_claim_post_scan.log
+      17 run/w_clean_20260607_w830_w831_left_calculus_boundary/declaration_presence.log
+       0 run/w_clean_20260607_w830_w831_left_calculus_boundary/diff_check.log
+       0 run/w_clean_20260607_w830_w831_left_calculus_boundary/diff_check_post.log
+    1741 run/w_clean_20260607_w830_w831_left_calculus_boundary/false_nonclaim_scan.log
+       0 run/w_clean_20260607_w830_w831_left_calculus_boundary/forbidden_tokens.log
+      22 run/w_clean_20260607_w830_w831_left_calculus_boundary/goal_identity_after.log
+   32439 run/w_clean_20260607_w830_w831_left_calculus_boundary/left_calculus_boundary_build.log
+   52891 run/w_clean_20260607_w830_w831_left_calculus_boundary/original_four_audit.log
+   71373 run/w_clean_20260607_w830_w831_left_calculus_boundary/product_success_audit.log
+   39959 run/w_clean_20260607_w830_w831_left_calculus_boundary/required_audit.log
+       0 run/w_clean_20260607_w830_w831_left_calculus_boundary/true_boolean_scan.log
+       0 run/w_clean_20260607_w830_w831_left_calculus_boundary/w830_target_lean.log
+       0 run/w_clean_20260607_w830_w831_left_calculus_boundary/w831_target_lean.log
+    7719 run/w_clean_20260607_w830_w831_left_calculus_boundary/warning_error_scan.log
+  206161 total
