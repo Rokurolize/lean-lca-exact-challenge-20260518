@@ -1,0 +1,25 @@
+command: lake build LeanLCAExactChallenge.Derived.DirectComparisonRightLcaOpClosureProductRoute
+exit_code: 0
+line_count: 32686
+
+last_20_lines:
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2091/2093] Replayed LeanLCAExactChallenge.Derived.LimitOpClosureNormalizedClosedRangeProductRoute
+warning: LeanLCAExactChallenge/Derived/LimitOpClosureNormalizedClosedRangeProductRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2092/2093] Replayed LeanLCAExactChallenge.Derived.DirectRightLcaLimitOpClosureNormalizedClosedRangeProductRoute
+warning: LeanLCAExactChallenge/Derived/DirectRightLcaLimitOpClosureNormalizedClosedRangeProductRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2093/2093] Replayed LeanLCAExactChallenge.Derived.DirectComparisonRightLcaOpClosureProductRoute
+warning: LeanLCAExactChallenge/Derived/DirectComparisonRightLcaOpClosureProductRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+Build completed successfully (2093 jobs).
