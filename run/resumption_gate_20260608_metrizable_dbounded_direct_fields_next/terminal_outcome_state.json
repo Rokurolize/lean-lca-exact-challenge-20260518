@@ -1,0 +1,11 @@
+{
+  "outcome": "nonterminal",
+  "product_success": false,
+  "product_complete": false,
+  "update_goal_allowed": false,
+  "git_head": "f6f36c62d46bd26507d8d71af9dcc404be88ce58",
+  "proof_search_checkpoint": "run/w_clean_20260608_metrizable_dbounded_left_calculus_package_api/checkpoint.md",
+  "obligations_discharged": null,
+  "obligations_derived_or_eliminated": null,
+  "new_frontier_input_count": null
+}

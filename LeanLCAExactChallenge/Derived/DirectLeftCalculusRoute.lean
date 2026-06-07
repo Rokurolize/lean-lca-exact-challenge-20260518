@@ -94,6 +94,111 @@ noncomputable def boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusRo
   exact Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusStableRoute
     finiteLimits finiteColimits pretriangulated triangulated
 
+/--
+W830 semantic-field stable route with the direct-left-calculus data bundled and the remaining
+stable fields supplied as the canonical semantic-field record.
+-/
+noncomputable def boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusFieldsRouteW830
+    (data : MetrizableDirectBoundedLeftCalculusDataW830)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      (Dbounded.metrizableLeftCalculusFieldsOfDirectBoundedRouteW830 data)) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusFields
+    (Dbounded.metrizableLeftCalculusFieldsOfDirectBoundedRouteW830 data) remaining
+
+/-- The W830 semantic-field route preserves the ordinary `Dbounded MetrizableLCA` carrier. -/
+theorem
+boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusFieldsRouteW830_quasicategoryCarrier
+    (data : MetrizableDirectBoundedLeftCalculusDataW830)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      (Dbounded.metrizableLeftCalculusFieldsOfDirectBoundedRouteW830 data)) :
+    (Dbounded.boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusFieldsRouteW830
+      data remaining).quasicategoryCarrier = rfl :=
+  rfl
+
+/-- The W830 semantic-field route preserves the direct-left-calculus preadditive field. -/
+theorem boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusFieldsRouteW830_preadditive
+    (data : MetrizableDirectBoundedLeftCalculusDataW830)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      (Dbounded.metrizableLeftCalculusFieldsOfDirectBoundedRouteW830 data)) :
+    (Dbounded.boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusFieldsRouteW830
+      data remaining).preadditive =
+      (Dbounded.metrizableLeftCalculusFieldsOfDirectBoundedRouteW830 data).preadditive :=
+  rfl
+
+/-- The W830 semantic-field route preserves the remaining finite-limit field. -/
+theorem
+    boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusFieldsRouteW830_finiteLimitInstance
+    (data : MetrizableDirectBoundedLeftCalculusDataW830)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      (Dbounded.metrizableLeftCalculusFieldsOfDirectBoundedRouteW830 data)) :
+    (Dbounded.boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusFieldsRouteW830
+      data remaining).finiteLimitInstance = remaining.finiteLimits :=
+  rfl
+
+/-- The W830 semantic-field route preserves the remaining finite-colimit field. -/
+theorem
+boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusFieldsRouteW830_finiteColimitInstance
+    (data : MetrizableDirectBoundedLeftCalculusDataW830)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      (Dbounded.metrizableLeftCalculusFieldsOfDirectBoundedRouteW830 data)) :
+    (Dbounded.boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusFieldsRouteW830
+      data remaining).finiteColimitInstance = remaining.finiteColimits :=
+  rfl
+
+/-- The W830 semantic-field route preserves the direct-left-calculus zero-object field. -/
+theorem
+boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusFieldsRouteW830_zeroObjectInstance
+    (data : MetrizableDirectBoundedLeftCalculusDataW830)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      (Dbounded.metrizableLeftCalculusFieldsOfDirectBoundedRouteW830 data)) :
+    (Dbounded.boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusFieldsRouteW830
+      data remaining).zeroObjectInstance =
+      (Dbounded.metrizableLeftCalculusFieldsOfDirectBoundedRouteW830 data).zeroObject :=
+  rfl
+
+/-- The W830 semantic-field route preserves the direct-left-calculus all-shift additivity field. -/
+theorem boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusFieldsRouteW830_shiftAdditiveAll
+    (data : MetrizableDirectBoundedLeftCalculusDataW830)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      (Dbounded.metrizableLeftCalculusFieldsOfDirectBoundedRouteW830 data)) :
+    (Dbounded.boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusFieldsRouteW830
+      data remaining).shiftAdditiveAll =
+      (Dbounded.metrizableLeftCalculusFieldsOfDirectBoundedRouteW830 data).shiftAdditiveAll :=
+  rfl
+
+/-- The W830 semantic-field route preserves the direct-left-calculus suspension-additivity field. -/
+theorem
+boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusFieldsRouteW830_suspensionAdditive
+    (data : MetrizableDirectBoundedLeftCalculusDataW830)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      (Dbounded.metrizableLeftCalculusFieldsOfDirectBoundedRouteW830 data)) :
+    (Dbounded.boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusFieldsRouteW830
+      data remaining).suspensionAdditive =
+      (Dbounded.metrizableLeftCalculusFieldsOfDirectBoundedRouteW830 data).suspensionAdditive :=
+  rfl
+
+/-- The W830 semantic-field route preserves the remaining pretriangulated field. -/
+theorem
+boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusFieldsRouteW830_pretriangulatedStructure
+    (data : MetrizableDirectBoundedLeftCalculusDataW830)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      (Dbounded.metrizableLeftCalculusFieldsOfDirectBoundedRouteW830 data)) :
+    (Dbounded.boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusFieldsRouteW830
+      data remaining).pretriangulatedStructure = remaining.pretriangulated :=
+  rfl
+
+/-- The W830 semantic-field route preserves the remaining triangulated field. -/
+theorem
+boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusFieldsRouteW830_triangulatedStructure
+    (data : MetrizableDirectBoundedLeftCalculusDataW830)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      (Dbounded.metrizableLeftCalculusFieldsOfDirectBoundedRouteW830 data)) :
+    (Dbounded.boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusFieldsRouteW830
+      data remaining).triangulatedStructure = remaining.triangulated :=
+  rfl
+
 /-- Concrete W830 inputs replacing the raw W829 direct-left-calculus premise. -/
 def metrizableDirectBoundedLeftCalculusInputNamesW830 : List String :=
   ["universal IsIso for every MetrizableLCA left-right homology comparison",
@@ -151,6 +256,7 @@ def currentMetrizableDirectLeftCalculusRouteStateW830 :
       "directBoundedLeftCalculusOfKernelCokernelComparisonW830",
       "metrizableLeftCalculusFieldsOfDirectBoundedRouteW830",
       "boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusRouteW830",
+      "boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusFieldsRouteW830",
       "metrizableDirectBoundedLeftCalculusInputNamesW830",
       "metrizableDirectBoundedLeftCalculusInputNamesW830_count",
       "metrizableDirectLeftCalculusStableRouteRequiredFieldNamesW830",
