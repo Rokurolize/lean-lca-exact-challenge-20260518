@@ -9821,6 +9821,21 @@ example :
     Dbounded.closedMapStableCertificateAcceptedOfTargetHomologyZeroTerminalW798
   #check
     Dbounded.closedEmbeddingStableCertificateAcceptedOfTargetHomologyZeroTerminalW798
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedMapTargetHomologyZeroTerminalEvidenceW798
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroTerminalEvidenceW798
+  #check
+    Dbounded.stableBoundaryInputsOfClosedMapTargetHomologyZeroTerminalEvidenceW798
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroTerminalEvidenceW798
+  #check Dbounded.acceptedStableOfClosedMapTargetHomologyZeroTerminalEvidenceW798
+  #check
+    Dbounded.acceptedStableOfClosedEmbeddingTargetHomologyZeroTerminalEvidenceW798
+  #check
+    Dbounded.boundedDerivedOfClosedMapTargetHomologyZeroTerminalEvidenceStableBoundaryW798
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingTargetHomologyZeroTerminalEvidenceStableBoundaryW798
   #check Dbounded.targetHomologyZeroTerminalEvidenceProductRouteInputNamesW798
   #check
     Dbounded.targetHomologyZeroTerminalEvidenceProductRouteInputNamesW798_count
