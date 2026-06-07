@@ -1,14 +1,14 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-06-07T21:55:30Z",
-  "git_head": "99e0be61c6babb7d55f05fe84283432b76a25968",
+  "generated_utc": "2026-06-07T22:14:19Z",
+  "git_head": "6c498a7b9e417b2d29bc400062ae5f17a5e1ceb7",
   "source_tree_hash": "not_applicable_self_referential_partial_checkpoint",
-  "outcome": "nonterminal",
+  "outcome": "source_patch_needed_handoff",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "Nonterminal stable final-surface neutral-alias checkpoint: W1534 now exposes neutral stable projection-gate and accepted D-bounded infinity-category aliases, and the final audit/contract surfaces use those aliases. The original four-task contract audit now reports no nonterminal product-surface blockers, but product success remains false because no OriginalFourTaskProductSuccess witness exists.",
+  "summary": "Source-patch-needed handoff for the final bounded-derived infinity-category obligation: the intended nullary stable package route is present, but Lean cannot synthesize the concrete stable category instances for Dbounded MetrizableLCA. Product success remains false and no final positive witness is claimed.",
   "positive_witness_declarations": [
     "LeanLCAExactChallenge.boundedExactWeakEquivalence_iff_exactAcyclic_mappingCone",
     "LeanLCAExactChallenge.boundedExactWeakEquivalence_of_exactAcyclic_mappingCone",
@@ -173,15 +173,28 @@
     "original_four_task_contract_sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1",
     "positive_witness_contract_sha256": "3120c014b83e0c7c8f8160ca90447a1a73588096a354ace109e2fca4e4eab5ec"
   },
-  "proof_search_checkpoint": "run/w_clean_20260608_stable_final_surface_neutral_alias/checkpoint.md",
+  "proof_search_checkpoint": "run/w_clean_20260608_task4_stable_instance_source_patch_needed/checkpoint.md",
+  "latest_checkpoint": "run/w_clean_20260608_task4_stable_instance_source_patch_needed/checkpoint.md",
+  "source_patch_needed_handoff": "run/w_clean_20260608_task4_stable_instance_source_patch_needed/source_patch_needed_handoff.md",
+  "proof_search_evidence": "run/w_clean_20260608_task4_stable_instance_source_patch_needed/stable_instance_probe.expected_failure.log",
+  "current_checkpoint_verification": {
+    "tier": "A",
+    "stable_instance_probe_exit_code": 1,
+    "stable_instance_probe_expected_failure": true,
+    "json_valid": true,
+    "original_four_task_contract_audit": "passed",
+    "forbidden_lean_tokens": "passed",
+    "diff_check": "passed"
+  },
   "known_gaps": [
     "Positive Lean witness is absent: no OriginalFourTaskProductSuccess surface with field-level evidence for the original four-task contract exists.",
-    "The final product surface now uses neutral stable projection-gate and accepted D-bounded aliases, so the contract audit reports no nonterminal product-surface blockers; this is still only a naming and surface-alignment cleanup, not a positive product witness.",
+    "The final bounded-derived infinity-category route requires concrete stable category instances on Dbounded MetrizableLCA; Lean cannot synthesize Preadditive, finite limits, finite colimits, zero object, shift-additive, pretriangulated, or triangulated instances yet.",
     "The exact-category core, strict MetrizableLCA Yoneda Ext specialization API, and direct Yoneda Ext constructors from Quillen conflations and closed-inclusion/open-surjection/algebraically exact data remain nonterminal API evidence rather than a final original four-task witness.",
-    "Bounded derived infinity-category integration remains incomplete as an original-contract obligation, even though the direct weak-equivalence mapping-cone API, strict MetrizableLCA specialization, semantic-field package routes, and BoundedDerived.Basic facade are audited."
+    "Bounded derived infinity-category integration remains incomplete as an original-contract obligation because the existing semantic-input adapters still depend on caller-supplied stable fields."
   ],
   "remaining_work": [
     "Construct a genuine OriginalFourTaskProductSuccess surface with field-level evidence for all four original obligations.",
+    "Provide concrete source instances for Preadditive, finite limits, finite colimits, zero object, shift additivity, pretriangulated structure, and triangulated structure on Dbounded MetrizableLCA.",
     "Continue integrating the exact-category, strict MetrizableLCA, Yoneda Ext, and bounded derived infinity-category surfaces into a single positive witness instead of a route-history certificate.",
     "Clear the existing external-audit manifest mismatch for LeanLCAExactChallenge/Derived/Bounded.lean before treating the review packet as externally clean."
   ],
