@@ -154,6 +154,52 @@ theorem quillenInflation_iff_exists_strictShortExact {X Y : MetrizableLCA.{u}}
   · rintro ⟨Z, g, zero, hS⟩
     exact ⟨Z, g, zero, quillenConflation_of_strictShortExact hS⟩
 
+/-- In the canonical metrizable LCA exact category, inflations are stable under
+composition.  The composite's displayed cokernel is the explicit LCA quotient
+by the closed algebraic range of the composite. -/
+theorem quillenInflation_comp {X Y Z : MetrizableLCA.{u}} {i : X ⟶ Y} {j : Y ⟶ Z}
+    (hi : QuillenExactCategory.inflation i) (hj : QuillenExactCategory.inflation j) :
+    QuillenExactCategory.inflation (i ≫ j) := by
+  rw [quillenInflation_iff_exists_strictShortExact] at hi hj ⊢
+  rcases hi with ⟨Zi, gi, zi, hSi⟩
+  rcases hj with ⟨Zj, gj, zj, hSj⟩
+  refine ⟨cokernelObj (i ≫ j), cokernelπ (i ≫ j), comp_cokernelπ (i ≫ j), ?_⟩
+  refine
+    { closed_inclusion := ?_
+      open_map := ?_
+      surjective := ?_
+      algebraic_exact := ?_ }
+  · exact hSj.closed_inclusion.comp hSi.closed_inclusion
+  · exact quotientMap_openMap Z (cokernelSubgroup (i ≫ j))
+      (AddSubgroup.isClosed_topologicalClosure _)
+  · exact quotientMap_surjective Z (cokernelSubgroup (i ≫ j))
+      (AddSubgroup.isClosed_topologicalClosure _)
+  · intro z hz
+    have hmem : z ∈ cokernelSubgroup (i ≫ j) := by
+      change ((z : Z) : Z ⧸ cokernelSubgroup (i ≫ j)) = 0 at hz
+      rwa [QuotientAddGroup.eq_zero_iff] at hz
+    let R : AddSubgroup Z :=
+      AddSubgroup.map (i ≫ j).hom.toAddMonoidHom (⊤ : AddSubgroup X)
+    have hR_closed : IsClosed (R : Set Z) := by
+      have hset : IsClosed (Set.range ((i ≫ j) : X → Z)) :=
+        (hSj.closed_inclusion.comp hSi.closed_inclusion).isClosed_range
+      have hR_set : (R : Set Z) = Set.range ((i ≫ j) : X → Z) := by
+        ext z
+        constructor
+        · rintro ⟨x, _hx, rfl⟩
+          exact ⟨x, rfl⟩
+        · rintro ⟨x, rfl⟩
+          exact ⟨x, trivial, rfl⟩
+      rwa [hR_set]
+    have hle : cokernelSubgroup (i ≫ j) ≤ R := by
+      rw [cokernelSubgroup]
+      apply AddSubgroup.topologicalClosure_minimal
+      · intro _ hy
+        exact hy
+      · exact hR_closed
+    rcases hle hmem with ⟨x, _hx, hx⟩
+    exact ⟨x, hx⟩
+
 /-- In the canonical exact-category instance, deflations are precisely maps that
 occur as the right map of a strict short exact sequence. -/
 theorem quillenDeflation_iff_exists_strictShortExact {X Y : MetrizableLCA.{u}}
