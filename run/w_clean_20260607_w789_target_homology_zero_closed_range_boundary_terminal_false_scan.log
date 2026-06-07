@@ -1,0 +1,3 @@
+LeanLCAExactChallenge/Derived/TargetHomologyZeroClosedRangeTargetIsoSelectedW461RowsProductRoute.lean:305:theorem currentW789TargetHomologyZeroClosedRangeRoute_productSuccess :
+run/w_clean_20260607_w789_target_homology_zero_closed_range_boundary_terminal_outcome_summary.log:3:  "product_success": false,
+audit/ProductSuccessDeclarations.lean:9612:  #check Dbounded.currentW789TargetHomologyZeroClosedRangeRoute_productSuccess

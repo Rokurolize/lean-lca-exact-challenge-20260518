@@ -1,5 +1,6 @@
 {
-  "branch": "goal-clean-positive-witness-20260607",
+  "generated_utc": "2026-06-07T06:38:12Z",
+  "git_head": "82a61c90c1641c7bd9d2e218fc41927af309d729",
   "contracts": {
     "human_centered_goal": {
       "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_human_centered_positive_witness_completion_goal_20260602.md",
@@ -13,10 +14,5 @@
       "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md",
       "sha256": "3120c014b83e0c7c8f8160ca90447a1a73588096a354ace109e2fca4e4eab5ec"
     }
-  },
-  "generated_utc": "2026-06-07T06:38:12Z",
-  "git_head": "82a61c90c1641c7bd9d2e218fc41927af309d729",
-  "objective": "follow the instructions in /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_human_centered_positive_witness_completion_goal_20260602.md",
-  "thread_id": "019e5c90-4877-77a1-a792-34feb85174ab",
-  "worktree": "/home/roku/codex-thread-workspaces/019e5c90-4877-77a1-a792-34feb85174ab/worktrees/lean-lca-clean-positive-witness-20260607"
+  }
 }
