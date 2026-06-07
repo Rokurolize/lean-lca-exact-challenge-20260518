@@ -10242,6 +10242,21 @@ example :
     Dbounded.productEvidence_of_closedMapIsoClosureRealizationTerminalRouteW810
   #check
     Dbounded.productEvidence_of_closedEmbeddingIsoClosureRealizationTerminalRouteW810
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedMapIsoClosureRealizationTerminalW810
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingIsoClosureRealizationTerminalW810
+  #check
+    Dbounded.stableBoundaryInputsOfClosedMapIsoClosureRealizationTerminalW810
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingIsoClosureRealizationTerminalW810
+  #check Dbounded.acceptedStableOfClosedMapIsoClosureRealizationTerminalW810
+  #check
+    Dbounded.acceptedStableOfClosedEmbeddingIsoClosureRealizationTerminalW810
+  #check
+    Dbounded.boundedDerivedOfClosedMapIsoClosureRealizationTerminalStableBoundaryW810
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingIsoClosureRealizationTerminalStableBoundaryW810
   #check Dbounded.isoClosureRealizationTerminalProductRouteInputNamesW810
   #check Dbounded.isoClosureRealizationTerminalProductRouteInputNamesW810_count
   #check Dbounded.MetrizableIsoClosureRealizationTerminalRouteStateW810
