@@ -1,0 +1,16 @@
+   32415 run/w_clean_20260607_w815_w817_comparison_boundary/comparison_boundary_build.log
+       0 run/w_clean_20260607_w815_w817_comparison_boundary/completion_claim_post_scan.log
+      18 run/w_clean_20260607_w815_w817_comparison_boundary/declaration_presence.log
+       0 run/w_clean_20260607_w815_w817_comparison_boundary/diff_check.log
+    1731 run/w_clean_20260607_w815_w817_comparison_boundary/false_nonclaim_scan.log
+       0 run/w_clean_20260607_w815_w817_comparison_boundary/forbidden_tokens.log
+      22 run/w_clean_20260607_w815_w817_comparison_boundary/goal_identity_after.log
+   52645 run/w_clean_20260607_w815_w817_comparison_boundary/original_four_audit.log
+   71373 run/w_clean_20260607_w815_w817_comparison_boundary/product_success_audit.log
+   39713 run/w_clean_20260607_w815_w817_comparison_boundary/required_audit.log
+       0 run/w_clean_20260607_w815_w817_comparison_boundary/true_boolean_scan.log
+       0 run/w_clean_20260607_w815_w817_comparison_boundary/w815_target_lean.log
+       0 run/w_clean_20260607_w815_w817_comparison_boundary/w816_target_lean.log
+       0 run/w_clean_20260607_w815_w817_comparison_boundary/w817_target_lean.log
+    7713 run/w_clean_20260607_w815_w817_comparison_boundary/warning_error_scan.log
+  205630 total
