@@ -3479,6 +3479,33 @@ theorem positiveYonedaExtCast_refl {X Y : C} {n : ℕ}
         (x : PositiveYonedaExt (C := C) X Y n)
       simp [FreeAbelianGroup.map_id_apply]
 
+@[simp]
+theorem positiveYonedaExtCast_zero {X Y : C} {n n' : ℕ} (h : n = n') :
+    positiveYonedaExtCast (C := C) (X := X) (Y := Y) h
+        (0 : PositiveYonedaExt (C := C) X Y n) =
+      0 :=
+  map_zero (positiveYonedaExtCast (C := C) (X := X) (Y := Y) h)
+
+theorem positiveYonedaExtCast_add {X Y : C} {n n' : ℕ} (h : n = n')
+    (a b : PositiveYonedaExt (C := C) X Y n) :
+    positiveYonedaExtCast (C := C) (X := X) (Y := Y) h (a + b) =
+      positiveYonedaExtCast (C := C) (X := X) (Y := Y) h a +
+        positiveYonedaExtCast (C := C) (X := X) (Y := Y) h b :=
+  map_add (positiveYonedaExtCast (C := C) (X := X) (Y := Y) h) a b
+
+theorem positiveYonedaExtCast_neg {X Y : C} {n n' : ℕ} (h : n = n')
+    (a : PositiveYonedaExt (C := C) X Y n) :
+    positiveYonedaExtCast (C := C) (X := X) (Y := Y) h (-a) =
+      -positiveYonedaExtCast (C := C) (X := X) (Y := Y) h a :=
+  map_neg (positiveYonedaExtCast (C := C) (X := X) (Y := Y) h) a
+
+theorem positiveYonedaExtCast_sub {X Y : C} {n n' : ℕ} (h : n = n')
+    (a b : PositiveYonedaExt (C := C) X Y n) :
+    positiveYonedaExtCast (C := C) (X := X) (Y := Y) h (a - b) =
+      positiveYonedaExtCast (C := C) (X := X) (Y := Y) h a -
+        positiveYonedaExtCast (C := C) (X := X) (Y := Y) h b :=
+  map_sub (positiveYonedaExtCast (C := C) (X := X) (Y := Y) h) a b
+
 /-- Generator-level pullback action by a degree-zero head hom, before quotient descent. -/
 noncomputable def pullbackHeadOfExtensionWith {X X' Y : C} (f : X' ⟶ X)
     (pull : {Z : C} → ShortExactExtension X Z → ShortExactExtension X' Z)
@@ -4553,6 +4580,23 @@ theorem ofExtension_eq_add_of_baerHead [HasBinaryBiproduct X X] [HasBinaryBiprod
 /-- Baer addition, represented by the additive group operation on the local Ext group. -/
 noncomputable def baer_sum (a b : YonedaExt X Y n) : YonedaExt X Y n :=
   a + b
+
+theorem positiveYonedaExtCast_baer_sum {X Y : C} {n n' : ℕ} (h : n = n')
+    (a b : YonedaExt (C := C) X Y (Nat.succ n)) :
+    positiveYonedaExtCast (C := C) (X := X) (Y := Y) h
+        (baer_sum a b) =
+      (by
+        exact baer_sum (C := C) (X := X) (Y := Y) (n := Nat.succ n')
+          (by
+            change PositiveYonedaExt (C := C) X Y n'
+            exact positiveYonedaExtCast (C := C) (X := X) (Y := Y) h
+              (a : PositiveYonedaExt (C := C) X Y n))
+          (by
+            change PositiveYonedaExt (C := C) X Y n'
+            exact positiveYonedaExtCast (C := C) (X := X) (Y := Y) h
+              (b : PositiveYonedaExt (C := C) X Y n))) := by
+  dsimp [baer_sum]
+  exact positiveYonedaExtCast_add h a b
 
 /-- A relation of the form `sum - a - b` computes the `baer_sum` operation. -/
 theorem baer_sum_ofExtension_eq_of_relation_mem {a b sum : YonedaExtension X Y (n + 1)}

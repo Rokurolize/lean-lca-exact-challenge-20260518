@@ -625,6 +625,11 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtCast_mk
 #check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtCast_ofExtension
 #check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtCast_refl
+#check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtCast_zero
+#check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtCast_add
+#check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtCast_neg
+#check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtCast_sub
+#check LeanLCAExactChallenge.YonedaExt.positiveYonedaExtCast_baer_sum
 #check LeanLCAExactChallenge.YonedaExt.yonedaProductLeftFreeHom
 #check LeanLCAExactChallenge.YonedaExt.yonedaProductLeftFreeHom_of
 #check LeanLCAExactChallenge.YonedaExt.yonedaProductLeftFreeHom_rel_eq_zero
