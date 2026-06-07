@@ -114,6 +114,79 @@ noncomputable def productEvidence_of_closedEmbeddingTargetIsoTerminalRouteW808
   productEvidence_of_closedEmbeddingTargetExactAtW664TerminalRouteW803
     (closedEmbeddingTargetExactAtDataOfTargetIsoW808 data)
 
+/-!
+W808 closed-map target-isomorphism data as W803/W799 direct stable data.
+-/
+noncomputable def directFiniteShapeStableDataOfClosedMapTargetIsoTerminalW808
+    (data : MetrizableClosedMapTargetIsoTerminalBranchDataW808) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapTargetExactAtW664TerminalW803
+    (closedMapTargetExactAtDataOfTargetIsoW808 data)
+
+/-!
+W808 closed-embedding target-isomorphism data as W803/W799 direct stable data.
+-/
+noncomputable def
+    directFiniteShapeStableDataOfClosedEmbeddingTargetIsoTerminalW808
+    (data : MetrizableClosedEmbeddingTargetIsoTerminalBranchDataW808) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingTargetExactAtW664TerminalW803
+    (closedEmbeddingTargetExactAtDataOfTargetIsoW808 data)
+
+/-! W808 closed-map target-isomorphism data as stable-boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedMapTargetIsoTerminalW808
+    (data : MetrizableClosedMapTargetIsoTerminalBranchDataW808) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapTargetExactAtW664TerminalW803
+    (closedMapTargetExactAtDataOfTargetIsoW808 data)
+
+/-!
+W808 closed-embedding target-isomorphism data as stable-boundary inputs.
+-/
+noncomputable def stableBoundaryInputsOfClosedEmbeddingTargetIsoTerminalW808
+    (data : MetrizableClosedEmbeddingTargetIsoTerminalBranchDataW808) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingTargetExactAtW664TerminalW803
+    (closedEmbeddingTargetExactAtDataOfTargetIsoW808 data)
+
+/-! W808 closed-map target-isomorphism data passes the stable boundary. -/
+noncomputable def acceptedStableOfClosedMapTargetIsoTerminalW808
+    (data : MetrizableClosedMapTargetIsoTerminalBranchDataW808) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapTargetExactAtW664TerminalW803
+    (closedMapTargetExactAtDataOfTargetIsoW808 data)
+
+/-!
+W808 closed-embedding target-isomorphism data passes the stable boundary.
+-/
+noncomputable def acceptedStableOfClosedEmbeddingTargetIsoTerminalW808
+    (data : MetrizableClosedEmbeddingTargetIsoTerminalBranchDataW808) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingTargetExactAtW664TerminalW803
+    (closedEmbeddingTargetExactAtDataOfTargetIsoW808 data)
+
+/-!
+W808 closed-map target-isomorphism data produces the stable-boundary package.
+-/
+noncomputable def boundedDerivedOfClosedMapTargetIsoTerminalStableBoundaryW808
+    (data : MetrizableClosedMapTargetIsoTerminalBranchDataW808) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapTargetExactAtW664TerminalStableBoundaryW803
+    (closedMapTargetExactAtDataOfTargetIsoW808 data)
+
+/-!
+W808 closed-embedding target-isomorphism data produces the stable-boundary
+package.
+-/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingTargetIsoTerminalStableBoundaryW808
+    (data : MetrizableClosedEmbeddingTargetIsoTerminalBranchDataW808) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingTargetExactAtW664TerminalStableBoundaryW803
+    (closedEmbeddingTargetExactAtDataOfTargetIsoW808 data)
+
 def targetIsoToTargetExactAtTerminalInputNamesW808 : List String :=
   ["universal IsIso for every MetrizableLCA left-right homology comparison",
     "W735 closed-map or closed-embedding branch data",
@@ -129,6 +202,7 @@ structure MetrizableTargetIsoToTargetExactAtTerminalRouteStateW808 :
   declarations : List String
   payloadConversionResult : String
   terminalEvidenceResult : String
+  stableBoundaryResult : String
   replacedInputs : List String
   remainingInputs : List String
   productSuccessClaimed : Bool
@@ -147,6 +221,14 @@ def currentMetrizableTargetIsoToTargetExactAtTerminalRouteStateW808 :
       "closedEmbeddingTargetExactAtDataOfTargetIsoW808",
       "productEvidence_of_closedMapTargetIsoTerminalRouteW808",
       "productEvidence_of_closedEmbeddingTargetIsoTerminalRouteW808",
+      "directFiniteShapeStableDataOfClosedMapTargetIsoTerminalW808",
+      "directFiniteShapeStableDataOfClosedEmbeddingTargetIsoTerminalW808",
+      "stableBoundaryInputsOfClosedMapTargetIsoTerminalW808",
+      "stableBoundaryInputsOfClosedEmbeddingTargetIsoTerminalW808",
+      "acceptedStableOfClosedMapTargetIsoTerminalW808",
+      "acceptedStableOfClosedEmbeddingTargetIsoTerminalW808",
+      "boundedDerivedOfClosedMapTargetIsoTerminalStableBoundaryW808",
+      "boundedDerivedOfClosedEmbeddingTargetIsoTerminalStableBoundaryW808",
       "targetIsoToTargetExactAtTerminalInputNamesW808",
       "targetIsoToTargetExactAtTerminalInputNamesW808_count"]
   payloadConversionResult :=
@@ -155,6 +237,9 @@ def currentMetrizableTargetIsoToTargetExactAtTerminalRouteStateW808 :
   terminalEvidenceResult :=
     "proved: target-isomorphism-derived target ExactAt data feed W803 terminal\
       product evidence"
+  stableBoundaryResult :=
+    "proved: target-isomorphism-derived W803 data expose the stable-boundary\
+      gate"
   replacedInputs :=
     ["exact-acyclic homotopy-object target ExactAt realization data"]
   remainingInputs :=

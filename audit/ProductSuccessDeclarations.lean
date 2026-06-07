@@ -10189,6 +10189,16 @@ example :
   #check Dbounded.closedEmbeddingTargetExactAtDataOfTargetIsoW808
   #check Dbounded.productEvidence_of_closedMapTargetIsoTerminalRouteW808
   #check Dbounded.productEvidence_of_closedEmbeddingTargetIsoTerminalRouteW808
+  #check Dbounded.directFiniteShapeStableDataOfClosedMapTargetIsoTerminalW808
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingTargetIsoTerminalW808
+  #check Dbounded.stableBoundaryInputsOfClosedMapTargetIsoTerminalW808
+  #check Dbounded.stableBoundaryInputsOfClosedEmbeddingTargetIsoTerminalW808
+  #check Dbounded.acceptedStableOfClosedMapTargetIsoTerminalW808
+  #check Dbounded.acceptedStableOfClosedEmbeddingTargetIsoTerminalW808
+  #check Dbounded.boundedDerivedOfClosedMapTargetIsoTerminalStableBoundaryW808
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingTargetIsoTerminalStableBoundaryW808
   #check Dbounded.targetIsoToTargetExactAtTerminalInputNamesW808
   #check Dbounded.targetIsoToTargetExactAtTerminalInputNamesW808_count
   #check Dbounded.MetrizableTargetIsoToTargetExactAtTerminalRouteStateW808
