@@ -677,6 +677,8 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_zero_right
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_baer_sum_left
 #check LeanLCAExactChallenge.YonedaExt.yonedaProduct_baer_sum_right
+#check LeanLCAExactChallenge.YonedaExt.yonedaProduct_baer_sum_neg_left
+#check LeanLCAExactChallenge.YonedaExt.yonedaProduct_baer_sum_neg_right
 #check LeanLCAExactChallenge.YonedaExt.positiveChainLeftFreeHom
 #check LeanLCAExactChallenge.YonedaExt.positiveChainLeft_relationSubgroup_le
 #check LeanLCAExactChallenge.YonedaExt.leftProductByPositiveChain

@@ -6731,6 +6731,26 @@ theorem yonedaProduct_baer_sum_right
   simpa [baer_sum] using
     yonedaProduct_add_right (X := X) (Y := Y) (Z := Z) (m := m) (n := n) a b c
 
+/-- The public `baer_sum` API with a negative right summand is subtraction in the left variable. -/
+theorem yonedaProduct_baer_sum_neg_left
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (a b : YonedaExt (C := MetrizableLCA.{u}) X Y (m + 1))
+    (c : YonedaExt (C := MetrizableLCA.{u}) Y Z (n + 1)) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n (baer_sum a (-b)) c =
+      yonedaProduct (X := X) (Y := Y) (Z := Z) m n a c -
+        yonedaProduct (X := X) (Y := Y) (Z := Z) m n b c := by
+  simp [baer_sum, sub_eq_add_neg]
+
+/-- The public `baer_sum` API with a negative right summand is subtraction in the right variable. -/
+theorem yonedaProduct_baer_sum_neg_right
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (a : YonedaExt (C := MetrizableLCA.{u}) X Y (m + 1))
+    (b c : YonedaExt (C := MetrizableLCA.{u}) Y Z (n + 1)) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n a (baer_sum b (-c)) =
+      yonedaProduct (X := X) (Y := Y) (Z := Z) m n a b -
+        yonedaProduct (X := X) (Y := Y) (Z := Z) m n a c := by
+  simp [baer_sum, sub_eq_add_neg]
+
 /-- The free abelian group map induced by splicing a positive one-fold chain on the left. -/
 def positiveChainLeftFreeHom :
     {X Y Z : C} → {m : ℕ} →

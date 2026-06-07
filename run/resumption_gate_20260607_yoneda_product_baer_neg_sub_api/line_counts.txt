@@ -1,0 +1,6 @@
+   7356 LeanLCAExactChallenge/Ext/Yoneda.lean
+  10765 audit/RequiredDeclarations.lean
+  21462 audit/OriginalFourTaskCompletionDeclarations.lean
+    104 terminal_outcome/terminal_outcome.json
+     22 run/goal_identity_20260602_human_centered_positive_witness.json
+  39709 total

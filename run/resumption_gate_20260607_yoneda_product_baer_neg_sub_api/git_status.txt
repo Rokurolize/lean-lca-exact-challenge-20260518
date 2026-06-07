@@ -1,0 +1,2 @@
+## goal-clean-positive-witness-20260607...origin/goal-clean-positive-witness-20260607
+?? run/resumption_gate_20260607_yoneda_product_baer_neg_sub_api/git_status.txt
