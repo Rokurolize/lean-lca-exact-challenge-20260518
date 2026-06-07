@@ -9239,6 +9239,22 @@ example :
   #check
     Dbounded.productEvidence_of_closedEmbeddingDirectRightLcaLimitOpClosureNormalizedClosedRangeRouteW777
   #check
+    Dbounded.directFiniteShapeStableDataOfClosedMapDirectRightLcaW777
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingDirectRightLcaW777
+  #check
+    Dbounded.stableBoundaryInputsOfClosedMapDirectRightLcaW777
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingDirectRightLcaW777
+  #check
+    Dbounded.acceptedStableOfClosedMapDirectRightLcaW777
+  #check
+    Dbounded.acceptedStableOfClosedEmbeddingDirectRightLcaW777
+  #check
+    Dbounded.boundedDerivedOfClosedMapDirectRightLcaStableBoundaryW777
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingDirectRightLcaStableBoundaryW777
+  #check
     Dbounded.directRightLcaLimitOpClosureNormalizedClosedRangeProductRouteInputNamesW777
   #check
     Dbounded.directRightLcaLimitOpClosureNormalizedClosedRangeProductRouteInputNamesW777_count

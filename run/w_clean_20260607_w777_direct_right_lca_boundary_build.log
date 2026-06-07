@@ -1,0 +1,44 @@
+command: lake build LeanLCAExactChallenge.Derived.DirectRightLcaLimitOpClosureNormalizedClosedRangeProductRoute
+exit: 0
+raw_line_count: 32490
+tail:
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [2067/2076] Replayed LeanLCAExactChallenge.Derived.LeftRightComparisonProductRoute
+warning: LeanLCAExactChallenge/Derived/LeftRightComparisonProductRoute.lean:178:100: This line exceeds the 100 character limit, please shorten it!
+You can use "string gaps" to format long strings: within a string quotation, using a '\' at the end of a line allows you to continue the string on the following line, removing all intervening whitespace.
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanLCAExactChallenge/Derived/LeftRightComparisonProductRoute.lean:184:100: This line exceeds the 100 character limit, please shorten it!
+You can use "string gaps" to format long strings: within a string quotation, using a '\' at the end of a line allows you to continue the string on the following line, removing all intervening whitespace.
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanLCAExactChallenge/Derived/LeftRightComparisonProductRoute.lean:193:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [2068/2076] Replayed LeanLCAExactChallenge.Derived.DirectFiniteShapeProductRoute
+warning: LeanLCAExactChallenge/Derived/DirectFiniteShapeProductRoute.lean:69:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanLCAExactChallenge/Derived/DirectFiniteShapeProductRoute.lean:99:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+info: LeanLCAExactChallenge/Derived/DirectFiniteShapeProductRoute.lean:303:0: LeanLCAExactChallenge.Dbounded.directLeftCalculusOfLeftRightComparisonDirectFiniteShapeW769
+  (data : MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769) :
+  (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions
+info: LeanLCAExactChallenge/Derived/DirectFiniteShapeProductRoute.lean:304:0: LeanLCAExactChallenge.Dbounded.stableBoundaryInputsOfLeftRightComparisonDirectFiniteShapeW769
+  (data : MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769) :
+  MetrizableStableInstanceBoundaryInputs
+info: LeanLCAExactChallenge/Derived/DirectFiniteShapeProductRoute.lean:305:0: LeanLCAExactChallenge.Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfLeftRightComparisonDirectFiniteShapeW769
+  (data : MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769) :
+  AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA
+info: LeanLCAExactChallenge/Derived/DirectFiniteShapeProductRoute.lean:307:0: LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfLeftRightComparisonDirectFiniteShapeStableBoundaryW769
+  (data : MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769) :
+  BoundedDerivedInfinityCategory MetrizableLCA (infinityCategory MetrizableLCA)
+info: LeanLCAExactChallenge/Derived/DirectFiniteShapeProductRoute.lean:309:0: LeanLCAExactChallenge.Dbounded.leftRightComparisonDirectFiniteShapeStableBoundaryInputNamesW769_count :
+  leftRightComparisonDirectFiniteShapeStableBoundaryInputNamesW769.length = 6
+info: LeanLCAExactChallenge/Derived/DirectFiniteShapeProductRoute.lean:310:0: LeanLCAExactChallenge.Dbounded.currentMetrizableLeftRightComparisonDirectFiniteShapeProductRouteStateW769_productSuccess :
+  (have state := currentMetrizableLeftRightComparisonDirectFiniteShapeProductRouteSupportStateW769;
+    state.productSuccessClaimed) =
+    false
+✔ [2076/2076] Built LeanLCAExactChallenge.Derived.DirectRightLcaLimitOpClosureNormalizedClosedRangeProductRoute (2.6s)
+Build completed successfully (2076 jobs).

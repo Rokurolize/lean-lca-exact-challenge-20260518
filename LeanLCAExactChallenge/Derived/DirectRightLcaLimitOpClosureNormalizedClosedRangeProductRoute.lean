@@ -112,6 +112,72 @@ noncomputable def
   productEvidence_of_closedEmbeddingLimitOpClosureNormalizedClosedRangeRouteW776
     (closedEmbeddingLimitOpClosureDataOfDirectRightLcaW777 data)
 
+/-- W777 closed-map branch converted to the W769 stable-data surface. -/
+noncomputable def directFiniteShapeStableDataOfClosedMapDirectRightLcaW777
+    (data :
+      MetrizableClosedMapDirectRightLcaLimitOpClosureNormalizedClosedRangeBranchDataW777) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapLimitOpClosureNormalizedClosedRangeW776
+    (closedMapLimitOpClosureDataOfDirectRightLcaW777 data)
+
+/-- W777 closed-embedding branch converted to the W769 stable-data surface. -/
+noncomputable def directFiniteShapeStableDataOfClosedEmbeddingDirectRightLcaW777
+    (data :
+      MetrizableClosedEmbeddingDirectRightLcaLimitOpClosureNormalizedClosedRangeBranchDataW777) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingLimitOpClosureNormalizedClosedRangeW776
+    (closedEmbeddingLimitOpClosureDataOfDirectRightLcaW777 data)
+
+/-- W777 closed-map branch as canonical stable-instance boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedMapDirectRightLcaW777
+    (data :
+      MetrizableClosedMapDirectRightLcaLimitOpClosureNormalizedClosedRangeBranchDataW777) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapLimitOpClosureNormalizedClosedRangeW776
+    (closedMapLimitOpClosureDataOfDirectRightLcaW777 data)
+
+/-- W777 closed-embedding branch as canonical stable-instance boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedEmbeddingDirectRightLcaW777
+    (data :
+      MetrizableClosedEmbeddingDirectRightLcaLimitOpClosureNormalizedClosedRangeBranchDataW777) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingLimitOpClosureNormalizedClosedRangeW776
+    (closedEmbeddingLimitOpClosureDataOfDirectRightLcaW777 data)
+
+/-- W777 closed-map branch passes the canonical accepted stable boundary gate. -/
+noncomputable def acceptedStableOfClosedMapDirectRightLcaW777
+    (data :
+      MetrizableClosedMapDirectRightLcaLimitOpClosureNormalizedClosedRangeBranchDataW777) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapLimitOpClosureNormalizedClosedRangeW776
+    (closedMapLimitOpClosureDataOfDirectRightLcaW777 data)
+
+/-- W777 closed-embedding branch passes the canonical accepted stable boundary gate. -/
+noncomputable def acceptedStableOfClosedEmbeddingDirectRightLcaW777
+    (data :
+      MetrizableClosedEmbeddingDirectRightLcaLimitOpClosureNormalizedClosedRangeBranchDataW777) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingLimitOpClosureNormalizedClosedRangeW776
+    (closedEmbeddingLimitOpClosureDataOfDirectRightLcaW777 data)
+
+/-- W777 closed-map branch produces the canonical stable-boundary package. -/
+noncomputable def boundedDerivedOfClosedMapDirectRightLcaStableBoundaryW777
+    (data :
+      MetrizableClosedMapDirectRightLcaLimitOpClosureNormalizedClosedRangeBranchDataW777) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapLimitOpClosureNormalizedClosedRangeStableBoundaryW776
+    (closedMapLimitOpClosureDataOfDirectRightLcaW777 data)
+
+/-- W777 closed-embedding branch produces the canonical stable-boundary package. -/
+noncomputable def boundedDerivedOfClosedEmbeddingDirectRightLcaStableBoundaryW777
+    (data :
+      MetrizableClosedEmbeddingDirectRightLcaLimitOpClosureNormalizedClosedRangeBranchDataW777) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingLimitOpClosureNormalizedClosedRangeStableBoundaryW776
+    (closedEmbeddingLimitOpClosureDataOfDirectRightLcaW777 data)
+
 /-- W777 input names after direct-left/algebraic right-LCA fields supply WPP limit closure. -/
 def directRightLcaLimitOpClosureNormalizedClosedRangeProductRouteInputNamesW777 :
     List String :=
@@ -136,6 +202,7 @@ structure MetrizableDirectRightLcaLimitOpClosureNormalizedClosedRangeProductRout
   seed : String
   declarations : List String
   directRightLcaResult : String
+  stableBoundaryResult : String
   closedMapResult : String
   closedEmbeddingResult : String
   replacedInputs : List String
@@ -157,11 +224,23 @@ def currentMetrizableDirectRightLcaLimitOpClosureNormalizedClosedRangeProductRou
       "productEvidence_of_closedMapDirectRightLcaLimitOpClosureNormalizedClosedRangeRouteW777",
       "productEvidence_of_closedEmbeddingDirectRightLcaLimitOpClosureNormalized\
         ClosedRangeRouteW777",
+      "directFiniteShapeStableDataOfClosedMapDirectRightLcaW777",
+      "directFiniteShapeStableDataOfClosedEmbeddingDirectRightLcaW777",
+      "stableBoundaryInputsOfClosedMapDirectRightLcaW777",
+      "stableBoundaryInputsOfClosedEmbeddingDirectRightLcaW777",
+      "acceptedStableOfClosedMapDirectRightLcaW777",
+      "acceptedStableOfClosedEmbeddingDirectRightLcaW777",
+      "boundedDerivedOfClosedMapDirectRightLcaStableBoundaryW777",
+      "boundedDerivedOfClosedEmbeddingDirectRightLcaStableBoundaryW777",
       "directRightLcaLimitOpClosureNormalizedClosedRangeProductRouteInputNamesW777",
       "directRightLcaLimitOpClosureNormalizedClosedRangeProductRouteInputNamesW777_count"]
   directRightLcaResult :=
     "proved: direct left/algebraic plus pure LCA right-side fields supply the\
       W776 WPP exact-acyclic limit-closure field"
+  stableBoundaryResult :=
+    "proved: W777 direct-right-LCA limit/op-closure normalized closed-range\
+      branches pass the W776/W775/W774/W773/W769 canonical stable-boundary\
+      accepted gate"
   closedMapResult :=
     "proved: closed-map W735 branch data plus direct-right-LCA limit/op closure\
       feed W776"
@@ -169,7 +248,8 @@ def currentMetrizableDirectRightLcaLimitOpClosureNormalizedClosedRangeProductRou
     "proved: closed-embedding W735 branch data plus direct-right-LCA limit/op\
       closure feed W776"
   replacedInputs :=
-    ["opaque WPP exact-acyclic limit-closure field"]
+    ["opaque WPP exact-acyclic limit-closure field",
+      "separate W776 limit/op-closure stable-boundary branch input"]
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",
