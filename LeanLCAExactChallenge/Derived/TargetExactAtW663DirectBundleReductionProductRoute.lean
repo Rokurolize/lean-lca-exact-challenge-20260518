@@ -150,6 +150,258 @@ noncomputable def
   productEvidence_of_closedEmbeddingShortExactBundleReducedRouteW806
     comparisonIso (shortExactPayloadOfDirectShortExactBundleW807 bundle) exactInputs
 
+/-!
+W807 closed-map direct endpoint bundle evidence as W806/W803 direct stable data.
+-/
+noncomputable def directFiniteShapeStableDataOfClosedMapDirectEndpointBundleReducedW807
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (bundle :
+      MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetExactAtBundleW663)
+    (exactInputs :
+      MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapEndpointBundleReducedW806
+    comparisonIso (endpointPayloadOfDirectEndpointBundleW807 bundle) exactInputs
+
+/-!
+W807 closed-embedding direct endpoint bundle evidence as W806/W803 direct stable
+data.
+-/
+noncomputable def
+    directFiniteShapeStableDataOfClosedEmbeddingDirectEndpointBundleReducedW807
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (bundle :
+      MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetExactAtBundleW663)
+    (exactInputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingEndpointBundleReducedW806
+    comparisonIso (endpointPayloadOfDirectEndpointBundleW807 bundle) exactInputs
+
+/-!
+W807 closed-map direct ShortExact bundle evidence as W806/W803 direct stable
+data.
+-/
+noncomputable def directFiniteShapeStableDataOfClosedMapDirectShortExactBundleReducedW807
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (bundle :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetExactAtBundleW663)
+    (exactInputs :
+      MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapShortExactBundleReducedW806
+    comparisonIso (shortExactPayloadOfDirectShortExactBundleW807 bundle) exactInputs
+
+/-!
+W807 closed-embedding direct ShortExact bundle evidence as W806/W803 direct
+stable data.
+-/
+noncomputable def
+    directFiniteShapeStableDataOfClosedEmbeddingDirectShortExactBundleReducedW807
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (bundle :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetExactAtBundleW663)
+    (exactInputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingShortExactBundleReducedW806
+    comparisonIso (shortExactPayloadOfDirectShortExactBundleW807 bundle) exactInputs
+
+/-! W807 closed-map direct endpoint bundle evidence as stable-boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedMapDirectEndpointBundleReducedW807
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (bundle :
+      MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetExactAtBundleW663)
+    (exactInputs :
+      MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapEndpointBundleReducedW806
+    comparisonIso (endpointPayloadOfDirectEndpointBundleW807 bundle) exactInputs
+
+/-!
+W807 closed-embedding direct endpoint bundle evidence as stable-boundary inputs.
+-/
+noncomputable def stableBoundaryInputsOfClosedEmbeddingDirectEndpointBundleReducedW807
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (bundle :
+      MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetExactAtBundleW663)
+    (exactInputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingEndpointBundleReducedW806
+    comparisonIso (endpointPayloadOfDirectEndpointBundleW807 bundle) exactInputs
+
+/-!
+W807 closed-map direct ShortExact bundle evidence as stable-boundary inputs.
+-/
+noncomputable def stableBoundaryInputsOfClosedMapDirectShortExactBundleReducedW807
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (bundle :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetExactAtBundleW663)
+    (exactInputs :
+      MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapShortExactBundleReducedW806
+    comparisonIso (shortExactPayloadOfDirectShortExactBundleW807 bundle) exactInputs
+
+/-!
+W807 closed-embedding direct ShortExact bundle evidence as stable-boundary
+inputs.
+-/
+noncomputable def stableBoundaryInputsOfClosedEmbeddingDirectShortExactBundleReducedW807
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (bundle :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetExactAtBundleW663)
+    (exactInputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingShortExactBundleReducedW806
+    comparisonIso (shortExactPayloadOfDirectShortExactBundleW807 bundle) exactInputs
+
+/-! W807 closed-map direct endpoint bundle evidence passes the stable boundary. -/
+noncomputable def acceptedStableOfClosedMapDirectEndpointBundleReducedW807
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (bundle :
+      MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetExactAtBundleW663)
+    (exactInputs :
+      MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapEndpointBundleReducedW806
+    comparisonIso (endpointPayloadOfDirectEndpointBundleW807 bundle) exactInputs
+
+/-!
+W807 closed-embedding direct endpoint bundle evidence passes the stable boundary.
+-/
+noncomputable def acceptedStableOfClosedEmbeddingDirectEndpointBundleReducedW807
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (bundle :
+      MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetExactAtBundleW663)
+    (exactInputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingEndpointBundleReducedW806
+    comparisonIso (endpointPayloadOfDirectEndpointBundleW807 bundle) exactInputs
+
+/-! W807 closed-map direct ShortExact bundle evidence passes the stable boundary. -/
+noncomputable def acceptedStableOfClosedMapDirectShortExactBundleReducedW807
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (bundle :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetExactAtBundleW663)
+    (exactInputs :
+      MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapShortExactBundleReducedW806
+    comparisonIso (shortExactPayloadOfDirectShortExactBundleW807 bundle) exactInputs
+
+/-!
+W807 closed-embedding direct ShortExact bundle evidence passes the stable
+boundary.
+-/
+noncomputable def acceptedStableOfClosedEmbeddingDirectShortExactBundleReducedW807
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (bundle :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetExactAtBundleW663)
+    (exactInputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingShortExactBundleReducedW806
+    comparisonIso (shortExactPayloadOfDirectShortExactBundleW807 bundle) exactInputs
+
+/-!
+W807 closed-map direct endpoint bundle evidence produces the stable-boundary
+package.
+-/
+noncomputable def boundedDerivedOfClosedMapDirectEndpointBundleReducedStableBoundaryW807
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (bundle :
+      MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetExactAtBundleW663)
+    (exactInputs :
+      MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapEndpointBundleReducedStableBoundaryW806
+    comparisonIso (endpointPayloadOfDirectEndpointBundleW807 bundle) exactInputs
+
+/-!
+W807 closed-embedding direct endpoint bundle evidence produces the
+stable-boundary package.
+-/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingDirectEndpointBundleReducedStableBoundaryW807
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (bundle :
+      MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetExactAtBundleW663)
+    (exactInputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingEndpointBundleReducedStableBoundaryW806
+    comparisonIso (endpointPayloadOfDirectEndpointBundleW807 bundle) exactInputs
+
+/-!
+W807 closed-map direct ShortExact bundle evidence produces the stable-boundary
+package.
+-/
+noncomputable def
+    boundedDerivedOfClosedMapDirectShortExactBundleReducedStableBoundaryW807
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (bundle :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetExactAtBundleW663)
+    (exactInputs :
+      MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapShortExactBundleReducedStableBoundaryW806
+    comparisonIso (shortExactPayloadOfDirectShortExactBundleW807 bundle) exactInputs
+
+/-!
+W807 closed-embedding direct ShortExact bundle evidence produces the
+stable-boundary package.
+-/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingDirectShortExactBundleReducedStableBoundaryW807
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (bundle :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetExactAtBundleW663)
+    (exactInputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingShortExactBundleReducedStableBoundaryW806
+    comparisonIso (shortExactPayloadOfDirectShortExactBundleW807 bundle) exactInputs
+
 /-- W807 input names for full W663 direct-bundle reduction to W803 terminal route. -/
 def targetExactAtW663DirectBundleReductionInputNamesW807 : List String :=
   ["universal IsIso for every MetrizableLCA left-right homology comparison",
@@ -166,6 +418,7 @@ structure MetrizableTargetExactAtW663DirectBundleReductionStateW807 :
   declarations : List String
   endpointReductionResult : String
   shortExactReductionResult : String
+  stableBoundaryResult : String
   droppedInputs : List String
   remainingInputs : List String
   productSuccessClaimed : Bool
@@ -185,12 +438,31 @@ def currentMetrizableTargetExactAtW663DirectBundleReductionStateW807 :
       "productEvidence_of_closedEmbeddingDirectEndpointBundleReducedRouteW807",
       "productEvidence_of_closedMapDirectShortExactBundleReducedRouteW807",
       "productEvidence_of_closedEmbeddingDirectShortExactBundleReducedRouteW807",
+      "directFiniteShapeStableDataOfClosedMapDirectEndpointBundleReducedW807",
+      "directFiniteShapeStableDataOfClosedEmbeddingDirectEndpointBundleReducedW807",
+      "directFiniteShapeStableDataOfClosedMapDirectShortExactBundleReducedW807",
+      "directFiniteShapeStableDataOfClosedEmbeddingDirectShortExactBundleReducedW807",
+      "stableBoundaryInputsOfClosedMapDirectEndpointBundleReducedW807",
+      "stableBoundaryInputsOfClosedEmbeddingDirectEndpointBundleReducedW807",
+      "stableBoundaryInputsOfClosedMapDirectShortExactBundleReducedW807",
+      "stableBoundaryInputsOfClosedEmbeddingDirectShortExactBundleReducedW807",
+      "acceptedStableOfClosedMapDirectEndpointBundleReducedW807",
+      "acceptedStableOfClosedEmbeddingDirectEndpointBundleReducedW807",
+      "acceptedStableOfClosedMapDirectShortExactBundleReducedW807",
+      "acceptedStableOfClosedEmbeddingDirectShortExactBundleReducedW807",
+      "boundedDerivedOfClosedMapDirectEndpointBundleReducedStableBoundaryW807",
+      "boundedDerivedOfClosedEmbeddingDirectEndpointBundleReducedStableBoundaryW807",
+      "boundedDerivedOfClosedMapDirectShortExactBundleReducedStableBoundaryW807",
+      "boundedDerivedOfClosedEmbeddingDirectShortExactBundleReducedStableBoundaryW807",
       "targetExactAtW663DirectBundleReductionInputNamesW807",
       "targetExactAtW663DirectBundleReductionInputNamesW807_count"]
   endpointReductionResult :=
     "proved: full W663 endpoint direct bundles feed the W803 terminal route"
   shortExactReductionResult :=
     "proved: full W663 ShortExact direct bundles feed the W803 terminal route"
+  stableBoundaryResult :=
+    "proved: full W663 endpoint and ShortExact direct bundles expose the W806\
+      stable-boundary gate"
   droppedInputs :=
     ["direct finite-shape WPP source field",
       "endpoint or ShortExact topology fields",
