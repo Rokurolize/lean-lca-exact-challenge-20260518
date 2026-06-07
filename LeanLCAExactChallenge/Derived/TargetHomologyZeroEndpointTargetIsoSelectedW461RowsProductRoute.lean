@@ -151,6 +151,74 @@ noncomputable def
   productEvidence_of_closedEmbeddingTargetIsoRealizationRouteW784
     (closedEmbeddingTargetIsoDataOfTargetHomologyZeroEndpointW786 data)
 
+/-- W786 closed-map branch converted to the W769 stable-data surface. -/
+noncomputable def
+    directFiniteShapeStableDataOfClosedMapTargetHomologyZeroEndpointW786
+    (data : MetrizableClosedMapTargetHomologyZeroEndpointTargetIsoBranchDataW786) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapTargetIsoRealizationW784
+    (closedMapTargetIsoDataOfTargetHomologyZeroEndpointW786 data)
+
+/-- W786 closed-embedding branch converted to the W769 stable-data surface. -/
+noncomputable def
+    directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroEndpointW786
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroEndpointTargetIsoBranchDataW786) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingTargetIsoRealizationW784
+    (closedEmbeddingTargetIsoDataOfTargetHomologyZeroEndpointW786 data)
+
+/-- W786 closed-map branch as canonical stable-instance boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedMapTargetHomologyZeroEndpointW786
+    (data : MetrizableClosedMapTargetHomologyZeroEndpointTargetIsoBranchDataW786) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapTargetIsoRealizationW784
+    (closedMapTargetIsoDataOfTargetHomologyZeroEndpointW786 data)
+
+/-- W786 closed-embedding branch as canonical stable-instance boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroEndpointW786
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroEndpointTargetIsoBranchDataW786) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingTargetIsoRealizationW784
+    (closedEmbeddingTargetIsoDataOfTargetHomologyZeroEndpointW786 data)
+
+/-- W786 closed-map branch passes the canonical accepted stable boundary gate. -/
+noncomputable def acceptedStableOfClosedMapTargetHomologyZeroEndpointW786
+    (data : MetrizableClosedMapTargetHomologyZeroEndpointTargetIsoBranchDataW786) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapTargetIsoRealizationW784
+    (closedMapTargetIsoDataOfTargetHomologyZeroEndpointW786 data)
+
+/--
+W786 closed-embedding branch passes the canonical accepted stable boundary gate.
+-/
+noncomputable def acceptedStableOfClosedEmbeddingTargetHomologyZeroEndpointW786
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroEndpointTargetIsoBranchDataW786) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingTargetIsoRealizationW784
+    (closedEmbeddingTargetIsoDataOfTargetHomologyZeroEndpointW786 data)
+
+/-- W786 closed-map branch produces the canonical stable-boundary package. -/
+noncomputable def
+    boundedDerivedOfClosedMapTargetHomologyZeroEndpointStableBoundaryW786
+    (data : MetrizableClosedMapTargetHomologyZeroEndpointTargetIsoBranchDataW786) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapTargetIsoRealizationStableBoundaryW784
+    (closedMapTargetIsoDataOfTargetHomologyZeroEndpointW786 data)
+
+/-- W786 closed-embedding branch produces the canonical stable-boundary package. -/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingTargetHomologyZeroEndpointStableBoundaryW786
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroEndpointTargetIsoBranchDataW786) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingTargetIsoRealizationStableBoundaryW784
+    (closedEmbeddingTargetIsoDataOfTargetHomologyZeroEndpointW786 data)
+
 /-- W786 input names after replacing W785's target `ExactAt` payload. -/
 def targetHomologyZeroEndpointTargetIsoProductRouteInputNamesW786 :
     List String :=
@@ -176,6 +244,7 @@ structure MetrizableTargetHomologyZeroEndpointTargetIsoRouteStateW786 :
   seed : String
   declarations : List String
   transportResult : String
+  stableBoundaryResult : String
   closedMapResult : String
   closedEmbeddingResult : String
   replacedInputs : List String
@@ -196,18 +265,30 @@ def currentMetrizableTargetHomologyZeroEndpointTargetIsoRouteStateW786 :
       "closedEmbeddingTargetIsoDataOfTargetHomologyZeroEndpointW786",
       "productEvidence_of_closedMapTargetHomologyZeroEndpointRouteW786",
       "productEvidence_of_closedEmbeddingTargetHomologyZeroEndpointRouteW786",
+      "directFiniteShapeStableDataOfClosedMapTargetHomologyZeroEndpointW786",
+      "directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroEndpointW786",
+      "stableBoundaryInputsOfClosedMapTargetHomologyZeroEndpointW786",
+      "stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroEndpointW786",
+      "acceptedStableOfClosedMapTargetHomologyZeroEndpointW786",
+      "acceptedStableOfClosedEmbeddingTargetHomologyZeroEndpointW786",
+      "boundedDerivedOfClosedMapTargetHomologyZeroEndpointStableBoundaryW786",
+      "boundedDerivedOfClosedEmbeddingTargetHomologyZeroEndpointStableBoundaryW786",
       "targetHomologyZeroEndpointTargetIsoProductRouteInputNamesW786",
       "targetHomologyZeroEndpointTargetIsoProductRouteInputNamesW786_count"]
   transportResult :=
     "proved: target homology-zero realization, homology existence, and endpoint\
       topology supply W784's target-isomorphism input"
+  stableBoundaryResult :=
+    "proved: W786 target homology-zero endpoint branches pass the\
+      W784/W783/W782/W781/W780/W779/W778/W774/W773/W769 canonical stable-boundary gate"
   closedMapResult :=
     "proved: closed-map target homology-zero endpoint branch data feeds W784"
   closedEmbeddingResult :=
     "proved: closed-embedding target homology-zero endpoint branch data feeds\
       W784"
   replacedInputs :=
-    ["exact-acyclic homotopy-object target ExactAt realization data"]
+    ["exact-acyclic homotopy-object target ExactAt realization data",
+      "separate W784 target-isomorphism stable-boundary branch input"]
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",

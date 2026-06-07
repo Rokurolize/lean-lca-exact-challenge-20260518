@@ -1,0 +1,2 @@
+PASS lake env lean audit/ProductSuccessDeclarations.lean
+The audit accepts W786 stable-boundary #checks while product_success remains false.
