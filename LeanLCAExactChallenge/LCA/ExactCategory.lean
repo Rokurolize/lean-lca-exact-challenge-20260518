@@ -111,6 +111,24 @@ theorem forgetToAddCommGrpCat_exact_of_quillenConflation
     (S.map forgetToAddCommGrpCat).Exact :=
   forgetToAddCommGrpCat_exact_of_strict (strictShortExact_of_quillenConflation hS)
 
+/-- After forgetting topology, the left map of a canonical Quillen conflation is
+the kernel of the right map in abelian groups. -/
+noncomputable def forgetToAddCommGrpCat_kernelForkOfQuillenConflation
+    {S : ShortComplex MetrizableLCA.{u}} (hS : QuillenExactCategory.Conflation S) :
+    IsLimit (KernelFork.ofι (S.map forgetToAddCommGrpCat).f
+      (S.map forgetToAddCommGrpCat).zero) :=
+  forgetToAddCommGrpCat_kernelForkOfStrictShortExact
+    (strictShortExact_of_quillenConflation hS)
+
+/-- After forgetting topology, the right map of a canonical Quillen conflation is
+the cokernel of the left map in abelian groups. -/
+noncomputable def forgetToAddCommGrpCat_cokernelCoforkOfQuillenConflation
+    {S : ShortComplex MetrizableLCA.{u}} (hS : QuillenExactCategory.Conflation S) :
+    IsColimit (CokernelCofork.ofπ (S.map forgetToAddCommGrpCat).g
+      (S.map forgetToAddCommGrpCat).zero) :=
+  forgetToAddCommGrpCat_cokernelCoforkOfStrictShortExact
+    (strictShortExact_of_quillenConflation hS)
+
 /-- A canonical Quillen conflation has the expected categorical kernel fork. -/
 noncomputable def kernelForkOfQuillenConflation {S : ShortComplex MetrizableLCA.{u}}
     (hS : QuillenExactCategory.Conflation S) :

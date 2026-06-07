@@ -73,6 +73,33 @@ lemma forgetToAddCommGrpCat_exact_of_strict {S : ShortComplex MetrizableLCA.{u}}
   rcases hS.algebraic_exact x₂ hx₂ with ⟨x₁, hx₁⟩
   exact ⟨x₁, hx₁⟩
 
+/-- After forgetting topology, the left map of a strict short exact sequence is
+the kernel of the right map in abelian groups. -/
+noncomputable def forgetToAddCommGrpCat_kernelForkOfStrictShortExact
+    {S : ShortComplex MetrizableLCA.{u}} (hS : strictShortExact S) :
+    IsLimit (KernelFork.ofι (S.map forgetToAddCommGrpCat).f
+      (S.map forgetToAddCommGrpCat).zero) := by
+  have hExact := forgetToAddCommGrpCat_exact_of_strict hS
+  haveI : Mono (S.map forgetToAddCommGrpCat).f := by
+    refine ConcreteCategory.mono_of_injective _ ?_
+    intro x y hxy
+    exact hS.closed_inclusion.injective (by simpa using hxy)
+  exact hExact.fIsKernel
+
+/-- After forgetting topology, the right map of a strict short exact sequence is
+the cokernel of the left map in abelian groups. -/
+noncomputable def forgetToAddCommGrpCat_cokernelCoforkOfStrictShortExact
+    {S : ShortComplex MetrizableLCA.{u}} (hS : strictShortExact S) :
+    IsColimit (CokernelCofork.ofπ (S.map forgetToAddCommGrpCat).g
+      (S.map forgetToAddCommGrpCat).zero) := by
+  have hExact := forgetToAddCommGrpCat_exact_of_strict hS
+  haveI : Epi (S.map forgetToAddCommGrpCat).g := by
+    refine ConcreteCategory.epi_of_surjective _ ?_
+    intro z
+    rcases hS.surjective z with ⟨y, hy⟩
+    exact ⟨y, by simpa using hy⟩
+  exact hExact.gIsCokernel
+
 lemma strictShortExact_of_exact_of_topology {S : ShortComplex MetrizableLCA.{u}}
     (hhom : S.HasHomology)
     (hpres : (forget₂ MetrizableLCA.{u} AddCommGrpCat.{u}).PreservesHomology)
