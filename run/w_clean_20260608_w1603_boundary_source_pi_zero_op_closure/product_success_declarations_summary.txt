@@ -1,0 +1,23 @@
+Product-success declaration audit summary for W1603.
+
+commands:
+- lake env lean audit/ProductSuccessDeclarations.lean
+- lake env lean audit/OriginalFourTaskCompletionDeclarations.lean
+
+observed Lean output sizes:
+- ProductSuccessDeclarations.lean: 71497 lines
+- OriginalFourTaskCompletionDeclarations.lean: 53877 lines
+
+note:
+- Full Lean audit logs were intentionally not retained in this checkpoint; this compact summary records the successful commands and relevant counts.
+
+Lean audit files positive-witness matches:
+- OriginalFourTaskProductSuccess/originalFourTaskProductSuccess matches in ProductSuccessDeclarations.lean and OriginalFourTaskCompletionDeclarations.lean: 0
+
+Nonterminal markers:
+- productSuccessClaimed false markers across LeanLCAExactChallenge and audit, excluding audit/negative_fixtures: 1530
+
+status:
+- product_success remains false
+- product_complete remains false
+- update_goal_allowed remains false
