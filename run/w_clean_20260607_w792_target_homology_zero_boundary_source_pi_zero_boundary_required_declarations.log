@@ -1,0 +1,3 @@
+exit=0
+command=lake env lean audit/RequiredDeclarations.lean
+note=Lean accepted all RequiredDeclarations #check statements including W792 stable-boundary declarations

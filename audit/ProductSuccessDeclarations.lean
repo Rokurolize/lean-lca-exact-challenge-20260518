@@ -9687,6 +9687,21 @@ example :
   #check Dbounded.productEvidence_of_closedMapBoundarySourcePiZeroRouteW792
   #check
     Dbounded.productEvidence_of_closedEmbeddingBoundarySourcePiZeroRouteW792
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedMapTargetHomologyZeroBoundarySourcePiZeroW792
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroBoundarySourcePiZeroW792
+  #check
+    Dbounded.stableBoundaryInputsOfClosedMapTargetHomologyZeroBoundarySourcePiZeroW792
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroBoundarySourcePiZeroW792
+  #check Dbounded.acceptedStableOfClosedMapTargetHomologyZeroBoundarySourcePiZeroW792
+  #check
+    Dbounded.acceptedStableOfClosedEmbeddingTargetHomologyZeroBoundarySourcePiZeroW792
+  #check
+    Dbounded.boundedDerivedOfClosedMapTargetHomologyZeroBoundarySourcePiZeroStableBoundaryW792
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingTargetHomologyZeroBoundarySourcePiZeroStableBoundaryW792
   #check Dbounded.targetHomologyZeroBoundarySourcePiZeroProductRouteInputNamesW792
   #check
     Dbounded.targetHomologyZeroBoundarySourcePiZeroProductRouteInputNamesW792_count

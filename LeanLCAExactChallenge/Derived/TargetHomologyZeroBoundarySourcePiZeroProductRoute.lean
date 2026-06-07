@@ -163,6 +163,84 @@ noncomputable def productEvidence_of_closedEmbeddingBoundarySourcePiZeroRouteW79
   productEvidence_of_closedEmbeddingNormalizedDirectSourceClosedRangeRouteW774
     (closedEmbeddingNormalizedDataOfBoundarySourcePiZeroW792 data)
 
+/-- W792 closed-map branch converted to the W769 stable-data surface. -/
+noncomputable def
+    directFiniteShapeStableDataOfClosedMapTargetHomologyZeroBoundarySourcePiZeroW792
+    (data :
+      MetrizableClosedMapTargetHomologyZeroBoundarySourcePiZeroBranchDataW792) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapNormalizedDirectSourceClosedRangeW774
+    (closedMapNormalizedDataOfBoundarySourcePiZeroW792 data)
+
+/-- W792 closed-embedding branch converted to the W769 stable-data surface. -/
+noncomputable def
+    directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroBoundarySourcePiZeroW792
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroBoundarySourcePiZeroBranchDataW792) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+    (closedEmbeddingNormalizedDataOfBoundarySourcePiZeroW792 data)
+
+/-- W792 closed-map branch as canonical stable-instance boundary inputs. -/
+noncomputable def
+    stableBoundaryInputsOfClosedMapTargetHomologyZeroBoundarySourcePiZeroW792
+    (data :
+      MetrizableClosedMapTargetHomologyZeroBoundarySourcePiZeroBranchDataW792) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapNormalizedDirectSourceClosedRangeW774
+    (closedMapNormalizedDataOfBoundarySourcePiZeroW792 data)
+
+/-- W792 closed-embedding branch as canonical stable-instance boundary inputs. -/
+noncomputable def
+    stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroBoundarySourcePiZeroW792
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroBoundarySourcePiZeroBranchDataW792) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+    (closedEmbeddingNormalizedDataOfBoundarySourcePiZeroW792 data)
+
+/-- W792 closed-map branch passes the canonical accepted stable boundary gate. -/
+noncomputable def
+    acceptedStableOfClosedMapTargetHomologyZeroBoundarySourcePiZeroW792
+    (data :
+      MetrizableClosedMapTargetHomologyZeroBoundarySourcePiZeroBranchDataW792) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapNormalizedDirectSourceClosedRangeW774
+    (closedMapNormalizedDataOfBoundarySourcePiZeroW792 data)
+
+/--
+W792 closed-embedding branch passes the canonical accepted stable boundary gate.
+-/
+noncomputable def
+    acceptedStableOfClosedEmbeddingTargetHomologyZeroBoundarySourcePiZeroW792
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroBoundarySourcePiZeroBranchDataW792) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+    (closedEmbeddingNormalizedDataOfBoundarySourcePiZeroW792 data)
+
+/-- W792 closed-map branch produces the canonical stable-boundary package. -/
+noncomputable def
+    boundedDerivedOfClosedMapTargetHomologyZeroBoundarySourcePiZeroStableBoundaryW792
+    (data :
+      MetrizableClosedMapTargetHomologyZeroBoundarySourcePiZeroBranchDataW792) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapNormalizedDirectSourceClosedRangeStableBoundaryW774
+    (closedMapNormalizedDataOfBoundarySourcePiZeroW792 data)
+
+/--
+W792 closed-embedding branch produces the canonical stable-boundary package.
+-/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingTargetHomologyZeroBoundarySourcePiZeroStableBoundaryW792
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroBoundarySourcePiZeroBranchDataW792) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingNormalizedDirectSourceClosedRangeStableBoundaryW774
+    (closedEmbeddingNormalizedDataOfBoundarySourcePiZeroW792 data)
+
 /-- W792 input names after deriving limit stability from W716 boundary data. -/
 def targetHomologyZeroBoundarySourcePiZeroProductRouteInputNamesW792 :
     List String :=
@@ -185,6 +263,7 @@ structure MetrizableTargetHomologyZeroBoundarySourcePiZeroRouteStateW792 :
   declarations : List String
   limitStabilityResult : String
   exactClosed2Result : String
+  stableBoundaryResult : String
   closedMapResult : String
   closedEmbeddingResult : String
   replacedInputs : List String
@@ -207,6 +286,14 @@ def currentMetrizableTargetHomologyZeroBoundarySourcePiZeroRouteStateW792 :
       "closedEmbeddingNormalizedDataOfBoundarySourcePiZeroW792",
       "productEvidence_of_closedMapBoundarySourcePiZeroRouteW792",
       "productEvidence_of_closedEmbeddingBoundarySourcePiZeroRouteW792",
+      "directFiniteShapeStableDataOfClosedMapTargetHomologyZeroBoundarySourcePiZeroW792",
+      "directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroBoundarySourcePiZeroW792",
+      "stableBoundaryInputsOfClosedMapTargetHomologyZeroBoundarySourcePiZeroW792",
+      "stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroBoundarySourcePiZeroW792",
+      "acceptedStableOfClosedMapTargetHomologyZeroBoundarySourcePiZeroW792",
+      "acceptedStableOfClosedEmbeddingTargetHomologyZeroBoundarySourcePiZeroW792",
+      "boundedDerivedOfClosedMapTargetHomologyZeroBoundarySourcePiZeroStableBoundaryW792",
+      "boundedDerivedOfClosedEmbeddingTargetHomologyZeroBoundarySourcePiZeroStableBoundaryW792",
       "targetHomologyZeroBoundarySourcePiZeroProductRouteInputNamesW792",
       "targetHomologyZeroBoundarySourcePiZeroProductRouteInputNamesW792_count"]
   limitStabilityResult :=
@@ -215,13 +302,17 @@ def currentMetrizableTargetHomologyZeroBoundarySourcePiZeroRouteStateW792 :
   exactClosed2Result :=
     "proved: target homology-zero realization data supplies W774 Closed2 input\
       through W790, W784, W783, and W782"
+  stableBoundaryResult :=
+    "proved: W792 target homology-zero boundary source-pi-zero branches pass\
+      the W774/W773/W769 canonical stable-boundary gate"
   closedMapResult :=
     "proved: closed-map boundary source-pi-zero route feeds W774"
   closedEmbeddingResult :=
     "proved: closed-embedding boundary source-pi-zero route feeds W774"
   replacedInputs :=
     ["separate MetrizableWppLimitRightOpenClosedQuotientCoverBoundary field",
-      "separate MetrizableWppLimitRightSurjectiveEpiBoundaryW780 field"]
+      "separate MetrizableWppLimitRightSurjectiveEpiBoundaryW780 field",
+      "separate W774 normalized direct-source stable-boundary branch input"]
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",
