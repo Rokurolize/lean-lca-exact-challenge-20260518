@@ -3621,6 +3621,15 @@ ordinary category.
 #check (Dbounded.infinityNerve (C := MetrizableLCA))
 #check (Dbounded.infinityNerve_quasicategory (C := MetrizableLCA))
 #check (Dbounded.homotopyCategoryIso (C := MetrizableLCA))
+#check Dbounded.MetrizableBoundedComplexCategory
+#check Dbounded.MetrizableCategory
+#check Dbounded.metrizableLocalization
+#check Dbounded.metrizableWeakEquivalence_iff_exactAcyclicMappingCone
+#check Dbounded.metrizableInfinityCategory
+#check Dbounded.metrizableInfinityNerve
+#check Dbounded.metrizableInfinityNerve_quasicategory
+#check Dbounded.metrizableHomotopyCategoryIso
+#check Dbounded.currentMetrizableOrdinaryInfinityContext
 
 /-
 The stable bounded-derived gate is exposed as a four-projection certificate interface. The

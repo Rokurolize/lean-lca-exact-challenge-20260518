@@ -1,0 +1,29 @@
+LeanLCAExactChallenge/Derived/Bounded.lean:320:14: warning: This simp argument is unused:
+  strictShortExactBiprodComplex
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵s̵t̵r̵i̵c̵t̵S̵h̵o̵r̵t̵E̵x̵a̵c̵t̵B̵i̵p̵r̵o̵d̵C̵o̵m̵p̵l̵e̵x̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanLCAExactChallenge/Derived/Bounded.lean:328:14: warning: This simp argument is unused:
+  strictShortExactBiprodComplex
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵s̵t̵r̵i̵c̵t̵S̵h̵o̵r̵t̵E̵x̵a̵c̵t̵B̵i̵p̵r̵o̵d̵C̵o̵m̵p̵l̵e̵x̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanLCAExactChallenge/Derived/Bounded.lean:341:14: warning: This simp argument is unused:
+  strictShortExactBiprodComplex
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵s̵t̵r̵i̵c̵t̵S̵h̵o̵r̵t̵E̵x̵a̵c̵t̵B̵i̵p̵r̵o̵d̵C̵o̵m̵p̵l̵e̵x̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanLCAExactChallenge/Derived/Bounded.lean:349:14: warning: This simp argument is unused:
+  strictShortExactBiprodComplex
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵s̵t̵r̵i̵c̵t̵S̵h̵o̵r̵t̵E̵x̵a̵c̵t̵B̵i̵p̵r̵o̵d̵C̵o̵m̵p̵l̵e̵x̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+exit=0

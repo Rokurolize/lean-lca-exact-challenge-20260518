@@ -3820,6 +3820,54 @@ noncomputable def Dbounded.currentOrdinaryInfinityContext
   quasicategory := Dbounded.infinityNerve_quasicategory (C := C)
   homotopyCategoryIso := Dbounded.homotopyCategoryIso (C := C)
 
+/-- Bounded complexes over metrizable LCA groups with the strict Quillen exact structure. -/
+abbrev Dbounded.MetrizableBoundedComplexCategory : Type 1 :=
+  BoundedComplexCategory MetrizableLCA.{0}
+
+/-- The ordinary bounded derived category `D^b(MetrizableLCA, E)`. -/
+abbrev Dbounded.MetrizableCategory : Type 1 :=
+  Dbounded MetrizableLCA.{0}
+
+/-- The localization functor defining `D^b(MetrizableLCA, E)`. -/
+abbrev Dbounded.metrizableLocalization :
+    Dbounded.MetrizableBoundedComplexCategory ⥤ Dbounded.MetrizableCategory :=
+  Dbounded.localization MetrizableLCA.{0}
+
+/-- For metrizable LCA groups, bounded weak equivalences are exactly the maps whose
+mapping cone is exact acyclic for the strict Quillen exact structure. -/
+theorem Dbounded.metrizableWeakEquivalence_iff_exactAcyclicMappingCone
+    {K L : Dbounded.MetrizableBoundedComplexCategory} (f : K ⟶ L) :
+    boundedExactWeakEquivalence MetrizableLCA.{0} f ↔
+      exactAcyclic MetrizableLCA.{0}
+        (CochainComplex.mappingCone
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map f)) :=
+  Iff.rfl
+
+/-- The bounded derived quasicategory attached to metrizable LCA groups. -/
+noncomputable abbrev Dbounded.metrizableInfinityCategory : SSet.QCat :=
+  Dbounded.infinityCategory MetrizableLCA.{0}
+
+/-- The underlying simplicial set of the metrizable LCA bounded derived quasicategory. -/
+noncomputable abbrev Dbounded.metrizableInfinityNerve : SSet :=
+  Dbounded.infinityNerve MetrizableLCA.{0}
+
+/-- The metrizable LCA bounded derived nerve is a quasicategory. -/
+theorem Dbounded.metrizableInfinityNerve_quasicategory :
+    SSet.Quasicategory Dbounded.metrizableInfinityNerve :=
+  Dbounded.infinityNerve_quasicategory (C := MetrizableLCA.{0})
+
+/-- The homotopy category of the metrizable LCA bounded derived quasicategory is the
+localized bounded derived category. -/
+noncomputable def Dbounded.metrizableHomotopyCategoryIso :
+    SSet.hoFunctor.obj Dbounded.metrizableInfinityNerve ≅
+      Cat.of Dbounded.MetrizableCategory :=
+  Dbounded.homotopyCategoryIso (C := MetrizableLCA.{0})
+
+/-- Current ordinary infinity-category context for `D^b(MetrizableLCA, E)`. -/
+noncomputable def Dbounded.currentMetrizableOrdinaryInfinityContext :
+    Dbounded.OrdinaryInfinityContext MetrizableLCA.{0} :=
+  Dbounded.currentOrdinaryInfinityContext MetrizableLCA.{0}
+
 /-- A four-projection stable certificate specifically for `Dbounded.infinityCategory`. -/
 abbrev Dbounded.StableFourProjectionCertificate
     (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
