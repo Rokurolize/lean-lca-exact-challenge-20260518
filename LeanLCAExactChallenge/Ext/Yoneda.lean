@@ -7412,4 +7412,51 @@ end LeftProduct
 
 end YonedaExt
 
+namespace MetrizableLCA
+
+/-- Yoneda Ext groups for the strict exact category of metrizable LCA groups. -/
+abbrev yonedaExt (X Y : MetrizableLCA.{u}) (n : ℕ) :=
+  YonedaExt (C := MetrizableLCA.{u}) X Y n
+
+/-- The additive group structure on metrizable LCA Yoneda Ext groups. -/
+@[reducible]
+noncomputable def yonedaExtAddCommGroup (X Y : MetrizableLCA.{u}) (n : ℕ) :
+    AddCommGroup (yonedaExt X Y n) := by
+  dsimp [yonedaExt]
+  infer_instance
+
+/-- Degree-zero metrizable LCA Yoneda Ext is the morphism group. -/
+noncomputable def yonedaExtZeroEquivHom (X Y : MetrizableLCA.{u}) :
+    yonedaExt X Y 0 ≃ (X ⟶ Y) :=
+  YonedaExt.zero_equiv_hom (C := MetrizableLCA.{u}) (X := X) (Y := Y)
+
+/-- The `Ext¹` class represented by a strict short exact sequence of metrizable LCA groups. -/
+def yonedaExtOfStrictShortExact {X Y M : MetrizableLCA.{u}}
+    (i : Y ⟶ M) (p : M ⟶ X) (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero)) :
+    yonedaExt X Y 1 :=
+  YonedaExt.ofStrictShortExact (X := X) (Y := Y) i p zero h
+
+@[simp]
+theorem yonedaExtOfStrictShortExact_eq {X Y M : MetrizableLCA.{u}}
+    (i : Y ⟶ M) (p : M ⟶ X) (zero : i ≫ p = 0)
+    (h : MetrizableLCA.strictShortExact (ShortComplex.mk i p zero)) :
+    yonedaExtOfStrictShortExact i p zero h =
+      YonedaExt.ofExtension (C := MetrizableLCA.{u})
+        ((MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h).toYonedaExtension) :=
+  rfl
+
+/-- The public Baer-sum operation on metrizable LCA Yoneda Ext groups. -/
+noncomputable def yonedaExtBaerSum {X Y : MetrizableLCA.{u}} {n : ℕ}
+    (a b : yonedaExt X Y n) : yonedaExt X Y n :=
+  YonedaExt.baer_sum (C := MetrizableLCA.{u}) a b
+
+/-- Metrizable LCA Baer sum agrees with the additive group operation. -/
+theorem yonedaExtBaerSum_eq_add {X Y : MetrizableLCA.{u}} {n : ℕ}
+    (a b : yonedaExt X Y n) :
+    yonedaExtBaerSum a b = a + b :=
+  YonedaExt.baer_sum_eq_add (C := MetrizableLCA.{u}) (X := X) (Y := Y) (n := n) a b
+
+end MetrizableLCA
+
 end LeanLCAExactChallenge
