@@ -117,6 +117,84 @@ noncomputable def
   productEvidence_of_closedEmbeddingIsoClosureRealizationTerminalRouteW810
     (closedEmbeddingIsoClosureDataOfStrictRealizationW812 data)
 
+/-!
+W812 closed-map homology-detected iso-closure data as W810/W809 stable data.
+-/
+noncomputable def
+    directFiniteShapeStableDataOfClosedMapHomologyDetectedIsoClosureW812
+    (data : MetrizableClosedMapStrictRealizationTerminalBranchDataW809) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapIsoClosureRealizationTerminalW810
+    (closedMapIsoClosureDataOfStrictRealizationW812 data)
+
+/-!
+W812 closed-embedding homology-detected iso-closure data as W810/W809 stable
+data.
+-/
+noncomputable def
+    directFiniteShapeStableDataOfClosedEmbeddingHomologyDetectedIsoClosureW812
+    (data : MetrizableClosedEmbeddingStrictRealizationTerminalBranchDataW809) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingIsoClosureRealizationTerminalW810
+    (closedEmbeddingIsoClosureDataOfStrictRealizationW812 data)
+
+/-! W812 closed-map homology-detected iso-closure data as boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedMapHomologyDetectedIsoClosureW812
+    (data : MetrizableClosedMapStrictRealizationTerminalBranchDataW809) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapIsoClosureRealizationTerminalW810
+    (closedMapIsoClosureDataOfStrictRealizationW812 data)
+
+/-!
+W812 closed-embedding homology-detected iso-closure data as boundary inputs.
+-/
+noncomputable def
+    stableBoundaryInputsOfClosedEmbeddingHomologyDetectedIsoClosureW812
+    (data : MetrizableClosedEmbeddingStrictRealizationTerminalBranchDataW809) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingIsoClosureRealizationTerminalW810
+    (closedEmbeddingIsoClosureDataOfStrictRealizationW812 data)
+
+/-! W812 closed-map homology-detected iso-closure data passes the boundary. -/
+noncomputable def acceptedStableOfClosedMapHomologyDetectedIsoClosureW812
+    (data : MetrizableClosedMapStrictRealizationTerminalBranchDataW809) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapIsoClosureRealizationTerminalW810
+    (closedMapIsoClosureDataOfStrictRealizationW812 data)
+
+/-!
+W812 closed-embedding homology-detected iso-closure data passes the boundary.
+-/
+noncomputable def acceptedStableOfClosedEmbeddingHomologyDetectedIsoClosureW812
+    (data : MetrizableClosedEmbeddingStrictRealizationTerminalBranchDataW809) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingIsoClosureRealizationTerminalW810
+    (closedEmbeddingIsoClosureDataOfStrictRealizationW812 data)
+
+/-!
+W812 closed-map homology-detected iso-closure data produces the stable-boundary
+package.
+-/
+noncomputable def
+    boundedDerivedOfClosedMapHomologyDetectedIsoClosureStableBoundaryW812
+    (data : MetrizableClosedMapStrictRealizationTerminalBranchDataW809) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapIsoClosureRealizationTerminalStableBoundaryW810
+    (closedMapIsoClosureDataOfStrictRealizationW812 data)
+
+/-!
+W812 closed-embedding homology-detected iso-closure data produces the
+stable-boundary package.
+-/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingHomologyDetectedIsoClosureStableBoundaryW812
+    (data : MetrizableClosedEmbeddingStrictRealizationTerminalBranchDataW809) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingIsoClosureRealizationTerminalStableBoundaryW810
+    (closedEmbeddingIsoClosureDataOfStrictRealizationW812 data)
+
 def homologyDetectedIsoClosureTerminalProductRouteInputNamesW812 :
     List String :=
   ["universal IsIso for every MetrizableLCA left-right homology comparison",
@@ -133,6 +211,7 @@ structure MetrizableHomologyDetectedIsoClosureTerminalRouteStateW812 :
   declarations : List String
   homologyDetectionResult : String
   isoClosureReductionResult : String
+  stableBoundaryResult : String
   replacedInputs : List String
   remainingInputs : List String
   productSuccessClaimed : Bool
@@ -150,6 +229,14 @@ def currentMetrizableHomologyDetectedIsoClosureTerminalRouteStateW812 :
       "closedEmbeddingIsoClosureDataOfStrictRealizationW812",
       "productEvidence_of_closedMapHomologyDetectedIsoClosureRouteW812",
       "productEvidence_of_closedEmbeddingHomologyDetectedIsoClosureRouteW812",
+      "directFiniteShapeStableDataOfClosedMapHomologyDetectedIsoClosureW812",
+      "directFiniteShapeStableDataOfClosedEmbeddingHomologyDetectedIsoClosureW812",
+      "stableBoundaryInputsOfClosedMapHomologyDetectedIsoClosureW812",
+      "stableBoundaryInputsOfClosedEmbeddingHomologyDetectedIsoClosureW812",
+      "acceptedStableOfClosedMapHomologyDetectedIsoClosureW812",
+      "acceptedStableOfClosedEmbeddingHomologyDetectedIsoClosureW812",
+      "boundedDerivedOfClosedMapHomologyDetectedIsoClosureStableBoundaryW812",
+      "boundedDerivedOfClosedEmbeddingHomologyDetectedIsoClosureStableBoundaryW812",
       "homologyDetectedIsoClosureTerminalProductRouteInputNamesW812",
       "homologyDetectedIsoClosureTerminalProductRouteInputNamesW812_count"]
   homologyDetectionResult :=
@@ -158,6 +245,9 @@ def currentMetrizableHomologyDetectedIsoClosureTerminalRouteStateW812 :
   isoClosureReductionResult :=
     "proved: homology detection collapses W651 iso-closure endpoints, so W809\
       strict realization supplies W651 realization"
+  stableBoundaryResult :=
+    "proved: homology-detected W810 iso-closure data expose the\
+      stable-boundary gate"
   replacedInputs :=
     ["W651 exact-acyclic homotopy-object iso-closure strict realization data"]
   remainingInputs :=

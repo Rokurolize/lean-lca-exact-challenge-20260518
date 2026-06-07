@@ -10271,6 +10271,19 @@ example :
   #check Dbounded.productEvidence_of_closedMapHomologyDetectedIsoClosureRouteW812
   #check
     Dbounded.productEvidence_of_closedEmbeddingHomologyDetectedIsoClosureRouteW812
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedMapHomologyDetectedIsoClosureW812
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingHomologyDetectedIsoClosureW812
+  #check Dbounded.stableBoundaryInputsOfClosedMapHomologyDetectedIsoClosureW812
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingHomologyDetectedIsoClosureW812
+  #check Dbounded.acceptedStableOfClosedMapHomologyDetectedIsoClosureW812
+  #check Dbounded.acceptedStableOfClosedEmbeddingHomologyDetectedIsoClosureW812
+  #check
+    Dbounded.boundedDerivedOfClosedMapHomologyDetectedIsoClosureStableBoundaryW812
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingHomologyDetectedIsoClosureStableBoundaryW812
   #check Dbounded.homologyDetectedIsoClosureTerminalProductRouteInputNamesW812
   #check Dbounded.homologyDetectedIsoClosureTerminalProductRouteInputNamesW812_count
   #check Dbounded.MetrizableHomologyDetectedIsoClosureTerminalRouteStateW812

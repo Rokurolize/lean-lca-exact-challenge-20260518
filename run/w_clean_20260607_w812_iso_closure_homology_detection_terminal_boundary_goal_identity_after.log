@@ -1,0 +1,23 @@
+goal identity after W812 iso closure homology detection terminal stable boundary
+{
+  "branch": "goal-clean-positive-witness-20260607",
+  "contracts": {
+    "human_centered_goal": {
+      "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_human_centered_positive_witness_completion_goal_20260602.md",
+      "sha256": "a91bb2afdd4f171a181186e6a5bf7da55e751a932fb3b360472288837fbd9260"
+    },
+    "original_four_task_contract": {
+      "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
+      "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
+    },
+    "positive_witness_contract": {
+      "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md",
+      "sha256": "3120c014b83e0c7c8f8160ca90447a1a73588096a354ace109e2fca4e4eab5ec"
+    }
+  },
+  "generated_utc": "2026-06-07T09:24:37Z",
+  "git_head": "e0ab88fd0e4ae6d05bbd8e7b9f19d4164b6c8944",
+  "objective": "follow the instructions in /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_human_centered_positive_witness_completion_goal_20260602.md",
+  "thread_id": "019e5c90-4877-77a1-a792-34feb85174ab",
+  "worktree": "/home/roku/codex-thread-workspaces/019e5c90-4877-77a1-a792-34feb85174ab/worktrees/lean-lca-clean-positive-witness-20260607"
+}
