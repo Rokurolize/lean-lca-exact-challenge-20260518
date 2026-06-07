@@ -1,14 +1,14 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-06-07T12:22:38Z",
-  "git_head": "324e7ce5dcc7732fce3beab9381583675c53b195",
+  "generated_utc": "2026-06-07T12:33:33Z",
+  "git_head": "1fa230fca216282c2fa64ca5f7f905fbdb7da61e",
   "source_tree_hash": "not_applicable_self_referential_partial_checkpoint",
-  "outcome": "source_progress_partial_yoneda_product_positive_chain_assoc_bridge",
+  "outcome": "nonterminal_checkpoint_pushed",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "Current-state reconciliation continues away from surface-only W-route exposure. The source now exposes composition stability as product-facing QuillenExactCategory class API, instantiates those fields for canonical MetrizableLCA strict exact sequences, exposes exact maps of positive-degree Yoneda representatives, adds a direct YonedaExt.ofPositiveChain bridge whose relation, split-factor, and Baer-sum laws descend to Ext classes, connects positive-chain representatives and Ext classes to public Yoneda product relation, split-factor, and additivity laws in both variables, and specializes product associativity to positive-chain representatives and Ext classes after the canonical degree cast. This is real exact-category/Yoneda API progress, but not product completion because the full Yoneda Ext and bounded derived infinity-category obligations remain open.",
+  "summary": "Current-state reconciliation continues away from surface-only W-route exposure. The source now exposes composition stability as product-facing QuillenExactCategory class API, instantiates those fields for canonical MetrizableLCA strict exact sequences, exposes exact maps of positive-degree Yoneda representatives, adds a direct YonedaExt.ofPositiveChain bridge whose relation, split-factor, and Baer-sum laws descend to Ext classes, connects positive-chain representatives and Ext classes to public Yoneda product relation, split-factor, and additivity laws in both variables, specializes product associativity to positive-chain representatives and Ext classes after the canonical degree cast, and adds public omega-cast associativity bridge theorems that remove the explicit degree-equality argument from callers. This is real exact-category/Yoneda API progress, but not product completion because the full Yoneda Ext and bounded derived infinity-category obligations remain open.",
   "positive_witness_declarations": [
     "LeanLCAExactChallenge.QuillenExactCategory.comp_inflation",
     "LeanLCAExactChallenge.QuillenExactCategory.comp_deflation",
@@ -45,18 +45,20 @@
     "LeanLCAExactChallenge.YonedaExt.yonedaProduct_right_ofPositiveChain_eq_add_of_baerRightChain",
     "LeanLCAExactChallenge.YonedaExt.yonedaProduct_baer_sum_right_ofPositiveChain",
     "LeanLCAExactChallenge.YonedaExt.yonedaProduct_ofPositiveChain_assoc_cast",
-    "LeanLCAExactChallenge.YonedaExt.yonedaProduct_ofPositiveChainClass_assoc_cast"
+    "LeanLCAExactChallenge.YonedaExt.yonedaProduct_ofPositiveChainClass_assoc_cast",
+    "LeanLCAExactChallenge.YonedaExt.yonedaProduct_ofPositiveChain_assoc",
+    "LeanLCAExactChallenge.YonedaExt.yonedaProduct_ofPositiveChainClass_assoc"
   ],
   "contracts": {
     "human_centered_goal_sha256": "a91bb2afdd4f171a181186e6a5bf7da55e751a932fb3b360472288837fbd9260",
     "original_four_task_contract_sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1",
     "positive_witness_contract_sha256": "3120c014b83e0c7c8f8160ca90447a1a73588096a354ace109e2fca4e4eab5ec"
   },
-  "proof_search_checkpoint": "run/w_clean_20260607_yoneda_product_positive_chain_assoc_bridge/checkpoint.md",
+  "proof_search_checkpoint": "run/w_clean_20260607_yoneda_positive_chain_assoc_omega_bridge/checkpoint.md",
   "known_gaps": [
     "Positive Lean witness is absent: no OriginalFourTaskProductSuccess surface with field-level evidence for the original four-task contract exists.",
     "The exact-category core now exposes class-level composition-stability fields and the canonical MetrizableLCA instance fills them, but the complete original four-task witness is still absent.",
-    "Yoneda one-fold extensions and positive-degree chains now expose their ambient exact-category head inflation/deflation maps and descend relation/split-factor/Baer-sum laws through YonedaExt.ofPositiveChain and into public Yoneda product relation, split-factor, additivity, and casted associativity laws for positive-chain representatives and Ext classes, but the full Yoneda Ext group obligation is not yet audited as a final positive witness.",
+    "Yoneda one-fold extensions and positive-degree chains now expose their ambient exact-category head inflation/deflation maps and descend relation/split-factor/Baer-sum laws through YonedaExt.ofPositiveChain and into public Yoneda product relation, split-factor, additivity, and casted associativity laws for positive-chain representatives and Ext classes, including public associativity bridge theorems with the canonical arithmetic cast inferred by omega; the full Yoneda Ext group obligation is not yet audited as a final positive witness.",
     "Bounded derived infinity-category integration remains incomplete as an original-contract obligation."
   ],
   "remaining_work": [
@@ -66,14 +68,15 @@
   "verified_commands": [
     "git status --short --branch --untracked-files=all",
     "git rev-parse HEAD",
-    "git ls-remote --heads origin main goal-clean-positive-witness-20260607",
+    "git rev-parse origin/main",
+    "git ls-remote origin refs/heads/main",
     "lake env lean LeanLCAExactChallenge/Ext/Yoneda.lean",
     "lake build LeanLCAExactChallenge.Ext.Yoneda",
     "lake env lean audit/RequiredDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Ext/Yoneda.lean audit/RequiredDeclarations.lean audit/OriginalFourTaskCompletionDeclarations.lean",
     "jq empty run/goal_identity_20260602_human_centered_positive_witness.json terminal_outcome/terminal_outcome.json",
-    "git diff --check -- LeanLCAExactChallenge/Ext/Yoneda.lean audit/RequiredDeclarations.lean audit/OriginalFourTaskCompletionDeclarations.lean terminal_outcome/terminal_outcome.json run/goal_identity_20260602_human_centered_positive_witness.json run/resumption_gate_20260607_yoneda_product_positive_chain_assoc_bridge run/w_clean_20260607_yoneda_product_positive_chain_assoc_bridge/checkpoint.md"
+    "git diff --check -- LeanLCAExactChallenge/Ext/Yoneda.lean audit/RequiredDeclarations.lean audit/OriginalFourTaskCompletionDeclarations.lean terminal_outcome/terminal_outcome.json run/goal_identity_20260602_human_centered_positive_witness.json run/resumption_gate_20260607_yoneda_positive_chain_assoc_omega_bridge run/w_clean_20260607_yoneda_positive_chain_assoc_omega_bridge/checkpoint.md"
   ],
   "packet_zip": null,
   "packet_sha256_sidecar": null

@@ -6402,6 +6402,56 @@ theorem yonedaProduct_ofPositiveChainClass_assoc_cast
     ofPositiveChain_eq_ofExtension r]
   exact yonedaProduct_ofPositiveChain_assoc_cast p q r hdeg
 
+/--
+Product-level associativity on positive-chain representatives, using the
+canonical arithmetic cast between the two target degrees.
+-/
+theorem yonedaProduct_ofPositiveChain_assoc
+    {X W Y Z : MetrizableLCA.{u}} {m n l : ℕ}
+    (p : YonedaExtension.PositiveChain (C := MetrizableLCA.{u}) X W m)
+    (q : YonedaExtension.PositiveChain (C := MetrizableLCA.{u}) W Y n)
+    (r : YonedaExtension.PositiveChain (C := MetrizableLCA.{u}) Y Z l) :
+    positiveYonedaExtCast (C := MetrizableLCA.{u}) (X := X) (Y := Z) (by omega)
+        (yonedaProduct (X := X) (Y := Y) (Z := Z) (n + (m + 1)) l
+          (yonedaProduct (X := X) (Y := W) (Z := Y) m n
+            (ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := W) (n := m)
+              p.toYonedaExtension)
+            (ofExtension (C := MetrizableLCA.{u}) (X := W) (Y := Y) (n := n)
+              q.toYonedaExtension))
+          (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := l)
+            r.toYonedaExtension)) =
+      yonedaProduct (X := X) (Y := W) (Z := Z) m (l + (n + 1))
+        (ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := W) (n := m)
+          p.toYonedaExtension)
+        (yonedaProduct (X := W) (Y := Y) (Z := Z) n l
+          (ofExtension (C := MetrizableLCA.{u}) (X := W) (Y := Y) (n := n)
+            q.toYonedaExtension)
+          (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := l)
+            r.toYonedaExtension)) := by
+  exact yonedaProduct_ofPositiveChain_assoc_cast p q r (by omega)
+
+/--
+Product-level associativity on positive-chain Ext classes, using the canonical
+arithmetic cast between the two target degrees.
+-/
+theorem yonedaProduct_ofPositiveChainClass_assoc
+    {X W Y Z : MetrizableLCA.{u}} {m n l : ℕ}
+    (p : YonedaExtension.PositiveChain (C := MetrizableLCA.{u}) X W m)
+    (q : YonedaExtension.PositiveChain (C := MetrizableLCA.{u}) W Y n)
+    (r : YonedaExtension.PositiveChain (C := MetrizableLCA.{u}) Y Z l) :
+    positiveYonedaExtCast (C := MetrizableLCA.{u}) (X := X) (Y := Z) (by omega)
+        (yonedaProduct (X := X) (Y := Y) (Z := Z) (n + (m + 1)) l
+          (yonedaProduct (X := X) (Y := W) (Z := Y) m n
+            (ofPositiveChain (X := X) (Y := W) p)
+            (ofPositiveChain (X := W) (Y := Y) q))
+          (ofPositiveChain (X := Y) (Y := Z) r)) =
+      yonedaProduct (X := X) (Y := W) (Z := Z) m (l + (n + 1))
+        (ofPositiveChain (X := X) (Y := W) p)
+        (yonedaProduct (X := W) (Y := Y) (Z := Z) n l
+          (ofPositiveChain (X := W) (Y := Y) q)
+          (ofPositiveChain (X := Y) (Y := Z) r)) := by
+  exact yonedaProduct_ofPositiveChainClass_assoc_cast p q r (by omega)
+
 theorem yonedaProduct_add_left
     {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
     (a b : YonedaExt (C := MetrizableLCA.{u}) X Y (m + 1)) :
