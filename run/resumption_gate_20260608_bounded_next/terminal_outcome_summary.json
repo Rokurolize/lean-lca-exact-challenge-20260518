@@ -1,0 +1,11 @@
+{
+  "outcome": "nonterminal_yoneda_product_baer_neg_left_summand_checkpoint",
+  "product_success": false,
+  "product_complete": false,
+  "update_goal_allowed": false,
+  "git_head": "204cd997daac068054d6dc5c03c46f67061d660e",
+  "proof_search_checkpoint": "run/w_clean_20260608_yoneda_product_baer_neg_left_summand/checkpoint.md",
+  "obligations_discharged": null,
+  "obligations_derived_or_eliminated": null,
+  "new_frontier_input_count": null
+}

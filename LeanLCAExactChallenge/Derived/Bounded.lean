@@ -1072,6 +1072,28 @@ noncomputable def boundedExactWeakEquivalence [HasBinaryBiproducts C] :
     MorphismProperty (BoundedComplexCategory C) :=
   fun _ _ f => exactAcyclic C (CochainComplex.mappingCone ((boundedCochainComplex C).ι.map f))
 
+/-- Bounded exact weak equivalences are exactly the bounded morphisms with exact-acyclic
+mapping cone. -/
+theorem boundedExactWeakEquivalence_iff_exactAcyclic_mappingCone [HasBinaryBiproducts C]
+    {K L : BoundedComplexCategory C} (f : K ⟶ L) :
+    boundedExactWeakEquivalence C f ↔
+      exactAcyclic C (CochainComplex.mappingCone ((boundedCochainComplex C).ι.map f)) := by
+  rfl
+
+/-- Extract the exact-acyclic mapping-cone witness from a bounded exact weak equivalence. -/
+theorem exactAcyclic_mappingCone_of_boundedExactWeakEquivalence [HasBinaryBiproducts C]
+    {K L : BoundedComplexCategory C} {f : K ⟶ L}
+    (hf : boundedExactWeakEquivalence C f) :
+    exactAcyclic C (CochainComplex.mappingCone ((boundedCochainComplex C).ι.map f)) :=
+  hf
+
+/-- Build a bounded exact weak equivalence from an exact-acyclic mapping-cone witness. -/
+theorem boundedExactWeakEquivalence_of_exactAcyclic_mappingCone [HasBinaryBiproducts C]
+    {K L : BoundedComplexCategory C} {f : K ⟶ L}
+    (hf : exactAcyclic C (CochainComplex.mappingCone ((boundedCochainComplex C).ι.map f))) :
+    boundedExactWeakEquivalence C f :=
+  hf
+
 /-- Bounded exact weak equivalences are invariant under isomorphism of arrows. -/
 noncomputable instance boundedExactWeakEquivalence_respectsIso [HasBinaryBiproducts C] :
     (boundedExactWeakEquivalence C).RespectsIso := by
