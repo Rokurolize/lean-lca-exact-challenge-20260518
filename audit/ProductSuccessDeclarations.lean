@@ -9964,6 +9964,21 @@ example :
     Dbounded.closedMapStableCertificateW664Terminal_eq_sourceTriangulationW802
   #check
     Dbounded.closedEmbeddingStableCertificateW664Terminal_eq_sourceTriangulationW802
+  #check
+    Dbounded.closedMapDirectFiniteShapeStableDataW664Terminal_eq_sourceTriangulationW802
+  #check
+    Dbounded.closedEmbeddingDirectFiniteShapeStableDataW664Terminal_eq_sourceTriangulationW802
+  #check
+    Dbounded.closedMapStableBoundaryInputsW664Terminal_eq_sourceTriangulationW802
+  #check
+    Dbounded.closedEmbeddingStableBoundaryInputsW664Terminal_eq_sourceTriangulationW802
+  #check Dbounded.closedMapAcceptedStableW664Terminal_eq_sourceTriangulationW802
+  #check
+    Dbounded.closedEmbeddingAcceptedStableW664Terminal_eq_sourceTriangulationW802
+  #check
+    Dbounded.closedMapBoundedDerivedStableBoundaryW664Terminal_eq_sourceTriangulationW802
+  #check
+    Dbounded.closedEmbeddingBoundedDerivedStableBoundaryW664Terminal_eq_sourceTriangulationW802
   #check Dbounded.targetHomologyZeroW664RouteConsistencyInputNamesW802
   #check Dbounded.targetHomologyZeroW664RouteConsistencyInputNamesW802_count
   #check Dbounded.MetrizableTargetHomologyZeroW664RouteConsistencyStateW802

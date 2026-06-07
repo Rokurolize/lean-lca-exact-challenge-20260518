@@ -68,6 +68,84 @@ theorem closedEmbeddingStableCertificateW664Terminal_eq_sourceTriangulationW802
       closedEmbeddingStableCertificateOfW664SourceTriangulationW801 data :=
   rfl
 
+/-- W802 closed-map direct stable data agrees between the two terminal routes. -/
+theorem closedMapDirectFiniteShapeStableDataW664Terminal_eq_sourceTriangulationW802
+    (data : MetrizableClosedMapTargetHomologyZeroW664TerminalBranchDataW799) :
+    directFiniteShapeStableDataOfClosedMapTargetHomologyZeroW664TerminalW799 data =
+      directFiniteShapeStableDataOfClosedMapW664SourceTriangulationTerminalW801 data :=
+  rfl
+
+/-!
+W802 closed-embedding direct stable data agrees between the two terminal routes.
+-/
+theorem closedEmbeddingDirectFiniteShapeStableDataW664Terminal_eq_sourceTriangulationW802
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroW664TerminalBranchDataW799) :
+    directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroW664TerminalW799 data =
+      directFiniteShapeStableDataOfClosedEmbeddingW664SourceTriangulationTerminalW801 data :=
+  rfl
+
+/-!
+W802 closed-map stable-boundary inputs agree between the W799 and W801 routes.
+-/
+theorem closedMapStableBoundaryInputsW664Terminal_eq_sourceTriangulationW802
+    (data : MetrizableClosedMapTargetHomologyZeroW664TerminalBranchDataW799) :
+    stableBoundaryInputsOfClosedMapTargetHomologyZeroW664TerminalW799 data =
+      stableBoundaryInputsOfClosedMapW664SourceTriangulationTerminalW801 data :=
+  rfl
+
+/-!
+W802 closed-embedding stable-boundary inputs agree between the W799 and W801
+routes.
+-/
+theorem closedEmbeddingStableBoundaryInputsW664Terminal_eq_sourceTriangulationW802
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroW664TerminalBranchDataW799) :
+    stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroW664TerminalW799 data =
+      stableBoundaryInputsOfClosedEmbeddingW664SourceTriangulationTerminalW801 data :=
+  rfl
+
+/-!
+W802 closed-map accepted stable packages agree between the two terminal routes.
+-/
+theorem closedMapAcceptedStableW664Terminal_eq_sourceTriangulationW802
+    (data : MetrizableClosedMapTargetHomologyZeroW664TerminalBranchDataW799) :
+    acceptedStableOfClosedMapTargetHomologyZeroW664TerminalW799 data =
+      acceptedStableOfClosedMapW664SourceTriangulationTerminalW801 data :=
+  rfl
+
+/-!
+W802 closed-embedding accepted stable packages agree between the two terminal
+routes.
+-/
+theorem closedEmbeddingAcceptedStableW664Terminal_eq_sourceTriangulationW802
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroW664TerminalBranchDataW799) :
+    acceptedStableOfClosedEmbeddingTargetHomologyZeroW664TerminalW799 data =
+      acceptedStableOfClosedEmbeddingW664SourceTriangulationTerminalW801 data :=
+  rfl
+
+/-!
+W802 closed-map bounded-derived stable-boundary packages agree between the two
+terminal routes.
+-/
+theorem closedMapBoundedDerivedStableBoundaryW664Terminal_eq_sourceTriangulationW802
+    (data : MetrizableClosedMapTargetHomologyZeroW664TerminalBranchDataW799) :
+    boundedDerivedOfClosedMapTargetHomologyZeroW664TerminalStableBoundaryW799 data =
+      boundedDerivedOfClosedMapW664SourceTriangulationTerminalStableBoundaryW801 data :=
+  rfl
+
+/-!
+W802 closed-embedding bounded-derived stable-boundary packages agree between
+the two terminal routes.
+-/
+theorem closedEmbeddingBoundedDerivedStableBoundaryW664Terminal_eq_sourceTriangulationW802
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroW664TerminalBranchDataW799) :
+    boundedDerivedOfClosedEmbeddingTargetHomologyZeroW664TerminalStableBoundaryW799 data =
+      boundedDerivedOfClosedEmbeddingW664SourceTriangulationTerminalStableBoundaryW801 data :=
+  rfl
+
 def targetHomologyZeroW664RouteConsistencyInputNamesW802 : List String :=
   ["W799 target homology-zero W664 terminal branch data",
     "W800 normalized direct-source and source-triangulation projections",
@@ -84,6 +162,7 @@ structure MetrizableTargetHomologyZeroW664RouteConsistencyStateW802 :
   productEvidenceConsistency : String
   exactStableConsistency : String
   stableCertificateConsistency : String
+  stableBoundaryConsistency : String
   remainingInputs : List String
   productSuccessClaimed : Bool
 
@@ -98,6 +177,14 @@ def currentMetrizableTargetHomologyZeroW664RouteConsistencyStateW802 :
       "closedEmbeddingExactStableEvidenceW664Terminal_eq_sourceTriangulationW802",
       "closedMapStableCertificateW664Terminal_eq_sourceTriangulationW802",
       "closedEmbeddingStableCertificateW664Terminal_eq_sourceTriangulationW802",
+      "closedMapDirectFiniteShapeStableDataW664Terminal_eq_sourceTriangulationW802",
+      "closedEmbeddingDirectFiniteShapeStableDataW664Terminal_eq_sourceTriangulationW802",
+      "closedMapStableBoundaryInputsW664Terminal_eq_sourceTriangulationW802",
+      "closedEmbeddingStableBoundaryInputsW664Terminal_eq_sourceTriangulationW802",
+      "closedMapAcceptedStableW664Terminal_eq_sourceTriangulationW802",
+      "closedEmbeddingAcceptedStableW664Terminal_eq_sourceTriangulationW802",
+      "closedMapBoundedDerivedStableBoundaryW664Terminal_eq_sourceTriangulationW802",
+      "closedEmbeddingBoundedDerivedStableBoundaryW664Terminal_eq_sourceTriangulationW802",
       "targetHomologyZeroW664RouteConsistencyInputNamesW802",
       "targetHomologyZeroW664RouteConsistencyInputNamesW802_count"]
   productEvidenceConsistency :=
@@ -106,6 +193,8 @@ def currentMetrizableTargetHomologyZeroW664RouteConsistencyStateW802 :
     "proved: W799 and W801 exact/stable evidence projections agree"
   stableCertificateConsistency :=
     "proved: W799/W798 and W801 stable certificates agree"
+  stableBoundaryConsistency :=
+    "proved: W799 and W801 stable-boundary packages agree"
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",
