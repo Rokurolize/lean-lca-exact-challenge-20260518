@@ -125,6 +125,72 @@ noncomputable def
   productEvidence_of_closedEmbeddingTargetIsoRealizationRouteW784
     (closedEmbeddingTargetIsoDataOfTargetExactAtEndpointW785 data)
 
+/-- W785 closed-map branch converted to the W769 stable-data surface. -/
+noncomputable def directFiniteShapeStableDataOfClosedMapTargetExactAtEndpointW785
+    (data : MetrizableClosedMapTargetExactAtEndpointTargetIsoBranchDataW785) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapTargetIsoRealizationW784
+    (closedMapTargetIsoDataOfTargetExactAtEndpointW785 data)
+
+/-- W785 closed-embedding branch converted to the W769 stable-data surface. -/
+noncomputable def
+    directFiniteShapeStableDataOfClosedEmbeddingTargetExactAtEndpointW785
+    (data :
+      MetrizableClosedEmbeddingTargetExactAtEndpointTargetIsoBranchDataW785) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingTargetIsoRealizationW784
+    (closedEmbeddingTargetIsoDataOfTargetExactAtEndpointW785 data)
+
+/-- W785 closed-map branch as canonical stable-instance boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedMapTargetExactAtEndpointW785
+    (data : MetrizableClosedMapTargetExactAtEndpointTargetIsoBranchDataW785) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapTargetIsoRealizationW784
+    (closedMapTargetIsoDataOfTargetExactAtEndpointW785 data)
+
+/-- W785 closed-embedding branch as canonical stable-instance boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedEmbeddingTargetExactAtEndpointW785
+    (data :
+      MetrizableClosedEmbeddingTargetExactAtEndpointTargetIsoBranchDataW785) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingTargetIsoRealizationW784
+    (closedEmbeddingTargetIsoDataOfTargetExactAtEndpointW785 data)
+
+/-- W785 closed-map branch passes the canonical accepted stable boundary gate. -/
+noncomputable def acceptedStableOfClosedMapTargetExactAtEndpointW785
+    (data : MetrizableClosedMapTargetExactAtEndpointTargetIsoBranchDataW785) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapTargetIsoRealizationW784
+    (closedMapTargetIsoDataOfTargetExactAtEndpointW785 data)
+
+/--
+W785 closed-embedding branch passes the canonical accepted stable boundary gate.
+-/
+noncomputable def acceptedStableOfClosedEmbeddingTargetExactAtEndpointW785
+    (data :
+      MetrizableClosedEmbeddingTargetExactAtEndpointTargetIsoBranchDataW785) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingTargetIsoRealizationW784
+    (closedEmbeddingTargetIsoDataOfTargetExactAtEndpointW785 data)
+
+/-- W785 closed-map branch produces the canonical stable-boundary package. -/
+noncomputable def boundedDerivedOfClosedMapTargetExactAtEndpointStableBoundaryW785
+    (data : MetrizableClosedMapTargetExactAtEndpointTargetIsoBranchDataW785) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapTargetIsoRealizationStableBoundaryW784
+    (closedMapTargetIsoDataOfTargetExactAtEndpointW785 data)
+
+/-- W785 closed-embedding branch produces the canonical stable-boundary package. -/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingTargetExactAtEndpointStableBoundaryW785
+    (data :
+      MetrizableClosedEmbeddingTargetExactAtEndpointTargetIsoBranchDataW785) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingTargetIsoRealizationStableBoundaryW784
+    (closedEmbeddingTargetIsoDataOfTargetExactAtEndpointW785 data)
+
 /-- W785 input names after replacing W784's target-isomorphism premise. -/
 def targetExactAtEndpointTargetIsoProductRouteInputNamesW785 :
     List String :=
@@ -149,6 +215,7 @@ structure MetrizableTargetExactAtEndpointTargetIsoRouteStateW785 :
   seed : String
   declarations : List String
   transportResult : String
+  stableBoundaryResult : String
   closedMapResult : String
   closedEmbeddingResult : String
   replacedInputs : List String
@@ -169,17 +236,29 @@ def currentMetrizableTargetExactAtEndpointTargetIsoRouteStateW785 :
       "closedEmbeddingTargetIsoDataOfTargetExactAtEndpointW785",
       "productEvidence_of_closedMapTargetExactAtEndpointRouteW785",
       "productEvidence_of_closedEmbeddingTargetExactAtEndpointRouteW785",
+      "directFiniteShapeStableDataOfClosedMapTargetExactAtEndpointW785",
+      "directFiniteShapeStableDataOfClosedEmbeddingTargetExactAtEndpointW785",
+      "stableBoundaryInputsOfClosedMapTargetExactAtEndpointW785",
+      "stableBoundaryInputsOfClosedEmbeddingTargetExactAtEndpointW785",
+      "acceptedStableOfClosedMapTargetExactAtEndpointW785",
+      "acceptedStableOfClosedEmbeddingTargetExactAtEndpointW785",
+      "boundedDerivedOfClosedMapTargetExactAtEndpointStableBoundaryW785",
+      "boundedDerivedOfClosedEmbeddingTargetExactAtEndpointStableBoundaryW785",
       "targetExactAtEndpointTargetIsoProductRouteInputNamesW785",
       "targetExactAtEndpointTargetIsoProductRouteInputNamesW785_count"]
   transportResult :=
     "proved: target ExactAt realization plus endpoint topology supplies W784's\
       target-isomorphism input"
+  stableBoundaryResult :=
+    "proved: W785 target ExactAt endpoint branches pass the\
+      W784/W783/W782/W781/W780/W779/W778/W774/W773/W769 canonical stable-boundary gate"
   closedMapResult :=
     "proved: closed-map target ExactAt endpoint branch data feeds W784"
   closedEmbeddingResult :=
     "proved: closed-embedding target ExactAt endpoint branch data feeds W784"
   replacedInputs :=
-    ["exact-acyclic homotopy-object target-isomorphism realization data"]
+    ["exact-acyclic homotopy-object target-isomorphism realization data",
+      "separate W784 target-isomorphism stable-boundary branch input"]
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",

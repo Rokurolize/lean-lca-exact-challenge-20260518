@@ -9474,6 +9474,16 @@ example :
   #check Dbounded.closedEmbeddingTargetIsoDataOfTargetExactAtEndpointW785
   #check Dbounded.productEvidence_of_closedMapTargetExactAtEndpointRouteW785
   #check Dbounded.productEvidence_of_closedEmbeddingTargetExactAtEndpointRouteW785
+  #check Dbounded.directFiniteShapeStableDataOfClosedMapTargetExactAtEndpointW785
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingTargetExactAtEndpointW785
+  #check Dbounded.stableBoundaryInputsOfClosedMapTargetExactAtEndpointW785
+  #check Dbounded.stableBoundaryInputsOfClosedEmbeddingTargetExactAtEndpointW785
+  #check Dbounded.acceptedStableOfClosedMapTargetExactAtEndpointW785
+  #check Dbounded.acceptedStableOfClosedEmbeddingTargetExactAtEndpointW785
+  #check Dbounded.boundedDerivedOfClosedMapTargetExactAtEndpointStableBoundaryW785
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingTargetExactAtEndpointStableBoundaryW785
   #check Dbounded.targetExactAtEndpointTargetIsoProductRouteInputNamesW785
   #check Dbounded.targetExactAtEndpointTargetIsoProductRouteInputNamesW785_count
   #check Dbounded.MetrizableTargetExactAtEndpointTargetIsoRouteStateW785
