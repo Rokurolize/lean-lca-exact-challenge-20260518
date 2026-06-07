@@ -106,6 +106,75 @@ theorem closedEmbeddingStableCertificateAcceptedOfW664SourceTriangulationW801
   (productEvidence_of_closedEmbeddingW664SourceTriangulationRouteW801
     data).kernelCokernelStableAccepted
 
+/-- W801 closed-map source-triangulation terminal route as W769 stable data. -/
+noncomputable def directFiniteShapeStableDataOfClosedMapW664SourceTriangulationTerminalW801
+    (data : MetrizableClosedMapTargetHomologyZeroW664TerminalBranchDataW799) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapW664SourceTriangulationW800 data
+
+/--
+W801 closed-embedding source-triangulation terminal route as W769 stable data.
+-/
+noncomputable def
+    directFiniteShapeStableDataOfClosedEmbeddingW664SourceTriangulationTerminalW801
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroW664TerminalBranchDataW799) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingW664SourceTriangulationW800 data
+
+/-- W801 closed-map source-triangulation terminal route as stable-boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedMapW664SourceTriangulationTerminalW801
+    (data : MetrizableClosedMapTargetHomologyZeroW664TerminalBranchDataW799) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapW664SourceTriangulationW800 data
+
+/--
+W801 closed-embedding source-triangulation terminal route as stable-boundary
+inputs.
+-/
+noncomputable def
+    stableBoundaryInputsOfClosedEmbeddingW664SourceTriangulationTerminalW801
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroW664TerminalBranchDataW799) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingW664SourceTriangulationW800 data
+
+/-- W801 closed-map source-triangulation terminal route passes the stable boundary. -/
+noncomputable def acceptedStableOfClosedMapW664SourceTriangulationTerminalW801
+    (data : MetrizableClosedMapTargetHomologyZeroW664TerminalBranchDataW799) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapW664SourceTriangulationW800 data
+
+/--
+W801 closed-embedding source-triangulation terminal route passes the stable
+boundary.
+-/
+noncomputable def acceptedStableOfClosedEmbeddingW664SourceTriangulationTerminalW801
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroW664TerminalBranchDataW799) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingW664SourceTriangulationW800 data
+
+/-- W801 closed-map source-triangulation terminal route produces the stable-boundary package. -/
+noncomputable def
+    boundedDerivedOfClosedMapW664SourceTriangulationTerminalStableBoundaryW801
+    (data : MetrizableClosedMapTargetHomologyZeroW664TerminalBranchDataW799) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapW664SourceTriangulationStableBoundaryW800 data
+
+/--
+W801 closed-embedding source-triangulation terminal route produces the
+stable-boundary package.
+-/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingW664SourceTriangulationTerminalStableBoundaryW801
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroW664TerminalBranchDataW799) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingW664SourceTriangulationStableBoundaryW800 data
+
 def targetHomologyZeroW664SourceTriangulationTerminalInputNamesW801 :
     List String :=
   ["universal IsIso for every MetrizableLCA left-right homology comparison",
@@ -125,6 +194,7 @@ structure
   declarations : List String
   productEvidenceResult : String
   stableCertificateResult : String
+  stableBoundaryResult : String
   reusedSurface : String
   remainingInputs : List String
   productSuccessClaimed : Bool
@@ -144,14 +214,26 @@ def currentMetrizableTargetHomologyZeroW664SourceTriangulationTerminalRouteState
       "closedEmbeddingStableCertificateReadyOfW664SourceTriangulationW801",
       "closedMapStableCertificateAcceptedOfW664SourceTriangulationW801",
       "closedEmbeddingStableCertificateAcceptedOfW664SourceTriangulationW801",
+      "directFiniteShapeStableDataOfClosedMapW664SourceTriangulationTerminalW801",
+      "directFiniteShapeStableDataOfClosedEmbeddingW664SourceTriangulationTerminalW801",
+      "stableBoundaryInputsOfClosedMapW664SourceTriangulationTerminalW801",
+      "stableBoundaryInputsOfClosedEmbeddingW664SourceTriangulationTerminalW801",
+      "acceptedStableOfClosedMapW664SourceTriangulationTerminalW801",
+      "acceptedStableOfClosedEmbeddingW664SourceTriangulationTerminalW801",
+      "boundedDerivedOfClosedMapW664SourceTriangulationTerminalStableBoundaryW801",
+      "boundedDerivedOfClosedEmbeddingW664SourceTriangulationTerminalStableBoundaryW801",
       "targetHomologyZeroW664SourceTriangulationTerminalInputNamesW801",
       "targetHomologyZeroW664SourceTriangulationTerminalInputNamesW801_count"]
   productEvidenceResult :=
     "proved: W800 source-triangulation data feed the W773 product route"
   stableCertificateResult :=
     "proved: W773 route projects exact/stable evidence and accepted certificates"
+  stableBoundaryResult :=
+    "proved: W801 terminal route reuses the W800/W774/W773/W769 canonical\
+      stable-boundary gate"
   reusedSurface :=
-    "W800 normalized direct-source and source-triangulation projections"
+    "W800 normalized direct-source, source-triangulation, and stable-boundary\
+      projections"
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",
