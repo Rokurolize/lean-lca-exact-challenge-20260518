@@ -108,6 +108,73 @@ noncomputable def
   productEvidence_of_closedEmbeddingNormalizedDirectSourceClosedRangeRouteW774
     (closedEmbeddingNormalizedDataOfOpClosureW775 data)
 
+/-- W775 closed-map branch converted to the W769 stable-data surface. -/
+noncomputable def
+    directFiniteShapeStableDataOfClosedMapOpClosureNormalizedClosedRangeW775
+    (data : MetrizableClosedMapOpClosureNormalizedClosedRangeBranchDataW775) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapNormalizedDirectSourceClosedRangeW774
+    (closedMapNormalizedDataOfOpClosureW775 data)
+
+/-- W775 closed-embedding branch converted to the W769 stable-data surface. -/
+noncomputable def
+    directFiniteShapeStableDataOfClosedEmbeddingOpClosureNormalizedClosedRangeW775
+    (data :
+      MetrizableClosedEmbeddingOpClosureNormalizedClosedRangeBranchDataW775) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+    (closedEmbeddingNormalizedDataOfOpClosureW775 data)
+
+/-- W775 closed-map branch as canonical stable-instance boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedMapOpClosureNormalizedClosedRangeW775
+    (data : MetrizableClosedMapOpClosureNormalizedClosedRangeBranchDataW775) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapNormalizedDirectSourceClosedRangeW774
+    (closedMapNormalizedDataOfOpClosureW775 data)
+
+/-- W775 closed-embedding branch as canonical stable-instance boundary inputs. -/
+noncomputable def
+    stableBoundaryInputsOfClosedEmbeddingOpClosureNormalizedClosedRangeW775
+    (data :
+      MetrizableClosedEmbeddingOpClosureNormalizedClosedRangeBranchDataW775) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+    (closedEmbeddingNormalizedDataOfOpClosureW775 data)
+
+/-- W775 closed-map branch passes the canonical accepted stable boundary gate. -/
+noncomputable def acceptedStableOfClosedMapOpClosureNormalizedClosedRangeW775
+    (data : MetrizableClosedMapOpClosureNormalizedClosedRangeBranchDataW775) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapNormalizedDirectSourceClosedRangeW774
+    (closedMapNormalizedDataOfOpClosureW775 data)
+
+/-- W775 closed-embedding branch passes the canonical accepted stable boundary gate. -/
+noncomputable def
+    acceptedStableOfClosedEmbeddingOpClosureNormalizedClosedRangeW775
+    (data :
+      MetrizableClosedEmbeddingOpClosureNormalizedClosedRangeBranchDataW775) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+    (closedEmbeddingNormalizedDataOfOpClosureW775 data)
+
+/-- W775 closed-map branch produces the canonical stable-boundary package. -/
+noncomputable def boundedDerivedOfClosedMapOpClosureNormalizedClosedRangeStableBoundaryW775
+    (data : MetrizableClosedMapOpClosureNormalizedClosedRangeBranchDataW775) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapNormalizedDirectSourceClosedRangeStableBoundaryW774
+    (closedMapNormalizedDataOfOpClosureW775 data)
+
+/-- W775 closed-embedding branch produces the canonical stable-boundary package. -/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingOpClosureNormalizedClosedRangeStableBoundaryW775
+    (data :
+      MetrizableClosedEmbeddingOpClosureNormalizedClosedRangeBranchDataW775) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingNormalizedDirectSourceClosedRangeStableBoundaryW774
+    (closedEmbeddingNormalizedDataOfOpClosureW775 data)
+
 /-- W775 input names after WPP-op closure supplies WPP colimit stability. -/
 def opClosureNormalizedClosedRangeProductRouteInputNamesW775 :
     List String :=
@@ -129,6 +196,7 @@ structure MetrizableOpClosureNormalizedClosedRangeProductRouteStateW775 :
   seed : String
   declarations : List String
   opClosureResult : String
+  stableBoundaryResult : String
   closedMapResult : String
   closedEmbeddingResult : String
   replacedInputs : List String
@@ -149,18 +217,30 @@ def currentMetrizableOpClosureNormalizedClosedRangeProductRouteSupportStateW775 
       "closedEmbeddingNormalizedDataOfOpClosureW775",
       "productEvidence_of_closedMapOpClosureNormalizedClosedRangeRouteW775",
       "productEvidence_of_closedEmbeddingOpClosureNormalizedClosedRangeRouteW775",
+      "directFiniteShapeStableDataOfClosedMapOpClosureNormalizedClosedRangeW775",
+      "directFiniteShapeStableDataOfClosedEmbeddingOpClosureNormalizedClosedRangeW775",
+      "stableBoundaryInputsOfClosedMapOpClosureNormalizedClosedRangeW775",
+      "stableBoundaryInputsOfClosedEmbeddingOpClosureNormalizedClosedRangeW775",
+      "acceptedStableOfClosedMapOpClosureNormalizedClosedRangeW775",
+      "acceptedStableOfClosedEmbeddingOpClosureNormalizedClosedRangeW775",
+      "boundedDerivedOfClosedMapOpClosureNormalizedClosedRangeStableBoundaryW775",
+      "boundedDerivedOfClosedEmbeddingOpClosureNormalizedClosedRangeStableBoundaryW775",
       "opClosureNormalizedClosedRangeProductRouteInputNamesW775",
       "opClosureNormalizedClosedRangeProductRouteInputNamesW775_count"]
   opClosureResult :=
     "proved: WPP-op exact-acyclic closure supplies the W774 colimit-stability\
       field"
+  stableBoundaryResult :=
+    "proved: W775 WPP-op-closure normalized closed-range branches pass the\
+      W774/W773/W769 canonical stable-boundary accepted gate"
   closedMapResult :=
     "proved: closed-map W735 branch data plus WPP-op closure feed the W774 route"
   closedEmbeddingResult :=
     "proved: closed-embedding W735 branch data plus WPP-op closure feed the W774\
       route"
   replacedInputs :=
-    ["abstract WPP colimit-stability field for WalkingParallelPair"]
+    ["abstract WPP colimit-stability field for WalkingParallelPair",
+      "separate W774 normalized direct-source stable-boundary branch input"]
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",
