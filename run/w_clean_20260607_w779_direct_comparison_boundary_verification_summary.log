@@ -1,0 +1,28 @@
+checkpoint=w_clean_20260607_w779_direct_comparison_boundary
+terminal_outcome=nonterminal
+product_success=false
+overall=0
+
+commands:
+- lake env lean LeanLCAExactChallenge/Derived/DirectComparisonLeftSnakeProductRoute.lean
+- lake build LeanLCAExactChallenge.Derived.DirectComparisonLeftSnakeProductRoute
+- lake env lean audit/RequiredDeclarations.lean
+- lake env lean audit/ProductSuccessDeclarations.lean
+- lake env lean audit/OriginalFourTaskCompletionDeclarations.lean
+- git diff --check
+- scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectComparisonLeftSnakeProductRoute.lean
+
+results:
+- W779 Lean file: exit 0, no output.
+- W779 Lake build: exit 0; dependency warnings are pre-existing and the local W779 warning scan is empty.
+- RequiredDeclarations: exit 0.
+- ProductSuccessDeclarations: exit 0.
+- OriginalFourTaskCompletionDeclarations: exit 0.
+- git diff --check: exit 0.
+- forbidden Lean token audit: exit 0.
+- declaration presence scan: all 8 W779 stable-boundary declarations found in source and audit surfaces.
+- true/product-success scan: empty.
+- terminal false scan: productSuccessClaimed remains false and terminal_outcome remains nonterminal.
+
+notes:
+- This checkpoint connects W779 direct-comparison left/Snake branch data to the existing W778/W774/W773/W769 canonical stable-boundary gate. It does not claim full product success.

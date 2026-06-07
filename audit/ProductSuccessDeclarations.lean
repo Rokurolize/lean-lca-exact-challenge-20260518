@@ -9304,6 +9304,22 @@ example :
   #check Dbounded.productEvidence_of_closedMapDirectComparisonLeftSnakeRouteW779
   #check
     Dbounded.productEvidence_of_closedEmbeddingDirectComparisonLeftSnakeRouteW779
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedMapDirectComparisonLeftSnakeW779
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingDirectComparisonLeftSnakeW779
+  #check
+    Dbounded.stableBoundaryInputsOfClosedMapDirectComparisonLeftSnakeW779
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingDirectComparisonLeftSnakeW779
+  #check
+    Dbounded.acceptedStableOfClosedMapDirectComparisonLeftSnakeW779
+  #check
+    Dbounded.acceptedStableOfClosedEmbeddingDirectComparisonLeftSnakeW779
+  #check
+    Dbounded.boundedDerivedOfClosedMapDirectComparisonLeftSnakeStableBoundaryW779
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingDirectComparisonLeftSnakeStableBoundaryW779
   #check Dbounded.directComparisonLeftSnakeProductRouteInputNamesW779
   #check Dbounded.directComparisonLeftSnakeProductRouteInputNamesW779_count
   #check Dbounded.MetrizableDirectComparisonLeftSnakeProductRouteStateW779

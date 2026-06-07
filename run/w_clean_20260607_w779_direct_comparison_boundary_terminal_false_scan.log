@@ -1,0 +1,3 @@
+LeanLCAExactChallenge/Derived/DirectComparisonLeftSnakeProductRoute.lean:239:  productSuccessClaimed := false
+run/w_clean_20260607_w779_direct_comparison_boundary_terminal_outcome_summary.log:1:terminal_outcome=nonterminal
+run/w_clean_20260607_w779_direct_comparison_boundary_terminal_outcome_summary.log:2:product_success=false

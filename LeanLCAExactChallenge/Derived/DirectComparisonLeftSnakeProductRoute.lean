@@ -101,6 +101,64 @@ noncomputable def productEvidence_of_closedEmbeddingDirectComparisonLeftSnakeRou
   productEvidence_of_closedEmbeddingLeftSnakeDirectRightLcaRouteW778
     (closedEmbeddingLeftSnakeDataOfDirectComparisonW779 data)
 
+/-- W779 closed-map branch converted to the W769 stable-data surface. -/
+noncomputable def directFiniteShapeStableDataOfClosedMapDirectComparisonLeftSnakeW779
+    (data : MetrizableClosedMapDirectComparisonLeftSnakeBranchDataW779) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapLeftSnakeDirectRightLcaW778
+    (closedMapLeftSnakeDataOfDirectComparisonW779 data)
+
+/-- W779 closed-embedding branch converted to the W769 stable-data surface. -/
+noncomputable def directFiniteShapeStableDataOfClosedEmbeddingDirectComparisonLeftSnakeW779
+    (data : MetrizableClosedEmbeddingDirectComparisonLeftSnakeBranchDataW779) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingLeftSnakeDirectRightLcaW778
+    (closedEmbeddingLeftSnakeDataOfDirectComparisonW779 data)
+
+/-- W779 closed-map branch as canonical stable-instance boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedMapDirectComparisonLeftSnakeW779
+    (data : MetrizableClosedMapDirectComparisonLeftSnakeBranchDataW779) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapLeftSnakeDirectRightLcaW778
+    (closedMapLeftSnakeDataOfDirectComparisonW779 data)
+
+/-- W779 closed-embedding branch as canonical stable-instance boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedEmbeddingDirectComparisonLeftSnakeW779
+    (data : MetrizableClosedEmbeddingDirectComparisonLeftSnakeBranchDataW779) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingLeftSnakeDirectRightLcaW778
+    (closedEmbeddingLeftSnakeDataOfDirectComparisonW779 data)
+
+/-- W779 closed-map branch passes the canonical accepted stable boundary gate. -/
+noncomputable def acceptedStableOfClosedMapDirectComparisonLeftSnakeW779
+    (data : MetrizableClosedMapDirectComparisonLeftSnakeBranchDataW779) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapLeftSnakeDirectRightLcaW778
+    (closedMapLeftSnakeDataOfDirectComparisonW779 data)
+
+/-- W779 closed-embedding branch passes the canonical accepted stable boundary gate. -/
+noncomputable def acceptedStableOfClosedEmbeddingDirectComparisonLeftSnakeW779
+    (data : MetrizableClosedEmbeddingDirectComparisonLeftSnakeBranchDataW779) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingLeftSnakeDirectRightLcaW778
+    (closedEmbeddingLeftSnakeDataOfDirectComparisonW779 data)
+
+/-- W779 closed-map branch produces the canonical stable-boundary package. -/
+noncomputable def boundedDerivedOfClosedMapDirectComparisonLeftSnakeStableBoundaryW779
+    (data : MetrizableClosedMapDirectComparisonLeftSnakeBranchDataW779) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapLeftSnakeDirectRightLcaStableBoundaryW778
+    (closedMapLeftSnakeDataOfDirectComparisonW779 data)
+
+/-- W779 closed-embedding branch produces the canonical stable-boundary package. -/
+noncomputable def boundedDerivedOfClosedEmbeddingDirectComparisonLeftSnakeStableBoundaryW779
+    (data : MetrizableClosedEmbeddingDirectComparisonLeftSnakeBranchDataW779) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingLeftSnakeDirectRightLcaStableBoundaryW778
+    (closedEmbeddingLeftSnakeDataOfDirectComparisonW779 data)
+
 /-- W779 input names after W551 supplies the WPP limit comparison input. -/
 def directComparisonLeftSnakeProductRouteInputNamesW779 :
     List String :=
@@ -124,6 +182,7 @@ structure MetrizableDirectComparisonLeftSnakeProductRouteStateW779 :
   seed : String
   declarations : List String
   directComparisonResult : String
+  stableBoundaryResult : String
   closedMapResult : String
   closedEmbeddingResult : String
   replacedInputs : List String
@@ -143,10 +202,21 @@ def currentMetrizableDirectComparisonLeftSnakeProductRouteSupportStateW779 :
       "closedEmbeddingLeftSnakeDataOfDirectComparisonW779",
       "productEvidence_of_closedMapDirectComparisonLeftSnakeRouteW779",
       "productEvidence_of_closedEmbeddingDirectComparisonLeftSnakeRouteW779",
+      "directFiniteShapeStableDataOfClosedMapDirectComparisonLeftSnakeW779",
+      "directFiniteShapeStableDataOfClosedEmbeddingDirectComparisonLeftSnakeW779",
+      "stableBoundaryInputsOfClosedMapDirectComparisonLeftSnakeW779",
+      "stableBoundaryInputsOfClosedEmbeddingDirectComparisonLeftSnakeW779",
+      "acceptedStableOfClosedMapDirectComparisonLeftSnakeW779",
+      "acceptedStableOfClosedEmbeddingDirectComparisonLeftSnakeW779",
+      "boundedDerivedOfClosedMapDirectComparisonLeftSnakeStableBoundaryW779",
+      "boundedDerivedOfClosedEmbeddingDirectComparisonLeftSnakeStableBoundaryW779",
       "directComparisonLeftSnakeProductRouteInputNamesW779",
       "directComparisonLeftSnakeProductRouteInputNamesW779_count"]
   directComparisonResult :=
     "proved: W551 supplies the W778 WPP limit-comparison field directly"
+  stableBoundaryResult :=
+    "proved: W779 direct-comparison left/Snake branches pass the\
+      W778/W774/W773/W769 canonical stable-boundary accepted gate"
   closedMapResult :=
     "proved: closed-map W735 branch data plus direct-comparison left/Snake data\
       feed W778"
@@ -154,7 +224,8 @@ def currentMetrizableDirectComparisonLeftSnakeProductRouteSupportStateW779 :
     "proved: closed-embedding W735 branch data plus direct-comparison left/Snake\
       data feed W778"
   replacedInputs :=
-    ["mapping-cone WPP limit comparison field"]
+    ["mapping-cone WPP limit comparison field",
+      "separate W778 left/Snake direct-right-LCA stable-boundary branch input"]
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",

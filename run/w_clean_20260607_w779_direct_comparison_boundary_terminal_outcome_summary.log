@@ -1,0 +1,4 @@
+terminal_outcome=nonterminal
+product_success=false
+checkpoint=w_clean_20260607_w779_direct_comparison_boundary
+basis=head 9d8809dc862f48a9be6361a2a312e4e12b94c664 plus remote refs before edit
