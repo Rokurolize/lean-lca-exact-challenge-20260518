@@ -126,6 +126,89 @@ theorem closedEmbeddingStableCertificateAcceptedOfTargetExactAtEndpointReducedW8
   closedEmbeddingStableCertificateAcceptedOfTargetExactAtW664TerminalW804
     (closedEmbeddingTargetExactAtW803DataOfEndpointW805 data)
 
+/-!
+W805 closed-map endpoint-reduced evidence as W803/W769 direct stable data.
+-/
+noncomputable def directFiniteShapeStableDataOfClosedMapTargetExactAtEndpointReducedW805
+    (data : MetrizableClosedMapTargetExactAtEndpointTargetIsoBranchDataW785) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapTargetExactAtW664TerminalW803
+    (closedMapTargetExactAtW803DataOfEndpointW805 data)
+
+/-!
+W805 closed-embedding endpoint-reduced evidence as W803/W769 direct stable data.
+-/
+noncomputable def
+    directFiniteShapeStableDataOfClosedEmbeddingTargetExactAtEndpointReducedW805
+    (data :
+      MetrizableClosedEmbeddingTargetExactAtEndpointTargetIsoBranchDataW785) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingTargetExactAtW664TerminalW803
+    (closedEmbeddingTargetExactAtW803DataOfEndpointW805 data)
+
+/-!
+W805 closed-map endpoint-reduced evidence as stable-boundary inputs.
+-/
+noncomputable def stableBoundaryInputsOfClosedMapTargetExactAtEndpointReducedW805
+    (data : MetrizableClosedMapTargetExactAtEndpointTargetIsoBranchDataW785) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapTargetExactAtW664TerminalW803
+    (closedMapTargetExactAtW803DataOfEndpointW805 data)
+
+/-!
+W805 closed-embedding endpoint-reduced evidence as stable-boundary inputs.
+-/
+noncomputable def
+    stableBoundaryInputsOfClosedEmbeddingTargetExactAtEndpointReducedW805
+    (data :
+      MetrizableClosedEmbeddingTargetExactAtEndpointTargetIsoBranchDataW785) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingTargetExactAtW664TerminalW803
+    (closedEmbeddingTargetExactAtW803DataOfEndpointW805 data)
+
+/-!
+W805 closed-map endpoint-reduced evidence passes the stable boundary.
+-/
+noncomputable def acceptedStableOfClosedMapTargetExactAtEndpointReducedW805
+    (data : MetrizableClosedMapTargetExactAtEndpointTargetIsoBranchDataW785) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapTargetExactAtW664TerminalW803
+    (closedMapTargetExactAtW803DataOfEndpointW805 data)
+
+/-!
+W805 closed-embedding endpoint-reduced evidence passes the stable boundary.
+-/
+noncomputable def acceptedStableOfClosedEmbeddingTargetExactAtEndpointReducedW805
+    (data :
+      MetrizableClosedEmbeddingTargetExactAtEndpointTargetIsoBranchDataW785) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingTargetExactAtW664TerminalW803
+    (closedEmbeddingTargetExactAtW803DataOfEndpointW805 data)
+
+/-!
+W805 closed-map endpoint-reduced evidence produces the stable-boundary package.
+-/
+noncomputable def
+    boundedDerivedOfClosedMapTargetExactAtEndpointReducedStableBoundaryW805
+    (data : MetrizableClosedMapTargetExactAtEndpointTargetIsoBranchDataW785) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapTargetExactAtW664TerminalStableBoundaryW803
+    (closedMapTargetExactAtW803DataOfEndpointW805 data)
+
+/-!
+W805 closed-embedding endpoint-reduced evidence produces the stable-boundary
+package.
+-/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingTargetExactAtEndpointReducedStableBoundaryW805
+    (data :
+      MetrizableClosedEmbeddingTargetExactAtEndpointTargetIsoBranchDataW785) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingTargetExactAtW664TerminalStableBoundaryW803
+    (closedEmbeddingTargetExactAtW803DataOfEndpointW805 data)
+
 /-- W805 input names after W785 endpoint data is reduced to the W803 route. -/
 def targetExactAtEndpointReductionProductRouteInputNamesW805 : List String :=
   ["universal IsIso for every MetrizableLCA left-right homology comparison",
@@ -141,6 +224,7 @@ structure MetrizableTargetExactAtEndpointReductionRouteStateW805 : Type where
   declarations : List String
   reductionResult : String
   terminalEvidenceResult : String
+  stableBoundaryResult : String
   droppedInputs : List String
   remainingInputs : List String
   productSuccessClaimed : Bool
@@ -162,12 +246,22 @@ def currentMetrizableTargetExactAtEndpointReductionRouteStateW805 :
       "closedEmbeddingStableCertificateReadyOfTargetExactAtEndpointReducedW805",
       "closedMapStableCertificateAcceptedOfTargetExactAtEndpointReducedW805",
       "closedEmbeddingStableCertificateAcceptedOfTargetExactAtEndpointReducedW805",
+      "directFiniteShapeStableDataOfClosedMapTargetExactAtEndpointReducedW805",
+      "directFiniteShapeStableDataOfClosedEmbeddingTargetExactAtEndpointReducedW805",
+      "stableBoundaryInputsOfClosedMapTargetExactAtEndpointReducedW805",
+      "stableBoundaryInputsOfClosedEmbeddingTargetExactAtEndpointReducedW805",
+      "acceptedStableOfClosedMapTargetExactAtEndpointReducedW805",
+      "acceptedStableOfClosedEmbeddingTargetExactAtEndpointReducedW805",
+      "boundedDerivedOfClosedMapTargetExactAtEndpointReducedStableBoundaryW805",
+      "boundedDerivedOfClosedEmbeddingTargetExactAtEndpointReducedStableBoundaryW805",
       "targetExactAtEndpointReductionProductRouteInputNamesW805",
       "targetExactAtEndpointReductionProductRouteInputNamesW805_count"]
   reductionResult :=
     "proved: W785 endpoint branch data projects to the W803 terminal route"
   terminalEvidenceResult :=
     "proved: reduced endpoint data exposes exact/stable evidence and certificates"
+  stableBoundaryResult :=
+    "proved: reduced endpoint data exposes the W803 stable-boundary gate"
   droppedInputs :=
     ["endpoint-strict topology data",
       "closed quotient-cover and Epi boundary data",

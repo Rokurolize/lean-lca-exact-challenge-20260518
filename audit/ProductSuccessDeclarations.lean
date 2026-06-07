@@ -10073,6 +10073,19 @@ example :
     Dbounded.closedMapStableCertificateAcceptedOfTargetExactAtEndpointReducedW805
   #check
     Dbounded.closedEmbeddingStableCertificateAcceptedOfTargetExactAtEndpointReducedW805
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedMapTargetExactAtEndpointReducedW805
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingTargetExactAtEndpointReducedW805
+  #check Dbounded.stableBoundaryInputsOfClosedMapTargetExactAtEndpointReducedW805
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingTargetExactAtEndpointReducedW805
+  #check Dbounded.acceptedStableOfClosedMapTargetExactAtEndpointReducedW805
+  #check Dbounded.acceptedStableOfClosedEmbeddingTargetExactAtEndpointReducedW805
+  #check
+    Dbounded.boundedDerivedOfClosedMapTargetExactAtEndpointReducedStableBoundaryW805
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingTargetExactAtEndpointReducedStableBoundaryW805
   #check Dbounded.targetExactAtEndpointReductionProductRouteInputNamesW805
   #check Dbounded.targetExactAtEndpointReductionProductRouteInputNamesW805_count
   #check Dbounded.MetrizableTargetExactAtEndpointReductionRouteStateW805
