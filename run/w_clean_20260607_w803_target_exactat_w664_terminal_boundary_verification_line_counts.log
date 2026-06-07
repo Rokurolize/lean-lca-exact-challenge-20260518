@@ -1,0 +1,16 @@
+verification line counts for W803 logs
+       0 run/w_clean_20260607_w803_target_exactat_w664_terminal_boundary_target_lean.log
+       1 run/w_clean_20260607_w803_target_exactat_w664_terminal_boundary_forbidden_tokens.log
+       0 run/w_clean_20260607_w803_target_exactat_w664_terminal_boundary_diff_check.log
+   32490 run/w_clean_20260607_w803_target_exactat_w664_terminal_boundary_build.log
+   39132 run/w_clean_20260607_w803_target_exactat_w664_terminal_boundary_required_audit.log
+   71014 run/w_clean_20260607_w803_target_exactat_w664_terminal_boundary_product_success_audit.log
+   52064 run/w_clean_20260607_w803_target_exactat_w664_terminal_boundary_original_four_audit.log
+      84 run/w_clean_20260607_w803_target_exactat_w664_terminal_boundary_warning_scan.log
+      43 run/w_clean_20260607_w803_target_exactat_w664_terminal_boundary_declaration_presence.log
+       6 run/w_clean_20260607_w803_target_exactat_w664_terminal_boundary_completion_claim_post_scan.log
+       1 run/w_clean_20260607_w803_target_exactat_w664_terminal_boundary_true_boolean_scan.log
+    1085 run/w_clean_20260607_w803_target_exactat_w664_terminal_boundary_false_claim_scan.log
+      23 run/w_clean_20260607_w803_target_exactat_w664_terminal_boundary_goal_identity_after.log
+      33 run/w_clean_20260607_w803_target_exactat_w664_terminal_boundary_checkpoint.md
+  195976 total

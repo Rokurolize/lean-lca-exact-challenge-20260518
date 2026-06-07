@@ -9999,6 +9999,19 @@ example :
   #check Dbounded.closedMapStableCertificateReadyOfTargetExactAtW664TerminalW803
   #check
     Dbounded.closedEmbeddingStableCertificateReadyOfTargetExactAtW664TerminalW803
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedMapTargetExactAtW664TerminalW803
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingTargetExactAtW664TerminalW803
+  #check Dbounded.stableBoundaryInputsOfClosedMapTargetExactAtW664TerminalW803
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingTargetExactAtW664TerminalW803
+  #check Dbounded.acceptedStableOfClosedMapTargetExactAtW664TerminalW803
+  #check Dbounded.acceptedStableOfClosedEmbeddingTargetExactAtW664TerminalW803
+  #check
+    Dbounded.boundedDerivedOfClosedMapTargetExactAtW664TerminalStableBoundaryW803
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingTargetExactAtW664TerminalStableBoundaryW803
   #check Dbounded.targetExactAtW664TerminalProductRouteInputNamesW803
   #check Dbounded.targetExactAtW664TerminalProductRouteInputNamesW803_count
   #check Dbounded.MetrizableTargetExactAtW664TerminalRouteStateW803

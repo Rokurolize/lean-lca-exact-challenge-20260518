@@ -132,6 +132,92 @@ theorem closedEmbeddingStableCertificateReadyOfTargetExactAtW664TerminalW803
   (productEvidence_of_closedEmbeddingTargetExactAtW664TerminalRouteW803
     data).kernelCokernelStableReady
 
+/-!
+W803 closed-map target ExactAt-derived W664 terminal evidence as W769 stable
+data.
+-/
+noncomputable def directFiniteShapeStableDataOfClosedMapTargetExactAtW664TerminalW803
+    (data : MetrizableClosedMapTargetExactAtW664TerminalBranchDataW803) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapTargetHomologyZeroW664TerminalW799
+    (closedMapW664TerminalDataOfTargetExactAtW803 data)
+
+/-!
+W803 closed-embedding target ExactAt-derived W664 terminal evidence as W769
+stable data.
+-/
+noncomputable def
+    directFiniteShapeStableDataOfClosedEmbeddingTargetExactAtW664TerminalW803
+    (data : MetrizableClosedEmbeddingTargetExactAtW664TerminalBranchDataW803) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroW664TerminalW799
+    (closedEmbeddingW664TerminalDataOfTargetExactAtW803 data)
+
+/-!
+W803 closed-map target ExactAt-derived W664 terminal evidence as stable-boundary
+inputs.
+-/
+noncomputable def stableBoundaryInputsOfClosedMapTargetExactAtW664TerminalW803
+    (data : MetrizableClosedMapTargetExactAtW664TerminalBranchDataW803) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapTargetHomologyZeroW664TerminalW799
+    (closedMapW664TerminalDataOfTargetExactAtW803 data)
+
+/-!
+W803 closed-embedding target ExactAt-derived W664 terminal evidence as
+stable-boundary inputs.
+-/
+noncomputable def
+    stableBoundaryInputsOfClosedEmbeddingTargetExactAtW664TerminalW803
+    (data : MetrizableClosedEmbeddingTargetExactAtW664TerminalBranchDataW803) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroW664TerminalW799
+    (closedEmbeddingW664TerminalDataOfTargetExactAtW803 data)
+
+/-!
+W803 closed-map target ExactAt-derived W664 terminal evidence passes the stable
+boundary.
+-/
+noncomputable def acceptedStableOfClosedMapTargetExactAtW664TerminalW803
+    (data : MetrizableClosedMapTargetExactAtW664TerminalBranchDataW803) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapTargetHomologyZeroW664TerminalW799
+    (closedMapW664TerminalDataOfTargetExactAtW803 data)
+
+/-!
+W803 closed-embedding target ExactAt-derived W664 terminal evidence passes the
+stable boundary.
+-/
+noncomputable def acceptedStableOfClosedEmbeddingTargetExactAtW664TerminalW803
+    (data : MetrizableClosedEmbeddingTargetExactAtW664TerminalBranchDataW803) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingTargetHomologyZeroW664TerminalW799
+    (closedEmbeddingW664TerminalDataOfTargetExactAtW803 data)
+
+/-!
+W803 closed-map target ExactAt-derived W664 terminal evidence produces the
+stable-boundary package.
+-/
+noncomputable def
+    boundedDerivedOfClosedMapTargetExactAtW664TerminalStableBoundaryW803
+    (data : MetrizableClosedMapTargetExactAtW664TerminalBranchDataW803) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapTargetHomologyZeroW664TerminalStableBoundaryW799
+    (closedMapW664TerminalDataOfTargetExactAtW803 data)
+
+/-!
+W803 closed-embedding target ExactAt-derived W664 terminal evidence produces
+the stable-boundary package.
+-/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingTargetExactAtW664TerminalStableBoundaryW803
+    (data : MetrizableClosedEmbeddingTargetExactAtW664TerminalBranchDataW803) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingTargetHomologyZeroW664TerminalStableBoundaryW799
+    (closedEmbeddingW664TerminalDataOfTargetExactAtW803 data)
+
 /-- W803 input names after target ExactAt data supplies the W664 payload. -/
 def targetExactAtW664TerminalProductRouteInputNamesW803 : List String :=
   ["universal IsIso for every MetrizableLCA left-right homology comparison",
@@ -147,6 +233,7 @@ structure MetrizableTargetExactAtW664TerminalRouteStateW803 : Type where
   declarations : List String
   payloadConversionResult : String
   terminalEvidenceResult : String
+  stableBoundaryResult : String
   replacedInputs : List String
   remainingInputs : List String
   productSuccessClaimed : Bool
@@ -167,12 +254,23 @@ def currentMetrizableTargetExactAtW664TerminalRouteStateW803 :
       "closedEmbeddingExactStableEvidenceOfTargetExactAtW664TerminalW803",
       "closedMapStableCertificateReadyOfTargetExactAtW664TerminalW803",
       "closedEmbeddingStableCertificateReadyOfTargetExactAtW664TerminalW803",
+      "directFiniteShapeStableDataOfClosedMapTargetExactAtW664TerminalW803",
+      "directFiniteShapeStableDataOfClosedEmbeddingTargetExactAtW664TerminalW803",
+      "stableBoundaryInputsOfClosedMapTargetExactAtW664TerminalW803",
+      "stableBoundaryInputsOfClosedEmbeddingTargetExactAtW664TerminalW803",
+      "acceptedStableOfClosedMapTargetExactAtW664TerminalW803",
+      "acceptedStableOfClosedEmbeddingTargetExactAtW664TerminalW803",
+      "boundedDerivedOfClosedMapTargetExactAtW664TerminalStableBoundaryW803",
+      "boundedDerivedOfClosedEmbeddingTargetExactAtW664TerminalStableBoundaryW803",
       "targetExactAtW664TerminalProductRouteInputNamesW803",
       "targetExactAtW664TerminalProductRouteInputNamesW803_count"]
   payloadConversionResult :=
     "proved: target ExactAt data plus W768-derived homology supplies W664 data"
   terminalEvidenceResult :=
     "proved: target ExactAt-derived W664 data feed W799 terminal evidence"
+  stableBoundaryResult :=
+    "proved: target ExactAt-derived W664 terminal data expose the W799 stable\
+      boundary gate"
   replacedInputs :=
     ["explicit W664 target homology-zero payload"]
   remainingInputs :=
