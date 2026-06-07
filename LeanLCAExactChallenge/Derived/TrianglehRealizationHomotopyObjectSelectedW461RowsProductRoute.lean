@@ -122,6 +122,72 @@ noncomputable def productEvidence_of_closedEmbeddingTrianglehRealizationRouteW78
   productEvidence_of_closedEmbeddingHomotopyObjectTriangulatedRouteW782
     (closedEmbeddingHomotopyObjectDataOfTrianglehRealizationW783 data)
 
+/-- W783 closed-map branch converted to the W769 stable-data surface. -/
+noncomputable def directFiniteShapeStableDataOfClosedMapTrianglehRealizationW783
+    (data : MetrizableClosedMapTrianglehRealizationHomotopyObjectBranchDataW783) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedMapHomotopyObjectW782
+    (closedMapHomotopyObjectDataOfTrianglehRealizationW783 data)
+
+/-- W783 closed-embedding branch converted to the W769 stable-data surface. -/
+noncomputable def
+    directFiniteShapeStableDataOfClosedEmbeddingTrianglehRealizationW783
+    (data :
+      MetrizableClosedEmbeddingTrianglehRealizationHomotopyObjectBranchDataW783) :
+    MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769 :=
+  directFiniteShapeStableDataOfClosedEmbeddingHomotopyObjectW782
+    (closedEmbeddingHomotopyObjectDataOfTrianglehRealizationW783 data)
+
+/-- W783 closed-map branch as canonical stable-instance boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedMapTrianglehRealizationW783
+    (data : MetrizableClosedMapTrianglehRealizationHomotopyObjectBranchDataW783) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedMapHomotopyObjectW782
+    (closedMapHomotopyObjectDataOfTrianglehRealizationW783 data)
+
+/-- W783 closed-embedding branch as canonical stable-instance boundary inputs. -/
+noncomputable def stableBoundaryInputsOfClosedEmbeddingTrianglehRealizationW783
+    (data :
+      MetrizableClosedEmbeddingTrianglehRealizationHomotopyObjectBranchDataW783) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs :=
+  stableBoundaryInputsOfClosedEmbeddingHomotopyObjectW782
+    (closedEmbeddingHomotopyObjectDataOfTrianglehRealizationW783 data)
+
+/-- W783 closed-map branch passes the canonical accepted stable boundary gate. -/
+noncomputable def acceptedStableOfClosedMapTrianglehRealizationW783
+    (data : MetrizableClosedMapTrianglehRealizationHomotopyObjectBranchDataW783) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapHomotopyObjectW782
+    (closedMapHomotopyObjectDataOfTrianglehRealizationW783 data)
+
+/--
+W783 closed-embedding branch passes the canonical accepted stable boundary gate.
+-/
+noncomputable def acceptedStableOfClosedEmbeddingTrianglehRealizationW783
+    (data :
+      MetrizableClosedEmbeddingTrianglehRealizationHomotopyObjectBranchDataW783) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingHomotopyObjectW782
+    (closedEmbeddingHomotopyObjectDataOfTrianglehRealizationW783 data)
+
+/-- W783 closed-map branch produces the canonical stable-boundary package. -/
+noncomputable def boundedDerivedOfClosedMapTrianglehRealizationStableBoundaryW783
+    (data : MetrizableClosedMapTrianglehRealizationHomotopyObjectBranchDataW783) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapHomotopyObjectStableBoundaryW782
+    (closedMapHomotopyObjectDataOfTrianglehRealizationW783 data)
+
+/-- W783 closed-embedding branch produces the canonical stable-boundary package. -/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingTrianglehRealizationStableBoundaryW783
+    (data :
+      MetrizableClosedEmbeddingTrianglehRealizationHomotopyObjectBranchDataW783) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingHomotopyObjectStableBoundaryW782
+    (closedEmbeddingHomotopyObjectDataOfTrianglehRealizationW783 data)
+
 /-- W783 input names after replacing W782's homotopy-object `Closed₂` premise. -/
 def trianglehRealizationHomotopyObjectProductRouteInputNamesW783 :
     List String :=
@@ -145,6 +211,7 @@ structure MetrizableTrianglehRealizationHomotopyObjectRouteStateW783 :
   seed : String
   declarations : List String
   transportResult : String
+  stableBoundaryResult : String
   closedMapResult : String
   closedEmbeddingResult : String
   replacedInputs : List String
@@ -165,16 +232,28 @@ def currentMetrizableTrianglehRealizationHomotopyObjectRouteStateW783 :
       "closedEmbeddingHomotopyObjectDataOfTrianglehRealizationW783",
       "productEvidence_of_closedMapTrianglehRealizationRouteW783",
       "productEvidence_of_closedEmbeddingTrianglehRealizationRouteW783",
+      "directFiniteShapeStableDataOfClosedMapTrianglehRealizationW783",
+      "directFiniteShapeStableDataOfClosedEmbeddingTrianglehRealizationW783",
+      "stableBoundaryInputsOfClosedMapTrianglehRealizationW783",
+      "stableBoundaryInputsOfClosedEmbeddingTrianglehRealizationW783",
+      "acceptedStableOfClosedMapTrianglehRealizationW783",
+      "acceptedStableOfClosedEmbeddingTrianglehRealizationW783",
+      "boundedDerivedOfClosedMapTrianglehRealizationStableBoundaryW783",
+      "boundedDerivedOfClosedEmbeddingTrianglehRealizationStableBoundaryW783",
       "trianglehRealizationHomotopyObjectProductRouteInputNamesW783",
       "trianglehRealizationHomotopyObjectProductRouteInputNamesW783_count"]
   transportResult :=
     "proved: exact-acyclic homotopy-object triangleh realization supplies W782's Closed2 input"
+  stableBoundaryResult :=
+    "proved: W783 triangleh-realization homotopy-object branches pass the\
+      W782/W781/W780/W779/W778/W774/W773/W769 canonical stable-boundary gate"
   closedMapResult :=
     "proved: closed-map triangleh realization branch data feeds W782"
   closedEmbeddingResult :=
     "proved: closed-embedding triangleh realization branch data feeds W782"
   replacedInputs :=
-    ["exactAcyclicHomotopyObject MetrizableLCA is triangulated closed"]
+    ["exactAcyclicHomotopyObject MetrizableLCA is triangulated closed",
+      "separate W782 homotopy-object stable-boundary branch input"]
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",

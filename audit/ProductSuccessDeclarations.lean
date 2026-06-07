@@ -9426,6 +9426,16 @@ example :
   #check Dbounded.closedEmbeddingHomotopyObjectDataOfTrianglehRealizationW783
   #check Dbounded.productEvidence_of_closedMapTrianglehRealizationRouteW783
   #check Dbounded.productEvidence_of_closedEmbeddingTrianglehRealizationRouteW783
+  #check Dbounded.directFiniteShapeStableDataOfClosedMapTrianglehRealizationW783
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingTrianglehRealizationW783
+  #check Dbounded.stableBoundaryInputsOfClosedMapTrianglehRealizationW783
+  #check Dbounded.stableBoundaryInputsOfClosedEmbeddingTrianglehRealizationW783
+  #check Dbounded.acceptedStableOfClosedMapTrianglehRealizationW783
+  #check Dbounded.acceptedStableOfClosedEmbeddingTrianglehRealizationW783
+  #check Dbounded.boundedDerivedOfClosedMapTrianglehRealizationStableBoundaryW783
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingTrianglehRealizationStableBoundaryW783
   #check Dbounded.trianglehRealizationHomotopyObjectProductRouteInputNamesW783
   #check Dbounded.trianglehRealizationHomotopyObjectProductRouteInputNamesW783_count
   #check Dbounded.MetrizableTrianglehRealizationHomotopyObjectRouteStateW783

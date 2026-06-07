@@ -1,0 +1,3 @@
+PASS lake build LeanLCAExactChallenge.Derived.TrianglehRealizationHomotopyObjectSelectedW461RowsProductRoute
+The build replayed dependencies and emitted pre-existing warnings outside the changed W783 module.
+Local W783 warning scan: empty.

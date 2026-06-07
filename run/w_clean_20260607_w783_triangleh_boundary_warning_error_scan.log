@@ -1,0 +1,2 @@
+No W783 module warning/error lines after Tier B verification.
+The lake build emitted pre-existing dependency warnings outside the changed W783 module; see build summary.
