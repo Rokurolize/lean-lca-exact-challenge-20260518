@@ -1,0 +1,80 @@
+audit/original_four_task_contract_audit.py:31:    "originalFourTaskContractCompletion.productSuccessClaimed = false",
+audit/original_four_task_contract_audit.py:32:    "productSuccessClaimed := false",
+audit/original_four_task_contract_audit.py:250:            blockers.append("product_success imports a final witness proving productSuccessClaimed=false")
+audit/external_audit.py:58:    "originalFourTaskContractCompletion.productSuccessClaimed = false",
+audit/external_audit.py:59:    "productSuccessClaimed := false",
+audit/external_audit.py:421:        fail("product_success imports a final witness proving productSuccessClaimed=false")
+LeanLCAExactChallenge/Derived/Bounded.lean:4123:  productSuccessClaimed := false
+LeanLCAExactChallenge/Derived/Bounded.lean:4132:    Dbounded.currentMetrizableSemanticStableRouteState.productSuccessClaimed = false :=
+LeanLCAExactChallenge/Derived/Bounded.lean:4585:  productSuccessClaimed := false
+LeanLCAExactChallenge/Derived/Bounded.lean:4772:  productSuccessClaimed := false
+LeanLCAExactChallenge/Derived/Bounded.lean:4993:  productSuccessClaimed := false
+LeanLCAExactChallenge/Derived/Bounded.lean:5176:  productSuccessClaimed := false
+LeanLCAExactChallenge/Derived/Bounded.lean:5291:  productSuccessClaimed := false
+LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryRelationTargetLocalizedAdjunctionNatTransFieldDataConstructionGuardW1465.lean:577:  productSuccessClaimed := false
+LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataTargetSurjectiveCompactKernelCokernelTopIsoComponentFieldsGuardW1320.lean:86:  productSuccessClaimed := false
+LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorFieldDataConstructionGuardW1479.lean:1929:  productSuccessClaimed := false
+audit/blockers/wpp_op_mapping_cone_objectwise_desc_eq_w334.lean:57:  productSuccessClaimed := false
+audit/blockers/wpp_op_mapping_cone_objectwise_desc_eq_w334.lean:60:    currentWppOpMappingConeObjectwiseDescEqState.productSuccessClaimed = false := rfl
+LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapTargetComponentRelationFieldsStableConvergenceFieldSplitGuardW1384.lean:337:  productSuccessClaimed := false
+audit/blockers/wpp_op_relation_pullback_condition_v368_support_w349.lean:202:  productSuccessClaimed := false
+audit/blockers/wpp_op_relation_pullback_condition_v368_support_w349.lean:205:    currentRelationPullbackConditionV368SupportStateW349.productSuccessClaimed = false := rfl
+audit/blockers/addcommgrp_quotient_identification_to_strict_snake_v370_support_w466.lean:796:  productSuccessClaimed := false
+audit/blockers/addcommgrp_cokernel_range_equality_from_closed_map_v370_support_w443.lean:160:  productSuccessClaimed := false
+audit/blockers/wpp_op_left_lca_transported_descended_leg_v369_support_w366.lean:352:  productSuccessClaimed := false
+audit/blockers/wpp_op_left_lca_transported_descended_leg_v369_support_w366.lean:355:    currentWppOpLeftLcaTransportedDescendedLegV369StateW366.productSuccessClaimed = false := rfl
+audit/blockers/addcommgrp_snakeinput_difference_strict_source_w345.lean:53:  productSuccessClaimed := false
+audit/blockers/addcommgrp_snakeinput_difference_strict_source_w345.lean:56:    currentW345SourceSupportState.productSuccessClaimed = false := rfl
+audit/blockers/addcommgrp_selected_cokernel_colimit_preservation_only_v370_support_w427.lean:388:  productSuccessClaimed := false
+audit/blockers/addcommgrp_mapped_explicit_cokernel_cocone_closed_range_v370_support_w440.lean:196:  productSuccessClaimed := false
+audit/blockers/addcommgrp_mapped_explicit_cokernel_cocone_iscolimit_v370_support_w437.lean:194:  productSuccessClaimed := false
+audit/blockers/wpp_op_left_lca_reverse_preimage_pullback_v366_support_w343.lean:214:  productSuccessClaimed := false
+audit/blockers/wpp_op_left_lca_reverse_preimage_pullback_v366_support_w343.lean:217:    currentLeftLcaReversePreimagePullbackV366SupportState.productSuccessClaimed = false := rfl
+audit/blockers/wpp_op_relation_fields_composer_v370_support_w395.lean:292:  productSuccessClaimed := false
+audit/blockers/wpp_op_relation_fields_composer_v370_support_w395.lean:295:    currentWppOpRelationFieldsComposerV370SupportStateW395.productSuccessClaimed = false := rfl
+audit/blockers/wpp_op_strict_short_exact_colimit_fields_iff_w307.lean:152:  productSuccessClaimed := false
+audit/blockers/wpp_op_strict_short_exact_colimit_fields_iff_w307.lean:155:    currentWppOpStrictShortExactFieldsIffState.productSuccessClaimed = false := rfl
+audit/blockers/wpp_op_mapping_cone_right_uniqueness_w329.lean:74:  productSuccessClaimed := false
+audit/blockers/wpp_op_mapping_cone_right_uniqueness_w329.lean:77:    currentWppOpMappingConeRightUniquenessState.productSuccessClaimed = false := rfl
+audit/blockers/wpp_op_w426_w318_ordinary_equals_canonical_v370_support_w444.lean:169:  productSuccessClaimed := false
+audit/blockers/wpp_op_w426_w318_ordinary_equals_canonical_v370_support_w444.lean:172:    currentWppOpW426W318OrdinaryEqualsCanonicalV370StateW444.productSuccessClaimed = false := rfl
+audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean:730:  productSuccessClaimed := false
+audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean:733:    currentWppOpMappingConeUniqueMediatorState.productSuccessClaimed = false := rfl
+audit/blockers/addcommgrp_selected_cokernel_colimit_from_coequalizer_preservation_v370_support_w432.lean:481:  productSuccessClaimed := false
+audit/blockers/addcommgrp_selected_difference_kernel_row_frontier_v370_support_w459.lean:357:  productSuccessClaimed := false
+audit/blockers/wpp_op_w426_w387_w390_conjugated_leg_inputs_v370_support_w447.lean:170:  productSuccessClaimed := false
+audit/blockers/wpp_op_w426_w387_w390_conjugated_leg_inputs_v370_support_w447.lean:173:    currentWppOpW426W387W390ConjugatedLegInputsV370StateW447.productSuccessClaimed = false := rfl
+audit/blockers/wpp_op_mapping_cone_bounded_test_cocone_naturality_w340.lean:111:  productSuccessClaimed := false
+audit/blockers/wpp_op_mapping_cone_bounded_test_cocone_naturality_w340.lean:114:    currentWppOpMappingConeBoundedTestCoconeNaturalityState.productSuccessClaimed = false := rfl
+audit/blockers/direct_wpp_op_colimit_closure_w271.lean:255:  productSuccessClaimed := false
+audit/blockers/direct_wpp_op_colimit_closure_w271.lean:258:    currentDirectWalkingParallelPairOpColimitClosureState.productSuccessClaimed = false := rfl
+audit/blockers/shortcomplex_cokernel_row_degreewise_v369_support_w359.lean:162:  productSuccessClaimed := false
+audit/blockers/shortcomplex_cokernel_row_degreewise_v369_support_w359.lean:165:    currentShortComplexCokernelRowDegreewiseSupportState.productSuccessClaimed = false := rfl
+audit/blockers/whiskering_right_fixed_target_up_w227.lean:197:  productSuccessClaimed := false
+audit/blockers/whiskering_right_fixed_target_up_w227.lean:203:    currentState.productSuccessClaimed = false := rfl
+audit/OriginalFourTaskCompletionDeclarations.lean:1041:    Dbounded.currentMetrizableSemanticStableRouteState.productSuccessClaimed = false :=
+audit/blockers/addcommgrp_mapped_cocone_iscolimit_source_v370_support_w413.lean:108:  productSuccessClaimed := false
+audit/blockers/addcommgrp_mapped_cocone_iscolimit_source_v370_support_w413.lean:111:    currentAddCommGrpMappedCoconeIsColimitSourceV370SupportState.productSuccessClaimed = false :=
+audit/blockers/walking_parallel_pair_lift_fields_w231.lean:241:  productSuccessClaimed := false
+audit/blockers/walking_parallel_pair_lift_fields_w231.lean:247:    currentState.productSuccessClaimed = false := rfl
+audit/blockers/wpp_op_exact_frontier_from_certificates_v370_support_w431.lean:120:  productSuccessClaimed := false
+audit/blockers/wpp_op_exact_frontier_from_certificates_v370_support_w431.lean:123:    currentWppOpExactFrontierFromCertificatesV370StateW431.productSuccessClaimed = false := rfl
+audit/blockers/wpp_op_left_lca_transported_point_iso_v370_support_w384.lean:394:  productSuccessClaimed := false
+audit/blockers/wpp_op_left_lca_transported_point_iso_v370_support_w384.lean:397:    currentWppOpLeftLcaTransportedPointIsoV370StateW384.productSuccessClaimed = false := rfl
+audit/blockers/opposite_contains_identities_of_iso_closed_w291.lean:55:  productSuccessClaimed := false
+audit/blockers/opposite_contains_identities_of_iso_closed_w291.lean:58:    currentOppositeContainsIdentitiesState.productSuccessClaimed = false := rfl
+audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean:604:  productSuccessClaimed := false
+audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean:607:    currentWppOpMappingConeBoundedLeftCochainState.productSuccessClaimed = false := rfl
+audit/blockers/addcommgrp_w433_mapped_cocone_closed_range_bridge_v370_support_w442.lean:225:  productSuccessClaimed := false
+audit/blockers/wpp_op_left_lca_closedmap_field_consumer_v366_support_w342.lean:293:  productSuccessClaimed := false
+audit/blockers/wpp_op_left_lca_closedmap_field_consumer_v366_support_w342.lean:296:    currentWppOpLeftLcaClosedMapFieldConsumerState.productSuccessClaimed = false := rfl
+audit/blockers/addcommgrp_cokernel_quotient_comparison_v370_support_w438.lean:224:  productSuccessClaimed := false
+audit/blockers/addcommgrp_cokernel_quotient_comparison_v370_support_w438.lean:227:    currentAddCommGrpCokernelQuotientComparisonV370SupportState.productSuccessClaimed = false :=
+audit/blockers/opposite_fixed_target_fac_uniq_w272.lean:289:  productSuccessClaimed := false
+audit/blockers/opposite_fixed_target_fac_uniq_w272.lean:292:    currentOppositeFixedTargetFacUniqState.productSuccessClaimed = false := rfl
+audit/blockers/wpp_op_exact_acyclic_colimit_closure_w299.lean:99:  productSuccessClaimed := false
+audit/blockers/wpp_op_exact_acyclic_colimit_closure_w299.lean:102:    currentWppOpExactAcyclicColimitClosureState.productSuccessClaimed = false := rfl
+audit/blockers/wpp_op_left_lca_ordinary_whiskered_projection_v370_support_w375.lean:541:  productSuccessClaimed := false
+audit/blockers/wpp_op_left_lca_ordinary_whiskered_projection_v370_support_w375.lean:544:    currentWppOpLeftLcaOrdinaryWhiskeredProjectionV370StateW375.productSuccessClaimed = false := rfl
+audit/blockers/algebraic_exact_wpp_op_colimit_w287.lean:130:  productSuccessClaimed := false
+audit/blockers/algebraic_exact_wpp_op_colimit_w287.lean:133:    currentAlgebraicExactWppOpColimitState.productSuccessClaimed = false := rfl

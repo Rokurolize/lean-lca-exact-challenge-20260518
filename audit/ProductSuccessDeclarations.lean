@@ -9625,6 +9625,22 @@ example :
     Dbounded.productEvidence_of_closedMapTargetHomologyZeroExactInputsClosedRangeRouteW790
   #check
     Dbounded.productEvidence_of_closedEmbeddingTargetHomologyZeroExactInputsClosedRangeRouteW790
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedMapTargetHomologyZeroExactInputsClosedRangeW790
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroExactInputsClosedRangeW790
+  #check
+    Dbounded.stableBoundaryInputsOfClosedMapTargetHomologyZeroExactInputsClosedRangeW790
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroExactInputsClosedRangeW790
+  #check
+    Dbounded.acceptedStableOfClosedMapTargetHomologyZeroExactInputsClosedRangeW790
+  #check
+    Dbounded.acceptedStableOfClosedEmbeddingTargetHomologyZeroExactInputsClosedRangeW790
+  #check
+    Dbounded.boundedDerivedOfClosedMapTargetHomologyZeroExactInputsClosedRangeStableBoundaryW790
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingTargetHomologyZeroExactInputsClosedRangeStableBoundaryW790
   #check Dbounded.targetHomologyZeroExactInputsClosedRangeProductRouteInputNamesW790
   #check
     Dbounded.targetHomologyZeroExactInputsClosedRangeProductRouteInputNamesW790_count
