@@ -2764,6 +2764,10 @@ example (X Y Z : MetrizableLCA) {m n : ℕ}
 #check YonedaExt.ofExtension_spliceLeftWith_positiveChain_eq
 #check YonedaExt.leftProductByYonedaExtension_metrizable_ofPositiveChain
 #check YonedaExt.yonedaProduct_ofPositiveChain
+#check YonedaExt.yonedaProduct_ofPositiveChain_eq_of_rel
+#check YonedaExt.yonedaProduct_ofPositiveChain_eq_zero_of_splitFactor
+#check YonedaExt.yonedaProduct_ofPositiveChain_eq_add_of_baerLeftChain
+#check YonedaExt.yonedaProduct_baer_sum_left_ofPositiveChain
 
 #check MetrizableLCA.shortExactExtensionPullbackDomainIsoBetween
 #check YonedaExtension.RelIso.refl
