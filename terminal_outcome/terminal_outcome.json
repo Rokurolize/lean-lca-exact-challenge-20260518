@@ -1,14 +1,14 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-06-07T20:34:38Z",
-  "git_head": "0611d496c1906d0c6ee53aca99bc4f24c143c913",
+  "generated_utc": "2026-06-07T21:00:55Z",
+  "git_head": "27b8f0fb25ee9351b97cafb01d6b54d147b24300",
   "source_tree_hash": "not_applicable_self_referential_partial_checkpoint",
   "outcome": "nonterminal",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "Nonterminal bounded derived basic API checkpoint: a short product-facing BoundedDerived.Basic facade now exposes the ordinary D^b localization, quasicategory nerve, metrizable LCA specialization, mapping-cone weak-equivalence criterion, and stable package projections without route-history terminology. Product success remains false because the full original four-task positive witness is still absent.",
+  "summary": "Nonterminal MetrizableLCA Yoneda-Quillen bridge checkpoint: Yoneda Ext now has direct constructors from canonical Quillen conflations and from the challenge's closed-inclusion/open-surjection/algebraically exact data, linking the metrizable LCA exact-category surface to Ext^1 representatives. Product success remains false because the full original four-task positive witness is still absent.",
   "positive_witness_declarations": [
     "LeanLCAExactChallenge.boundedExactWeakEquivalence_iff_exactAcyclic_mappingCone",
     "LeanLCAExactChallenge.boundedExactWeakEquivalence_of_exactAcyclic_mappingCone",
@@ -55,8 +55,16 @@
     "LeanLCAExactChallenge.MetrizableLCA.yonedaExtAddCommGroup",
     "LeanLCAExactChallenge.MetrizableLCA.yonedaExtBaerSum",
     "LeanLCAExactChallenge.MetrizableLCA.yonedaExtBaerSum_eq_add",
+    "LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionOfQuillenConflation",
+    "LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionOfClosedInclusionOpenSurjectionAlgebraicExact",
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_shortExactExtensionOfQuillenConflation",
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_shortExactExtensionOfClosedInclusionOpenSurjectionAlgebraicExact",
     "LeanLCAExactChallenge.MetrizableLCA.yonedaExtOfStrictShortExact",
     "LeanLCAExactChallenge.MetrizableLCA.yonedaExtOfStrictShortExact_eq",
+    "LeanLCAExactChallenge.MetrizableLCA.yonedaExtOfQuillenConflation",
+    "LeanLCAExactChallenge.MetrizableLCA.yonedaExtOfQuillenConflation_eq",
+    "LeanLCAExactChallenge.MetrizableLCA.yonedaExtOfClosedInclusionOpenSurjectionAlgebraicExact",
+    "LeanLCAExactChallenge.MetrizableLCA.yonedaExtOfClosedInclusionOpenSurjectionAlgebraicExact_eq",
     "LeanLCAExactChallenge.MetrizableLCA.yonedaExtZeroEquivHom",
     "LeanLCAExactChallenge.MetrizableLCA.quillenDeflation_comp",
     "LeanLCAExactChallenge.MetrizableLCA.quillenInflation_comp",
@@ -159,16 +167,16 @@
     "original_four_task_contract_sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1",
     "positive_witness_contract_sha256": "3120c014b83e0c7c8f8160ca90447a1a73588096a354ace109e2fca4e4eab5ec"
   },
-  "proof_search_checkpoint": "run/w_clean_20260608_bounded_derived_basic_api/checkpoint.md",
+  "proof_search_checkpoint": "run/w_clean_20260608_metrizable_yoneda_quillen_bridge/checkpoint.md",
   "known_gaps": [
     "Positive Lean witness is absent: no OriginalFourTaskProductSuccess surface with field-level evidence for the original four-task contract exists.",
     "The exact-category core now exposes class-level composition-stability fields and the canonical MetrizableLCA instance fills them, but the complete original four-task witness is still absent.",
-    "Yoneda one-fold extensions and positive-degree chains now expose their ambient exact-category head inflation/deflation maps and descend relation/split-factor/Baer-sum laws through YonedaExt.ofPositiveChain and into public Yoneda product relation, split-factor, additivity, negation, subtraction, and casted associativity laws for positive-chain representatives and Ext classes; positive-degree casts now preserve zero, addition, negation, subtraction, and public Baer sums; quotient-generator zero/neg/add simp lemmas are available; quotient-wide positive-degree Yoneda product associativity is available both with an explicit target-degree cast and with the canonical omega cast; public Baer-sum group laws now include negative-summand and subtraction transport lemmas; quotient-wide Yoneda product neg/sub laws are available in both variables; public Baer-sum negative-summand product subtraction laws are available for both summand positions and both product variables; and strict MetrizableLCA now has a direct Yoneda Ext specialization API. The full Yoneda Ext group obligation is still not audited as a final positive witness.",
+    "Yoneda one-fold extensions and positive-degree chains now expose their ambient exact-category head inflation/deflation maps and descend relation/split-factor/Baer-sum laws through YonedaExt.ofPositiveChain and into public Yoneda product relation, split-factor, additivity, negation, subtraction, and casted associativity laws for positive-chain representatives and Ext classes; positive-degree casts now preserve zero, addition, negation, subtraction, and public Baer sums; quotient-generator zero/neg/add simp lemmas are available; quotient-wide positive-degree Yoneda product associativity is available both with an explicit target-degree cast and with the canonical omega cast; public Baer-sum group laws now include negative-summand and subtraction transport lemmas; quotient-wide Yoneda product neg/sub laws are available in both variables; public Baer-sum negative-summand product subtraction laws are available for both summand positions and both product variables; strict MetrizableLCA has a direct Yoneda Ext specialization API; and Ext^1 representatives can now be built directly from canonical Quillen conflations or from the challenge's closed-inclusion/open-surjection/algebraically exact data. The full Yoneda Ext group obligation is still not audited as a final positive witness.",
     "Bounded derived infinity-category integration remains incomplete as an original-contract obligation, but the direct bounded weak-equivalence mapping-cone API, its strict MetrizableLCA specialization, the strict MetrizableLCA left-calculus semantic-field package constructor, the W830 direct-data semantic-field package route, the W831 comparison-bijectivity semantic-field package route, and the short product-facing BoundedDerived.Basic facade are now present and audited."
   ],
   "remaining_work": [
     "Continue from the existing exact-category/Yoneda API toward a genuine OriginalFourTaskProductSuccess surface.",
-    "Continue from the strengthened exact-category core, strict MetrizableLCA Yoneda Ext specialization API, positive-chain representative/class product relation/split/additivity/associativity bridge, positive Yoneda Ext cast additive API, quotient-generator simp API, quotient-wide Yoneda product associativity, public Baer-sum group/subtraction laws, quotient-wide Yoneda product neg/sub laws, and public Baer-sum negative-summand product subtraction laws into the remaining final-witness integration.",
+    "Continue from the strengthened exact-category core, strict MetrizableLCA Yoneda Ext specialization API, direct Yoneda Ext constructors from Quillen conflations and closed-inclusion/open-surjection/algebraically exact data, positive-chain representative/class product relation/split/additivity/associativity bridge, positive Yoneda Ext cast additive API, quotient-generator simp API, quotient-wide Yoneda product associativity, public Baer-sum group/subtraction laws, quotient-wide Yoneda product neg/sub laws, and public Baer-sum negative-summand product subtraction laws into the remaining final-witness integration.",
     "Continue the bounded derived infinity-category positive witness integration from the audited direct bounded weak-equivalence mapping-cone API, the strict MetrizableLCA Dbounded weak-equivalence surface, the strict MetrizableLCA left-calculus package constructor, the W830 direct-data semantic-field package route, the W831 comparison-bijectivity semantic-field package route, and the BoundedDerived.Basic facade, while preserving the separation between nonterminal API evidence and a genuine OriginalFourTaskProductSuccess surface."
   ],
   "verified_commands": [
@@ -305,7 +313,17 @@
     "git diff --check for bounded-derived basic API changed paths and checkpoint artifacts",
     "product success true-pattern scan saved to run/w_clean_20260608_bounded_derived_basic_api/product_success_true_scan.raw",
     "product success false-pattern scan saved to run/w_clean_20260608_bounded_derived_basic_api/product_success_false_scan.raw",
-    "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json"
+    "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
+    "lake env lean LeanLCAExactChallenge/Ext/Yoneda.lean > run/w_clean_20260608_metrizable_yoneda_quillen_bridge/yoneda_lean.log 2>&1",
+    "lake build LeanLCAExactChallenge.Ext.Yoneda > run/w_clean_20260608_metrizable_yoneda_quillen_bridge/lake_build_ext_yoneda.log 2>&1",
+    "lake env lean LeanLCAExactChallenge.lean > run/w_clean_20260608_metrizable_yoneda_quillen_bridge/root_import.log 2>&1",
+    "lake env lean audit/RequiredDeclarations.lean (exit code recorded in run/w_clean_20260608_metrizable_yoneda_quillen_bridge/verification_exit_codes.tsv)",
+    "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean (exit code recorded in run/w_clean_20260608_metrizable_yoneda_quillen_bridge/verification_exit_codes.tsv)",
+    "lake env lean audit/ProductSuccessDeclarations.lean (exit code recorded in run/w_clean_20260608_metrizable_yoneda_quillen_bridge/verification_exit_codes.tsv)",
+    "scripts/audit_no_forbidden_lean_tokens.sh . > run/w_clean_20260608_metrizable_yoneda_quillen_bridge/forbidden_tokens.log 2>&1",
+    "git diff --check -- LeanLCAExactChallenge/Ext/Yoneda.lean audit/RequiredDeclarations.lean audit/OriginalFourTaskCompletionDeclarations.lean audit/ProductSuccessDeclarations.lean terminal_outcome/terminal_outcome.json run/w_clean_20260608_metrizable_yoneda_quillen_bridge > run/w_clean_20260608_metrizable_yoneda_quillen_bridge/diff_check.log 2>&1",
+    "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json > run/w_clean_20260608_metrizable_yoneda_quillen_bridge/original_four_task_contract_audit.json",
+    "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json > run/w_clean_20260608_metrizable_yoneda_quillen_bridge/external_audit.log 2>&1"
   ],
   "packet_zip": null,
   "packet_sha256_sidecar": null,

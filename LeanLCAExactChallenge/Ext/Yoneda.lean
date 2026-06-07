@@ -20,6 +20,7 @@ namespace LeanLCAExactChallenge
 
 open CategoryTheory
 open CategoryTheory.Limits
+open Topology
 
 variable {C : Type u} [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
 
@@ -363,11 +364,64 @@ def shortExactExtensionOfStrictShortExact
   zero := zero
   conflation := quillenConflation_of_strictShortExact h
 
+/--
+Build a one-fold exact-category extension directly from a canonical Quillen
+conflation in metrizable LCA groups.
+-/
+def shortExactExtensionOfQuillenConflation
+    {X Y M : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (h : QuillenExactCategory.Conflation (ShortComplex.mk i p zero)) :
+    ShortExactExtension (C := MetrizableLCA.{u}) X Y where
+  middle := M
+  i := i
+  p := p
+  zero := zero
+  conflation := h
+
+/--
+Build a one-fold exact-category extension from the closed-inclusion/open-
+surjection algebraically exact data in the LCA challenge statement.
+-/
+def shortExactExtensionOfClosedInclusionOpenSurjectionAlgebraicExact
+    {X Y M : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (hclosed : IsClosedEmbedding (i : Y → M))
+    (hopen : IsOpenMap (p : M → X))
+    (hsurj : Function.Surjective (p : M → X))
+    (hexact : ∀ m : M, p m = 0 → ∃ y : Y, i y = m) :
+    ShortExactExtension (C := MetrizableLCA.{u}) X Y :=
+  shortExactExtensionOfQuillenConflation i p zero
+    (quillenConflation_of_closed_inclusion_open_surjection_algebraic_exact
+      (S := ShortComplex.mk i p zero) hclosed hopen hsurj hexact)
+
 @[simp]
 lemma shortExactExtensionOfStrictShortExact_shortComplex
     {X Y M : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
     (zero : i ≫ p = 0) (h : strictShortExact (ShortComplex.mk i p zero)) :
     (shortExactExtensionOfStrictShortExact i p zero h).shortComplex =
+      ShortComplex.mk i p zero :=
+  rfl
+
+@[simp]
+lemma shortExactExtensionOfQuillenConflation_shortComplex
+    {X Y M : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (h : QuillenExactCategory.Conflation (ShortComplex.mk i p zero)) :
+    (shortExactExtensionOfQuillenConflation i p zero h).shortComplex =
+      ShortComplex.mk i p zero :=
+  rfl
+
+@[simp]
+lemma shortExactExtensionOfClosedInclusionOpenSurjectionAlgebraicExact_shortComplex
+    {X Y M : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (hclosed : IsClosedEmbedding (i : Y → M))
+    (hopen : IsOpenMap (p : M → X))
+    (hsurj : Function.Surjective (p : M → X))
+    (hexact : ∀ m : M, p m = 0 → ∃ y : Y, i y = m) :
+    (shortExactExtensionOfClosedInclusionOpenSurjectionAlgebraicExact i p zero
+        hclosed hopen hsurj hexact).shortComplex =
       ShortComplex.mk i p zero :=
   rfl
 
@@ -383,6 +437,32 @@ theorem strictShortExact_shortExactExtensionOfStrictShortExact
     (zero : i ≫ p = 0) (h : strictShortExact (ShortComplex.mk i p zero)) :
     strictShortExact (shortExactExtensionOfStrictShortExact i p zero h).shortComplex := by
   simpa using h
+
+/-- The Quillen conflation extension recovers a strict short exact sequence. -/
+theorem strictShortExact_shortExactExtensionOfQuillenConflation
+    {X Y M : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (h : QuillenExactCategory.Conflation (ShortComplex.mk i p zero)) :
+    strictShortExact (shortExactExtensionOfQuillenConflation i p zero h).shortComplex := by
+  simpa using strictShortExact_of_quillenConflation h
+
+/--
+The challenge's closed-inclusion/open-surjection algebraically exact data
+recovers a strict short exact sequence.
+-/
+theorem strictShortExact_shortExactExtensionOfClosedInclusionOpenSurjectionAlgebraicExact
+    {X Y M : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (hclosed : IsClosedEmbedding (i : Y → M))
+    (hopen : IsOpenMap (p : M → X))
+    (hsurj : Function.Surjective (p : M → X))
+    (hexact : ∀ m : M, p m = 0 → ∃ y : Y, i y = m) :
+    strictShortExact
+      (shortExactExtensionOfClosedInclusionOpenSurjectionAlgebraicExact i p zero
+        hclosed hopen hsurj hexact).shortComplex := by
+  exact strictShortExact_shortExactExtensionOfQuillenConflation i p zero
+    (quillenConflation_of_closed_inclusion_open_surjection_algebraic_exact
+      (S := ShortComplex.mk i p zero) hclosed hopen hsurj hexact)
 
 /-- The strict short exact sequence extension has an inflation as its left map. -/
 theorem shortExactExtensionOfStrictShortExact_inflation_i
@@ -7444,6 +7524,56 @@ theorem yonedaExtOfStrictShortExact_eq {X Y M : MetrizableLCA.{u}}
     yonedaExtOfStrictShortExact i p zero h =
       YonedaExt.ofExtension (C := MetrizableLCA.{u})
         ((MetrizableLCA.shortExactExtensionOfStrictShortExact i p zero h).toYonedaExtension) :=
+  rfl
+
+/--
+The `Ext¹` class represented by a canonical Quillen conflation of metrizable
+LCA groups.
+-/
+def yonedaExtOfQuillenConflation {X Y M : MetrizableLCA.{u}}
+    (i : Y ⟶ M) (p : M ⟶ X) (zero : i ≫ p = 0)
+    (h : QuillenExactCategory.Conflation (ShortComplex.mk i p zero)) :
+    yonedaExt X Y 1 :=
+  YonedaExt.ofExtension (C := MetrizableLCA.{u})
+    ((MetrizableLCA.shortExactExtensionOfQuillenConflation i p zero h).toYonedaExtension)
+
+@[simp]
+theorem yonedaExtOfQuillenConflation_eq {X Y M : MetrizableLCA.{u}}
+    (i : Y ⟶ M) (p : M ⟶ X) (zero : i ≫ p = 0)
+    (h : QuillenExactCategory.Conflation (ShortComplex.mk i p zero)) :
+    yonedaExtOfQuillenConflation i p zero h =
+      YonedaExt.ofExtension (C := MetrizableLCA.{u})
+        ((MetrizableLCA.shortExactExtensionOfQuillenConflation i p zero h).toYonedaExtension) :=
+  rfl
+
+/--
+The `Ext¹` class represented by the closed-inclusion/open-surjection
+algebraically exact data in the LCA challenge statement.
+-/
+def yonedaExtOfClosedInclusionOpenSurjectionAlgebraicExact
+    {X Y M : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (hclosed : IsClosedEmbedding (i : Y → M))
+    (hopen : IsOpenMap (p : M → X))
+    (hsurj : Function.Surjective (p : M → X))
+    (hexact : ∀ m : M, p m = 0 → ∃ y : Y, i y = m) :
+    yonedaExt X Y 1 :=
+  yonedaExtOfQuillenConflation i p zero
+    (quillenConflation_of_closed_inclusion_open_surjection_algebraic_exact
+      (S := ShortComplex.mk i p zero) hclosed hopen hsurj hexact)
+
+@[simp]
+theorem yonedaExtOfClosedInclusionOpenSurjectionAlgebraicExact_eq
+    {X Y M : MetrizableLCA.{u}} (i : Y ⟶ M) (p : M ⟶ X)
+    (zero : i ≫ p = 0)
+    (hclosed : IsClosedEmbedding (i : Y → M))
+    (hopen : IsOpenMap (p : M → X))
+    (hsurj : Function.Surjective (p : M → X))
+    (hexact : ∀ m : M, p m = 0 → ∃ y : Y, i y = m) :
+    yonedaExtOfClosedInclusionOpenSurjectionAlgebraicExact i p zero hclosed hopen hsurj hexact =
+      yonedaExtOfQuillenConflation i p zero
+        (quillenConflation_of_closed_inclusion_open_surjection_algebraic_exact
+          (S := ShortComplex.mk i p zero) hclosed hopen hsurj hexact) :=
   rfl
 
 /-- The public Baer-sum operation on metrizable LCA Yoneda Ext groups. -/

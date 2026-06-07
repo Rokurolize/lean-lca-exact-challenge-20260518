@@ -1295,6 +1295,14 @@ generators.
 #check (ShortExactExtension.PushoutData.isPushout (C := MetrizableLCA))
 #check (ShortExactExtension.PushoutData.iso (C := MetrizableLCA))
 #check (ShortExactExtension.PushoutData.isoOut (C := MetrizableLCA))
+#check MetrizableLCA.shortExactExtensionOfQuillenConflation
+#check MetrizableLCA.shortExactExtensionOfClosedInclusionOpenSurjectionAlgebraicExact
+#check MetrizableLCA.strictShortExact_shortExactExtensionOfQuillenConflation
+#check MetrizableLCA.strictShortExact_shortExactExtensionOfClosedInclusionOpenSurjectionAlgebraicExact
+#check MetrizableLCA.yonedaExtOfQuillenConflation
+#check MetrizableLCA.yonedaExtOfQuillenConflation_eq
+#check MetrizableLCA.yonedaExtOfClosedInclusionOpenSurjectionAlgebraicExact
+#check MetrizableLCA.yonedaExtOfClosedInclusionOpenSurjectionAlgebraicExact_eq
 
 example (X Y M : MetrizableLCA) (i : Y ⟶ M) (p : M ⟶ X)
     (zero : i ≫ p = 0)
