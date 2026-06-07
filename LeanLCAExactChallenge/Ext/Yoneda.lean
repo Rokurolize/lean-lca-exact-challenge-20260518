@@ -6804,6 +6804,18 @@ theorem yonedaProduct_ofPositiveChain_eq_of_rel
   rw [yonedaProduct_ofPositiveChain, yonedaProduct_ofPositiveChain]
   exact leftProductByPositiveChain_eq_of_rel h n
 
+/-- Termwise-related positive-chain Ext classes give the same public Yoneda product. -/
+theorem yonedaProduct_ofPositiveChainClass_eq_of_rel
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    {p q : YonedaExtension.PositiveChain (C := MetrizableLCA.{u}) X Y m}
+    (h : YonedaExtension.PositiveChain.Rel p q) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n
+        (ofPositiveChain (X := X) (Y := Y) p) =
+      yonedaProduct (X := X) (Y := Y) (Z := Z) m n
+        (ofPositiveChain (X := X) (Y := Y) q) := by
+  rw [ofPositiveChain_eq_ofExtension, ofPositiveChain_eq_ofExtension]
+  exact yonedaProduct_ofPositiveChain_eq_of_rel h
+
 /-- A positive left chain with a split factor gives the zero public Yoneda product. -/
 theorem yonedaProduct_ofPositiveChain_eq_zero_of_splitFactor
     {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
@@ -6815,6 +6827,17 @@ theorem yonedaProduct_ofPositiveChain_eq_zero_of_splitFactor
       0 := by
   rw [yonedaProduct_ofPositiveChain]
   exact leftProductByPositiveChain_eq_zero_of_splitFactor h n
+
+/-- A positive-chain Ext class with a split factor gives the zero public Yoneda product. -/
+theorem yonedaProduct_ofPositiveChainClass_eq_zero_of_splitFactor
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    {p : YonedaExtension.PositiveChain (C := MetrizableLCA.{u}) X Y m}
+    (h : YonedaExtension.PositiveChain.SplitFactorData p) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n
+        (ofPositiveChain (X := X) (Y := Y) p) =
+      0 := by
+  rw [ofPositiveChain_eq_ofExtension]
+  exact yonedaProduct_ofPositiveChain_eq_zero_of_splitFactor h
 
 /-- A positive-chain Baer sum in the left factor is additive for the public Yoneda product. -/
 theorem yonedaProduct_ofPositiveChain_eq_add_of_baerLeftChain
