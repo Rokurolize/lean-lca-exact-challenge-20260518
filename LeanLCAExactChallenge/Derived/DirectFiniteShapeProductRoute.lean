@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.Derived.LeftRightComparisonProductRoute
+import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundary
 
 /-!
 W769 feeds the W670 direct finite-shape transfer-stable construction into the
@@ -102,6 +103,61 @@ theorem stableCertificateOfLeftRightComparisonDirectFiniteShapeProductRoute_w769
       data.localizedRightAdjoint
       (transferStableInputsOfLeftRightComparisonDirectFiniteShapeW769 data)
 
+/--
+W769 derives direct bounded left calculus from the left-right comparison route and the
+kernel/cokernel-conditioned topology data.
+-/
+@[reducible] noncomputable def directLeftCalculusOfLeftRightComparisonDirectFiniteShapeW769
+    (data :
+      MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions := by
+  letI :
+      (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    data.exactClosed2
+  exact Dbounded.leftCalculus_of_kernelCokernelConditionedTopology_w668
+    (cochainHasHomology_of_leftRightComparisonIsoW768 data.comparisonIso)
+    data.kernelCokernelTopologyData
+    data.localizedRightAdjoint
+
+/-- W769 data as the explicit canonical stable-instance boundary input bundle. -/
+noncomputable def stableBoundaryInputsOfLeftRightComparisonDirectFiniteShapeW769
+    (data :
+      MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769) :
+    Dbounded.MetrizableStableInstanceBoundaryInputs where
+  directLeftCalculus :=
+    Dbounded.directLeftCalculusOfLeftRightComparisonDirectFiniteShapeW769 data
+  transferStableInputs := by
+    letI :
+        (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+      Dbounded.directLeftCalculusOfLeftRightComparisonDirectFiniteShapeW769 data
+    letI :
+        (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+      data.exactClosed2
+    simpa [Dbounded.directLeftCalculusOfLeftRightComparisonDirectFiniteShapeW769,
+      transferStableInputsOfLeftRightComparisonDirectFiniteShapeW769,
+      metrizableLeftCalculusFieldsOfKernelCokernelLeftRightComparison_w768,
+      Dbounded.metrizableLeftCalculusFieldsOfKernelCokernelConditionedTopology_w669] using
+      Dbounded.transferStableInputsOfLeftRightComparisonDirectFiniteShapeW769 data
+
+/-- W769 direct finite-shape data passes the canonical accepted stable boundary gate. -/
+noncomputable def
+    acceptedStableBoundedDerivedInfinityCategoryOfLeftRightComparisonDirectFiniteShapeW769
+    (data :
+      MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  Dbounded.MetrizableStableInstanceBoundaryInputs.acceptedStable
+    (Dbounded.stableBoundaryInputsOfLeftRightComparisonDirectFiniteShapeW769 data)
+
+/-- W769 direct finite-shape data produces the canonical stable-boundary package. -/
+noncomputable def
+    boundedDerivedInfinityCategoryOfLeftRightComparisonDirectFiniteShapeStableBoundaryW769
+    (data :
+      MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
+    (Dbounded.stableBoundaryInputsOfLeftRightComparisonDirectFiniteShapeW769 data)
+
 /-- W769 closed-map branch: W762 exact/WPP evidence plus W670-derived stable evidence. -/
 noncomputable def
     productEvidence_of_closedMapLeftRightComparisonDirectFiniteShapeRouteW769
@@ -162,6 +218,24 @@ theorem leftRightComparisonDirectFiniteShapeProductRouteInputNamesW769_count :
       7 :=
   rfl
 
+/--
+W769 source inputs needed only for the canonical stable boundary, excluding the separate
+closed-map or closed-embedding exact/WPP branch consumed by the product-evidence route.
+-/
+def leftRightComparisonDirectFiniteShapeStableBoundaryInputNamesW769 :
+    List String :=
+  ["universal IsIso for every MetrizableLCA left-right homology comparison",
+    "exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+    "direct finite-shape WPP source data",
+    "MetrizableExactAtKernelCokernelConditionedTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "direct localization triangulated source data"]
+
+theorem leftRightComparisonDirectFiniteShapeStableBoundaryInputNamesW769_count :
+    leftRightComparisonDirectFiniteShapeStableBoundaryInputNamesW769.length =
+      6 :=
+  rfl
+
 /-- Current checked W769 state. -/
 structure MetrizableLeftRightComparisonDirectFiniteShapeProductRouteStateW769 :
     Type where
@@ -186,14 +260,23 @@ def currentMetrizableLeftRightComparisonDirectFiniteShapeProductRouteSupportStat
       "metrizableOrdinaryStableSemanticInputOfLeftRightComparison\
         DirectFiniteShapeProductRoute_w769",
       "stableCertificateOfLeftRightComparisonDirectFiniteShapeProductRoute_w769_ready",
+      "directLeftCalculusOfLeftRightComparisonDirectFiniteShapeW769",
+      "stableBoundaryInputsOfLeftRightComparisonDirectFiniteShapeW769",
+      "acceptedStableBoundedDerivedInfinityCategoryOfLeftRightComparison\
+        DirectFiniteShapeW769",
+      "boundedDerivedInfinityCategoryOfLeftRightComparisonDirectFiniteShape\
+        StableBoundaryW769",
       "productEvidence_of_closedMapLeftRightComparisonDirectFiniteShapeRouteW769",
       "productEvidence_of_closedEmbeddingLeftRightComparisonDirectFiniteShapeRouteW769",
       "leftRightComparisonDirectFiniteShapeProductRouteInputNamesW769",
-      "leftRightComparisonDirectFiniteShapeProductRouteInputNamesW769_count"]
+      "leftRightComparisonDirectFiniteShapeProductRouteInputNamesW769_count",
+      "leftRightComparisonDirectFiniteShapeStableBoundaryInputNamesW769",
+      "leftRightComparisonDirectFiniteShapeStableBoundaryInputNamesW769_count"]
   transferStableInputResult :=
     "proved: W670 direct finite-shape data supplies the W669/W768 transfer-stable semantic inputs"
   stableCertificateResult :=
-    "proved: the W769 route produces a ready W528 stable certificate through W670 and W669"
+    "proved: the W769 route produces a ready W528 stable certificate and \
+      accepted stable boundary gate"
   exactWppResult :=
     "proved: W762 exact/WPP evidence still combines with the W769 stable certificate"
   replacedInputs :=
@@ -214,6 +297,20 @@ theorem currentMetrizableLeftRightComparisonDirectFiniteShapeProductRouteStateW7
       currentMetrizableLeftRightComparisonDirectFiniteShapeProductRouteSupportStateW769;
     state.productSuccessClaimed) = false :=
   rfl
+
+section Checks
+
+#check Dbounded.directLeftCalculusOfLeftRightComparisonDirectFiniteShapeW769
+#check Dbounded.stableBoundaryInputsOfLeftRightComparisonDirectFiniteShapeW769
+#check
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfLeftRightComparisonDirectFiniteShapeW769
+#check
+  Dbounded.boundedDerivedInfinityCategoryOfLeftRightComparisonDirectFiniteShapeStableBoundaryW769
+#check Dbounded.leftRightComparisonDirectFiniteShapeStableBoundaryInputNamesW769_count
+#check
+  Dbounded.currentMetrizableLeftRightComparisonDirectFiniteShapeProductRouteStateW769_productSuccess
+
+end Checks
 
 end Dbounded
 

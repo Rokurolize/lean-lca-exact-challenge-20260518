@@ -9022,12 +9022,22 @@ example :
   #check
     Dbounded.stableCertificateOfLeftRightComparisonDirectFiniteShapeProductRoute_w769_ready
   #check
+    Dbounded.directLeftCalculusOfLeftRightComparisonDirectFiniteShapeW769
+  #check
+    Dbounded.stableBoundaryInputsOfLeftRightComparisonDirectFiniteShapeW769
+  #check
+    Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfLeftRightComparisonDirectFiniteShapeW769
+  #check
+    Dbounded.boundedDerivedInfinityCategoryOfLeftRightComparisonDirectFiniteShapeStableBoundaryW769
+  #check
     Dbounded.productEvidence_of_closedMapLeftRightComparisonDirectFiniteShapeRouteW769
   #check
     Dbounded.productEvidence_of_closedEmbeddingLeftRightComparisonDirectFiniteShapeRouteW769
   #check Dbounded.leftRightComparisonDirectFiniteShapeProductRouteInputNamesW769
   #check
     Dbounded.leftRightComparisonDirectFiniteShapeProductRouteInputNamesW769_count
+  #check
+    Dbounded.leftRightComparisonDirectFiniteShapeStableBoundaryInputNamesW769_count
   #check
     Dbounded.MetrizableLeftRightComparisonDirectFiniteShapeProductRouteStateW769
   #check
