@@ -9109,6 +9109,22 @@ example :
   #check
     Dbounded.productEvidence_of_closedEmbeddingSourceTriangulationClosedRangeDirectFiniteShapeRouteW773
   #check
+    Dbounded.directFiniteShapeStableDataOfClosedMapSourceTriangulationClosedRangeW773
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingSourceTriangulationClosedRangeW773
+  #check
+    Dbounded.stableBoundaryInputsOfClosedMapSourceTriangulationClosedRangeW773
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingSourceTriangulationClosedRangeW773
+  #check
+    Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfClosedMapSourceTriangulationClosedRangeW773
+  #check
+    Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfClosedEmbeddingSourceTriangulationClosedRangeW773
+  #check
+    Dbounded.boundedDerivedInfinityCategoryOfClosedMapSourceTriangulationClosedRangeStableBoundaryW773
+  #check
+    Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingSourceTriangulationClosedRangeStableBoundaryW773
+  #check
     Dbounded.sourceTriangulationClosedRangeDirectFiniteShapeProductRouteInputNamesW773
   #check
     Dbounded.sourceTriangulationClosedRangeDirectFiniteShapeProductRouteInputNamesW773_count

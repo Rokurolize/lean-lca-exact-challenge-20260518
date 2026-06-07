@@ -1,0 +1,42 @@
+checkpoint=w_clean_20260607_w773_stable_boundary
+pre_commit_head=a3cc6efd2c5ed593b7a1294911ed0151306f287b
+product_success=false
+product_complete=false
+update_goal_allowed=false
+
+source_changes:
+- W773 closed-map and closed-embedding source-triangulation closed-range branch data now project to the W769 stable-data surface.
+- W773 branch data now produces canonical MetrizableStableInstanceBoundaryInputs through the W769 stable boundary.
+- W773 branch data now reaches AcceptedStableBoundedDerivedInfinityCategory and BoundedDerivedInfinityCategory through the canonical W769 accepted stable gate.
+- W773 state metadata records the stable-boundary result and keeps productSuccessClaimed=false.
+
+obligations_discharged_or_derived:
+- Derived W769 stable data from W773 via the existing W772, W771, and W770 adapters.
+- Derived stable-boundary inputs, accepted stable category, and bounded derived infinity category packages for both closed-map and closed-embedding W773 branches.
+- Eliminated a separate W769 stable-data boundary input after W735/W696 routing for this W773 surface.
+
+obligations_still_carried:
+- Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.
+- Construct concrete values for one W735 branch.
+- Prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed.
+- Construct direct finite-shape WPP source data.
+- Construct W696 closed-range endpoint topology data.
+- Provide a positive OriginalFourTaskProductSuccess-style Lean witness before any product-success claim.
+
+verification:
+- lake env lean LeanLCAExactChallenge/Derived/SourceTriangulationClosedRangeDirectFiniteShapeProductRoute.lean: exit 0
+- lake build LeanLCAExactChallenge.Derived.SourceTriangulationClosedRangeDirectFiniteShapeProductRoute: exit 0
+- lake env lean audit/RequiredDeclarations.lean: exit 0
+- lake env lean audit/ProductSuccessDeclarations.lean: exit 0
+- lake env lean audit/OriginalFourTaskCompletionDeclarations.lean: exit 0
+- git diff --check: exit 0
+- scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/SourceTriangulationClosedRangeDirectFiniteShapeProductRoute.lean: exit 0
+- changed-file completion-claim scan: rg_exit=1
+- true-boolean completion-claim scan: rg_exit=1
+- terminal outcome false scan: false false false, jq_exit=0
+- source/audit warning-error scan: rg_exit=1
+- build local warning-error scan for the touched W773 module or errors: rg_exit=1
+
+notes:
+- The module build log still contains pre-existing upstream warnings from other files; no warnings or errors were found for the touched W773 module in the local build scan.
+- This checkpoint is nonterminal and does not authorize update_goal.
