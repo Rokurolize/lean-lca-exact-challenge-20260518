@@ -1,0 +1,3 @@
+LeanLCAExactChallenge/Derived/TargetHomologyZeroConditionedEndpointTargetIsoSelectedW461RowsProductRoute.lean:323:theorem currentW787TargetHomologyZeroConditionedRoute_productSuccess :
+run/w_clean_20260607_w787_target_homology_zero_conditioned_boundary_terminal_outcome_summary.log:3:  "product_success": false,
+audit/ProductSuccessDeclarations.lean:9553:  #check Dbounded.currentW787TargetHomologyZeroConditionedRoute_productSuccess

@@ -9532,6 +9532,18 @@ example :
   #check Dbounded.productEvidence_of_closedMapTargetHomologyZeroConditionedRouteW787
   #check
     Dbounded.productEvidence_of_closedEmbeddingTargetHomologyZeroConditionedRouteW787
+  #check Dbounded.directFiniteShapeStableDataOfClosedMapTargetHomologyZeroConditionedW787
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingTargetHomologyZeroConditionedW787
+  #check Dbounded.stableBoundaryInputsOfClosedMapTargetHomologyZeroConditionedW787
+  #check
+    Dbounded.stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroConditionedW787
+  #check Dbounded.acceptedStableOfClosedMapTargetHomologyZeroConditionedW787
+  #check Dbounded.acceptedStableOfClosedEmbeddingTargetHomologyZeroConditionedW787
+  #check
+    Dbounded.boundedDerivedOfClosedMapTargetHomologyZeroConditionedStableBoundaryW787
+  #check
+    Dbounded.boundedDerivedOfClosedEmbeddingTargetHomologyZeroConditionedStableBoundaryW787
   #check Dbounded.targetHomologyZeroConditionedEndpointProductRouteInputNamesW787
   #check
     Dbounded.targetHomologyZeroConditionedEndpointProductRouteInputNamesW787_count

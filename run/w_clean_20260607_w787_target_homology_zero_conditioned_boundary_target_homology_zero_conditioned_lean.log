@@ -1,0 +1,4 @@
+PASS generated_utc=2026-06-07T06:23:14Z
+command: lake env lean LeanLCAExactChallenge/Derived/TargetHomologyZeroConditionedEndpointTargetIsoSelectedW461RowsProductRoute.lean
+exit_code: 0
+output_lines: 0
