@@ -10033,6 +10033,21 @@ example :
     Dbounded.closedMapStableCertificateAcceptedOfTargetExactAtW664TerminalW804
   #check
     Dbounded.closedEmbeddingStableCertificateAcceptedOfTargetExactAtW664TerminalW804
+  #check
+    Dbounded.closedMapDirectFiniteShapeStableDataTargetExactAtW664_eq_closedRangeW804
+  #check
+    Dbounded.closedEmbeddingDirectFiniteShapeStableDataTargetExactAtW664_eq_closedRangeW804
+  #check
+    Dbounded.closedMapStableBoundaryInputsTargetExactAtW664_eq_closedRangeW804
+  #check
+    Dbounded.closedEmbeddingStableBoundaryInputsTargetExactAtW664_eq_closedRangeW804
+  #check Dbounded.closedMapAcceptedStableTargetExactAtW664_eq_closedRangeW804
+  #check
+    Dbounded.closedEmbeddingAcceptedStableTargetExactAtW664_eq_closedRangeW804
+  #check
+    Dbounded.closedMapBoundedDerivedStableBoundaryTargetExactAtW664_eq_closedRangeW804
+  #check
+    Dbounded.closedEmbeddingBoundedDerivedStableBoundaryTargetExactAtW664_eq_closedRangeW804
   #check Dbounded.targetExactAtRouteConsistencyProductRouteInputNamesW804
   #check Dbounded.targetExactAtRouteConsistencyProductRouteInputNamesW804_count
   #check Dbounded.MetrizableTargetExactAtRouteConsistencyStateW804

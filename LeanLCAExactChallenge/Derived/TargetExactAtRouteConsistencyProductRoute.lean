@@ -108,6 +108,102 @@ theorem closedEmbeddingStableCertificateAcceptedOfTargetExactAtW664TerminalW804
   (productEvidence_of_closedEmbeddingTargetExactAtW664TerminalRouteW803
     data).kernelCokernelStableAccepted
 
+/-!
+W804 closed-map direct stable data agrees between W803 and the W796/W774
+closed-range route.
+-/
+theorem closedMapDirectFiniteShapeStableDataTargetExactAtW664_eq_closedRangeW804
+    (data : MetrizableClosedMapTargetExactAtW664TerminalBranchDataW803) :
+    directFiniteShapeStableDataOfClosedMapTargetExactAtW664TerminalW803 data =
+      directFiniteShapeStableDataOfClosedMapNormalizedDirectSourceClosedRangeW774
+        (closedMapNormalizedDataOfTargetExactAtClosedRangeW796
+          (closedMapClosedRangeDataOfTargetExactAtW804 data)) :=
+  rfl
+
+/-!
+W804 closed-embedding direct stable data agrees between W803 and the W796/W774
+closed-range route.
+-/
+theorem closedEmbeddingDirectFiniteShapeStableDataTargetExactAtW664_eq_closedRangeW804
+    (data : MetrizableClosedEmbeddingTargetExactAtW664TerminalBranchDataW803) :
+    directFiniteShapeStableDataOfClosedEmbeddingTargetExactAtW664TerminalW803 data =
+      directFiniteShapeStableDataOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+        (closedEmbeddingNormalizedDataOfTargetExactAtClosedRangeW796
+          (closedEmbeddingClosedRangeDataOfTargetExactAtW804 data)) :=
+  rfl
+
+/-!
+W804 closed-map stable-boundary inputs agree between W803 and the W796/W774
+closed-range route.
+-/
+theorem closedMapStableBoundaryInputsTargetExactAtW664_eq_closedRangeW804
+    (data : MetrizableClosedMapTargetExactAtW664TerminalBranchDataW803) :
+    stableBoundaryInputsOfClosedMapTargetExactAtW664TerminalW803 data =
+      stableBoundaryInputsOfClosedMapNormalizedDirectSourceClosedRangeW774
+        (closedMapNormalizedDataOfTargetExactAtClosedRangeW796
+          (closedMapClosedRangeDataOfTargetExactAtW804 data)) :=
+  rfl
+
+/-!
+W804 closed-embedding stable-boundary inputs agree between W803 and the
+W796/W774 closed-range route.
+-/
+theorem closedEmbeddingStableBoundaryInputsTargetExactAtW664_eq_closedRangeW804
+    (data : MetrizableClosedEmbeddingTargetExactAtW664TerminalBranchDataW803) :
+    stableBoundaryInputsOfClosedEmbeddingTargetExactAtW664TerminalW803 data =
+      stableBoundaryInputsOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+        (closedEmbeddingNormalizedDataOfTargetExactAtClosedRangeW796
+          (closedEmbeddingClosedRangeDataOfTargetExactAtW804 data)) :=
+  rfl
+
+/-!
+W804 closed-map accepted stable packages agree between W803 and the W796/W774
+closed-range route.
+-/
+theorem closedMapAcceptedStableTargetExactAtW664_eq_closedRangeW804
+    (data : MetrizableClosedMapTargetExactAtW664TerminalBranchDataW803) :
+    acceptedStableOfClosedMapTargetExactAtW664TerminalW803 data =
+      acceptedStableOfClosedMapNormalizedDirectSourceClosedRangeW774
+        (closedMapNormalizedDataOfTargetExactAtClosedRangeW796
+          (closedMapClosedRangeDataOfTargetExactAtW804 data)) :=
+  rfl
+
+/-!
+W804 closed-embedding accepted stable packages agree between W803 and the
+W796/W774 closed-range route.
+-/
+theorem closedEmbeddingAcceptedStableTargetExactAtW664_eq_closedRangeW804
+    (data : MetrizableClosedEmbeddingTargetExactAtW664TerminalBranchDataW803) :
+    acceptedStableOfClosedEmbeddingTargetExactAtW664TerminalW803 data =
+      acceptedStableOfClosedEmbeddingNormalizedDirectSourceClosedRangeW774
+        (closedEmbeddingNormalizedDataOfTargetExactAtClosedRangeW796
+          (closedEmbeddingClosedRangeDataOfTargetExactAtW804 data)) :=
+  rfl
+
+/-!
+W804 closed-map bounded-derived stable-boundary packages agree between W803 and
+the W796/W774 closed-range route.
+-/
+theorem closedMapBoundedDerivedStableBoundaryTargetExactAtW664_eq_closedRangeW804
+    (data : MetrizableClosedMapTargetExactAtW664TerminalBranchDataW803) :
+    boundedDerivedOfClosedMapTargetExactAtW664TerminalStableBoundaryW803 data =
+      boundedDerivedOfClosedMapNormalizedDirectSourceClosedRangeStableBoundaryW774
+        (closedMapNormalizedDataOfTargetExactAtClosedRangeW796
+          (closedMapClosedRangeDataOfTargetExactAtW804 data)) :=
+  rfl
+
+/-!
+W804 closed-embedding bounded-derived stable-boundary packages agree between
+W803 and the W796/W774 closed-range route.
+-/
+theorem closedEmbeddingBoundedDerivedStableBoundaryTargetExactAtW664_eq_closedRangeW804
+    (data : MetrizableClosedEmbeddingTargetExactAtW664TerminalBranchDataW803) :
+    boundedDerivedOfClosedEmbeddingTargetExactAtW664TerminalStableBoundaryW803 data =
+      boundedDerivedOfClosedEmbeddingNormalizedDirectSourceClosedRangeStableBoundaryW774
+        (closedEmbeddingNormalizedDataOfTargetExactAtClosedRangeW796
+          (closedEmbeddingClosedRangeDataOfTargetExactAtW804 data)) :=
+  rfl
+
 /-- W804 input names for target-ExactAt route consistency. -/
 def targetExactAtRouteConsistencyProductRouteInputNamesW804 : List String :=
   ["W803 target-ExactAt W664 terminal branch data",
@@ -124,6 +220,7 @@ structure MetrizableTargetExactAtRouteConsistencyStateW804 : Type where
   productEvidenceConsistency : String
   exactStableConsistency : String
   stableCertificateConsistency : String
+  stableBoundaryConsistency : String
   remainingInputs : List String
   productSuccessClaimed : Bool
 
@@ -142,6 +239,14 @@ def currentMetrizableTargetExactAtRouteConsistencyStateW804 :
       "closedEmbeddingStableCertificateTargetExactAtW664_eq_terminalW804",
       "closedMapStableCertificateAcceptedOfTargetExactAtW664TerminalW804",
       "closedEmbeddingStableCertificateAcceptedOfTargetExactAtW664TerminalW804",
+      "closedMapDirectFiniteShapeStableDataTargetExactAtW664_eq_closedRangeW804",
+      "closedEmbeddingDirectFiniteShapeStableDataTargetExactAtW664_eq_closedRangeW804",
+      "closedMapStableBoundaryInputsTargetExactAtW664_eq_closedRangeW804",
+      "closedEmbeddingStableBoundaryInputsTargetExactAtW664_eq_closedRangeW804",
+      "closedMapAcceptedStableTargetExactAtW664_eq_closedRangeW804",
+      "closedEmbeddingAcceptedStableTargetExactAtW664_eq_closedRangeW804",
+      "closedMapBoundedDerivedStableBoundaryTargetExactAtW664_eq_closedRangeW804",
+      "closedEmbeddingBoundedDerivedStableBoundaryTargetExactAtW664_eq_closedRangeW804",
       "targetExactAtRouteConsistencyProductRouteInputNamesW804",
       "targetExactAtRouteConsistencyProductRouteInputNamesW804_count"]
   productEvidenceConsistency :=
@@ -150,6 +255,9 @@ def currentMetrizableTargetExactAtRouteConsistencyStateW804 :
     "proved: W803 exact/stable projections agree with W797"
   stableCertificateConsistency :=
     "proved: W803 stable certificates agree with W797 and are accepted"
+  stableBoundaryConsistency :=
+    "proved: W803 stable-boundary packages agree with the W796/W774\
+      closed-range route"
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",
