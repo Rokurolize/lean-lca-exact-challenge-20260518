@@ -3855,15 +3855,50 @@ abbrev Dbounded.metrizableLocalization :
     Dbounded.MetrizableBoundedComplexCategory ⥤ Dbounded.MetrizableCategory :=
   Dbounded.localization MetrizableLCA.{0}
 
+/-- Promote a bounded metrizable LCA cochain complex to `D^b(MetrizableLCA, E)`. -/
+abbrev Dbounded.metrizableOf
+    (K : Dbounded.MetrizableBoundedComplexCategory) : Dbounded.MetrizableCategory :=
+  Dbounded.of MetrizableLCA.{0} K
+
+/-- The metrizable localization functor sends a bounded complex to its derived object. -/
+theorem Dbounded.metrizableLocalization_obj
+    (K : Dbounded.MetrizableBoundedComplexCategory) :
+    Dbounded.metrizableLocalization.obj K = Dbounded.metrizableOf K :=
+  rfl
+
+/-- Bounded exact weak equivalences for `D^b(MetrizableLCA, E)`. -/
+noncomputable abbrev Dbounded.metrizableWeakEquivalence :
+    MorphismProperty Dbounded.MetrizableBoundedComplexCategory :=
+  boundedExactWeakEquivalence MetrizableLCA.{0}
+
+/-- Exact-acyclic mapping-cone condition for a bounded metrizable LCA morphism. -/
+abbrev Dbounded.metrizableExactAcyclicMappingCone
+    {K L : Dbounded.MetrizableBoundedComplexCategory} (f : K ⟶ L) : Prop :=
+  exactAcyclic MetrizableLCA.{0}
+    (CochainComplex.mappingCone
+      ((BoundedComplexCategory.ι MetrizableLCA.{0}).map f))
+
 /-- For metrizable LCA groups, bounded weak equivalences are exactly the maps whose
 mapping cone is exact acyclic for the strict Quillen exact structure. -/
 theorem Dbounded.metrizableWeakEquivalence_iff_exactAcyclicMappingCone
     {K L : Dbounded.MetrizableBoundedComplexCategory} (f : K ⟶ L) :
-    boundedExactWeakEquivalence MetrizableLCA.{0} f ↔
-      exactAcyclic MetrizableLCA.{0}
-        (CochainComplex.mappingCone
-          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map f)) :=
+    Dbounded.metrizableWeakEquivalence f ↔
+      Dbounded.metrizableExactAcyclicMappingCone f :=
   Iff.rfl
+
+/-- Extract the exact-acyclic mapping-cone condition from a metrizable bounded weak equivalence. -/
+theorem Dbounded.exactAcyclicMappingCone_of_metrizableWeakEquivalence
+    {K L : Dbounded.MetrizableBoundedComplexCategory} {f : K ⟶ L}
+    (hf : Dbounded.metrizableWeakEquivalence f) :
+    Dbounded.metrizableExactAcyclicMappingCone f :=
+  hf
+
+/-- Build a metrizable bounded weak equivalence from an exact-acyclic mapping cone. -/
+theorem Dbounded.metrizableWeakEquivalence_of_exactAcyclicMappingCone
+    {K L : Dbounded.MetrizableBoundedComplexCategory} {f : K ⟶ L}
+    (hf : Dbounded.metrizableExactAcyclicMappingCone f) :
+    Dbounded.metrizableWeakEquivalence f :=
+  hf
 
 /-- The bounded derived quasicategory attached to metrizable LCA groups. -/
 noncomputable abbrev Dbounded.metrizableInfinityCategory : SSet.QCat :=
