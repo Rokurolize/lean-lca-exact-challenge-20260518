@@ -705,29 +705,31 @@ theorem
 /--
 Assemble product data from the W1615 closed-map concrete-field surface. W1615
 unpacks the W735 exact-input branch into the concrete fields it carries before
-feeding W1614.
+feeding W1614 through the canonical direct-localization stable-instance
+boundary.
 -/
 noncomputable def
     originalFourTaskProductDataOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
     (data :
       Dbounded.MetrizableClosedMapBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
     OriginalFourTaskProductData :=
-  originalFourTaskProductDataOfStableInstanceBoundary
-    (Dbounded.stableBoundaryInputsOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
+  originalFourTaskProductDataOfDirectLocalizationBoundary
+    (Dbounded.directLocalizationBoundaryInputsOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
       data)
 
 /--
 Assemble product data from the W1615 closed-embedding concrete-field surface.
 W1615 unpacks the W735 exact-input branch into the concrete fields it carries
-before feeding W1614.
+before feeding W1614 through the canonical direct-localization stable-instance
+boundary.
 -/
 noncomputable def
     originalFourTaskProductDataOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
     (data :
       Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
     OriginalFourTaskProductData :=
-  originalFourTaskProductDataOfStableInstanceBoundary
-    (Dbounded.stableBoundaryInputsOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
+  originalFourTaskProductDataOfDirectLocalizationBoundary
+    (Dbounded.directLocalizationBoundaryInputsOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
       data)
 
 theorem
@@ -736,9 +738,8 @@ theorem
       Dbounded.MetrizableClosedMapBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
     (originalFourTaskProductDataOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
       data).boundedDerivedInfinityCategory =
-      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
-        (Dbounded.stableBoundaryInputsOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
-          data) :=
+      Dbounded.boundedDerivedOfClosedMapConcreteFieldsSelectedCochainDirectLocalizationBoundaryW1615
+        data :=
   rfl
 
 theorem
@@ -747,9 +748,8 @@ theorem
       Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
     (originalFourTaskProductDataOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
       data).boundedDerivedInfinityCategory =
-      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
-        (Dbounded.stableBoundaryInputsOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
-          data) :=
+      Dbounded.boundedDerivedOfClosedEmbeddingConcreteFieldsSelectedCochainDirectLocalizationBoundaryW1615
+        data :=
   rfl
 
 theorem
