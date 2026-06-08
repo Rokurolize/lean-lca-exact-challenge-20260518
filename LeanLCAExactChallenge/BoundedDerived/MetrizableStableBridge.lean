@@ -143,6 +143,28 @@ theorem closedEmbeddingStablePackageOfDirectLocalizationBoundary_eq_w1533
           input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider :=
   rfl
 
+theorem closedMapStablePackageOfDirectSource_eq_directLocalizationBoundary
+    (input : DirectSourceInput)
+    (globalClosedMapComponents : ClosedMapComponentProvider)
+    (mappedCokernelClosedMapProvider : ClosedMapCokernelProvider) :
+    closedMapStablePackageOfDirectSource input globalClosedMapComponents
+      mappedCokernelClosedMapProvider =
+        closedMapStablePackageOfDirectLocalizationBoundary input
+          globalClosedMapComponents mappedCokernelClosedMapProvider :=
+  Dbounded.closedMapW829StableInstancePackage_eq_directLocalizationBoundaryPackageW1538
+    input globalClosedMapComponents mappedCokernelClosedMapProvider
+
+theorem closedEmbeddingStablePackageOfDirectSource_eq_directLocalizationBoundary
+    (input : DirectSourceInput)
+    (globalClosedEmbeddingComponents : ClosedEmbeddingComponentProvider)
+    (mappedCokernelClosedEmbeddingProvider : ClosedEmbeddingCokernelProvider) :
+    closedEmbeddingStablePackageOfDirectSource input globalClosedEmbeddingComponents
+      mappedCokernelClosedEmbeddingProvider =
+        closedEmbeddingStablePackageOfDirectLocalizationBoundary input
+          globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider :=
+  Dbounded.closedEmbeddingW829StableInstancePackage_eq_directLocalizationBoundaryPackageW1538
+    input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider
+
 theorem closedMapStablePackageOfDirectSource_eq_semanticAdapter
     (input : DirectSourceInput)
     (globalClosedMapComponents : ClosedMapComponentProvider)

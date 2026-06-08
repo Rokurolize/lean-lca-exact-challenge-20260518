@@ -54,6 +54,40 @@ theorem closedEmbeddingW829StableInstancePackage_eq_directSourcePackageW1538
         mappedCokernelClosedEmbeddingProvider :=
   rfl
 
+/--
+Closed-map W1537 typeclass-route package is also the canonical
+direct-localization boundary package.
+-/
+theorem closedMapW829StableInstancePackage_eq_directLocalizationBoundaryPackageW1538
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableInstancePackageComparisonInputW1538)
+    (globalClosedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718)
+    (mappedCokernelClosedMapProvider : MappedExplicitCokernelClosedMapProviderW519) :
+    closedMapW829DirectSourceStableInstancePackageW1537
+        input globalClosedMapComponents mappedCokernelClosedMapProvider =
+      closedMapBoundedDerivedInfinityCategoryOfW829DirectLocalizationBoundaryW1533
+        input globalClosedMapComponents mappedCokernelClosedMapProvider :=
+  rfl
+
+/--
+Closed-embedding W1537 typeclass-route package is also the canonical
+direct-localization boundary package.
+-/
+theorem closedEmbeddingW829StableInstancePackage_eq_directLocalizationBoundaryPackageW1538
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableInstancePackageComparisonInputW1538)
+    (globalClosedEmbeddingComponents :
+      SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+    (mappedCokernelClosedEmbeddingProvider :
+      MappedExplicitCokernelClosedEmbeddingProviderW519) :
+    closedEmbeddingW829DirectSourceStableInstancePackageW1537
+        input globalClosedEmbeddingComponents
+        mappedCokernelClosedEmbeddingProvider =
+      closedEmbeddingBoundedDerivedInfinityCategoryOfW829DirectLocalizationBoundaryW1533
+        input globalClosedEmbeddingComponents
+        mappedCokernelClosedEmbeddingProvider :=
+  rfl
+
 /-- Closed-map W1537 typeclass-route package is also the W1534 accepted package. -/
 theorem closedMapW829StableInstancePackage_eq_acceptedPackageW1538
     (input :
@@ -147,6 +181,8 @@ theorem closedEmbeddingW829StableInstancePackageProjectionFacts_eq_acceptedProje
 def w829StableInstancePackageComparisonFactNamesW1538 : List String :=
   ["closed-map W1537 typeclass package equals W1533 direct package",
     "closed-embedding W1537 typeclass package equals W1533 direct package",
+    "closed-map W1537 typeclass package equals W1533 direct-localization boundary package",
+    "closed-embedding W1537 typeclass package equals W1533 direct-localization boundary package",
     "closed-map W1537 typeclass package equals W1534 accepted package",
     "closed-embedding W1537 typeclass package equals W1534 accepted package",
     "closed-map W1537 reprojected fields equal W1536 direct projections",
@@ -155,7 +191,7 @@ def w829StableInstancePackageComparisonFactNamesW1538 : List String :=
     "closed-embedding W1537 reprojected fields equal W1535 accepted projections"]
 
 theorem w829StableInstancePackageComparisonFactNamesW1538_count :
-    w829StableInstancePackageComparisonFactNamesW1538.length = 8 :=
+    w829StableInstancePackageComparisonFactNamesW1538.length = 10 :=
   rfl
 
 /-- W1538 keeps the W1537 constructor-ledger input names. -/
@@ -190,6 +226,8 @@ def currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFuncto
   declarations :=
     ["closedMapW829StableInstancePackage_eq_directSourcePackageW1538",
       "closedEmbeddingW829StableInstancePackage_eq_directSourcePackageW1538",
+      "closedMapW829StableInstancePackage_eq_directLocalizationBoundaryPackageW1538",
+      "closedEmbeddingW829StableInstancePackage_eq_directLocalizationBoundaryPackageW1538",
       "closedMapW829StableInstancePackage_eq_acceptedPackageW1538",
       "closedEmbeddingW829StableInstancePackage_eq_acceptedPackageW1538",
       "closedMapW829StableInstancePackageProjectionFacts_eq_directSourceProjectionFactsW1538",
@@ -200,8 +238,8 @@ def currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFuncto
       "w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableInstancePackageComparisonInputNamesW1538_count"]
   comparisonResult :=
     "proved: W1537 typeclass-route stable packages erase definitionally to the \
-      W1533 direct-source packages and recover W1535/W1536 projections on both \
-      branches"
+      W1533 direct-source and canonical direct-localization boundary packages, \
+      and recover W1535/W1536 projections on both branches"
   remainingInputs :=
     w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableInstancePackageComparisonInputNamesW1538
   comparisonFacts := w829StableInstancePackageComparisonFactNamesW1538

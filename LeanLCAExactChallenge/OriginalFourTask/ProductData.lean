@@ -236,6 +236,95 @@ theorem originalFourTaskProductDataOfClosedEmbeddingDirectSourceW1539_yonedaExt
       fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
   rfl
 
+/--
+Assemble product data from the W1533 closed-map direct-localization boundary
+bridge.
+-/
+noncomputable def originalFourTaskProductDataOfClosedMapDirectLocalizationBoundaryW1533
+    (input : BoundedDerived.Metrizable.DirectSourceInput)
+    (globalClosedMapComponents :
+      BoundedDerived.Metrizable.ClosedMapComponentProvider)
+    (mappedCokernelClosedMapProvider :
+      BoundedDerived.Metrizable.ClosedMapCokernelProvider) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStablePackage
+    (BoundedDerived.Metrizable.closedMapStablePackageOfDirectLocalizationBoundary input
+      globalClosedMapComponents mappedCokernelClosedMapProvider)
+
+/--
+Assemble product data from the W1533 closed-embedding direct-localization
+boundary bridge.
+-/
+noncomputable def
+    originalFourTaskProductDataOfClosedEmbeddingDirectLocalizationBoundaryW1533
+    (input : BoundedDerived.Metrizable.DirectSourceInput)
+    (globalClosedEmbeddingComponents :
+      BoundedDerived.Metrizable.ClosedEmbeddingComponentProvider)
+    (mappedCokernelClosedEmbeddingProvider :
+      BoundedDerived.Metrizable.ClosedEmbeddingCokernelProvider) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStablePackage
+    (BoundedDerived.Metrizable.closedEmbeddingStablePackageOfDirectLocalizationBoundary input
+      globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider)
+
+theorem
+    originalFourTaskProductDataOfClosedMapDirectLocalizationBoundaryW1533_boundedDerivedInfinityCategory
+    (input : BoundedDerived.Metrizable.DirectSourceInput)
+    (globalClosedMapComponents :
+      BoundedDerived.Metrizable.ClosedMapComponentProvider)
+    (mappedCokernelClosedMapProvider :
+      BoundedDerived.Metrizable.ClosedMapCokernelProvider) :
+    (originalFourTaskProductDataOfClosedMapDirectLocalizationBoundaryW1533 input
+      globalClosedMapComponents
+      mappedCokernelClosedMapProvider).boundedDerivedInfinityCategory =
+      BoundedDerived.Metrizable.closedMapStablePackageOfDirectLocalizationBoundary input
+        globalClosedMapComponents mappedCokernelClosedMapProvider :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingDirectLocalizationBoundaryW1533_boundedDerivedInfinityCategory
+    (input : BoundedDerived.Metrizable.DirectSourceInput)
+    (globalClosedEmbeddingComponents :
+      BoundedDerived.Metrizable.ClosedEmbeddingComponentProvider)
+    (mappedCokernelClosedEmbeddingProvider :
+      BoundedDerived.Metrizable.ClosedEmbeddingCokernelProvider) :
+    (originalFourTaskProductDataOfClosedEmbeddingDirectLocalizationBoundaryW1533
+      input globalClosedEmbeddingComponents
+      mappedCokernelClosedEmbeddingProvider).boundedDerivedInfinityCategory =
+      BoundedDerived.Metrizable.closedEmbeddingStablePackageOfDirectLocalizationBoundary
+        input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedMapDirectSourceW1539_eq_directLocalizationBoundaryW1533
+    (input : BoundedDerived.Metrizable.DirectSourceInput)
+    (globalClosedMapComponents :
+      BoundedDerived.Metrizable.ClosedMapComponentProvider)
+    (mappedCokernelClosedMapProvider :
+      BoundedDerived.Metrizable.ClosedMapCokernelProvider) :
+    originalFourTaskProductDataOfClosedMapDirectSourceW1539 input
+        globalClosedMapComponents mappedCokernelClosedMapProvider =
+      originalFourTaskProductDataOfClosedMapDirectLocalizationBoundaryW1533 input
+        globalClosedMapComponents mappedCokernelClosedMapProvider := by
+  simp [originalFourTaskProductDataOfClosedMapDirectSourceW1539,
+    originalFourTaskProductDataOfClosedMapDirectLocalizationBoundaryW1533,
+    BoundedDerived.Metrizable.closedMapStablePackageOfDirectSource_eq_directLocalizationBoundary]
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingDirectSourceW1539_eq_directLocalizationBoundaryW1533
+    (input : BoundedDerived.Metrizable.DirectSourceInput)
+    (globalClosedEmbeddingComponents :
+      BoundedDerived.Metrizable.ClosedEmbeddingComponentProvider)
+    (mappedCokernelClosedEmbeddingProvider :
+      BoundedDerived.Metrizable.ClosedEmbeddingCokernelProvider) :
+    originalFourTaskProductDataOfClosedEmbeddingDirectSourceW1539 input
+        globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider =
+      originalFourTaskProductDataOfClosedEmbeddingDirectLocalizationBoundaryW1533 input
+        globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider := by
+  simp [originalFourTaskProductDataOfClosedEmbeddingDirectSourceW1539,
+    originalFourTaskProductDataOfClosedEmbeddingDirectLocalizationBoundaryW1533,
+    BoundedDerived.Metrizable.closedEmbeddingStablePackageOfDirectSource_eq_directLocalizationBoundary]
+
 /-- Assemble product data from the current canonical stable-instance boundary. -/
 noncomputable def originalFourTaskProductDataOfStableInstanceBoundary
     (inputs : Dbounded.MetrizableStableInstanceBoundaryInputs) :
