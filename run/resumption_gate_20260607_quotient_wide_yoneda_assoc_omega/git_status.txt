@@ -1,2 +1,0 @@
-## goal-clean-positive-witness-20260607...origin/goal-clean-positive-witness-20260607
-?? run/resumption_gate_20260607_quotient_wide_yoneda_assoc_omega/git_status.txt

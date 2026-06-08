@@ -1,2 +1,0 @@
-## goal-clean-positive-witness-20260607...origin/goal-clean-positive-witness-20260607
-?? run/resumption_gate_20260608_metrizable_dbounded_w831_fields_next/git_status_short_branch.txt

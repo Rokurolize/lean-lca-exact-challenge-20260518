@@ -1,8 +1,0 @@
-## goal-clean-positive-witness-20260607...origin/goal-clean-positive-witness-20260607
- M LeanLCAExactChallenge/Derived/DirectFiniteShapeProductRoute.lean
- M audit/OriginalFourTaskCompletionDeclarations.lean
- M audit/ProductSuccessDeclarations.lean
- M audit/RequiredDeclarations.lean
-?? run/w_clean_20260607_w769_stable_boundary_direct_finite_shape_lean.log
-?? run/w_clean_20260607_w769_stable_boundary_resumption_git_status.log
-exit=0

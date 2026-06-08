@@ -1,3 +1,0 @@
-LeanLCAExactChallenge/Derived/TargetHomologyZeroExactInputsClosedRangeProductRoute.lean:368:theorem currentW790TargetHomologyZeroExactInputsClosedRangeRoute_productSuccess :
-run/w_clean_20260607_w790_target_homology_zero_exact_inputs_boundary_terminal_outcome_summary.log:3:  "product_success": false,
-audit/ProductSuccessDeclarations.lean:9650:  #check Dbounded.currentW790TargetHomologyZeroExactInputsClosedRangeRoute_productSuccess

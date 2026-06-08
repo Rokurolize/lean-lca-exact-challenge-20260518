@@ -1,9 +1,0 @@
-     3 run/resumption_gate_20260607_quotient_wide_yoneda_assoc_omega/contract_sha256.txt
-     2 run/resumption_gate_20260607_quotient_wide_yoneda_assoc_omega/git_status.txt
-     1 run/resumption_gate_20260607_quotient_wide_yoneda_assoc_omega/head.txt
-     1 run/resumption_gate_20260607_quotient_wide_yoneda_assoc_omega/origin_main_local.txt
-     1 run/resumption_gate_20260607_quotient_wide_yoneda_assoc_omega/origin_main_remote.txt
-  1526 run/resumption_gate_20260607_quotient_wide_yoneda_assoc_omega/product_success_false_search.txt
-    27 run/resumption_gate_20260607_quotient_wide_yoneda_assoc_omega/product_success_true_search.txt
-    11 run/resumption_gate_20260607_quotient_wide_yoneda_assoc_omega/terminal_outcome_summary.json
-  1572 total

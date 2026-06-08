@@ -1,6 +1,0 @@
-LeanLCAExactChallenge/Ext/Yoneda.lean:6814:2: warning: try 'simp' instead of 'simpa'
-
-Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
-LeanLCAExactChallenge/Ext/Yoneda.lean:6827:2: warning: try 'simp' instead of 'simpa'
-
-Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`

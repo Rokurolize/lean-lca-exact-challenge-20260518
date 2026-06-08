@@ -1,9 +1,0 @@
-     3 run/resumption_gate_20260608_stable_v4300_migration/contract_hashes.txt
-     3 run/resumption_gate_20260608_stable_v4300_migration/git_status.txt
-     1 run/resumption_gate_20260608_stable_v4300_migration/head.txt
-     1 run/resumption_gate_20260608_stable_v4300_migration/origin_main_local.txt
-     1 run/resumption_gate_20260608_stable_v4300_migration/origin_main_remote.txt
-  1526 run/resumption_gate_20260608_stable_v4300_migration/product_success_false_search.txt
-    27 run/resumption_gate_20260608_stable_v4300_migration/product_success_true_search.txt
-    11 run/resumption_gate_20260608_stable_v4300_migration/terminal_outcome_gate.json
-  1573 total

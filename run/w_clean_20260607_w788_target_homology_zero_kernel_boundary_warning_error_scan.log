@@ -1,7 +1,0 @@
-W788 warning/error scan generated_utc=2026-06-07T06:33:04Z
-commands: target lean, forbidden-token audit, diff check, lake build, RequiredDeclarations, ProductSuccessDeclarations, OriginalFourTaskCompletionDeclarations
-status: PASS; all commands exited 0
-target_file_warning_hits: 0
-build_warning_lines_imported_or_preexisting: 7721
-error_hits: 0
-note: build warnings are from imported/pre-existing files; build_local_warning_scan.log is empty when W788 target has no warning/error lines.

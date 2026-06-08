@@ -1,2 +1,0 @@
-a59c8933c856ac9233a7227f1803e40fad0a4079	refs/heads/goal-clean-positive-witness-20260607
-a59c8933c856ac9233a7227f1803e40fad0a4079	refs/heads/main

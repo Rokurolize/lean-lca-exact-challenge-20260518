@@ -1,2 +1,0 @@
-No W786 module warning/error lines after Tier B verification.
-The lake build emitted pre-existing dependency warnings outside the changed W786 module; see build summary.

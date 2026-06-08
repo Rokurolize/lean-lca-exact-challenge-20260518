@@ -1,3 +1,0 @@
-command: lake build LeanLCAExactChallenge.Derived.W987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW829StableFieldsFromDirectSourceW1533
-exit_code: 0
-summary: passed and refreshed the W1533 module olean so probe imports see the new declarations; full replay log omitted because it contains only normal build replay output and pre-existing linter warnings.

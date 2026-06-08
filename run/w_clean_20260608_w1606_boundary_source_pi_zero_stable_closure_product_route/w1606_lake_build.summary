@@ -1,4 +1,0 @@
-command	lake build LeanLCAExactChallenge.Derived.BoundarySourcePiZeroStableClosureProductRoute
-exit_code	0
-line_count	32782
-last_line	Build completed successfully (2109 jobs).

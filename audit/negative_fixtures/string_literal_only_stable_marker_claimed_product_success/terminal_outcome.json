@@ -3,5 +3,5 @@
   "product_complete": true,
   "update_goal_allowed": true,
   "known_gaps": [],
-  "summary": "Lean string literal内だけのstable markersを証明済みのstable infinity-category証拠として誤って完了主張する負例。"
+  "summary": "Negative fixture: a product-success claim that treats stable markers appearing only inside Lean string literals as proved stable infinity-category evidence."
 }

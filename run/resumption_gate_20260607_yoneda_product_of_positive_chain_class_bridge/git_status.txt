@@ -1,2 +1,0 @@
-## goal-clean-positive-witness-20260607...origin/goal-clean-positive-witness-20260607
-?? run/resumption_gate_20260607_yoneda_product_of_positive_chain_class_bridge/git_status.txt

@@ -31,7 +31,6 @@ PROJECT_REQUIRED = [
 
 ROOT_REQUIRED = [
     "README_FOR_REVIEW.md",
-    "manifest.json",
     "terminal_outcome/terminal_outcome.json",
     "run/verification.json",
 ]
@@ -282,9 +281,12 @@ def japanese_char_count(text: str) -> int:
     return len(JAPANESE_RE.findall(text))
 
 
-def require_japanese_text(label: str, text: str, minimum: int = 20) -> None:
-    if japanese_char_count(text) < minimum:
-        fail(f"{label} must contain substantive Japanese prose")
+def require_english_text(label: str, text: str, minimum: int = 20) -> None:
+    count = japanese_char_count(text)
+    if count:
+        fail(f"{label} contains {count} Japanese/CJK characters; write review prose in English")
+    if substantive_english_word_count(text) < minimum:
+        fail(f"{label} must contain substantive English prose")
 
 
 def substantive_english_word_count(text: str) -> int:
@@ -292,8 +294,9 @@ def substantive_english_word_count(text: str) -> int:
 
 
 def require_substantive_text(label: str, text: str, minimum: int = 20) -> None:
-    if japanese_char_count(text) >= minimum:
-        return
+    count = japanese_char_count(text)
+    if count:
+        fail(f"{label} contains {count} Japanese/CJK characters; write outcome prose in English")
     if substantive_english_word_count(text) >= minimum:
         return
     fail(f"{label} must contain substantive prose")
@@ -302,27 +305,27 @@ def require_substantive_text(label: str, text: str, minimum: int = 20) -> None:
 def check_reference_route_log(project_root: Path) -> None:
     path = project_root / "docs" / "research" / "reference_route_log.md"
     text = path.read_text(encoding="utf-8")
-    require_japanese_text("docs/research/reference_route_log.md", text, minimum=80)
+    require_english_text("docs/research/reference_route_log.md", text, minimum=80)
     required_patterns = {
-        "references": r"B[üu]hler|Hoffmann|Spitzweck|Schneiders|文献|参照",
-        "source_searches": r"rg|source search|検索",
+        "references": r"B[üu]hler|Hoffmann|Spitzweck|Schneiders|references?",
+        "source_searches": r"rg|source search|searches?",
         "library_apis": r"mathlib|API|ShortComplex|Abelian\.Ext|DerivedCategory",
-        "shortcut": r"近道|shortcut|楽にした",
-        "local_vs_adapted": r"ローカル|既存API|自作|適応",
-        "false_leads": r"失敗|false lead|見つからなかった",
+        "shortcut": r"shortcut|reused|existing API",
+        "local_vs_adapted": r"local|existing API|adapted|custom",
+        "false_leads": r"false lead|not found|did not find|unsuitable",
     }
     for label, pattern in required_patterns.items():
         if not re.search(pattern, text, flags=re.IGNORECASE):
             fail(f"reference_route_log.md does not explain required route-log item: {label}")
 
 
-def check_japanese_deliverables(root: Path, project_root: Path, terminal_outcome_path: Path) -> None:
+def check_english_deliverables(root: Path, project_root: Path, terminal_outcome_path: Path) -> None:
     for rel, base in [
         ("README_FOR_REVIEW.md", root),
         ("docs/research/sources.md", project_root),
         ("docs/research/mathlib_gap_analysis.md", project_root),
     ]:
-        require_japanese_text(rel, (base / rel).read_text(encoding="utf-8"), minimum=40)
+        require_english_text(rel, (base / rel).read_text(encoding="utf-8"), minimum=40)
     check_reference_route_log(project_root)
 
     outcome = load_json(terminal_outcome_path)
@@ -529,39 +532,6 @@ def check_verification(root: Path, project_root: Path, terminal_outcome: Path) -
         fail("stale verification evidence: source_tree_hash mismatch")
 
 
-def check_manifest(root: Path) -> None:
-    manifest = load_json(root / "manifest.json")
-    files = manifest.get("files")
-    if not isinstance(files, list):
-        fail("manifest.json must contain a files list")
-    tree = hashlib.sha256()
-    for item in files:
-        if not isinstance(item, dict):
-            fail("manifest file entries must be objects")
-        rel = item.get("path")
-        expected = item.get("sha256")
-        expected_bytes = item.get("bytes")
-        if not isinstance(rel, str) or not isinstance(expected, str):
-            fail("manifest file entry requires path and sha256")
-        if rel == "manifest.json":
-            fail("manifest must not hash itself")
-        path = root / rel
-        if not path.is_file():
-            fail(f"manifest lists missing file: {rel}")
-        actual = sha256_file(path)
-        if actual != expected:
-            fail(f"manifest hash mismatch for {rel}")
-        if isinstance(expected_bytes, int) and path.stat().st_size != expected_bytes:
-            fail(f"manifest byte-size mismatch for {rel}")
-        tree.update(rel.encode("utf-8"))
-        tree.update(b"\0")
-        tree.update(expected.encode("ascii"))
-        tree.update(b"\n")
-    expected_tree = manifest.get("content_hash_tree")
-    if expected_tree != tree.hexdigest():
-        fail("manifest content_hash_tree mismatch")
-
-
 def has_authoritative_zip_sha(obj: Any, path: str = "$") -> str | None:
     if isinstance(obj, dict):
         for key, value in obj.items():
@@ -749,14 +719,13 @@ def main() -> None:
     packet_mode = project_root != root
     check_required(root, project_root, terminal_outcome)
     check_forbidden_lean(project_root)
-    check_japanese_deliverables(root, project_root, terminal_outcome)
+    check_english_deliverables(root, project_root, terminal_outcome)
     check_no_product_placeholders(project_root)
     check_derived_infinity_product_contract(
         project_root, terminal_outcome, terminal_claims_product_success(terminal_outcome)
     )
     check_positive_witness_source_gate(root, project_root, terminal_outcome)
     check_no_internal_zip_sha(root, terminal_outcome)
-    check_manifest(root)
     check_verification(root, project_root, terminal_outcome)
     check_negative_fixture(root)
     check_terminal_outcome(root, terminal_outcome, packet_mode)

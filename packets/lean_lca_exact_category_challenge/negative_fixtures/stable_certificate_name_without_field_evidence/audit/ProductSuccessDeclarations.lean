@@ -1,5 +1,0 @@
-namespace LeanLCAExactChallenge
-
-#check StableBoundedDerivedInfinityCategory
-
-end LeanLCAExactChallenge

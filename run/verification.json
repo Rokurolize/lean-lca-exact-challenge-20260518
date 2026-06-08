@@ -1,107 +1,72 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-06-02T00:52:41Z",
-  "git_head": "f152323a20527411a6a43810dd648b66d1356613",
-  "source_tree_hash": "0bcd366f680b86c8dc1265ceca1faf8c33ea26b17841fec46c785d427fb58ded",
+  "generated_utc": "2026-06-08T04:31:16Z",
+  "source_base_git_head": "58b9bb9cb396585e8ad65c1ae787e5454fe1fc9c",
+  "source_tree_hash": "8b5080e3df4915ba62af828509410dd228f6df02fa0af4d77d3fff66f468eb11",
+  "source_file_count": 1197,
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1594 lifts the W1524 W866 iso-closure convergence route/equality surface onto the final OriginalFourTaskContractCompletion surface while preserving the nonterminal product-success boundary.",
-  "evidence_root": "run/",
+  "summary": "Post-cleanup verification for the nonterminal Lean LCA source tree. The checks preserve the Lean frontier and confirm that repository noise was removed without changing root Lean project files.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "run/w1594_lake_build.log"
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge.Derived.OriginalFourTaskContractCompletion",
-      "status": "passed",
-      "evidence": "run/w1594_original_four_task_completion_module_build.log"
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "run/w1594_root_module_build.log"
+      "evidence": "Completed successfully with 2936 jobs after lake exe cache get; existing style warnings only."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "run/w1594_forbidden_lean_tokens.log"
+      "evidence": "Reported no forbidden Lean tokens under LeanLCAExactChallenge."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "run/w1594_required_declarations.log"
+      "evidence": "Lean declaration audit completed with exit code 0."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "run/w1594_product_success_declarations.log"
+      "evidence": "Lean product-success declaration audit completed with exit code 0 while preserving product_success=false metadata."
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "run/w1594_original_four_task_completion_declarations.log"
+      "evidence": "Lean original four-task completion declaration audit completed with exit code 0."
     },
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/W987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW866IsoClosureConvergenceGuardW1524.lean",
+      "command": "python3 in-memory compile of audit/external_audit.py and audit/original_four_task_contract_audit.py",
       "status": "passed",
-      "evidence": "run/w1594_w1524_focused.log"
-    },
-    {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean",
-      "status": "passed",
-      "evidence": "run/w1594_original_four_task_completion_focused.log"
-    },
-    {
-      "command": "lake env lean LeanLCAExactChallenge.lean",
-      "status": "passed",
-      "evidence": "run/w1594_root_focused.log"
-    },
-    {
-      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m py_compile audit/external_audit.py audit/original_four_task_contract_audit.py packets/lean_lca_exact_category_challenge/external_audit.py",
-      "status": "passed",
-      "evidence": "run/w1594_py_compile.log"
+      "evidence": "Both audit scripts compiled in memory without creating __pycache__."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "run/w1594_git_diff_check.log"
+      "evidence": "Post-metadata whitespace check completed before final commit."
     },
     {
-      "command": "rg -n 'productSuccessClaimed\\s*:=\\s*true|\"product_success\"\\s*:\\s*true|\"product_complete\"\\s*:\\s*true|\"update_goal_allowed\"\\s*:\\s*true' LeanLCAExactChallenge audit docs README.md README_FOR_REVIEW.md terminal_outcome run/verification.json -g '!audit/negative_fixtures/**'",
-      "status": "failed_expected",
-      "evidence": "run/w1594_product_success_true_source_scan.log"
-    },
-    {
-      "command": "rg -n 'productSuccessClaimed\\s*:=\\s*false|productSuccessClaimed\\s*=\\s*false|\"product_success\"\\s*:\\s*false|\"product_complete\"\\s*:\\s*false|\"update_goal_allowed\"\\s*:\\s*false' LeanLCAExactChallenge audit docs README.md README_FOR_REVIEW.md terminal_outcome run/verification.json -g '!audit/negative_fixtures/**'",
+      "command": "rg CJK source scan",
       "status": "passed",
-      "evidence": "run/w1594_final_false_witness_source_scan.log"
+      "evidence": "No Japanese or CJK text remains outside ignored build and manifest paths."
     },
     {
-      "command": "PYTHONDONTWRITEBYTECODE=1 python3 audit/original_four_task_contract_audit.py --root \"$PWD\" --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "command": "provider search ledger scan",
       "status": "passed",
-      "evidence": "run/w1594_original_four_task_contract_audit.log"
+      "evidence": "find docs/research -name 'w*_provider_search_ledger.md' returned zero files."
     },
     {
-      "command": "PYTHONDONTWRITEBYTECODE=1 python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "command": "repository noise surface scan",
       "status": "passed",
-      "evidence": "run/w1594_external_audit.log"
+      "evidence": "No root worker, packet, progress, manifest, issue queue, proof frontier, or scratch-report artifacts remain."
     },
     {
-      "command": "PYTHONDONTWRITEBYTECODE=1 python3 packets/lean_lca_exact_category_challenge/external_audit.py --root packets/lean_lca_exact_category_challenge --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "command": "run directory scan",
       "status": "passed",
-      "evidence": "run/w1594_packet_external_audit.log"
+      "evidence": "run contains only verification.json."
     },
     {
-      "command": "(cd packets && sha256sum -c lean_lca_exact_category_challenge.zip.sha256)",
+      "command": "git diff --name-status -- LeanLCAExactChallenge LeanLCAExactChallenge.lean lakefile.toml lean-toolchain lake-manifest.json",
       "status": "passed",
-      "evidence": "run/w1594_packet_zip_sha256_check.log"
-    },
-    {
-      "command": "python3 /home/roku/.agents/skills/clean-review-packet/scripts/packet_audit.py --packet-root /tmp/lean_lca_w1594_clean/lean_lca_exact_category_challenge --zip packets/lean_lca_exact_category_challenge.zip --sha256-sidecar packets/lean_lca_exact_category_challenge.zip.sha256 --require README_FOR_REVIEW.md --require manifest.json",
-      "status": "passed",
-      "evidence": "run/w1594_clean_packet_audit.log"
+      "evidence": "No root Lean project source or Lake configuration changes were present."
     }
   ]
 }

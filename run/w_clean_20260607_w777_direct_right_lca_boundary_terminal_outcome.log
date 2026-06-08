@@ -1,8 +1,0 @@
-{
-  "outcome": "mathematical_frontier_nonterminal",
-  "product_success": false,
-  "product_complete": false,
-  "update_goal_allowed": false,
-  "git_head": "f152323a20527411a6a43810dd648b66d1356613",
-  "latest_checkpoint": null
-}

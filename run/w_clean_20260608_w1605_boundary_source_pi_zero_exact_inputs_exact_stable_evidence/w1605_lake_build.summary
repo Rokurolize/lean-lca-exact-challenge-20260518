@@ -1,4 +1,0 @@
-command	lake build LeanLCAExactChallenge.Derived.BoundarySourcePiZeroExactInputsExactStableEvidenceRoute
-exit_code	0
-line_count	32776
-last_line	Build completed successfully (2108 jobs).

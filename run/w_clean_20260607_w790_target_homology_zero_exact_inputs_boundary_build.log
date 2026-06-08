@@ -1,5 +1,0 @@
-PASS generated_utc=2026-06-07T06:52:05Z
-command: lake build LeanLCAExactChallenge.Derived.TargetHomologyZeroExactInputsClosedRangeProductRoute
-exit_code: 0
-target_file_warning_hits: 0
-imported_or_preexisting_warning_lines: 7721

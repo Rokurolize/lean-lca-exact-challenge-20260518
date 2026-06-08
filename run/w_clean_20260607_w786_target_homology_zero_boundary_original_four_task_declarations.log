@@ -1,2 +1,0 @@
-PASS lake env lean audit/OriginalFourTaskCompletionDeclarations.lean
-The audit accepts W786 stable-boundary #checks while the original four-task completion remains nonterminal.

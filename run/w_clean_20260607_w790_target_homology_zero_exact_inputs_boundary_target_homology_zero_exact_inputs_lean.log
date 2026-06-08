@@ -1,4 +1,0 @@
-PASS generated_utc=2026-06-07T06:52:05Z
-command: lake env lean LeanLCAExactChallenge/Derived/TargetHomologyZeroExactInputsClosedRangeProductRoute.lean
-exit_code: 0
-output_lines: 0

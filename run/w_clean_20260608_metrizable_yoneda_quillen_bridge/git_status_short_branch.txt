@@ -1,6 +1,0 @@
-## goal-clean-positive-witness-20260607...origin/goal-clean-positive-witness-20260607
- M LeanLCAExactChallenge/Ext/Yoneda.lean
- M audit/OriginalFourTaskCompletionDeclarations.lean
- M audit/ProductSuccessDeclarations.lean
- M audit/RequiredDeclarations.lean
-?? run/w_clean_20260608_metrizable_yoneda_quillen_bridge/git_status_short_branch.txt

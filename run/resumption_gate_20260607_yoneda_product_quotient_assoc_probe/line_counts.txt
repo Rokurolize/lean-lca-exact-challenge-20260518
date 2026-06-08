@@ -1,8 +1,0 @@
-     2 run/resumption_gate_20260607_yoneda_product_quotient_assoc_probe/git_status.txt
-     1 run/resumption_gate_20260607_yoneda_product_quotient_assoc_probe/head.txt
-     1 run/resumption_gate_20260607_yoneda_product_quotient_assoc_probe/origin_main_local.txt
-     1 run/resumption_gate_20260607_yoneda_product_quotient_assoc_probe/origin_main_remote.txt
-  1526 run/resumption_gate_20260607_yoneda_product_quotient_assoc_probe/product_success_false_search.txt
-    27 run/resumption_gate_20260607_yoneda_product_quotient_assoc_probe/product_success_true_search.txt
-    11 run/resumption_gate_20260607_yoneda_product_quotient_assoc_probe/terminal_outcome_summary.json
-  1569 total

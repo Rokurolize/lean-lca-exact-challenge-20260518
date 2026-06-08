@@ -1,4 +1,0 @@
-PASS generated_utc=2026-06-07T06:33:04Z
-command: lake env lean audit/RequiredDeclarations.lean
-exit_code: 0
-tmp_output_lines: 38806

@@ -1,3 +1,0 @@
-exit=0
-command=lake env lean audit/ProductSuccessDeclarations.lean
-note=Lean accepted all ProductSuccessDeclarations #check statements including W791 stable-boundary declarations; product_success remains false

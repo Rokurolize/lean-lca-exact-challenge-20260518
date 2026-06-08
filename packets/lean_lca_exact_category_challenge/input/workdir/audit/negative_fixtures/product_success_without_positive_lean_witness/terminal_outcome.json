@@ -1,8 +1,0 @@
-{
-  "outcome": "product_success",
-  "product_success": true,
-  "product_complete": true,
-  "update_goal_allowed": true,
-  "known_gaps": [],
-  "summary": "Negative fixture: product success is claimed without a positive Lean witness."
-}

@@ -1,2 +1,0 @@
-command: lake env lean LeanLCAExactChallenge/Derived/SourceTriangulationClosedRangeDirectFiniteShapeProductRoute.lean
-exit: 0

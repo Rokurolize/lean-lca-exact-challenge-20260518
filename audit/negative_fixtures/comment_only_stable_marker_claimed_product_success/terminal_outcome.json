@@ -3,5 +3,5 @@
   "product_complete": true,
   "update_goal_allowed": true,
   "known_gaps": [],
-  "summary": "comment-only stable markersを証明済みのstable infinity-category証拠として誤って完了主張する負例。"
+  "summary": "Negative fixture: a product-success claim that treats comment-only stable markers as proved stable infinity-category evidence."
 }

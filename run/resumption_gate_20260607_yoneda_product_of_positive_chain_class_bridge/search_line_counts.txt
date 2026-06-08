@@ -1,3 +1,0 @@
-   27 run/resumption_gate_20260607_yoneda_product_of_positive_chain_class_bridge/product_success_true_search.txt
-  200 run/resumption_gate_20260607_yoneda_product_of_positive_chain_class_bridge/product_success_false_search.txt
-  227 total

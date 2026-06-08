@@ -1,8 +1,0 @@
-     2 run/resumption_gate_20260607_bundled_yoneda_assoc/git_status.txt
-     1 run/resumption_gate_20260607_bundled_yoneda_assoc/head.txt
-     1 run/resumption_gate_20260607_bundled_yoneda_assoc/origin_main_local.txt
-     1 run/resumption_gate_20260607_bundled_yoneda_assoc/origin_main_remote.txt
-  1526 run/resumption_gate_20260607_bundled_yoneda_assoc/product_success_false_search.txt
-    27 run/resumption_gate_20260607_bundled_yoneda_assoc/product_success_true_search.txt
-    11 run/resumption_gate_20260607_bundled_yoneda_assoc/terminal_outcome_summary.json
-  1569 total

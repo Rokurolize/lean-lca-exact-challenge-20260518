@@ -1,2 +1,0 @@
-LeanLCAExactChallenge.lean:1:0: error: failed to read file '/home/roku/codex-thread-workspaces/019e5c90-4877-77a1-a792-34feb85174ab/worktrees/lean-lca-clean-positive-witness-20260607/.lake/build/lib/lean/LeanLCAExactChallenge/Basic.olean', incompatible header
-lake env lean LeanLCAExactChallenge.lean succeeded after lake build LeanLCAExactChallenge

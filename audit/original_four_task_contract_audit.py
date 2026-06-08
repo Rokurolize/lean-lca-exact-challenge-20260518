@@ -255,19 +255,19 @@ def product_success_blockers(root: Path, outcome: dict[str, Any]) -> list[str]:
                 "ProductSuccessDeclarations symbol-checks completion without positive Lean content"
             )
 
-    packet_root = root / "packets/lean_lca_exact_category_challenge"
-    if not packet_root.is_dir():
-        blockers.append("review packet directory is missing")
-    else:
-        for rel in [
-            "manifest.json",
-            "README_FOR_REVIEW.md",
-        ]:
-            if not (packet_root / rel).is_file():
-                blockers.append(f"review packet missing {rel}")
-        for name in REQUIRED_NEGATIVE_FIXTURES:
-            if not (packet_root / "negative_fixtures" / name).exists():
-                blockers.append(f"review packet missing negative fixture {name}")
+        packet_root = root / "packets/lean_lca_exact_category_challenge"
+        if not packet_root.is_dir():
+            blockers.append("review packet directory is missing")
+        else:
+            for rel in [
+                "manifest.json",
+                "README_FOR_REVIEW.md",
+            ]:
+                if not (packet_root / rel).is_file():
+                    blockers.append(f"review packet missing {rel}")
+            for name in REQUIRED_NEGATIVE_FIXTURES:
+                if not (packet_root / "negative_fixtures" / name).exists():
+                    blockers.append(f"review packet missing negative fixture {name}")
 
     return blockers
 

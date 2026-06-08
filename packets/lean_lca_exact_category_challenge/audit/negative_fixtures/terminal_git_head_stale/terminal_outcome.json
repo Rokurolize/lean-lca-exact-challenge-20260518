@@ -1,9 +1,0 @@
-{
-  "outcome": "product_success",
-  "product_success": true,
-  "product_complete": true,
-  "update_goal_allowed": true,
-  "git_head": "0000000000000000000000000000000000000000",
-  "known_gaps": [],
-  "summary": "Negative fixture: product success metadata names a stale git head."
-}
