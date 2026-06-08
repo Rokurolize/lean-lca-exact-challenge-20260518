@@ -3,6 +3,7 @@ import LeanLCAExactChallenge.Derived.DirectWppLimitFiniteShapeTransfer
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroDirectLocalizationStableRoute
 import LeanLCAExactChallenge.Derived.TargetExactAtLeftCalculusRoute
 import LeanLCAExactChallenge.Derived.TargetIsoLeftCalculusRoute
+import LeanLCAExactChallenge.Derived.IsoClosureLeftCalculusRoute
 
 /-!
 Direct-localization refinement of the `Dbounded MetrizableLCA` stable-instance boundary.
@@ -454,6 +455,142 @@ theorem
   rfl
 
 /--
+Iso-closure direct-localization inputs for the canonical stable-instance boundary.
+W834 replaces W833's W784 target-isomorphism realization with W651 iso-closure realization.
+-/
+structure MetrizableStableInstanceBoundaryIsoClosureDirectLocalizationInputs : Type 2 where
+  isoClosureLeftCalculusData :
+    Dbounded.MetrizableIsoClosureRealizationLeftCalculusDataW834
+  transferInputs :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/--
+Build the target-isomorphism direct-localization inputs by deriving W833 data from W834
+iso-closure data.
+-/
+noncomputable def
+    metrizableStableInstanceBoundaryTargetIsoInputs_of_isoClosure
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryIsoClosureDirectLocalizationInputs) :
+    Dbounded.MetrizableStableInstanceBoundaryTargetIsoDirectLocalizationInputs where
+  targetIsoLeftCalculusData :=
+    Dbounded.targetIsoLeftCalculusDataOfIsoClosureRealizationW834
+      inputs.isoClosureLeftCalculusData
+  transferInputs := inputs.transferInputs
+  directLocalization := inputs.directLocalization
+
+/--
+Build the direct-localization boundary inputs by deriving direct left calculus from the W834
+iso-closure route.
+-/
+noncomputable def
+    metrizableStableInstanceBoundaryDirectLocalizationInputs_of_isoClosure
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryIsoClosureDirectLocalizationInputs) :
+    Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_targetIso
+    (Dbounded.metrizableStableInstanceBoundaryTargetIsoInputs_of_isoClosure
+      inputs)
+
+/--
+Bounded-derived infinity-category package from the iso-closure direct-localization refinement of
+the stable-instance boundary.
+-/
+noncomputable def
+    boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryIsoClosureDirectLocalization
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryIsoClosureDirectLocalizationInputs) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_isoClosure
+      inputs)
+
+/--
+Accepted stable `Dbounded` package from the iso-closure direct-localization refinement of the
+canonical stable-instance boundary.
+-/
+noncomputable def
+    acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryIsoClosureDirectLocalization
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryIsoClosureDirectLocalizationInputs) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_isoClosure
+      inputs)
+
+/--
+The iso-closure direct-localization refinement produces the ready four-projection stable
+certificate.
+-/
+theorem
+    stableCertificateOfMetrizableStableInstanceBoundaryIsoClosureDirectLocalization_ready
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryIsoClosureDirectLocalizationInputs) :
+    let localizedInputs :=
+      Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_isoClosure
+        inputs
+    letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+      localizedInputs.directLeftCalculus
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer
+        (Dbounded.metrizableWalkingParallelPairTransferStableSemanticInputsOfDirectLocalization
+          localizedInputs))).ready := by
+  exact
+    Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectLocalization_ready
+      (Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_isoClosure
+        inputs)
+
+/-- Source-facing input names for the iso-closure direct-localization stable-instance boundary. -/
+def metrizableStableInstanceBoundaryIsoClosureDirectLocalizationInputNames :
+    List String :=
+  Dbounded.isoClosureLeftCalculusInputNamesW834 ++
+    ["MetrizableWalkingParallelPairFiniteShapeTransferInputs",
+      "MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657"]
+
+/-- The iso-closure direct-localization boundary has five source-facing input families. -/
+theorem metrizableStableInstanceBoundaryIsoClosureDirectLocalizationInputNames_count :
+    Dbounded.metrizableStableInstanceBoundaryIsoClosureDirectLocalizationInputNames.length =
+      5 :=
+  rfl
+
+/-- Current checked iso-closure direct-localization boundary state. -/
+structure MetrizableStableInstanceBoundaryIsoClosureDirectLocalizationRouteState :
+    Type where
+  seed : String
+  declarations : List String
+  boundaryResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked iso-closure direct-localization boundary state. -/
+def currentMetrizableStableInstanceBoundaryIsoClosureDirectLocalizationRouteState :
+    Dbounded.MetrizableStableInstanceBoundaryIsoClosureDirectLocalizationRouteState where
+  seed := "metrizable-stable-instance-boundary-iso-closure-direct-localization"
+  declarations :=
+    ["MetrizableStableInstanceBoundaryIsoClosureDirectLocalizationInputs",
+      "metrizableStableInstanceBoundaryTargetIsoInputs_of_isoClosure",
+      "metrizableStableInstanceBoundaryDirectLocalizationInputs_of_isoClosure",
+      "boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryIsoClosureDirectLocalization",
+      "acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryIsoClosureDirectLocalization",
+      "stableCertificateOfMetrizableStableInstanceBoundaryIsoClosureDirectLocalization_ready",
+      "metrizableStableInstanceBoundaryIsoClosureDirectLocalizationInputNames",
+      "metrizableStableInstanceBoundaryIsoClosureDirectLocalizationInputNames_count"]
+  boundaryResult :=
+    "proved: W834 iso-closure data derive the W833 target-isomorphism direct-" ++
+      "localization boundary"
+  replacedInputs := ["W784 exact-acyclic homotopy-object target-isomorphism realization"]
+  remainingInputs :=
+    Dbounded.metrizableStableInstanceBoundaryIsoClosureDirectLocalizationInputNames
+  productSuccessClaimed := false
+
+theorem
+    currentMetrizableStableInstanceBoundaryIsoClosureDirectLocalizationRouteState_productSuccess :
+    (let state :=
+        Dbounded.currentMetrizableStableInstanceBoundaryIsoClosureDirectLocalizationRouteState;
+      state.productSuccessClaimed) =
+      false :=
+  rfl
+
+/--
 Direct WPP limit and WPP-op colimit closure data refine the finite-shape transfer input in the
 direct-localization stable-instance boundary.
 -/
@@ -772,6 +909,19 @@ section Checks
 #check Dbounded.metrizableStableInstanceBoundaryTargetIsoDirectLocalizationInputNames_count
 #check
   Dbounded.currentMetrizableStableInstanceBoundaryTargetIsoDirectLocalizationRouteState_productSuccess
+#check Dbounded.MetrizableStableInstanceBoundaryIsoClosureDirectLocalizationInputs
+#check Dbounded.metrizableStableInstanceBoundaryTargetIsoInputs_of_isoClosure
+#check Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_isoClosure
+#check
+  Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryIsoClosureDirectLocalization
+#check
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryIsoClosureDirectLocalization
+#check
+  Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryIsoClosureDirectLocalization_ready
+#check Dbounded.metrizableStableInstanceBoundaryIsoClosureDirectLocalizationInputNames
+#check Dbounded.metrizableStableInstanceBoundaryIsoClosureDirectLocalizationInputNames_count
+#check
+  Dbounded.currentMetrizableStableInstanceBoundaryIsoClosureDirectLocalizationRouteState_productSuccess
 #check Dbounded.MetrizableStableInstanceBoundaryDirectLimitOpClosureInputs
 #check Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directLimitOpClosure
 #check Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitOpClosure
