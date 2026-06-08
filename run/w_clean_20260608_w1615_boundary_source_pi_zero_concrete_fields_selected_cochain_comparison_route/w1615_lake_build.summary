@@ -1,0 +1,42 @@
+command	lake build LeanLCAExactChallenge.Derived.BoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonProductRoute
+exit_code	0
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonProductRoute.lean:118:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonProductRoute.lean:130:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonProductRoute.lean:142:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonProductRoute.lean:153:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonProductRoute.lean:165:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonProductRoute.lean:176:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonProductRoute.lean:187:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonProductRoute.lean:198:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonProductRoute.lean:210:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonProductRoute.lean:222:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonProductRoute.lean:269:100: This line exceeds the 100 character limit, please shorten it!
+You can use "string gaps" to format long strings: within a string quotation, using a '\' at the end of a line allows you to continue the string on the following line, removing all intervening whitespace.
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonProductRoute.lean:270:100: This line exceeds the 100 character limit, please shorten it!
+You can use "string gaps" to format long strings: within a string quotation, using a '\' at the end of a line allows you to continue the string on the following line, removing all intervening whitespace.
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+Build completed successfully (2168 jobs).
