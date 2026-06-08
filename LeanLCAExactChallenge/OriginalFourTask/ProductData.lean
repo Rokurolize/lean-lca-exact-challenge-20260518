@@ -171,6 +171,41 @@ theorem
   rfl
 
 /--
+Assemble product data from the target-isomorphism direct-localization refinement of the stable
+instance boundary.
+-/
+noncomputable def originalFourTaskProductDataOfTargetIsoDirectLocalizationBoundary
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryTargetIsoDirectLocalizationInputs) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfDirectLocalizationBoundary
+    (Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_targetIso
+      inputs)
+
+theorem
+    originalFourTaskProductDataOfTargetIsoDirectLocalizationBoundary_boundedDerivedInfinityCategory
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryTargetIsoDirectLocalizationInputs) :
+    (originalFourTaskProductDataOfTargetIsoDirectLocalizationBoundary
+      inputs).boundedDerivedInfinityCategory =
+      Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryTargetIsoDirectLocalization
+        inputs :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfTargetIsoDirectLocalizationBoundary_metrizableLCAExactCategory
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryTargetIsoDirectLocalizationInputs) :
+    (originalFourTaskProductDataOfTargetIsoDirectLocalizationBoundary
+      inputs).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfTargetIsoDirectLocalizationBoundary_yonedaExt
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryTargetIsoDirectLocalizationInputs) :
+    (originalFourTaskProductDataOfTargetIsoDirectLocalizationBoundary inputs).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
+/--
 Assemble product data from the W1608 closed-map frontier. The remaining inputs
 are the target ExactAt payload and one W735 branch.
 -/
