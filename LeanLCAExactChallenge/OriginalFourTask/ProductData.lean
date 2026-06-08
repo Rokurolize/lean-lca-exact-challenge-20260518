@@ -38,6 +38,19 @@ structure OriginalFourTaskProductData : Type 2 where
           IsOpenMap (S.g : S.X₂ → S.X₃) ∧
             Function.Surjective (S.g : S.X₂ → S.X₃) ∧
               ∀ x₂ : S.X₂, S.g x₂ = 0 → ∃ x₁ : S.X₁, S.f x₁ = x₂
+  metrizableLCAForgetExact :
+    ∀ {S : ShortComplex MetrizableLCA.{0}},
+      QuillenExactCategory.Conflation S → (S.map MetrizableLCA.forgetToAddCommGrpCat).Exact
+  metrizableLCAForgetKernel :
+    ∀ {S : ShortComplex MetrizableLCA.{0}},
+      QuillenExactCategory.Conflation S →
+        IsLimit (KernelFork.ofι (S.map MetrizableLCA.forgetToAddCommGrpCat).f
+          (S.map MetrizableLCA.forgetToAddCommGrpCat).zero)
+  metrizableLCAForgetCokernel :
+    ∀ {S : ShortComplex MetrizableLCA.{0}},
+      QuillenExactCategory.Conflation S →
+        IsColimit (CokernelCofork.ofπ (S.map MetrizableLCA.forgetToAddCommGrpCat).g
+          (S.map MetrizableLCA.forgetToAddCommGrpCat).zero)
   yonedaExt : MetrizableLCA.{0} → MetrizableLCA.{0} → ℕ → Type 1
   yonedaExt_eq :
     yonedaExt = fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n
@@ -55,6 +68,12 @@ noncomputable def originalFourTaskProductDataOfStablePackage
   metrizableLCAConflationIff := fun {S} =>
     MetrizableLCA.quillenConflation_iff_closed_inclusion_open_surjection_algebraic_exact
       (S := S)
+  metrizableLCAForgetExact := fun hS =>
+    MetrizableLCA.forgetToAddCommGrpCat_exact_of_quillenConflation hS
+  metrizableLCAForgetKernel := fun hS =>
+    MetrizableLCA.forgetToAddCommGrpCat_kernelForkOfQuillenConflation hS
+  metrizableLCAForgetCokernel := fun hS =>
+    MetrizableLCA.forgetToAddCommGrpCat_cokernelCoforkOfQuillenConflation hS
   yonedaExt := fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n
   yonedaExt_eq := rfl
   yonedaExtZeroEquivHom := fun X Y =>
@@ -70,6 +89,27 @@ theorem originalFourTaskProductDataOfStablePackage_metrizableLCAExactCategory
     (P : BoundedDerived.Metrizable.StablePackage) :
     (originalFourTaskProductDataOfStablePackage P).metrizableLCAExactCategory =
       MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem originalFourTaskProductDataOfStablePackage_metrizableLCAForgetExact
+    (P : BoundedDerived.Metrizable.StablePackage) {S : ShortComplex MetrizableLCA.{0}}
+    (hS : QuillenExactCategory.Conflation S) :
+    (originalFourTaskProductDataOfStablePackage P).metrizableLCAForgetExact hS =
+      MetrizableLCA.forgetToAddCommGrpCat_exact_of_quillenConflation hS :=
+  rfl
+
+theorem originalFourTaskProductDataOfStablePackage_metrizableLCAForgetKernel
+    (P : BoundedDerived.Metrizable.StablePackage) {S : ShortComplex MetrizableLCA.{0}}
+    (hS : QuillenExactCategory.Conflation S) :
+    (originalFourTaskProductDataOfStablePackage P).metrizableLCAForgetKernel hS =
+      MetrizableLCA.forgetToAddCommGrpCat_kernelForkOfQuillenConflation hS :=
+  rfl
+
+theorem originalFourTaskProductDataOfStablePackage_metrizableLCAForgetCokernel
+    (P : BoundedDerived.Metrizable.StablePackage) {S : ShortComplex MetrizableLCA.{0}}
+    (hS : QuillenExactCategory.Conflation S) :
+    (originalFourTaskProductDataOfStablePackage P).metrizableLCAForgetCokernel hS =
+      MetrizableLCA.forgetToAddCommGrpCat_cokernelCoforkOfQuillenConflation hS :=
   rfl
 
 theorem originalFourTaskProductDataOfStablePackage_yonedaExt
