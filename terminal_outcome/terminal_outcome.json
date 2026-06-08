@@ -1,14 +1,14 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-06-08T01:06:27Z",
-  "git_head": "1fa735e090b60b1387c52d0c013f485b34134c1a",
+  "generated_utc": "2026-06-08T01:24:58Z",
+  "git_head": "4e50b27692c92132fb40d47c887e882e79016229",
   "source_tree_hash": "not_applicable_self_referential_partial_checkpoint",
   "outcome": "nonterminal_source_progress",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "Nonterminal source progress for the original four-task contract: W1609 feeds W1608 after deriving the W1608 target ExactAt payload from W839 target-homology-zero branch data. The boundary-source-pi-zero comparison route now replaces the separate targetExactAtPayload field with W790 targetHomologyZeroPayload plus W735 exactInputs. Product success remains false and no final positive witness is claimed.",
+  "summary": "Nonterminal source progress for the original four-task contract: W1610 feeds W1609 after deriving W839 target-homology-zero branch data from W844 target-isomorphism route data. The boundary-source-pi-zero comparison route now replaces the separate W790 targetHomologyZeroPayload surface with W784 targetIsoRealization plus W735 exactInputs. Product success remains false and no final positive witness is claimed.",
   "positive_witness_declarations": [
     "LeanLCAExactChallenge.boundedExactWeakEquivalence_iff_exactAcyclic_mappingCone",
     "LeanLCAExactChallenge.boundedExactWeakEquivalence_of_exactAcyclic_mappingCone",
@@ -257,17 +257,17 @@
     "original_four_task_contract_sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1",
     "positive_witness_contract_sha256": "3120c014b83e0c7c8f8160ca90447a1a73588096a354ace109e2fca4e4eab5ec"
   },
-  "proof_search_checkpoint": "run/w_clean_20260608_w1609_boundary_source_pi_zero_target_homology_zero_comparison_route/checkpoint.md",
-  "latest_checkpoint": "run/w_clean_20260608_w1609_boundary_source_pi_zero_target_homology_zero_comparison_route/checkpoint.md",
-  "previous_checkpoint": "run/w_clean_20260608_w1608_boundary_source_pi_zero_comparison_target_exact_at/checkpoint.md",
+  "proof_search_checkpoint": "run/w_clean_20260608_w1610_boundary_source_pi_zero_target_iso_comparison_route/checkpoint.md",
+  "latest_checkpoint": "run/w_clean_20260608_w1610_boundary_source_pi_zero_target_iso_comparison_route/checkpoint.md",
+  "previous_checkpoint": "run/w_clean_20260608_w1609_boundary_source_pi_zero_target_homology_zero_comparison_route/checkpoint.md",
   "source_patch_needed_handoff": "run/w_clean_20260608_task4_stable_instance_source_patch_needed/source_patch_needed_handoff.md",
-  "proof_search_evidence": "run/w_clean_20260608_w1609_boundary_source_pi_zero_target_homology_zero_comparison_route/w1609_boundary_source_pi_zero_target_homology_zero_comparison_probe.lean",
+  "proof_search_evidence": "run/w_clean_20260608_w1610_boundary_source_pi_zero_target_iso_comparison_route/w1610_boundary_source_pi_zero_target_iso_comparison_probe.lean",
   "previous_source_patch_needed_evidence": "run/w_clean_20260608_task4_stable_instance_source_patch_needed/stable_instance_probe.expected_failure.log",
   "current_checkpoint_verification": {
     "tier": "A",
-    "w1609_module_lean": "passed",
-    "w1609_lake_build": "passed",
-    "w1609_boundary_source_pi_zero_target_homology_zero_comparison_probe": "passed",
+    "w1610_module_lean": "passed",
+    "w1610_lake_build": "passed",
+    "w1610_boundary_source_pi_zero_target_iso_comparison_probe": "passed",
     "root_import": "passed",
     "product_success_declarations_lean": "passed",
     "original_four_task_completion_declarations_lean": "passed",
@@ -278,13 +278,13 @@
   },
   "known_gaps": [
     "Positive Lean witness is absent: no OriginalFourTaskProductSuccess surface with field-level evidence for the original four-task contract exists.",
-    "W1609 removes the separate targetExactAtPayload input from the W1608 surface, but still requires a W790 target homology-zero payload and concrete W735 branch data.",
+    "W1610 removes the separate W790 target-homology-zero payload surface from W1609, but still requires W784 target-isomorphism realization data and concrete W735 branch data.",
     "The final product surface still references AcceptedStableBoundedDerivedInfinityCategory and must be replaced or connected to the bounded derived infinity-category API required by the product contract.",
     "The exact-category core, strict MetrizableLCA Yoneda Ext specialization API, direct Yoneda Ext constructors from Quillen conflations and closed-inclusion/open-surjection/algebraically exact data, and bounded derived category route APIs remain nonterminal API evidence rather than a final original four-task witness."
   ],
   "remaining_work": [
     "Construct a genuine OriginalFourTaskProductSuccess surface with field-level evidence for all four original obligations.",
-    "Construct the W790 target homology-zero payload for the W839 comparison-bijectivity homology provider.",
+    "Construct W784 exact-acyclic homotopy-object target-isomorphism realization data.",
     "Construct concrete values for one W735 branch, including W716 boundary data, W519 mapped-cokernel closedness, and W720 endpoint topology data.",
     "Replace or connect the accepted-stable boundary gate with the final bounded derived infinity-category API required by the product contract.",
     "Integrate the exact-category, strict MetrizableLCA, Yoneda Ext, stable-boundary, and bounded derived infinity-category surfaces into a single positive witness instead of a route-history certificate."
