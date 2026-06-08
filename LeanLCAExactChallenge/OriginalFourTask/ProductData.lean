@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.BoundedDerived.Basic
+import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundary
 import LeanLCAExactChallenge.Ext.Yoneda
 import LeanLCAExactChallenge.LCA.ExactCategory
 
@@ -70,6 +71,31 @@ theorem originalFourTaskProductDataOfStablePackage_metrizableLCAExactCategory
 theorem originalFourTaskProductDataOfStablePackage_yonedaExt
     (P : BoundedDerived.Metrizable.StablePackage) :
     (originalFourTaskProductDataOfStablePackage P).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
+/-- Assemble product data from the current canonical stable-instance boundary. -/
+noncomputable def originalFourTaskProductDataOfStableInstanceBoundary
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryInputs) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStablePackage
+    (Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory inputs)
+
+theorem originalFourTaskProductDataOfStableInstanceBoundary_boundedDerivedInfinityCategory
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryInputs) :
+    (originalFourTaskProductDataOfStableInstanceBoundary inputs).boundedDerivedInfinityCategory =
+      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory inputs :=
+  rfl
+
+theorem originalFourTaskProductDataOfStableInstanceBoundary_metrizableLCAExactCategory
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryInputs) :
+    (originalFourTaskProductDataOfStableInstanceBoundary inputs).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem originalFourTaskProductDataOfStableInstanceBoundary_yonedaExt
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryInputs) :
+    (originalFourTaskProductDataOfStableInstanceBoundary inputs).yonedaExt =
       fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
   rfl
 
