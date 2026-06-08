@@ -1,0 +1,22 @@
+command	lake build LeanLCAExactChallenge.Derived.BoundarySourcePiZeroTargetHomologyZeroComparisonProductRoute
+exit_code	0
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2145/2147] Replayed LeanLCAExactChallenge.Derived.ComparisonBijectivityStrictRealizationLeftCalculusRoute
+warning: LeanLCAExactChallenge/Derived/ComparisonBijectivityStrictRealizationLeftCalculusRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2146/2147] Replayed LeanLCAExactChallenge.Derived.TargetHomologyZeroStrictRealizationLeftCalculusRoute
+warning: LeanLCAExactChallenge/Derived/TargetHomologyZeroStrictRealizationLeftCalculusRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2147/2147] Replayed LeanLCAExactChallenge.Derived.BoundarySourcePiZeroTargetHomologyZeroComparisonProductRoute
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroTargetHomologyZeroComparisonProductRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+Build completed successfully (2147 jobs).
