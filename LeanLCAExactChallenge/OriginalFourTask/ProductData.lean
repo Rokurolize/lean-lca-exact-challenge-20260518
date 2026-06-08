@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.BoundedDerived.Basic
+import LeanLCAExactChallenge.BoundedDerived.MetrizableStableBridge
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroExactInputsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroSplitFieldsSelectedCochainComparisonProductRoute
@@ -125,6 +126,115 @@ noncomputable def originalFourTaskProductDataOfStablePackage_yonedaExtAddCommGro
     (P : BoundedDerived.Metrizable.StablePackage) (X Y : MetrizableLCA.{0}) (n : ℕ) :
     AddCommGroup ((originalFourTaskProductDataOfStablePackage P).yonedaExt X Y n) :=
   (originalFourTaskProductDataOfStablePackage P).yonedaExtAddCommGroup X Y n
+
+/--
+Assemble product data from the W1537 direct-source stable-instance facts exposed
+by the product-facing bounded-derived bridge.
+-/
+noncomputable def originalFourTaskProductDataOfStableInstanceFactsW1537
+    (facts : BoundedDerived.Metrizable.StableInstanceFacts) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStablePackage
+    (BoundedDerived.Metrizable.stablePackageOfInstanceFacts facts)
+
+theorem originalFourTaskProductDataOfStableInstanceFactsW1537_boundedDerivedInfinityCategory
+    (facts : BoundedDerived.Metrizable.StableInstanceFacts) :
+    (originalFourTaskProductDataOfStableInstanceFactsW1537
+      facts).boundedDerivedInfinityCategory =
+      BoundedDerived.Metrizable.stablePackageOfInstanceFacts facts :=
+  rfl
+
+theorem originalFourTaskProductDataOfStableInstanceFactsW1537_metrizableLCAExactCategory
+    (facts : BoundedDerived.Metrizable.StableInstanceFacts) :
+    (originalFourTaskProductDataOfStableInstanceFactsW1537
+      facts).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem originalFourTaskProductDataOfStableInstanceFactsW1537_yonedaExt
+    (facts : BoundedDerived.Metrizable.StableInstanceFacts) :
+    (originalFourTaskProductDataOfStableInstanceFactsW1537 facts).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
+/--
+Assemble product data from the W1539 closed-map direct-source stable bridge.
+-/
+noncomputable def originalFourTaskProductDataOfClosedMapDirectSourceW1539
+    (input : BoundedDerived.Metrizable.DirectSourceInput)
+    (globalClosedMapComponents :
+      BoundedDerived.Metrizable.ClosedMapComponentProvider)
+    (mappedCokernelClosedMapProvider :
+      BoundedDerived.Metrizable.ClosedMapCokernelProvider) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStablePackage
+    (BoundedDerived.Metrizable.closedMapStablePackageOfDirectSource input
+      globalClosedMapComponents mappedCokernelClosedMapProvider)
+
+/--
+Assemble product data from the W1539 closed-embedding direct-source stable
+bridge.
+-/
+noncomputable def originalFourTaskProductDataOfClosedEmbeddingDirectSourceW1539
+    (input : BoundedDerived.Metrizable.DirectSourceInput)
+    (globalClosedEmbeddingComponents :
+      BoundedDerived.Metrizable.ClosedEmbeddingComponentProvider)
+    (mappedCokernelClosedEmbeddingProvider :
+      BoundedDerived.Metrizable.ClosedEmbeddingCokernelProvider) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStablePackage
+    (BoundedDerived.Metrizable.closedEmbeddingStablePackageOfDirectSource input
+      globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider)
+
+theorem
+    originalFourTaskProductDataOfClosedMapDirectSourceW1539_boundedDerivedInfinityCategory
+    (input : BoundedDerived.Metrizable.DirectSourceInput)
+    (globalClosedMapComponents :
+      BoundedDerived.Metrizable.ClosedMapComponentProvider)
+    (mappedCokernelClosedMapProvider :
+      BoundedDerived.Metrizable.ClosedMapCokernelProvider) :
+    (originalFourTaskProductDataOfClosedMapDirectSourceW1539 input
+      globalClosedMapComponents
+      mappedCokernelClosedMapProvider).boundedDerivedInfinityCategory =
+      BoundedDerived.Metrizable.closedMapStablePackageOfDirectSource input
+        globalClosedMapComponents mappedCokernelClosedMapProvider :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingDirectSourceW1539_boundedDerivedInfinityCategory
+    (input : BoundedDerived.Metrizable.DirectSourceInput)
+    (globalClosedEmbeddingComponents :
+      BoundedDerived.Metrizable.ClosedEmbeddingComponentProvider)
+    (mappedCokernelClosedEmbeddingProvider :
+      BoundedDerived.Metrizable.ClosedEmbeddingCokernelProvider) :
+    (originalFourTaskProductDataOfClosedEmbeddingDirectSourceW1539 input
+      globalClosedEmbeddingComponents
+      mappedCokernelClosedEmbeddingProvider).boundedDerivedInfinityCategory =
+      BoundedDerived.Metrizable.closedEmbeddingStablePackageOfDirectSource input
+        globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider :=
+  rfl
+
+theorem originalFourTaskProductDataOfClosedMapDirectSourceW1539_yonedaExt
+    (input : BoundedDerived.Metrizable.DirectSourceInput)
+    (globalClosedMapComponents :
+      BoundedDerived.Metrizable.ClosedMapComponentProvider)
+    (mappedCokernelClosedMapProvider :
+      BoundedDerived.Metrizable.ClosedMapCokernelProvider) :
+    (originalFourTaskProductDataOfClosedMapDirectSourceW1539 input
+      globalClosedMapComponents mappedCokernelClosedMapProvider).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
+theorem originalFourTaskProductDataOfClosedEmbeddingDirectSourceW1539_yonedaExt
+    (input : BoundedDerived.Metrizable.DirectSourceInput)
+    (globalClosedEmbeddingComponents :
+      BoundedDerived.Metrizable.ClosedEmbeddingComponentProvider)
+    (mappedCokernelClosedEmbeddingProvider :
+      BoundedDerived.Metrizable.ClosedEmbeddingCokernelProvider) :
+    (originalFourTaskProductDataOfClosedEmbeddingDirectSourceW1539 input
+      globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
 
 /-- Assemble product data from the current canonical stable-instance boundary. -/
 noncomputable def originalFourTaskProductDataOfStableInstanceBoundary
