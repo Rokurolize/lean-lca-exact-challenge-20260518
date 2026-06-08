@@ -1,6 +1,7 @@
 import LeanLCAExactChallenge.BoundedDerived.Basic
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroExactInputsSelectedCochainComparisonProductRoute
+import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroSplitFieldsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundaryDirectLocalization
 import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundary
 import LeanLCAExactChallenge.Ext.Yoneda
@@ -535,6 +536,91 @@ theorem
     (data :
       Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
     (originalFourTaskProductDataOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
+      data).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
+/--
+Assemble product data from the W1616 closed-map split-field surface. W1616
+separates four W1615 bundled providers into their checked fields before feeding
+W1615.
+-/
+noncomputable def
+    originalFourTaskProductDataOfClosedMapSplitFieldsSelectedCochainComparisonW1616
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStableInstanceBoundary
+    (Dbounded.stableBoundaryInputsOfClosedMapSplitFieldsSelectedCochainComparisonW1616
+      data)
+
+/--
+Assemble product data from the W1616 closed-embedding split-field surface.
+W1616 separates four W1615 bundled providers into their checked fields before
+feeding W1615.
+-/
+noncomputable def
+    originalFourTaskProductDataOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStableInstanceBoundary
+    (Dbounded.stableBoundaryInputsOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
+      data)
+
+theorem
+    originalFourTaskProductDataOfClosedMapSplitFieldsSelectedCochainComparisonW1616_boundedDerivedInfinityCategory
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
+    (originalFourTaskProductDataOfClosedMapSplitFieldsSelectedCochainComparisonW1616
+      data).boundedDerivedInfinityCategory =
+      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
+        (Dbounded.stableBoundaryInputsOfClosedMapSplitFieldsSelectedCochainComparisonW1616
+          data) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616_boundedDerivedInfinityCategory
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
+    (originalFourTaskProductDataOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
+      data).boundedDerivedInfinityCategory =
+      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
+        (Dbounded.stableBoundaryInputsOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
+          data) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedMapSplitFieldsSelectedCochainComparisonW1616_metrizableLCAExactCategory
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
+    (originalFourTaskProductDataOfClosedMapSplitFieldsSelectedCochainComparisonW1616
+      data).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616_metrizableLCAExactCategory
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
+    (originalFourTaskProductDataOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
+      data).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem originalFourTaskProductDataOfClosedMapSplitFieldsSelectedCochainComparisonW1616_yonedaExt
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
+    (originalFourTaskProductDataOfClosedMapSplitFieldsSelectedCochainComparisonW1616
+      data).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616_yonedaExt
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
+    (originalFourTaskProductDataOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
       data).yonedaExt =
       fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
   rfl
