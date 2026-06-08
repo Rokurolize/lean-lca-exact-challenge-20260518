@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.BoundedDerived.Basic
+import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroExactInputsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundaryDirectLocalization
 import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundary
@@ -451,6 +452,91 @@ theorem
       Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
         (Dbounded.stableBoundaryInputsOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
           exactInputs) :=
+  rfl
+
+/--
+Assemble product data from the W1615 closed-map concrete-field surface. W1615
+unpacks the W735 exact-input branch into the concrete fields it carries before
+feeding W1614.
+-/
+noncomputable def
+    originalFourTaskProductDataOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStableInstanceBoundary
+    (Dbounded.stableBoundaryInputsOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
+      data)
+
+/--
+Assemble product data from the W1615 closed-embedding concrete-field surface.
+W1615 unpacks the W735 exact-input branch into the concrete fields it carries
+before feeding W1614.
+-/
+noncomputable def
+    originalFourTaskProductDataOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStableInstanceBoundary
+    (Dbounded.stableBoundaryInputsOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
+      data)
+
+theorem
+    originalFourTaskProductDataOfClosedMapConcreteFieldsSelectedCochainComparisonW1615_boundedDerivedInfinityCategory
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
+    (originalFourTaskProductDataOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
+      data).boundedDerivedInfinityCategory =
+      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
+        (Dbounded.stableBoundaryInputsOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
+          data) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615_boundedDerivedInfinityCategory
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
+    (originalFourTaskProductDataOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
+      data).boundedDerivedInfinityCategory =
+      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
+        (Dbounded.stableBoundaryInputsOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
+          data) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedMapConcreteFieldsSelectedCochainComparisonW1615_metrizableLCAExactCategory
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
+    (originalFourTaskProductDataOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
+      data).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615_metrizableLCAExactCategory
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
+    (originalFourTaskProductDataOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
+      data).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem originalFourTaskProductDataOfClosedMapConcreteFieldsSelectedCochainComparisonW1615_yonedaExt
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
+    (originalFourTaskProductDataOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
+      data).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615_yonedaExt
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
+    (originalFourTaskProductDataOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
+      data).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
   rfl
 
 end LeanLCAExactChallenge
