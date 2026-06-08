@@ -1,5 +1,5 @@
 import LeanLCAExactChallenge.BoundedDerived.Basic
-import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroTargetHomologyZeroComparisonProductRoute
+import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroExactInputsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundary
 import LeanLCAExactChallenge.Ext.Yoneda
 import LeanLCAExactChallenge.LCA.ExactCategory
@@ -181,6 +181,54 @@ theorem
     (originalFourTaskProductDataOfClosedEmbeddingTargetHomologyZeroComparisonW1609 data).boundedDerivedInfinityCategory =
       Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
         (Dbounded.stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroComparisonW1609 data) :=
+  rfl
+
+/--
+Assemble product data from the W1614 closed-map frontier. W1614 derives the
+selected-cochain/strict-realization side from one W735 exact-input branch.
+-/
+noncomputable def
+    originalFourTaskProductDataOfClosedMapExactInputsSelectedCochainComparisonW1614
+    (exactInputs :
+      Dbounded.MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStableInstanceBoundary
+    (Dbounded.stableBoundaryInputsOfClosedMapExactInputsSelectedCochainComparisonW1614
+      exactInputs)
+
+/--
+Assemble product data from the W1614 closed-embedding frontier. W1614 derives
+the selected-cochain/strict-realization side from one W735 exact-input branch.
+-/
+noncomputable def
+    originalFourTaskProductDataOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
+    (exactInputs :
+      Dbounded.MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStableInstanceBoundary
+    (Dbounded.stableBoundaryInputsOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
+      exactInputs)
+
+theorem
+    originalFourTaskProductDataOfClosedMapExactInputsSelectedCochainComparisonW1614_boundedDerivedInfinityCategory
+    (exactInputs :
+      Dbounded.MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    (originalFourTaskProductDataOfClosedMapExactInputsSelectedCochainComparisonW1614
+      exactInputs).boundedDerivedInfinityCategory =
+      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
+        (Dbounded.stableBoundaryInputsOfClosedMapExactInputsSelectedCochainComparisonW1614
+          exactInputs) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614_boundedDerivedInfinityCategory
+    (exactInputs :
+      Dbounded.MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    (originalFourTaskProductDataOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
+      exactInputs).boundedDerivedInfinityCategory =
+      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
+        (Dbounded.stableBoundaryInputsOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
+          exactInputs) :=
   rfl
 
 end LeanLCAExactChallenge
