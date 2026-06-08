@@ -107,6 +107,42 @@ noncomputable def closedEmbeddingStablePackageOfDirectSource
   Dbounded.closedEmbeddingW829DirectSourceStableInstancePackageW1537 input
     globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider
 
+noncomputable def closedMapStablePackageOfDirectLocalizationBoundary
+    (input : DirectSourceInput)
+    (globalClosedMapComponents : ClosedMapComponentProvider)
+    (mappedCokernelClosedMapProvider : ClosedMapCokernelProvider) :
+    StablePackage :=
+  Dbounded.closedMapBoundedDerivedInfinityCategoryOfW829DirectLocalizationBoundaryW1533
+    input globalClosedMapComponents mappedCokernelClosedMapProvider
+
+noncomputable def closedEmbeddingStablePackageOfDirectLocalizationBoundary
+    (input : DirectSourceInput)
+    (globalClosedEmbeddingComponents : ClosedEmbeddingComponentProvider)
+    (mappedCokernelClosedEmbeddingProvider : ClosedEmbeddingCokernelProvider) :
+    StablePackage :=
+  Dbounded.closedEmbeddingBoundedDerivedInfinityCategoryOfW829DirectLocalizationBoundaryW1533
+    input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider
+
+theorem closedMapStablePackageOfDirectLocalizationBoundary_eq_w1533
+    (input : DirectSourceInput)
+    (globalClosedMapComponents : ClosedMapComponentProvider)
+    (mappedCokernelClosedMapProvider : ClosedMapCokernelProvider) :
+    closedMapStablePackageOfDirectLocalizationBoundary input globalClosedMapComponents
+      mappedCokernelClosedMapProvider =
+        Dbounded.closedMapBoundedDerivedInfinityCategoryOfW829DirectLocalizationBoundaryW1533
+          input globalClosedMapComponents mappedCokernelClosedMapProvider :=
+  rfl
+
+theorem closedEmbeddingStablePackageOfDirectLocalizationBoundary_eq_w1533
+    (input : DirectSourceInput)
+    (globalClosedEmbeddingComponents : ClosedEmbeddingComponentProvider)
+    (mappedCokernelClosedEmbeddingProvider : ClosedEmbeddingCokernelProvider) :
+    closedEmbeddingStablePackageOfDirectLocalizationBoundary input
+      globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider =
+        Dbounded.closedEmbeddingBoundedDerivedInfinityCategoryOfW829DirectLocalizationBoundaryW1533
+          input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider :=
+  rfl
+
 theorem closedMapStablePackageOfDirectSource_eq_semanticAdapter
     (input : DirectSourceInput)
     (globalClosedMapComponents : ClosedMapComponentProvider)
