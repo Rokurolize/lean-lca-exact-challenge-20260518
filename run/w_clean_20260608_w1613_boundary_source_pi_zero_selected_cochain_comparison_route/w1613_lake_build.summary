@@ -1,0 +1,80 @@
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2147/2159] Replayed LeanLCAExactChallenge.Derived.BoundarySourcePiZeroTargetHomologyZeroComparisonProductRoute
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroTargetHomologyZeroComparisonProductRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2148/2159] Replayed LeanLCAExactChallenge.Derived.TargetHomologyZeroFiniteShapeStableRoute
+warning: LeanLCAExactChallenge/Derived/TargetHomologyZeroFiniteShapeStableRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2149/2159] Replayed LeanLCAExactChallenge.Derived.TargetHomologyZeroDirectLocalizationStableRoute
+warning: LeanLCAExactChallenge/Derived/TargetHomologyZeroDirectLocalizationStableRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2150/2159] Replayed LeanLCAExactChallenge.Derived.TargetHomologyZeroDirectSourceStableRoute
+warning: LeanLCAExactChallenge/Derived/TargetHomologyZeroDirectSourceStableRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2151/2159] Replayed LeanLCAExactChallenge.Derived.TargetExactAtDirectSourceStableRoute
+warning: LeanLCAExactChallenge/Derived/TargetExactAtDirectSourceStableRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2152/2159] Replayed LeanLCAExactChallenge.Derived.TargetIsoDirectSourceStableRoute
+warning: LeanLCAExactChallenge/Derived/TargetIsoDirectSourceStableRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2153/2159] Replayed LeanLCAExactChallenge.Derived.BoundarySourcePiZeroTargetIsoComparisonProductRoute
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroTargetIsoComparisonProductRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2154/2159] Replayed LeanLCAExactChallenge.Derived.IsoClosureDirectSourceStableRoute
+warning: LeanLCAExactChallenge/Derived/IsoClosureDirectSourceStableRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2155/2159] Replayed LeanLCAExactChallenge.Derived.BoundarySourcePiZeroIsoClosureComparisonProductRoute
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroIsoClosureComparisonProductRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2156/2159] Replayed LeanLCAExactChallenge.Derived.StrictRealizationDirectSourceStableRoute
+warning: LeanLCAExactChallenge/Derived/StrictRealizationDirectSourceStableRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2157/2159] Replayed LeanLCAExactChallenge.Derived.BoundarySourcePiZeroStrictRealizationComparisonProductRoute
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroStrictRealizationComparisonProductRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2158/2159] Replayed LeanLCAExactChallenge.Derived.ExactAcyclicSelectedCochainStrictificationRoute
+warning: LeanLCAExactChallenge/Derived/ExactAcyclicSelectedCochainStrictificationRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2159/2159] Built LeanLCAExactChallenge.Derived.BoundarySourcePiZeroSelectedCochainComparisonProductRoute (3.1s)
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroSelectedCochainComparisonProductRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+Build completed successfully (2159 jobs).
