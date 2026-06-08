@@ -180,6 +180,31 @@ noncomputable def
       data)
 
 /-!
+W1615 closed-map concrete fields as canonical direct-localization
+stable-instance boundary inputs through W1614.
+-/
+noncomputable def
+    directLocalizationBoundaryInputsOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
+    MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  directLocalizationBoundaryInputsOfClosedMapExactInputsSelectedCochainComparisonW1614
+    (closedMapExactInputsOfConcreteFieldsSelectedCochainComparisonW1615 data)
+
+/-!
+W1615 closed-embedding concrete fields as canonical direct-localization
+stable-instance boundary inputs through W1614.
+-/
+noncomputable def
+    directLocalizationBoundaryInputsOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
+    (data :
+      MetrizableClosedEmbeddingBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
+    MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  directLocalizationBoundaryInputsOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
+    (closedEmbeddingExactInputsOfConcreteFieldsSelectedCochainComparisonW1615
+      data)
+
+/-!
 W1615 closed-map accepted stable evidence through W1614.
 -/
 noncomputable def acceptedStableOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
@@ -198,6 +223,31 @@ noncomputable def
       MetrizableClosedEmbeddingBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
     AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
   acceptedStableOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
+    (closedEmbeddingExactInputsOfConcreteFieldsSelectedCochainComparisonW1615
+      data)
+
+/-!
+W1615 closed-map accepted stable evidence through the canonical
+direct-localization boundary.
+-/
+noncomputable def
+    acceptedStableOfClosedMapConcreteFieldsSelectedCochainDirectLocalizationBoundaryW1615
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapExactInputsSelectedCochainDirectLocalizationBoundaryW1614
+    (closedMapExactInputsOfConcreteFieldsSelectedCochainComparisonW1615 data)
+
+/-!
+W1615 closed-embedding accepted stable evidence through the canonical
+direct-localization boundary.
+-/
+noncomputable def
+    acceptedStableOfClosedEmbeddingConcreteFieldsSelectedCochainDirectLocalizationBoundaryW1615
+    (data :
+      MetrizableClosedEmbeddingBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingExactInputsSelectedCochainDirectLocalizationBoundaryW1614
     (closedEmbeddingExactInputsOfConcreteFieldsSelectedCochainComparisonW1615
       data)
 
@@ -223,6 +273,33 @@ noncomputable def
     BoundedDerivedInfinityCategory MetrizableLCA.{0}
       (Dbounded.infinityCategory MetrizableLCA.{0}) :=
   boundedDerivedOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
+    (closedEmbeddingExactInputsOfConcreteFieldsSelectedCochainComparisonW1615
+      data)
+
+/-!
+W1615 closed-map bounded derived package through the canonical
+direct-localization boundary.
+-/
+noncomputable def
+    boundedDerivedOfClosedMapConcreteFieldsSelectedCochainDirectLocalizationBoundaryW1615
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapExactInputsSelectedCochainDirectLocalizationBoundaryW1614
+    (closedMapExactInputsOfConcreteFieldsSelectedCochainComparisonW1615 data)
+
+/-!
+W1615 closed-embedding bounded derived package through the canonical
+direct-localization boundary.
+-/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingConcreteFieldsSelectedCochainDirectLocalizationBoundaryW1615
+    (data :
+      MetrizableClosedEmbeddingBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingExactInputsSelectedCochainDirectLocalizationBoundaryW1614
     (closedEmbeddingExactInputsOfConcreteFieldsSelectedCochainComparisonW1615
       data)
 
@@ -276,10 +353,16 @@ def
       "directFiniteShapeStableDataOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615",
       "stableBoundaryInputsOfClosedMapConcreteFieldsSelectedCochainComparisonW1615",
       "stableBoundaryInputsOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615",
+      "directLocalizationBoundaryInputsOfClosedMapConcreteFieldsSelectedCochainComparisonW1615",
+      "directLocalizationBoundaryInputsOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615",
       "acceptedStableOfClosedMapConcreteFieldsSelectedCochainComparisonW1615",
       "acceptedStableOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615",
+      "acceptedStableOfClosedMapConcreteFieldsSelectedCochainDirectLocalizationBoundaryW1615",
+      "acceptedStableOfClosedEmbeddingConcreteFieldsSelectedCochainDirectLocalizationBoundaryW1615",
       "boundedDerivedOfClosedMapConcreteFieldsSelectedCochainComparisonW1615",
       "boundedDerivedOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615",
+      "boundedDerivedOfClosedMapConcreteFieldsSelectedCochainDirectLocalizationBoundaryW1615",
+      "boundedDerivedOfClosedEmbeddingConcreteFieldsSelectedCochainDirectLocalizationBoundaryW1615",
       "boundarySourcePiZeroConcreteFieldsSelectedCochainComparisonInputNamesW1615",
       "boundarySourcePiZeroConcreteFieldsSelectedCochainComparisonInputNamesW1615_count"]
   exactInputAssemblyResult :=
@@ -287,10 +370,12 @@ def
       fields before feeding W1614"
   closedMapResult :=
     "proved: closed-map concrete branch fields feed W1614 without leaving the\
-      W735 wrapper as the top-level input"
+      W735 wrapper as the top-level input, including the canonical\
+      direct-localization stable-instance boundary"
   closedEmbeddingResult :=
     "proved: closed-embedding concrete branch fields feed W1614 without\
-      leaving the W735 wrapper as the top-level input"
+      leaving the W735 wrapper as the top-level input, including the canonical\
+      direct-localization stable-instance boundary"
   replacedInputs :=
     boundarySourcePiZeroExactInputsSelectedCochainComparisonInputNamesW1614
   remainingInputs :=
