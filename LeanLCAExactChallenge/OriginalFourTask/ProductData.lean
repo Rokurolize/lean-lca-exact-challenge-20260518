@@ -241,6 +241,88 @@ theorem
   rfl
 
 /--
+Assemble product data from the closed-map branch-localized direct-localization refinement of the
+stable instance boundary.
+-/
+noncomputable def
+    originalFourTaskProductDataOfClosedMapBranchLocalizedDirectLocalizationBoundary
+    (inputs :
+      Dbounded.MetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalizationInputs) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfDirectLocalizationBoundary
+    (Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_closedMapBranchLocalized
+      inputs)
+
+/--
+Assemble product data from the closed-embedding branch-localized direct-localization refinement
+of the stable instance boundary.
+-/
+noncomputable def
+    originalFourTaskProductDataOfClosedEmbeddingBranchLocalizedDirectLocalizationBoundary
+    (inputs :
+      Dbounded.MetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalizationInputs) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfDirectLocalizationBoundary
+    (Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_closedEmbeddingBranchLocalized
+      inputs)
+
+theorem
+    originalFourTaskProductDataOfClosedMapBranchLocalizedDirectLocalizationBoundary_boundedDerivedInfinityCategory
+    (inputs :
+      Dbounded.MetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalizationInputs) :
+    (originalFourTaskProductDataOfClosedMapBranchLocalizedDirectLocalizationBoundary
+      inputs).boundedDerivedInfinityCategory =
+      Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalization
+        inputs :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingBranchLocalizedDirectLocalizationBoundary_boundedDerivedInfinityCategory
+    (inputs :
+      Dbounded.MetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalizationInputs) :
+    (originalFourTaskProductDataOfClosedEmbeddingBranchLocalizedDirectLocalizationBoundary
+      inputs).boundedDerivedInfinityCategory =
+      Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalization
+        inputs :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedMapBranchLocalizedDirectLocalizationBoundary_metrizableLCAExactCategory
+    (inputs :
+      Dbounded.MetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalizationInputs) :
+    (originalFourTaskProductDataOfClosedMapBranchLocalizedDirectLocalizationBoundary
+      inputs).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingBranchLocalizedDirectLocalizationBoundary_metrizableLCAExactCategory
+    (inputs :
+      Dbounded.MetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalizationInputs) :
+    (originalFourTaskProductDataOfClosedEmbeddingBranchLocalizedDirectLocalizationBoundary
+      inputs).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedMapBranchLocalizedDirectLocalizationBoundary_yonedaExt
+    (inputs :
+      Dbounded.MetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalizationInputs) :
+    (originalFourTaskProductDataOfClosedMapBranchLocalizedDirectLocalizationBoundary
+      inputs).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingBranchLocalizedDirectLocalizationBoundary_yonedaExt
+    (inputs :
+      Dbounded.MetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalizationInputs) :
+    (originalFourTaskProductDataOfClosedEmbeddingBranchLocalizedDirectLocalizationBoundary
+      inputs).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
+/--
 Assemble product data from the W1608 closed-map frontier. The remaining inputs
 are the target ExactAt payload and one W735 branch.
 -/

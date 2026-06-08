@@ -4,6 +4,7 @@ import LeanLCAExactChallenge.Derived.TargetHomologyZeroDirectLocalizationStableR
 import LeanLCAExactChallenge.Derived.TargetExactAtLeftCalculusRoute
 import LeanLCAExactChallenge.Derived.TargetIsoLeftCalculusRoute
 import LeanLCAExactChallenge.Derived.IsoClosureLeftCalculusRoute
+import LeanLCAExactChallenge.Derived.BranchLocalizedExactInputsLeftCalculusRoute
 
 /-!
 Direct-localization refinement of the `Dbounded MetrizableLCA` stable-instance boundary.
@@ -591,6 +592,252 @@ theorem
   rfl
 
 /--
+Closed-map branch-localized exact-input direct-localization inputs for the canonical
+stable-instance boundary. W836 reads W721 from the W735 branch, leaving W651, WPP transfer, and
+W657 as the other explicit inputs.
+-/
+structure MetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalizationInputs :
+    Type 2 where
+  branchLocalizedLeftCalculusData :
+    Dbounded.MetrizableClosedMapBranchLocalizedExactInputsLeftCalculusDataW836
+  transferInputs :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/--
+Closed-embedding branch-localized exact-input direct-localization inputs for the canonical
+stable-instance boundary. W836 reads W721 from the W735 branch, leaving W651, WPP transfer, and
+W657 as the other explicit inputs.
+-/
+structure
+    MetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalizationInputs :
+    Type 2 where
+  branchLocalizedLeftCalculusData :
+    Dbounded.MetrizableClosedEmbeddingBranchLocalizedExactInputsLeftCalculusDataW836
+  transferInputs :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/--
+Build the iso-closure direct-localization boundary inputs from closed-map W836
+branch-localized data.
+-/
+noncomputable def
+    metrizableStableInstanceBoundaryIsoClosureInputs_of_closedMapBranchLocalized
+    (inputs :
+      Dbounded.MetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalizationInputs) :
+    Dbounded.MetrizableStableInstanceBoundaryIsoClosureDirectLocalizationInputs where
+  isoClosureLeftCalculusData :=
+    Dbounded.isoClosureLeftCalculusDataOfClosedMapBranchLocalizedW836
+      inputs.branchLocalizedLeftCalculusData
+  transferInputs := inputs.transferInputs
+  directLocalization := inputs.directLocalization
+
+/--
+Build the iso-closure direct-localization boundary inputs from closed-embedding W836
+branch-localized data.
+-/
+noncomputable def
+    metrizableStableInstanceBoundaryIsoClosureInputs_of_closedEmbeddingBranchLocalized
+    (inputs :
+      Dbounded.MetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalizationInputs) :
+    Dbounded.MetrizableStableInstanceBoundaryIsoClosureDirectLocalizationInputs where
+  isoClosureLeftCalculusData :=
+    Dbounded.isoClosureLeftCalculusDataOfClosedEmbeddingBranchLocalizedW836
+      inputs.branchLocalizedLeftCalculusData
+  transferInputs := inputs.transferInputs
+  directLocalization := inputs.directLocalization
+
+/--
+Build the direct-localization boundary inputs by deriving direct left calculus from closed-map
+W836 branch-localized data.
+-/
+noncomputable def
+    metrizableStableInstanceBoundaryDirectLocalizationInputs_of_closedMapBranchLocalized
+    (inputs :
+      Dbounded.MetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalizationInputs) :
+    Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_isoClosure
+    (Dbounded.metrizableStableInstanceBoundaryIsoClosureInputs_of_closedMapBranchLocalized
+      inputs)
+
+/--
+Build the direct-localization boundary inputs by deriving direct left calculus from
+closed-embedding W836 branch-localized data.
+-/
+noncomputable def
+    metrizableStableInstanceBoundaryDirectLocalizationInputs_of_closedEmbeddingBranchLocalized
+    (inputs :
+      Dbounded.MetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalizationInputs) :
+    Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_isoClosure
+    (Dbounded.metrizableStableInstanceBoundaryIsoClosureInputs_of_closedEmbeddingBranchLocalized
+      inputs)
+
+/--
+Bounded-derived infinity-category package from the closed-map branch-localized
+direct-localization refinement of the stable-instance boundary.
+-/
+noncomputable def
+    boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalization
+    (inputs :
+      Dbounded.MetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalizationInputs) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_closedMapBranchLocalized
+      inputs)
+
+/--
+Bounded-derived infinity-category package from the closed-embedding branch-localized
+direct-localization refinement of the stable-instance boundary.
+-/
+noncomputable def
+    boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalization
+    (inputs :
+      Dbounded.MetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalizationInputs) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_closedEmbeddingBranchLocalized
+      inputs)
+
+/--
+Accepted stable `Dbounded` package from the closed-map branch-localized direct-localization
+refinement of the canonical stable-instance boundary.
+-/
+noncomputable def
+    acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalization
+    (inputs :
+      Dbounded.MetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalizationInputs) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_closedMapBranchLocalized
+      inputs)
+
+/--
+Accepted stable `Dbounded` package from the closed-embedding branch-localized
+direct-localization refinement of the canonical stable-instance boundary.
+-/
+noncomputable def
+    acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalization
+    (inputs :
+      Dbounded.MetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalizationInputs) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_closedEmbeddingBranchLocalized
+      inputs)
+
+/--
+The closed-map branch-localized direct-localization refinement produces the ready
+four-projection stable certificate.
+-/
+theorem
+    stableCertificateOfMetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalization_ready
+    (inputs :
+      Dbounded.MetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalizationInputs) :
+    let localizedInputs :=
+      Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_closedMapBranchLocalized
+        inputs
+    letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+      localizedInputs.directLeftCalculus
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer
+        (Dbounded.metrizableWalkingParallelPairTransferStableSemanticInputsOfDirectLocalization
+          localizedInputs))).ready := by
+  exact
+    Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectLocalization_ready
+      (Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_closedMapBranchLocalized
+        inputs)
+
+/--
+The closed-embedding branch-localized direct-localization refinement produces the ready
+four-projection stable certificate.
+-/
+theorem
+    stableCertificateOfMetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalization_ready
+    (inputs :
+      Dbounded.MetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalizationInputs) :
+    let localizedInputs :=
+      Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_closedEmbeddingBranchLocalized
+        inputs
+    letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+      localizedInputs.directLeftCalculus
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer
+        (Dbounded.metrizableWalkingParallelPairTransferStableSemanticInputsOfDirectLocalization
+          localizedInputs))).ready := by
+  exact
+    Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectLocalization_ready
+      (Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_closedEmbeddingBranchLocalized
+        inputs)
+
+/--
+Source-facing input names for the branch-localized direct-localization stable-instance boundary.
+-/
+def metrizableStableInstanceBoundaryBranchLocalizedDirectLocalizationInputNames :
+    List String :=
+  Dbounded.branchLocalizedExactInputsLeftCalculusInputNamesW836 ++
+    ["MetrizableWalkingParallelPairFiniteShapeTransferInputs",
+      "MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657"]
+
+/-- The branch-localized direct-localization boundary has four source-facing input families. -/
+theorem
+    metrizableStableInstanceBoundaryBranchLocalizedDirectLocalizationInputNames_count :
+    Dbounded.metrizableStableInstanceBoundaryBranchLocalizedDirectLocalizationInputNames.length =
+      4 :=
+  rfl
+
+/-- Current checked branch-localized direct-localization boundary state. -/
+structure MetrizableStableInstanceBoundaryBranchLocalizedDirectLocalizationRouteState :
+    Type where
+  seed : String
+  declarations : List String
+  boundaryResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked branch-localized direct-localization boundary state. -/
+def currentMetrizableStableInstanceBoundaryBranchLocalizedDirectLocalizationRouteState :
+    Dbounded.MetrizableStableInstanceBoundaryBranchLocalizedDirectLocalizationRouteState where
+  seed := "metrizable-stable-instance-boundary-branch-localized-direct-localization"
+  declarations :=
+    ["MetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalizationInputs",
+      "MetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalizationInputs",
+      "metrizableStableInstanceBoundaryIsoClosureInputs_of_closedMapBranchLocalized",
+      "metrizableStableInstanceBoundaryIsoClosureInputs_of_closedEmbeddingBranchLocalized",
+      "metrizableStableInstanceBoundaryDirectLocalizationInputs_of_closedMapBranchLocalized",
+      "metrizableStableInstanceBoundaryDirectLocalizationInputs_of_closedEmbeddingBranchLocalized",
+      "boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalization",
+      "boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalization",
+      "acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalization",
+      "acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalization",
+      "stableCertificateOfMetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalization_ready",
+      "stableCertificateOfMetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalization_ready",
+      "metrizableStableInstanceBoundaryBranchLocalizedDirectLocalizationInputNames",
+      "metrizableStableInstanceBoundaryBranchLocalizedDirectLocalizationInputNames_count"]
+  boundaryResult :=
+    "proved: W836 branch-localized W735/W651 data derive the W834 iso-closure direct-" ++
+      "localization boundary while reading W721 from W735"
+  replacedInputs :=
+    ["W696 closed-range endpoint topology",
+      "separate W721 bounded homotopy localized right adjoint data"]
+  remainingInputs :=
+    Dbounded.metrizableStableInstanceBoundaryBranchLocalizedDirectLocalizationInputNames
+  productSuccessClaimed := false
+
+theorem
+    currentMetrizableStableInstanceBoundaryBranchLocalizedDirectLocalizationRouteState_productSuccess :
+    (let state :=
+        Dbounded.currentMetrizableStableInstanceBoundaryBranchLocalizedDirectLocalizationRouteState;
+      state.productSuccessClaimed) =
+      false :=
+  rfl
+
+/--
 Direct WPP limit and WPP-op colimit closure data refine the finite-shape transfer input in the
 direct-localization stable-instance boundary.
 -/
@@ -922,6 +1169,32 @@ section Checks
 #check Dbounded.metrizableStableInstanceBoundaryIsoClosureDirectLocalizationInputNames_count
 #check
   Dbounded.currentMetrizableStableInstanceBoundaryIsoClosureDirectLocalizationRouteState_productSuccess
+#check Dbounded.MetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalizationInputs
+#check
+  Dbounded.MetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalizationInputs
+#check Dbounded.metrizableStableInstanceBoundaryIsoClosureInputs_of_closedMapBranchLocalized
+#check
+  Dbounded.metrizableStableInstanceBoundaryIsoClosureInputs_of_closedEmbeddingBranchLocalized
+#check
+  Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_closedMapBranchLocalized
+#check
+  Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_closedEmbeddingBranchLocalized
+#check
+  Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalization
+#check
+  Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalization
+#check
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalization
+#check
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalization
+#check
+  Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryClosedMapBranchLocalizedDirectLocalization_ready
+#check
+  Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryClosedEmbeddingBranchLocalizedDirectLocalization_ready
+#check Dbounded.metrizableStableInstanceBoundaryBranchLocalizedDirectLocalizationInputNames
+#check Dbounded.metrizableStableInstanceBoundaryBranchLocalizedDirectLocalizationInputNames_count
+#check
+  Dbounded.currentMetrizableStableInstanceBoundaryBranchLocalizedDirectLocalizationRouteState_productSuccess
 #check Dbounded.MetrizableStableInstanceBoundaryDirectLimitOpClosureInputs
 #check Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directLimitOpClosure
 #check Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitOpClosure
