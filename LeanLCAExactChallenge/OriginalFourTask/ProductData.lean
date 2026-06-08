@@ -54,6 +54,8 @@ structure OriginalFourTaskProductData : Type 2 where
   yonedaExt : MetrizableLCA.{0} → MetrizableLCA.{0} → ℕ → Type 1
   yonedaExt_eq :
     yonedaExt = fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n
+  yonedaExtAddCommGroup :
+    ∀ X Y : MetrizableLCA.{0}, ∀ n : ℕ, AddCommGroup (yonedaExt X Y n)
   yonedaExtZeroEquivHom :
     ∀ X Y : MetrizableLCA.{0}, yonedaExt X Y 0 ≃ (X ⟶ Y)
   boundedDerivedInfinityCategory : BoundedDerived.Metrizable.StablePackage
@@ -76,6 +78,7 @@ noncomputable def originalFourTaskProductDataOfStablePackage
     MetrizableLCA.forgetToAddCommGrpCat_cokernelCoforkOfQuillenConflation hS
   yonedaExt := fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n
   yonedaExt_eq := rfl
+  yonedaExtAddCommGroup := fun _ _ _ => inferInstance
   yonedaExtZeroEquivHom := fun X Y =>
     YonedaExt.zero_equiv_hom (C := MetrizableLCA.{0}) (X := X) (Y := Y)
   boundedDerivedInfinityCategory := P
@@ -117,6 +120,11 @@ theorem originalFourTaskProductDataOfStablePackage_yonedaExt
     (originalFourTaskProductDataOfStablePackage P).yonedaExt =
       fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
   rfl
+
+noncomputable def originalFourTaskProductDataOfStablePackage_yonedaExtAddCommGroup
+    (P : BoundedDerived.Metrizable.StablePackage) (X Y : MetrizableLCA.{0}) (n : ℕ) :
+    AddCommGroup ((originalFourTaskProductDataOfStablePackage P).yonedaExt X Y n) :=
+  (originalFourTaskProductDataOfStablePackage P).yonedaExtAddCommGroup X Y n
 
 /-- Assemble product data from the current canonical stable-instance boundary. -/
 noncomputable def originalFourTaskProductDataOfStableInstanceBoundary
