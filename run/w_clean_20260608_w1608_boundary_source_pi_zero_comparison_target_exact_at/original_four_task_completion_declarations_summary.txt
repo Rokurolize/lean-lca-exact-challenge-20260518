@@ -1,0 +1,4 @@
+command	lake env lean audit/OriginalFourTaskCompletionDeclarations.lean
+exit_code	0
+line_count	53877
+positive_witness_matches	0

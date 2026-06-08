@@ -1,0 +1,33 @@
+import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroComparisonBijectivityTargetExactAtProductRoute
+
+open LeanLCAExactChallenge
+open LeanLCAExactChallenge.Dbounded
+
+#check MetrizableClosedMapBoundarySourcePiZeroComparisonTargetExactAtDataW1608
+#check MetrizableClosedEmbeddingBoundarySourcePiZeroComparisonTargetExactAtDataW1608
+#check closedMapTargetExactAtDataOfComparisonBijectivityW1608
+#check closedEmbeddingTargetExactAtDataOfComparisonBijectivityW1608
+#check productEvidenceOfClosedMapComparisonTargetExactAtW1608
+#check productEvidenceOfClosedEmbeddingComparisonTargetExactAtW1608
+#check directFiniteShapeStableDataOfClosedMapComparisonW1608
+#check directFiniteShapeStableDataOfClosedEmbeddingComparisonW1608
+#check stableBoundaryInputsOfClosedMapComparisonW1608
+#check stableBoundaryInputsOfClosedEmbeddingComparisonW1608
+#check acceptedStableOfClosedMapComparisonTargetExactAtW1608
+#check acceptedStableOfClosedEmbeddingComparisonTargetExactAtW1608
+#check boundedDerivedOfClosedMapComparisonTargetExactAtW1608
+#check boundedDerivedOfClosedEmbeddingComparisonTargetExactAtW1608
+#check boundarySourcePiZeroComparisonTargetExactAtInputNamesW1608_count
+#check currentW1608BoundarySourcePiZeroComparisonRoute_productSuccess
+
+example :
+    boundarySourcePiZeroComparisonTargetExactAtInputNamesW1608.length =
+      2 :=
+  boundarySourcePiZeroComparisonTargetExactAtInputNamesW1608_count
+
+example :
+    (have state :=
+      currentMetrizableBoundarySourcePiZeroComparisonRouteStateW1608;
+      state.productSuccessClaimed) =
+      false :=
+  currentW1608BoundarySourcePiZeroComparisonRoute_productSuccess
