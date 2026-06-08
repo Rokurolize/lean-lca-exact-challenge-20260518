@@ -1,0 +1,42 @@
+command	lake build LeanLCAExactChallenge.Derived.BoundarySourcePiZeroExactInputsSelectedCochainComparisonProductRoute
+exit_code	0
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2159/2164] Replayed LeanLCAExactChallenge.Derived.BoundarySourcePiZeroSelectedCochainComparisonProductRoute
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroSelectedCochainComparisonProductRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2160/2164] Replayed LeanLCAExactChallenge.Derived.ExactAcyclicSelectedCochainClosed2Route
+warning: LeanLCAExactChallenge/Derived/ExactAcyclicSelectedCochainClosed2Route.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2161/2164] Replayed LeanLCAExactChallenge.Derived.ExactAcyclicSelectedCochainExactInputsRoute
+warning: LeanLCAExactChallenge/Derived/ExactAcyclicSelectedCochainExactInputsRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2162/2164] Replayed LeanLCAExactChallenge.Derived.ExactInputsSelectedCochainDirectSourceStableRoute
+warning: LeanLCAExactChallenge/Derived/ExactInputsSelectedCochainDirectSourceStableRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2163/2164] Replayed LeanLCAExactChallenge.Derived.ExactInputsComparisonSelectedCochainStableRoute
+warning: LeanLCAExactChallenge/Derived/ExactInputsComparisonSelectedCochainStableRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2164/2164] Built LeanLCAExactChallenge.Derived.BoundarySourcePiZeroExactInputsSelectedCochainComparisonProductRoute (2.0s)
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroExactInputsSelectedCochainComparisonProductRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+Build completed successfully (2164 jobs).
