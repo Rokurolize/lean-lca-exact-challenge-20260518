@@ -1,5 +1,6 @@
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroDirectLocalizationStableRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroW664SourceTriangulationProductRoute
+import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundaryDirectLocalization
 
 /-!
 W842 derives the W841 direct-source and direct-localization stable fields from
@@ -104,6 +105,64 @@ theorem directBoundedLeftCalculusOfClosedEmbeddingTargetHomologyZeroDirectSource
   directBoundedLeftCalculusOfClosedEmbeddingTargetHomologyZeroDirectLocalizationW841
     (closedEmbeddingDirectLocalizationStableDataOfTargetHomologyZeroW842 data)
 
+/--
+W842 closed-map data as the canonical direct-localization stable-instance
+boundary inputs.
+-/
+noncomputable def
+    closedMapStableInstanceBoundaryDirectLocalizationInputsOfTargetHomologyZeroW842
+    (data :
+      MetrizableClosedMapTargetHomologyZeroStrictRealizationLeftCalculusDataW839) :
+    MetrizableStableInstanceBoundaryDirectLocalizationInputs where
+  transferInputs :=
+    (closedMapDirectSourceOfTargetHomologyZeroW842 data).finiteShapeInputs
+  directLeftCalculus :=
+    directBoundedLeftCalculusOfClosedMapTargetHomologyZeroDirectSourceW842 data
+  directLocalization :=
+    closedMapDirectLocalizationOfTargetHomologyZeroW842 data
+
+/--
+W842 closed-embedding data as the canonical direct-localization stable-instance
+boundary inputs.
+-/
+noncomputable def
+    closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsOfTargetHomologyZeroW842
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroStrictRealizationLeftCalculusDataW839) :
+    MetrizableStableInstanceBoundaryDirectLocalizationInputs where
+  transferInputs :=
+    (closedEmbeddingDirectSourceOfTargetHomologyZeroW842 data).finiteShapeInputs
+  directLeftCalculus :=
+    directBoundedLeftCalculusOfClosedEmbeddingTargetHomologyZeroDirectSourceW842
+      data
+  directLocalization :=
+    closedEmbeddingDirectLocalizationOfTargetHomologyZeroW842 data
+
+/-- W842 closed-map bounded derived package through the canonical direct-localization boundary. -/
+noncomputable def
+    boundedDerivedInfinityCategoryOfClosedMapTargetHomologyZeroDirectLocalizationBoundaryW842
+    (data :
+      MetrizableClosedMapTargetHomologyZeroStrictRealizationLeftCalculusDataW839) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (closedMapStableInstanceBoundaryDirectLocalizationInputsOfTargetHomologyZeroW842
+      data)
+
+/--
+W842 closed-embedding bounded derived package through the canonical
+direct-localization boundary.
+-/
+noncomputable def
+    boundedDerivedInfinityCategoryOfClosedEmbeddingTargetHomologyZeroDirectLocalizationBoundaryW842
+    (data :
+      MetrizableClosedEmbeddingTargetHomologyZeroStrictRealizationLeftCalculusDataW839) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsOfTargetHomologyZeroW842
+      data)
+
 /-- W842 closed-map route derives all stable fields from W839 data. -/
 noncomputable def remainingStableFieldsOfClosedMapTargetHomologyZeroDirectSourceW842
     (data :
@@ -192,6 +251,10 @@ def currentMetrizableTargetHomologyZeroDirectSourceStableRouteStateW842 :
       "closedEmbeddingDirectLocalizationStableDataOfTargetHomologyZeroW842",
       "directBoundedLeftCalculusOfClosedMapTargetHomologyZeroDirectSourceW842",
       "directBoundedLeftCalculusOfClosedEmbeddingTargetHomologyZeroDirectSourceW842",
+      "closedMapStableInstanceBoundaryDirectLocalizationInputsOfTargetHomologyZeroW842",
+      "closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsOfTargetHomologyZeroW842",
+      "boundedDerivedInfinityCategoryOfClosedMapTargetHomologyZeroDirectLocalizationBoundaryW842",
+      "boundedDerivedInfinityCategoryOfClosedEmbeddingTargetHomologyZeroDirectLocalizationBoundaryW842",
       "remainingStableFieldsOfClosedMapTargetHomologyZeroDirectSourceW842",
       "remainingStableFieldsOfClosedEmbeddingTargetHomologyZeroDirectSourceW842",
       "boundedDerivedInfinityCategoryOfClosedMapTargetHomologyZeroDirectSourceW842",
@@ -205,10 +268,13 @@ def currentMetrizableTargetHomologyZeroDirectSourceStableRouteStateW842 :
   directLocalizationResult :=
     "proved: W839 data feed W800/W773 and derive W657 direct-localization data"
   stablePackageResult :=
-    "proved: W842 assembles the W841 stable package from W839 data alone"
+    "proved: W842 assembles the W841 stable package and the canonical\
+      direct-localization boundary package from W839 data alone"
   derivedInputs :=
     ["W653 direct finite-shape source data from W839 data",
       "W657 direct-localization triangulated source data from W839 data",
+      "canonical MetrizableStableInstanceBoundaryDirectLocalizationInputs from\
+        W653, W657, and W839 direct left calculus",
       "finite-limit, finite-colimit, pretriangulated, and triangulated fields\
         through W841"]
   remainingInputs :=

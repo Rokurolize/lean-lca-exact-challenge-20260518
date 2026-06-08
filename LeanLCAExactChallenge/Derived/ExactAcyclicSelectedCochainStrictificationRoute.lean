@@ -223,6 +223,51 @@ theorem directBoundedLeftCalculusOfClosedEmbeddingSelectedCochainW847
   directBoundedLeftCalculusOfClosedEmbeddingStrictDirectSourceW846
     (closedEmbeddingStrictRealizationDataOfSelectedCochainW847 data)
 
+/--
+W847 closed-map selected-cochain data as canonical direct-localization
+stable-instance boundary inputs.
+-/
+noncomputable def closedMapStableInstanceBoundaryDirectLocalizationInputsOfSelectedCochainW847
+    (data :
+      MetrizableClosedMapExactAcyclicSelectedCochainDirectSourceStableRouteDataW847) :
+    MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  closedMapStableInstanceBoundaryDirectLocalizationInputsOfTargetHomologyZeroW842
+    (closedMapTargetHomologyZeroDataOfSelectedCochainW847 data)
+
+/--
+W847 closed-embedding selected-cochain data as canonical direct-localization
+stable-instance boundary inputs.
+-/
+noncomputable def
+    closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsOfSelectedCochainW847
+    (data :
+      MetrizableClosedEmbeddingExactAcyclicSelectedCochainDirectSourceStableRouteDataW847) :
+    MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsOfTargetHomologyZeroW842
+    (closedEmbeddingTargetHomologyZeroDataOfSelectedCochainW847 data)
+
+/-- W847 closed-map package through the canonical direct-localization boundary. -/
+noncomputable def
+    boundedDerivedInfinityCategoryOfClosedMapSelectedCochainDirectLocalizationBoundaryW847
+    (data :
+      MetrizableClosedMapExactAcyclicSelectedCochainDirectSourceStableRouteDataW847) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (closedMapStableInstanceBoundaryDirectLocalizationInputsOfSelectedCochainW847
+      data)
+
+/-- W847 closed-embedding package through the canonical direct-localization boundary. -/
+noncomputable def
+    boundedDerivedInfinityCategoryOfClosedEmbeddingSelectedCochainDirectLocalizationBoundaryW847
+    (data :
+      MetrizableClosedEmbeddingExactAcyclicSelectedCochainDirectSourceStableRouteDataW847) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsOfSelectedCochainW847
+      data)
+
 /-- W847 closed-map route derives all stable fields through W846. -/
 noncomputable def remainingStableFieldsOfClosedMapSelectedCochainW847
     (data :
@@ -326,6 +371,10 @@ def currentMetrizableSelectedCochainDirectSourceStableRouteStateW847 :
       "closedEmbeddingTargetHomologyZeroDataOfSelectedCochainW847",
       "directBoundedLeftCalculusOfClosedMapSelectedCochainW847",
       "directBoundedLeftCalculusOfClosedEmbeddingSelectedCochainW847",
+      "closedMapStableInstanceBoundaryDirectLocalizationInputsOfSelectedCochainW847",
+      "closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsOfSelectedCochainW847",
+      "boundedDerivedInfinityCategoryOfClosedMapSelectedCochainDirectLocalizationBoundaryW847",
+      "boundedDerivedInfinityCategoryOfClosedEmbeddingSelectedCochainDirectLocalizationBoundaryW847",
       "remainingStableFieldsOfClosedMapSelectedCochainW847",
       "remainingStableFieldsOfClosedEmbeddingSelectedCochainW847",
       "boundedDerivedInfinityCategoryOfClosedMapSelectedCochainW847",
@@ -344,14 +393,18 @@ def currentMetrizableSelectedCochainDirectSourceStableRouteStateW847 :
     "proved: W847 preserves W846 direct bounded left calculus through the\
       selected-cochain conversion"
   stablePackageResult :=
-    "proved: W847 assembles the W846 stable package from selected-cochain strictification data"
+    "proved: W847 assembles the W846 stable package and canonical\
+      direct-localization boundary package from selected-cochain\
+      strictification data"
   derivedInputs :=
     ["W783 exact-acyclic homotopy-object strict realization data from W847",
       "W651 exact-acyclic iso-closure strict realization data through W846",
       "W784 target-isomorphism realization data through W846/W845",
       "W790 target homology-zero realization data through W846/W845",
       "finite-limit, finite-colimit, pretriangulated, and triangulated fields\
-        through W846/W842"]
+        through W846/W842",
+      "canonical direct-localization stable-instance boundary inputs through\
+        W842"]
   remainingInputs :=
     ["construct W735 closed-map or closed-embedding exact inputs, including W721\
         localized-right-adjoint payload and W722 source-triangulation payload",

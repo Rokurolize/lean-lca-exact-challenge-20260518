@@ -69,6 +69,66 @@ theorem directBoundedLeftCalculusOfClosedEmbeddingExactInputsSelectedCochainW850
       comparisonIso exactInputs)
 
 /--
+W850 closed-map exact inputs as canonical direct-localization stable-instance
+boundary inputs.
+-/
+noncomputable def
+    closedMapStableInstanceBoundaryDirectLocalizationInputsOfExactInputsSelectedCochainW850
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (exactInputs :
+      MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  closedMapStableInstanceBoundaryDirectLocalizationInputsOfSelectedCochainW847
+    (closedMapSelectedCochainDirectSourceDataOfExactInputsW850
+      comparisonIso exactInputs)
+
+/--
+W850 closed-embedding exact inputs as canonical direct-localization
+stable-instance boundary inputs.
+-/
+noncomputable def
+    closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsOfExactInputsSelectedCochainW850
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (exactInputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsOfSelectedCochainW847
+    (closedEmbeddingSelectedCochainDirectSourceDataOfExactInputsW850
+      comparisonIso exactInputs)
+
+/-- W850 closed-map package through the canonical direct-localization boundary. -/
+noncomputable def
+    boundedDerivedInfinityCategoryOfClosedMapExactInputsSelectedCochainDirectLocalizationBoundaryW850
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (exactInputs :
+      MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (closedMapStableInstanceBoundaryDirectLocalizationInputsOfExactInputsSelectedCochainW850
+      comparisonIso exactInputs)
+
+/-- W850 closed-embedding package through the canonical direct-localization boundary. -/
+noncomputable def
+    boundedDerivedInfinityCategoryOfClosedEmbeddingExactInputsSelectedCochainDirectLocalizationBoundaryW850
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (exactInputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsOfExactInputsSelectedCochainW850
+      comparisonIso exactInputs)
+
+/--
 W850 closed-map bounded derived infinity-category package from exact inputs
 plus comparison data.
 -/
@@ -130,6 +190,10 @@ def currentMetrizableExactInputsSelectedCochainDirectSourceStableRouteStateW850 
       "Dbounded.closedEmbeddingSelectedCochainDirectSourceDataOfExactInputsW850",
       "Dbounded.directBoundedLeftCalculusOfClosedMapExactInputsSelectedCochainW850",
       "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingExactInputsSelectedCochainW850",
+      "Dbounded.closedMapStableInstanceBoundaryDirectLocalizationInputsOfExactInputsSelectedCochainW850",
+      "Dbounded.closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsOfExactInputsSelectedCochainW850",
+      "Dbounded.boundedDerivedInfinityCategoryOfClosedMapExactInputsSelectedCochainDirectLocalizationBoundaryW850",
+      "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingExactInputsSelectedCochainDirectLocalizationBoundaryW850",
       "Dbounded.boundedDerivedInfinityCategoryOfClosedMapExactInputsSelectedCochainW850",
       "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingExactInputsSelectedCochainW850",
       "Dbounded.exactInputsSelectedCochainDirectSourceStableRouteInputNamesW850",
@@ -142,7 +206,8 @@ def currentMetrizableExactInputsSelectedCochainDirectSourceStableRouteStateW850 
       both exact-input branches"
   stablePackageResult :=
     "proved: the assembled W847 data supply the existing bounded derived\
-      infinity-category package for both exact-input branches"
+      infinity-category package and canonical direct-localization boundary\
+      package for both exact-input branches"
   remainingInputs :=
     ["construct the universal left-right comparison isomorphism for arbitrary\
         MetrizableLCA short complexes",

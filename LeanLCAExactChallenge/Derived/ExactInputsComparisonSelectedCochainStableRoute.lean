@@ -56,6 +56,54 @@ theorem directBoundedLeftCalculusOfClosedEmbeddingComparisonSelectedCochainW851
     universalLeftRightComparisonIso_of_comparisonBijectivityW831
     exactInputs
 
+/--
+W851 closed-map exact inputs as canonical direct-localization stable-instance
+boundary inputs.
+-/
+noncomputable def
+    closedMapStableInstanceBoundaryDirectLocalizationInputsOfComparisonSelectedCochainW851
+    (exactInputs :
+      MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  closedMapStableInstanceBoundaryDirectLocalizationInputsOfExactInputsSelectedCochainW850
+    universalLeftRightComparisonIso_of_comparisonBijectivityW831
+    exactInputs
+
+/--
+W851 closed-embedding exact inputs as canonical direct-localization
+stable-instance boundary inputs.
+-/
+noncomputable def
+    closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsOfComparisonSelectedCochainW851
+    (exactInputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsOfExactInputsSelectedCochainW850
+    universalLeftRightComparisonIso_of_comparisonBijectivityW831
+    exactInputs
+
+/-- W851 closed-map package through the canonical direct-localization boundary. -/
+noncomputable def
+    boundedDerivedInfinityCategoryOfClosedMapComparisonSelectedCochainDirectLocalizationBoundaryW851
+    (exactInputs :
+      MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (closedMapStableInstanceBoundaryDirectLocalizationInputsOfComparisonSelectedCochainW851
+      exactInputs)
+
+/-- W851 closed-embedding package through the canonical direct-localization boundary. -/
+noncomputable def
+    boundedDerivedInfinityCategoryOfClosedEmbeddingComparisonSelectedCochainDirectLocalizationBoundaryW851
+    (exactInputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsOfComparisonSelectedCochainW851
+      exactInputs)
+
 /-- W851 closed-map bounded derived infinity-category package from one W735 branch. -/
 noncomputable def boundedDerivedInfinityCategoryOfClosedMapComparisonSelectedCochainW851
     (exactInputs :
@@ -108,6 +156,10 @@ def currentMetrizableComparisonSelectedCochainStableRouteStateW851 :
       "Dbounded.closedEmbeddingSelectedCochainDirectSourceDataOfComparisonW851",
       "Dbounded.directBoundedLeftCalculusOfClosedMapComparisonSelectedCochainW851",
       "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingComparisonSelectedCochainW851",
+      "Dbounded.closedMapStableInstanceBoundaryDirectLocalizationInputsOfComparisonSelectedCochainW851",
+      "Dbounded.closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsOfComparisonSelectedCochainW851",
+      "Dbounded.boundedDerivedInfinityCategoryOfClosedMapComparisonSelectedCochainDirectLocalizationBoundaryW851",
+      "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingComparisonSelectedCochainDirectLocalizationBoundaryW851",
       "Dbounded.boundedDerivedInfinityCategoryOfClosedMapComparisonSelectedCochainW851",
       "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingComparisonSelectedCochainW851",
       "Dbounded.comparisonSelectedCochainStableRouteInputNamesW851",
@@ -122,7 +174,8 @@ def currentMetrizableComparisonSelectedCochainStableRouteStateW851 :
       for both branch shapes"
   stablePackageResult :=
     "proved: one W735 exact-input branch supplies the existing bounded derived\
-      infinity-category package for both branch shapes"
+      infinity-category package and canonical direct-localization boundary\
+      package for both branch shapes"
   remainingInputs :=
     ["construct concrete values for one W735 exact-input branch",
       "construct the final original four-task witness and review packet"]

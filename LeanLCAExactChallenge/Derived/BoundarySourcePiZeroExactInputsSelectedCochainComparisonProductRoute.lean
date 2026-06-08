@@ -105,6 +105,30 @@ noncomputable def
     (closedEmbeddingSelectedCochainComparisonDataOfExactInputsW1614 exactInputs)
 
 /-!
+W1614 closed-map exact inputs as canonical direct-localization stable-instance
+boundary inputs.
+-/
+noncomputable def
+    directLocalizationBoundaryInputsOfClosedMapExactInputsSelectedCochainComparisonW1614
+    (exactInputs :
+      MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  closedMapStableInstanceBoundaryDirectLocalizationInputsOfComparisonSelectedCochainW851
+    exactInputs
+
+/-!
+W1614 closed-embedding exact inputs as canonical direct-localization
+stable-instance boundary inputs.
+-/
+noncomputable def
+    directLocalizationBoundaryInputsOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
+    (exactInputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsOfComparisonSelectedCochainW851
+    exactInputs
+
+/-!
 W1614 closed-map accepted stable evidence through W1613.
 -/
 noncomputable def
@@ -125,6 +149,32 @@ noncomputable def
     AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
   acceptedStableOfClosedEmbeddingSelectedCochainComparisonW1613
     (closedEmbeddingSelectedCochainComparisonDataOfExactInputsW1614 exactInputs)
+
+/-!
+W1614 closed-map accepted stable evidence through the canonical
+direct-localization boundary.
+-/
+noncomputable def
+    acceptedStableOfClosedMapExactInputsSelectedCochainDirectLocalizationBoundaryW1614
+    (exactInputs :
+      MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (directLocalizationBoundaryInputsOfClosedMapExactInputsSelectedCochainComparisonW1614
+      exactInputs)
+
+/-!
+W1614 closed-embedding accepted stable evidence through the canonical
+direct-localization boundary.
+-/
+noncomputable def
+    acceptedStableOfClosedEmbeddingExactInputsSelectedCochainDirectLocalizationBoundaryW1614
+    (exactInputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (directLocalizationBoundaryInputsOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
+      exactInputs)
 
 /-!
 W1614 closed-map bounded derived package through W1613.
@@ -149,6 +199,34 @@ noncomputable def
       (Dbounded.infinityCategory MetrizableLCA.{0}) :=
   boundedDerivedOfClosedEmbeddingSelectedCochainComparisonW1613
     (closedEmbeddingSelectedCochainComparisonDataOfExactInputsW1614 exactInputs)
+
+/-!
+W1614 closed-map bounded derived package through the canonical
+direct-localization boundary.
+-/
+noncomputable def
+    boundedDerivedOfClosedMapExactInputsSelectedCochainDirectLocalizationBoundaryW1614
+    (exactInputs :
+      MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (directLocalizationBoundaryInputsOfClosedMapExactInputsSelectedCochainComparisonW1614
+      exactInputs)
+
+/-!
+W1614 closed-embedding bounded derived package through the canonical
+direct-localization boundary.
+-/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingExactInputsSelectedCochainDirectLocalizationBoundaryW1614
+    (exactInputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (directLocalizationBoundaryInputsOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
+      exactInputs)
 
 /-!
 Top-level input names for the W1614 exact-input selected-cochain comparison
@@ -199,10 +277,16 @@ def
       "directFiniteShapeStableDataOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614",
       "stableBoundaryInputsOfClosedMapExactInputsSelectedCochainComparisonW1614",
       "stableBoundaryInputsOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614",
+      "directLocalizationBoundaryInputsOfClosedMapExactInputsSelectedCochainComparisonW1614",
+      "directLocalizationBoundaryInputsOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614",
       "acceptedStableOfClosedMapExactInputsSelectedCochainComparisonW1614",
       "acceptedStableOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614",
+      "acceptedStableOfClosedMapExactInputsSelectedCochainDirectLocalizationBoundaryW1614",
+      "acceptedStableOfClosedEmbeddingExactInputsSelectedCochainDirectLocalizationBoundaryW1614",
       "boundedDerivedOfClosedMapExactInputsSelectedCochainComparisonW1614",
       "boundedDerivedOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614",
+      "boundedDerivedOfClosedMapExactInputsSelectedCochainDirectLocalizationBoundaryW1614",
+      "boundedDerivedOfClosedEmbeddingExactInputsSelectedCochainDirectLocalizationBoundaryW1614",
       "boundarySourcePiZeroExactInputsSelectedCochainComparisonInputNamesW1614",
       "boundarySourcePiZeroExactInputsSelectedCochainComparisonInputNamesW1614_count"]
   selectedCochainResult :=
@@ -210,10 +294,12 @@ def
       selected-cochain branch data"
   closedMapResult :=
     "proved: one closed-map W735 exact-input branch feeds W1613 without a\
-      separate W847 selected-cochain strictification field"
+      separate W847 selected-cochain strictification field and also supplies\
+      the canonical direct-localization stable-instance boundary"
   closedEmbeddingResult :=
     "proved: one closed-embedding W735 exact-input branch feeds W1613 without\
-      a separate W847 selected-cochain strictification field"
+      a separate W847 selected-cochain strictification field and also supplies\
+      the canonical direct-localization stable-instance boundary"
   replacedInputs :=
     ["separate W847 exact-acyclic selected-cochain strictification theorem"]
   remainingInputs :=
