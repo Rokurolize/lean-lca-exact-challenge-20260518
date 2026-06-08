@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.BoundedDerived.Basic
+import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroTargetHomologyZeroComparisonProductRoute
 import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundary
 import LeanLCAExactChallenge.Ext.Yoneda
 import LeanLCAExactChallenge.LCA.ExactCategory
@@ -97,6 +98,89 @@ theorem originalFourTaskProductDataOfStableInstanceBoundary_yonedaExt
     (inputs : Dbounded.MetrizableStableInstanceBoundaryInputs) :
     (originalFourTaskProductDataOfStableInstanceBoundary inputs).yonedaExt =
       fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
+/--
+Assemble product data from the W1608 closed-map frontier. The remaining inputs
+are the target ExactAt payload and one W735 branch.
+-/
+noncomputable def originalFourTaskProductDataOfClosedMapComparisonTargetExactAtW1608
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroComparisonTargetExactAtDataW1608) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStableInstanceBoundary
+    (Dbounded.stableBoundaryInputsOfClosedMapComparisonW1608 data)
+
+/--
+Assemble product data from the W1608 closed-embedding frontier. The remaining
+inputs are the target ExactAt payload and one W735 branch.
+-/
+noncomputable def
+    originalFourTaskProductDataOfClosedEmbeddingComparisonTargetExactAtW1608
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroComparisonTargetExactAtDataW1608) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStableInstanceBoundary
+    (Dbounded.stableBoundaryInputsOfClosedEmbeddingComparisonW1608 data)
+
+theorem
+    originalFourTaskProductDataOfClosedMapComparisonTargetExactAtW1608_boundedDerivedInfinityCategory
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroComparisonTargetExactAtDataW1608) :
+    (originalFourTaskProductDataOfClosedMapComparisonTargetExactAtW1608 data).boundedDerivedInfinityCategory =
+      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
+        (Dbounded.stableBoundaryInputsOfClosedMapComparisonW1608 data) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingComparisonTargetExactAtW1608_boundedDerivedInfinityCategory
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroComparisonTargetExactAtDataW1608) :
+    (originalFourTaskProductDataOfClosedEmbeddingComparisonTargetExactAtW1608 data).boundedDerivedInfinityCategory =
+      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
+        (Dbounded.stableBoundaryInputsOfClosedEmbeddingComparisonW1608 data) :=
+  rfl
+
+/--
+Assemble product data from the W1609 closed-map frontier. W1609 replaces the
+raw target ExactAt payload by the W790 target-homology-zero payload.
+-/
+noncomputable def
+    originalFourTaskProductDataOfClosedMapTargetHomologyZeroComparisonW1609
+    (data :
+      Dbounded.MetrizableClosedMapTargetHomologyZeroStrictRealizationLeftCalculusDataW839) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStableInstanceBoundary
+    (Dbounded.stableBoundaryInputsOfClosedMapTargetHomologyZeroComparisonW1609 data)
+
+/--
+Assemble product data from the W1609 closed-embedding frontier. W1609 replaces
+the raw target ExactAt payload by the W790 target-homology-zero payload.
+-/
+noncomputable def
+    originalFourTaskProductDataOfClosedEmbeddingTargetHomologyZeroComparisonW1609
+    (data :
+      Dbounded.MetrizableClosedEmbeddingTargetHomologyZeroStrictRealizationLeftCalculusDataW839) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStableInstanceBoundary
+    (Dbounded.stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroComparisonW1609 data)
+
+theorem
+    originalFourTaskProductDataOfClosedMapTargetHomologyZeroComparisonW1609_boundedDerivedInfinityCategory
+    (data :
+      Dbounded.MetrizableClosedMapTargetHomologyZeroStrictRealizationLeftCalculusDataW839) :
+    (originalFourTaskProductDataOfClosedMapTargetHomologyZeroComparisonW1609 data).boundedDerivedInfinityCategory =
+      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
+        (Dbounded.stableBoundaryInputsOfClosedMapTargetHomologyZeroComparisonW1609 data) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingTargetHomologyZeroComparisonW1609_boundedDerivedInfinityCategory
+    (data :
+      Dbounded.MetrizableClosedEmbeddingTargetHomologyZeroStrictRealizationLeftCalculusDataW839) :
+    (originalFourTaskProductDataOfClosedEmbeddingTargetHomologyZeroComparisonW1609 data).boundedDerivedInfinityCategory =
+      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
+        (Dbounded.stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroComparisonW1609 data) :=
   rfl
 
 end LeanLCAExactChallenge
