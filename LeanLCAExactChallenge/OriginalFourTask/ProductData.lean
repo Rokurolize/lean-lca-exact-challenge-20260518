@@ -1,5 +1,6 @@
 import LeanLCAExactChallenge.BoundedDerived.Basic
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroExactInputsSelectedCochainComparisonProductRoute
+import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundaryDirectLocalization
 import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundary
 import LeanLCAExactChallenge.Ext.Yoneda
 import LeanLCAExactChallenge.LCA.ExactCategory
@@ -97,6 +98,40 @@ theorem originalFourTaskProductDataOfStableInstanceBoundary_metrizableLCAExactCa
 theorem originalFourTaskProductDataOfStableInstanceBoundary_yonedaExt
     (inputs : Dbounded.MetrizableStableInstanceBoundaryInputs) :
     (originalFourTaskProductDataOfStableInstanceBoundary inputs).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
+/--
+Assemble product data from the direct-localization refinement of the stable
+instance boundary.
+-/
+noncomputable def originalFourTaskProductDataOfDirectLocalizationBoundary
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStableInstanceBoundary
+    (Dbounded.metrizableStableInstanceBoundaryInputs_of_directLocalization inputs)
+
+theorem
+    originalFourTaskProductDataOfDirectLocalizationBoundary_boundedDerivedInfinityCategory
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs) :
+    (originalFourTaskProductDataOfDirectLocalizationBoundary
+      inputs).boundedDerivedInfinityCategory =
+      Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+        inputs :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfDirectLocalizationBoundary_metrizableLCAExactCategory
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs) :
+    (originalFourTaskProductDataOfDirectLocalizationBoundary
+      inputs).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfDirectLocalizationBoundary_yonedaExt
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs) :
+    (originalFourTaskProductDataOfDirectLocalizationBoundary inputs).yonedaExt =
       fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
   rfl
 
