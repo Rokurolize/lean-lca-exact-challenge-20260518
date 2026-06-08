@@ -1,0 +1,4 @@
+command	lake env lean audit/ProductSuccessDeclarations.lean
+exit_code	0
+line_count	71497
+positive_witness_matches	0

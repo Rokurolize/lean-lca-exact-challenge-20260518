@@ -1,0 +1,33 @@
+import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroTargetExactAtStableClosureProductRoute
+
+open LeanLCAExactChallenge
+open LeanLCAExactChallenge.Dbounded
+
+#check MetrizableClosedMapBoundarySourcePiZeroTargetExactAtBranchDataW1607
+#check MetrizableClosedEmbeddingBoundarySourcePiZeroTargetExactAtBranchDataW1607
+#check closedMapStableClosureDataOfTargetExactAtW1607
+#check closedEmbeddingStableClosureDataOfTargetExactAtW1607
+#check productEvidenceOfClosedMapTargetExactAtStableClosureW1607
+#check productEvidenceOfClosedEmbeddingTargetExactAtStableClosureW1607
+#check directFiniteShapeStableDataOfClosedMapTargetExactAtW1607
+#check directFiniteShapeStableDataOfClosedEmbeddingTargetExactAtW1607
+#check stableBoundaryInputsOfClosedMapTargetExactAtW1607
+#check stableBoundaryInputsOfClosedEmbeddingTargetExactAtW1607
+#check acceptedStableOfClosedMapTargetExactAtW1607
+#check acceptedStableOfClosedEmbeddingTargetExactAtW1607
+#check boundedDerivedOfClosedMapTargetExactAtW1607
+#check boundedDerivedOfClosedEmbeddingTargetExactAtW1607
+#check boundarySourcePiZeroTargetExactAtStableClosureInputNamesW1607_count
+#check currentW1607BoundarySourcePiZeroTargetExactAtRoute_productSuccess
+
+example :
+    boundarySourcePiZeroTargetExactAtStableClosureInputNamesW1607.length =
+      3 :=
+  boundarySourcePiZeroTargetExactAtStableClosureInputNamesW1607_count
+
+example :
+    (have state :=
+      currentMetrizableBoundarySourcePiZeroTargetExactAtRouteStateW1607;
+      state.productSuccessClaimed) =
+      false :=
+  currentW1607BoundarySourcePiZeroTargetExactAtRoute_productSuccess
