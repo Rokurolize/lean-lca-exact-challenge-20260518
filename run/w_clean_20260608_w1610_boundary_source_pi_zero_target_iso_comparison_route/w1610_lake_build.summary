@@ -1,0 +1,80 @@
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2141/2153] Replayed LeanLCAExactChallenge.Derived.ExactInputsLeftCalculusRoute
+warning: LeanLCAExactChallenge/Derived/ExactInputsLeftCalculusRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2142/2153] Replayed LeanLCAExactChallenge.Derived.BranchLocalizedExactInputsLeftCalculusRoute
+warning: LeanLCAExactChallenge/Derived/BranchLocalizedExactInputsLeftCalculusRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2143/2153] Replayed LeanLCAExactChallenge.Derived.IsoClosureHomologyDetectionTerminalProductRoute
+warning: LeanLCAExactChallenge/Derived/IsoClosureHomologyDetectionTerminalProductRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2144/2153] Replayed LeanLCAExactChallenge.Derived.StrictRealizationLeftCalculusRoute
+warning: LeanLCAExactChallenge/Derived/StrictRealizationLeftCalculusRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2145/2153] Replayed LeanLCAExactChallenge.Derived.ComparisonBijectivityStrictRealizationLeftCalculusRoute
+warning: LeanLCAExactChallenge/Derived/ComparisonBijectivityStrictRealizationLeftCalculusRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2146/2153] Replayed LeanLCAExactChallenge.Derived.TargetHomologyZeroStrictRealizationLeftCalculusRoute
+warning: LeanLCAExactChallenge/Derived/TargetHomologyZeroStrictRealizationLeftCalculusRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2147/2153] Replayed LeanLCAExactChallenge.Derived.BoundarySourcePiZeroTargetHomologyZeroComparisonProductRoute
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroTargetHomologyZeroComparisonProductRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2148/2153] Replayed LeanLCAExactChallenge.Derived.TargetHomologyZeroFiniteShapeStableRoute
+warning: LeanLCAExactChallenge/Derived/TargetHomologyZeroFiniteShapeStableRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2149/2153] Replayed LeanLCAExactChallenge.Derived.TargetHomologyZeroDirectLocalizationStableRoute
+warning: LeanLCAExactChallenge/Derived/TargetHomologyZeroDirectLocalizationStableRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2150/2153] Replayed LeanLCAExactChallenge.Derived.TargetHomologyZeroDirectSourceStableRoute
+warning: LeanLCAExactChallenge/Derived/TargetHomologyZeroDirectSourceStableRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2151/2153] Replayed LeanLCAExactChallenge.Derived.TargetExactAtDirectSourceStableRoute
+warning: LeanLCAExactChallenge/Derived/TargetExactAtDirectSourceStableRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2152/2153] Replayed LeanLCAExactChallenge.Derived.TargetIsoDirectSourceStableRoute
+warning: LeanLCAExactChallenge/Derived/TargetIsoDirectSourceStableRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2153/2153] Built LeanLCAExactChallenge.Derived.BoundarySourcePiZeroTargetIsoComparisonProductRoute (2.4s)
+warning: LeanLCAExactChallenge/Derived/BoundarySourcePiZeroTargetIsoComparisonProductRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+Build completed successfully (2153 jobs).
