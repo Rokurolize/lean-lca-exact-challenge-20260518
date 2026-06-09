@@ -1,6 +1,6 @@
 {
   "schema": "lean_lca_exact_challenge.goal_identity.v1",
-  "generated_utc": "2026-06-09T14:02:14Z",
+  "generated_utc": "2026-06-09T14:17:41Z",
   "thread_id": "019ea5a4-a615-78b2-8944-d6f4ed0b24bb",
   "worktree": "/home/roku/codex-thread-workspaces/019ea5a4-a615-78b2-8944-d6f4ed0b24bb/worktrees/lean-lca-clean-positive-witness-20260609",
   "goal_file": {
@@ -21,12 +21,12 @@
   ],
   "git": {
     "branch": "goal-clean-positive-witness-20260609-019ea5a4",
-    "head": "4bdccd184d184eb6cd6f507f340a9c46a7690de3",
-    "origin_main": "4bdccd184d184eb6cd6f507f340a9c46a7690de3",
-    "origin_main_ls_remote": "4bdccd184d184eb6cd6f507f340a9c46a7690de3"
+    "head": "d69d0a5070793627b56ac5232177e987ffb97538",
+    "origin_main": "d69d0a5070793627b56ac5232177e987ffb97538",
+    "origin_main_ls_remote": "d69d0a5070793627b56ac5232177e987ffb97538"
   },
   "product_success": false,
   "product_success_claimed": false,
   "update_goal_complete_permitted": false,
-  "notes": "Identity and contract hashes refreshed at the W961 closed-embedding closedness product-surface checkpoint source base. This does not claim the original positive witness."
+  "notes": "Identity and contract hashes refreshed at the post-W961 continuation and nullary-frontier probe on d69d0a5070793627b56ac5232177e987ffb97538. This does not claim the original positive witness."
 }
