@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.BoundedDerived.Basic
+import LeanLCAExactChallenge.Derived.ClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute
 import LeanLCAExactChallenge.Derived.W987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW829StableSemanticAdapterComparisonW1539
 
 /-!
@@ -40,6 +41,9 @@ abbrev ClosedMapCokernelProvider : Type 1 :=
 
 abbrev ClosedEmbeddingCokernelProvider : Type 1 :=
   MappedExplicitCokernelClosedEmbeddingProviderW519
+
+abbrev ClosednessEndpointStrictExactInput : Type 2 :=
+  Dbounded.MetrizableWppClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldLeavesW944
 
 noncomputable def stablePackageOfInstanceFacts
     (facts : StableInstanceFacts) : StablePackage :=
@@ -89,6 +93,18 @@ theorem stablePackageOfInstanceFacts_pretriangulated
 theorem stablePackageOfInstanceFacts_triangulated
     (facts : StableInstanceFacts) :
     (stablePackageOfInstanceFacts facts).triangulatedStructure = facts.triangulated :=
+  rfl
+
+noncomputable def stablePackageOfClosednessEndpointStrictExactInput
+    (input : ClosednessEndpointStrictExactInput) : StablePackage :=
+  Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW944
+    input
+
+theorem stablePackageOfClosednessEndpointStrictExactInput_eq_w944
+    (input : ClosednessEndpointStrictExactInput) :
+    stablePackageOfClosednessEndpointStrictExactInput input =
+      Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW944
+        input :=
   rfl
 
 noncomputable def closedMapStablePackageOfDirectSource

@@ -158,6 +158,42 @@ theorem originalFourTaskProductDataOfStableInstanceFactsW1537_yonedaExt
   rfl
 
 /--
+Assemble product data from the closedness branch where endpoint topology is
+provided by endpoint strict-exact data, rather than by a W735 exact-input
+record.
+-/
+noncomputable def originalFourTaskProductDataOfClosednessEndpointStrictExactInput
+    (input : BoundedDerived.Metrizable.ClosednessEndpointStrictExactInput) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStablePackage
+    (BoundedDerived.Metrizable.stablePackageOfClosednessEndpointStrictExactInput
+      input)
+
+theorem
+    originalFourTaskProductDataOfClosednessEndpointStrictExactInput_boundedDerivedInfinityCategory
+    (input : BoundedDerived.Metrizable.ClosednessEndpointStrictExactInput) :
+    (originalFourTaskProductDataOfClosednessEndpointStrictExactInput
+      input).boundedDerivedInfinityCategory =
+      BoundedDerived.Metrizable.stablePackageOfClosednessEndpointStrictExactInput
+        input :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosednessEndpointStrictExactInput_metrizableLCAExactCategory
+    (input : BoundedDerived.Metrizable.ClosednessEndpointStrictExactInput) :
+    (originalFourTaskProductDataOfClosednessEndpointStrictExactInput
+      input).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem originalFourTaskProductDataOfClosednessEndpointStrictExactInput_yonedaExt
+    (input : BoundedDerived.Metrizable.ClosednessEndpointStrictExactInput) :
+    (originalFourTaskProductDataOfClosednessEndpointStrictExactInput
+      input).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
+/--
 Assemble product data from the W1539 closed-map direct-source stable bridge.
 -/
 noncomputable def originalFourTaskProductDataOfClosedMapDirectSourceW1539
