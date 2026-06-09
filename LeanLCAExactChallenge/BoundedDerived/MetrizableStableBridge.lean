@@ -1,5 +1,6 @@
 import LeanLCAExactChallenge.BoundedDerived.Basic
 import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundaryDirectLocalization
+import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryRoute
 import LeanLCAExactChallenge.Derived.RouteDataSelectedCochainStableRoute
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroExactInputsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonProductRoute
@@ -88,6 +89,14 @@ abbrev ClosedMapStructuralFieldsSelectedCochainComparisonInputW1617 : Type 2 :=
 abbrev ClosedEmbeddingStructuralFieldsSelectedCochainComparisonInputW1617 :
     Type 2 :=
   Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonBranchDataW1617
+
+abbrev ClosedMapBoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryInputW879 :
+    Type 2 :=
+  Dbounded.MetrizableClosedMapBoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryDataW879
+
+abbrev ClosedEmbeddingBoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryInputW879 :
+    Type 2 :=
+  Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryDataW879
 
 abbrev RouteDataSelectedCochainComparisonInputW852 : Type 2 :=
   Dbounded.MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732
@@ -482,6 +491,41 @@ theorem
         data =
       Dbounded.boundedDerivedOfClosedEmbeddingSplitFieldsSelectedCochainDirectLocalizationBoundaryW1616
         (Dbounded.closedEmbeddingSplitFieldsOfStructuralFieldsSelectedCochainComparisonW1617
+          data) :=
+  rfl
+
+noncomputable def
+    stablePackageOfClosedMapBoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryW879
+    (data : ClosedMapBoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryInputW879) :
+    StablePackage :=
+  Dbounded.boundedDerivedOfClosedMapBoundarySourcePiZeroSelectedRowsW879 data
+
+noncomputable def
+    stablePackageOfClosedEmbeddingBoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryW879
+    (data :
+      ClosedEmbeddingBoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryInputW879) :
+    StablePackage :=
+  Dbounded.boundedDerivedOfClosedEmbeddingBoundarySourcePiZeroSelectedRowsW879
+    data
+
+theorem
+    stablePackageOfClosedMapBoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryW879_eq_directLocalizationBoundary
+    (data : ClosedMapBoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryInputW879) :
+    stablePackageOfClosedMapBoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryW879
+        data =
+      stablePackageOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroSelectedRowsW879
+          data) :=
+  rfl
+
+theorem
+    stablePackageOfClosedEmbeddingBoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryW879_eq_directLocalizationBoundary
+    (data :
+      ClosedEmbeddingBoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryInputW879) :
+    stablePackageOfClosedEmbeddingBoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryW879
+        data =
+      stablePackageOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfClosedEmbeddingBoundarySourcePiZeroSelectedRowsW879
           data) :=
   rfl
 

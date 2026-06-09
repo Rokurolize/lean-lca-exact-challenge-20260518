@@ -1,32 +1,42 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-06-09T16:45:58Z",
-  "source_base_git_head": "0df3999ccf66e29e2cab2b8bd83539d76761a68c",
-  "source_tree_hash": "f4bac72f669cdb7493b7c91af96d763ebd0216b5cd46c71c183fd3641434a000",
+  "generated_utc": "2026-06-09T17:16:29Z",
+  "source_base_git_head": "59d793a9decfaaa4532749f48b4de28bcf01200f",
+  "source_tree_hash": "1f415aedd6189f0e34c44301a5b1925ea59ab4214e015d88e18eba21882c53e3",
   "source_file_count": 1202,
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "Verification for the nonterminal W879 boundary source-pi-zero selected-row direct-localization boundary checkpoint. W879 derives W877's abstract WalkingParallelPair limit stability from W735/W716 boundary source-pi-zero data and WPP colimit stability from selected-W461 plus row-aware WPP-op providers, then reuses the W877 boundary package. This is not product success and does not construct a nullary original four-task witness.",
+  "summary": "Verification for the nonterminal W880 product-data bridge checkpoint. The patch exposes the W879 boundary source-pi-zero selected-row direct-localization boundary through the short bounded-derived StablePackage bridge and through OriginalFourTaskProductData, with direct-localization equality and product-field projection theorems. This is not original four-task product success and does not construct a nullary positive witness.",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridge.lean",
+      "status": "passed",
+      "evidence": "The product-facing bounded-derived bridge checked directly with exit code 0 after adding W879 StablePackage aliases and equality theorems."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/OriginalFourTask/ProductData.lean",
+      "status": "passed",
+      "evidence": "OriginalFourTask product data checked directly with exit code 0 after adding W879 closed-map and closed-embedding constructors and field projections."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.OriginalFourTask.ProductData",
+      "status": "passed",
+      "evidence": "Built ProductData and refreshed dependent oleans; only existing repository warnings remained."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Package root built successfully after the import-surface change; existing repository warnings only."
+    },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Completed successfully after the W879 source patch; existing repository warnings only."
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge.Derived.BoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryRoute LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "Built the new W879 module and refreshed the package root .olean so audit imports saw the new declarations."
-    },
-    {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/BoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryRoute.lean",
-      "status": "passed",
-      "evidence": "The new W879 source module checked directly with exit code 0."
+      "evidence": "Full project build completed successfully after the W880 source patch; existing repository warnings only."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required-declarations audit completed with exit code 0 after adding W879 #check declarations."
+      "evidence": "Required-declarations audit completed with exit code 0 after adding #checks for the new W879 bridge and product-data declarations."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
@@ -44,14 +54,14 @@
       "evidence": "Forbidden Lean token audit over LeanLCAExactChallenge completed with exit code 0."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/BoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryRoute.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridge.lean",
       "status": "passed",
-      "evidence": "Focused forbidden-token audit for the new W879 Lean module completed with exit code 0."
+      "evidence": "Focused forbidden-token audit for the changed bounded-derived bridge completed with exit code 0."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/OriginalFourTask/ProductData.lean",
       "status": "passed",
-      "evidence": "Focused forbidden-token audit for the root import file completed with exit code 0."
+      "evidence": "Focused forbidden-token audit for the changed product-data file completed with exit code 0."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/RequiredDeclarations.lean",
@@ -64,11 +74,6 @@
       "evidence": "Full whitespace check completed with exit code 0 after source, audit, and checkpoint artifact edits."
     },
     {
-      "command": "git diff --check -- LeanLCAExactChallenge/Derived/BoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryRoute.lean LeanLCAExactChallenge.lean audit/RequiredDeclarations.lean run/goal_identity_20260602_human_centered_positive_witness.json run/resumption_and_stable_gate_after_0df3999c_20260609.md run/boundary_source_pi_zero_selected_rows_direct_localization_boundary_checkpoint_20260609.md run/verification.json terminal_outcome/terminal_outcome.json",
-      "status": "passed",
-      "evidence": "Focused whitespace check for the touched source, audit, and checkpoint artifacts completed with exit code 0."
-    },
-    {
       "command": "jq . run/verification.json terminal_outcome/terminal_outcome.json run/goal_identity_20260602_human_centered_positive_witness.json >/dev/null",
       "status": "passed",
       "evidence": "All touched JSON outcome and verification artifacts parsed successfully."
@@ -76,12 +81,12 @@
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "Contract audit passed with terminal_claims_product_success=false and the expected nonterminal product-surface blocker recorded."
+      "evidence": "Contract audit passed with terminal_claims_product_success=false and known nonterminal original four-task blockers recorded."
     },
     {
       "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "External audit passed with source_tree_hash f4bac72f669cdb7493b7c91af96d763ebd0216b5cd46c71c183fd3641434a000."
+      "evidence": "External audit passed with source_tree_hash 1f415aedd6189f0e34c44301a5b1925ea59ab4214e015d88e18eba21882c53e3."
     }
   ]
 }

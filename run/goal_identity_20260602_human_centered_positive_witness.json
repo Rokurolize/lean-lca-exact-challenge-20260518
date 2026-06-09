@@ -1,6 +1,6 @@
 {
   "schema": "lean_lca_exact_challenge.goal_identity.v1",
-  "generated_utc": "2026-06-09T16:45:58Z",
+  "generated_utc": "2026-06-09T17:16:29Z",
   "thread_id": "019ea5a4-a615-78b2-8944-d6f4ed0b24bb",
   "worktree": "/home/roku/codex-thread-workspaces/019ea5a4-a615-78b2-8944-d6f4ed0b24bb/worktrees/lean-lca-clean-positive-witness-20260609",
   "goal_file": {
@@ -21,14 +21,14 @@
   ],
   "git": {
     "branch": "goal-clean-positive-witness-20260609-019ea5a4",
-    "head": "0df3999ccf66e29e2cab2b8bd83539d76761a68c",
-    "origin_main": "0df3999ccf66e29e2cab2b8bd83539d76761a68c",
-    "origin_main_ls_remote": "0df3999ccf66e29e2cab2b8bd83539d76761a68c",
-    "origin_feature": "0df3999ccf66e29e2cab2b8bd83539d76761a68c",
-    "origin_feature_ls_remote": "0df3999ccf66e29e2cab2b8bd83539d76761a68c"
+    "head": "59d793a9decfaaa4532749f48b4de28bcf01200f",
+    "origin_main": "59d793a9decfaaa4532749f48b4de28bcf01200f",
+    "origin_main_ls_remote": "59d793a9decfaaa4532749f48b4de28bcf01200f",
+    "origin_feature": "59d793a9decfaaa4532749f48b4de28bcf01200f",
+    "origin_feature_ls_remote": "59d793a9decfaaa4532749f48b4de28bcf01200f"
   },
   "product_success": false,
   "product_success_claimed": false,
   "update_goal_complete_permitted": false,
-  "notes": "Identity and contract hashes refreshed for the post-0df3999c continuation gate after the W878 checkpoint and before the W879 nonterminal checkpoint claim. This does not claim the original positive witness."
+  "notes": "Identity and contract hashes refreshed after the pushed W879 selected-row direct-localization boundary checkpoint and before the W880 nonterminal product-data bridge checkpoint. This does not claim the original positive witness."
 }
