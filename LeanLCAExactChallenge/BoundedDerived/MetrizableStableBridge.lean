@@ -1,5 +1,5 @@
 import LeanLCAExactChallenge.BoundedDerived.Basic
-import LeanLCAExactChallenge.Derived.ClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivMembershipDataClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute
 import LeanLCAExactChallenge.Derived.W987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW829StableSemanticAdapterComparisonW1539
 
 /-!
@@ -44,6 +44,16 @@ abbrev ClosedEmbeddingCokernelProvider : Type 1 :=
 
 abbrev ClosednessEndpointStrictExactInput : Type 2 :=
   Dbounded.MetrizableWppClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldLeavesW944
+
+abbrev ClosednessEndpointLocalizedUnitBoundaryRelationInput : Type 2 :=
+  Dbounded.MetrizableWppClosedMapBoundaryRelationDataTargetNoUnivMembershipDataClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldLeavesW946
+
+def closednessEndpointStrictExactInputOfLocalizedUnitBoundaryRelationInput
+    (input : ClosednessEndpointLocalizedUnitBoundaryRelationInput) :
+    ClosednessEndpointStrictExactInput :=
+  Dbounded.w944LeavesOfLocalizedUnitDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactFieldsW945
+    (Dbounded.w945LeavesOfBoundaryRelationDataTargetNoUnivMembershipDataClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsW946
+      input)
 
 noncomputable def stablePackageOfInstanceFacts
     (facts : StableInstanceFacts) : StablePackage :=
@@ -105,6 +115,27 @@ theorem stablePackageOfClosednessEndpointStrictExactInput_eq_w944
     stablePackageOfClosednessEndpointStrictExactInput input =
       Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW944
         input :=
+  rfl
+
+noncomputable def stablePackageOfClosednessEndpointLocalizedUnitBoundaryRelationInput
+    (input : ClosednessEndpointLocalizedUnitBoundaryRelationInput) : StablePackage :=
+  Dbounded.boundedDerivedInfinityCategoryOfClosedMapBoundaryRelationDataTargetNoUnivMembershipDataClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsW946
+    input
+
+theorem stablePackageOfClosednessEndpointLocalizedUnitBoundaryRelationInput_eq_w946
+    (input : ClosednessEndpointLocalizedUnitBoundaryRelationInput) :
+    stablePackageOfClosednessEndpointLocalizedUnitBoundaryRelationInput input =
+      Dbounded.boundedDerivedInfinityCategoryOfClosedMapBoundaryRelationDataTargetNoUnivMembershipDataClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsW946
+        input :=
+  rfl
+
+theorem
+    stablePackageOfClosednessEndpointLocalizedUnitBoundaryRelationInput_eq_closednessEndpointStrictExactInput
+    (input : ClosednessEndpointLocalizedUnitBoundaryRelationInput) :
+    stablePackageOfClosednessEndpointLocalizedUnitBoundaryRelationInput input =
+      stablePackageOfClosednessEndpointStrictExactInput
+        (closednessEndpointStrictExactInputOfLocalizedUnitBoundaryRelationInput
+          input) :=
   rfl
 
 noncomputable def closedMapStablePackageOfDirectSource

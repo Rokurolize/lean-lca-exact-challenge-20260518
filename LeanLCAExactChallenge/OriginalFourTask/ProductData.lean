@@ -24,6 +24,7 @@ namespace LeanLCAExactChallenge
 open CategoryTheory
 open CategoryTheory.Limits
 open Topology
+open BoundedDerived.Metrizable
 
 /-- Product-facing data for the original four tasks, parameterized by the
 remaining bounded-derived stable package. -/
@@ -189,6 +190,59 @@ theorem
 theorem originalFourTaskProductDataOfClosednessEndpointStrictExactInput_yonedaExt
     (input : BoundedDerived.Metrizable.ClosednessEndpointStrictExactInput) :
     (originalFourTaskProductDataOfClosednessEndpointStrictExactInput
+      input).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
+/--
+Assemble product data from the W946 closedness branch: W730 supplies the
+boundary/relation data and W945 supplies localized-unit data, then the bridge
+projects this reduced surface to the W944 endpoint strict-exact route.
+-/
+noncomputable def
+    originalFourTaskProductDataOfClosednessEndpointLocalizedUnitBoundaryRelationInput
+    (input :
+      BoundedDerived.Metrizable.ClosednessEndpointLocalizedUnitBoundaryRelationInput) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStablePackage
+    (BoundedDerived.Metrizable.stablePackageOfClosednessEndpointLocalizedUnitBoundaryRelationInput
+      input)
+
+theorem
+    originalFourTaskProductDataOfW946_eq_closednessEndpointStrictExactInput
+    (input :
+      BoundedDerived.Metrizable.ClosednessEndpointLocalizedUnitBoundaryRelationInput) :
+    originalFourTaskProductDataOfClosednessEndpointLocalizedUnitBoundaryRelationInput
+        input =
+      originalFourTaskProductDataOfClosednessEndpointStrictExactInput
+        (closednessEndpointStrictExactInputOfLocalizedUnitBoundaryRelationInput
+          input) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfW946_boundedDerivedInfinityCategory
+    (input :
+      BoundedDerived.Metrizable.ClosednessEndpointLocalizedUnitBoundaryRelationInput) :
+    (originalFourTaskProductDataOfClosednessEndpointLocalizedUnitBoundaryRelationInput
+      input).boundedDerivedInfinityCategory =
+      BoundedDerived.Metrizable.stablePackageOfClosednessEndpointLocalizedUnitBoundaryRelationInput
+        input :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfW946_metrizableLCAExactCategory
+    (input :
+      BoundedDerived.Metrizable.ClosednessEndpointLocalizedUnitBoundaryRelationInput) :
+    (originalFourTaskProductDataOfClosednessEndpointLocalizedUnitBoundaryRelationInput
+      input).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfW946_yonedaExt
+    (input :
+      BoundedDerived.Metrizable.ClosednessEndpointLocalizedUnitBoundaryRelationInput) :
+    (originalFourTaskProductDataOfClosednessEndpointLocalizedUnitBoundaryRelationInput
       input).yonedaExt =
       fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
   rfl
