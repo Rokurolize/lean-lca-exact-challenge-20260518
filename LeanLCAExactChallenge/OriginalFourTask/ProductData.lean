@@ -747,7 +747,7 @@ theorem
   rfl
 
 /--
-Assemble product data from the W1608 closed-map frontier. The remaining inputs
+Assemble product data from the W1608 closed-map input route. The remaining inputs
 are the target ExactAt payload and one W735 branch, routed through the
 canonical direct-localization stable-instance boundary.
 -/
@@ -760,7 +760,7 @@ noncomputable def originalFourTaskProductDataOfClosedMapComparisonTargetExactAtW
       data)
 
 /--
-Assemble product data from the W1608 closed-embedding frontier. The remaining
+Assemble product data from the W1608 closed-embedding input route. The remaining
 inputs are the target ExactAt payload and one W735 branch, routed through the
 canonical direct-localization stable-instance boundary.
 -/
@@ -792,7 +792,7 @@ theorem
   rfl
 
 /--
-Assemble product data from the W1609 closed-map frontier. W1609 replaces the
+Assemble product data from the W1609 closed-map input route. W1609 replaces the
 raw target ExactAt payload by the W790 target-homology-zero payload through
 the canonical direct-localization stable-instance boundary.
 -/
@@ -806,7 +806,7 @@ noncomputable def
       data)
 
 /--
-Assemble product data from the W1609 closed-embedding frontier. W1609 replaces
+Assemble product data from the W1609 closed-embedding input route. W1609 replaces
 the raw target ExactAt payload by the W790 target-homology-zero payload through
 the canonical direct-localization stable-instance boundary.
 -/
@@ -838,7 +838,43 @@ theorem
   rfl
 
 /--
-Assemble product data from the W1614 closed-map frontier. W1614 derives the
+Assemble product data from the W852 route-data input. W852 projects one
+W732 route-data provider to the selected-cochain branch and then through the
+canonical direct-localization stable-instance boundary.
+-/
+noncomputable def
+    originalFourTaskProductDataOfRouteDataSelectedCochainComparisonW852
+    (routeData :
+      Dbounded.MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStablePackage
+    (BoundedDerived.Metrizable.stablePackageOfRouteDataSelectedCochainComparisonW852
+      routeData)
+
+theorem
+    originalFourTaskProductDataOfRouteDataW852_eq_directBoundary
+    (routeData :
+      Dbounded.MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732) :
+    originalFourTaskProductDataOfRouteDataSelectedCochainComparisonW852 routeData =
+      originalFourTaskProductDataOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfRouteDataComparisonSelectedCochainW852
+          routeData) := by
+  rw [originalFourTaskProductDataOfRouteDataSelectedCochainComparisonW852,
+    originalFourTaskProductDataOfDirectLocalizationBoundary,
+    BoundedDerived.Metrizable.stablePackageOfRouteDataW852_eq_directBoundary]
+
+theorem
+    originalFourTaskProductDataOfRouteDataW852_boundedDerivedInfinityCategory
+    (routeData :
+      Dbounded.MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732) :
+    (originalFourTaskProductDataOfRouteDataSelectedCochainComparisonW852
+      routeData).boundedDerivedInfinityCategory =
+      Dbounded.boundedDerivedOfRouteDataDirectBoundaryW852
+        routeData :=
+  rfl
+
+/--
+Assemble product data from the W1614 closed-map input route. W1614 derives the
 selected-cochain/strict-realization side from one W735 exact-input branch through
 the canonical direct-localization stable-instance boundary.
 -/
@@ -852,7 +888,7 @@ noncomputable def
       exactInputs)
 
 /--
-Assemble product data from the W1614 closed-embedding frontier. W1614 derives
+Assemble product data from the W1614 closed-embedding input route. W1614 derives
 the selected-cochain/strict-realization side from one W735 exact-input branch
 through the canonical direct-localization stable-instance boundary.
 -/

@@ -1,17 +1,17 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-06-08T04:31:16Z",
-  "source_base_git_head": "58b9bb9cb396585e8ad65c1ae787e5454fe1fc9c",
-  "source_tree_hash": "8b5080e3df4915ba62af828509410dd228f6df02fa0af4d77d3fff66f468eb11",
-  "source_file_count": 1197,
+  "generated_utc": "2026-06-09T13:24:29Z",
+  "source_base_git_head": "8430aa41968e52b4b4553f51475c05d619442ff0",
+  "source_tree_hash": "f2fdac615cd18da91ceacaeba9897ad584d35a8c6079c7491b6cc09be4306b21",
+  "source_file_count": 1199,
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "Post-cleanup verification for the nonterminal Lean LCA source tree. The checks preserve the Lean frontier and confirm that repository noise was removed without changing root Lean project files.",
+  "summary": "Verification for the nonterminal W852 route-data direct-boundary source patch. The source tree builds and required audits pass while product_success remains false and the original four-task positive witness is still absent.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Completed successfully with 2936 jobs after lake exe cache get; existing style warnings only."
+      "evidence": "Completed successfully with 2938 jobs; existing style warnings only."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -29,44 +29,84 @@
       "evidence": "Lean product-success declaration audit completed with exit code 0 while preserving product_success=false metadata."
     },
     {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace check completed with exit code 0 after the source patch and checkpoint artifact edits."
+    },
+    {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
       "evidence": "Lean original four-task completion declaration audit completed with exit code 0."
     },
     {
-      "command": "python3 in-memory compile of audit/external_audit.py and audit/original_four_task_contract_audit.py",
+      "command": "lake build LeanLCAExactChallenge.Derived.RouteDataSelectedCochainStableRoute",
       "status": "passed",
-      "evidence": "Both audit scripts compiled in memory without creating __pycache__."
+      "evidence": "Producer module for the W852 direct-boundary bridge built successfully before consumer checks."
     },
     {
-      "command": "git diff --check",
+      "command": "lake build LeanLCAExactChallenge.BoundedDerived.MetrizableStableBridge",
       "status": "passed",
-      "evidence": "Post-metadata whitespace check completed before final commit."
+      "evidence": "Bounded-derived bridge consumer built successfully with the W852 stable-package equality."
     },
     {
-      "command": "rg CJK source scan",
+      "command": "lake build LeanLCAExactChallenge.OriginalFourTask.ProductData",
       "status": "passed",
-      "evidence": "No Japanese or CJK text remains outside ignored build and manifest paths."
+      "evidence": "Original four-task product-data surface built successfully after exposing the W852 route-data package."
     },
     {
-      "command": "provider search ledger scan",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/RouteDataSelectedCochainStableRoute.lean",
       "status": "passed",
-      "evidence": "find docs/research -name 'w*_provider_search_ledger.md' returned zero files."
+      "evidence": "No forbidden Lean tokens were reported in the touched W852 route-data source file."
     },
     {
-      "command": "repository noise surface scan",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridge.lean",
       "status": "passed",
-      "evidence": "No root worker, packet, progress, manifest, issue queue, proof frontier, or scratch-report artifacts remain."
+      "evidence": "No forbidden Lean tokens were reported in the bounded-derived bridge file."
     },
     {
-      "command": "run directory scan",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/OriginalFourTask/ProductData.lean",
       "status": "passed",
-      "evidence": "run contains only verification.json."
+      "evidence": "No forbidden Lean tokens were reported in the original four-task product-data file."
     },
     {
-      "command": "git diff --name-status -- LeanLCAExactChallenge LeanLCAExactChallenge.lean lakefile.toml lean-toolchain lake-manifest.json",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "No root Lean project source or Lake configuration changes were present."
+      "evidence": "No forbidden Lean tokens were reported in the required-declarations audit file."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens were reported in the product-success audit file."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/OriginalFourTaskCompletionDeclarations.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens were reported in the original-four-task completion audit file."
+    },
+    {
+      "command": "rg -n 'OriginalFourTaskProductSuccess|originalFourTaskProductSuccess|productSuccessClaimed\\s*:=\\s*true|productSuccessClaimed\\s*=\\s*true' LeanLCAExactChallenge audit -g '!audit/negative_fixtures/**'",
+      "status": "passed",
+      "evidence": "Search found no active positive product-success declaration or true productSuccessClaimed state; hits were limited to comments, audit expected-name lists, and historical warning text."
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed\\s*:=\\s*false|productSuccessClaimed\\s*=\\s*false' LeanLCAExactChallenge audit -g '!audit/negative_fixtures/**' | wc -l",
+      "status": "passed",
+      "evidence": "The nonterminal false-state scan reported 1549 matching false markers."
+    },
+    {
+      "command": "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "passed",
+      "evidence": "Contract audit passed with terminal_claims_product_success=false and the remaining nonterminal bounded-derived blocker recorded."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "passed",
+      "evidence": "External audit passed after refreshing the current source_tree_hash and required command evidence."
+    },
+    {
+      "command": "jq . run/verification.json terminal_outcome/terminal_outcome.json run/goal_identity_20260602_human_centered_positive_witness.json >/dev/null",
+      "status": "passed",
+      "evidence": "All touched JSON outcome and verification artifacts parsed successfully."
     }
   ]
 }

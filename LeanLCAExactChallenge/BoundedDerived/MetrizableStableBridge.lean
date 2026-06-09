@@ -1,5 +1,6 @@
 import LeanLCAExactChallenge.BoundedDerived.Basic
 import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundaryDirectLocalization
+import LeanLCAExactChallenge.Derived.RouteDataSelectedCochainStableRoute
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroExactInputsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroSplitFieldsSelectedCochainComparisonProductRoute
@@ -83,6 +84,9 @@ abbrev ClosedMapStructuralFieldsSelectedCochainComparisonInputW1617 : Type 2 :=
 abbrev ClosedEmbeddingStructuralFieldsSelectedCochainComparisonInputW1617 :
     Type 2 :=
   Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonBranchDataW1617
+
+abbrev RouteDataSelectedCochainComparisonInputW852 : Type 2 :=
+  Dbounded.MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732
 
 abbrev StableInstanceBoundaryInput : Type 1 :=
   Dbounded.MetrizableStableInstanceBoundaryInputs
@@ -239,6 +243,19 @@ theorem
       stablePackageOfClosednessEndpointLocalizedUnitBoundaryRelationInput
         (closednessEndpointLocalizedUnitBoundaryRelationInputOfTargetNoUnivClosednessInput
           input) :=
+  rfl
+
+noncomputable def stablePackageOfRouteDataSelectedCochainComparisonW852
+    (routeData : RouteDataSelectedCochainComparisonInputW852) : StablePackage :=
+  Dbounded.boundedDerivedOfRouteDataDirectBoundaryW852
+    routeData
+
+theorem stablePackageOfRouteDataW852_eq_directBoundary
+    (routeData : RouteDataSelectedCochainComparisonInputW852) :
+    stablePackageOfRouteDataSelectedCochainComparisonW852 routeData =
+      stablePackageOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfRouteDataComparisonSelectedCochainW852
+          routeData) :=
   rfl
 
 noncomputable def stablePackageOfClosedMapExactInputsSelectedCochainComparisonW1614

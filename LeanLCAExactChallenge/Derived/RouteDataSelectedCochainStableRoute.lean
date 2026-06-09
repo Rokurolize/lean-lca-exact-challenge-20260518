@@ -95,6 +95,22 @@ noncomputable def selectedCochainDirectSourceDataOfRouteDataW852
             globalClosedEmbeddingComponents
             mappedCokernelClosedEmbeddingProvider))
 
+/--
+W852 route data as canonical direct-localization stable-instance boundary
+inputs.
+-/
+noncomputable def directLocalizationBoundaryInputsOfRouteDataComparisonSelectedCochainW852
+    (routeData :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732) :
+    MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  match selectedCochainDirectSourceDataOfRouteDataW852 routeData with
+  | .closedMap data =>
+      closedMapStableInstanceBoundaryDirectLocalizationInputsOfSelectedCochainW847
+        data
+  | .closedEmbedding data =>
+      closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsOfSelectedCochainW847
+        data
+
 /-- W852 direct bounded left calculus from one W732 route-data provider. -/
 theorem directBoundedLeftCalculusOfRouteDataComparisonSelectedCochainW852
     (routeData :
@@ -139,6 +155,33 @@ noncomputable def boundedDerivedInfinityCategoryOfRouteDataComparisonSelectedCoc
           globalClosedEmbeddingComponents
           mappedCokernelClosedEmbeddingProvider)
 
+/--
+W852 accepted stable package through the canonical direct-localization
+stable-instance boundary.
+-/
+noncomputable def
+    acceptedStableOfRouteDataDirectBoundaryW852
+    (routeData :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (directLocalizationBoundaryInputsOfRouteDataComparisonSelectedCochainW852
+      routeData)
+
+/--
+W852 bounded derived infinity-category package through the canonical
+direct-localization stable-instance boundary.
+-/
+noncomputable def
+    boundedDerivedOfRouteDataDirectBoundaryW852
+    (routeData :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (directLocalizationBoundaryInputsOfRouteDataComparisonSelectedCochainW852
+      routeData)
+
 def routeDataSelectedCochainStableRouteInputNamesW852 : List String :=
   ["one W732 boundary/relation target/closedness normalized source/endpoint\
       route-data provider"]
@@ -168,8 +211,11 @@ def currentMetrizableRouteDataSelectedCochainStableRouteStateW852 :
       "Dbounded.closedEmbeddingExactInputsOfRouteDataLeavesW852",
       "Dbounded.MetrizableRouteDataSelectedCochainDirectSourceDataW852",
       "Dbounded.selectedCochainDirectSourceDataOfRouteDataW852",
+      "Dbounded.directLocalizationBoundaryInputsOfRouteDataComparisonSelectedCochainW852",
       "Dbounded.directBoundedLeftCalculusOfRouteDataComparisonSelectedCochainW852",
       "Dbounded.boundedDerivedInfinityCategoryOfRouteDataComparisonSelectedCochainW852",
+      "Dbounded.acceptedStableOfRouteDataDirectBoundaryW852",
+      "Dbounded.boundedDerivedOfRouteDataDirectBoundaryW852",
       "Dbounded.routeDataSelectedCochainStableRouteInputNamesW852",
       "Dbounded.routeDataSelectedCochainStableRouteInputNamesW852_count"]
   leafProjectionResult :=
@@ -180,7 +226,8 @@ def currentMetrizableRouteDataSelectedCochainStableRouteStateW852 :
     "proved: one W732 route-data provider supplies direct bounded left calculus"
   stablePackageResult :=
     "proved: one W732 route-data provider supplies the existing bounded derived\
-      infinity-category package"
+      infinity-category package and the canonical direct-localization boundary\
+      package"
   remainingInputs :=
     ["construct a concrete W732 route-data provider",
       "construct the final original four-task witness and review packet"]
