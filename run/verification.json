@@ -1,42 +1,42 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-06-09T17:16:29Z",
-  "source_base_git_head": "59d793a9decfaaa4532749f48b4de28bcf01200f",
-  "source_tree_hash": "1f415aedd6189f0e34c44301a5b1925ea59ab4214e015d88e18eba21882c53e3",
+  "generated_utc": "2026-06-09T17:40:40Z",
+  "source_base_git_head": "f92d3c58e26ffa35e8bcd5ba36a616c20ef7ec60",
+  "source_tree_hash": "6d6dd29755e4a7fd4ead29ce88f7dff8ef21f072cfb558f22b6c1da69eb35ad7",
   "source_file_count": 1202,
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "Verification for the nonterminal W880 product-data bridge checkpoint. The patch exposes the W879 boundary source-pi-zero selected-row direct-localization boundary through the short bounded-derived StablePackage bridge and through OriginalFourTaskProductData, with direct-localization equality and product-field projection theorems. This is not original four-task product success and does not construct a nullary positive witness.",
+  "summary": "Verification for the nonterminal W1620 row-dominance checkpoint. The patch adds a closed-map direct-localization boundary route whose row-aware closed-map provider is derived from closed-embedding rows by the existing W580 theorem, then exposes that route through the bounded-derived StablePackage and OriginalFourTaskProductData surfaces. This is not original four-task product success and does not construct a nullary positive witness.",
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridge.lean",
+      "command": "lake build LeanLCAExactChallenge.Derived.BoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryRoute",
       "status": "passed",
-      "evidence": "The product-facing bounded-derived bridge checked directly with exit code 0 after adding W879 StablePackage aliases and equality theorems."
+      "evidence": "The route module built with exit code 0 after adding W1620 row-dominance data, adapters, stable certificate readiness, and productSuccessClaimed=false state."
     },
     {
-      "command": "lake env lean LeanLCAExactChallenge/OriginalFourTask/ProductData.lean",
+      "command": "lake build LeanLCAExactChallenge.BoundedDerived.MetrizableStableBridge",
       "status": "passed",
-      "evidence": "OriginalFourTask product data checked directly with exit code 0 after adding W879 closed-map and closed-embedding constructors and field projections."
+      "evidence": "The bounded-derived bridge built with exit code 0 after adding the W1620 StablePackage alias and equality theorems back to W879 and the canonical direct-localization boundary package."
     },
     {
       "command": "lake build LeanLCAExactChallenge.OriginalFourTask.ProductData",
       "status": "passed",
-      "evidence": "Built ProductData and refreshed dependent oleans; only existing repository warnings remained."
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "Package root built successfully after the import-surface change; existing repository warnings only."
-    },
-    {
-      "command": "lake build",
-      "status": "passed",
-      "evidence": "Full project build completed successfully after the W880 source patch; existing repository warnings only."
+      "evidence": "OriginalFourTask product data built with exit code 0 after adding the W1620 product-data constructor and projection/equality theorems."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required-declarations audit completed with exit code 0 after adding #checks for the new W879 bridge and product-data declarations."
+      "evidence": "Required-declarations audit completed with exit code 0 after adding #checks for the new W1620 route, stable bridge, and product-data declarations."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Package root built successfully after the W1620 source patch; existing repository warnings only."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full project build completed successfully after the W1620 source patch; existing repository warnings only."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
@@ -52,6 +52,11 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
       "evidence": "Forbidden Lean token audit over LeanLCAExactChallenge completed with exit code 0."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/BoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryRoute.lean",
+      "status": "passed",
+      "evidence": "Focused forbidden-token audit for the changed W1620 route file completed with exit code 0."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridge.lean",
@@ -74,6 +79,11 @@
       "evidence": "Full whitespace check completed with exit code 0 after source, audit, and checkpoint artifact edits."
     },
     {
+      "command": "rg declaration-shaped product-success scan outside audit negative fixtures",
+      "status": "passed",
+      "evidence": "No active declaration-shaped OriginalFourTaskProductSuccess/originalFourTaskProductSuccess definition and no productSuccessClaimed=true route state was found outside audit negative fixtures."
+    },
+    {
       "command": "jq . run/verification.json terminal_outcome/terminal_outcome.json run/goal_identity_20260602_human_centered_positive_witness.json >/dev/null",
       "status": "passed",
       "evidence": "All touched JSON outcome and verification artifacts parsed successfully."
@@ -86,7 +96,7 @@
     {
       "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "External audit passed with source_tree_hash 1f415aedd6189f0e34c44301a5b1925ea59ab4214e015d88e18eba21882c53e3."
+      "evidence": "External audit passed with source_tree_hash 6d6dd29755e4a7fd4ead29ce88f7dff8ef21f072cfb558f22b6c1da69eb35ad7."
     }
   ]
 }
