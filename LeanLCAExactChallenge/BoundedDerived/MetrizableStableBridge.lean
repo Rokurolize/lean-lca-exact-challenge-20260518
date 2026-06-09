@@ -337,6 +337,24 @@ noncomputable def
   Dbounded.boundedDerivedOfClosedEmbeddingSplitFieldsSelectedCochainDirectLocalizationBoundaryW1616
     data
 
+theorem stablePackageOfClosedMapSplitFieldsSelectedCochainComparisonW1616_eq_concreteFieldsSelectedCochainComparisonW1615
+    (data : ClosedMapSplitFieldsSelectedCochainComparisonInputW1616) :
+    stablePackageOfClosedMapSplitFieldsSelectedCochainComparisonW1616 data =
+      stablePackageOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
+        (Dbounded.closedMapConcreteFieldsOfSplitFieldsSelectedCochainComparisonW1616
+          data) :=
+  rfl
+
+theorem
+    stablePackageOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616_eq_concreteFieldsSelectedCochainComparisonW1615
+    (data : ClosedEmbeddingSplitFieldsSelectedCochainComparisonInputW1616) :
+    stablePackageOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
+        data =
+      stablePackageOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
+        (Dbounded.closedEmbeddingConcreteFieldsOfSplitFieldsSelectedCochainComparisonW1616
+          data) :=
+  rfl
+
 theorem stablePackageOfClosedMapSplitFieldsSelectedCochainComparisonW1616_eq_directLocalizationBoundary
     (data : ClosedMapSplitFieldsSelectedCochainComparisonInputW1616) :
     stablePackageOfClosedMapSplitFieldsSelectedCochainComparisonW1616 data =

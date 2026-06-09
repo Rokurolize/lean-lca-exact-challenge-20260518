@@ -1074,6 +1074,56 @@ noncomputable def
       data)
 
 theorem
+    originalFourTaskProductDataOfClosedMapSplitFieldsSelectedCochainComparisonW1616_eq_concreteFieldsSelectedCochainComparisonW1615
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
+    originalFourTaskProductDataOfClosedMapSplitFieldsSelectedCochainComparisonW1616
+        data =
+      originalFourTaskProductDataOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
+        (Dbounded.closedMapConcreteFieldsOfSplitFieldsSelectedCochainComparisonW1616
+          data) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616_eq_concreteFieldsSelectedCochainComparisonW1615
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
+    originalFourTaskProductDataOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
+        data =
+      originalFourTaskProductDataOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
+        (Dbounded.closedEmbeddingConcreteFieldsOfSplitFieldsSelectedCochainComparisonW1616
+          data) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedMapSplitFieldsSelectedCochainComparisonW1616_eq_directLocalizationBoundary
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
+    originalFourTaskProductDataOfClosedMapSplitFieldsSelectedCochainComparisonW1616
+        data =
+      originalFourTaskProductDataOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfClosedMapSplitFieldsSelectedCochainComparisonW1616
+          data) := by
+  rw [
+    originalFourTaskProductDataOfClosedMapSplitFieldsSelectedCochainComparisonW1616_eq_concreteFieldsSelectedCochainComparisonW1615,
+    originalFourTaskProductDataOfClosedMapConcreteFieldsSelectedCochainComparisonW1615_eq_directLocalizationBoundary]
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616_eq_directLocalizationBoundary
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
+    originalFourTaskProductDataOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
+        data =
+      originalFourTaskProductDataOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
+          data) := by
+  rw [
+    originalFourTaskProductDataOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616_eq_concreteFieldsSelectedCochainComparisonW1615,
+    originalFourTaskProductDataOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615_eq_directLocalizationBoundary]
+  rfl
+
+theorem
     originalFourTaskProductDataOfClosedMapSplitFieldsSelectedCochainComparisonW1616_boundedDerivedInfinityCategory
     (data :
       Dbounded.MetrizableClosedMapBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
