@@ -1,6 +1,6 @@
 {
   "schema": "lean_lca_exact_challenge.goal_identity.v1",
-  "generated_utc": "2026-06-09T13:32:17Z",
+  "generated_utc": "2026-06-09T14:02:14Z",
   "thread_id": "019ea5a4-a615-78b2-8944-d6f4ed0b24bb",
   "worktree": "/home/roku/codex-thread-workspaces/019ea5a4-a615-78b2-8944-d6f4ed0b24bb/worktrees/lean-lca-clean-positive-witness-20260609",
   "goal_file": {
@@ -21,12 +21,12 @@
   ],
   "git": {
     "branch": "goal-clean-positive-witness-20260609-019ea5a4",
-    "head": "a6ae7282d5458c2d6f423c4a0d060664422e8dc4",
-    "origin_main": "a6ae7282d5458c2d6f423c4a0d060664422e8dc4",
-    "origin_main_ls_remote": "a6ae7282d5458c2d6f423c4a0d060664422e8dc4"
+    "head": "4bdccd184d184eb6cd6f507f340a9c46a7690de3",
+    "origin_main": "4bdccd184d184eb6cd6f507f340a9c46a7690de3",
+    "origin_main_ls_remote": "4bdccd184d184eb6cd6f507f340a9c46a7690de3"
   },
   "product_success": false,
   "product_success_claimed": false,
   "update_goal_complete_permitted": false,
-  "notes": "Identity and contract hashes refreshed after the W852 route-data direct-boundary checkpoint was pushed to main. This does not claim the original positive witness."
+  "notes": "Identity and contract hashes refreshed at the W961 closed-embedding closedness product-surface checkpoint source base. This does not claim the original positive witness."
 }

@@ -7,6 +7,7 @@ import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroSplitFieldsSelectedCoch
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivMembershipDataClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute
+import LeanLCAExactChallenge.Derived.ClosedMapRawBoundaryRelationFieldsNormalizedFixedTargetFieldsSourceTriangulationFieldsClosedEmbeddingClosednessFieldsSplitTargetNoUnivClosednessNormalizedEndpointUnitComponentsPrimitiveFieldsRoute
 import LeanLCAExactChallenge.Derived.W987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW829StableSemanticAdapterComparisonW1539
 
 /-!
@@ -58,6 +59,9 @@ abbrev ClosednessEndpointLocalizedUnitBoundaryRelationInput : Type 2 :=
 abbrev ClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput :
     Type 2 :=
   Dbounded.MetrizableWppClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldLeavesW947
+
+abbrev ClosedEmbeddingClosednessFieldsInputW961 : Type 2 :=
+  Dbounded.MetrizableWppClosedMapRawBoundaryRelationFieldsNormalizedFixedTargetFieldsSourceTriangulationFieldsClosedEmbeddingClosednessFieldsSplitTargetNoUnivClosednessNormalizedEndpointUnitComponentsPrimitiveFieldLeavesW961
 
 abbrev ClosedMapExactInputsSelectedCochainComparisonInputW1614 : Type 2 :=
   Dbounded.MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735
@@ -243,6 +247,18 @@ theorem
       stablePackageOfClosednessEndpointLocalizedUnitBoundaryRelationInput
         (closednessEndpointLocalizedUnitBoundaryRelationInputOfTargetNoUnivClosednessInput
           input) :=
+  rfl
+
+noncomputable def stablePackageOfClosedEmbeddingClosednessFieldsW961
+    (input : ClosedEmbeddingClosednessFieldsInputW961) : StablePackage :=
+  Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingClosednessFieldsW961
+    input
+
+theorem stablePackageOfClosedEmbeddingClosednessFieldsW961_eq_w961
+    (input : ClosedEmbeddingClosednessFieldsInputW961) :
+    stablePackageOfClosedEmbeddingClosednessFieldsW961 input =
+      Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingClosednessFieldsW961
+        input :=
   rfl
 
 noncomputable def stablePackageOfRouteDataSelectedCochainComparisonW852

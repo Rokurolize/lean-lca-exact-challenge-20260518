@@ -1,17 +1,17 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-06-09T13:24:29Z",
-  "source_base_git_head": "8430aa41968e52b4b4553f51475c05d619442ff0",
-  "source_tree_hash": "f2fdac615cd18da91ceacaeba9897ad584d35a8c6079c7491b6cc09be4306b21",
+  "generated_utc": "2026-06-09T14:00:19Z",
+  "source_base_git_head": "4bdccd184d184eb6cd6f507f340a9c46a7690de3",
+  "source_tree_hash": "b21687a3633566b3fd9180e9e7c00961084641102fe0fc63bf93dbb9b6b25d3d",
   "source_file_count": 1199,
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "Verification for the nonterminal W852 route-data direct-boundary source patch. The source tree builds and required audits pass while product_success remains false and the original four-task positive witness is still absent.",
+  "summary": "Verification for the nonterminal W961 closed-embedding closedness product-surface patch. The source tree builds and required audits pass while product_success remains false and the original four-task positive witness is still absent.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Completed successfully with 2938 jobs; existing style warnings only."
+      "evidence": "Completed successfully with 2938 jobs after the W961 product-surface patch; existing style warnings only."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -31,7 +31,7 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace check completed with exit code 0 after the source patch and checkpoint artifact edits."
+      "evidence": "Whitespace check completed with exit code 0 after the W961 source patch and checkpoint artifact edits."
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
@@ -39,24 +39,24 @@
       "evidence": "Lean original four-task completion declaration audit completed with exit code 0."
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.RouteDataSelectedCochainStableRoute",
+      "command": "lake env lean LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridge.lean",
       "status": "passed",
-      "evidence": "Producer module for the W852 direct-boundary bridge built successfully before consumer checks."
+      "evidence": "The bounded-derived bridge file checked directly after adding the W961 import and stable-package alias."
     },
     {
       "command": "lake build LeanLCAExactChallenge.BoundedDerived.MetrizableStableBridge",
       "status": "passed",
-      "evidence": "Bounded-derived bridge consumer built successfully with the W852 stable-package equality."
+      "evidence": "Bounded-derived bridge module built successfully and refreshed the imported .olean for downstream ProductData checks."
     },
     {
-      "command": "lake build LeanLCAExactChallenge.OriginalFourTask.ProductData",
+      "command": "lake env lean LeanLCAExactChallenge/OriginalFourTask/ProductData.lean",
       "status": "passed",
-      "evidence": "Original four-task product-data surface built successfully after exposing the W852 route-data package."
+      "evidence": "Original four-task product-data file checked successfully after rebuilding the bridge; one pre-existing reducibility warning remains."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/RouteDataSelectedCochainStableRoute.lean",
+      "command": "lake env lean LeanLCAExactChallenge.lean",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens were reported in the touched W852 route-data source file."
+      "evidence": "Root import file checked successfully with the bridge and product-data modules imported."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridge.lean",
@@ -69,19 +69,9 @@
       "evidence": "No forbidden Lean tokens were reported in the original four-task product-data file."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/RequiredDeclarations.lean",
+      "command": "git diff --check -- LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridge.lean LeanLCAExactChallenge/OriginalFourTask/ProductData.lean",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens were reported in the required-declarations audit file."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens were reported in the product-success audit file."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/OriginalFourTaskCompletionDeclarations.lean",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens were reported in the original-four-task completion audit file."
+      "evidence": "Focused whitespace check for the touched Lean files completed with exit code 0."
     },
     {
       "command": "rg -n 'OriginalFourTaskProductSuccess|originalFourTaskProductSuccess|productSuccessClaimed\\s*:=\\s*true|productSuccessClaimed\\s*=\\s*true' LeanLCAExactChallenge audit -g '!audit/negative_fixtures/**'",

@@ -323,6 +323,42 @@ theorem
   rfl
 
 /--
+Assemble product data from the W961 closed-embedding closedness field surface,
+which exposes the W725 closed-embedding branch as raw W718/W519 fields before
+feeding the checked stable ExactAt route.
+-/
+noncomputable def originalFourTaskProductDataOfClosedEmbeddingClosednessFieldsW961
+    (input : BoundedDerived.Metrizable.ClosedEmbeddingClosednessFieldsInputW961) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStablePackage
+    (BoundedDerived.Metrizable.stablePackageOfClosedEmbeddingClosednessFieldsW961
+      input)
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingClosednessFieldsW961_boundedDerivedInfinityCategory
+    (input : BoundedDerived.Metrizable.ClosedEmbeddingClosednessFieldsInputW961) :
+    (originalFourTaskProductDataOfClosedEmbeddingClosednessFieldsW961
+      input).boundedDerivedInfinityCategory =
+      BoundedDerived.Metrizable.stablePackageOfClosedEmbeddingClosednessFieldsW961
+        input :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingClosednessFieldsW961_metrizableLCAExactCategory
+    (input : BoundedDerived.Metrizable.ClosedEmbeddingClosednessFieldsInputW961) :
+    (originalFourTaskProductDataOfClosedEmbeddingClosednessFieldsW961
+      input).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingClosednessFieldsW961_yonedaExt
+    (input : BoundedDerived.Metrizable.ClosedEmbeddingClosednessFieldsInputW961) :
+    (originalFourTaskProductDataOfClosedEmbeddingClosednessFieldsW961 input).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
+/--
 Assemble product data from the W1539 closed-map direct-source stable bridge.
 -/
 noncomputable def originalFourTaskProductDataOfClosedMapDirectSourceW1539
