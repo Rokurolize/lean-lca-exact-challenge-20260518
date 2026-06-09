@@ -1,27 +1,42 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-06-09T14:33:37Z",
-  "source_base_git_head": "fb234300774ef93505ea4e2d5772fe50ff17d784",
-  "source_tree_hash": "b21687a3633566b3fd9180e9e7c00961084641102fe0fc63bf93dbb9b6b25d3d",
+  "generated_utc": "2026-06-09T15:42:00Z",
+  "source_base_git_head": "77ed0c690b4a119ee9c2b26840347a59fca8b9d1",
+  "source_tree_hash": "d703548d1395f073c681f32ba83cee404333b91292a6059bb58b2a77dd0f0b66",
   "source_file_count": 1199,
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "Verification for the nonterminal post-fb234300 WPP functor-category localization frontier probe. The source tree hash is unchanged from the W961 product-surface checkpoint; the new probe records that fixed-target/normalized fixed-target data, direct left calculus, and bounded-complex source triangulation remain unsynthesized while product_success remains false.",
+  "summary": "Verification for the nonterminal W719 WPP functor-localization bridge checkpoint. W719 normalized fixed-target data now directly supplies WPP normalized fixed-target, functor-category localization, and finite-shape transfer inputs, and W774 consumes that bridge instead of reconstructing the normalized inputs. This is not product success and does not construct a nullary original four-task witness.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Completed successfully with 2938 jobs after the W961 product-surface patch; existing style warnings only."
+      "evidence": "Completed successfully with 2938 jobs after the W719/W774 source patch and audit allowlist alignment; existing style warnings only."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
       "status": "passed",
-      "evidence": "Reported no forbidden Lean tokens under LeanLCAExactChallenge."
+      "evidence": "Built the W719 defining module to refresh the imported .olean before rechecking downstream W774 dot notation."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.NormalizedDirectSourceClosedRangeProductRoute",
+      "status": "passed",
+      "evidence": "Built the W774 downstream route successfully after consuming the W719 bridge."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "The changed W719 source file checked directly with exit code 0."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/NormalizedDirectSourceClosedRangeProductRoute.lean",
+      "status": "passed",
+      "evidence": "The changed W774 source file checked directly with exit code 0 after the W719 .olean was refreshed."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Lean declaration audit completed with exit code 0."
+      "evidence": "Lean required-declarations audit completed with exit code 0."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
@@ -29,84 +44,44 @@
       "evidence": "Lean product-success declaration audit completed with exit code 0 while preserving product_success=false metadata."
     },
     {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "Whitespace check completed with exit code 0 after the W961 source patch and checkpoint artifact edits."
-    },
-    {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
       "evidence": "Lean original four-task completion declaration audit completed with exit code 0."
     },
     {
-      "command": "lake env lean LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridge.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "The bounded-derived bridge file checked directly after adding the W961 import and stable-package alias."
+      "evidence": "Reported no forbidden Lean tokens under LeanLCAExactChallenge."
     },
     {
-      "command": "lake build LeanLCAExactChallenge.BoundedDerived.MetrizableStableBridge",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean LeanLCAExactChallenge/Derived/NormalizedDirectSourceClosedRangeProductRoute.lean",
       "status": "passed",
-      "evidence": "Bounded-derived bridge module built successfully and refreshed the imported .olean for downstream ProductData checks."
+      "evidence": "Focused forbidden-token audit for the changed Lean files completed with exit code 0."
     },
     {
-      "command": "lake env lean LeanLCAExactChallenge/OriginalFourTask/ProductData.lean",
+      "command": "git diff --check",
       "status": "passed",
-      "evidence": "Original four-task product-data file checked successfully after rebuilding the bridge; one pre-existing reducibility warning remains."
+      "evidence": "Full whitespace check completed with exit code 0 after source and audit edits."
     },
     {
-      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "command": "git diff --check -- LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean LeanLCAExactChallenge/Derived/NormalizedDirectSourceClosedRangeProductRoute.lean audit/external_audit.py run/goal_identity_20260602_human_centered_positive_witness.json run/resumption_and_stable_gate_after_77ed0c69_20260609.md run/w719_wpp_functor_localization_bridge_checkpoint_20260609.md run/verification.json terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "Root import file checked successfully with the bridge and product-data modules imported."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridge.lean",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens were reported in the bounded-derived bridge file."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/OriginalFourTask/ProductData.lean",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens were reported in the original four-task product-data file."
-    },
-    {
-      "command": "git diff --check -- LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridge.lean LeanLCAExactChallenge/OriginalFourTask/ProductData.lean",
-      "status": "passed",
-      "evidence": "Focused whitespace check for the touched Lean files completed with exit code 0."
-    },
-    {
-      "command": "rg -n 'OriginalFourTaskProductSuccess|originalFourTaskProductSuccess|productSuccessClaimed\\s*:=\\s*true|productSuccessClaimed\\s*=\\s*true' LeanLCAExactChallenge audit -g '!audit/negative_fixtures/**'",
-      "status": "passed",
-      "evidence": "Search found no active positive product-success declaration or true productSuccessClaimed state; hits were limited to comments, audit expected-name lists, and historical warning text."
-    },
-    {
-      "command": "rg -n 'productSuccessClaimed\\s*:=\\s*false|productSuccessClaimed\\s*=\\s*false' LeanLCAExactChallenge audit -g '!audit/negative_fixtures/**' | wc -l",
-      "status": "passed",
-      "evidence": "The nonterminal false-state scan reported 1549 matching false markers."
-    },
-    {
-      "command": "lake env lean run/post_w961_nullary_w961_frontier_probe_20260609.lean",
-      "status": "failed_expected",
-      "evidence": "The probe deliberately failed at nullary construction points after printing the W961 product surface: W961 has 18 explicit fields, Pretriangulated/IsTriangulated source structures and direct left calculus are not synthesized, and the ClosedEmbeddingClosednessFieldsInputW961 placeholder remains unsolved."
-    },
-    {
-      "command": "lake env lean run/post_fb_wpp_functor_localization_frontier_probe_20260609.lean",
-      "status": "failed_expected",
-      "evidence": "The probe printed the checked WPP functor-category localization constructors and deliberately failed to synthesize Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput, direct left calculus, and Pretriangulated (BoundedComplexCategory MetrizableLCA)."
-    },
-    {
-      "command": "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "status": "passed",
-      "evidence": "Contract audit passed with terminal_claims_product_success=false and the remaining nonterminal bounded-derived blocker recorded."
-    },
-    {
-      "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "status": "passed",
-      "evidence": "External audit passed after refreshing the current source_tree_hash and required command evidence."
+      "evidence": "Focused whitespace check for the touched source, audit, and checkpoint artifacts completed with exit code 0."
     },
     {
       "command": "jq . run/verification.json terminal_outcome/terminal_outcome.json run/goal_identity_20260602_human_centered_positive_witness.json >/dev/null",
       "status": "passed",
       "evidence": "All touched JSON outcome and verification artifacts parsed successfully."
+    },
+    {
+      "command": "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "passed",
+      "evidence": "Contract audit passed with terminal_claims_product_success=false and the remaining AcceptedStableBoundedDerivedInfinityCategory product-surface blocker recorded."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "passed",
+      "evidence": "External audit passed with source_tree_hash d703548d1395f073c681f32ba83cee404333b91292a6059bb58b2a77dd0f0b66."
     }
   ]
 }

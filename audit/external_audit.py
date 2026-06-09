@@ -60,6 +60,7 @@ FINAL_FALSE_COMPLETION_MARKERS = [
 
 ALLOWED_NONTERMINAL_OUTCOMES = {
     "nonterminal_recovery_baseline",
+    "nonterminal_checkpoint_pushed",
     "mathematical_frontier_nonterminal",
     "source_patch_needed_handoff",
     "failed",

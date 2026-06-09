@@ -55,32 +55,14 @@ structure MetrizableClosedEmbeddingNormalizedDirectSourceClosedRangeBranchDataW7
 /-- W774 closed-map normalized fixed-target inputs projected from W735 data. -/
 def normalizedFixedTargetInputsOfClosedMapW774
     (data : MetrizableClosedMapNormalizedDirectSourceClosedRangeBranchDataW774) :
-    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
-    where
-  normalized :=
-    normalizedLiftBlueprint_of_normalizedFixedTargetDataW719
-      data.exactInputs.normalizedFixedTargetData
-  target_uniq :=
-    targetFixedTargetUniq_of_normalizedFixedTargetDataW719
-      data.exactInputs.normalizedFixedTargetData
-  model_uniq :=
-    localizationModelFixedTargetUniq_of_normalizedFixedTargetDataW719
-      data.exactInputs.normalizedFixedTargetData
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs :=
+  data.exactInputs.normalizedFixedTargetData.toWalkingParallelPairNormalizedFixedTargetInputs
 
 /-- W774 closed-embedding normalized fixed-target inputs projected from W735 data. -/
 def normalizedFixedTargetInputsOfClosedEmbeddingW774
     (data : MetrizableClosedEmbeddingNormalizedDirectSourceClosedRangeBranchDataW774) :
-    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
-    where
-  normalized :=
-    normalizedLiftBlueprint_of_normalizedFixedTargetDataW719
-      data.exactInputs.normalizedFixedTargetData
-  target_uniq :=
-    targetFixedTargetUniq_of_normalizedFixedTargetDataW719
-      data.exactInputs.normalizedFixedTargetData
-  model_uniq :=
-    localizationModelFixedTargetUniq_of_normalizedFixedTargetDataW719
-      data.exactInputs.normalizedFixedTargetData
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs :=
+  data.exactInputs.normalizedFixedTargetData.toWalkingParallelPairNormalizedFixedTargetInputs
 
 /-- W774 rebuilds the closed-map W653 direct source from normalized W735 data. -/
 noncomputable def directSourceOfClosedMapNormalizedW774
@@ -88,10 +70,8 @@ noncomputable def directSourceOfClosedMapNormalizedW774
     MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653
     where
   finiteShapeInputs :=
-    Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_normalized
-      { limitStability := data.limitStability
-        colimitStability := data.colimitStability
-        normalizedInputs := normalizedFixedTargetInputsOfClosedMapW774 data }
+    data.exactInputs.normalizedFixedTargetData.toWalkingParallelPairFiniteShapeTransferInputs
+      data.limitStability data.colimitStability
 
 /-- W774 rebuilds the closed-embedding W653 direct source from normalized W735 data. -/
 noncomputable def directSourceOfClosedEmbeddingNormalizedW774
@@ -100,10 +80,8 @@ noncomputable def directSourceOfClosedEmbeddingNormalizedW774
     MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653
     where
   finiteShapeInputs :=
-    Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_normalized
-      { limitStability := data.limitStability
-        colimitStability := data.colimitStability
-        normalizedInputs := normalizedFixedTargetInputsOfClosedEmbeddingW774 data }
+    data.exactInputs.normalizedFixedTargetData.toWalkingParallelPairFiniteShapeTransferInputs
+      data.limitStability data.colimitStability
 
 /-- W774 closed-map branch converted to W773 data. -/
 noncomputable def closedMapSourceTriangulationDataOfNormalizedW774

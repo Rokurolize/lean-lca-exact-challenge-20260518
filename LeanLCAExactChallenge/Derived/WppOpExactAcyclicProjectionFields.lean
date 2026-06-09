@@ -48261,6 +48261,44 @@ def localizationModelFixedTargetUniq_of_normalizedFixedTargetDataW719
   normalizedData.localizationModelFixedTargetUniq
 
 /--
+W719 normalized fixed-target data is exactly the normalized input expected by
+the WPP functor-category localization API.
+-/
+def MetrizableWppNormalizedFixedTargetDataProviderW719.toWalkingParallelPairNormalizedFixedTargetInputs
+    (normalizedData : MetrizableWppNormalizedFixedTargetDataProviderW719) :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+    where
+  normalized := normalizedData.normalizedLiftBlueprint
+  target_uniq := normalizedData.targetFixedTargetUniq
+  model_uniq := normalizedData.localizationModelFixedTargetUniq
+
+/-- W719 normalized fixed-target data supplies the WPP functor-category localization input. -/
+theorem MetrizableWppNormalizedFixedTargetDataProviderW719.walkingParallelPairFunctorCategoryLocalizationInput
+    (normalizedData : MetrizableWppNormalizedFixedTargetDataProviderW719) :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput :=
+  Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_normalized
+    normalizedData.toWalkingParallelPairNormalizedFixedTargetInputs
+
+/--
+W719 normalized fixed-target data supplies the finite-shape transfer input once
+the limit and colimit stability fields have been constructed.
+-/
+def MetrizableWppNormalizedFixedTargetDataProviderW719.toWalkingParallelPairFiniteShapeTransferInputs
+    (normalizedData : MetrizableWppNormalizedFixedTargetDataProviderW719)
+    (limitStability :
+      (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+        WalkingParallelPair)
+    (colimitStability :
+      (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderColimitsOfShape
+        WalkingParallelPair) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs
+    where
+  limitStability := limitStability
+  colimitStability := colimitStability
+  functorCategoryLocalization :=
+    normalizedData.walkingParallelPairFunctorCategoryLocalizationInput
+
+/--
 W719 closed-map bundle: expose the W718 component-provider route with one
 normalized fixed-target data input.
 -/
@@ -48582,6 +48620,9 @@ def
       "normalizedLiftBlueprint_of_normalizedFixedTargetDataW719",
       "targetFixedTargetUniq_of_normalizedFixedTargetDataW719",
       "localizationModelFixedTargetUniq_of_normalizedFixedTargetDataW719",
+      "MetrizableWppNormalizedFixedTargetDataProviderW719.toWalkingParallelPairNormalizedFixedTargetInputs",
+      "MetrizableWppNormalizedFixedTargetDataProviderW719.walkingParallelPairFunctorCategoryLocalizationInput",
+      "MetrizableWppNormalizedFixedTargetDataProviderW719.toWalkingParallelPairFiniteShapeTransferInputs",
       "MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapExplicitEndpointStrictTopologyNormalizedFixedTargetDataLocalizedRightAdjointBundleW719",
       "metrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_normalizedFixedTargetDataW719",
       "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapExplicitEndpointStrictTopologyNormalizedFixedTargetDataLocalizedRightAdjointBundleW719_accepted",
@@ -48591,7 +48632,7 @@ def
       "metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetInputNamesW719",
       "metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetInputNamesW719_count"]
   normalizedFixedTargetProjectionResult :=
-    "proved: one normalized fixed-target data input projects to the W718 normalized lift blueprint, target fixed-target uniqueness, and localization-model fixed-target uniqueness inputs"
+    "proved: one normalized fixed-target data input projects to the W718 normalized lift blueprint, target fixed-target uniqueness, and localization-model fixed-target uniqueness inputs, and now directly supplies the WPP normalized fixed-target, functor-localization, and finite-shape transfer inputs"
   closedMapNormalizedFixedTargetAcceptedResult :=
     "proved: normalized fixed-target closed-map bundle assembles W718 and feeds the accepted closed-map route"
   closedEmbeddingNormalizedFixedTargetAcceptedResult :=
