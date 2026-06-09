@@ -156,6 +156,35 @@ theorem open_surjection_of_quillenConflation {S : ShortComplex MetrizableLCA.{u}
     quillenConflation_iff_closed_inclusion_open_surjection_algebraic_exact.mp hS
   exact ⟨hfields.2.1, hfields.2.2.1⟩
 
+/-- The left map of a canonical Quillen inflation is a closed embedding. -/
+theorem closed_inclusion_of_quillenInflation {X Y : MetrizableLCA.{u}} {i : X ⟶ Y}
+    (hi : QuillenExactCategory.inflation i) :
+    IsClosedEmbedding (i : X → Y) := by
+  rcases hi with ⟨Z, g, zero, hS⟩
+  exact closed_inclusion_of_quillenConflation (S := ShortComplex.mk i g zero) hS
+
+/-- The right map of a canonical Quillen deflation is open. -/
+theorem open_map_of_quillenDeflation {X Y : MetrizableLCA.{u}} {p : X ⟶ Y}
+    (hp : QuillenExactCategory.deflation p) :
+    IsOpenMap (p : X → Y) := by
+  rcases hp with ⟨W, f, zero, hS⟩
+  exact (open_surjection_of_quillenConflation
+    (S := ShortComplex.mk f p zero) hS).1
+
+/-- The right map of a canonical Quillen deflation is surjective. -/
+theorem surjective_of_quillenDeflation {X Y : MetrizableLCA.{u}} {p : X ⟶ Y}
+    (hp : QuillenExactCategory.deflation p) :
+    Function.Surjective (p : X → Y) := by
+  rcases hp with ⟨W, f, zero, hS⟩
+  exact (open_surjection_of_quillenConflation
+    (S := ShortComplex.mk f p zero) hS).2
+
+/-- The right map of a canonical Quillen deflation is an open surjection. -/
+theorem open_surjection_of_quillenDeflation {X Y : MetrizableLCA.{u}} {p : X ⟶ Y}
+    (hp : QuillenExactCategory.deflation p) :
+    IsOpenMap (p : X → Y) ∧ Function.Surjective (p : X → Y) :=
+  ⟨open_map_of_quillenDeflation hp, surjective_of_quillenDeflation hp⟩
+
 /-- A canonical Quillen conflation has the expected algebraic kernel. -/
 theorem algebraic_kernel_of_quillenConflation {S : ShortComplex MetrizableLCA.{u}}
     (hS : QuillenExactCategory.Conflation S) :
