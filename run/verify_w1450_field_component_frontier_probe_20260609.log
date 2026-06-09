@@ -1,0 +1,43 @@
+LeanLCAExactChallenge.Dbounded.W987FieldDataConstructionInputW1450 : Type 2
+LeanLCAExactChallenge.Dbounded.MetrizableWppLimitBoundaryDataW716 : Type 1
+LeanLCAExactChallenge.Dbounded.ClosedNatTransOrdinaryRelationDataProviderW717 : Type 1
+LeanLCAExactChallenge.Dbounded.TargetNoUnivClosedEmbeddingClosednessDataProviderW984 : Type 2
+LeanLCAExactChallenge.Dbounded.NormalizedSourceTriangulationEndpointLocalizedUnitDataProviderW950 : Type 2
+LeanLCAExactChallenge.Dbounded.fullDataOfW987FieldDataW1450 (input : W987FieldDataConstructionInputW1450) :
+  BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataProviderW987
+run/w1450_field_component_frontier_probe_20260609.lean:17:42: error: unsolved goals
+case rightOpenBoundary
+⊢ MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+
+case sourcePiZeroBoundary
+⊢ MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+run/w1450_field_component_frontier_probe_20260609.lean:23:54: error: unsolved goals
+case relationPullbackProvider
+⊢ ClosedNatTransOrdinaryRelationPullbackProviderW712
+
+case targetRelationLiftsProvider
+⊢ ClosedNatTransOrdinaryTargetRelationLiftsProviderW712
+run/w1450_field_component_frontier_probe_20260609.lean:29:61: error: unsolved goals
+case targetNoUnivData
+⊢ TargetSurjectiveNoUnivMembershipForTargetProviderW944
+
+case closedEmbeddingClosednessData
+⊢ ClosedEmbeddingClosednessDataProviderW973
+run/w1450_field_component_frontier_probe_20260609.lean:35:74: error: unsolved goals
+case normalizedSourceTriangulationData
+⊢ NormalizedFixedTargetSourceTriangulationDataProviderW948
+
+case endpointLocalizedUnitData
+⊢ EndpointStrictExactLocalizedUnitDataProviderW949
+run/w1450_field_component_frontier_probe_20260609.lean:41:43: error: unsolved goals
+case boundaryData
+⊢ MetrizableWppLimitBoundaryDataW716
+
+case relationData
+⊢ ClosedNatTransOrdinaryRelationDataProviderW717
+
+case targetClosedEmbeddingClosednessData
+⊢ TargetNoUnivClosedEmbeddingClosednessDataProviderW984
+
+case normalizedSourceEndpointLocalizedUnitData
+⊢ NormalizedSourceTriangulationEndpointLocalizedUnitDataProviderW950

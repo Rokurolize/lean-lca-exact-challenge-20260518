@@ -1,13 +1,28 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-06-09T19:44:54Z",
-  "source_base_git_head": "12e536e26c2c5bb1a3706007433cfce4a4d4c952",
+  "generated_utc": "2026-06-09T20:07:38Z",
+  "source_base_git_head": "d055e9116eae98c0c6c73359eeae1fd4ba6775f4",
   "source_tree_hash": "2b7e87093aad77901951a80db74e2aa0431341b6a362903f8121e27225282118",
   "source_file_count": 1202,
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "Verification for the W987 full-data source-patch-needed handoff after W1625. No product-facing Lean source changed in this checkpoint. The evidence records that W987 remains the one-input frontier, that current source lacks a nullary W987/W730/W986/W1450 provider, and that existing guard routes prove the obvious W987 unpack or field-data routes expand the current frontier rather than closing it.",
+  "summary": "Verification for the W1450 field-component source-patch-needed handoff after the W987 full-data handoff. No product-facing Lean source changed in this checkpoint. The evidence records that W1450 remains an expanded construction surface and that current source lacks nullary W716/W717/W984/W950 providers or nullary immediate leaf providers for the eight goals exposed by the probe.",
   "commands": [
+    {
+      "command": "post-W987 resumption and stable-release gates",
+      "status": "passed",
+      "evidence": "run/resumption_after_w987_20260609T200038Z_summary.md records clean d055e911 refs, contract SHA256 values, source_patch_needed_handoff terminal state with product_success=false, formal Lean/mathlib v4.30.0 state, no active rc2 toolchain references, and no pre-source dirty state."
+    },
+    {
+      "command": "rg W1450 component and immediate-leaf nullary declaration-shape scans",
+      "status": "passed",
+      "evidence": "Focused rg -nUP scans over LeanLCAExactChallenge and audit found no no-argument def/theorem/lemma returning W716, W717, W984, W950, MetrizableWppLimitRightOpenClosedQuotientCoverBoundary, MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary, ClosedNatTransOrdinaryRelationPullbackProviderW712, ClosedNatTransOrdinaryTargetRelationLiftsProviderW712, TargetSurjectiveNoUnivMembershipForTargetProviderW944, ClosedEmbeddingClosednessDataProviderW973, NormalizedFixedTargetSourceTriangulationDataProviderW948, EndpointStrictExactLocalizedUnitDataProviderW949, SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718, MappedExplicitCokernelClosedEmbeddingProviderW519, MetrizableWppNormalizedFixedTargetDataProviderW719, MetrizableWppSourceTriangulationDataProviderW722, BoundedHomotopyLocalizedEndpointStrictExactUnitComponentsProviderW945, or a global endpoint strict-exact provider."
+    },
+    {
+      "command": "lake env lean run/w1450_field_component_frontier_probe_20260609.lean",
+      "status": "failed_expected",
+      "evidence": "The run/ probe successfully #checked W1450 and its component records, then failed only on intended unsolved goals: rightOpenBoundary, sourcePiZeroBoundary, relationPullbackProvider, targetRelationLiftsProvider, targetNoUnivData, closedEmbeddingClosednessData, normalizedSourceTriangulationData, endpointLocalizedUnitData, and the four W1450 record fields."
+    },
     {
       "command": "rg W987/W730/W986/W1450 nullary declaration-shape scans",
       "status": "passed",
@@ -16,7 +31,7 @@
     {
       "command": "lake env lean run/w987_full_data_frontier_probe_20260609.lean",
       "status": "failed_expected",
-      "evidence": "The run/ probe successfully #checked the W987 frontier and guard declarations, then failed only at the intended placeholder ?fieldData : W987FieldDataConstructionInputW1450 for attemptedNullaryW987FullDataProvider."
+      "evidence": "The earlier run/ probe successfully #checked the W987 frontier and guard declarations, then failed only at the intended placeholder ?fieldData : W987FieldDataConstructionInputW1450 for attemptedNullaryW987FullDataProvider."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.BoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryRoute",
@@ -36,17 +51,17 @@
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required-declarations audit completed with exit code 0 after the W987 source-patch-needed outcome refresh."
+      "evidence": "Required-declarations audit completed with exit code 0 after the W1450 field-component source-patch-needed outcome refresh."
     },
     {
       "command": "lake build LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Covered by the full lake build after the W987 handoff artifact refresh."
+      "evidence": "Covered by the full lake build after the W1450 handoff artifact refresh."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build completed successfully after the W987 handoff artifact refresh."
+      "evidence": "Full project build completed successfully after the W1450 handoff artifact refresh."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
@@ -61,7 +76,7 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden Lean token audit over LeanLCAExactChallenge completed with exit code 0 after the W987 handoff artifact refresh."
+      "evidence": "Forbidden Lean token audit over LeanLCAExactChallenge completed with exit code 0 after the W1450 handoff artifact refresh."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/BoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryRoute.lean",
@@ -71,7 +86,7 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Full whitespace check completed with exit code 0 after the W987 handoff artifacts and terminal outcome refresh."
+      "evidence": "Full whitespace check completed with exit code 0 after the W1450 handoff artifacts and terminal outcome refresh."
     },
     {
       "command": "rg declaration-shaped product-success scan outside audit negative fixtures",
@@ -91,7 +106,7 @@
     {
       "command": "jq . run/verification.json terminal_outcome/terminal_outcome.json run/goal_identity_20260602_human_centered_positive_witness.json >/dev/null",
       "status": "passed",
-      "evidence": "Outcome, verification, and goal-identity JSON artifacts parsed successfully after the W987 handoff refresh."
+      "evidence": "Outcome, verification, and goal-identity JSON artifacts parsed successfully after the W1450 handoff refresh."
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
