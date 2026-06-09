@@ -1,0 +1,11 @@
+{
+  "outcome": "mathematical_frontier_nonterminal",
+  "product_success": false,
+  "product_complete": false,
+  "update_goal_allowed": false,
+  "git_head": "62e690d4102855c53ee9e627fa6ea96dadb6c247",
+  "latest_checkpoint": "w1614-exact-inputs-stable-package-bridge",
+  "obligations_discharged": null,
+  "obligations_derived_or_eliminated": "W1614 exact-input routes are product-facing StablePackage bridges; W735 exact-input branch remains the next concrete frontier.",
+  "new_frontier_input_count": 1
+}

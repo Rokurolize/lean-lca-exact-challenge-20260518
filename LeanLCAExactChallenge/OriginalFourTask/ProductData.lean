@@ -922,8 +922,8 @@ noncomputable def
     (data :
       Dbounded.MetrizableClosedMapBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
     OriginalFourTaskProductData :=
-  originalFourTaskProductDataOfDirectLocalizationBoundary
-    (Dbounded.directLocalizationBoundaryInputsOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
+  originalFourTaskProductDataOfStablePackage
+    (BoundedDerived.Metrizable.stablePackageOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
       data)
 
 /--
@@ -937,9 +937,57 @@ noncomputable def
     (data :
       Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
     OriginalFourTaskProductData :=
-  originalFourTaskProductDataOfDirectLocalizationBoundary
-    (Dbounded.directLocalizationBoundaryInputsOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
+  originalFourTaskProductDataOfStablePackage
+    (BoundedDerived.Metrizable.stablePackageOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
       data)
+
+theorem
+    originalFourTaskProductDataOfClosedMapConcreteFieldsSelectedCochainComparisonW1615_eq_exactInputsSelectedCochainComparisonW1614
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
+    originalFourTaskProductDataOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
+        data =
+      originalFourTaskProductDataOfClosedMapExactInputsSelectedCochainComparisonW1614
+        (Dbounded.closedMapExactInputsOfConcreteFieldsSelectedCochainComparisonW1615
+          data) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615_eq_exactInputsSelectedCochainComparisonW1614
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
+    originalFourTaskProductDataOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
+        data =
+      originalFourTaskProductDataOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
+        (Dbounded.closedEmbeddingExactInputsOfConcreteFieldsSelectedCochainComparisonW1615
+          data) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedMapConcreteFieldsSelectedCochainComparisonW1615_eq_directLocalizationBoundary
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
+    originalFourTaskProductDataOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
+        data =
+      originalFourTaskProductDataOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
+          data) := by
+  rw [originalFourTaskProductDataOfClosedMapConcreteFieldsSelectedCochainComparisonW1615,
+    originalFourTaskProductDataOfDirectLocalizationBoundary,
+    BoundedDerived.Metrizable.stablePackageOfClosedMapConcreteFieldsSelectedCochainComparisonW1615_eq_directLocalizationBoundary]
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615_eq_directLocalizationBoundary
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonBranchDataW1615) :
+    originalFourTaskProductDataOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
+        data =
+      originalFourTaskProductDataOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
+          data) := by
+  rw [originalFourTaskProductDataOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615,
+    originalFourTaskProductDataOfDirectLocalizationBoundary,
+    BoundedDerived.Metrizable.stablePackageOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615_eq_directLocalizationBoundary]
 
 theorem
     originalFourTaskProductDataOfClosedMapConcreteFieldsSelectedCochainComparisonW1615_boundedDerivedInfinityCategory
