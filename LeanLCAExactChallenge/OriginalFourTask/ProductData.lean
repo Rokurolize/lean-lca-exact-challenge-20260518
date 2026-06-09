@@ -656,28 +656,30 @@ theorem
 
 /--
 Assemble product data from the W1614 closed-map frontier. W1614 derives the
-selected-cochain/strict-realization side from one W735 exact-input branch.
+selected-cochain/strict-realization side from one W735 exact-input branch through
+the canonical direct-localization stable-instance boundary.
 -/
 noncomputable def
     originalFourTaskProductDataOfClosedMapExactInputsSelectedCochainComparisonW1614
     (exactInputs :
       Dbounded.MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
     OriginalFourTaskProductData :=
-  originalFourTaskProductDataOfStableInstanceBoundary
-    (Dbounded.stableBoundaryInputsOfClosedMapExactInputsSelectedCochainComparisonW1614
+  originalFourTaskProductDataOfDirectLocalizationBoundary
+    (Dbounded.directLocalizationBoundaryInputsOfClosedMapExactInputsSelectedCochainComparisonW1614
       exactInputs)
 
 /--
 Assemble product data from the W1614 closed-embedding frontier. W1614 derives
-the selected-cochain/strict-realization side from one W735 exact-input branch.
+the selected-cochain/strict-realization side from one W735 exact-input branch
+through the canonical direct-localization stable-instance boundary.
 -/
 noncomputable def
     originalFourTaskProductDataOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
     (exactInputs :
       Dbounded.MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
     OriginalFourTaskProductData :=
-  originalFourTaskProductDataOfStableInstanceBoundary
-    (Dbounded.stableBoundaryInputsOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
+  originalFourTaskProductDataOfDirectLocalizationBoundary
+    (Dbounded.directLocalizationBoundaryInputsOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
       exactInputs)
 
 theorem
@@ -686,9 +688,8 @@ theorem
       Dbounded.MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
     (originalFourTaskProductDataOfClosedMapExactInputsSelectedCochainComparisonW1614
       exactInputs).boundedDerivedInfinityCategory =
-      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
-        (Dbounded.stableBoundaryInputsOfClosedMapExactInputsSelectedCochainComparisonW1614
-          exactInputs) :=
+      Dbounded.boundedDerivedOfClosedMapExactInputsSelectedCochainDirectLocalizationBoundaryW1614
+        exactInputs :=
   rfl
 
 theorem
@@ -697,9 +698,8 @@ theorem
       Dbounded.MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
     (originalFourTaskProductDataOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
       exactInputs).boundedDerivedInfinityCategory =
-      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
-        (Dbounded.stableBoundaryInputsOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
-          exactInputs) :=
+      Dbounded.boundedDerivedOfClosedEmbeddingExactInputsSelectedCochainDirectLocalizationBoundaryW1614
+        exactInputs :=
   rfl
 
 /--
