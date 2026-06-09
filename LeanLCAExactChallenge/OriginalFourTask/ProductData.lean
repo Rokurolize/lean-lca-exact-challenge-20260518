@@ -573,34 +573,38 @@ theorem
 
 /--
 Assemble product data from the W1608 closed-map frontier. The remaining inputs
-are the target ExactAt payload and one W735 branch.
+are the target ExactAt payload and one W735 branch, routed through the
+canonical direct-localization stable-instance boundary.
 -/
 noncomputable def originalFourTaskProductDataOfClosedMapComparisonTargetExactAtW1608
     (data :
       Dbounded.MetrizableClosedMapBoundarySourcePiZeroComparisonTargetExactAtDataW1608) :
     OriginalFourTaskProductData :=
-  originalFourTaskProductDataOfStableInstanceBoundary
-    (Dbounded.stableBoundaryInputsOfClosedMapComparisonW1608 data)
+  originalFourTaskProductDataOfDirectLocalizationBoundary
+    (Dbounded.directLocalizationBoundaryInputsOfClosedMapComparisonTargetExactAtW1608
+      data)
 
 /--
 Assemble product data from the W1608 closed-embedding frontier. The remaining
-inputs are the target ExactAt payload and one W735 branch.
+inputs are the target ExactAt payload and one W735 branch, routed through the
+canonical direct-localization stable-instance boundary.
 -/
 noncomputable def
     originalFourTaskProductDataOfClosedEmbeddingComparisonTargetExactAtW1608
     (data :
       Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroComparisonTargetExactAtDataW1608) :
     OriginalFourTaskProductData :=
-  originalFourTaskProductDataOfStableInstanceBoundary
-    (Dbounded.stableBoundaryInputsOfClosedEmbeddingComparisonW1608 data)
+  originalFourTaskProductDataOfDirectLocalizationBoundary
+    (Dbounded.directLocalizationBoundaryInputsOfClosedEmbeddingComparisonTargetExactAtW1608
+      data)
 
 theorem
     originalFourTaskProductDataOfClosedMapComparisonTargetExactAtW1608_boundedDerivedInfinityCategory
     (data :
       Dbounded.MetrizableClosedMapBoundarySourcePiZeroComparisonTargetExactAtDataW1608) :
     (originalFourTaskProductDataOfClosedMapComparisonTargetExactAtW1608 data).boundedDerivedInfinityCategory =
-      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
-        (Dbounded.stableBoundaryInputsOfClosedMapComparisonW1608 data) :=
+      Dbounded.boundedDerivedOfClosedMapComparisonTargetExactAtDirectLocalizationBoundaryW1608
+        data :=
   rfl
 
 theorem
@@ -608,8 +612,8 @@ theorem
     (data :
       Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroComparisonTargetExactAtDataW1608) :
     (originalFourTaskProductDataOfClosedEmbeddingComparisonTargetExactAtW1608 data).boundedDerivedInfinityCategory =
-      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
-        (Dbounded.stableBoundaryInputsOfClosedEmbeddingComparisonW1608 data) :=
+      Dbounded.boundedDerivedOfClosedEmbeddingComparisonTargetExactAtDirectLocalizationBoundaryW1608
+        data :=
   rfl
 
 /--

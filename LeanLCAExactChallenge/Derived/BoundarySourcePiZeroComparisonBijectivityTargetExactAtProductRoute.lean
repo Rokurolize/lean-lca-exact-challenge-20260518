@@ -1,5 +1,6 @@
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroTargetExactAtStableClosureProductRoute
 import LeanLCAExactChallenge.Derived.ComparisonBijectivityLeftCalculusRoute
+import LeanLCAExactChallenge.Derived.TargetExactAtDirectSourceStableRoute
 
 /-!
 W1608 feeds W1607 after deriving its universal comparison-isomorphism input
@@ -60,6 +61,22 @@ noncomputable def closedEmbeddingTargetExactAtDataOfComparisonBijectivityW1608
   targetExactAtPayload := data.targetExactAtPayload
   exactInputs := data.exactInputs
 
+/-- W1608 closed-map branch converted to W843 direct-source data. -/
+noncomputable def closedMapTargetExactAtDirectSourceDataOfComparisonW1608
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroComparisonTargetExactAtDataW1608) :
+    MetrizableClosedMapTargetExactAtDirectSourceStableRouteDataW843 where
+  targetExactAtPayload := data.targetExactAtPayload
+  exactInputs := data.exactInputs
+
+/-- W1608 closed-embedding branch converted to W843 direct-source data. -/
+noncomputable def closedEmbeddingTargetExactAtDirectSourceDataOfComparisonW1608
+    (data :
+      MetrizableClosedEmbeddingBoundarySourcePiZeroComparisonTargetExactAtDataW1608) :
+    MetrizableClosedEmbeddingTargetExactAtDirectSourceStableRouteDataW843 where
+  targetExactAtPayload := data.targetExactAtPayload
+  exactInputs := data.exactInputs
+
 /-- W1608 closed-map product evidence through W1607. -/
 noncomputable def productEvidenceOfClosedMapComparisonTargetExactAtW1608
     (data :
@@ -108,6 +125,32 @@ noncomputable def stableBoundaryInputsOfClosedEmbeddingComparisonW1608
   stableBoundaryInputsOfClosedEmbeddingTargetExactAtW1607
     (closedEmbeddingTargetExactAtDataOfComparisonBijectivityW1608 data)
 
+/--
+W1608 closed-map data as canonical direct-localization boundary inputs through
+W843/W842.
+-/
+noncomputable def
+    directLocalizationBoundaryInputsOfClosedMapComparisonTargetExactAtW1608
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroComparisonTargetExactAtDataW1608) :
+    MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  closedMapStableInstanceBoundaryDirectLocalizationInputsOfTargetHomologyZeroW842
+    (closedMapTargetHomologyZeroDataOfTargetExactAtW843
+      (closedMapTargetExactAtDirectSourceDataOfComparisonW1608 data))
+
+/--
+W1608 closed-embedding data as canonical direct-localization boundary inputs
+through W843/W842.
+-/
+noncomputable def
+    directLocalizationBoundaryInputsOfClosedEmbeddingComparisonTargetExactAtW1608
+    (data :
+      MetrizableClosedEmbeddingBoundarySourcePiZeroComparisonTargetExactAtDataW1608) :
+    MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  closedEmbeddingStableInstanceBoundaryDirectLocalizationInputsOfTargetHomologyZeroW842
+    (closedEmbeddingTargetHomologyZeroDataOfTargetExactAtW843
+      (closedEmbeddingTargetExactAtDirectSourceDataOfComparisonW1608 data))
+
 /-- W1608 closed-map accepted stable evidence through W1607. -/
 noncomputable def acceptedStableOfClosedMapComparisonTargetExactAtW1608
     (data :
@@ -123,6 +166,32 @@ noncomputable def acceptedStableOfClosedEmbeddingComparisonTargetExactAtW1608
     AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
   acceptedStableOfClosedEmbeddingTargetExactAtW1607
     (closedEmbeddingTargetExactAtDataOfComparisonBijectivityW1608 data)
+
+/--
+W1608 closed-map accepted stable evidence through the canonical
+direct-localization boundary.
+-/
+noncomputable def
+    acceptedStableOfClosedMapComparisonTargetExactAtDirectLocalizationBoundaryW1608
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroComparisonTargetExactAtDataW1608) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (directLocalizationBoundaryInputsOfClosedMapComparisonTargetExactAtW1608
+      data)
+
+/--
+W1608 closed-embedding accepted stable evidence through the canonical
+direct-localization boundary.
+-/
+noncomputable def
+    acceptedStableOfClosedEmbeddingComparisonTargetExactAtDirectLocalizationBoundaryW1608
+    (data :
+      MetrizableClosedEmbeddingBoundarySourcePiZeroComparisonTargetExactAtDataW1608) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (directLocalizationBoundaryInputsOfClosedEmbeddingComparisonTargetExactAtW1608
+      data)
 
 /-- W1608 closed-map bounded derived package through W1607. -/
 noncomputable def boundedDerivedOfClosedMapComparisonTargetExactAtW1608
@@ -141,6 +210,34 @@ noncomputable def boundedDerivedOfClosedEmbeddingComparisonTargetExactAtW1608
       (Dbounded.infinityCategory MetrizableLCA.{0}) :=
   boundedDerivedOfClosedEmbeddingTargetExactAtW1607
     (closedEmbeddingTargetExactAtDataOfComparisonBijectivityW1608 data)
+
+/--
+W1608 closed-map bounded derived package through the canonical
+direct-localization boundary.
+-/
+noncomputable def
+    boundedDerivedOfClosedMapComparisonTargetExactAtDirectLocalizationBoundaryW1608
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroComparisonTargetExactAtDataW1608) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (directLocalizationBoundaryInputsOfClosedMapComparisonTargetExactAtW1608
+      data)
+
+/--
+W1608 closed-embedding bounded derived package through the canonical
+direct-localization boundary.
+-/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingComparisonTargetExactAtDirectLocalizationBoundaryW1608
+    (data :
+      MetrizableClosedEmbeddingBoundarySourcePiZeroComparisonTargetExactAtDataW1608) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (directLocalizationBoundaryInputsOfClosedEmbeddingComparisonTargetExactAtW1608
+      data)
 
 /-- Top-level input names for the W1608 comparison-bijectivity route. -/
 def boundarySourcePiZeroComparisonTargetExactAtInputNamesW1608 :
@@ -178,16 +275,24 @@ def currentMetrizableBoundarySourcePiZeroComparisonRouteStateW1608 :
       "MetrizableClosedEmbeddingBoundarySourcePiZeroComparisonTargetExactAtDataW1608",
       "closedMapTargetExactAtDataOfComparisonBijectivityW1608",
       "closedEmbeddingTargetExactAtDataOfComparisonBijectivityW1608",
+      "closedMapTargetExactAtDirectSourceDataOfComparisonW1608",
+      "closedEmbeddingTargetExactAtDirectSourceDataOfComparisonW1608",
       "productEvidenceOfClosedMapComparisonTargetExactAtW1608",
       "productEvidenceOfClosedEmbeddingComparisonTargetExactAtW1608",
       "directFiniteShapeStableDataOfClosedMapComparisonW1608",
       "directFiniteShapeStableDataOfClosedEmbeddingComparisonW1608",
       "stableBoundaryInputsOfClosedMapComparisonW1608",
       "stableBoundaryInputsOfClosedEmbeddingComparisonW1608",
+      "directLocalizationBoundaryInputsOfClosedMapComparisonTargetExactAtW1608",
+      "directLocalizationBoundaryInputsOfClosedEmbeddingComparisonTargetExactAtW1608",
       "acceptedStableOfClosedMapComparisonTargetExactAtW1608",
       "acceptedStableOfClosedEmbeddingComparisonTargetExactAtW1608",
+      "acceptedStableOfClosedMapComparisonTargetExactAtDirectLocalizationBoundaryW1608",
+      "acceptedStableOfClosedEmbeddingComparisonTargetExactAtDirectLocalizationBoundaryW1608",
       "boundedDerivedOfClosedMapComparisonTargetExactAtW1608",
       "boundedDerivedOfClosedEmbeddingComparisonTargetExactAtW1608",
+      "boundedDerivedOfClosedMapComparisonTargetExactAtDirectLocalizationBoundaryW1608",
+      "boundedDerivedOfClosedEmbeddingComparisonTargetExactAtDirectLocalizationBoundaryW1608",
       "boundarySourcePiZeroComparisonTargetExactAtInputNamesW1608",
       "boundarySourcePiZeroComparisonTargetExactAtInputNamesW1608_count"]
   comparisonResult :=
@@ -195,10 +300,11 @@ def currentMetrizableBoundarySourcePiZeroComparisonRouteStateW1608 :
       isomorphism needed by W1607"
   closedMapResult :=
     "proved: closed-map W1608 data feeds W1607 without a separate comparison\
-      field"
+      field and exposes W843/W842 canonical direct-localization boundary inputs"
   closedEmbeddingResult :=
     "proved: closed-embedding W1608 data feeds W1607 without a separate\
-      comparison field"
+      comparison field and exposes W843/W842 canonical direct-localization\
+      boundary inputs"
   replacedInputs :=
     ["separate universal left-right comparison isomorphism input"]
   remainingInputs :=
