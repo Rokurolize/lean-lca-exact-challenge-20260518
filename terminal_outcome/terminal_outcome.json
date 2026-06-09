@@ -1,52 +1,51 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-06-09T18:16:56Z",
-  "source_base_git_head": "0fd95d9786414f5919e8b9cad752cfd0480c79cf",
+  "generated_utc": "2026-06-09T18:47:36Z",
+  "source_base_git_head": "3fa5d9441d0e51ce4f5985051235135bb0686582",
   "outcome": "nonterminal_checkpoint_pushed",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W1622 adds a source-level global-closed-embedding-component bridge for the W1621 closed-map target-data/closed-embedding-rows direct-localization boundary route. The new two-input route accepts W735 closed-map branch data plus W718 selected-difference closed-embedding diagram components, derives row-aware closed-embedding rows through W714/W711/W581, derives selected-W461 through W1621 from W735 relation and target-surjective compact data, and derives closed-map rows through W580. The route is exposed through the bounded-derived StablePackage surface and OriginalFourTaskProductData. This advances the original four-task contract surface but does not construct a nullary positive witness.",
+  "summary": "W1623 adds a one-input W1519 closed-embedding-closedness route for the direct-localization boundary product-data path. The route extracts W973 closed-embedding closedness data from the W1519 selected-cochain convergence input, obtains W718 selected-difference closed-embedding diagram components and a W519 mapped-cokernel closed-embedding provider, converts the closed-embedding facts to closed-map facts, derives W735 closed-map exact inputs, and feeds the existing W1622 target-data/global-closed-embedding-components route. The route is exposed through the bounded-derived StablePackage surface and OriginalFourTaskProductData. This advances the original four-task contract surface but does not construct a nullary positive witness.",
   "reference_route_log": "docs/research/reference_route_log.md",
-  "handoff": "run/w1622_target_data_global_closed_embedding_components_direct_localization_boundary_checkpoint_20260609.md",
-  "latest_checkpoint": "run/w1622_target_data_global_closed_embedding_components_direct_localization_boundary_checkpoint_20260609.md",
-  "new_frontier_input_count": 2,
+  "handoff": "run/w1623_w1519_closed_embedding_closedness_direct_localization_boundary_checkpoint_20260609.md",
+  "latest_checkpoint": "run/w1623_w1519_closed_embedding_closedness_direct_localization_boundary_checkpoint_20260609.md",
+  "new_frontier_input_count": 1,
   "obligations_discharged": [
-    "The W1622 closed-map route derives a W525 global closed-embedding provider from W718 selected-difference closed-embedding diagram components through W714/W711.",
-    "The W1622 closed-map route derives W1621's row-aware closed-embedding provider through componentwiseClosedEmbeddingRowsProvider_of_globalClosedEmbeddingProvider_w581.",
-    "The W1622 closed-map route exposes direct-localization boundary inputs, accepted stable evidence, bounded-derived output, and ready stable-certificate evidence.",
-    "The W1622 closed-map route is now available as a BoundedDerived.Metrizable.StablePackage with equality back to W1621 and to the canonical direct-localization boundary package.",
-    "OriginalFourTaskProductData can now be assembled directly from the W1622 closed-map target-data/global-closed-embedding-components direct-localization boundary input."
+    "The W1623 closed-map route derives W1622's W735 exact-input data from one W1519 selected-cochain convergence input by converting W1519's closed-embedding closedness data to closed-map data.",
+    "The W1623 closed-map route derives W1622's W718 global closed-embedding component provider from W1519's W973 closed-embedding closedness data.",
+    "The W1623 closed-map route derives the W519 mapped-cokernel closed-map provider from the W519 mapped-cokernel closed-embedding provider using IsClosedEmbedding.isClosedMap.",
+    "The W1623 closed-map route exposes direct-localization boundary inputs, accepted stable evidence, bounded-derived output, and ready stable-certificate evidence through the existing W1622 route.",
+    "The W1623 closed-map route is now available as a BoundedDerived.Metrizable.StablePackage and as OriginalFourTaskProductData with equality back to W1622 and to the canonical direct-localization boundary package."
   ],
   "obligations_derived_or_eliminated": [
-    "A caller using the W1622 closed-map path no longer supplies a separate WppOpClosedEmbeddingRowsProviderW781; W718 diagram closed-embedding components derive it through W714/W711/W581.",
-    "A caller using the W1622 closed-map path no longer supplies a separate WppOpSelectedW461ProviderW781; W735's relation and target-surjective compact fields derive it through W1621.",
-    "A caller using the W1622 closed-map path also no longer supplies a separate WppOpClosedMapRowsProviderW781; W580 derives closed-map rows from the derived closed-embedding rows.",
-    "The required-declaration audit now covers the W1622 route declarations, StablePackage bridge, and matching OriginalFourTaskProductData bridge.",
-    "The checkpoint preserves W1621/W1620/W879/W880's product-facing surface while replacing the row-aware closed-embedding obligation with W718 diagram component data."
+    "A caller using the W1623 closed-map path no longer supplies separate W735 closed-map branch data.",
+    "A caller using the W1623 closed-map path no longer supplies separate W718 selected-difference closed-embedding diagram component data.",
+    "A caller using the W1623 closed-map path no longer supplies separate W519 mapped-cokernel closed-map data.",
+    "The required-declaration audit now covers the W1623 route declarations, StablePackage bridge, and matching OriginalFourTaskProductData bridge.",
+    "The checkpoint preserves W1622/W1621/W1620/W879/W880's product-facing surface while replacing the two-input W1622 frontier with one W1519 input."
   ],
   "known_gaps": [
     "No declaration currently defines OriginalFourTaskProductSuccess or originalFourTaskProductSuccess.",
-    "The original four-task contract is not complete because the W1622 product-data constructor still requires caller-supplied W735 closed-map branch data and W718 selected-difference closed-embedding diagram component data.",
-    "A concrete nullary W735 closed-map branch record is still not constructible from current source.",
-    "A concrete nullary SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718 value is still not constructible from current source.",
+    "The original four-task contract is not complete because the W1623 product-data constructor still requires caller-supplied W1519 selected-cochain convergence input data.",
+    "A concrete nullary W1519 selected-cochain convergence input is still not constructible from current source.",
+    "A concrete nullary W987 closed-embedding closedness input feeding the W1519 surface is still not constructible from current source.",
     "A concrete ClosedEmbeddingClosednessFieldsInputW961 value is still not constructible from current source.",
     "Typeclass synthesis does not provide Pretriangulated (BoundedComplexCategory MetrizableLCA) or IsTriangulated (BoundedComplexCategory MetrizableLCA).",
     "Typeclass synthesis does not provide (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions."
   ],
   "remaining_work": [
-    "Construct concrete nullary W735 closed-map branch data or a stronger route that eliminates that branch input.",
-    "Construct concrete nullary W718 selected-difference closed-embedding diagram component data, or replace it with a stronger nullary colimit-stability theorem.",
+    "Construct concrete nullary W1519 selected-cochain convergence input data or a stronger route that eliminates that remaining branch input.",
     "Use concrete source data plus direct-left-calculus and source-triangulation evidence to build a nullary bounded-derived stable package.",
     "Assemble and audit the final original four-task positive witness.",
     "Build the Tier C review packet and only then permit update_goal complete."
   ],
   "next_required_source_api": [
-    "noncomputable def Dbounded.metrizableClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDirectLocalizationBoundaryDataW1622 : MetrizableClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDirectLocalizationBoundaryDataW1622",
-    "noncomputable def Dbounded.metrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735 : MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735",
-    "noncomputable def Dbounded.selectedDifferenceClosedEmbeddingDiagramComponentProviderW718 : SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718",
-    "noncomputable def BoundedDerived.Metrizable.stablePackage : BoundedDerived.Metrizable.StablePackage"
+    "noncomputable def Dbounded.metrizableClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1623 : MetrizableClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1623",
+    "noncomputable def Dbounded.w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W735W732SelectedCochainConvergenceInputW1519 : W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W735W732SelectedCochainConvergenceInputW1519",
+    "noncomputable def BoundedDerived.Metrizable.stablePackage : BoundedDerived.Metrizable.StablePackage",
+    "noncomputable def originalFourTaskProductSuccess : OriginalFourTaskProductSuccess"
   ],
   "verified_commands": [
     "git status --short --branch --untracked-files=all",

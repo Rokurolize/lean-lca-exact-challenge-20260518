@@ -1,5 +1,6 @@
 import LeanLCAExactChallenge.Derived.W735DirectLocalizationBoundaryRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroBoundarySourcePiZeroProductRoute
+import LeanLCAExactChallenge.Derived.W987ClosedEmbeddingEndpointHomologyFreeW735W732SelectedCochainConvergenceGuardW1519
 
 /-!
 W879 feeds W735 boundary source-pi-zero limit stability and selected-row
@@ -17,6 +18,7 @@ namespace LeanLCAExactChallenge
 
 open CategoryTheory
 open CategoryTheory.Limits
+open WppOpClosedRangeMappedCokernelPreservationV370SupportW519
 open WppOpCompactTargetRelationRepresentativeImageV370SupportW517
 open WppOpRepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportW524
 
@@ -81,6 +83,17 @@ structure
     SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718
 
 /--
+W1623 closed-map branch data where the W1519 selected-cochain convergence
+surface supplies both W735 closed-map exact inputs and W718 closed-embedding
+diagram components through its W973 closed-embedding closedness data.
+-/
+structure
+    MetrizableClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1623 :
+    Type 2 where
+  input :
+    W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W735W732SelectedCochainConvergenceInputW1519
+
+/--
 W1621 derives the compact-target relation provider from W735's bundled W717
 relation data and W715 target-surjective compact data.
 -/
@@ -139,6 +152,120 @@ def
   componentwiseClosedEmbeddingRowsProvider_of_globalClosedEmbeddingProvider_w581
     (closedEmbeddingProviderOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622
       data)
+
+/--
+W1623 extracts the W973 closed-embedding closedness data from the W1519 input
+surface via the W1510 comparison layer.
+-/
+noncomputable def
+    closedEmbeddingClosednessDataOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W735W732SelectedCochainConvergenceInputW1519) :
+    ClosedEmbeddingClosednessDataProviderW973 :=
+  closedEmbeddingClosednessDataForW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3ClosedEmbeddingClosednessFieldsComparisonW1510
+    input
+
+/--
+W1623 obtains W718 closed-embedding diagram components from W1519's W973 data.
+-/
+noncomputable def
+    globalClosedEmbeddingComponentsOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W735W732SelectedCochainConvergenceInputW1519) :
+    SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718 :=
+  globalClosedEmbeddingComponentsOfClosedEmbeddingClosednessDataW973
+    (closedEmbeddingClosednessDataOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+      input)
+
+/--
+W1623 converts the W718 closed-embedding component provider to W718 closed-map
+components for the W1519 closed-map W735 exact-input constructor.
+-/
+noncomputable def
+    globalClosedMapComponentsOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W735W732SelectedCochainConvergenceInputW1519) :
+    SelectedDifferenceClosedMapDiagramComponentProviderW718 where
+  pi1 := by
+    intro S
+    exact
+      (selectedDifferenceClosedEmbeddingPi1DiagramField_of_componentProviderW718
+        (globalClosedEmbeddingComponentsOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+          input) S).isClosedMap
+  pi2 := by
+    intro S
+    exact
+      (selectedDifferenceClosedEmbeddingPi2DiagramField_of_componentProviderW718
+        (globalClosedEmbeddingComponentsOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+          input) S).isClosedMap
+  pi3 := by
+    intro S
+    exact
+      (selectedDifferenceClosedEmbeddingPi3DiagramField_of_componentProviderW718
+        (globalClosedEmbeddingComponentsOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+          input) S).isClosedMap
+
+/--
+W1623 obtains the W519 mapped-cokernel closed-embedding provider from W1519's
+W973 data.
+-/
+noncomputable def
+    mappedCokernelClosedEmbeddingProviderOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W735W732SelectedCochainConvergenceInputW1519) :
+    MappedExplicitCokernelClosedEmbeddingProviderW519 :=
+  mappedCokernelClosedEmbeddingProviderOfClosedEmbeddingClosednessDataW973
+    (closedEmbeddingClosednessDataOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+      input)
+
+/--
+W1623 converts mapped explicit cokernel closed embeddings to closed maps for
+the W1519 closed-map W735 exact-input constructor.
+-/
+noncomputable def
+    mappedCokernelClosedMapProviderOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+    (input :
+      W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W735W732SelectedCochainConvergenceInputW1519) :
+    MappedExplicitCokernelClosedMapProviderW519 where
+  isClosedMap := by
+    intro X Y f
+    exact
+      ((mappedCokernelClosedEmbeddingProviderOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+        input).isClosedEmbedding (X := X) (Y := Y) f).isClosedMap
+
+/--
+W1623 constructs W735 closed-map exact inputs from one W1519 input by deriving
+both closed-map components and mapped-cokernel closed-map data from the same
+closed-embedding closedness source.
+-/
+noncomputable def
+    closedMapExactInputsOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1623) :
+    MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735 :=
+  closedMapExactInputsOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W735W732SelectedCochainConvergenceW1519
+    data.input
+    (globalClosedMapComponentsOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+      data.input)
+    (mappedCokernelClosedMapProviderOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+      data.input)
+
+/--
+W1623 projects its one-input W1519 surface to W1622's closed-map target-data and
+global closed-embedding component surface.
+-/
+noncomputable def
+    closedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDataOfW1519ClosedEmbeddingClosednessW1623
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1623) :
+    MetrizableClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDirectLocalizationBoundaryDataW1622
+    where
+  exactInputs :=
+    closedMapExactInputsOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+      data
+  globalClosedEmbeddingComponents :=
+    globalClosedEmbeddingComponentsOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+      data.input
 
 /--
 W879 derives closed-map WPP limit stability from W735/W716 boundary data.
@@ -269,6 +396,20 @@ theorem
       WalkingParallelPair :=
   colimitStabilityOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
     (closedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDataOfGlobalClosedEmbeddingComponentsW1622
+      data)
+
+/--
+W1623 closed-map WPP colimit stability, with the W1622 inputs derived from one
+W1519 closed-embedding closedness source.
+-/
+theorem
+    colimitStabilityOfClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1623) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderColimitsOfShape
+      WalkingParallelPair :=
+  colimitStabilityOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622
+    (closedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDataOfW1519ClosedEmbeddingClosednessW1623
       data)
 
 /-- W879 closed-map branch converted to W877 direct-localization boundary data. -/
@@ -509,6 +650,18 @@ noncomputable def
     (closedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDataOfGlobalClosedEmbeddingComponentsW1622
       data)
 
+/--
+W1623 closed-map branch converted to W877 direct-localization boundary data.
+-/
+noncomputable def
+    closedMapW735DirectBoundaryDataOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1623) :
+    MetrizableClosedMapW735DirectLocalizationBoundaryDataW877 :=
+  closedMapW735DirectBoundaryDataOfBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622
+    (closedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDataOfW1519ClosedEmbeddingClosednessW1623
+      data)
+
 /-- W1621 closed-map branch as WPP finite-shape transfer inputs. -/
 noncomputable def
     transferInputsOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
@@ -527,6 +680,16 @@ noncomputable def
     MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
   transferInputsOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
     (closedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDataOfGlobalClosedEmbeddingComponentsW1622
+      data)
+
+/-- W1623 closed-map branch as WPP finite-shape transfer inputs. -/
+noncomputable def
+    transferInputsOfClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1623) :
+    MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  transferInputsOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622
+    (closedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDataOfW1519ClosedEmbeddingClosednessW1623
       data)
 
 /-!
@@ -555,6 +718,20 @@ noncomputable def
     (closedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDataOfGlobalClosedEmbeddingComponentsW1622
       data)
 
+/-!
+W1623 exposes a closed-map direct-localization branch whose W735 exact inputs
+and W718 closed-embedding components are derived from one W1519 closedness
+surface.
+-/
+noncomputable def
+    directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1623) :
+    MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622
+    (closedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDataOfW1519ClosedEmbeddingClosednessW1623
+      data)
+
 /- W1621 closed-map branch passes the accepted stable direct-localization gate. -/
 noncomputable def
     acceptedStableOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
@@ -573,6 +750,16 @@ noncomputable def
     AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
   acceptedStableOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
     (closedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDataOfGlobalClosedEmbeddingComponentsW1622
+      data)
+
+/- W1623 closed-map branch passes the accepted stable direct-localization gate. -/
+noncomputable def
+    acceptedStableOfClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1623) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622
+    (closedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDataOfW1519ClosedEmbeddingClosednessW1623
       data)
 
 /- W1621 closed-map branch produces the bounded-derived package. -/
@@ -595,6 +782,17 @@ noncomputable def
       (Dbounded.infinityCategory MetrizableLCA.{0}) :=
   boundedDerivedOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
     (closedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDataOfGlobalClosedEmbeddingComponentsW1622
+      data)
+
+/- W1623 closed-map branch produces the bounded-derived package. -/
+noncomputable def
+    boundedDerivedOfClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1623) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622
+    (closedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDataOfW1519ClosedEmbeddingClosednessW1623
       data)
 
 /--
@@ -635,6 +833,26 @@ theorem
           inputs))).ready :=
   stableCertificateOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621_ready
     (closedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDataOfGlobalClosedEmbeddingComponentsW1622
+      data)
+
+/--
+W1623 closed-map branch produces the ready four-projection stable certificate.
+-/
+theorem
+    stableCertificateOfClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623_ready
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1623) :
+    let inputs :=
+      directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623
+        data
+    letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+      inputs.directLeftCalculus
+    (stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer
+        (metrizableWalkingParallelPairTransferStableSemanticInputsOfDirectLocalization
+          inputs))).ready :=
+  stableCertificateOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622_ready
+    (closedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDataOfW1519ClosedEmbeddingClosednessW1623
       data)
 
 /-!
@@ -711,6 +929,24 @@ theorem
     boundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDirectLocalizationBoundaryInputNamesW1622_count :
     boundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDirectLocalizationBoundaryInputNamesW1622.length =
       2 :=
+  rfl
+
+/--
+Input names for the W1623 closed-map route with W735 exact inputs and W718
+closed-embedding components derived from one W1519 closedness surface.
+-/
+def
+    boundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryInputNamesW1623 :
+    List String :=
+  ["W1519 selected-cochain convergence input carrying W973 closed-embedding\
+      closedness data; W1623 derives W718 closed-embedding components, W718\
+      closed-map components, W519 closed-map mapped cokernel data, and W735\
+      closed-map exact inputs"]
+
+theorem
+    boundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryInputNamesW1623_count :
+    boundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryInputNamesW1623.length =
+      1 :=
   rfl
 
 /-- Current checked W879 state. -/
@@ -949,6 +1185,73 @@ theorem
     currentW1622BoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDirectLocalizationBoundary_productSuccess :
     (let state :=
       currentMetrizableBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDirectLocalizationBoundaryRouteStateW1622;
+    state.productSuccessClaimed) = false :=
+  rfl
+
+/--
+Current checked W1623 state for deriving W1622's W735 exact-input and
+closed-embedding component surface from one W1519 closedness input.
+-/
+structure
+    MetrizableBoundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryRouteStateW1623 :
+    Type where
+  seed : String
+  declarations : List String
+  closednessExtractionResult : String
+  closedMapConversionResult : String
+  exactInputResult : String
+  stableBoundaryResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/--
+Current checked W1623 state for the one-input W1519 closedness
+direct-localization boundary route.
+-/
+def
+    currentMetrizableBoundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryRouteStateW1623 :
+    MetrizableBoundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryRouteStateW1623
+    where
+  seed :=
+    "w1623-boundary-source-pi-zero-w1519-closed-embedding-closedness-direct-localization-boundary"
+  declarations :=
+    ["MetrizableClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1623",
+      "closedEmbeddingClosednessDataOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623",
+      "globalClosedEmbeddingComponentsOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623",
+      "globalClosedMapComponentsOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623",
+      "mappedCokernelClosedEmbeddingProviderOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623",
+      "mappedCokernelClosedMapProviderOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623",
+      "closedMapExactInputsOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623",
+      "closedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDataOfW1519ClosedEmbeddingClosednessW1623",
+      "colimitStabilityOfClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623",
+      "closedMapW735DirectBoundaryDataOfBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623",
+      "transferInputsOfClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623",
+      "directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623",
+      "acceptedStableOfClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623",
+      "boundedDerivedOfClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623",
+      "stableCertificateOfClosedMapBoundarySourcePiZeroW1519ClosedEmbeddingClosednessW1623_ready",
+      "boundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryInputNamesW1623",
+      "boundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryInputNamesW1623_count"]
+  closednessExtractionResult :=
+    "proved: W1519's input exposes W973 closed-embedding closedness data\
+      through the W1510 comparison layer"
+  closedMapConversionResult :=
+    "proved: closed-embedding W718 components and W519 mapped cokernels supply\
+      the corresponding closed-map providers"
+  exactInputResult :=
+    "proved: W1519 constructs W735 closed-map exact inputs from the derived\
+      closed-map components and mapped-cokernel provider"
+  stableBoundaryResult :=
+    "proved: the W1622 direct-localization boundary runs with its two inputs\
+      derived from the single W1519 closedness surface"
+  remainingInputs :=
+    boundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryInputNamesW1623
+  productSuccessClaimed := false
+
+theorem
+    currentW1623BoundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundary_productSuccess :
+    (let state :=
+      currentMetrizableBoundarySourcePiZeroW1519ClosedEmbeddingClosednessDirectLocalizationBoundaryRouteStateW1623;
     state.productSuccessClaimed) = false :=
   rfl
 
