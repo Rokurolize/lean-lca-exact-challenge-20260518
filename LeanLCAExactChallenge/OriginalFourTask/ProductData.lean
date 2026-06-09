@@ -1229,6 +1229,62 @@ theorem
   rfl
 
 theorem
+    originalFourTaskProductDataOfClosedMapStructuralFieldsSelectedCochainComparisonW1617_eq_concreteFieldsSelectedCochainComparisonW1615
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonBranchDataW1617) :
+    originalFourTaskProductDataOfClosedMapStructuralFieldsSelectedCochainComparisonW1617
+        data =
+      originalFourTaskProductDataOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
+        (Dbounded.closedMapConcreteFieldsOfSplitFieldsSelectedCochainComparisonW1616
+          (Dbounded.closedMapSplitFieldsOfStructuralFieldsSelectedCochainComparisonW1617
+            data)) := by
+  rw [
+    originalFourTaskProductDataOfClosedMapStructuralFieldsSelectedCochainComparisonW1617_eq_splitFieldsSelectedCochainComparisonW1616,
+    originalFourTaskProductDataOfClosedMapSplitFieldsSelectedCochainComparisonW1616_eq_concreteFieldsSelectedCochainComparisonW1615]
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingStructuralFieldsSelectedCochainComparisonW1617_eq_concreteFieldsSelectedCochainComparisonW1615
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonBranchDataW1617) :
+    originalFourTaskProductDataOfClosedEmbeddingStructuralFieldsSelectedCochainComparisonW1617
+        data =
+      originalFourTaskProductDataOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
+        (Dbounded.closedEmbeddingConcreteFieldsOfSplitFieldsSelectedCochainComparisonW1616
+          (Dbounded.closedEmbeddingSplitFieldsOfStructuralFieldsSelectedCochainComparisonW1617
+            data)) := by
+  rw [
+    originalFourTaskProductDataOfClosedEmbeddingStructuralFieldsSelectedCochainComparisonW1617_eq_splitFieldsSelectedCochainComparisonW1616,
+    originalFourTaskProductDataOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616_eq_concreteFieldsSelectedCochainComparisonW1615]
+
+theorem
+    originalFourTaskProductDataOfClosedMapStructuralFieldsSelectedCochainComparisonW1617_eq_directLocalizationBoundary
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonBranchDataW1617) :
+    originalFourTaskProductDataOfClosedMapStructuralFieldsSelectedCochainComparisonW1617
+        data =
+      originalFourTaskProductDataOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfClosedMapSplitFieldsSelectedCochainComparisonW1616
+          (Dbounded.closedMapSplitFieldsOfStructuralFieldsSelectedCochainComparisonW1617
+            data)) := by
+  rw [
+    originalFourTaskProductDataOfClosedMapStructuralFieldsSelectedCochainComparisonW1617_eq_splitFieldsSelectedCochainComparisonW1616,
+    originalFourTaskProductDataOfClosedMapSplitFieldsSelectedCochainComparisonW1616_eq_directLocalizationBoundary]
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingStructuralFieldsSelectedCochainComparisonW1617_eq_directLocalizationBoundary
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonBranchDataW1617) :
+    originalFourTaskProductDataOfClosedEmbeddingStructuralFieldsSelectedCochainComparisonW1617
+        data =
+      originalFourTaskProductDataOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
+          (Dbounded.closedEmbeddingSplitFieldsOfStructuralFieldsSelectedCochainComparisonW1617
+            data)) := by
+  rw [
+    originalFourTaskProductDataOfClosedEmbeddingStructuralFieldsSelectedCochainComparisonW1617_eq_splitFieldsSelectedCochainComparisonW1616,
+    originalFourTaskProductDataOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616_eq_directLocalizationBoundary]
+
+theorem
     originalFourTaskProductDataOfClosedMapStructuralFieldsSelectedCochainComparisonW1617_boundedDerivedInfinityCategory
     (data :
       Dbounded.MetrizableClosedMapBoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonBranchDataW1617) :

@@ -1,6 +1,6 @@
 {
   "schema": "lean_lca_exact_challenge.goal_identity.v1",
-  "generated_utc": "2026-06-09T11:48:32Z",
+  "generated_utc": "2026-06-09T12:06:25Z",
   "thread_id": "019ea5a4-a615-78b2-8944-d6f4ed0b24bb",
   "worktree": "/home/roku/codex-thread-workspaces/019ea5a4-a615-78b2-8944-d6f4ed0b24bb/worktrees/lean-lca-clean-positive-witness-20260609",
   "goal_file": {
@@ -21,12 +21,12 @@
   ],
   "git": {
     "branch": "goal-clean-positive-witness-20260609-019ea5a4",
-    "head": "cd061c93c98c8ca5389b49f43b11957e682e8cb3",
-    "origin_main": "cd061c93c98c8ca5389b49f43b11957e682e8cb3",
-    "origin_main_ls_remote": "cd061c93c98c8ca5389b49f43b11957e682e8cb3"
+    "head": "971fafafc21e855f678a98a24343ac0c9125b6bf",
+    "origin_main": "971fafafc21e855f678a98a24343ac0c9125b6bf",
+    "origin_main_ls_remote": "971fafafc21e855f678a98a24343ac0c9125b6bf"
   },
   "product_success": false,
   "product_success_claimed": false,
   "update_goal_complete_permitted": false,
-  "notes": "Identity and contract hashes refreshed after the w1615-concrete-fields-stable-package-bridge checkpoint was pushed. This does not claim the original positive witness."
+  "notes": "Identity and contract hashes refreshed after the w1616-split-fields-stable-package-bridge checkpoint was pushed. This does not claim the original positive witness."
 }

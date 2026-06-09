@@ -407,6 +407,32 @@ theorem
   rfl
 
 theorem
+    stablePackageOfClosedMapStructuralFieldsSelectedCochainComparisonW1617_eq_concreteFieldsSelectedCochainComparisonW1615
+    (data : ClosedMapStructuralFieldsSelectedCochainComparisonInputW1617) :
+    stablePackageOfClosedMapStructuralFieldsSelectedCochainComparisonW1617
+        data =
+      stablePackageOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
+        (Dbounded.closedMapConcreteFieldsOfSplitFieldsSelectedCochainComparisonW1616
+          (Dbounded.closedMapSplitFieldsOfStructuralFieldsSelectedCochainComparisonW1617
+            data)) := by
+  rw [
+    stablePackageOfClosedMapStructuralFieldsSelectedCochainComparisonW1617_eq_splitFieldsSelectedCochainComparisonW1616,
+    stablePackageOfClosedMapSplitFieldsSelectedCochainComparisonW1616_eq_concreteFieldsSelectedCochainComparisonW1615]
+
+theorem
+    stablePackageOfClosedEmbeddingStructuralFieldsSelectedCochainComparisonW1617_eq_concreteFieldsSelectedCochainComparisonW1615
+    (data : ClosedEmbeddingStructuralFieldsSelectedCochainComparisonInputW1617) :
+    stablePackageOfClosedEmbeddingStructuralFieldsSelectedCochainComparisonW1617
+        data =
+      stablePackageOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
+        (Dbounded.closedEmbeddingConcreteFieldsOfSplitFieldsSelectedCochainComparisonW1616
+          (Dbounded.closedEmbeddingSplitFieldsOfStructuralFieldsSelectedCochainComparisonW1617
+            data)) := by
+  rw [
+    stablePackageOfClosedEmbeddingStructuralFieldsSelectedCochainComparisonW1617_eq_splitFieldsSelectedCochainComparisonW1616,
+    stablePackageOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616_eq_concreteFieldsSelectedCochainComparisonW1615]
+
+theorem
     stablePackageOfClosedMapStructuralFieldsSelectedCochainComparisonW1617_eq_directLocalizationBoundary
     (data : ClosedMapStructuralFieldsSelectedCochainComparisonInputW1617) :
     stablePackageOfClosedMapStructuralFieldsSelectedCochainComparisonW1617
