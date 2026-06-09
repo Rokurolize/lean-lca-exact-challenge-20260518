@@ -947,8 +947,8 @@ noncomputable def
     (data :
       Dbounded.MetrizableClosedMapBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
     OriginalFourTaskProductData :=
-  originalFourTaskProductDataOfDirectLocalizationBoundary
-    (Dbounded.directLocalizationBoundaryInputsOfClosedMapSplitFieldsSelectedCochainComparisonW1616
+  originalFourTaskProductDataOfStablePackage
+    (stablePackageOfClosedMapSplitFieldsSelectedCochainComparisonW1616
       data)
 
 /--
@@ -962,8 +962,8 @@ noncomputable def
     (data :
       Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
     OriginalFourTaskProductData :=
-  originalFourTaskProductDataOfDirectLocalizationBoundary
-    (Dbounded.directLocalizationBoundaryInputsOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
+  originalFourTaskProductDataOfStablePackage
+    (stablePackageOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
       data)
 
 theorem
