@@ -790,29 +790,30 @@ theorem
 /--
 Assemble product data from the W1616 closed-map split-field surface. W1616
 separates four W1615 bundled providers into their checked fields before feeding
-W1615.
+W1615 through the canonical direct-localization stable-instance boundary.
 -/
 noncomputable def
     originalFourTaskProductDataOfClosedMapSplitFieldsSelectedCochainComparisonW1616
     (data :
       Dbounded.MetrizableClosedMapBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
     OriginalFourTaskProductData :=
-  originalFourTaskProductDataOfStableInstanceBoundary
-    (Dbounded.stableBoundaryInputsOfClosedMapSplitFieldsSelectedCochainComparisonW1616
+  originalFourTaskProductDataOfDirectLocalizationBoundary
+    (Dbounded.directLocalizationBoundaryInputsOfClosedMapSplitFieldsSelectedCochainComparisonW1616
       data)
 
 /--
 Assemble product data from the W1616 closed-embedding split-field surface.
 W1616 separates four W1615 bundled providers into their checked fields before
-feeding W1615.
+feeding W1615 through the canonical direct-localization stable-instance
+boundary.
 -/
 noncomputable def
     originalFourTaskProductDataOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
     (data :
       Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
     OriginalFourTaskProductData :=
-  originalFourTaskProductDataOfStableInstanceBoundary
-    (Dbounded.stableBoundaryInputsOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
+  originalFourTaskProductDataOfDirectLocalizationBoundary
+    (Dbounded.directLocalizationBoundaryInputsOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
       data)
 
 theorem
@@ -821,9 +822,8 @@ theorem
       Dbounded.MetrizableClosedMapBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
     (originalFourTaskProductDataOfClosedMapSplitFieldsSelectedCochainComparisonW1616
       data).boundedDerivedInfinityCategory =
-      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
-        (Dbounded.stableBoundaryInputsOfClosedMapSplitFieldsSelectedCochainComparisonW1616
-          data) :=
+      Dbounded.boundedDerivedOfClosedMapSplitFieldsSelectedCochainDirectLocalizationBoundaryW1616
+        data :=
   rfl
 
 theorem
@@ -832,9 +832,8 @@ theorem
       Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
     (originalFourTaskProductDataOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
       data).boundedDerivedInfinityCategory =
-      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
-        (Dbounded.stableBoundaryInputsOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
-          data) :=
+      Dbounded.boundedDerivedOfClosedEmbeddingSplitFieldsSelectedCochainDirectLocalizationBoundaryW1616
+        data :=
   rfl
 
 theorem

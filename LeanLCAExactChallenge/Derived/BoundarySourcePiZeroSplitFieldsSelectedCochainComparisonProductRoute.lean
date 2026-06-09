@@ -206,6 +206,31 @@ noncomputable def
     (closedEmbeddingConcreteFieldsOfSplitFieldsSelectedCochainComparisonW1616
       data)
 
+/-!
+W1616 closed-map split fields as canonical direct-localization stable-instance
+boundary inputs through W1615.
+-/
+noncomputable def
+    directLocalizationBoundaryInputsOfClosedMapSplitFieldsSelectedCochainComparisonW1616
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
+    MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  directLocalizationBoundaryInputsOfClosedMapConcreteFieldsSelectedCochainComparisonW1615
+    (closedMapConcreteFieldsOfSplitFieldsSelectedCochainComparisonW1616 data)
+
+/-!
+W1616 closed-embedding split fields as canonical direct-localization
+stable-instance boundary inputs through W1615.
+-/
+noncomputable def
+    directLocalizationBoundaryInputsOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
+    (data :
+      MetrizableClosedEmbeddingBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
+    MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  directLocalizationBoundaryInputsOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
+    (closedEmbeddingConcreteFieldsOfSplitFieldsSelectedCochainComparisonW1616
+      data)
+
 /-! W1616 closed-map accepted stable evidence through W1615. -/
 noncomputable def acceptedStableOfClosedMapSplitFieldsSelectedCochainComparisonW1616
     (data :
@@ -221,6 +246,31 @@ noncomputable def
       MetrizableClosedEmbeddingBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
     AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
   acceptedStableOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
+    (closedEmbeddingConcreteFieldsOfSplitFieldsSelectedCochainComparisonW1616
+      data)
+
+/-!
+W1616 closed-map accepted stable evidence through the canonical
+direct-localization boundary.
+-/
+noncomputable def
+    acceptedStableOfClosedMapSplitFieldsSelectedCochainDirectLocalizationBoundaryW1616
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapConcreteFieldsSelectedCochainDirectLocalizationBoundaryW1615
+    (closedMapConcreteFieldsOfSplitFieldsSelectedCochainComparisonW1616 data)
+
+/-!
+W1616 closed-embedding accepted stable evidence through the canonical
+direct-localization boundary.
+-/
+noncomputable def
+    acceptedStableOfClosedEmbeddingSplitFieldsSelectedCochainDirectLocalizationBoundaryW1616
+    (data :
+      MetrizableClosedEmbeddingBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedEmbeddingConcreteFieldsSelectedCochainDirectLocalizationBoundaryW1615
     (closedEmbeddingConcreteFieldsOfSplitFieldsSelectedCochainComparisonW1616
       data)
 
@@ -241,6 +291,33 @@ noncomputable def
     BoundedDerivedInfinityCategory MetrizableLCA.{0}
       (Dbounded.infinityCategory MetrizableLCA.{0}) :=
   boundedDerivedOfClosedEmbeddingConcreteFieldsSelectedCochainComparisonW1615
+    (closedEmbeddingConcreteFieldsOfSplitFieldsSelectedCochainComparisonW1616
+      data)
+
+/-!
+W1616 closed-map bounded derived package through the canonical
+direct-localization boundary.
+-/
+noncomputable def
+    boundedDerivedOfClosedMapSplitFieldsSelectedCochainDirectLocalizationBoundaryW1616
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapConcreteFieldsSelectedCochainDirectLocalizationBoundaryW1615
+    (closedMapConcreteFieldsOfSplitFieldsSelectedCochainComparisonW1616 data)
+
+/-!
+W1616 closed-embedding bounded derived package through the canonical
+direct-localization boundary.
+-/
+noncomputable def
+    boundedDerivedOfClosedEmbeddingSplitFieldsSelectedCochainDirectLocalizationBoundaryW1616
+    (data :
+      MetrizableClosedEmbeddingBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedEmbeddingConcreteFieldsSelectedCochainDirectLocalizationBoundaryW1615
     (closedEmbeddingConcreteFieldsOfSplitFieldsSelectedCochainComparisonW1616
       data)
 
@@ -303,10 +380,16 @@ def currentMetrizableBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonRou
       "directFiniteShapeStableDataOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616",
       "stableBoundaryInputsOfClosedMapSplitFieldsSelectedCochainComparisonW1616",
       "stableBoundaryInputsOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616",
+      "directLocalizationBoundaryInputsOfClosedMapSplitFieldsSelectedCochainComparisonW1616",
+      "directLocalizationBoundaryInputsOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616",
       "acceptedStableOfClosedMapSplitFieldsSelectedCochainComparisonW1616",
       "acceptedStableOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616",
+      "acceptedStableOfClosedMapSplitFieldsSelectedCochainDirectLocalizationBoundaryW1616",
+      "acceptedStableOfClosedEmbeddingSplitFieldsSelectedCochainDirectLocalizationBoundaryW1616",
       "boundedDerivedOfClosedMapSplitFieldsSelectedCochainComparisonW1616",
       "boundedDerivedOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616",
+      "boundedDerivedOfClosedMapSplitFieldsSelectedCochainDirectLocalizationBoundaryW1616",
+      "boundedDerivedOfClosedEmbeddingSplitFieldsSelectedCochainDirectLocalizationBoundaryW1616",
       "boundarySourcePiZeroSplitFieldsSelectedCochainComparisonInputNamesW1616",
       "boundarySourcePiZeroSplitFieldsSelectedCochainComparisonInputNamesW1616_count"]
   splitFieldAssemblyResult :=
@@ -315,10 +398,10 @@ def currentMetrizableBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonRou
       feeding W1615"
   closedMapResult :=
     "proved: closed-map split-field branch data feeds the W1615 selected\
-      cochain comparison surface"
+      cochain comparison surface and its canonical direct-localization boundary"
   closedEmbeddingResult :=
     "proved: closed-embedding split-field branch data feeds the W1615 selected\
-      cochain comparison surface"
+      cochain comparison surface and its canonical direct-localization boundary"
   replacedInputs :=
     ["W716 bundled WPP right-open quotient-cover and source-pi-zero boundary data",
       "W717 bundled closed natural transformation ordinary relation data",
