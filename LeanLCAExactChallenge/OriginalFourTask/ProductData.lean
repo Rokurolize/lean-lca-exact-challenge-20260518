@@ -614,35 +614,39 @@ theorem
 
 /--
 Assemble product data from the W1609 closed-map frontier. W1609 replaces the
-raw target ExactAt payload by the W790 target-homology-zero payload.
+raw target ExactAt payload by the W790 target-homology-zero payload through
+the canonical direct-localization stable-instance boundary.
 -/
 noncomputable def
     originalFourTaskProductDataOfClosedMapTargetHomologyZeroComparisonW1609
     (data :
       Dbounded.MetrizableClosedMapTargetHomologyZeroStrictRealizationLeftCalculusDataW839) :
     OriginalFourTaskProductData :=
-  originalFourTaskProductDataOfStableInstanceBoundary
-    (Dbounded.stableBoundaryInputsOfClosedMapTargetHomologyZeroComparisonW1609 data)
+  originalFourTaskProductDataOfDirectLocalizationBoundary
+    (Dbounded.directLocalizationBoundaryInputsOfClosedMapTargetHomologyZeroComparisonW1609
+      data)
 
 /--
 Assemble product data from the W1609 closed-embedding frontier. W1609 replaces
-the raw target ExactAt payload by the W790 target-homology-zero payload.
+the raw target ExactAt payload by the W790 target-homology-zero payload through
+the canonical direct-localization stable-instance boundary.
 -/
 noncomputable def
     originalFourTaskProductDataOfClosedEmbeddingTargetHomologyZeroComparisonW1609
     (data :
       Dbounded.MetrizableClosedEmbeddingTargetHomologyZeroStrictRealizationLeftCalculusDataW839) :
     OriginalFourTaskProductData :=
-  originalFourTaskProductDataOfStableInstanceBoundary
-    (Dbounded.stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroComparisonW1609 data)
+  originalFourTaskProductDataOfDirectLocalizationBoundary
+    (Dbounded.directLocalizationBoundaryInputsOfClosedEmbeddingTargetHomologyZeroComparisonW1609
+      data)
 
 theorem
     originalFourTaskProductDataOfClosedMapTargetHomologyZeroComparisonW1609_boundedDerivedInfinityCategory
     (data :
       Dbounded.MetrizableClosedMapTargetHomologyZeroStrictRealizationLeftCalculusDataW839) :
     (originalFourTaskProductDataOfClosedMapTargetHomologyZeroComparisonW1609 data).boundedDerivedInfinityCategory =
-      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
-        (Dbounded.stableBoundaryInputsOfClosedMapTargetHomologyZeroComparisonW1609 data) :=
+      Dbounded.boundedDerivedOfClosedMapTargetHomologyZeroDirectLocalizationBoundaryW1609
+        data :=
   rfl
 
 theorem
@@ -650,8 +654,8 @@ theorem
     (data :
       Dbounded.MetrizableClosedEmbeddingTargetHomologyZeroStrictRealizationLeftCalculusDataW839) :
     (originalFourTaskProductDataOfClosedEmbeddingTargetHomologyZeroComparisonW1609 data).boundedDerivedInfinityCategory =
-      Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
-        (Dbounded.stableBoundaryInputsOfClosedEmbeddingTargetHomologyZeroComparisonW1609 data) :=
+      Dbounded.boundedDerivedOfClosedEmbeddingTargetHomologyZeroDirectLocalizationBoundaryW1609
+        data :=
   rfl
 
 /--
