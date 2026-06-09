@@ -1,16 +1,16 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-06-09T13:24:29Z",
-  "source_base_git_head": "8430aa41968e52b4b4553f51475c05d619442ff0",
-  "outcome": "mathematical_frontier_nonterminal",
+  "generated_utc": "2026-06-09T13:43:00Z",
+  "source_base_git_head": "a6ae7282d5458c2d6f423c4a0d060664422e8dc4",
+  "outcome": "source_patch_needed_handoff",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W852 now routes one W732 route-data provider through the selected-cochain branch into the canonical direct-localization stable-instance boundary and exposes that package at the bounded-derived and original-four-task product-data surfaces. This is a source patch checkpoint only: the original positive witness remains blocked because no concrete nullary W732 route-data provider or nullary direct-localization boundary input has been constructed.",
+  "summary": "W852 routes one W732 route-data provider through the selected-cochain branch into the canonical direct-localization stable-instance boundary and exposes that package at the bounded-derived and original-four-task product-data surfaces. The after-a6ae Tier A inventory confirms that current source still does not synthesize or construct a nullary direct-left-calculus input, W657 direct-localization core, WPP functor-category localization input, or concrete W732 route-data provider.",
   "reference_route_log": "docs/research/reference_route_log.md",
-  "handoff": "run/source_patch_needed_nullary_stable_package_handoff_20260609.md",
-  "latest_checkpoint": "run/w852_route_data_direct_boundary_checkpoint_20260609.md",
+  "handoff": "run/direct_boundary_nullary_input_inventory_after_a6ae_20260609.md",
+  "latest_checkpoint": "run/direct_boundary_nullary_input_inventory_after_a6ae_20260609.md",
   "proof_search_scratch": "run/tier_a_nullary_stable_package_attempt_20260609.lean",
   "known_gaps": [
     "No declaration currently defines OriginalFourTaskProductSuccess or originalFourTaskProductSuccess.",
@@ -18,8 +18,10 @@
     "A nullary Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs value is still not constructible from current source.",
     "A concrete MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732 value is still not constructible from current source.",
     "Typeclass synthesis does not provide (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions.",
+    "Typeclass synthesis does not provide Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput.",
     "Existing direct-left-calculus declarations remain parameterized by route data.",
-    "The direct-localization boundary still needs WPP transfer inputs and a source-side direct-localization triangulated core."
+    "The direct-localization boundary still needs WPP transfer inputs and a source-side direct-localization triangulated core.",
+    "The smallest current transfer-input route still needs rightOpenLca, rightSurjectiveLca, opExactAcyclicClosure, and functorCategoryLocalization fields."
   ],
   "remaining_work": [
     "Construct a concrete nullary W732 route-data provider or a nullary direct-localization boundary input.",
@@ -55,6 +57,11 @@
     "scripts/audit_no_forbidden_lean_tokens.sh <each touched Lean/audit file>",
     "rg -n 'OriginalFourTaskProductSuccess|originalFourTaskProductSuccess|productSuccessClaimed\\s*:=\\s*true|productSuccessClaimed\\s*=\\s*true' LeanLCAExactChallenge audit -g '!audit/negative_fixtures/**'",
     "rg -n 'productSuccessClaimed\\s*:=\\s*false|productSuccessClaimed\\s*=\\s*false' LeanLCAExactChallenge audit -g '!audit/negative_fixtures/**' | wc -l",
+    "lake env lean <#check direct-boundary and W657 field probe>",
+    "lake env lean <#synth directLeftCalculus probe>",
+    "lake env lean <#synth WPP functor-category localization probe>",
+    "lake env lean <inferInstance W657 direct-localization probe>",
+    "rg -n 'RightOpenLcaInput_direct|RightSurjectiveLcaInput_direct|OpExactAcyclicClosureInput_direct|FunctorCategoryLocalizationInput_direct|WalkingParallelPairFiniteShapeTransferInputs_direct|StableInstanceBoundaryDirectLocalizationInputs_direct' LeanLCAExactChallenge/Derived -g '*.lean'",
     "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
     "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
     "git diff --check"
