@@ -1,32 +1,32 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-06-09T16:01:42Z",
-  "source_base_git_head": "d446d286a9b249c040de28d2d49a132d314afd71",
-  "source_tree_hash": "d3a430f9687acd9fe6a15acbb84b86adc73d3ad5dc7fce8b5a7ab33bb9d2ea31",
-  "source_file_count": 1200,
+  "generated_utc": "2026-06-09T16:28:26Z",
+  "source_base_git_head": "35d892a72e71db4f6ea3a245a08652b0428a8c19",
+  "source_tree_hash": "91e7e212553774c50b710e8d709c1093363715a7efae977c1e6352747041c505",
+  "source_file_count": 1201,
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "Verification for the nonterminal W877 W735 direct-localization boundary checkpoint. W877 combines W735/W876 direct left calculus, W735/W722 source triangulation, and W735/W719 finite-shape transfer under WPP limit/colimit stability to construct canonical direct-localization stable-boundary inputs. This is not product success and does not construct a nullary original four-task witness.",
+  "summary": "Verification for the nonterminal W878 direct-right-LCA left-Snake direct-localization boundary checkpoint. W878 derives W877's abstract WalkingParallelPair limit and colimit stability fields from direct-right-LCA and WPP-op left/Snake inputs, then reuses the W877 boundary package. This is not product success and does not construct a nullary original four-task witness.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Completed successfully with 2939 jobs after the W877 source patch; existing style/header warnings only."
+      "evidence": "Completed successfully with 2940 jobs after the W878 source patch; existing repository warnings only."
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.W735DirectLocalizationBoundaryRoute LeanLCAExactChallenge",
+      "command": "lake build LeanLCAExactChallenge.Derived.DirectRightLcaLeftSnakeDirectLocalizationBoundaryRoute LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Built the new W877 module and refreshed the package root .olean so audit imports saw the new declarations."
+      "evidence": "Built the new W878 module and refreshed the package root .olean so audit imports saw the new declarations."
     },
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/W735DirectLocalizationBoundaryRoute.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/DirectRightLcaLeftSnakeDirectLocalizationBoundaryRoute.lean",
       "status": "passed",
-      "evidence": "The new W877 source module checked directly with exit code 0."
+      "evidence": "The new W878 source module checked directly with exit code 0."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required-declarations audit completed with exit code 0 after the root .olean was refreshed."
+      "evidence": "Required-declarations audit completed with exit code 0 after adding W878 #check declarations."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
@@ -41,12 +41,12 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Reported no forbidden Lean tokens under LeanLCAExactChallenge."
+      "evidence": "Forbidden Lean token audit over LeanLCAExactChallenge completed with exit code 0."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/W735DirectLocalizationBoundaryRoute.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectRightLcaLeftSnakeDirectLocalizationBoundaryRoute.lean",
       "status": "passed",
-      "evidence": "Focused forbidden-token audit for the new W877 Lean module completed with exit code 0."
+      "evidence": "Focused forbidden-token audit for the new W878 Lean module completed with exit code 0."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge.lean",
@@ -64,7 +64,7 @@
       "evidence": "Full whitespace check completed with exit code 0 after source, audit, and checkpoint artifact edits."
     },
     {
-      "command": "git diff --check -- LeanLCAExactChallenge/Derived/W735DirectLocalizationBoundaryRoute.lean LeanLCAExactChallenge.lean audit/RequiredDeclarations.lean run/goal_identity_20260602_human_centered_positive_witness.json run/resumption_and_stable_gate_after_d446d286_20260609.md run/w735_direct_localization_boundary_checkpoint_20260609.md run/verification.json terminal_outcome/terminal_outcome.json",
+      "command": "git diff --check -- LeanLCAExactChallenge/Derived/DirectRightLcaLeftSnakeDirectLocalizationBoundaryRoute.lean LeanLCAExactChallenge.lean audit/RequiredDeclarations.lean run/goal_identity_20260602_human_centered_positive_witness.json run/resumption_and_stable_gate_after_35d892a7_20260609.md run/direct_right_lca_left_snake_direct_localization_boundary_checkpoint_20260609.md run/verification.json terminal_outcome/terminal_outcome.json",
       "status": "passed",
       "evidence": "Focused whitespace check for the touched source, audit, and checkpoint artifacts completed with exit code 0."
     },
@@ -76,12 +76,12 @@
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "Contract audit passed with terminal_claims_product_success=false and remaining product-surface blockers recorded."
+      "evidence": "Contract audit passed with terminal_claims_product_success=false and the expected nonterminal product-surface blocker recorded."
     },
     {
       "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "External audit passed with source_tree_hash d3a430f9687acd9fe6a15acbb84b86adc73d3ad5dc7fce8b5a7ab33bb9d2ea31."
+      "evidence": "External audit passed with source_tree_hash 91e7e212553774c50b710e8d709c1093363715a7efae977c1e6352747041c505."
     }
   ]
 }
