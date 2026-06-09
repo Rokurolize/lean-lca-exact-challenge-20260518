@@ -1,0 +1,68 @@
+LeanLCAExactChallenge.BoundedDerived.Metrizable.StablePackage : Type 2
+LeanLCAExactChallenge.OriginalFourTaskProductData : Type 2
+LeanLCAExactChallenge.originalFourTaskProductDataOfStablePackage (P : BoundedDerived.Metrizable.StablePackage) :
+  OriginalFourTaskProductData
+LeanLCAExactChallenge.Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs : Type 1
+LeanLCAExactChallenge.Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputNames : List String
+LeanLCAExactChallenge.Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputNames_count :
+  Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputNames.length = 3
+LeanLCAExactChallenge.Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs : Type 1
+LeanLCAExactChallenge.Dbounded.MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657 : Type 1
+LeanLCAExactChallenge.Dbounded.MetrizableDirectBoundedLeftCalculusDataW830 : Type 2
+LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfKernelCokernelComparisonW830
+  (data : Dbounded.MetrizableDirectBoundedLeftCalculusDataW830) :
+  (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions
+structure LeanLCAExactChallenge.Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs : Type 1
+number of parameters: 0
+fields:
+  LeanLCAExactChallenge.Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs.transferInputs : Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs
+  LeanLCAExactChallenge.Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs.directLeftCalculus : (boundedExactWeakEquivalence
+        MetrizableLCA).HasLeftCalculusOfFractions
+  LeanLCAExactChallenge.Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs.directLocalization : Dbounded.MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+constructor:
+  LeanLCAExactChallenge.Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs.mk
+    (transferInputs : Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs)
+    (directLeftCalculus : (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions)
+    (directLocalization : Dbounded.MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657) :
+    Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs
+structure LeanLCAExactChallenge.Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs : Type 1
+number of parameters: 0
+fields:
+  LeanLCAExactChallenge.Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs.limitStability : (boundedExactWeakEquivalence
+          MetrizableLCA).IsStableUnderLimitsOfShape
+      Limits.WalkingParallelPair
+  LeanLCAExactChallenge.Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs.colimitStability : (boundedExactWeakEquivalence
+          MetrizableLCA).IsStableUnderColimitsOfShape
+      Limits.WalkingParallelPair
+  LeanLCAExactChallenge.Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs.functorCategoryLocalization : Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+constructor:
+  LeanLCAExactChallenge.Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs.mk
+    (limitStability : (boundedExactWeakEquivalence MetrizableLCA).IsStableUnderLimitsOfShape Limits.WalkingParallelPair)
+    (colimitStability :
+      (boundedExactWeakEquivalence MetrizableLCA).IsStableUnderColimitsOfShape Limits.WalkingParallelPair)
+    (functorCategoryLocalization : Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs
+structure LeanLCAExactChallenge.Dbounded.MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657 : Type 1
+number of parameters: 0
+fields:
+  LeanLCAExactChallenge.Dbounded.MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657.sourcePretriangulated : Pretriangulated
+      (BoundedComplexCategory MetrizableLCA)
+  LeanLCAExactChallenge.Dbounded.MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657.sourceTriangulated : IsTriangulated
+      (BoundedComplexCategory MetrizableLCA)
+  LeanLCAExactChallenge.Dbounded.MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657.triangleCompletion : Dbounded.MetrizableBoundedExactWeakEquivalenceTriangleCompletionInputW654
+constructor:
+  LeanLCAExactChallenge.Dbounded.MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657.mk
+    (sourcePretriangulated : Pretriangulated (BoundedComplexCategory MetrizableLCA))
+    (sourceTriangulated : IsTriangulated (BoundedComplexCategory MetrizableLCA))
+    (triangleCompletion : Dbounded.MetrizableBoundedExactWeakEquivalenceTriangleCompletionInputW654) :
+    Dbounded.MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+run/tier_a_nullary_stable_package_attempt_20260609.lean:22:8: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+run/tier_a_nullary_stable_package_attempt_20260609.lean:29:6: error: don't know how to synthesize placeholder for argument `inputs`
+context:
+case boundaryInputs
+⊢ Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs
+run/tier_a_nullary_stable_package_attempt_20260609.lean:26:47: error: unsolved goals
+⊢ BoundedDerived.Metrizable.StablePackage

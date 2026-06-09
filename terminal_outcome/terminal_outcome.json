@@ -1,54 +1,38 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-06-08T04:31:16Z",
-  "source_base_git_head": "58b9bb9cb396585e8ad65c1ae787e5454fe1fc9c",
-  "source_tree_hash": "8b5080e3df4915ba62af828509410dd228f6df02fa0af4d77d3fff66f468eb11",
-  "source_file_count": 1197,
-  "outcome": "mathematical_frontier_nonterminal",
+  "generated_utc": "2026-06-09T12:48:00Z",
+  "source_base_git_head": "19f35cffc332893d59399c3140fa251f4d6fa67f",
+  "outcome": "source_patch_needed_handoff",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "Noise cleanup checkpoint for the original four-task contract: the source tree keeps the current Lean frontier and current English research notes, while worker handoff files, review packets, progress logs, provider search ledgers, stale run logs, and other non-source coordination artifacts have been removed. This is not a product-success claim.",
+  "summary": "Tier A direct-definition inventory found that the positive original four-task witness is blocked by the absence of a nullary bounded-derived stable package. Task 1/2/3 product data are directly wired through Quillen exact MetrizableLCA and YonedaExt APIs, but Task 4 still requires a caller-supplied BoundedDerived.Metrizable.StablePackage.",
+  "handoff": "run/source_patch_needed_nullary_stable_package_handoff_20260609.md",
+  "proof_search_scratch": "run/tier_a_nullary_stable_package_attempt_20260609.lean",
   "known_gaps": [
-    "The original four-task contract remains nonterminal because the accepted final product-success witness is not present.",
-    "The stable bounded derived infinity-category route still needs a mathematically accepted final bridge, not only local wrapper declarations.",
-    "The current Lean frontier is preserved for the next proof-focused worker; this cleanup does not assert completion of the mathematical goal."
+    "No declaration currently defines OriginalFourTaskProductSuccess or originalFourTaskProductSuccess.",
+    "OriginalFourTaskProductData requires a caller-supplied BoundedDerived.Metrizable.StablePackage.",
+    "A nullary Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs value is not constructible from current source.",
+    "Typeclass synthesis does not provide (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions.",
+    "Existing direct-left-calculus declarations remain parameterized by route data.",
+    "The direct-localization boundary still needs WPP transfer inputs and a source-side direct-localization triangulated core."
   ],
-  "remaining_work": [
-    "Continue the Lean proof from the preserved source tree without relying on deleted worker packets, old progress logs, or provider search ledgers.",
-    "When product success is later claimed, regenerate terminal evidence with a fresh source hash, positive Lean witness checks, and product-success audits.",
-    "Keep future non-source coordination evidence outside the repository or in explicitly owned thread workspaces."
+  "next_required_source_api": [
+    "noncomputable def BoundedDerived.Metrizable.stablePackage : BoundedDerived.Metrizable.StablePackage",
+    "or noncomputable def Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs : Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs"
   ],
-  "reference_route_log": "docs/research/reference_route_log.md",
-  "noise_cleanup": {
-    "removed_root_files": [
-      "GOAL_IDENTITY.json",
-      "WORKER_HANDOFF.md",
-      "manifest.json",
-      "progress.tsv",
-      "implementation-notes.html",
-      "scratch-log.html"
-    ],
-    "removed_root_directories": [
-      "Issues",
-      "merge_queue",
-      "workers",
-      "reviews",
-      "proof_frontier",
-      "packets"
-    ],
-    "removed_run_payloads": "run now contains only verification.json",
-    "removed_provider_search_ledgers": 464,
-    "english_cleanup": "README, review README, research notes, and negative-fixture summaries are English-only.",
-    "project_lean_source_changed": false
-  },
   "verified_commands": [
-    "lake build",
-    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-    "lake env lean audit/RequiredDeclarations.lean",
-    "lake env lean audit/ProductSuccessDeclarations.lean",
-    "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
-    "git diff --check"
+    "git status --short --branch --untracked-files=all",
+    "git rev-parse HEAD",
+    "git rev-parse origin/main",
+    "git ls-remote origin refs/heads/main",
+    "cat lean-toolchain",
+    "rg -n 'mathlib|rev = ' lakefile.toml",
+    "jq -r '.packages[] | select(.name==\"mathlib\" or .name==\"aesop\" or .name==\"Qq\" or .name==\"batteries\" or .name==\"Cli\") | [.name,.inputRev,.rev] | @tsv' lake-manifest.json",
+    "git log --oneline -- lean-toolchain lakefile.toml lake-manifest.json",
+    "rg -n 'v4\\.30\\.0-rc2' lean-toolchain lakefile.toml lake-manifest.json",
+    "git diff --check -- lean-toolchain lakefile.toml lake-manifest.json",
+    "lake env lean run/tier_a_nullary_stable_package_attempt_20260609.lean"
   ]
 }
