@@ -1,42 +1,47 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-06-09T18:47:36Z",
-  "source_base_git_head": "3fa5d9441d0e51ce4f5985051235135bb0686582",
-  "source_tree_hash": "1cfa7e371b881d72d7a8b750b9719549f8f15ac6224c9849e0ffd79b7d773976",
+  "generated_utc": "2026-06-09T19:31:24Z",
+  "source_base_git_head": "07b2ce64ed3fd245b511dbc9a0e1346ad6f8085b",
+  "source_tree_hash": "2b7e87093aad77901951a80db74e2aa0431341b6a362903f8121e27225282118",
   "source_file_count": 1202,
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "Verification for the nonterminal W1623 W1519 closed-embedding-closedness checkpoint. The patch adds a one-input route that extracts W973 closed-embedding closedness data from the W1519 selected-cochain convergence surface, derives W718 closed-embedding diagram components and the W519 mapped-cokernel closed-embedding provider, converts those closed embeddings to closed maps, builds W735 closed-map exact inputs, and feeds the existing W1622 direct-localization boundary route. This is not original four-task product success and does not construct a nullary positive witness.",
+  "summary": "Verification for the nonterminal W1625 W987 full-data direct-localization boundary checkpoint. The patch eliminates the external W1007 wrapper obligation from the W1624 branch-full-data route by taking the underlying W987 full-data provider directly, proving the wrapper contains exactly that W987 input, and delegating the direct-localization boundary, accepted-stable gate, bounded-derived package, and ready stable certificate through the already checked W1624 construction. This is not original four-task product success and does not construct a nullary positive witness.",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/BoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryRoute.lean",
+      "status": "passed",
+      "evidence": "Focused route file check completed with exit code 0 after adding W1625 direct W987 full-data input, W1007 wrapper-elimination projection lemmas, W1624 delegation wrappers, one-input names, and productSuccessClaimed=false route state."
+    },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.BoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryRoute",
       "status": "passed",
-      "evidence": "The route module built with exit code 0 after adding W1623 one-input W1519 closed-embedding-closedness data, W973 extraction, W718 closed-embedding and closed-map component derivations, W519 closed-embedding to closed-map conversion, W735 exact-input construction, W1622 projection, route state, and productSuccessClaimed=false state."
+      "evidence": "Covered by the full lake build after the W1625 route-file change; the changed route module built successfully with only existing repository warning classes."
     },
     {
       "command": "lake build LeanLCAExactChallenge.BoundedDerived.MetrizableStableBridge",
       "status": "passed",
-      "evidence": "The bounded-derived bridge built with exit code 0 after adding the W1623 StablePackage alias and equality theorems back to W1622 and the canonical direct-localization boundary package."
+      "evidence": "Covered by the full lake build; no bounded-derived bridge source change was made for W1625."
     },
     {
       "command": "lake build LeanLCAExactChallenge.OriginalFourTask.ProductData",
       "status": "passed",
-      "evidence": "OriginalFourTask product data built with exit code 0 after adding the W1623 product-data constructor and projection/equality theorems."
+      "evidence": "Covered by the full lake build; no product-data source change was made for W1625 and product success remains false."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required-declarations audit completed with exit code 0 after adding #checks for the new W1623 route, stable bridge, and product-data declarations."
+      "evidence": "Required-declarations audit completed with exit code 0 after the W1625 route-file source change."
     },
     {
       "command": "lake build LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Package root built successfully after the W1623 source patch; existing repository warnings only."
+      "evidence": "Covered by the full lake build after the W1625 source patch; existing repository warnings only."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build completed successfully after the W1623 source patch; existing repository warnings only."
+      "evidence": "Full project build completed successfully after the W1625 source patch; existing repository warnings only."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
@@ -51,37 +56,32 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden Lean token audit over LeanLCAExactChallenge completed with exit code 0."
+      "evidence": "Forbidden Lean token audit over LeanLCAExactChallenge completed with exit code 0 after the W1625 source patch."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/BoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryRoute.lean",
       "status": "passed",
-      "evidence": "Focused forbidden-token audit for the changed W1623 route file completed with exit code 0."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridge.lean",
-      "status": "passed",
-      "evidence": "Focused forbidden-token audit for the changed bounded-derived bridge completed with exit code 0."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/OriginalFourTask/ProductData.lean",
-      "status": "passed",
-      "evidence": "Focused forbidden-token audit for the changed product-data file completed with exit code 0."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/RequiredDeclarations.lean",
-      "status": "passed",
-      "evidence": "Focused forbidden-token audit for the changed audit Lean file completed with exit code 0."
+      "evidence": "Focused forbidden-token audit for the changed W1625 route file completed with exit code 0."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Full whitespace check completed with exit code 0 after source, audit, JSON outcome, and checkpoint artifact edits."
+      "evidence": "Full whitespace check completed with exit code 0 after the route-file and verification-artifact edits."
     },
     {
       "command": "rg declaration-shaped product-success scan outside audit negative fixtures",
       "status": "passed",
-      "evidence": "No active declaration-shaped OriginalFourTaskProductSuccess/originalFourTaskProductSuccess definition and no productSuccessClaimed=true route state was found outside audit negative fixtures."
+      "evidence": "No active declaration-shaped OriginalFourTaskProductSuccess/originalFourTaskProductSuccess definition was found under LeanLCAExactChallenge or audit outside negative fixtures."
+    },
+    {
+      "command": "rg productSuccessClaimed true scan outside audit negative fixtures",
+      "status": "passed",
+      "evidence": "No active productSuccessClaimed := true or productSuccessClaimed = true route state was found under LeanLCAExactChallenge or audit outside negative fixtures."
+    },
+    {
+      "command": "rg v4.30.0-rc2 active-source scan",
+      "status": "passed",
+      "evidence": "No active Lean toolchain, manifest, source, audit, script, or terminal-outcome reference to v4.30.0-rc2 was found."
     },
     {
       "command": "jq . run/verification.json terminal_outcome/terminal_outcome.json run/goal_identity_20260602_human_centered_positive_witness.json >/dev/null",
@@ -91,12 +91,12 @@
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "Contract audit passed with terminal_claims_product_success=false and known nonterminal original four-task blockers recorded."
+      "evidence": "Contract audit passed with terminal_claims_product_success=false and the known nonterminal blocker that the final product surface still references AcceptedStableBoundedDerivedInfinityCategory."
     },
     {
       "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "External audit passed with source_tree_hash 1cfa7e371b881d72d7a8b750b9719549f8f15ac6224c9849e0ffd79b7d773976."
+      "evidence": "External audit passed with source_tree_hash 2b7e87093aad77901951a80db74e2aa0431341b6a362903f8121e27225282118."
     }
   ]
 }

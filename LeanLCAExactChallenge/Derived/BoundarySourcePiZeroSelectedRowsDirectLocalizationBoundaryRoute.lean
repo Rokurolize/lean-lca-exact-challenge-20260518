@@ -1723,6 +1723,235 @@ theorem
     state.productSuccessClaimed) = false :=
   rfl
 
+/--
+W1625 closed-map branch data where the W1007 wrapper is eliminated and the
+direct-localization boundary consumes the underlying W987 full-data provider.
+-/
+structure
+    MetrizableClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1625 :
+    Type 2 where
+  fullData :
+    BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataProviderW987
+
+/--
+W1625 turns the underlying W987 full-data provider into the W1007 surface
+required by the already checked W1624 route.
+-/
+def branchFullDataOfBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+    (fullData :
+      BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataProviderW987) :
+    BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitBranchFullDataProviderW1007
+    where
+  branchFullData := fullData
+
+/--
+W1625 projects its direct W987 input to W1624's branch-full-data route surface.
+-/
+def
+    branchFullDataClosedEmbeddingClosednessDataOfFullDataClosedEmbeddingClosednessW1625
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1625) :
+    MetrizableClosedMapBoundarySourcePiZeroBranchFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1624
+    where
+  branchFullData :=
+    branchFullDataOfBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+      data.fullData
+
+/-- W1625's W1007 wrapper contains exactly its original W987 input. -/
+theorem branchFullDataInputOfBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1625) :
+    branchFullDataInputOfBranchFullDataW1007
+        (branchFullDataOfBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+          data.fullData) =
+      data.fullData :=
+  rfl
+
+/-- W1625's W1007 projection keeps W987's boundary/relation component. -/
+theorem boundaryRelationDataOfBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1625) :
+    boundaryRelationDataOfBranchFullDataW1007
+        (branchFullDataOfBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+          data.fullData) =
+      boundaryRelationDataOfFullDataW987 data.fullData :=
+  rfl
+
+/-- W1625's W1007 projection keeps W987's W986 target/endpoint component. -/
+theorem targetNormalizedEndpointDataOfBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1625) :
+    targetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataOfBranchFullDataW1007
+        (branchFullDataOfBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+          data.fullData) =
+      targetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataOfFullDataW987
+        data.fullData :=
+  rfl
+
+/--
+W1625 closed-map WPP colimit stability with W1624's W1007 wrapper eliminated
+from the external input surface.
+-/
+theorem
+    colimitStabilityOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1625) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderColimitsOfShape
+      WalkingParallelPair :=
+  colimitStabilityOfClosedMapBoundarySourcePiZeroBranchFullDataClosedEmbeddingClosednessW1624
+    (branchFullDataClosedEmbeddingClosednessDataOfFullDataClosedEmbeddingClosednessW1625
+      data)
+
+/--
+W1625 closed-map branch converted to W877 direct-localization boundary data.
+-/
+noncomputable def
+    closedMapW735DirectBoundaryDataOfBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1625) :
+    MetrizableClosedMapW735DirectLocalizationBoundaryDataW877 :=
+  closedMapW735DirectBoundaryDataOfBoundarySourcePiZeroBranchFullDataClosedEmbeddingClosednessW1624
+    (branchFullDataClosedEmbeddingClosednessDataOfFullDataClosedEmbeddingClosednessW1625
+      data)
+
+/-- W1625 closed-map branch as WPP finite-shape transfer inputs. -/
+noncomputable def
+    transferInputsOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1625) :
+    MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  transferInputsOfClosedMapBoundarySourcePiZeroBranchFullDataClosedEmbeddingClosednessW1624
+    (branchFullDataClosedEmbeddingClosednessDataOfFullDataClosedEmbeddingClosednessW1625
+      data)
+
+/--
+W1625 exposes a closed-map direct-localization branch whose remaining input is
+the W987 full-data provider itself.
+-/
+noncomputable def
+    directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1625) :
+    MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroBranchFullDataClosedEmbeddingClosednessW1624
+    (branchFullDataClosedEmbeddingClosednessDataOfFullDataClosedEmbeddingClosednessW1625
+      data)
+
+/- W1625 closed-map branch passes the accepted stable direct-localization gate. -/
+noncomputable def
+    acceptedStableOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1625) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapBoundarySourcePiZeroBranchFullDataClosedEmbeddingClosednessW1624
+    (branchFullDataClosedEmbeddingClosednessDataOfFullDataClosedEmbeddingClosednessW1625
+      data)
+
+/- W1625 closed-map branch produces the bounded-derived package. -/
+noncomputable def
+    boundedDerivedOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1625) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapBoundarySourcePiZeroBranchFullDataClosedEmbeddingClosednessW1624
+    (branchFullDataClosedEmbeddingClosednessDataOfFullDataClosedEmbeddingClosednessW1625
+      data)
+
+/--
+W1625 closed-map branch produces the ready four-projection stable certificate.
+-/
+theorem
+    stableCertificateOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625_ready
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1625) :
+    let inputs :=
+      directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+        data
+    letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+      inputs.directLeftCalculus
+    (stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer
+        (metrizableWalkingParallelPairTransferStableSemanticInputsOfDirectLocalization
+          inputs))).ready :=
+  stableCertificateOfClosedMapBoundarySourcePiZeroBranchFullDataClosedEmbeddingClosednessW1624_ready
+    (branchFullDataClosedEmbeddingClosednessDataOfFullDataClosedEmbeddingClosednessW1625
+      data)
+
+/--
+Input names for the W1625 closed-map route after eliminating W1007 from the
+external direct-localization boundary surface.
+-/
+def
+    boundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryInputNamesW1625 :
+    List String :=
+  fullDataInputNamesW987
+
+theorem
+    boundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryInputNamesW1625_count :
+    boundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryInputNamesW1625.length =
+      1 :=
+  fullDataInputNamesW987_count
+
+/--
+Current checked W1625 state for the one-input W987 full-data direct-localization
+boundary route.
+-/
+structure
+    MetrizableBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryRouteStateW1625 :
+    Type where
+  seed : String
+  declarations : List String
+  wrapperEliminationResult : String
+  stableBoundaryResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/--
+Current checked W1625 state records that the W1007 branch-full-data wrapper is
+no longer part of the remaining external input surface.
+-/
+def
+    currentMetrizableBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryRouteStateW1625 :
+    MetrizableBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryRouteStateW1625
+    where
+  seed :=
+    "w1625-boundary-source-pi-zero-full-data-closed-embedding-closedness-direct-localization-boundary"
+  declarations :=
+    ["MetrizableClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryDataW1625",
+      "branchFullDataOfBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625",
+      "branchFullDataClosedEmbeddingClosednessDataOfFullDataClosedEmbeddingClosednessW1625",
+      "branchFullDataInputOfBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625",
+      "boundaryRelationDataOfBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625",
+      "targetNormalizedEndpointDataOfBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625",
+      "colimitStabilityOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625",
+      "closedMapW735DirectBoundaryDataOfBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625",
+      "transferInputsOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625",
+      "directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625",
+      "acceptedStableOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625",
+      "boundedDerivedOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625",
+      "stableCertificateOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625_ready",
+      "boundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryInputNamesW1625",
+      "boundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryInputNamesW1625_count"]
+  wrapperEliminationResult :=
+    "proved: the W1625 route consumes the underlying W987 full-data provider\
+      directly, then reconstructs exactly the W1007 branch-full-data surface\
+      needed by W1624 without keeping W1007 as an external obligation"
+  stableBoundaryResult :=
+    "proved: the W1624 direct-localization boundary, accepted-stable gate,\
+      bounded-derived package, and ready stable certificate run from the\
+      direct W987 input"
+  remainingInputs :=
+    boundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryInputNamesW1625
+  productSuccessClaimed := false
+
+theorem
+    currentW1625BoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundary_productSuccess :
+    (let state :=
+      currentMetrizableBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryRouteStateW1625;
+    state.productSuccessClaimed) = false :=
+  rfl
+
 end Dbounded
 
 end LeanLCAExactChallenge
