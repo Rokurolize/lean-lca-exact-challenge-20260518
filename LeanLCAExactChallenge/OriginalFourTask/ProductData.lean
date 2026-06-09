@@ -248,6 +248,58 @@ theorem
   rfl
 
 /--
+Assemble product data from the W947 closedness branch: target no-univ data and
+matched closedness data are supplied as one provider before projecting to W946.
+-/
+noncomputable def
+    originalFourTaskProductDataOfClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput
+    (input :
+      BoundedDerived.Metrizable.ClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStablePackage
+    (BoundedDerived.Metrizable.stablePackageOfClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput
+      input)
+
+theorem
+    originalFourTaskProductDataOfW947_eq_localizedUnitBoundaryRelationInput
+    (input :
+      BoundedDerived.Metrizable.ClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput) :
+    originalFourTaskProductDataOfClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput
+        input =
+      originalFourTaskProductDataOfClosednessEndpointLocalizedUnitBoundaryRelationInput
+        (closednessEndpointLocalizedUnitBoundaryRelationInputOfTargetNoUnivClosednessInput
+          input) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfW947_boundedDerivedInfinityCategory
+    (input :
+      BoundedDerived.Metrizable.ClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput) :
+    (originalFourTaskProductDataOfClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput
+      input).boundedDerivedInfinityCategory =
+      BoundedDerived.Metrizable.stablePackageOfClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput
+        input :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfW947_metrizableLCAExactCategory
+    (input :
+      BoundedDerived.Metrizable.ClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput) :
+    (originalFourTaskProductDataOfClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput
+      input).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfW947_yonedaExt
+    (input :
+      BoundedDerived.Metrizable.ClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput) :
+    (originalFourTaskProductDataOfClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput
+      input).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
+/--
 Assemble product data from the W1539 closed-map direct-source stable bridge.
 -/
 noncomputable def originalFourTaskProductDataOfClosedMapDirectSourceW1539

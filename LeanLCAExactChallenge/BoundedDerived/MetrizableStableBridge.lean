@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.BoundedDerived.Basic
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivMembershipDataClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute
 import LeanLCAExactChallenge.Derived.W987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW829StableSemanticAdapterComparisonW1539
 
@@ -48,12 +49,23 @@ abbrev ClosednessEndpointStrictExactInput : Type 2 :=
 abbrev ClosednessEndpointLocalizedUnitBoundaryRelationInput : Type 2 :=
   Dbounded.MetrizableWppClosedMapBoundaryRelationDataTargetNoUnivMembershipDataClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldLeavesW946
 
+abbrev ClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput :
+    Type 2 :=
+  Dbounded.MetrizableWppClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldLeavesW947
+
 def closednessEndpointStrictExactInputOfLocalizedUnitBoundaryRelationInput
     (input : ClosednessEndpointLocalizedUnitBoundaryRelationInput) :
     ClosednessEndpointStrictExactInput :=
   Dbounded.w944LeavesOfLocalizedUnitDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactFieldsW945
     (Dbounded.w945LeavesOfBoundaryRelationDataTargetNoUnivMembershipDataClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsW946
       input)
+
+def closednessEndpointLocalizedUnitBoundaryRelationInputOfTargetNoUnivClosednessInput
+    (input :
+      ClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput) :
+    ClosednessEndpointLocalizedUnitBoundaryRelationInput :=
+  Dbounded.w946LeavesOfTargetNoUnivClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsW947
+    input
 
 noncomputable def stablePackageOfInstanceFacts
     (facts : StableInstanceFacts) : StablePackage :=
@@ -135,6 +147,35 @@ theorem
     stablePackageOfClosednessEndpointLocalizedUnitBoundaryRelationInput input =
       stablePackageOfClosednessEndpointStrictExactInput
         (closednessEndpointStrictExactInputOfLocalizedUnitBoundaryRelationInput
+          input) :=
+  rfl
+
+noncomputable def
+    stablePackageOfClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput
+    (input :
+      ClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput) :
+    StablePackage :=
+  Dbounded.boundedDerivedInfinityCategoryOfClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsW947
+    input
+
+theorem
+    stablePackageOfClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput_eq_w947
+    (input :
+      ClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput) :
+    stablePackageOfClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput
+        input =
+      Dbounded.boundedDerivedInfinityCategoryOfClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsW947
+        input :=
+  rfl
+
+theorem
+    stablePackageOfClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput_eq_localizedUnitBoundaryRelationInput
+    (input :
+      ClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput) :
+    stablePackageOfClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput
+        input =
+      stablePackageOfClosednessEndpointLocalizedUnitBoundaryRelationInput
+        (closednessEndpointLocalizedUnitBoundaryRelationInputOfTargetNoUnivClosednessInput
           input) :=
   rfl
 
