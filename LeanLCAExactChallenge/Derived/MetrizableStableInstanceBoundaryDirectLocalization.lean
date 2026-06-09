@@ -873,6 +873,18 @@ noncomputable def
     (Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directLimitOpClosure
       inputs)
 
+/--
+Accepted stable `Dbounded` package from the direct limit/op-closure refinement of the
+stable-instance boundary.
+-/
+noncomputable def
+    acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitOpClosure
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLimitOpClosureInputs) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directLimitOpClosure
+      inputs)
+
 /-- The direct limit/op-closure refinement produces the ready four-projection stable certificate. -/
 theorem stableCertificateOfMetrizableStableInstanceBoundaryDirectLimitOpClosure_ready
     (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLimitOpClosureInputs) :
@@ -939,6 +951,18 @@ noncomputable def
     BoundedDerivedInfinityCategory MetrizableLCA.{0}
       (Dbounded.infinityCategory MetrizableLCA.{0}) :=
   Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directLimitFieldsOpClosure
+      inputs)
+
+/--
+Accepted stable `Dbounded` package from the direct limit-field/op-closure refinement of the
+stable-instance boundary.
+-/
+noncomputable def
+    acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitFieldsOpClosure
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputs) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
     (Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directLimitFieldsOpClosure
       inputs)
 
@@ -1016,6 +1040,18 @@ noncomputable def
     BoundedDerivedInfinityCategory MetrizableLCA.{0}
       (Dbounded.infinityCategory MetrizableLCA.{0}) :=
   Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    (Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directRightLcaOpClosure
+      inputs)
+
+/--
+Accepted stable `Dbounded` package from the direct right-LCA/op-closure refinement of the
+stable-instance boundary.
+-/
+noncomputable def
+    acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectRightLcaOpClosure
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectRightLcaOpClosureInputs) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
     (Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directRightLcaOpClosure
       inputs)
 
@@ -1198,6 +1234,8 @@ section Checks
 #check Dbounded.MetrizableStableInstanceBoundaryDirectLimitOpClosureInputs
 #check Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directLimitOpClosure
 #check Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitOpClosure
+#check
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitOpClosure
 #check Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectLimitOpClosure_ready
 #check Dbounded.metrizableStableInstanceBoundaryDirectLimitOpClosureInputNames
 #check Dbounded.metrizableStableInstanceBoundaryDirectLimitOpClosureInputNames_count
@@ -1205,6 +1243,8 @@ section Checks
 #check Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directLimitFieldsOpClosure
 #check
   Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitFieldsOpClosure
+#check
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitFieldsOpClosure
 #check Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectLimitFieldsOpClosure_ready
 #check Dbounded.metrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputNames
 #check Dbounded.metrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputNames_count
@@ -1213,6 +1253,8 @@ section Checks
   Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directRightLcaOpClosure
 #check
   Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectRightLcaOpClosure
+#check
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectRightLcaOpClosure
 #check Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectRightLcaOpClosure_ready
 #check Dbounded.metrizableStableInstanceBoundaryDirectRightLcaOpClosureInputNames
 #check Dbounded.metrizableStableInstanceBoundaryDirectRightLcaOpClosureInputNames_count

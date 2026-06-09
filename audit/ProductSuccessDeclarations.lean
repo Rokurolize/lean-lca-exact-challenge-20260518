@@ -3931,18 +3931,24 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
 #check Dbounded.MetrizableStableInstanceBoundaryDirectLimitOpClosureInputs
 #check Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directLimitOpClosure
 #check Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitOpClosure
+#check
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitOpClosure
 #check Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectLimitOpClosure_ready
 #check Dbounded.metrizableStableInstanceBoundaryDirectLimitOpClosureInputNames_count
 #check Dbounded.MetrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputs
 #check Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directLimitFieldsOpClosure
 #check
   Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitFieldsOpClosure
+#check
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitFieldsOpClosure
 #check Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectLimitFieldsOpClosure_ready
 #check Dbounded.metrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputNames_count
 #check Dbounded.MetrizableStableInstanceBoundaryDirectRightLcaOpClosureInputs
 #check Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs_of_directRightLcaOpClosure
 #check
   Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectRightLcaOpClosure
+#check
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectRightLcaOpClosure
 #check Dbounded.stableCertificateOfMetrizableStableInstanceBoundaryDirectRightLcaOpClosure_ready
 #check Dbounded.metrizableStableInstanceBoundaryDirectRightLcaOpClosureInputNames_count
 #check Dbounded.metrizableStableInstanceBoundaryInputs_of_directLocalization
@@ -3960,6 +3966,12 @@ noncomputable example
     BoundedDerivedInfinityCategory MetrizableLCA
       (Dbounded.infinityCategory MetrizableLCA) :=
   Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitOpClosure
+    inputs
+
+noncomputable example
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLimitOpClosureInputs) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA :=
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitOpClosure
     inputs
 
 example
@@ -3993,6 +4005,12 @@ noncomputable example
   Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitFieldsOpClosure
     inputs
 
+noncomputable example
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputs) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA :=
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLimitFieldsOpClosure
+    inputs
+
 example
     (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLimitFieldsOpClosureInputs) :
     let localizedInputs :=
@@ -4022,6 +4040,12 @@ noncomputable example
     BoundedDerivedInfinityCategory MetrizableLCA
       (Dbounded.infinityCategory MetrizableLCA) :=
   Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectRightLcaOpClosure
+    inputs
+
+noncomputable example
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectRightLcaOpClosureInputs) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA :=
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectRightLcaOpClosure
     inputs
 
 example
