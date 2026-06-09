@@ -47,6 +47,19 @@ def targetCodomainCompactNoUnivMembershipPrimitiveOfTargetNoUnivDataW944
       targetCodomainCompactNoUnivMembershipPrimitiveW930 Y :=
   fun Y => (targetData Y).2
 
+/-- W944 assembles target no-univ data from its two primitive target providers. -/
+def targetNoUnivDataOfPrimitiveProvidersW944
+    (targetDifferenceSurjectiveProvider :
+      ∀ (Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}),
+        targetDifferenceSurjectivePrimitiveW923 Y)
+    (targetCompactNoUnivProvider :
+      ∀ (Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}),
+        targetCodomainCompactNoUnivMembershipPrimitiveW930 Y) :
+    TargetSurjectiveNoUnivMembershipForTargetProviderW944 :=
+  fun Y =>
+    ⟨targetDifferenceSurjectiveProvider Y,
+      targetCompactNoUnivProvider Y⟩
+
 /--
 W944 preserves W943's boundary, relation, closedness, normalized fixed-target,
 source-triangulation, endpoint strict-exact, and localized unit fields, while
