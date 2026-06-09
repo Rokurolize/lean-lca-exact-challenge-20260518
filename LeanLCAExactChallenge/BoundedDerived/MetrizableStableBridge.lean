@@ -1,5 +1,6 @@
 import LeanLCAExactChallenge.BoundedDerived.Basic
 import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundaryDirectLocalization
+import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroExactInputsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroSplitFieldsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute
@@ -55,6 +56,12 @@ abbrev ClosednessEndpointLocalizedUnitBoundaryRelationInput : Type 2 :=
 abbrev ClosednessEndpointLocalizedUnitBoundaryRelationTargetNoUnivClosednessInput :
     Type 2 :=
   Dbounded.MetrizableWppClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldLeavesW947
+
+abbrev ClosedMapExactInputsSelectedCochainComparisonInputW1614 : Type 2 :=
+  Dbounded.MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735
+
+abbrev ClosedEmbeddingExactInputsSelectedCochainComparisonInputW1614 : Type 2 :=
+  Dbounded.MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735
 
 abbrev ClosedMapSplitFieldsSelectedCochainComparisonInputW1616 : Type 2 :=
   Dbounded.MetrizableClosedMapBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616
@@ -224,6 +231,36 @@ theorem
       stablePackageOfClosednessEndpointLocalizedUnitBoundaryRelationInput
         (closednessEndpointLocalizedUnitBoundaryRelationInputOfTargetNoUnivClosednessInput
           input) :=
+  rfl
+
+noncomputable def stablePackageOfClosedMapExactInputsSelectedCochainComparisonW1614
+    (exactInputs : ClosedMapExactInputsSelectedCochainComparisonInputW1614) :
+    StablePackage :=
+  Dbounded.boundedDerivedOfClosedMapExactInputsSelectedCochainDirectLocalizationBoundaryW1614
+    exactInputs
+
+noncomputable def
+    stablePackageOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
+    (exactInputs : ClosedEmbeddingExactInputsSelectedCochainComparisonInputW1614) :
+    StablePackage :=
+  Dbounded.boundedDerivedOfClosedEmbeddingExactInputsSelectedCochainDirectLocalizationBoundaryW1614
+    exactInputs
+
+theorem stablePackageOfClosedMapExactInputsSelectedCochainComparisonW1614_eq_directLocalizationBoundary
+    (exactInputs : ClosedMapExactInputsSelectedCochainComparisonInputW1614) :
+    stablePackageOfClosedMapExactInputsSelectedCochainComparisonW1614 exactInputs =
+      stablePackageOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfClosedMapExactInputsSelectedCochainComparisonW1614
+          exactInputs) :=
+  rfl
+
+theorem
+    stablePackageOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614_eq_directLocalizationBoundary
+    (exactInputs : ClosedEmbeddingExactInputsSelectedCochainComparisonInputW1614) :
+    stablePackageOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614 exactInputs =
+      stablePackageOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
+          exactInputs) :=
   rfl
 
 noncomputable def stablePackageOfClosedMapSplitFieldsSelectedCochainComparisonW1616

@@ -847,8 +847,8 @@ noncomputable def
     (exactInputs :
       Dbounded.MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
     OriginalFourTaskProductData :=
-  originalFourTaskProductDataOfDirectLocalizationBoundary
-    (Dbounded.directLocalizationBoundaryInputsOfClosedMapExactInputsSelectedCochainComparisonW1614
+  originalFourTaskProductDataOfStablePackage
+    (BoundedDerived.Metrizable.stablePackageOfClosedMapExactInputsSelectedCochainComparisonW1614
       exactInputs)
 
 /--
@@ -861,9 +861,35 @@ noncomputable def
     (exactInputs :
       Dbounded.MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
     OriginalFourTaskProductData :=
-  originalFourTaskProductDataOfDirectLocalizationBoundary
-    (Dbounded.directLocalizationBoundaryInputsOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
+  originalFourTaskProductDataOfStablePackage
+    (BoundedDerived.Metrizable.stablePackageOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
       exactInputs)
+
+theorem
+    originalFourTaskProductDataOfClosedMapExactInputsSelectedCochainComparisonW1614_eq_directLocalizationBoundary
+    (exactInputs :
+      Dbounded.MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    originalFourTaskProductDataOfClosedMapExactInputsSelectedCochainComparisonW1614
+        exactInputs =
+      originalFourTaskProductDataOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfClosedMapExactInputsSelectedCochainComparisonW1614
+          exactInputs) := by
+  rw [originalFourTaskProductDataOfClosedMapExactInputsSelectedCochainComparisonW1614,
+    originalFourTaskProductDataOfDirectLocalizationBoundary,
+    BoundedDerived.Metrizable.stablePackageOfClosedMapExactInputsSelectedCochainComparisonW1614_eq_directLocalizationBoundary]
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614_eq_directLocalizationBoundary
+    (exactInputs :
+      Dbounded.MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    originalFourTaskProductDataOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
+        exactInputs =
+      originalFourTaskProductDataOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614
+          exactInputs) := by
+  rw [originalFourTaskProductDataOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614,
+    originalFourTaskProductDataOfDirectLocalizationBoundary,
+    BoundedDerived.Metrizable.stablePackageOfClosedEmbeddingExactInputsSelectedCochainComparisonW1614_eq_directLocalizationBoundary]
 
 theorem
     originalFourTaskProductDataOfClosedMapExactInputsSelectedCochainComparisonW1614_boundedDerivedInfinityCategory
