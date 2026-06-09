@@ -1,6 +1,6 @@
 {
   "schema": "lean_lca_exact_challenge.goal_identity.v1",
-  "generated_utc": "2026-06-09T14:17:41Z",
+  "generated_utc": "2026-06-09T14:33:37Z",
   "thread_id": "019ea5a4-a615-78b2-8944-d6f4ed0b24bb",
   "worktree": "/home/roku/codex-thread-workspaces/019ea5a4-a615-78b2-8944-d6f4ed0b24bb/worktrees/lean-lca-clean-positive-witness-20260609",
   "goal_file": {
@@ -21,12 +21,12 @@
   ],
   "git": {
     "branch": "goal-clean-positive-witness-20260609-019ea5a4",
-    "head": "d69d0a5070793627b56ac5232177e987ffb97538",
-    "origin_main": "d69d0a5070793627b56ac5232177e987ffb97538",
-    "origin_main_ls_remote": "d69d0a5070793627b56ac5232177e987ffb97538"
+    "head": "fb234300774ef93505ea4e2d5772fe50ff17d784",
+    "origin_main": "fb234300774ef93505ea4e2d5772fe50ff17d784",
+    "origin_main_ls_remote": "fb234300774ef93505ea4e2d5772fe50ff17d784"
   },
   "product_success": false,
   "product_success_claimed": false,
   "update_goal_complete_permitted": false,
-  "notes": "Identity and contract hashes refreshed at the post-W961 continuation and nullary-frontier probe on d69d0a5070793627b56ac5232177e987ffb97538. This does not claim the original positive witness."
+  "notes": "Identity and contract hashes refreshed at the post-W961 continuation gate on fb234300774ef93505ea4e2d5772fe50ff17d784 and carried into the post-fb WPP functor-localization frontier probe. This does not claim the original positive witness."
 }

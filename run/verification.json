@@ -1,12 +1,12 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-06-09T14:17:41Z",
-  "source_base_git_head": "d69d0a5070793627b56ac5232177e987ffb97538",
+  "generated_utc": "2026-06-09T14:33:37Z",
+  "source_base_git_head": "fb234300774ef93505ea4e2d5772fe50ff17d784",
   "source_tree_hash": "b21687a3633566b3fd9180e9e7c00961084641102fe0fc63bf93dbb9b6b25d3d",
   "source_file_count": 1199,
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "Verification for the nonterminal post-W961 nullary frontier probe. The source tree hash is unchanged from the W961 product-surface checkpoint; the probe records that W961 remains parameterized by explicit source data while product_success remains false.",
+  "summary": "Verification for the nonterminal post-fb234300 WPP functor-category localization frontier probe. The source tree hash is unchanged from the W961 product-surface checkpoint; the new probe records that fixed-target/normalized fixed-target data, direct left calculus, and bounded-complex source triangulation remain unsynthesized while product_success remains false.",
   "commands": [
     {
       "command": "lake build",
@@ -87,6 +87,11 @@
       "command": "lake env lean run/post_w961_nullary_w961_frontier_probe_20260609.lean",
       "status": "failed_expected",
       "evidence": "The probe deliberately failed at nullary construction points after printing the W961 product surface: W961 has 18 explicit fields, Pretriangulated/IsTriangulated source structures and direct left calculus are not synthesized, and the ClosedEmbeddingClosednessFieldsInputW961 placeholder remains unsolved."
+    },
+    {
+      "command": "lake env lean run/post_fb_wpp_functor_localization_frontier_probe_20260609.lean",
+      "status": "failed_expected",
+      "evidence": "The probe printed the checked WPP functor-category localization constructors and deliberately failed to synthesize Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput, direct left calculus, and Pretriangulated (BoundedComplexCategory MetrizableLCA)."
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",

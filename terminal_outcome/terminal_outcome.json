@@ -1,17 +1,17 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-06-09T14:17:41Z",
-  "source_base_git_head": "d69d0a5070793627b56ac5232177e987ffb97538",
+  "generated_utc": "2026-06-09T14:33:37Z",
+  "source_base_git_head": "fb234300774ef93505ea4e2d5772fe50ff17d784",
   "outcome": "source_patch_needed_handoff",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "Post-W961 proof search confirms that the closed-embedding closedness product surface remains non-nullary. W961 exposes checked product routes from caller-supplied ClosedEmbeddingClosednessFieldsInputW961 data, but that input still has 18 explicit source-side fields and the current source does not synthesize the source triangulation, direct left calculus, WPP functor-category localization, W732 provider, or original four-task positive witness.",
+  "summary": "Post-fb234300 proof search confirms that the next source frontier is the WPP functor-category localization/direct-localization boundary, not another W961 wrapper. The local API can build the WPP functor-category localization from fixed-target or normalized fixed-target inputs, but current source still does not synthesize those inputs, direct left calculus, source bounded-complex triangulation, W732 route data, or the original four-task positive witness.",
   "reference_route_log": "docs/research/reference_route_log.md",
-  "handoff": "run/post_w961_nullary_w961_frontier_20260609.md",
-  "latest_checkpoint": "run/post_w961_nullary_w961_frontier_20260609.md",
-  "proof_search_scratch": "run/post_w961_nullary_w961_frontier_probe_20260609.lean",
+  "handoff": "run/post_fb_wpp_functor_localization_frontier_20260609.md",
+  "latest_checkpoint": "run/post_fb_wpp_functor_localization_frontier_20260609.md",
+  "proof_search_scratch": "run/post_fb_wpp_functor_localization_frontier_probe_20260609.lean",
   "known_gaps": [
     "No declaration currently defines OriginalFourTaskProductSuccess or originalFourTaskProductSuccess.",
     "OriginalFourTaskProductData still requires caller-supplied bounded-derived stable data, W852 route data, or W961 closed-embedding closedness field data; no nullary product witness exists.",
@@ -21,6 +21,8 @@
     "Typeclass synthesis does not provide Pretriangulated (BoundedComplexCategory MetrizableLCA) or IsTriangulated (BoundedComplexCategory MetrizableLCA).",
     "Typeclass synthesis does not provide (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions.",
     "Typeclass synthesis does not provide Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput.",
+    "The checked WPP functor-category localization constructors require Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs or Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs.",
+    "Mathlib's available CategoryTheory.Functor.IsLocalization.pi theorem covers finite product/discrete-diagram localization, not the non-discrete WalkingParallelPair functor-category localization needed here.",
     "Existing direct-left-calculus declarations remain parameterized by route data.",
     "The direct-localization boundary still needs WPP transfer inputs and a source-side direct-localization triangulated core.",
     "The smallest current transfer-input route still needs rightOpenLca, rightSurjectiveLca, opExactAcyclicClosure, and functorCategoryLocalization fields."
@@ -34,7 +36,9 @@
   "next_required_source_api": [
     "noncomputable def BoundedDerived.Metrizable.stablePackage : BoundedDerived.Metrizable.StablePackage",
     "or noncomputable def Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputs : Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs",
-    "or noncomputable def Dbounded.metrizableW732RouteDataProvider : Dbounded.MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732"
+    "or noncomputable def Dbounded.metrizableW732RouteDataProvider : Dbounded.MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732",
+    "or noncomputable def Dbounded.metrizableWalkingParallelPairNormalizedFixedTargetInputs : Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs",
+    "or noncomputable def Dbounded.metrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs : Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs"
   ],
   "verified_commands": [
     "git status --short --branch --untracked-files=all",
@@ -49,6 +53,7 @@
     "git diff --check -- lean-toolchain lakefile.toml lake-manifest.json",
     "lake env lean run/tier_a_nullary_stable_package_attempt_20260609.lean",
     "lake env lean run/post_w961_nullary_w961_frontier_probe_20260609.lean",
+    "lake env lean run/post_fb_wpp_functor_localization_frontier_probe_20260609.lean",
     "lake build",
     "lake build LeanLCAExactChallenge.BoundedDerived.MetrizableStableBridge",
     "lake env lean LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridge.lean",
