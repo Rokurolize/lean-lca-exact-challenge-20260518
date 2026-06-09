@@ -1,6 +1,6 @@
 {
   "schema": "lean_lca_exact_challenge.goal_identity.v1",
-  "generated_utc": "2026-06-09T18:47:36Z",
+  "generated_utc": "2026-06-09T18:55:40Z",
   "thread_id": "019ea5a4-a615-78b2-8944-d6f4ed0b24bb",
   "worktree": "/home/roku/codex-thread-workspaces/019ea5a4-a615-78b2-8944-d6f4ed0b24bb/worktrees/lean-lca-clean-positive-witness-20260609",
   "goal_file": {
@@ -21,14 +21,14 @@
   ],
   "git": {
     "branch": "goal-clean-positive-witness-20260609-019ea5a4",
-    "head": "3fa5d9441d0e51ce4f5985051235135bb0686582",
-    "origin_main": "3fa5d9441d0e51ce4f5985051235135bb0686582",
-    "origin_main_ls_remote": "3fa5d9441d0e51ce4f5985051235135bb0686582",
-    "origin_feature": "3fa5d9441d0e51ce4f5985051235135bb0686582",
-    "origin_feature_ls_remote": "3fa5d9441d0e51ce4f5985051235135bb0686582"
+    "head": "45658d1aa9cd4d8ae649e3ebf076a227a46bcbc9",
+    "origin_main": "45658d1aa9cd4d8ae649e3ebf076a227a46bcbc9",
+    "origin_main_ls_remote": "45658d1aa9cd4d8ae649e3ebf076a227a46bcbc9",
+    "origin_feature": "45658d1aa9cd4d8ae649e3ebf076a227a46bcbc9",
+    "origin_feature_ls_remote": "45658d1aa9cd4d8ae649e3ebf076a227a46bcbc9"
   },
   "product_success": false,
   "product_success_claimed": false,
   "update_goal_complete_permitted": false,
-  "notes": "Identity and contract hashes refreshed during the W1623 nonterminal W1519 closed-embedding-closedness checkpoint. Git fields record the pushed W1622 base before the pending W1623 commit; this records the active goal and contracts and does not claim the original positive witness."
+  "notes": "Identity and contract hashes refreshed during the post-W1623 resumption gate before any new source work. Git fields record the pushed W1623 checkpoint. This records the active goal and contracts and does not claim the original positive witness."
 }
