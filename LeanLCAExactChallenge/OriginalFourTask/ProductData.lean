@@ -41,6 +41,17 @@ structure OriginalFourTaskProductData : Type 2 where
           IsOpenMap (S.g : S.X₂ → S.X₃) ∧
             Function.Surjective (S.g : S.X₂ → S.X₃) ∧
               ∀ x₂ : S.X₂, S.g x₂ = 0 → ∃ x₁ : S.X₁, S.f x₁ = x₂
+  metrizableLCAForgetKernelCokernelIff :
+    ∀ {S : ShortComplex MetrizableLCA.{0}},
+      QuillenExactCategory.Conflation S ↔
+        IsClosedEmbedding (S.f : S.X₁ → S.X₂) ∧
+          IsOpenMap (S.g : S.X₂ → S.X₃) ∧
+            Function.Surjective (S.g : S.X₂ → S.X₃) ∧
+              Nonempty (IsLimit (KernelFork.ofι (S.map MetrizableLCA.forgetToAddCommGrpCat).f
+                (S.map MetrizableLCA.forgetToAddCommGrpCat).zero)) ∧
+                Nonempty (IsColimit (CokernelCofork.ofπ
+                  (S.map MetrizableLCA.forgetToAddCommGrpCat).g
+                  (S.map MetrizableLCA.forgetToAddCommGrpCat).zero))
   metrizableLCAForgetExact :
     ∀ {S : ShortComplex MetrizableLCA.{0}},
       QuillenExactCategory.Conflation S → (S.map MetrizableLCA.forgetToAddCommGrpCat).Exact
@@ -73,6 +84,9 @@ noncomputable def originalFourTaskProductDataOfStablePackage
   metrizableLCAConflationIff := fun {S} =>
     MetrizableLCA.quillenConflation_iff_closed_inclusion_open_surjection_algebraic_exact
       (S := S)
+  metrizableLCAForgetKernelCokernelIff := fun {S} =>
+    MetrizableLCA.quillenConflation_iff_closed_inclusion_open_surjection_forget_kernel_cokernel
+      (S := S)
   metrizableLCAForgetExact := fun hS =>
     MetrizableLCA.forgetToAddCommGrpCat_exact_of_quillenConflation hS
   metrizableLCAForgetKernel := fun hS =>
@@ -95,6 +109,14 @@ theorem originalFourTaskProductDataOfStablePackage_metrizableLCAExactCategory
     (P : BoundedDerived.Metrizable.StablePackage) :
     (originalFourTaskProductDataOfStablePackage P).metrizableLCAExactCategory =
       MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem originalFourTaskProductDataOfStablePackage_metrizableLCAForgetKernelCokernelIff
+    (P : BoundedDerived.Metrizable.StablePackage) {S : ShortComplex MetrizableLCA.{0}} :
+    (originalFourTaskProductDataOfStablePackage P).metrizableLCAForgetKernelCokernelIff
+      (S := S) =
+      MetrizableLCA.quillenConflation_iff_closed_inclusion_open_surjection_forget_kernel_cokernel
+        (S := S) :=
   rfl
 
 theorem originalFourTaskProductDataOfStablePackage_metrizableLCAForgetExact

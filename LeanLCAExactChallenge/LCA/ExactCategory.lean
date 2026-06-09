@@ -260,6 +260,45 @@ theorem quillenConflation_iff_closed_inclusion_open_map_forget_kernel_cokernel
     exact quillenConflation_of_closed_inclusion_open_map_forget_kernel_cokernel
       hclosed hopen hkernel hcokernel
 
+/-- Build a canonical Quillen conflation from the literal original Task 2
+closed-inclusion/open-surjection plus forgotten kernel-cokernel data. -/
+theorem quillenConflation_of_closed_inclusion_open_surjection_forget_kernel_cokernel
+    {S : ShortComplex MetrizableLCA.{u}}
+    (hclosed : IsClosedEmbedding (S.f : S.X₁ → S.X₂))
+    (hopen : IsOpenMap (S.g : S.X₂ → S.X₃))
+    (_hsurj : Function.Surjective (S.g : S.X₂ → S.X₃))
+    (hkernel : IsLimit (KernelFork.ofι (S.map forgetToAddCommGrpCat).f
+      (S.map forgetToAddCommGrpCat).zero))
+    (hcokernel : IsColimit (CokernelCofork.ofπ (S.map forgetToAddCommGrpCat).g
+      (S.map forgetToAddCommGrpCat).zero)) :
+    QuillenExactCategory.Conflation S :=
+  quillenConflation_of_closed_inclusion_open_map_forget_kernel_cokernel
+    hclosed hopen hkernel hcokernel
+
+/-- Canonical Quillen conflations are exactly the literal original Task 2
+closed-inclusion/open-surjection sequences whose forgotten abelian-group
+sequence is a kernel-cokernel pair. -/
+theorem quillenConflation_iff_closed_inclusion_open_surjection_forget_kernel_cokernel
+    {S : ShortComplex MetrizableLCA.{u}} :
+    QuillenExactCategory.Conflation S ↔
+      IsClosedEmbedding (S.f : S.X₁ → S.X₂) ∧
+      IsOpenMap (S.g : S.X₂ → S.X₃) ∧
+      Function.Surjective (S.g : S.X₂ → S.X₃) ∧
+      Nonempty (IsLimit (KernelFork.ofι (S.map forgetToAddCommGrpCat).f
+        (S.map forgetToAddCommGrpCat).zero)) ∧
+      Nonempty (IsColimit (CokernelCofork.ofπ (S.map forgetToAddCommGrpCat).g
+        (S.map forgetToAddCommGrpCat).zero)) := by
+  constructor
+  · intro hS
+    exact ⟨closed_inclusion_of_quillenConflation hS,
+      (open_surjection_of_quillenConflation hS).1,
+      (open_surjection_of_quillenConflation hS).2,
+      ⟨forgetToAddCommGrpCat_kernelForkOfQuillenConflation hS⟩,
+      ⟨forgetToAddCommGrpCat_cokernelCoforkOfQuillenConflation hS⟩⟩
+  · rintro ⟨hclosed, hopen, hsurj, ⟨hkernel⟩, ⟨hcokernel⟩⟩
+    exact quillenConflation_of_closed_inclusion_open_surjection_forget_kernel_cokernel
+      hclosed hopen hsurj hkernel hcokernel
+
 /-- A canonical Quillen conflation has the expected categorical kernel fork. -/
 noncomputable def kernelForkOfQuillenConflation {S : ShortComplex MetrizableLCA.{u}}
     (hS : QuillenExactCategory.Conflation S) :
