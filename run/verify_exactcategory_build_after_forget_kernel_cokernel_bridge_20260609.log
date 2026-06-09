@@ -1,0 +1,61 @@
+⚠ [1427/1518] Replayed LeanLCAExactChallenge.ExactCategory.Basic
+warning: LeanLCAExactChallenge/ExactCategory/Basic.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [1428/1518] Replayed LeanLCAExactChallenge.LCA.Basic
+warning: LeanLCAExactChallenge/LCA/Basic.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [1470/1518] Replayed LeanLCAExactChallenge.LCA.Quotient
+warning: LeanLCAExactChallenge/LCA/Quotient.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [1471/1518] Replayed LeanLCAExactChallenge.LCA.Cokernel
+warning: LeanLCAExactChallenge/LCA/Cokernel.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+warning: LeanLCAExactChallenge/LCA/Cokernel.lean:222:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: LeanLCAExactChallenge/LCA/Cokernel.lean:236:2: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: LeanLCAExactChallenge/LCA/Cokernel.lean:265:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: LeanLCAExactChallenge/LCA/Cokernel.lean:295:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [1751/1754] Replayed LeanLCAExactChallenge.LCA.StrictExact
+warning: LeanLCAExactChallenge/LCA/StrictExact.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [1752/1754] Replayed LeanLCAExactChallenge.LCA.Pullback
+warning: LeanLCAExactChallenge/LCA/Pullback.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [1753/1754] Replayed LeanLCAExactChallenge.LCA.Pushout
+warning: LeanLCAExactChallenge/LCA/Pushout.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [1754/1754] Built LeanLCAExactChallenge.LCA.ExactCategory (3.1s)
+warning: LeanLCAExactChallenge/LCA/ExactCategory.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+Build completed successfully (1754 jobs).
