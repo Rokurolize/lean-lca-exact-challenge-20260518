@@ -1,42 +1,42 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-06-09T18:01:44Z",
-  "source_base_git_head": "9a5e34d2e98454289e941989910ac15f5e56c689",
-  "source_tree_hash": "40ac8f319bb1797dd05d7d8a3daf6117d5cb81ff218b491d2e005f6fd38e28b5",
+  "generated_utc": "2026-06-09T18:16:56Z",
+  "source_base_git_head": "0fd95d9786414f5919e8b9cad752cfd0480c79cf",
+  "source_tree_hash": "326050e20dfdfcfd85c72083b77104435e8423f38a7197e035a58c8ddcbce806",
   "source_file_count": 1202,
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "Verification for the nonterminal W1621 target-data/closed-embedding-rows checkpoint. The patch derives the W1620 selected-W461 input from W735 relation data and target-surjective compact data via the W601 compact-target provider and W524 selected-W461 bridge, while still deriving closed-map rows from closed-embedding rows through W580. This is not original four-task product success and does not construct a nullary positive witness.",
+  "summary": "Verification for the nonterminal W1622 target-data/global-closed-embedding-components checkpoint. The patch derives W1621's row-aware closed-embedding input from W718 selected-difference closed-embedding diagram components through W714/W711/W581. W1621 still derives selected-W461 from W735 relation and target-surjective compact data, and W1620/W580 still derives closed-map rows. This is not original four-task product success and does not construct a nullary positive witness.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.Derived.BoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryRoute",
       "status": "passed",
-      "evidence": "The route module built with exit code 0 after adding W1621 target-data input, selected-W461 derivation, stable certificate readiness, 2-input route state, and productSuccessClaimed=false state."
+      "evidence": "The route module built with exit code 0 after adding W1622 target-data/global-closed-embedding-component input data, W718-to-W525 assembly, W581 row narrowing, stable certificate readiness, 2-input route state, and productSuccessClaimed=false state."
     },
     {
       "command": "lake build LeanLCAExactChallenge.BoundedDerived.MetrizableStableBridge",
       "status": "passed",
-      "evidence": "The bounded-derived bridge built with exit code 0 after adding the W1621 StablePackage alias and equality theorems back to W1620 and the canonical direct-localization boundary package."
+      "evidence": "The bounded-derived bridge built with exit code 0 after adding the W1622 StablePackage alias and equality theorems back to W1621 and the canonical direct-localization boundary package."
     },
     {
       "command": "lake build LeanLCAExactChallenge.OriginalFourTask.ProductData",
       "status": "passed",
-      "evidence": "OriginalFourTask product data built with exit code 0 after adding the W1621 product-data constructor and projection/equality theorems."
+      "evidence": "OriginalFourTask product data built with exit code 0 after adding the W1622 product-data constructor and projection/equality theorems."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required-declarations audit completed with exit code 0 after adding #checks for the new W1621 route, stable bridge, and product-data declarations."
+      "evidence": "Required-declarations audit completed with exit code 0 after adding #checks for the new W1622 route, stable bridge, and product-data declarations."
     },
     {
       "command": "lake build LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Package root built successfully after the W1621 source patch; existing repository warnings only."
+      "evidence": "Package root built successfully after the W1622 source patch; existing repository warnings only."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build completed successfully after the W1621 source patch; existing repository warnings only."
+      "evidence": "Full project build completed successfully after the W1622 source patch; existing repository warnings only."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
@@ -56,7 +56,7 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/BoundarySourcePiZeroSelectedRowsDirectLocalizationBoundaryRoute.lean",
       "status": "passed",
-      "evidence": "Focused forbidden-token audit for the changed W1621 route file completed with exit code 0."
+      "evidence": "Focused forbidden-token audit for the changed W1622 route file completed with exit code 0."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridge.lean",
@@ -96,7 +96,7 @@
     {
       "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "External audit passed with source_tree_hash 40ac8f319bb1797dd05d7d8a3daf6117d5cb81ff218b491d2e005f6fd38e28b5."
+      "evidence": "External audit passed with source_tree_hash 326050e20dfdfcfd85c72083b77104435e8423f38a7197e035a58c8ddcbce806."
     }
   ]
 }

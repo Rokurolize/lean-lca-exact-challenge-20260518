@@ -1,14 +1,14 @@
 # Resumption After W1620 Summary
 
-Generated UTC: 2026-06-09T18:01:44Z
+Generated UTC: 2026-06-09T18:16:56Z
 
 This summarizes the W1620 resumption and stable-release gates. The raw scratch logs were intentionally not kept in the committed checkpoint.
 
 ## Git And Outcome Gate
 
-- Local `HEAD`: `9a5e34d2e98454289e941989910ac15f5e56c689`.
-- `origin/main`: `9a5e34d2e98454289e941989910ac15f5e56c689`.
-- `origin/goal-clean-positive-witness-20260609-019ea5a4`: `9a5e34d2e98454289e941989910ac15f5e56c689`.
+- Local `HEAD`: `0fd95d9786414f5919e8b9cad752cfd0480c79cf`.
+- `origin/main`: `0fd95d9786414f5919e8b9cad752cfd0480c79cf`.
+- `origin/goal-clean-positive-witness-20260609-019ea5a4`: `0fd95d9786414f5919e8b9cad752cfd0480c79cf`.
 - Terminal outcome remained nonterminal: `product_success=false`, `product_complete=false`, and `update_goal_allowed=false`.
 - The positive-witness scan found no real declaration of `OriginalFourTaskProductSuccess` or `originalFourTaskProductSuccess` outside comments/audit code/negative fixtures.
 
@@ -22,4 +22,4 @@ This summarizes the W1620 resumption and stable-release gates. The raw scratch l
 
 ## Result
 
-The resumption gate passed for continuing from W1620. It authorized nonterminal source work only; it did not authorize `update_goal complete`.
+The resumption gate passed for continuing from W1620. W1622 continued the nonterminal route by replacing W1621's row-aware closed-embedding provider input with W718 diagram closed-embedding component data via W714/W711/W581. This authorized nonterminal source work only; it did not authorize `update_goal complete`.

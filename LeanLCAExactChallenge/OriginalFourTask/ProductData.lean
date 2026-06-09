@@ -1662,4 +1662,71 @@ theorem
       fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
   rfl
 
+/--
+Assemble product data from the W1622 closed-map direct-localization boundary.
+The row-aware closed-embedding provider is derived from W718 diagram
+closed-embedding components through W714/W711/W581.
+-/
+noncomputable def
+    originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622
+    (data :
+      BoundedDerived.Metrizable.ClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDirectLocalizationBoundaryInputW1622) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStablePackage
+    (stablePackageOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDirectLocalizationBoundaryW1622
+      data)
+
+theorem
+    originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622_eq_targetDataClosedEmbeddingRowsW1621
+    (data :
+      BoundedDerived.Metrizable.ClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDirectLocalizationBoundaryInputW1622) :
+    originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622
+        data =
+      originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
+        (Dbounded.closedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDataOfGlobalClosedEmbeddingComponentsW1622
+          data) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622_eq_directLocalizationBoundary
+    (data :
+      BoundedDerived.Metrizable.ClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDirectLocalizationBoundaryInputW1622) :
+    originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622
+        data =
+      originalFourTaskProductDataOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622
+          data) := by
+  rw [
+    originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622,
+    originalFourTaskProductDataOfDirectLocalizationBoundary,
+    BoundedDerived.Metrizable.stablePackageOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDirectLocalizationBoundaryW1622_eq_directLocalizationBoundary]
+
+theorem
+    originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622_boundedDerivedInfinityCategory
+    (data :
+      BoundedDerived.Metrizable.ClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDirectLocalizationBoundaryInputW1622) :
+    (originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622
+      data).boundedDerivedInfinityCategory =
+      Dbounded.boundedDerivedOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622
+        data :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622_metrizableLCAExactCategory
+    (data :
+      BoundedDerived.Metrizable.ClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDirectLocalizationBoundaryInputW1622) :
+    (originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622
+      data).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622_yonedaExt
+    (data :
+      BoundedDerived.Metrizable.ClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsDirectLocalizationBoundaryInputW1622) :
+    (originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataGlobalClosedEmbeddingComponentsW1622
+      data).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
 end LeanLCAExactChallenge
