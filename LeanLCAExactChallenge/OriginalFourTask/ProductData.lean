@@ -3,6 +3,7 @@ import LeanLCAExactChallenge.BoundedDerived.MetrizableStableBridge
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroConcreteFieldsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroExactInputsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroSplitFieldsSelectedCochainComparisonProductRoute
+import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundaryDirectLocalization
 import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundary
 import LeanLCAExactChallenge.Ext.Yoneda
@@ -1017,6 +1018,114 @@ theorem
     (data :
       Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroSplitFieldsSelectedCochainComparisonBranchDataW1616) :
     (originalFourTaskProductDataOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
+      data).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
+/--
+Assemble product data from the W1617 closed-map structural-field surface.
+W1617 splits the W719, W722, and W720 providers into checked structural fields
+before feeding the canonical W1616 direct-localization stable package.
+-/
+noncomputable def
+    originalFourTaskProductDataOfClosedMapStructuralFieldsSelectedCochainComparisonW1617
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonBranchDataW1617) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStablePackage
+    (stablePackageOfClosedMapStructuralFieldsSelectedCochainComparisonW1617
+      data)
+
+/--
+Assemble product data from the W1617 closed-embedding structural-field surface.
+W1617 splits the W719, W722, and W720 providers into checked structural fields
+before feeding the canonical W1616 direct-localization stable package.
+-/
+noncomputable def
+    originalFourTaskProductDataOfClosedEmbeddingStructuralFieldsSelectedCochainComparisonW1617
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonBranchDataW1617) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStablePackage
+    (stablePackageOfClosedEmbeddingStructuralFieldsSelectedCochainComparisonW1617
+      data)
+
+theorem
+    originalFourTaskProductDataOfClosedMapStructuralFieldsSelectedCochainComparisonW1617_eq_splitFieldsSelectedCochainComparisonW1616
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonBranchDataW1617) :
+    originalFourTaskProductDataOfClosedMapStructuralFieldsSelectedCochainComparisonW1617
+        data =
+      originalFourTaskProductDataOfClosedMapSplitFieldsSelectedCochainComparisonW1616
+        (Dbounded.closedMapSplitFieldsOfStructuralFieldsSelectedCochainComparisonW1617
+          data) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingStructuralFieldsSelectedCochainComparisonW1617_eq_splitFieldsSelectedCochainComparisonW1616
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonBranchDataW1617) :
+    originalFourTaskProductDataOfClosedEmbeddingStructuralFieldsSelectedCochainComparisonW1617
+        data =
+      originalFourTaskProductDataOfClosedEmbeddingSplitFieldsSelectedCochainComparisonW1616
+        (Dbounded.closedEmbeddingSplitFieldsOfStructuralFieldsSelectedCochainComparisonW1617
+          data) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedMapStructuralFieldsSelectedCochainComparisonW1617_boundedDerivedInfinityCategory
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonBranchDataW1617) :
+    (originalFourTaskProductDataOfClosedMapStructuralFieldsSelectedCochainComparisonW1617
+      data).boundedDerivedInfinityCategory =
+      Dbounded.boundedDerivedOfClosedMapSplitFieldsSelectedCochainDirectLocalizationBoundaryW1616
+        (Dbounded.closedMapSplitFieldsOfStructuralFieldsSelectedCochainComparisonW1617
+          data) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingStructuralFieldsSelectedCochainComparisonW1617_boundedDerivedInfinityCategory
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonBranchDataW1617) :
+    (originalFourTaskProductDataOfClosedEmbeddingStructuralFieldsSelectedCochainComparisonW1617
+      data).boundedDerivedInfinityCategory =
+      Dbounded.boundedDerivedOfClosedEmbeddingSplitFieldsSelectedCochainDirectLocalizationBoundaryW1616
+        (Dbounded.closedEmbeddingSplitFieldsOfStructuralFieldsSelectedCochainComparisonW1617
+          data) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedMapStructuralFieldsSelectedCochainComparisonW1617_metrizableLCAExactCategory
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonBranchDataW1617) :
+    (originalFourTaskProductDataOfClosedMapStructuralFieldsSelectedCochainComparisonW1617
+      data).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingStructuralFieldsSelectedCochainComparisonW1617_metrizableLCAExactCategory
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonBranchDataW1617) :
+    (originalFourTaskProductDataOfClosedEmbeddingStructuralFieldsSelectedCochainComparisonW1617
+      data).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedMapStructuralFieldsSelectedCochainComparisonW1617_yonedaExt
+    (data :
+      Dbounded.MetrizableClosedMapBoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonBranchDataW1617) :
+    (originalFourTaskProductDataOfClosedMapStructuralFieldsSelectedCochainComparisonW1617
+      data).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingStructuralFieldsSelectedCochainComparisonW1617_yonedaExt
+    (data :
+      Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonBranchDataW1617) :
+    (originalFourTaskProductDataOfClosedEmbeddingStructuralFieldsSelectedCochainComparisonW1617
       data).yonedaExt =
       fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
   rfl
