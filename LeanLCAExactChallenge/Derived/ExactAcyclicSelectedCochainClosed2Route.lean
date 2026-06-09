@@ -133,6 +133,85 @@ theorem selectedCochainStrictificationOfClosedEmbeddingExactInputsClosed2W848
   selectedCochainStrictificationOfClosed2HomotopyInvarianceW848 closed2
     (homotopyEquivInvarianceOfClosedEmbeddingExactInputsW848 comparisonIso exactInputs)
 
+/--
+W848 kernel/cokernel-conditioned route: W681 supplies exact-acyclic
+homotopy-object Closed2 once W839 has produced HasHomology for every
+MetrizableLCA cochain complex.
+-/
+theorem closed2OfKernelCokernelConditionedW848
+    (kernelCokernelTopology :
+      MetrizableExactAtKernelCokernelConditionedTopologyInputs) :
+    MetrizableExactAcyclicHomotopyObjectClosed2W848 :=
+  metrizableExactAcyclicHomotopyObjectClosed2_of_kernelCokernelConditionedW681
+    cochainHasHomology_of_comparisonBijectivityW839
+    kernelCokernelTopology
+
+/--
+W848 closed-map route with the Closed2 leaf discharged by the
+kernel/cokernel-conditioned W681 topology input and W831 comparison
+bijectivity.
+-/
+theorem selectedCochainStrictificationOfClosedMapExactInputsKernelCokernelConditionedW848
+    (exactInputs :
+      MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735)
+    (kernelCokernelTopology :
+      MetrizableExactAtKernelCokernelConditionedTopologyInputs) :
+    MetrizableExactAcyclicTrianglehIso13SelectedCochainStrictificationW847 :=
+  selectedCochainStrictificationOfClosedMapExactInputsClosed2W848
+    universalLeftRightComparisonIso_of_comparisonBijectivityW831
+    exactInputs
+    (closed2OfKernelCokernelConditionedW848 kernelCokernelTopology)
+
+/--
+W848 closed-embedding route with the Closed2 leaf discharged by the
+kernel/cokernel-conditioned W681 topology input and W831 comparison
+bijectivity.
+-/
+theorem selectedCochainStrictificationOfClosedEmbeddingExactInputsKernelCokernelConditionedW848
+    (exactInputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735)
+    (kernelCokernelTopology :
+      MetrizableExactAtKernelCokernelConditionedTopologyInputs) :
+    MetrizableExactAcyclicTrianglehIso13SelectedCochainStrictificationW847 :=
+  selectedCochainStrictificationOfClosedEmbeddingExactInputsClosed2W848
+    universalLeftRightComparisonIso_of_comparisonBijectivityW831
+    exactInputs
+    (closed2OfKernelCokernelConditionedW848 kernelCokernelTopology)
+
+/--
+W848 closed-map W847 data assembled from W735 exact inputs plus the W681
+kernel/cokernel-conditioned topology input.
+-/
+noncomputable def closedMapSelectedCochainDataOfKernelCokernelConditionedW848
+    (exactInputs :
+      MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735)
+    (kernelCokernelTopology :
+      MetrizableExactAtKernelCokernelConditionedTopologyInputs) :
+    MetrizableClosedMapExactAcyclicSelectedCochainDirectSourceStableRouteDataW847
+    where
+  exactInputs := exactInputs
+  selectedCochainStrictification :=
+    selectedCochainStrictificationOfClosedMapExactInputsKernelCokernelConditionedW848
+      exactInputs
+      kernelCokernelTopology
+
+/--
+W848 closed-embedding W847 data assembled from W735 exact inputs plus the W681
+kernel/cokernel-conditioned topology input.
+-/
+noncomputable def closedEmbeddingSelectedCochainDataOfKernelCokernelConditionedW848
+    (exactInputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735)
+    (kernelCokernelTopology :
+      MetrizableExactAtKernelCokernelConditionedTopologyInputs) :
+    MetrizableClosedEmbeddingExactAcyclicSelectedCochainDirectSourceStableRouteDataW847
+    where
+  exactInputs := exactInputs
+  selectedCochainStrictification :=
+    selectedCochainStrictificationOfClosedEmbeddingExactInputsKernelCokernelConditionedW848
+      exactInputs
+      kernelCokernelTopology
+
 def selectedCochainClosed2RouteInputNamesW848 : List String :=
   ["exact-acyclic homotopy-object Closed₂ for MetrizableLCA",
     "universal IsIso for every MetrizableLCA left-right homology comparison",
@@ -140,6 +219,14 @@ def selectedCochainClosed2RouteInputNamesW848 : List String :=
 
 theorem selectedCochainClosed2RouteInputNamesW848_count :
     selectedCochainClosed2RouteInputNamesW848.length = 3 :=
+  rfl
+
+def selectedCochainKernelCokernelConditionedRouteInputNamesW848 : List String :=
+  ["MetrizableExactAtKernelCokernelConditionedTopologyInputs",
+    "one W735 closed-map or closed-embedding exact-input branch"]
+
+theorem selectedCochainKernelCokernelConditionedRouteInputNamesW848_count :
+    selectedCochainKernelCokernelConditionedRouteInputNamesW848.length = 2 :=
   rfl
 
 structure MetrizableSelectedCochainClosed2RouteStateW848 :
@@ -164,15 +251,27 @@ def currentMetrizableSelectedCochainClosed2RouteStateW848 :
       "Dbounded.selectedCochainStrictificationOfClosedMapExactInputsClosed2W848",
       "Dbounded.homotopyEquivInvarianceOfClosedEmbeddingExactInputsW848",
       "Dbounded.selectedCochainStrictificationOfClosedEmbeddingExactInputsClosed2W848",
+      "Dbounded.closed2OfKernelCokernelConditionedW848",
+      "Dbounded.selectedCochainStrictificationOfClosedMapExactInputs" ++
+        "KernelCokernelConditionedW848",
+      "Dbounded.selectedCochainStrictificationOfClosedEmbeddingExactInputs" ++
+        "KernelCokernelConditionedW848",
+      "Dbounded.closedMapSelectedCochainDataOfKernelCokernelConditionedW848",
+      "Dbounded.closedEmbeddingSelectedCochainDataOfKernelCokernelConditionedW848",
       "Dbounded.selectedCochainClosed2RouteInputNamesW848",
-      "Dbounded.selectedCochainClosed2RouteInputNamesW848_count"]
+      "Dbounded.selectedCochainClosed2RouteInputNamesW848_count",
+      "Dbounded.selectedCochainKernelCokernelConditionedRouteInputNamesW848",
+      "Dbounded.selectedCochainKernelCokernelConditionedRouteInputNamesW848_count"]
   selectedPayloadResult :=
     "proved: exact-acyclic Closed₂ plus homotopy-equivalence invariance constructs\
       the W847 selected cochain payload from the distinguished-triangle\
-      mapping-cone presentation"
+      mapping-cone presentation; W681 also discharges the Closed₂ leaf from\
+      kernel/cokernel-conditioned topology and W839 HasHomology"
   w735InvarianceResult :=
     "proved: W812/W735 homology detection supplies the homotopy-invariance half\
-      for both closed-map and closed-embedding exact-input branches"
+      for both closed-map and closed-embedding exact-input branches; W831\
+      supplies the universal comparison isomorphism used by the conditioned\
+      branch"
   rejectedRoutes :=
     ["Closed₂ alone only produces an isomorphism-closure middle object; the\
         selected target complex becomes strictly exact acyclic only after\
@@ -180,10 +279,7 @@ def currentMetrizableSelectedCochainClosed2RouteStateW848 :
       "the bounded endpoint strictification obstruction remains separate and\
         cannot be bypassed by arbitrary homotopy-category endpoint isomorphisms"]
   remainingInputs :=
-    ["construct exact-acyclic homotopy-object Closed₂ for MetrizableLCA without\
-        assuming W847 strict realization",
-      "construct the universal left-right comparison isomorphism for arbitrary\
-        MetrizableLCA short complexes",
+    ["construct MetrizableExactAtKernelCokernelConditionedTopologyInputs",
       "construct concrete values for one W735 exact-input branch"]
   productSuccessClaimed := false
 
