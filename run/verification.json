@@ -1,97 +1,82 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-06-09T21:04:31Z",
-  "source_base_git_head": "9ff6eb9bca9c1c7bb52072e7b09e4db352c34732",
-  "source_tree_hash": "f0288c22ec636bf17e66a43a35fdabaccb7f179da1497c6735567b50ab40e258",
+  "generated_utc": "2026-06-09T22:16:06Z",
+  "source_base_git_head": "883a8de5d9a5439e29e4c32d6ac35ef96d9c3d5d",
+  "source_tree_hash": "35cb6716012e61bfbba6b9451f9334c1c44f23d005c8efc34014ec682da3d1b2",
   "source_file_count": 1202,
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "Verification for the W944 target no-univ primitive-provider checkpoint. The source patch adds targetNoUnivDataOfPrimitiveProvidersW944 and the probe shows nullary W944 construction now reduces to targetDifferenceSurjectivePrimitiveW923 and targetCodomainCompactNoUnivMembershipPrimitiveW930 provider families. Product success remains false.",
+  "summary": "Verification for the W930 compact-space bridge and W944 compact-space provider checkpoint. Product success remains false.",
   "commands": [
     {
-      "command": "post-W1450 resumption and stable-release gates",
+      "command": "post-W944 resumption and stable-release gates",
       "status": "passed",
-      "evidence": "run/resumption_after_w1450_20260609T201828Z_summary.md records matching 9ff6eb9b refs, contract SHA256 values, source_patch_needed_handoff terminal state with product_success=false, formal Lean/mathlib v4.30.0 state, absent active rc2 toolchain references, and no pre-source dirty state."
+      "evidence": "run/resumption_after_w944_20260609T211007Z_summary.md records matching 883a8de5 refs, contract SHA256 values, Lean/mathlib v4.30.0 state, absent active rc2 toolchain references, and product_success=false."
     },
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean",
+      "command": "lake env lean run/w930_compactspace_bridge_probe_20260609.lean",
       "status": "passed",
-      "evidence": "run/verify_w944_target_no_univ_source_20260609.status is 0 after adding targetNoUnivDataOfPrimitiveProvidersW944."
+      "evidence": "run/verify_w930_compactspace_bridge_probe_20260609.status is 0; the probe validates the CompactSpace-to-W930 bridge proof shape."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipPrimitiveFieldRoute",
+      "status": "passed",
+      "evidence": "run/verify_w930_compactspace_module_build_20260609.status is 0 after adding targetCodomainCompactNoUnivMembershipPrimitiveOfCompactSpaceW930."
+    },
+    {
+      "command": "lake env lean run/w944_target_no_univ_compactspace_bridge_probe_20260609.lean",
+      "status": "failed_expected",
+      "evidence": "run/verify_w944_target_no_univ_compactspace_bridge_probe_20260609.status is 1 as expected. The log #checks both new constructors and fails only at targetDifferenceSurjectivePrimitiveW923 Y and CompactSpace (wppOpCodomainW441 Y).carrier."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute",
       "status": "passed",
-      "evidence": "run/verify_w944_target_no_univ_module_build_20260609.status is 0, refreshing the module olean so importing probes see the new constructor."
-    },
-    {
-      "command": "lake env lean run/w944_target_no_univ_primitives_probe_20260609.lean",
-      "status": "failed_expected",
-      "evidence": "run/verify_w944_target_no_univ_primitives_probe_20260609.status is 1. The log #checks TargetSurjectiveNoUnivMembershipForTargetProviderW944, targetNoUnivDataOfPrimitiveProvidersW944, targetDifferenceSurjectivePrimitiveW923, and targetCodomainCompactNoUnivMembershipPrimitiveW930, then fails only at goals targetDifferenceSurjectivePrimitiveW923 Y and targetCodomainCompactNoUnivMembershipPrimitiveW930 Y for arbitrary Y."
+      "evidence": "run/verify_w944_target_no_univ_compactspace_module_build_20260609.status is 0 after adding targetNoUnivDataOfTargetDifferenceSurjectiveAndCompactSpaceProvidersW944."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build completed with lake_build_exit=0 after the W944 source patch and refreshed module build."
+      "evidence": "run/verify_w930_compactspace_full_lake_build_20260609.status is 0; the full project build completed successfully after the W930/W944 source patch."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden Lean token audit over LeanLCAExactChallenge completed with exit code 0 after the W944 source patch."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/ClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean",
-      "status": "passed",
-      "evidence": "Focused forbidden-token audit for the edited W944 source file completed with exit code 0."
+      "evidence": "run/verify_w930_compactspace_forbidden_tokens_20260609.status is 0."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required-declarations audit completed with exit code 0 after the W944 source patch."
+      "evidence": "run/verify_w930_compactspace_required_declarations_20260609.status is 0."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product-success declaration audit completed with exit code 0 while preserving product_success=false metadata."
+      "evidence": "run/verify_w930_compactspace_product_success_declarations_20260609.status is 0 while preserving product_success=false metadata."
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "Original four-task completion declaration audit completed with exit code 0."
+      "evidence": "run/verify_w930_compactspace_original_four_task_declarations_20260609.status is 0."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace check completed with exit code 0 before the outcome artifact refresh; a final diff check is rerun after JSON refresh before commit."
+      "evidence": "run/verify_w930_compactspace_git_diff_check_20260609.status is 0 after artifact refresh."
     },
     {
-      "command": "rg declaration-shaped product-success scan outside audit negative fixtures",
+      "command": "jq . run/verification.json terminal_outcome/terminal_outcome.json run/goal_identity_20260602_human_centered_positive_witness.json",
       "status": "passed",
-      "evidence": "No active declaration-shaped OriginalFourTaskProductSuccess/originalFourTaskProductSuccess definition was found under LeanLCAExactChallenge or audit outside negative fixtures."
-    },
-    {
-      "command": "rg productSuccessClaimed true scan outside audit negative fixtures",
-      "status": "passed",
-      "evidence": "No active productSuccessClaimed := true or productSuccessClaimed = true route state was found under LeanLCAExactChallenge or audit outside negative fixtures."
-    },
-    {
-      "command": "rg v4.30.0-rc2 active-source scan",
-      "status": "passed",
-      "evidence": "No active Lean toolchain, manifest, source, audit, script, or terminal-outcome reference to v4.30.0-rc2 was found in the resumption/stable gate."
-    },
-    {
-      "command": "jq . run/verification.json terminal_outcome/terminal_outcome.json run/goal_identity_20260602_human_centered_positive_witness.json >/dev/null",
-      "status": "passed",
-      "evidence": "Outcome, verification, and goal-identity JSON artifacts parse successfully after the W944 checkpoint refresh."
+      "evidence": "run/verify_w930_compactspace_json_parse_20260609.status is 0 after artifact refresh."
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "Contract audit passed with terminal_claims_product_success=false after the W944 source checkpoint."
+      "evidence": "run/verify_w930_compactspace_contract_audit_20260609.status is 0 with terminal_claims_product_success=false."
     },
     {
       "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "External audit passed with source_tree_hash f0288c22ec636bf17e66a43a35fdabaccb7f179da1497c6735567b50ab40e258 after the W944 checkpoint."
+      "evidence": "run/verify_w930_compactspace_external_audit_20260609.status is 0 with source_tree_hash 35cb6716012e61bfbba6b9451f9334c1c44f23d005c8efc34014ec682da3d1b2."
     }
   ]
 }

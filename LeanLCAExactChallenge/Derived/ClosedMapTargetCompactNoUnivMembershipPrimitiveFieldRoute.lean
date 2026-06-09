@@ -30,6 +30,20 @@ abbrev targetCodomainCompactNoUnivMembershipPrimitiveW930
     f ≠ ⊥ →
       ∃ x : wppOpCodomainW441 Y, (𝓝 x ⊓ f) ≠ ⊥
 
+/-- Compact target codomains supply W930's no-univ filter-cluster primitive. -/
+def targetCodomainCompactNoUnivMembershipPrimitiveOfCompactSpaceW930
+    (targetCodomainCompactSpaceProvider :
+      ∀ Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0},
+        CompactSpace (wppOpCodomainW441 Y)) :
+    ∀ (Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}),
+      targetCodomainCompactNoUnivMembershipPrimitiveW930 Y := by
+  intro Y f hf
+  letI : CompactSpace (wppOpCodomainW441 Y) :=
+    targetCodomainCompactSpaceProvider Y
+  haveI : Filter.NeBot f := Filter.neBot_iff.2 hf
+  obtain ⟨x, hx⟩ := exists_clusterPt_of_compactSpace f
+  exact ⟨x, Filter.neBot_iff.mp hx⟩
+
 /-- W930 assembles W929's target-codomain compactness no-principal primitive. -/
 abbrev targetCodomainCompactNoPrincipalPrimitiveOfNoUnivMembershipPrimitiveW930
     (targetCodomainCompactSpaceProvider :

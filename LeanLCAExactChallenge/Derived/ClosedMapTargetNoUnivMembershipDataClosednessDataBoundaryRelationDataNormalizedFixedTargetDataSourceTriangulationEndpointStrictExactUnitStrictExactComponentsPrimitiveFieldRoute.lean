@@ -61,6 +61,23 @@ def targetNoUnivDataOfPrimitiveProvidersW944
       targetCompactNoUnivProvider Y⟩
 
 /--
+W944 assembles target no-univ data from target-difference surjectivity and the
+ordinary compact-space provider, delegating the filter-cluster witness to W930.
+-/
+def targetNoUnivDataOfTargetDifferenceSurjectiveAndCompactSpaceProvidersW944
+    (targetDifferenceSurjectiveProvider :
+      ∀ (Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}),
+        targetDifferenceSurjectivePrimitiveW923 Y)
+    (targetCodomainCompactSpaceProvider :
+      ∀ (Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}),
+        CompactSpace (wppOpCodomainW441 Y)) :
+    TargetSurjectiveNoUnivMembershipForTargetProviderW944 :=
+  targetNoUnivDataOfPrimitiveProvidersW944
+    targetDifferenceSurjectiveProvider
+    (targetCodomainCompactNoUnivMembershipPrimitiveOfCompactSpaceW930
+      targetCodomainCompactSpaceProvider)
+
+/--
 W944 preserves W943's boundary, relation, closedness, normalized fixed-target,
 source-triangulation, endpoint strict-exact, and localized unit fields, while
 bundling the two target primitives into one target no-univ provider.

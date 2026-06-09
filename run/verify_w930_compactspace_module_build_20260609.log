@@ -1,0 +1,82 @@
+command=lake build LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipPrimitiveFieldRoute
+exit=0
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2211/2223] Replayed LeanLCAExactChallenge.Derived.ClosedMapTriangleCompletionRawFieldBoundaryRawFieldsRoute
+warning: LeanLCAExactChallenge/Derived/ClosedMapTriangleCompletionRawFieldBoundaryRawFieldsRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2212/2223] Replayed LeanLCAExactChallenge.Derived.ClosedMapSourceRawFieldsTriangleCompletionRawFieldRoute
+warning: LeanLCAExactChallenge/Derived/ClosedMapSourceRawFieldsTriangleCompletionRawFieldRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2213/2223] Replayed LeanLCAExactChallenge.Derived.ClosedMapRelationPrimitiveFieldsSourceRawFieldsRoute
+warning: LeanLCAExactChallenge/Derived/ClosedMapRelationPrimitiveFieldsSourceRawFieldsRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2214/2223] Replayed LeanLCAExactChallenge.Derived.ClosedMapMappedCokernelPrimitiveFieldsRoute
+warning: LeanLCAExactChallenge/Derived/ClosedMapMappedCokernelPrimitiveFieldsRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2215/2223] Replayed LeanLCAExactChallenge.Derived.ClosedMapSelectedDifferencePrimitiveFieldsRoute
+warning: LeanLCAExactChallenge/Derived/ClosedMapSelectedDifferencePrimitiveFieldsRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2216/2223] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetSurjectivePrimitiveFieldRoute
+warning: LeanLCAExactChallenge/Derived/ClosedMapTargetSurjectivePrimitiveFieldRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2217/2223] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactPrimitiveFieldRoute
+warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactPrimitiveFieldRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2218/2223] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactFilterPrimitiveFieldRoute
+warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactFilterPrimitiveFieldRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2219/2223] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactClusterPrimitiveFieldRoute
+warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactClusterPrimitiveFieldRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2220/2223] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNonbottomPrimitiveFieldRoute
+warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNonbottomPrimitiveFieldRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2221/2223] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactOuterNonbottomPrimitiveFieldRoute
+warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactOuterNonbottomPrimitiveFieldRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2222/2223] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoPrincipalPrimitiveFieldRoute
+warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoPrincipalPrimitiveFieldRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+⚠ [2223/2223] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipPrimitiveFieldRoute
+warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipPrimitiveFieldRoute.lean:1:1: * '-/':
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+Build completed successfully (2223 jobs).
