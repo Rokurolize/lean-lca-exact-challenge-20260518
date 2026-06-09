@@ -1,6 +1,6 @@
 {
   "schema": "lean_lca_exact_challenge.goal_identity.v1",
-  "generated_utc": "2026-06-09T17:40:40Z",
+  "generated_utc": "2026-06-09T18:01:44Z",
   "thread_id": "019ea5a4-a615-78b2-8944-d6f4ed0b24bb",
   "worktree": "/home/roku/codex-thread-workspaces/019ea5a4-a615-78b2-8944-d6f4ed0b24bb/worktrees/lean-lca-clean-positive-witness-20260609",
   "goal_file": {
@@ -21,14 +21,14 @@
   ],
   "git": {
     "branch": "goal-clean-positive-witness-20260609-019ea5a4",
-    "head": "f92d3c58e26ffa35e8bcd5ba36a616c20ef7ec60",
-    "origin_main": "f92d3c58e26ffa35e8bcd5ba36a616c20ef7ec60",
-    "origin_main_ls_remote": "f92d3c58e26ffa35e8bcd5ba36a616c20ef7ec60",
-    "origin_feature": "f92d3c58e26ffa35e8bcd5ba36a616c20ef7ec60",
-    "origin_feature_ls_remote": "f92d3c58e26ffa35e8bcd5ba36a616c20ef7ec60"
+    "head": "9a5e34d2e98454289e941989910ac15f5e56c689",
+    "origin_main": "9a5e34d2e98454289e941989910ac15f5e56c689",
+    "origin_main_ls_remote": "9a5e34d2e98454289e941989910ac15f5e56c689",
+    "origin_feature": "9a5e34d2e98454289e941989910ac15f5e56c689",
+    "origin_feature_ls_remote": "9a5e34d2e98454289e941989910ac15f5e56c689"
   },
   "product_success": false,
   "product_success_claimed": false,
   "update_goal_complete_permitted": false,
-  "notes": "Identity and contract hashes refreshed before the W1620 nonterminal row-dominance checkpoint. This records the active goal and contracts and does not claim the original positive witness."
+  "notes": "Identity and contract hashes refreshed before the W1621 nonterminal target-data/closed-embedding-rows checkpoint. This records the active goal and contracts and does not claim the original positive witness."
 }

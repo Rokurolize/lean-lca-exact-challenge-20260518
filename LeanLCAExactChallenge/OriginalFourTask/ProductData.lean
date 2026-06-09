@@ -1595,4 +1595,71 @@ theorem
       fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
   rfl
 
+/--
+Assemble product data from the W1621 closed-map direct-localization boundary.
+The selected-W461 provider is derived from W735 relation/target data, and the
+closed-map row provider is still derived from closed-embedding rows by W580.
+-/
+noncomputable def
+    originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
+    (data :
+      BoundedDerived.Metrizable.ClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryInputW1621) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStablePackage
+    (stablePackageOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryW1621
+      data)
+
+theorem
+    originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621_eq_selectedClosedEmbeddingRowsW1620
+    (data :
+      BoundedDerived.Metrizable.ClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryInputW1621) :
+    originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
+        data =
+      originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsW1620
+        (Dbounded.closedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsDataOfTargetDataW1621
+          data) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621_eq_directLocalizationBoundary
+    (data :
+      BoundedDerived.Metrizable.ClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryInputW1621) :
+    originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
+        data =
+      originalFourTaskProductDataOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
+          data) := by
+  rw [
+    originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621,
+    originalFourTaskProductDataOfDirectLocalizationBoundary,
+    BoundedDerived.Metrizable.stablePackageOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryW1621_eq_directLocalizationBoundary]
+
+theorem
+    originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621_boundedDerivedInfinityCategory
+    (data :
+      BoundedDerived.Metrizable.ClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryInputW1621) :
+    (originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
+      data).boundedDerivedInfinityCategory =
+      Dbounded.boundedDerivedOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
+        data :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621_metrizableLCAExactCategory
+    (data :
+      BoundedDerived.Metrizable.ClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryInputW1621) :
+    (originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
+      data).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621_yonedaExt
+    (data :
+      BoundedDerived.Metrizable.ClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryInputW1621) :
+    (originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
+      data).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
 end LeanLCAExactChallenge

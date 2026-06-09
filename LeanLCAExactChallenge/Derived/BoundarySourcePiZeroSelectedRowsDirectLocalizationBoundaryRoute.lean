@@ -17,6 +17,8 @@ namespace LeanLCAExactChallenge
 
 open CategoryTheory
 open CategoryTheory.Limits
+open WppOpCompactTargetRelationRepresentativeImageV370SupportW517
+open WppOpRepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportW524
 
 namespace Dbounded
 
@@ -54,6 +56,44 @@ structure
     MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735
   selectedW461 : WppOpSelectedW461ProviderW781
   closedEmbeddingRows : WppOpClosedEmbeddingRowsProviderW781
+
+/--
+W1621 closed-map branch data where the selected-W461 provider is derived from
+the W735 relation and target-surjective compact fields.
+-/
+structure
+    MetrizableClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryDataW1621 :
+    Type 2 where
+  exactInputs :
+    MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735
+  closedEmbeddingRows : WppOpClosedEmbeddingRowsProviderW781
+
+/--
+W1621 derives the compact-target relation provider from W735's bundled W717
+relation data and W715 target-surjective compact data.
+-/
+def compactTargetProviderOfClosedMapBoundarySourcePiZeroTargetDataW1621
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryDataW1621) :
+    ClosedNatTransOrdinaryCompactTargetRelationProviderW517 :=
+  compactTargetProvider_of_pullback_targetSurjective_compactCodomain_w601
+    (relationPullbackProvider_of_relationDataW717 data.exactInputs.relationData)
+    (targetDifferenceSurjectiveProvider_of_targetOnlyW713
+      (targetDifferenceSurjectiveForTargetProvider_of_surjectiveCompactW715
+        data.exactInputs.targetSurjectiveCompactForTargetProvider))
+    (targetCodomainCompactSpaceProvider_of_surjectiveCompactW715
+      data.exactInputs.targetSurjectiveCompactForTargetProvider)
+
+/--
+W1621 derives W1620's selected-W461 input from W735's relation/target data via
+the W601 compact-target provider and W524 selected-W461 bridge.
+-/
+noncomputable def selectedW461ProviderOfClosedMapBoundarySourcePiZeroTargetDataW1621
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryDataW1621) :
+    WppOpSelectedW461ProviderW781 :=
+  selectedW461Provider_of_compactTargetRelation_w524
+    (compactTargetProviderOfClosedMapBoundarySourcePiZeroTargetDataW1621 data)
 
 /--
 W879 derives closed-map WPP limit stability from W735/W716 boundary data.
@@ -125,6 +165,34 @@ theorem
       WalkingParallelPair :=
   colimitStabilityOfClosedMapBoundarySourcePiZeroSelectedRowsW879
     (closedMapBoundarySourcePiZeroSelectedRowsDataOfClosedEmbeddingRowsW1620
+      data)
+
+/--
+W1621 projects the two-input target-data/closed-embedding-row surface to W1620
+by deriving selected-W461 from the W735 relation and target fields.
+-/
+noncomputable def closedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsDataOfTargetDataW1621
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryDataW1621) :
+    MetrizableClosedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsDirectLocalizationBoundaryDataW1620
+    where
+  exactInputs := data.exactInputs
+  selectedW461 :=
+    selectedW461ProviderOfClosedMapBoundarySourcePiZeroTargetDataW1621 data
+  closedEmbeddingRows := data.closedEmbeddingRows
+
+/--
+W1621 closed-map WPP colimit stability, with selected-W461 and closed-map rows
+both theorem-derived from W735 target/relation data and closed-embedding rows.
+-/
+theorem
+    colimitStabilityOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryDataW1621) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderColimitsOfShape
+      WalkingParallelPair :=
+  colimitStabilityOfClosedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsW1620
+    (closedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsDataOfTargetDataW1621
       data)
 
 /-- W879 closed-map branch converted to W877 direct-localization boundary data. -/
@@ -341,6 +409,82 @@ theorem
     (closedMapBoundarySourcePiZeroSelectedRowsDataOfClosedEmbeddingRowsW1620
       data)
 
+/--
+W1621 closed-map branch converted to W877 direct-localization boundary data.
+-/
+noncomputable def
+    closedMapW735DirectBoundaryDataOfBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryDataW1621) :
+    MetrizableClosedMapW735DirectLocalizationBoundaryDataW877 :=
+  closedMapW735DirectBoundaryDataOfBoundarySourcePiZeroSelectedClosedEmbeddingRowsW1620
+    (closedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsDataOfTargetDataW1621
+      data)
+
+/-- W1621 closed-map branch as WPP finite-shape transfer inputs. -/
+noncomputable def
+    transferInputsOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryDataW1621) :
+    MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  transferInputsOfClosedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsW1620
+    (closedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsDataOfTargetDataW1621
+      data)
+
+/-!
+W1621 exposes a closed-map direct-localization branch whose selected-W461 and
+closed-map row inputs are both derived instead of supplied separately.
+-/
+noncomputable def
+    directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryDataW1621) :
+    MetrizableStableInstanceBoundaryDirectLocalizationInputs :=
+  directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsW1620
+    (closedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsDataOfTargetDataW1621
+      data)
+
+/- W1621 closed-map branch passes the accepted stable direct-localization gate. -/
+noncomputable def
+    acceptedStableOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryDataW1621) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableOfClosedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsW1620
+    (closedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsDataOfTargetDataW1621
+      data)
+
+/- W1621 closed-map branch produces the bounded-derived package. -/
+noncomputable def
+    boundedDerivedOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryDataW1621) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  boundedDerivedOfClosedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsW1620
+    (closedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsDataOfTargetDataW1621
+      data)
+
+/--
+W1621 closed-map branch produces the ready four-projection stable certificate.
+-/
+theorem
+    stableCertificateOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621_ready
+    (data :
+      MetrizableClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryDataW1621) :
+    let inputs :=
+      directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
+        data
+    letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+      inputs.directLeftCalculus
+    (stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer
+        (metrizableWalkingParallelPairTransferStableSemanticInputsOfDirectLocalization
+          inputs))).ready :=
+  stableCertificateOfClosedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsW1620_ready
+    (closedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsDataOfTargetDataW1621
+      data)
+
 /-!
 W879's direct-localization boundary path leaves only W735 branch data plus the
 selected-row WPP-op providers. W735 already carries the W716 boundary data used
@@ -376,6 +520,25 @@ theorem
     boundarySourcePiZeroSelectedClosedEmbeddingRowsDirectLocalizationBoundaryInputNamesW1620_count :
     boundarySourcePiZeroSelectedClosedEmbeddingRowsDirectLocalizationBoundaryInputNamesW1620.length =
       3 :=
+  rfl
+
+/--
+Input names for the W1621 closed-map route with selected-W461 derived from
+W735 relation/target data and row data derived through W580.
+-/
+def
+    boundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryInputNamesW1621 :
+    List String :=
+  ["W735 closed-map branch data, including W717 relation data, W715 target\
+      surjective-compact data, W716 boundary, normalized, and\
+      source-triangulation data",
+    "row-aware closed-embedding provider for WPP-op SnakeInput; W580 derives\
+      the closed-map row provider"]
+
+theorem
+    boundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryInputNamesW1621_count :
+    boundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryInputNamesW1621.length =
+      2 :=
   rfl
 
 /-- Current checked W879 state. -/
@@ -496,6 +659,64 @@ theorem
     currentW1620BoundarySourcePiZeroSelectedClosedEmbeddingRowsDirectLocalizationBoundary_productSuccess :
     (let state :=
       currentMetrizableBoundarySourcePiZeroSelectedClosedEmbeddingRowsDirectLocalizationBoundaryRouteStateW1620;
+    state.productSuccessClaimed) = false :=
+  rfl
+
+/--
+Current checked W1621 state for deriving W1620 selected-W461 from W735
+relation/target data.
+-/
+structure
+    MetrizableBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryRouteStateW1621 :
+    Type where
+  seed : String
+  declarations : List String
+  targetDataResult : String
+  selectedW461Result : String
+  stableBoundaryResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/--
+Current checked W1621 state for deriving both selected-W461 and closed-map rows.
+-/
+def
+    currentMetrizableBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryRouteStateW1621 :
+    MetrizableBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryRouteStateW1621
+    where
+  seed :=
+    "w1621-boundary-source-pi-zero-target-data-closed-embedding-rows-direct-localization-boundary"
+  declarations :=
+    ["MetrizableClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryDataW1621",
+      "compactTargetProviderOfClosedMapBoundarySourcePiZeroTargetDataW1621",
+      "selectedW461ProviderOfClosedMapBoundarySourcePiZeroTargetDataW1621",
+      "closedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsDataOfTargetDataW1621",
+      "colimitStabilityOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621",
+      "closedMapW735DirectBoundaryDataOfBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621",
+      "transferInputsOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621",
+      "directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621",
+      "acceptedStableOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621",
+      "boundedDerivedOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621",
+      "stableCertificateOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621_ready",
+      "boundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryInputNamesW1621",
+      "boundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryInputNamesW1621_count"]
+  targetDataResult :=
+    "proved: W735 W717 relation data plus W715 target-surjective compact data\
+      derive the W517 compact-target relation provider"
+  selectedW461Result :=
+    "proved: the W517 compact-target provider supplies W1620's selected-W461\
+      provider through W524"
+  stableBoundaryResult :=
+    "proved: the W1620 direct-localization boundary runs with both\
+      selected-W461 and closed-map rows theorem-derived"
+  remainingInputs :=
+    boundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryInputNamesW1621
+  productSuccessClaimed := false
+
+theorem
+    currentW1621BoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundary_productSuccess :
+    (let state :=
+      currentMetrizableBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryRouteStateW1621;
     state.productSuccessClaimed) = false :=
   rfl
 

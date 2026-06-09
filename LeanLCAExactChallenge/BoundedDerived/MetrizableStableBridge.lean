@@ -102,6 +102,10 @@ abbrev ClosedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsDirectLocalizatio
     Type 2 :=
   Dbounded.MetrizableClosedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsDirectLocalizationBoundaryDataW1620
 
+abbrev ClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryInputW1621 :
+    Type 2 :=
+  Dbounded.MetrizableClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryDataW1621
+
 abbrev RouteDataSelectedCochainComparisonInputW852 : Type 2 :=
   Dbounded.MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732
 
@@ -560,6 +564,36 @@ theorem
         data =
       stablePackageOfDirectLocalizationBoundary
         (Dbounded.directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsW1620
+          data) :=
+  rfl
+
+noncomputable def
+    stablePackageOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryW1621
+    (data :
+      ClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryInputW1621) :
+    StablePackage :=
+  Dbounded.boundedDerivedOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
+    data
+
+theorem
+    stablePackageOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryW1621_eq_selectedClosedEmbeddingRowsW1620
+    (data :
+      ClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryInputW1621) :
+    stablePackageOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryW1621
+        data =
+      stablePackageOfClosedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsDirectLocalizationBoundaryW1620
+        (Dbounded.closedMapBoundarySourcePiZeroSelectedClosedEmbeddingRowsDataOfTargetDataW1621
+          data) :=
+  rfl
+
+theorem
+    stablePackageOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryW1621_eq_directLocalizationBoundary
+    (data :
+      ClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryInputW1621) :
+    stablePackageOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsDirectLocalizationBoundaryW1621
+        data =
+      stablePackageOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroTargetDataClosedEmbeddingRowsW1621
           data) :=
   rfl
 
