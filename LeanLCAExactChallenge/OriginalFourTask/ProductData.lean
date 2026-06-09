@@ -495,7 +495,7 @@ noncomputable def originalFourTaskProductDataOfStableInstanceBoundary
     (inputs : Dbounded.MetrizableStableInstanceBoundaryInputs) :
     OriginalFourTaskProductData :=
   originalFourTaskProductDataOfStablePackage
-    (Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory inputs)
+    (BoundedDerived.Metrizable.stablePackageOfStableInstanceBoundary inputs)
 
 theorem originalFourTaskProductDataOfStableInstanceBoundary_boundedDerivedInfinityCategory
     (inputs : Dbounded.MetrizableStableInstanceBoundaryInputs) :
@@ -522,8 +522,18 @@ instance boundary.
 noncomputable def originalFourTaskProductDataOfDirectLocalizationBoundary
     (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs) :
     OriginalFourTaskProductData :=
-  originalFourTaskProductDataOfStableInstanceBoundary
-    (Dbounded.metrizableStableInstanceBoundaryInputs_of_directLocalization inputs)
+  originalFourTaskProductDataOfStablePackage
+    (BoundedDerived.Metrizable.stablePackageOfDirectLocalizationBoundary inputs)
+
+theorem originalFourTaskProductDataOfDirectLocalizationBoundary_eq_stableInstanceBoundary
+    (inputs : Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs) :
+    originalFourTaskProductDataOfDirectLocalizationBoundary inputs =
+      originalFourTaskProductDataOfStableInstanceBoundary
+        (Dbounded.metrizableStableInstanceBoundaryInputs_of_directLocalization
+          inputs) := by
+  rw [originalFourTaskProductDataOfDirectLocalizationBoundary,
+    originalFourTaskProductDataOfStableInstanceBoundary,
+    BoundedDerived.Metrizable.stablePackageOfDirectLocalizationBoundary_eq_stableInstanceBoundary]
 
 theorem
     originalFourTaskProductDataOfDirectLocalizationBoundary_boundedDerivedInfinityCategory

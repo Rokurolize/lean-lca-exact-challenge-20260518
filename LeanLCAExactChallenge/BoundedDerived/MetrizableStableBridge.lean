@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.BoundedDerived.Basic
+import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundaryDirectLocalization
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroSplitFieldsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute
@@ -67,6 +68,37 @@ abbrev ClosedMapStructuralFieldsSelectedCochainComparisonInputW1617 : Type 2 :=
 abbrev ClosedEmbeddingStructuralFieldsSelectedCochainComparisonInputW1617 :
     Type 2 :=
   Dbounded.MetrizableClosedEmbeddingBoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonBranchDataW1617
+
+abbrev StableInstanceBoundaryInput : Type 1 :=
+  Dbounded.MetrizableStableInstanceBoundaryInputs
+
+abbrev DirectLocalizationBoundaryInput : Type 1 :=
+  Dbounded.MetrizableStableInstanceBoundaryDirectLocalizationInputs
+
+noncomputable def stablePackageOfStableInstanceBoundary
+    (inputs : StableInstanceBoundaryInput) : StablePackage :=
+  Dbounded.MetrizableStableInstanceBoundaryInputs.boundedDerivedInfinityCategory
+    inputs
+
+noncomputable def stablePackageOfDirectLocalizationBoundary
+    (inputs : DirectLocalizationBoundaryInput) : StablePackage :=
+  Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstanceBoundaryDirectLocalization
+    inputs
+
+theorem stablePackageOfDirectLocalizationBoundary_eq_stableInstanceBoundary
+    (inputs : DirectLocalizationBoundaryInput) :
+    stablePackageOfDirectLocalizationBoundary inputs =
+      stablePackageOfStableInstanceBoundary
+        (Dbounded.metrizableStableInstanceBoundaryInputs_of_directLocalization
+          inputs) :=
+  rfl
+
+theorem stablePackageOfDirectLocalizationBoundary_inputCount_lt_stableInstanceBoundary :
+    Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputNames.length <
+      Dbounded.metrizableStableInstanceBoundaryRemainingInputNames.length := by
+  rw [Dbounded.metrizableStableInstanceBoundaryDirectLocalizationInputNames_count,
+    Dbounded.metrizableStableInstanceBoundaryRemainingInputNames_count]
+  norm_num
 
 def closednessEndpointStrictExactInputOfLocalizedUnitBoundaryRelationInput
     (input : ClosednessEndpointLocalizedUnitBoundaryRelationInput) :
