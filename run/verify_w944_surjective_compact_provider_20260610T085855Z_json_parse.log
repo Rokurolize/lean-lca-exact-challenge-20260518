@@ -1,0 +1,202 @@
+{
+  "schema": "lean_lca_exact_challenge.verification.v1",
+  "generated_utc": "2026-06-10T09:37:05Z",
+  "source_base_git_head": "4101db2d93725f6aa6c5d06c06b2e9071337a8df",
+  "source_tree_hash": "b77f7c9bdbb434695d58dfee01811cb20b47403148ec21131e4f2192c4b8113c",
+  "source_file_count": 1202,
+  "product_success": false,
+  "product_success_claimed": false,
+  "summary": "Verification for the W944 source checkpoint. Product success remains false because W944 is derived from W715 only when W715 data is supplied; no nullary W715 provider, W1450 field-data input, or stable bounded-derived package exists.",
+  "commands": [
+    {
+      "command": "fresh resumption gate",
+      "status": "passed",
+      "evidence": "run/resumption_20260610T085321Z_* logs record HEAD 4101db2d93725f6aa6c5d06c06b2e9071337a8df, matching origin/main at gate time, current nonterminal outcome evidence, and resumption scan outputs."
+    },
+    {
+      "command": "stable Lean/mathlib v4.30.0 regression gate",
+      "status": "passed",
+      "evidence": "run/stable_v4300_20260610T085321Z_* logs record lean-toolchain, lakefile mathlib, manifest revisions, stable-release history, absent rc2 references, and clean toolchain diff."
+    },
+    {
+      "command": "lake env lean run/proof_search_w944_from_w715_20260610.lean",
+      "status": "passed",
+      "evidence": "run/verify_proof_search_w944_from_w715_20260610T085855Z.exit is 0 and its log checks proofSearchTargetNoUnivDataOfSurjectiveCompactProviderW944."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean",
+      "status": "passed",
+      "evidence": "run/verify_w944_surjective_compact_provider_20260610T085855Z_changed_module.exit is 0."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "run/verify_w944_surjective_compact_provider_20260610T085855Z_lake_build.exit is 0; the log ends with Build completed successfully (2941 jobs)."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "run/verify_w944_surjective_compact_provider_20260610T085855Z_forbidden_tokens_all.exit is 0."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/ClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean run/proof_search_w944_from_w715_20260610.lean",
+      "status": "passed",
+      "evidence": "run/verify_w944_surjective_compact_provider_20260610T085855Z_forbidden_tokens.exit is 0."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "run/verify_w944_surjective_compact_provider_20260610T085855Z_required_declarations.exit is 0."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "run/verify_w944_surjective_compact_provider_20260610T085855Z_product_success_declarations.exit is 0 while terminal_outcome remains nonterminal."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "run/verify_w944_surjective_compact_provider_20260610T085855Z_git_diff_check_all.exit is 0."
+    },
+    {
+      "command": "git diff --check -- LeanLCAExactChallenge/Derived/ClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean run/proof_search_w944_from_w715_20260610.lean",
+      "status": "passed",
+      "evidence": "run/verify_w944_surjective_compact_provider_20260610T085855Z_git_diff_check.exit is 0."
+    },
+    {
+      "command": "jq . run/verification.json terminal_outcome/terminal_outcome.json run/goal_identity_20260602_human_centered_positive_witness.json",
+      "status": "passed",
+      "evidence": "run/verify_w944_surjective_compact_provider_20260610T085855Z_json_parse.exit is 0."
+    },
+    {
+      "command": "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "passed",
+      "evidence": "run/verify_w944_surjective_compact_provider_20260610T085855Z_contract_audit.exit is 0 with terminal_claims_product_success=false."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "passed",
+      "evidence": "run/verify_w944_surjective_compact_provider_20260610T085855Z_external_audit.exit is 0 with source_tree_hash b77f7c9bdbb434695d58dfee01811cb20b47403148ec21131e4f2192c4b8113c."
+    }
+  ]
+}
+{
+  "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
+  "generated_utc": "2026-06-10T09:15:03Z",
+  "source_base_git_head": "4101db2d93725f6aa6c5d06c06b2e9071337a8df",
+  "git_head": "4101db2d93725f6aa6c5d06c06b2e9071337a8df",
+  "outcome": "nonterminal_checkpoint_pushed",
+  "product_success": false,
+  "product_success_claimed": false,
+  "product_complete": false,
+  "update_goal_allowed": false,
+  "summary": "This original four-task contract checkpoint adds a checked W944 source constructor: W715 target-only surjective-compact data now assembles Dbounded.TargetSurjectiveNoUnivMembershipForTargetProviderW944 through the existing W923 and W930 projections. This is source progress on one W1450 lower leaf, but it is not a product witness because no nullary W715 provider, W1450 field-data input, or stable bounded-derived package is available.",
+  "reference_route_log": "docs/research/reference_route_log.md",
+  "handoff": "run/w944_surjective_compact_provider_checkpoint_20260610.md",
+  "latest_checkpoint": "run/w944_surjective_compact_provider_checkpoint_20260610.md",
+  "latest_handoff": "run/w944_surjective_compact_provider_checkpoint_20260610.md",
+  "previous_checkpoint": "run/source_patch_needed_w1450_provider_leaf_reassessment_20260610.md",
+  "previous_handoff": "run/source_patch_needed_w1450_provider_leaf_reassessment_20260610.md",
+  "previous_frontier_input_count": 8,
+  "current_frontier_input_count": 8,
+  "source_changes": [
+    "LeanLCAExactChallenge/Derived/ClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean: added targetNoUnivDataOfSurjectiveCompactProviderW944",
+    "run/proof_search_w944_from_w715_20260610.lean: records the standalone Lean proof search for the W715-to-W944 constructor"
+  ],
+  "obligations_discharged": [
+    "No final original four-task obligation is discharged by this checkpoint.",
+    "No declaration currently defines OriginalFourTaskProductSuccess or originalFourTaskProductSuccess.",
+    "Dbounded.TargetSurjectiveNoUnivMembershipForTargetProviderW944 is now derivable from Dbounded.TargetSurjectiveCompactForTargetProviderW715 when W715 data is supplied."
+  ],
+  "obligations_derived_or_eliminated": [
+    "The W944 target no-univ provider no longer needs to be supplied independently in branches that already have W715 target-surjective-compact data.",
+    "The new constructor reuses targetDifferenceSurjectiveForTargetProvider_of_surjectiveCompactW715 and targetCodomainCompactSpaceProvider_of_surjectiveCompactW715, then delegates the compact-space-to-no-univ step to the existing W930 path.",
+    "The lower-frontier target branch is therefore shifted from a raw W944 target no-univ obligation to the older W715 target-surjective-compact provider obligation plus the existing closedness branch."
+  ],
+  "known_gaps": [
+    "No nullary Dbounded.W987FieldDataConstructionInputW1450 is available.",
+    "The four W1450 provider packages remain caller-supplied: Dbounded.MetrizableWppLimitBoundaryDataW716, Dbounded.ClosedNatTransOrdinaryRelationDataProviderW717, Dbounded.TargetNoUnivClosedEmbeddingClosednessDataProviderW984, and Dbounded.NormalizedSourceTriangulationEndpointLocalizedUnitDataProviderW950.",
+    "The boundary and relation leaves remain caller-supplied: Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary, Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary, Dbounded.ClosedNatTransOrdinaryRelationPullbackProviderW712, and Dbounded.ClosedNatTransOrdinaryTargetRelationLiftsProviderW712.",
+    "The W944 leaf is not nullary: this checkpoint derives it from Dbounded.TargetSurjectiveCompactForTargetProviderW715, but no nullary W715 provider exists in current source.",
+    "Dbounded.ClosedEmbeddingClosednessDataProviderW973, Dbounded.NormalizedFixedTargetSourceTriangulationDataProviderW948, and Dbounded.EndpointStrictExactLocalizedUnitDataProviderW949 remain caller-supplied.",
+    "Typeclass synthesis still does not provide a nullary BoundedDerived.Metrizable.StablePackage because Preadditive (Dbounded MetrizableLCA) and later stable instance families are missing."
+  ],
+  "remaining_work": [
+    "Prove a nullary Dbounded.TargetSurjectiveCompactForTargetProviderW715 or another real target branch that supplies W944 without caller input.",
+    "Prove the remaining W1450 lower leaves from real mathematical source, especially the W716, W717, W973, W948, and W949 branches.",
+    "Use proven leaf inhabitants to assemble the four W1450 provider packages and then Dbounded.nullaryW987FieldDataConstructionInputW1450.",
+    "Alternatively prove a stronger nullary BoundedDerived.Metrizable.StablePackage by supplying the concrete Dbounded MetrizableLCA stable instance families.",
+    "Only after a nullary stable package exists, define the original four-task positive witness declarations and run the Tier C review packet before permitting update_goal complete."
+  ],
+  "next_required_source_api": [
+    "theorem Dbounded.nullaryTargetSurjectiveCompactForTargetProviderW715 : Dbounded.TargetSurjectiveCompactForTargetProviderW715",
+    "noncomputable def Dbounded.nullaryMetrizableWppLimitRightOpenClosedQuotientCoverBoundary : Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "noncomputable def Dbounded.nullaryMetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary : Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "theorem Dbounded.nullaryClosedNatTransOrdinaryRelationPullbackProviderW712 : Dbounded.ClosedNatTransOrdinaryRelationPullbackProviderW712",
+    "theorem Dbounded.nullaryClosedNatTransOrdinaryTargetRelationLiftsProviderW712 : Dbounded.ClosedNatTransOrdinaryTargetRelationLiftsProviderW712",
+    "noncomputable def Dbounded.nullaryClosedEmbeddingClosednessDataProviderW973 : Dbounded.ClosedEmbeddingClosednessDataProviderW973",
+    "noncomputable def Dbounded.nullaryNormalizedFixedTargetSourceTriangulationDataProviderW948 : Dbounded.NormalizedFixedTargetSourceTriangulationDataProviderW948",
+    "noncomputable def Dbounded.nullaryEndpointStrictExactLocalizedUnitDataProviderW949 : Dbounded.EndpointStrictExactLocalizedUnitDataProviderW949",
+    "or noncomputable def BoundedDerived.Metrizable.stablePackage : BoundedDerived.Metrizable.StablePackage"
+  ],
+  "attempted_proof_evidence": [
+    "run/proof_search_w944_from_w715_20260610.lean",
+    "run/verify_proof_search_w944_from_w715_20260610T085855Z.log",
+    "run/verify_proof_search_w944_from_w715_20260610T085855Z.exit",
+    "run/source_patch_attempt_w1450_nullary_witness_20260610.lean",
+    "run/source_patch_attempt_w1450_nullary_witness_20260610T083900Z.log",
+    "run/source_patch_attempt_w1450_nullary_witness_20260610T083900Z.exit",
+    "run/w1450_field_component_frontier_probe_20260609.lean",
+    "run/verify_w1450_field_component_frontier_probe_20260609.log",
+    "run/source_patch_needed_w1450_provider_leaf_reassessment_20260610.md",
+    "run/w944_surjective_compact_provider_checkpoint_20260610.md"
+  ],
+  "verified_commands": [
+    "fresh resumption gate saved under run/resumption_20260610T085321Z_*",
+    "stable Lean/mathlib v4.30.0 regression gate saved under run/stable_v4300_20260610T085321Z_*",
+    "lake env lean run/proof_search_w944_from_w715_20260610.lean",
+    "lake env lean LeanLCAExactChallenge/Derived/ClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean",
+    "lake env lean audit/RequiredDeclarations.lean",
+    "lake env lean audit/ProductSuccessDeclarations.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+    "git diff --check",
+    "lake build",
+    "jq . run/verification.json terminal_outcome/terminal_outcome.json run/goal_identity_20260602_human_centered_positive_witness.json",
+    "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
+    "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json"
+  ]
+}
+{
+  "schema": "lean_lca_exact_challenge.goal_identity.v1",
+  "generated_utc": "2026-06-10T08:03:11Z",
+  "thread_id": "019ea5a4-a615-78b2-8944-d6f4ed0b24bb",
+  "worktree": "/home/roku/codex-thread-workspaces/019ea5a4-a615-78b2-8944-d6f4ed0b24bb/worktrees/lean-lca-clean-positive-witness-20260609",
+  "goal_file": {
+    "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_human_centered_positive_witness_completion_goal_20260602.md",
+    "sha256": "f1277a166976d49f2aa3b4aca48b18644038086fd289307009fe97e3097ef205"
+  },
+  "contracts": [
+    {
+      "name": "original_four_task_completion_contract_20260526",
+      "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
+      "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
+    },
+    {
+      "name": "positive_witness_completion_contract_20260530",
+      "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md",
+      "sha256": "3120c014b83e0c7c8f8160ca90447a1a73588096a354ace109e2fca4e4eab5ec"
+    }
+  ],
+  "git": {
+    "branch": "goal-clean-positive-witness-20260609-019ea5a4",
+    "head": "3c6af55b28a4ccbc8728187c4f9bc364901417f1",
+    "origin_main": "3c6af55b28a4ccbc8728187c4f9bc364901417f1",
+    "origin_main_ls_remote": "3c6af55b28a4ccbc8728187c4f9bc364901417f1",
+    "origin_feature": "3c6af55b28a4ccbc8728187c4f9bc364901417f1",
+    "origin_feature_ls_remote": "3c6af55b28a4ccbc8728187c4f9bc364901417f1"
+  },
+  "product_success": false,
+  "product_success_claimed": false,
+  "update_goal_complete_permitted": false,
+  "notes": "Identity and contract hashes refreshed for the W1450 continuation after the pushed W1479 full-data direct-localization boundary checkpoint 3c6af55b. Git fields record 3c6af55b as the source base for the W1450 4-input continuation; this artifact does not claim the original positive witness."
+}

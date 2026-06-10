@@ -91,6 +91,19 @@ def targetNoUnivDataOfTargetDifferenceProviderAndCompactSpaceProviderW944
     targetCodomainCompactSpaceProvider
 
 /--
+W944 assembles target no-univ data from W715 target-only
+surjective-compact data.
+-/
+def targetNoUnivDataOfSurjectiveCompactProviderW944
+    (targetData : TargetSurjectiveCompactForTargetProviderW715) :
+    TargetSurjectiveNoUnivMembershipForTargetProviderW944 :=
+  targetNoUnivDataOfTargetDifferenceSurjectiveAndCompactSpaceProvidersW944
+    (targetDifferenceSurjectivePrimitiveOfTargetProviderW923
+      (targetDifferenceSurjectiveForTargetProvider_of_surjectiveCompactW715
+        targetData))
+    (targetCodomainCompactSpaceProvider_of_surjectiveCompactW715 targetData)
+
+/--
 W944 preserves W943's boundary, relation, closedness, normalized fixed-target,
 source-triangulation, endpoint strict-exact, and localized unit fields, while
 bundling the two target primitives into one target no-univ provider.
@@ -246,6 +259,7 @@ def currentMetrizableClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRe
       "targetNoUnivDataOfPrimitiveProvidersW944",
       "targetNoUnivDataOfTargetDifferenceSurjectiveAndCompactSpaceProvidersW944",
       "targetNoUnivDataOfTargetDifferenceProviderAndCompactSpaceProviderW944",
+      "targetNoUnivDataOfSurjectiveCompactProviderW944",
       "MetrizableWppClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldLeavesW944",
       "w943LeavesOfTargetNoUnivDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW944",
       "concreteLeavesOfClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW944",
@@ -257,8 +271,8 @@ def currentMetrizableClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRe
   targetNoUnivDataResult :=
     "proved: W944 target no-univ data projects target-difference surjectivity\
       and W930 target-codomain no-univ compactness required by W943; W601\
-      target-difference and compact-space providers assemble the same W944\
-      target no-univ data"
+      target-difference and compact-space providers, and W715 target-only\
+      surjective-compact data, assemble the same W944 target no-univ data"
   exactAtResult :=
     "proved: closed-map target-no-univ-membership-data-closedness-data-\
       boundary-relation-data-normalized-fixed-target-data-source-triangulation-\
@@ -270,6 +284,8 @@ def currentMetrizableClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRe
       replaced by W944 target no-univ data",
       "W601 target-difference and target-codomain compact-space providers bridge\
         to W944 target no-univ data",
+      "W715 target-only surjective-compact data bridges to W944 target\
+      no-univ data",
       "normalized strict-representative lift blueprint and both fixed-target\
       uniqueness obligations remain consolidated into W719",
       "selected-difference and mapped-cokernel closedness remain consolidated\
