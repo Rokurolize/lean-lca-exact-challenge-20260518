@@ -1,87 +1,67 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-06-10T01:07:43Z",
-  "source_base_git_head": "71ac45395b881d40a9451c953e498936075053b0",
-  "source_tree_hash": "e53d393edcf85e0eae364747af704a4ff12210f638f182672f5f918fbb1974d0",
+  "generated_utc": "2026-06-10T08:21:41Z",
+  "source_base_git_head": "ed927e919285c077b84e0af8acada96fb2d6cc95",
+  "source_tree_hash": "4baec7a302c9a2f709d82b8781dbd334f6a046c1a0bc06db2e4e97503e327ec1",
   "source_file_count": 1202,
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "Verification for the W923/W601 target-difference bridge checkpoint. Product success remains false.",
+  "summary": "Verification for the W1450 nullary-frontier source-patch-needed handoff. Product success remains false because the W1450 field-data input and the stable bounded-derived package remain non-nullary.",
   "commands": [
     {
-      "command": "post-W930 resumption and stable-release gates",
+      "command": "fresh resumption gate",
       "status": "passed",
-      "evidence": "run/resumption_after_w930_20260609T223053Z_summary.md records matching 71ac4539 refs, contract SHA256 values, Lean/mathlib v4.30.0 state, absent active rc2 toolchain references, and product_success=false."
+      "evidence": "run/resumption_20260610T081329Z_* logs record the clean W1450 base before new handoff artifacts, current HEAD ed927e919285c077b84e0af8acada96fb2d6cc95, matching origin/main, and product_success=false metadata."
     },
     {
-      "command": "lake env lean run/w923_w601_target_difference_bridge_probe_20260609.lean",
+      "command": "stable Lean/mathlib v4.30.0 regression gate",
       "status": "passed",
-      "evidence": "run/verify_w923_w601_target_difference_bridge_probe_20260609.status is 0; the probe #checks the W923/W601/W944 bridge declarations and exercises their provider projections."
+      "evidence": "run/stable_v4300_20260610T081329Z_* logs record lean-toolchain, lakefile mathlib, manifest revisions, absent rc2 references, and stable-release history."
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapTargetSurjectivePrimitiveFieldRoute",
-      "status": "passed",
-      "evidence": "run/verify_w923_target_surjective_primitive_module_20260609.status is 0 after adding the W923 reverse and provider bridge declarations."
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute",
-      "status": "passed",
-      "evidence": "run/verify_w923_w944_target_no_univ_module_20260609.status is 0 after adding the W944 constructor from W601 target-difference and compact-space providers."
+      "command": "lake env lean run/source_patch_attempt_w1450_nullary_witness_20260610.lean",
+      "status": "failed_expected",
+      "evidence": "run/source_patch_attempt_w1450_nullary_witness_20260610T083900Z.exit is 1; the log exposes exactly the four W1450 constructor goals and the missing Preadditive (Dbounded MetrizableLCA) instance on the typeclass route."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "run/verify_w923_w601_full_lake_build_20260609.status is 0; the full project build completed successfully after the W923/W944 source patch."
+      "evidence": "run/verify_source_patch_w1450_nullary_frontier_20260610T082141Z_lake_build.exit is 0."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "run/verify_w923_w601_forbidden_tokens_20260609.status is 0."
+      "evidence": "run/verify_source_patch_w1450_nullary_frontier_20260610T082141Z_forbidden_tokens.exit is 0."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "run/verify_w923_w601_required_declarations_20260609.status is 0."
+      "evidence": "run/verify_source_patch_w1450_nullary_frontier_20260610T082141Z_required_declarations.exit is 0."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "run/verify_w923_w601_product_success_audit_lean_20260609.status is 0 while preserving product_success=false metadata."
-    },
-    {
-      "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
-      "status": "passed",
-      "evidence": "run/verify_w923_w601_original_four_task_audit_lean_20260609.status is 0."
-    },
-    {
-      "command": "declaration-shaped product-success scan",
-      "status": "passed",
-      "evidence": "run/verify_w923_w601_product_success_declarations_20260609.status is 0 and the log is empty, so no active Lean declaration claims OriginalFourTaskProductSuccess/originalFourTaskProductSuccess or productSuccessClaimed=true."
-    },
-    {
-      "command": "declaration-shaped original-four-task completion scan",
-      "status": "passed",
-      "evidence": "run/verify_w923_w601_original_four_task_declarations_20260609.status is 0 and the log is empty, so no active Lean declaration defines the positive witness completion symbols."
+      "evidence": "run/verify_source_patch_w1450_nullary_frontier_20260610T082141Z_product_success_declarations.exit is 0 while terminal_outcome remains source_patch_needed_handoff."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "run/verify_w923_w601_git_diff_check_20260609.status is 0 after artifact refresh."
+      "evidence": "run/verify_source_patch_w1450_nullary_frontier_20260610T082141Z_git_diff_check.exit is 0."
     },
     {
       "command": "jq . run/verification.json terminal_outcome/terminal_outcome.json run/goal_identity_20260602_human_centered_positive_witness.json",
       "status": "passed",
-      "evidence": "run/verify_w923_w601_json_parse_20260609.status is 0 after artifact refresh."
+      "evidence": "run/verify_source_patch_w1450_nullary_frontier_20260610T082141Z_json_parse.exit is 0."
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "run/verify_w923_w601_contract_audit_20260609.status is 0 with terminal_claims_product_success=false."
+      "evidence": "run/verify_source_patch_w1450_nullary_frontier_20260610T082141Z_contract_audit.exit is 0 with terminal_claims_product_success=false."
     },
     {
       "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "run/verify_w923_w601_external_audit_20260609.status is 0 with source_tree_hash e53d393edcf85e0eae364747af704a4ff12210f638f182672f5f918fbb1974d0."
+      "evidence": "run/verify_source_patch_w1450_nullary_frontier_20260610T082141Z_external_audit.exit is 0 with source_tree_hash 4baec7a302c9a2f709d82b8781dbd334f6a046c1a0bc06db2e4e97503e327ec1."
     }
   ]
 }

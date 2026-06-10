@@ -1,0 +1,16 @@
+run/source_patch_attempt_w1450_nullary_witness_20260610.lean:15:53: error: unsolved goals
+case boundaryData
+⊢ Dbounded.MetrizableWppLimitBoundaryDataW716
+
+case relationData
+⊢ Dbounded.ClosedNatTransOrdinaryRelationDataProviderW717
+
+case targetClosedEmbeddingClosednessData
+⊢ Dbounded.TargetNoUnivClosedEmbeddingClosednessDataProviderW984
+
+case normalizedSourceEndpointLocalizedUnitData
+⊢ Dbounded.NormalizedSourceTriangulationEndpointLocalizedUnitDataProviderW950
+run/source_patch_attempt_w1450_nullary_witness_20260610.lean:20:2: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  CategoryTheory.Preadditive (Dbounded MetrizableLCA)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.

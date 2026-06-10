@@ -1,0 +1,20 @@
+{
+  "outcome": "nonterminal_checkpoint_pending_commit",
+  "product_success": false,
+  "product_complete": false,
+  "update_goal_allowed": false,
+  "git_head": "3c6af55b28a4ccbc8728187c4f9bc364901417f1",
+  "latest_checkpoint": "run/w1450_full_data_direct_localization_boundary_checkpoint_20260610.md",
+  "obligations_discharged": [
+    "Added W1450 field-data conversion to the W1625 one-input full-data direct-localization boundary input.",
+    "Added W1450 field-data stable-package bridge through W1625 and the canonical direct-localization boundary.",
+    "Added OriginalFourTaskProductData constructors and projection/equality lemmas for the W1450-through-W1625 route.",
+    "Updated RequiredDeclarations to check the new bounded-derived bridge and ProductData surfaces."
+  ],
+  "obligations_derived_or_eliminated": [
+    "The ProductData frontier is reduced from the W1479 62-field surface to the W1450 4-input field-data surface.",
+    "The W1450-constructed W987 full-data provider now feeds the W1625 boundary that has already eliminated the W1007 branch-full-data wrapper.",
+    "The new ProductData surface is connected to the canonical direct-localization boundary without going through W1479/W1490/W1496."
+  ],
+  "new_frontier_input_count": 4
+}
