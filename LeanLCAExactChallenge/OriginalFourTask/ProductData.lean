@@ -106,6 +106,45 @@ theorem originalFourTaskProductDataOfStablePackage_boundedDerivedInfinityCategor
     (originalFourTaskProductDataOfStablePackage P).boundedDerivedInfinityCategory = P :=
   rfl
 
+/--
+Assemble original-four-task product data from the typeclass-resolved stable-instance route.
+
+This is not a final positive witness until Lean can synthesize the listed `Dbounded
+MetrizableLCA` stable instances with no local hypotheses. It keeps the remaining task-4
+obligation on the mathematical instance surface instead of routing through semantic inputs.
+-/
+noncomputable def originalFourTaskProductDataOfMetrizableStableInstances
+    [Preadditive (Dbounded MetrizableLCA.{0})]
+    [HasFiniteLimits (Dbounded MetrizableLCA.{0})]
+    [HasFiniteColimits (Dbounded MetrizableLCA.{0})]
+    [HasZeroObject (Dbounded MetrizableLCA.{0})]
+    [∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive]
+    [Pretriangulated (Dbounded MetrizableLCA.{0})]
+    [IsTriangulated (Dbounded MetrizableLCA.{0})] :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStablePackage
+    Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstances
+
+/-- The product-data stable-instance route has exactly the seven task-4 obligations. -/
+def originalFourTaskMetrizableStableInstanceObligationNames : List String :=
+  Dbounded.metrizableStableInstanceFieldNames
+
+theorem originalFourTaskMetrizableStableInstanceObligationNames_count :
+    originalFourTaskMetrizableStableInstanceObligationNames.length = 7 :=
+  Dbounded.metrizableStableInstanceFieldNames_count
+
+theorem originalFourTaskProductDataOfMetrizableStableInstances_boundedDerivedInfinityCategory
+    [Preadditive (Dbounded MetrizableLCA.{0})]
+    [HasFiniteLimits (Dbounded MetrizableLCA.{0})]
+    [HasFiniteColimits (Dbounded MetrizableLCA.{0})]
+    [HasZeroObject (Dbounded MetrizableLCA.{0})]
+    [∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive]
+    [Pretriangulated (Dbounded MetrizableLCA.{0})]
+    [IsTriangulated (Dbounded MetrizableLCA.{0})] :
+    originalFourTaskProductDataOfMetrizableStableInstances.boundedDerivedInfinityCategory =
+      Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstances :=
+  rfl
+
 theorem originalFourTaskProductDataOfStablePackage_quillenExactCategory
     (P : BoundedDerived.Metrizable.StablePackage) :
     (originalFourTaskProductDataOfStablePackage P).quillenExactCategory =
