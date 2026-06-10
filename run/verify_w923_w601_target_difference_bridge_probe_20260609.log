@@ -1,0 +1,18 @@
+LeanLCAExactChallenge.Dbounded.targetDifferenceSurjectivePrimitiveOfSurjectiveW923
+  {Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA}
+  (h :
+    Function.Surjective
+      ⇑(MetrizableLCA.Hom.hom
+          (WppOpW426W318LegCompatibilityAlignmentV370SupportW439.wppOpLeftW441 Y -
+            WppOpW426W318LegCompatibilityAlignmentV370SupportW439.wppOpRightW441 Y))) :
+  targetDifferenceSurjectivePrimitiveW923 Y
+LeanLCAExactChallenge.Dbounded.targetDifferenceSurjectivePrimitiveOfTargetProviderW923
+  (h : TargetDifferenceSurjectiveForTargetProviderW713) (Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA) :
+  targetDifferenceSurjectivePrimitiveW923 Y
+LeanLCAExactChallenge.Dbounded.targetDifferenceSurjectivePrimitiveOfTargetDifferenceProviderW601
+  (h : TargetDifferenceSurjectiveProviderW601) (Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA) :
+  targetDifferenceSurjectivePrimitiveW923 Y
+LeanLCAExactChallenge.Dbounded.targetNoUnivDataOfTargetDifferenceProviderAndCompactSpaceProviderW944
+  (targetDifferenceProvider : TargetDifferenceSurjectiveProviderW601)
+  (targetCodomainCompactSpaceProvider : TargetCodomainCompactSpaceProviderW601) :
+  TargetSurjectiveNoUnivMembershipForTargetProviderW944

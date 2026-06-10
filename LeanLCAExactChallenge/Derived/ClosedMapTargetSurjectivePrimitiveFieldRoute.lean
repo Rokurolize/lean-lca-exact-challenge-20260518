@@ -47,6 +47,47 @@ abbrev targetDifferenceSurjectiveOfPrimitiveW923
     targetDifferenceSurjectiveForTargetProvider Y
 
 /--
+W923 recovers the primitive preimage quantifier from the ordinary
+`Function.Surjective` statement for one target diagram.
+-/
+def targetDifferenceSurjectivePrimitiveOfSurjectiveW923
+    {Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}}
+    (h :
+      Function.Surjective
+        (((wppOpLeftW441 Y - wppOpRightW441 Y) :
+          wppOpDomainW441 Y ⟶ wppOpCodomainW441 Y) :
+          wppOpDomainW441 Y → wppOpCodomainW441 Y)) :
+    targetDifferenceSurjectivePrimitiveW923 Y := by
+  intro y
+  exact h y
+
+/--
+W713 target-only surjectivity is exactly the non-primitive form of the W923
+target-difference primitive provider.
+-/
+def targetDifferenceSurjectivePrimitiveOfTargetProviderW923
+    (h : TargetDifferenceSurjectiveForTargetProviderW713) :
+    ∀ (Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}),
+      targetDifferenceSurjectivePrimitiveW923 Y := by
+  intro Y
+  exact targetDifferenceSurjectivePrimitiveOfSurjectiveW923 (h Y)
+
+/--
+W601's closed-embedding-indexed target-difference provider supplies the W923
+target-only primitive provider by specializing to the identity closed embedding.
+-/
+def targetDifferenceSurjectivePrimitiveOfTargetDifferenceProviderW601
+    (h : TargetDifferenceSurjectiveProviderW601) :
+    ∀ (Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}),
+      targetDifferenceSurjectivePrimitiveW923 Y := by
+  intro Y
+  exact targetDifferenceSurjectivePrimitiveOfSurjectiveW923
+    (h Y Y (𝟙 Y) (fun j => by
+      simpa using
+        (Topology.IsClosedEmbedding.id :
+          IsClosedEmbedding (id : Y.obj j → Y.obj j))))
+
+/--
 W923 replaces W922's target-difference `Function.Surjective` field with the
 primitive preimage quantifier hidden by that definition.
 -/
@@ -418,6 +459,9 @@ def currentMetrizableClosedMapTargetSurjectivePrimitiveFieldsRouteStateW923 :
     ["MetrizableWppClosedMapTargetSurjectivePrimitiveFieldLeavesW923",
       "targetDifferenceSurjectivePrimitiveW923",
       "targetDifferenceSurjectiveOfPrimitiveW923",
+      "targetDifferenceSurjectivePrimitiveOfSurjectiveW923",
+      "targetDifferenceSurjectivePrimitiveOfTargetProviderW923",
+      "targetDifferenceSurjectivePrimitiveOfTargetDifferenceProviderW601",
       "w922LeavesOfTargetSurjectivePrimitiveFieldsW923",
       "concreteLeavesOfClosedMapTargetSurjectivePrimitiveFieldsW923",
       "routeDataProviderOfClosedMapTargetSurjectivePrimitiveFieldsW923",
@@ -427,7 +471,8 @@ def currentMetrizableClosedMapTargetSurjectivePrimitiveFieldsRouteStateW923 :
       "closedMapTargetSurjectivePrimitiveFieldsInputNamesW923_count"]
   targetSurjectivePrimitiveFieldResult :=
     "proved: primitive target-difference preimage quantifier supplies W922's\
-      Function.Surjective field"
+      Function.Surjective field; W713/W601 target-difference providers supply\
+      the W923 primitive provider"
   exactAtResult :=
     "proved: closed-map target-surjective-primitive-field\
       selected-difference-primitive-fields\
@@ -439,7 +484,11 @@ def currentMetrizableClosedMapTargetSurjectivePrimitiveFieldsRouteStateW923 :
       component-fields mapped-cokernel-field fields feed the W922 stable\
       ExactAt route"
   refinedInputs :=
-    ["primitive target-difference preimage quantifier"]
+    ["primitive target-difference preimage quantifier",
+      "ordinary Function.Surjective target-difference provider bridges back to\
+        the W923 primitive provider",
+      "W601 target-difference provider bridges to W923 by identity closed\
+        embedding specialization"]
   remainingInputs :=
     closedMapTargetSurjectivePrimitiveFieldsInputNamesW923
   productSuccessClaimed := false
