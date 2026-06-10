@@ -2012,4 +2012,65 @@ theorem
       fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
   rfl
 
+/--
+Assemble product data from the W1496 raw-field input through the W1625
+full-data direct-localization boundary. W1496 constructs the W987 full-data
+provider, and W1625 removes the W1007 wrapper from that downstream surface.
+-/
+noncomputable def
+    originalFourTaskProductDataOfW1496RawFieldInputViaFullDataDirectLocalizationBoundary
+    (input : BoundedDerived.Metrizable.W1496RawFieldInput) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+    (BoundedDerived.Metrizable.fullDataDirectLocalizationBoundaryInputOfW1496RawFieldInput
+      input)
+
+theorem
+    originalFourTaskProductDataOfW1496RawFieldInputViaFullDataDirectLocalizationBoundary_eq_w1625
+    (input : BoundedDerived.Metrizable.W1496RawFieldInput) :
+    originalFourTaskProductDataOfW1496RawFieldInputViaFullDataDirectLocalizationBoundary
+        input =
+      originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+        (BoundedDerived.Metrizable.fullDataDirectLocalizationBoundaryInputOfW1496RawFieldInput
+          input) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfW1496RawFieldInputViaFullDataDirectLocalizationBoundary_eq_directLocalizationBoundary
+    (input : BoundedDerived.Metrizable.W1496RawFieldInput) :
+    originalFourTaskProductDataOfW1496RawFieldInputViaFullDataDirectLocalizationBoundary
+        input =
+      originalFourTaskProductDataOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+          (BoundedDerived.Metrizable.fullDataDirectLocalizationBoundaryInputOfW1496RawFieldInput
+            input)) :=
+  originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625_eq_directLocalizationBoundary
+    (BoundedDerived.Metrizable.fullDataDirectLocalizationBoundaryInputOfW1496RawFieldInput
+      input)
+
+theorem
+    originalFourTaskProductDataOfW1496RawFieldInputViaFullDataDirectLocalizationBoundary_boundedDerivedInfinityCategory
+    (input : BoundedDerived.Metrizable.W1496RawFieldInput) :
+    (originalFourTaskProductDataOfW1496RawFieldInputViaFullDataDirectLocalizationBoundary
+      input).boundedDerivedInfinityCategory =
+      BoundedDerived.Metrizable.stablePackageOfW1496RawFieldInputViaFullDataDirectLocalizationBoundary
+        input :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfW1496RawFieldInputViaFullDataDirectLocalizationBoundary_metrizableLCAExactCategory
+    (input : BoundedDerived.Metrizable.W1496RawFieldInput) :
+    (originalFourTaskProductDataOfW1496RawFieldInputViaFullDataDirectLocalizationBoundary
+      input).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfW1496RawFieldInputViaFullDataDirectLocalizationBoundary_yonedaExt
+    (input : BoundedDerived.Metrizable.W1496RawFieldInput) :
+    (originalFourTaskProductDataOfW1496RawFieldInputViaFullDataDirectLocalizationBoundary
+      input).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
 end LeanLCAExactChallenge

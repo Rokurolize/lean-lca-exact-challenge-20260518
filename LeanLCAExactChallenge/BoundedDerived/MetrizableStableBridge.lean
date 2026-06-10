@@ -786,6 +786,41 @@ theorem fullDataProviderOfW1496RawFieldInput_eq_w1495
         input :=
   rfl
 
+noncomputable def fullDataDirectLocalizationBoundaryInputOfW1496RawFieldInput
+    (input : W1496RawFieldInput) :
+    ClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryInputW1625
+    where
+  fullData := fullDataProviderOfW1496RawFieldInput input
+
+theorem fullDataDirectLocalizationBoundaryInputOfW1496RawFieldInput_fullData
+    (input : W1496RawFieldInput) :
+    (fullDataDirectLocalizationBoundaryInputOfW1496RawFieldInput input).fullData =
+      fullDataProviderOfW1496RawFieldInput input :=
+  rfl
+
+noncomputable def stablePackageOfW1496RawFieldInputViaFullDataDirectLocalizationBoundary
+    (input : W1496RawFieldInput) :
+    StablePackage :=
+  stablePackageOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryW1625
+    (fullDataDirectLocalizationBoundaryInputOfW1496RawFieldInput input)
+
+theorem stablePackageOfW1496RawFieldInputViaFullDataDirectLocalizationBoundary_eq_w1625
+    (input : W1496RawFieldInput) :
+    stablePackageOfW1496RawFieldInputViaFullDataDirectLocalizationBoundary input =
+      stablePackageOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryW1625
+        (fullDataDirectLocalizationBoundaryInputOfW1496RawFieldInput input) :=
+  rfl
+
+theorem
+    stablePackageOfW1496RawFieldInputViaFullDataDirectLocalizationBoundary_eq_directLocalizationBoundary
+    (input : W1496RawFieldInput) :
+    stablePackageOfW1496RawFieldInputViaFullDataDirectLocalizationBoundary input =
+      stablePackageOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+          (fullDataDirectLocalizationBoundaryInputOfW1496RawFieldInput input)) :=
+  stablePackageOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryW1625_eq_directLocalizationBoundary
+    (fullDataDirectLocalizationBoundaryInputOfW1496RawFieldInput input)
+
 noncomputable def closedEmbeddingStablePackageOfW1496RawFieldInput
     (input : W1496RawFieldInput) :
     StablePackage :=
