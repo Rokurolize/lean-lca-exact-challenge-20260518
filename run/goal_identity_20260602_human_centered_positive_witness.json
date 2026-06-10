@@ -1,6 +1,6 @@
 {
   "schema": "lean_lca_exact_challenge.goal_identity.v1",
-  "generated_utc": "2026-06-10T07:52:01Z",
+  "generated_utc": "2026-06-10T08:03:11Z",
   "thread_id": "019ea5a4-a615-78b2-8944-d6f4ed0b24bb",
   "worktree": "/home/roku/codex-thread-workspaces/019ea5a4-a615-78b2-8944-d6f4ed0b24bb/worktrees/lean-lca-clean-positive-witness-20260609",
   "goal_file": {
@@ -21,14 +21,14 @@
   ],
   "git": {
     "branch": "goal-clean-positive-witness-20260609-019ea5a4",
-    "head": "ba8887563d1b5557b01748ce12894225925728f2",
-    "origin_main": "ba8887563d1b5557b01748ce12894225925728f2",
-    "origin_main_ls_remote": "ba8887563d1b5557b01748ce12894225925728f2",
-    "origin_feature": "ba8887563d1b5557b01748ce12894225925728f2",
-    "origin_feature_ls_remote": "ba8887563d1b5557b01748ce12894225925728f2"
+    "head": "3c6af55b28a4ccbc8728187c4f9bc364901417f1",
+    "origin_main": "3c6af55b28a4ccbc8728187c4f9bc364901417f1",
+    "origin_main_ls_remote": "3c6af55b28a4ccbc8728187c4f9bc364901417f1",
+    "origin_feature": "3c6af55b28a4ccbc8728187c4f9bc364901417f1",
+    "origin_feature_ls_remote": "3c6af55b28a4ccbc8728187c4f9bc364901417f1"
   },
   "product_success": false,
   "product_success_claimed": false,
   "update_goal_complete_permitted": false,
-  "notes": "Identity and contract hashes refreshed during the 2026-06-10T07:40:59Z continuation gate. Git fields record the pushed W1490 full-data direct-localization boundary checkpoint ba888756 as the source base for the W1479 62-input continuation; this artifact does not claim the original positive witness."
+  "notes": "Identity and contract hashes refreshed for the W1450 continuation after the pushed W1479 full-data direct-localization boundary checkpoint 3c6af55b. Git fields record 3c6af55b as the source base for the W1450 4-input continuation; this artifact does not claim the original positive witness."
 }
