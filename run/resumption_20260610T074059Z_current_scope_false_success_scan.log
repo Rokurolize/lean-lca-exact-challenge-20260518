@@ -1,0 +1,5 @@
+$ rg -n ^(noncomputable\s+)?(def|theorem|lemma|abbrev|structure|class)\s+.*(OriginalFourTaskProductSuccess|originalFourTaskProductSuccess) LeanLCAExactChallenge audit -g !audit/negative_fixtures/**
+exit=1 expected=1
+
+$ rg -n "product_success(_claimed)?"\s*:\s*true|productSuccessClaimed\s*:=\s*true|productSuccessClaimed\s*=\s*true LeanLCAExactChallenge audit/RequiredDeclarations.lean terminal_outcome/terminal_outcome.json run/goal_identity_20260602_human_centered_positive_witness.json
+exit=1 expected=1

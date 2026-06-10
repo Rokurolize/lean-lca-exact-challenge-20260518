@@ -1,59 +1,57 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-06-10T07:34:45Z",
-  "source_base_git_head": "1bed8f8f4c6698f407501c29a7ac15a5e6532948",
-  "git_head": "1bed8f8f4c6698f407501c29a7ac15a5e6532948",
-  "outcome": "nonterminal_checkpoint_pushed",
+  "generated_utc": "2026-06-10T07:52:01Z",
+  "source_base_git_head": "ba8887563d1b5557b01748ce12894225925728f2",
+  "git_head": "ba8887563d1b5557b01748ce12894225925728f2",
+  "outcome": "nonterminal_checkpoint_pending_commit",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "This checkpoint connects the W1490 raw-field route to the W1625 full-data direct-localization boundary. W1490 constructs the W987 full-data provider from 73 raw fields, and W1625 consumes that provider directly after eliminating the W1007 wrapper. This is not product success because the 73 raw-field obligations remain caller-supplied and no nullary OriginalFourTaskProductSuccess declaration is introduced.",
+  "summary": "This checkpoint connects the W1479 raw-field route to the W1625 full-data direct-localization boundary. W1479 constructs the W987 full-data provider from 62 raw fields, and W1625 consumes that provider directly after eliminating the W1007 wrapper. This is not product success because the 62 raw-field obligations remain caller-supplied and no nullary OriginalFourTaskProductSuccess declaration is introduced.",
   "reference_route_log": "docs/research/reference_route_log.md",
-  "handoff": "run/w1490_full_data_direct_localization_boundary_checkpoint_20260610.md",
-  "latest_checkpoint": "run/w1490_full_data_direct_localization_boundary_checkpoint_20260610.md",
-  "latest_handoff": "run/w1490_full_data_direct_localization_boundary_checkpoint_20260610.md",
-  "previous_checkpoint": "run/w1496_full_data_direct_localization_boundary_checkpoint_20260610.md",
-  "previous_frontier_input_count": 74,
-  "new_frontier_input_count": 73,
+  "handoff": "run/w1479_full_data_direct_localization_boundary_checkpoint_20260610.md",
+  "latest_checkpoint": "run/w1479_full_data_direct_localization_boundary_checkpoint_20260610.md",
+  "latest_handoff": "run/w1479_full_data_direct_localization_boundary_checkpoint_20260610.md",
+  "previous_checkpoint": "run/w1490_full_data_direct_localization_boundary_checkpoint_20260610.md",
+  "previous_frontier_input_count": 73,
+  "new_frontier_input_count": 62,
   "obligations_discharged": [
-    "Added W1490 raw-field conversion to the W1625 one-input full-data direct-localization boundary input.",
-    "Added W1490 raw-field stable-package bridge through W1625 and the canonical direct-localization boundary.",
-    "Added OriginalFourTaskProductData constructors and projection/equality lemmas for the W1490-through-W1625 route.",
+    "Added W1479 raw-field conversion to the W1625 one-input full-data direct-localization boundary input.",
+    "Added W1479 raw-field stable-package bridge through W1625 and the canonical direct-localization boundary.",
+    "Added OriginalFourTaskProductData constructors and projection/equality lemmas for the W1479-through-W1625 route.",
     "Updated RequiredDeclarations to check the new bounded-derived bridge and ProductData surfaces."
   ],
   "obligations_derived_or_eliminated": [
-    "The ProductData frontier is reduced from the W1496/W1494 74-field surface to the W1490 73-field surface.",
-    "The W1490-constructed W987 full-data provider now feeds the W1625 boundary that has already eliminated the W1007 branch-full-data wrapper.",
-    "The new ProductData surface is connected to the canonical direct-localization boundary."
+    "The ProductData frontier is reduced from the W1490 73-field surface to the W1479 62-field surface.",
+    "The W1479-constructed W987 full-data provider now feeds the W1625 boundary that has already eliminated the W1007 branch-full-data wrapper.",
+    "The new ProductData surface is connected to the canonical direct-localization boundary without going through W1490/W1496."
   ],
   "known_gaps": [
     "No declaration currently defines OriginalFourTaskProductSuccess or originalFourTaskProductSuccess.",
-    "No nullary W1490 raw-field input or W987 full-data provider was constructed.",
-    "The W1490 raw-field input still packages 73 target, relation, closed-embedding, strict-preimage, endpoint, localized-right-adjoint, localized-unit, and unit mapping-cone obligations.",
+    "No nullary W1479 raw-field input or W987 full-data provider was constructed.",
+    "The W1479 raw-field input still packages 62 target, relation, closed-embedding, strict-preimage, localized-right-adjoint, localized-unit, and unit mapping-cone obligations.",
     "Typeclass synthesis still does not provide a nullary bounded-derived stable package for MetrizableLCA."
   ],
   "remaining_work": [
-    "Construct a mathematically honest nullary W1490 raw-field input from true smaller providers, or identify the exact missing source theorem for each W1490 leaf.",
+    "Construct a mathematically honest nullary W1479 raw-field input from true smaller providers, or identify the exact missing source theorem for each W1479 leaf.",
     "Use a nullary W987 provider to build the bounded-derived stable package and then the original four-task product success witness.",
     "Run the Tier C review packet and full contract audit before permitting update_goal complete."
   ],
   "next_required_source_api": [
-    "noncomputable def Dbounded.nullaryW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataConstructionInputW1490 : W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataConstructionInputW1490",
+    "noncomputable def Dbounded.nullaryW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorFieldDataConstructionInputW1479 : W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorFieldDataConstructionInputW1479",
     "noncomputable def BoundedDerived.Metrizable.stablePackage : BoundedDerived.Metrizable.StablePackage",
     "noncomputable def originalFourTaskProductSuccess : OriginalFourTaskProductSuccess"
   ],
   "verified_commands": [
-    "resumption gate saved under run/resumption_20260610T051420Z_*",
-    "stable Lean/mathlib v4.30.0 regression gate saved under run/stable_v4300_20260610T051420Z_*",
-    "lake build LeanLCAExactChallenge.BoundedDerived.MetrizableStableBridge passed in the Codex continuation before the ProductData build",
-    "lake build LeanLCAExactChallenge.OriginalFourTask.ProductData passed with exit 0",
-    "lake env lean audit/RequiredDeclarations.lean passed with exit 0",
-    "git diff --check passed with exit 0",
-    "scripts/audit_no_forbidden_lean_tokens.sh on changed Lean/audit files passed with exit 0",
-    "jq . run/goal_identity_20260602_human_centered_positive_witness.json passed with exit 0",
-    "declaration-shaped false-success scan had rg exit 1, meaning no OriginalFourTaskProductSuccess declarations",
-    "current-outcome product_success true scan had rg exit 1, meaning no true success flags in current source/outcome surfaces",
-    "broad product_success true scan matched only intentional audit/negative_fixtures entries"
+    "resumption gate saved under run/resumption_20260610T074059Z_*; the raw required broad rg exited 1 because it matched explanatory/audit text, not a live success declaration",
+    "stable Lean/mathlib v4.30.0 regression gate saved under run/stable_v4300_20260610T074059Z_* with exit 0",
+    "current-scope false-success scan saved under run/resumption_20260610T074059Z_current_scope_false_success_scan.* with exit 0",
+    "lake build LeanLCAExactChallenge.BoundedDerived.MetrizableStableBridge passed in the Codex continuation before logged verification",
+    "lake build LeanLCAExactChallenge.OriginalFourTask.ProductData passed in the Codex continuation before logged verification",
+    "lake env lean audit/RequiredDeclarations.lean passed in the Codex continuation before logged verification",
+    "logged verification commands are saved under run/verify_w1479_full_data_boundary_bridge_20260610T075201Z_*",
+    "declaration-shaped false-success scan has no OriginalFourTaskProductSuccess declarations",
+    "current-outcome product_success true scan has no true success flags in current source/outcome surfaces"
   ]
 }
