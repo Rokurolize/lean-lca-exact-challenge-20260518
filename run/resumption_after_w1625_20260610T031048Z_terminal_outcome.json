@@ -1,0 +1,20 @@
+{
+  "outcome": "mathematical_frontier_nonterminal",
+  "product_success": false,
+  "product_complete": false,
+  "update_goal_allowed": false,
+  "git_head": "94f889b37539f1cc19f4a0d1bcf4146fc688ff28",
+  "latest_checkpoint": "run/w1625_full_data_productdata_bridge_checkpoint_20260610.md",
+  "obligations_discharged": [
+    "Added BoundedDerived.Metrizable stable-package bridge for W1624 branch-full-data direct-localization input.",
+    "Added BoundedDerived.Metrizable stable-package bridge for W1625 full-data direct-localization input.",
+    "Added OriginalFourTaskProductData constructors and projection lemmas for W1624 and W1625.",
+    "Updated RequiredDeclarations to check the W1624/W1625 Dbounded, bounded-derived bridge, and ProductData surfaces."
+  ],
+  "obligations_derived_or_eliminated": [
+    "The product-data bridge no longer has to stop at the W1519 selected-cochain closedness surface.",
+    "The W1007 branch-full-data wrapper is no longer the final product-facing input surface for this route.",
+    "The remaining product-data input for this route is the underlying BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataProviderW987."
+  ],
+  "new_frontier_input_count": 1
+}

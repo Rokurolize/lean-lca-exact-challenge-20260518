@@ -460,6 +460,53 @@ theorem originalFourTaskProductDataOfClosedEmbeddingDirectSourceW1539_yonedaExt
   rfl
 
 /--
+Assemble product data from the W1496 raw 74-field surface. W1494 projects the
+closed-embedding W718/W519 providers, and the W1539 direct-source bridge supplies
+the bounded-derived stable package.
+-/
+noncomputable def originalFourTaskProductDataOfClosedEmbeddingW1496RawFieldInput
+    (input : BoundedDerived.Metrizable.W1496RawFieldInput) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStablePackage
+    (BoundedDerived.Metrizable.closedEmbeddingStablePackageOfW1496RawFieldInput
+      input)
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingW1496RawFieldInput_eq_directSourceW1539
+    (input : BoundedDerived.Metrizable.W1496RawFieldInput) :
+    originalFourTaskProductDataOfClosedEmbeddingW1496RawFieldInput input =
+      originalFourTaskProductDataOfClosedEmbeddingDirectSourceW1539 input
+        (BoundedDerived.Metrizable.closedEmbeddingComponentProviderOfW1496RawFieldInput
+          input)
+        (BoundedDerived.Metrizable.closedEmbeddingCokernelProviderOfW1496RawFieldInput
+          input) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingW1496RawFieldInput_boundedDerivedInfinityCategory
+    (input : BoundedDerived.Metrizable.W1496RawFieldInput) :
+    (originalFourTaskProductDataOfClosedEmbeddingW1496RawFieldInput
+      input).boundedDerivedInfinityCategory =
+      BoundedDerived.Metrizable.closedEmbeddingStablePackageOfW1496RawFieldInput
+        input :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingW1496RawFieldInput_metrizableLCAExactCategory
+    (input : BoundedDerived.Metrizable.W1496RawFieldInput) :
+    (originalFourTaskProductDataOfClosedEmbeddingW1496RawFieldInput
+      input).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem originalFourTaskProductDataOfClosedEmbeddingW1496RawFieldInput_yonedaExt
+    (input : BoundedDerived.Metrizable.W1496RawFieldInput) :
+    (originalFourTaskProductDataOfClosedEmbeddingW1496RawFieldInput
+      input).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
+/--
 Assemble product data from the W1533 closed-map direct-localization boundary
 bridge.
 -/
@@ -547,6 +594,20 @@ theorem
   simp [originalFourTaskProductDataOfClosedEmbeddingDirectSourceW1539,
     originalFourTaskProductDataOfClosedEmbeddingDirectLocalizationBoundaryW1533,
     BoundedDerived.Metrizable.closedEmbeddingStablePackageOfDirectSource_eq_directLocalizationBoundary]
+
+theorem
+    originalFourTaskProductDataOfClosedEmbeddingW1496RawFieldInput_eq_directLocalizationBoundaryW1533
+    (input : BoundedDerived.Metrizable.W1496RawFieldInput) :
+    originalFourTaskProductDataOfClosedEmbeddingW1496RawFieldInput input =
+      originalFourTaskProductDataOfClosedEmbeddingDirectLocalizationBoundaryW1533
+        input
+        (BoundedDerived.Metrizable.closedEmbeddingComponentProviderOfW1496RawFieldInput
+          input)
+        (BoundedDerived.Metrizable.closedEmbeddingCokernelProviderOfW1496RawFieldInput
+          input) := by
+  rw [
+    originalFourTaskProductDataOfClosedEmbeddingW1496RawFieldInput_eq_directSourceW1539,
+    originalFourTaskProductDataOfClosedEmbeddingDirectSourceW1539_eq_directLocalizationBoundaryW1533]
 
 /-- Assemble product data from the current canonical stable-instance boundary. -/
 noncomputable def originalFourTaskProductDataOfStableInstanceBoundary

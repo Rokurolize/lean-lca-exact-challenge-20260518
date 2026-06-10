@@ -1,0 +1,90 @@
+{
+  "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
+  "generated_utc": "2026-06-10T03:54:24Z",
+  "source_base_git_head": "8b257bd38afc17da49e44db7cb3bb1eb45f50714",
+  "git_head": "8b257bd38afc17da49e44db7cb3bb1eb45f50714",
+  "outcome": "mathematical_frontier_nonterminal",
+  "product_success": false,
+  "product_success_claimed": false,
+  "product_complete": false,
+  "update_goal_allowed": false,
+  "summary": "This checkpoint exposes the W1496/W1494 raw-field closed-embedding route through the canonical bounded-derived bridge and OriginalFourTaskProductData surface. W1496 supplies the 74-field construction surface, W1494 projects the closed-embedding W718/W519 providers, and the existing W1539 direct-source bridge supplies the stable package. This is not product success because the 74 raw-field obligations are still caller-supplied and no nullary OriginalFourTaskProductSuccess declaration is introduced.",
+  "reference_route_log": "docs/research/reference_route_log.md",
+  "handoff": "run/w1496_raw_field_closed_embedding_productdata_bridge_checkpoint_20260610.md",
+  "latest_checkpoint": "run/w1496_raw_field_closed_embedding_productdata_bridge_checkpoint_20260610.md",
+  "latest_handoff": "run/w1496_raw_field_closed_embedding_productdata_bridge_checkpoint_20260610.md",
+  "new_frontier_input_count": 74,
+  "obligations_discharged": [
+    "Added BoundedDerived.Metrizable W1496RawFieldInput and raw-field input-name count surface.",
+    "Added W1496 raw-field projections for the W1494 closed-embedding component and mapped-cokernel providers.",
+    "Added W1496 raw-field full-data and closed-embedding stable-package bridge declarations.",
+    "Added OriginalFourTaskProductData constructors and projection/equality lemmas for the W1496 raw-field closed-embedding route.",
+    "Updated RequiredDeclarations to check the W1496/W1494 Dbounded, bounded-derived bridge, and ProductData surfaces."
+  ],
+  "obligations_derived_or_eliminated": [
+    "The ProductData-facing closed-embedding route no longer has to stop at a caller-supplied W987 full-data provider.",
+    "The W1494 closed-embedding W718/W519 providers are now projected directly from the W1496 raw-field input.",
+    "The W1496 route is connected to the W1539 direct-source and W1533 direct-localization ProductData surfaces."
+  ],
+  "known_gaps": [
+    "No declaration currently defines OriginalFourTaskProductSuccess or originalFourTaskProductSuccess.",
+    "No nullary W1496 raw-field input or W987 full-data provider was constructed.",
+    "The W1496 raw-field input still packages 74 target, relation, closed-embedding, strict-preimage, fixed-target, source-triangulation, endpoint, localized-right-adjoint, localized-unit, and unit mapping-cone obligations.",
+    "Typeclass synthesis still does not provide a nullary bounded-derived stable package for MetrizableLCA."
+  ],
+  "remaining_work": [
+    "Construct a mathematically honest nullary W1496 raw-field input from true smaller providers, or identify the exact missing source theorem for each W1496/W1494 leaf.",
+    "Use a nullary W987 provider to build the bounded-derived stable package and then the original four-task product success witness.",
+    "Run the Tier C review packet and full contract audit before permitting update_goal complete."
+  ],
+  "next_required_source_api": [
+    "noncomputable def Dbounded.nullaryW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputW1496 : W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputW1496",
+    "noncomputable def BoundedDerived.Metrizable.stablePackage : BoundedDerived.Metrizable.StablePackage",
+    "noncomputable def originalFourTaskProductSuccess : OriginalFourTaskProductSuccess"
+  ],
+  "verified_commands": [
+    "post-W1625 resumption gate saved under run/resumption_after_w1625_20260610T031048Z_*",
+    "stable Lean/mathlib v4.30.0 regression gate saved under run/stable_v4300_after_w1625_20260610T031048Z_*",
+    "lake build LeanLCAExactChallenge.BoundedDerived.MetrizableStableBridge saved under run/verify_w1496_raw_field_bridge_20260610T034837Z_metrizable_stable_bridge_build.*",
+    "lake build LeanLCAExactChallenge.OriginalFourTask.ProductData saved under run/verify_w1496_raw_field_bridge_20260610T034837Z_product_data_build.*",
+    "lake env lean audit/RequiredDeclarations.lean saved under run/verify_w1496_raw_field_bridge_20260610T034837Z_required_declarations.*",
+    "git diff --check saved under run/verify_w1496_raw_field_bridge_20260610T034837Z_git_diff_check.*",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge saved under run/verify_w1496_raw_field_bridge_20260610T034837Z_forbidden_tokens.*",
+    "jq . terminal_outcome/terminal_outcome.json run/goal_identity_20260602_human_centered_positive_witness.json saved under run/verify_w1496_raw_field_bridge_20260610T034837Z_json_validation.*",
+    "false-success scan saved under run/verify_w1496_raw_field_bridge_20260610T034837Z_false_success_scan.*"
+  ]
+}
+{
+  "schema": "lean_lca_exact_challenge.goal_identity.v1",
+  "generated_utc": "2026-06-10T03:54:24Z",
+  "thread_id": "019ea5a4-a615-78b2-8944-d6f4ed0b24bb",
+  "worktree": "/home/roku/codex-thread-workspaces/019ea5a4-a615-78b2-8944-d6f4ed0b24bb/worktrees/lean-lca-clean-positive-witness-20260609",
+  "goal_file": {
+    "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_human_centered_positive_witness_completion_goal_20260602.md",
+    "sha256": "f1277a166976d49f2aa3b4aca48b18644038086fd289307009fe97e3097ef205"
+  },
+  "contracts": [
+    {
+      "name": "original_four_task_completion_contract_20260526",
+      "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
+      "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
+    },
+    {
+      "name": "positive_witness_completion_contract_20260530",
+      "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md",
+      "sha256": "3120c014b83e0c7c8f8160ca90447a1a73588096a354ace109e2fca4e4eab5ec"
+    }
+  ],
+  "git": {
+    "branch": "goal-clean-positive-witness-20260609-019ea5a4",
+    "head": "8b257bd38afc17da49e44db7cb3bb1eb45f50714",
+    "origin_main": "8b257bd38afc17da49e44db7cb3bb1eb45f50714",
+    "origin_main_ls_remote": "8b257bd38afc17da49e44db7cb3bb1eb45f50714",
+    "origin_feature": "8b257bd38afc17da49e44db7cb3bb1eb45f50714",
+    "origin_feature_ls_remote": "8b257bd38afc17da49e44db7cb3bb1eb45f50714"
+  },
+  "product_success": false,
+  "product_success_claimed": false,
+  "update_goal_complete_permitted": false,
+  "notes": "Identity and contract hashes refreshed during the W1496 raw-field closed-embedding ProductData bridge checkpoint. Git fields record the pushed 8b257bd3 base checkpoint for this continuation; this artifact does not claim the original positive witness."
+}

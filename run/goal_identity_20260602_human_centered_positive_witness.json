@@ -1,6 +1,6 @@
 {
   "schema": "lean_lca_exact_challenge.goal_identity.v1",
-  "generated_utc": "2026-06-10T02:33:20Z",
+  "generated_utc": "2026-06-10T03:54:24Z",
   "thread_id": "019ea5a4-a615-78b2-8944-d6f4ed0b24bb",
   "worktree": "/home/roku/codex-thread-workspaces/019ea5a4-a615-78b2-8944-d6f4ed0b24bb/worktrees/lean-lca-clean-positive-witness-20260609",
   "goal_file": {
@@ -21,14 +21,14 @@
   ],
   "git": {
     "branch": "goal-clean-positive-witness-20260609-019ea5a4",
-    "head": "94f889b37539f1cc19f4a0d1bcf4146fc688ff28",
-    "origin_main": "94f889b37539f1cc19f4a0d1bcf4146fc688ff28",
-    "origin_main_ls_remote": "94f889b37539f1cc19f4a0d1bcf4146fc688ff28",
-    "origin_feature": "94f889b37539f1cc19f4a0d1bcf4146fc688ff28",
-    "origin_feature_ls_remote": "94f889b37539f1cc19f4a0d1bcf4146fc688ff28"
+    "head": "8b257bd38afc17da49e44db7cb3bb1eb45f50714",
+    "origin_main": "8b257bd38afc17da49e44db7cb3bb1eb45f50714",
+    "origin_main_ls_remote": "8b257bd38afc17da49e44db7cb3bb1eb45f50714",
+    "origin_feature": "8b257bd38afc17da49e44db7cb3bb1eb45f50714",
+    "origin_feature_ls_remote": "8b257bd38afc17da49e44db7cb3bb1eb45f50714"
   },
   "product_success": false,
   "product_success_claimed": false,
   "update_goal_complete_permitted": false,
-  "notes": "Identity and contract hashes refreshed after the pushed ProductData Task 2/3 projection checkpoint. Git fields record the pushed 94f889b3 checkpoint; this artifact does not claim the original positive witness."
+  "notes": "Identity and contract hashes refreshed during the W1496 raw-field closed-embedding ProductData bridge checkpoint. Git fields record the pushed 8b257bd3 base checkpoint for this continuation; this artifact does not claim the original positive witness."
 }

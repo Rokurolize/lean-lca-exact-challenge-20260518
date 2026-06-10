@@ -9,6 +9,7 @@ import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroStructuralFieldsSelecte
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivMembershipDataClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute
 import LeanLCAExactChallenge.Derived.ClosedMapRawBoundaryRelationFieldsNormalizedFixedTargetFieldsSourceTriangulationFieldsClosedEmbeddingClosednessFieldsSplitTargetNoUnivClosednessNormalizedEndpointUnitComponentsPrimitiveFieldsRoute
+import LeanLCAExactChallenge.Derived.W987SourceHomologicalTriangulationDataConstructionGuardW1496
 import LeanLCAExactChallenge.Derived.W987ClosedEmbeddingEndpointHomologyFreeEndpointFactsLocalizedSelectedCochainW829StableSemanticAdapterComparisonW1539
 
 /-!
@@ -35,6 +36,9 @@ namespace Metrizable
 
 abbrev DirectSourceInput : Type 2 :=
   Dbounded.W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3W829StableSemanticAdapterComparisonInputW1539
+
+abbrev W1496RawFieldInput : Type 2 :=
+  Dbounded.W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputW1496
 
 abbrev StableInstanceFacts : Type 2 :=
   Dbounded.W829DirectSourceStableInstanceFactsW1537
@@ -749,6 +753,54 @@ noncomputable def closedEmbeddingStablePackageOfDirectSource
   Dbounded.closedEmbeddingW829DirectSourceStableInstancePackageW1537 input
     globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider
 
+def closedEmbeddingComponentProviderOfW1496RawFieldInput
+    (input : W1496RawFieldInput) :
+    ClosedEmbeddingComponentProvider :=
+  Dbounded.globalClosedEmbeddingComponentsOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataW1494
+    input
+
+def closedEmbeddingCokernelProviderOfW1496RawFieldInput
+    (input : W1496RawFieldInput) :
+    ClosedEmbeddingCokernelProvider :=
+  Dbounded.mappedCokernelClosedEmbeddingProviderOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataW1494
+    input
+
+noncomputable def fullDataProviderOfW1496RawFieldInput
+    (input : W1496RawFieldInput) :
+    Dbounded.BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataProviderW987 :=
+  Dbounded.fullDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionW1497
+    input
+
+def w1496RawFieldInputNames : List String :=
+  Dbounded.w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputNamesW1496
+
+theorem w1496RawFieldInputNames_count :
+    w1496RawFieldInputNames.length = 74 := by
+  simpa [w1496RawFieldInputNames] using
+    Dbounded.w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputNamesW1496_count
+
+theorem fullDataProviderOfW1496RawFieldInput_eq_w1495
+    (input : W1496RawFieldInput) :
+    fullDataProviderOfW1496RawFieldInput input =
+      Dbounded.fullDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceTriangulationFieldDataW1495
+        input :=
+  rfl
+
+noncomputable def closedEmbeddingStablePackageOfW1496RawFieldInput
+    (input : W1496RawFieldInput) :
+    StablePackage :=
+  closedEmbeddingStablePackageOfDirectSource input
+    (closedEmbeddingComponentProviderOfW1496RawFieldInput input)
+    (closedEmbeddingCokernelProviderOfW1496RawFieldInput input)
+
+theorem closedEmbeddingStablePackageOfW1496RawFieldInput_eq_directSource
+    (input : W1496RawFieldInput) :
+    closedEmbeddingStablePackageOfW1496RawFieldInput input =
+      closedEmbeddingStablePackageOfDirectSource input
+        (closedEmbeddingComponentProviderOfW1496RawFieldInput input)
+        (closedEmbeddingCokernelProviderOfW1496RawFieldInput input) :=
+  rfl
+
 noncomputable def closedMapStablePackageOfDirectLocalizationBoundary
     (input : DirectSourceInput)
     (globalClosedMapComponents : ClosedMapComponentProvider)
@@ -828,6 +880,27 @@ theorem closedEmbeddingStablePackageOfDirectSource_eq_semanticAdapter
           globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider :=
   (Dbounded.closedEmbeddingW829StableSemanticAdapterPackage_eq_typeclassPackageW1539
     input globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider).symm
+
+theorem
+    closedEmbeddingStablePackageOfW1496RawFieldInput_eq_directLocalizationBoundary
+    (input : W1496RawFieldInput) :
+    closedEmbeddingStablePackageOfW1496RawFieldInput input =
+      closedEmbeddingStablePackageOfDirectLocalizationBoundary input
+        (closedEmbeddingComponentProviderOfW1496RawFieldInput input)
+        (closedEmbeddingCokernelProviderOfW1496RawFieldInput input) :=
+  closedEmbeddingStablePackageOfDirectSource_eq_directLocalizationBoundary input
+    (closedEmbeddingComponentProviderOfW1496RawFieldInput input)
+    (closedEmbeddingCokernelProviderOfW1496RawFieldInput input)
+
+theorem closedEmbeddingStablePackageOfW1496RawFieldInput_eq_semanticAdapter
+    (input : W1496RawFieldInput) :
+    closedEmbeddingStablePackageOfW1496RawFieldInput input =
+      Dbounded.closedEmbeddingW829StableSemanticAdapterPackageW1539 input
+        (closedEmbeddingComponentProviderOfW1496RawFieldInput input)
+        (closedEmbeddingCokernelProviderOfW1496RawFieldInput input) :=
+  closedEmbeddingStablePackageOfDirectSource_eq_semanticAdapter input
+    (closedEmbeddingComponentProviderOfW1496RawFieldInput input)
+    (closedEmbeddingCokernelProviderOfW1496RawFieldInput input)
 
 end Metrizable
 end BoundedDerived
