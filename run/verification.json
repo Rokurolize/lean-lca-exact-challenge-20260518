@@ -1,67 +1,72 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-06-10T08:21:41Z",
-  "source_base_git_head": "ed927e919285c077b84e0af8acada96fb2d6cc95",
+  "generated_utc": "2026-06-10T08:42:06Z",
+  "source_base_git_head": "f54abe885afc28ccba7f9d71567a7ba52323699a",
   "source_tree_hash": "4baec7a302c9a2f709d82b8781dbd334f6a046c1a0bc06db2e4e97503e327ec1",
   "source_file_count": 1202,
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "Verification for the W1450 nullary-frontier source-patch-needed handoff. Product success remains false because the W1450 field-data input and the stable bounded-derived package remain non-nullary.",
+  "summary": "Verification for the W1450 provider-leaf reassessment handoff. Product success remains false because the W1450 field-data input, its immediate leaf obligations, and the stable bounded-derived package remain non-nullary.",
   "commands": [
     {
       "command": "fresh resumption gate",
       "status": "passed",
-      "evidence": "run/resumption_20260610T081329Z_* logs record the clean W1450 base before new handoff artifacts, current HEAD ed927e919285c077b84e0af8acada96fb2d6cc95, matching origin/main, and product_success=false metadata."
+      "evidence": "run/resumption_20260610T083611Z_* logs record current HEAD f54abe885afc28ccba7f9d71567a7ba52323699a, matching origin/main, current terminal_outcome product_success=false, and resumption scan outputs."
     },
     {
       "command": "stable Lean/mathlib v4.30.0 regression gate",
       "status": "passed",
-      "evidence": "run/stable_v4300_20260610T081329Z_* logs record lean-toolchain, lakefile mathlib, manifest revisions, absent rc2 references, and stable-release history."
+      "evidence": "run/stable_v4300_20260610T083611Z_* logs record lean-toolchain, lakefile mathlib, manifest revisions, stable-release history, absent rc2 references, and clean toolchain diff."
     },
     {
       "command": "lake env lean run/source_patch_attempt_w1450_nullary_witness_20260610.lean",
       "status": "failed_expected",
-      "evidence": "run/source_patch_attempt_w1450_nullary_witness_20260610T083900Z.exit is 1; the log exposes exactly the four W1450 constructor goals and the missing Preadditive (Dbounded MetrizableLCA) instance on the typeclass route."
+      "evidence": "run/source_patch_attempt_w1450_nullary_witness_20260610T083900Z.exit is 1; the log exposes the four W1450 provider-package goals and missing Preadditive (Dbounded MetrizableLCA)."
+    },
+    {
+      "command": "lake env lean run/w1450_field_component_frontier_probe_20260609.lean",
+      "status": "failed_expected",
+      "evidence": "run/verify_w1450_field_component_frontier_probe_20260609.log records the eight immediate W1450 leaf goals reused by this reassessment."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "run/verify_source_patch_w1450_nullary_frontier_20260610T082141Z_lake_build.exit is 0."
+      "evidence": "run/verify_w1450_provider_leaf_reassessment_20260610T083847Z_lake_build.exit is 0."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "run/verify_source_patch_w1450_nullary_frontier_20260610T082141Z_forbidden_tokens.exit is 0."
+      "evidence": "run/verify_w1450_provider_leaf_reassessment_20260610T083847Z_forbidden_tokens.exit is 0."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "run/verify_source_patch_w1450_nullary_frontier_20260610T082141Z_required_declarations.exit is 0."
+      "evidence": "run/verify_w1450_provider_leaf_reassessment_20260610T083847Z_required_declarations.exit is 0."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "run/verify_source_patch_w1450_nullary_frontier_20260610T082141Z_product_success_declarations.exit is 0 while terminal_outcome remains source_patch_needed_handoff."
+      "evidence": "run/verify_w1450_provider_leaf_reassessment_20260610T083847Z_product_success_declarations.exit is 0 while terminal_outcome remains source_patch_needed_handoff."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "run/verify_source_patch_w1450_nullary_frontier_20260610T082141Z_git_diff_check.exit is 0."
+      "evidence": "run/verify_w1450_provider_leaf_reassessment_20260610T083847Z_git_diff_check.exit is 0."
     },
     {
       "command": "jq . run/verification.json terminal_outcome/terminal_outcome.json run/goal_identity_20260602_human_centered_positive_witness.json",
       "status": "passed",
-      "evidence": "run/verify_source_patch_w1450_nullary_frontier_20260610T082141Z_json_parse.exit is 0."
+      "evidence": "run/verify_w1450_provider_leaf_reassessment_20260610T083847Z_json_parse.exit is 0."
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "run/verify_source_patch_w1450_nullary_frontier_20260610T082141Z_contract_audit.exit is 0 with terminal_claims_product_success=false."
+      "evidence": "run/verify_w1450_provider_leaf_reassessment_20260610T083847Z_contract_audit.exit is 0 with terminal_claims_product_success=false."
     },
     {
       "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "run/verify_source_patch_w1450_nullary_frontier_20260610T082141Z_external_audit.exit is 0 with source_tree_hash 4baec7a302c9a2f709d82b8781dbd334f6a046c1a0bc06db2e4e97503e327ec1."
+      "evidence": "run/verify_w1450_provider_leaf_reassessment_20260610T083847Z_external_audit.exit is 0 with source_tree_hash 4baec7a302c9a2f709d82b8781dbd334f6a046c1a0bc06db2e4e97503e327ec1."
     }
   ]
 }
