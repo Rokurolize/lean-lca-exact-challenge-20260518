@@ -1,6 +1,6 @@
 {
   "schema": "lean_lca_exact_challenge.goal_identity.v1",
-  "generated_utc": "2026-06-10T04:12:39Z",
+  "generated_utc": "2026-06-10T07:34:45Z",
   "thread_id": "019ea5a4-a615-78b2-8944-d6f4ed0b24bb",
   "worktree": "/home/roku/codex-thread-workspaces/019ea5a4-a615-78b2-8944-d6f4ed0b24bb/worktrees/lean-lca-clean-positive-witness-20260609",
   "goal_file": {
@@ -21,14 +21,14 @@
   ],
   "git": {
     "branch": "goal-clean-positive-witness-20260609-019ea5a4",
-    "head": "f73ce5abc477886586e855c1f156f3853e707466",
-    "origin_main": "f73ce5abc477886586e855c1f156f3853e707466",
-    "origin_main_ls_remote": "f73ce5abc477886586e855c1f156f3853e707466",
-    "origin_feature": "f73ce5abc477886586e855c1f156f3853e707466",
-    "origin_feature_ls_remote": "f73ce5abc477886586e855c1f156f3853e707466"
+    "head": "1bed8f8f4c6698f407501c29a7ac15a5e6532948",
+    "origin_main": "1bed8f8f4c6698f407501c29a7ac15a5e6532948",
+    "origin_main_ls_remote": "1bed8f8f4c6698f407501c29a7ac15a5e6532948",
+    "origin_feature": "1bed8f8f4c6698f407501c29a7ac15a5e6532948",
+    "origin_feature_ls_remote": "1bed8f8f4c6698f407501c29a7ac15a5e6532948"
   },
   "product_success": false,
   "product_success_claimed": false,
   "update_goal_complete_permitted": false,
-  "notes": "Identity and contract hashes refreshed during the 2026-06-10T04:12:39Z continuation gate. Git fields record the pushed W1496 raw-field bridge checkpoint f73ce5ab; this artifact does not claim the original positive witness."
+  "notes": "Identity and contract hashes refreshed during the 2026-06-10T05:14:20Z continuation gate. Git fields record the pushed W1496 full-data direct-localization boundary checkpoint 1bed8f8f as the source base for the W1490 73-input continuation; this artifact does not claim the original positive witness."
 }

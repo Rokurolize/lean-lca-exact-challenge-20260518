@@ -40,6 +40,9 @@ abbrev DirectSourceInput : Type 2 :=
 abbrev W1496RawFieldInput : Type 2 :=
   Dbounded.W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionInputW1496
 
+abbrev W1490RawFieldInput : Type 2 :=
+  Dbounded.W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataConstructionInputW1490
+
 abbrev StableInstanceFacts : Type 2 :=
   Dbounded.W829DirectSourceStableInstanceFactsW1537
 
@@ -752,6 +755,55 @@ noncomputable def closedEmbeddingStablePackageOfDirectSource
     StablePackage :=
   Dbounded.closedEmbeddingW829DirectSourceStableInstancePackageW1537 input
     globalClosedEmbeddingComponents mappedCokernelClosedEmbeddingProvider
+
+noncomputable def fullDataProviderOfW1490RawFieldInput
+    (input : W1490RawFieldInput) :
+    Dbounded.BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataProviderW987 :=
+  Dbounded.fullDataOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataW1490
+    input
+
+def w1490RawFieldInputNames : List String :=
+  Dbounded.w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataConstructionInputNamesW1490
+
+theorem w1490RawFieldInputNames_count :
+    w1490RawFieldInputNames.length = 73 := by
+  simpa [w1490RawFieldInputNames] using
+    Dbounded.w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3FieldDataConstructionInputNamesW1490_count
+
+noncomputable def fullDataDirectLocalizationBoundaryInputOfW1490RawFieldInput
+    (input : W1490RawFieldInput) :
+    ClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryInputW1625
+    where
+  fullData := fullDataProviderOfW1490RawFieldInput input
+
+theorem fullDataDirectLocalizationBoundaryInputOfW1490RawFieldInput_fullData
+    (input : W1490RawFieldInput) :
+    (fullDataDirectLocalizationBoundaryInputOfW1490RawFieldInput input).fullData =
+      fullDataProviderOfW1490RawFieldInput input :=
+  rfl
+
+noncomputable def stablePackageOfW1490RawFieldInputViaFullDataDirectLocalizationBoundary
+    (input : W1490RawFieldInput) :
+    StablePackage :=
+  stablePackageOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryW1625
+    (fullDataDirectLocalizationBoundaryInputOfW1490RawFieldInput input)
+
+theorem stablePackageOfW1490RawFieldInputViaFullDataDirectLocalizationBoundary_eq_w1625
+    (input : W1490RawFieldInput) :
+    stablePackageOfW1490RawFieldInputViaFullDataDirectLocalizationBoundary input =
+      stablePackageOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryW1625
+        (fullDataDirectLocalizationBoundaryInputOfW1490RawFieldInput input) :=
+  rfl
+
+theorem
+    stablePackageOfW1490RawFieldInputViaFullDataDirectLocalizationBoundary_eq_directLocalizationBoundary
+    (input : W1490RawFieldInput) :
+    stablePackageOfW1490RawFieldInputViaFullDataDirectLocalizationBoundary input =
+      stablePackageOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+          (fullDataDirectLocalizationBoundaryInputOfW1490RawFieldInput input)) :=
+  stablePackageOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessDirectLocalizationBoundaryW1625_eq_directLocalizationBoundary
+    (fullDataDirectLocalizationBoundaryInputOfW1490RawFieldInput input)
 
 def closedEmbeddingComponentProviderOfW1496RawFieldInput
     (input : W1496RawFieldInput) :

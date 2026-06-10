@@ -2013,6 +2013,67 @@ theorem
   rfl
 
 /--
+Assemble product data from the W1490 73-field input through the W1625
+full-data direct-localization boundary. This bypasses the later W1494/W1496
+74-field surface by using W1490's existing W987 full-data provider.
+-/
+noncomputable def
+    originalFourTaskProductDataOfW1490RawFieldInputViaFullDataDirectLocalizationBoundary
+    (input : BoundedDerived.Metrizable.W1490RawFieldInput) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+    (BoundedDerived.Metrizable.fullDataDirectLocalizationBoundaryInputOfW1490RawFieldInput
+      input)
+
+theorem
+    originalFourTaskProductDataOfW1490RawFieldInputViaFullDataDirectLocalizationBoundary_eq_w1625
+    (input : BoundedDerived.Metrizable.W1490RawFieldInput) :
+    originalFourTaskProductDataOfW1490RawFieldInputViaFullDataDirectLocalizationBoundary
+        input =
+      originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+        (BoundedDerived.Metrizable.fullDataDirectLocalizationBoundaryInputOfW1490RawFieldInput
+          input) :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfW1490RawFieldInputViaFullDataDirectLocalizationBoundary_eq_directLocalizationBoundary
+    (input : BoundedDerived.Metrizable.W1490RawFieldInput) :
+    originalFourTaskProductDataOfW1490RawFieldInputViaFullDataDirectLocalizationBoundary
+        input =
+      originalFourTaskProductDataOfDirectLocalizationBoundary
+        (Dbounded.directLocalizationBoundaryInputsOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625
+          (BoundedDerived.Metrizable.fullDataDirectLocalizationBoundaryInputOfW1490RawFieldInput
+            input)) :=
+  originalFourTaskProductDataOfClosedMapBoundarySourcePiZeroFullDataClosedEmbeddingClosednessW1625_eq_directLocalizationBoundary
+    (BoundedDerived.Metrizable.fullDataDirectLocalizationBoundaryInputOfW1490RawFieldInput
+      input)
+
+theorem
+    originalFourTaskProductDataOfW1490RawFieldInputViaFullDataDirectLocalizationBoundary_boundedDerivedInfinityCategory
+    (input : BoundedDerived.Metrizable.W1490RawFieldInput) :
+    (originalFourTaskProductDataOfW1490RawFieldInputViaFullDataDirectLocalizationBoundary
+      input).boundedDerivedInfinityCategory =
+      BoundedDerived.Metrizable.stablePackageOfW1490RawFieldInputViaFullDataDirectLocalizationBoundary
+        input :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfW1490RawFieldInputViaFullDataDirectLocalizationBoundary_metrizableLCAExactCategory
+    (input : BoundedDerived.Metrizable.W1490RawFieldInput) :
+    (originalFourTaskProductDataOfW1490RawFieldInputViaFullDataDirectLocalizationBoundary
+      input).metrizableLCAExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem
+    originalFourTaskProductDataOfW1490RawFieldInputViaFullDataDirectLocalizationBoundary_yonedaExt
+    (input : BoundedDerived.Metrizable.W1490RawFieldInput) :
+    (originalFourTaskProductDataOfW1490RawFieldInputViaFullDataDirectLocalizationBoundary
+      input).yonedaExt =
+      fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
+  rfl
+
+/--
 Assemble product data from the W1496 raw-field input through the W1625
 full-data direct-localization boundary. W1496 constructs the W987 full-data
 provider, and W1625 removes the W1007 wrapper from that downstream surface.
