@@ -106,10 +106,24 @@ theorem originalFourTaskProductDataOfStablePackage_boundedDerivedInfinityCategor
     (originalFourTaskProductDataOfStablePackage P).boundedDerivedInfinityCategory = P :=
   rfl
 
+theorem originalFourTaskProductDataOfStablePackage_quillenExactCategory
+    (P : BoundedDerived.Metrizable.StablePackage) :
+    (originalFourTaskProductDataOfStablePackage P).quillenExactCategory =
+      MetrizableLCA.quillenExactCategory :=
+  rfl
+
 theorem originalFourTaskProductDataOfStablePackage_metrizableLCAExactCategory
     (P : BoundedDerived.Metrizable.StablePackage) :
     (originalFourTaskProductDataOfStablePackage P).metrizableLCAExactCategory =
       MetrizableLCA.quillenExactCategory :=
+  rfl
+
+theorem originalFourTaskProductDataOfStablePackage_metrizableLCAConflationIff
+    (P : BoundedDerived.Metrizable.StablePackage) {S : ShortComplex MetrizableLCA.{0}} :
+    (originalFourTaskProductDataOfStablePackage P).metrizableLCAConflationIff
+      (S := S) =
+      MetrizableLCA.quillenConflation_iff_closed_inclusion_open_surjection_algebraic_exact
+        (S := S) :=
   rfl
 
 theorem originalFourTaskProductDataOfStablePackage_metrizableLCAForgetKernelCokernelIff
@@ -147,6 +161,13 @@ theorem originalFourTaskProductDataOfStablePackage_yonedaExt
       fun X Y n => YonedaExt (C := MetrizableLCA.{0}) X Y n :=
   rfl
 
+theorem originalFourTaskProductDataOfStablePackage_yonedaExtZeroEquivHom
+    (P : BoundedDerived.Metrizable.StablePackage) (X Y : MetrizableLCA.{0}) :
+    (originalFourTaskProductDataOfStablePackage P).yonedaExtZeroEquivHom X Y =
+      YonedaExt.zero_equiv_hom (C := MetrizableLCA.{0}) (X := X) (Y := Y) :=
+  rfl
+
+@[reducible]
 noncomputable def originalFourTaskProductDataOfStablePackage_yonedaExtAddCommGroup
     (P : BoundedDerived.Metrizable.StablePackage) (X Y : MetrizableLCA.{0}) (n : ℕ) :
     AddCommGroup ((originalFourTaskProductDataOfStablePackage P).yonedaExt X Y n) :=

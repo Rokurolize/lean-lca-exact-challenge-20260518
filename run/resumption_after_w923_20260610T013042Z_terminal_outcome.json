@@ -1,0 +1,21 @@
+{
+  "outcome": "mathematical_frontier_nonterminal",
+  "product_success": false,
+  "product_complete": false,
+  "update_goal_allowed": false,
+  "git_head": null,
+  "latest_checkpoint": "run/w923_w601_target_difference_bridge_checkpoint_20260609.md",
+  "obligations_discharged": [
+    "Added Lean source constructor Dbounded.targetDifferenceSurjectivePrimitiveOfSurjectiveW923.",
+    "Added Lean source constructor Dbounded.targetDifferenceSurjectivePrimitiveOfTargetProviderW923.",
+    "Added Lean source constructor Dbounded.targetDifferenceSurjectivePrimitiveOfTargetDifferenceProviderW601 by identity closed-embedding specialization.",
+    "Added Lean source constructor Dbounded.targetNoUnivDataOfTargetDifferenceProviderAndCompactSpaceProviderW944."
+  ],
+  "obligations_derived_or_eliminated": [
+    "W923 primitive target-difference surjectivity is now derived from the canonical W713 target-only provider surface.",
+    "W923 primitive target-difference surjectivity is now derived from W601's closed-embedding-indexed target-difference provider.",
+    "W944 target no-univ data is now derived from W601 target-difference plus W601 target-codomain compactness, delegating compact-space-to-no-univ data to W930.",
+    "The W923-specific primitive provider is no longer a separate API frontier; the honest remaining target frontier is the older W601/W713 target-difference provider plus target-codomain compactness."
+  ],
+  "new_frontier_input_count": 9
+}
