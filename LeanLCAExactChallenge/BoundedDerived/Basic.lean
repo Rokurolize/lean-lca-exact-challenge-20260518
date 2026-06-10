@@ -175,6 +175,53 @@ theorem stablePackage_triangulated (P : BoundedDerived.Metrizable.StablePackage)
     IsTriangulated BoundedDerived.Metrizable.OrdinaryCategory :=
   P.triangulatedStructure
 
+/-- Forget a stable metrizable bounded-derived package back to the ordinary
+semantic input used by the four-projection stable certificate gate. -/
+noncomputable def stablePackage_ordinaryStableSemanticInput
+    (P : BoundedDerived.Metrizable.StablePackage) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput where
+  preadditive := P.preadditive
+  finiteLimits := P.finiteLimitInstance
+  finiteColimits := P.finiteColimitInstance
+  zeroObject := P.zeroObjectInstance
+  shiftAdditiveAll := P.shiftAdditiveAll
+  suspensionAdditive := P.suspensionAdditive
+  pretriangulated := P.pretriangulatedStructure
+  triangulated := P.triangulatedStructure
+
+/-- Rebuilding the stable package from its ordinary semantic fields recovers the
+same product-facing stable package. -/
+theorem stablePackage_of_ordinaryStableSemanticInput
+    (P : BoundedDerived.Metrizable.StablePackage) :
+    Dbounded.boundedDerivedInfinityCategoryOfMetrizableOrdinaryInput
+        (stablePackage_ordinaryStableSemanticInput P) =
+      P :=
+  rfl
+
+/-- The four-projection stable certificate extracted from a stable package is ready. -/
+theorem stablePackage_fourProjectionCertificate_ready
+    (P : BoundedDerived.Metrizable.StablePackage) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (stablePackage_ordinaryStableSemanticInput P)).ready :=
+  Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput_ready
+    (stablePackage_ordinaryStableSemanticInput P)
+
+/-- Any stable package supplies the accepted stable `Dbounded` gate object. -/
+noncomputable def stablePackage_acceptedStable
+    (P : BoundedDerived.Metrizable.StablePackage) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableOrdinaryInput
+    (stablePackage_ordinaryStableSemanticInput P)
+
+/-- The accepted gate object extracted from a stable package is accepted by the
+stable route gate. -/
+theorem stablePackage_acceptedStable_routeAccepted
+    (P : BoundedDerived.Metrizable.StablePackage) :
+    Dbounded.StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+        (.fullCertificate (stablePackage_acceptedStable P).certificate) =
+      true :=
+  (stablePackage_acceptedStable P).accepted
+
 end Metrizable
 
 end BoundedDerived
