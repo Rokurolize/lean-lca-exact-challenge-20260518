@@ -31,15 +31,17 @@ PROJECT_REQUIRED = [
 
 ROOT_REQUIRED = [
     "README_FOR_REVIEW.md",
-    "terminal_outcome/terminal_outcome.json",
-    "run/verification.json",
 ]
 
 REQUIRED_COMMANDS = [
     "lake build",
-    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+    "scripts/audit_no_generated_files.sh",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge audit",
+    "scripts/build_lean_audit_dependencies.sh",
     "lake env lean audit/RequiredDeclarations.lean",
     "lake env lean audit/ProductSuccessDeclarations.lean",
+    "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
+    "PYTHONDONTWRITEBYTECODE=1 python3 audit/external_audit.py --root .",
     "git diff --check",
 ]
 
@@ -81,6 +83,26 @@ FORBIDDEN_LEAN_RE = re.compile(r"\b(sorry|admit|axiom|unsafe)\b")
 HEX64_RE = re.compile(r"\b[0-9a-fA-F]{64}\b")
 JAPANESE_RE = re.compile(r"[\u3040-\u30ff\u3400-\u9fff]")
 ENGLISH_WORD_RE = re.compile(r"\b[A-Za-z][A-Za-z0-9'_-]*\b")
+GENERATED_ARTIFACT_NAMES = {"manifest.json"}
+GENERATED_ARTIFACT_PREFIXES = (
+    ".lake/",
+    "run/",
+    "terminal_outcome/",
+    "packets/",
+    "__pycache__/",
+)
+GENERATED_ARTIFACT_SUFFIXES = (
+    ".pyc",
+    ".log",
+    ".exit",
+    ".err",
+    ".status",
+    ".tsv",
+    ".olean",
+    ".ilean",
+    ".c",
+    ".o",
+)
 PRODUCT_PLACEHOLDER_RE = re.compile(
     r"StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|"
     r"\bsource[- ]patch\b|\bblocker\b|\bfrontier\b|\bgap\b",
@@ -254,7 +276,37 @@ def source_tree_hash(project_root: Path) -> str:
     return h.hexdigest()
 
 
-def check_required(root: Path, project_root: Path, terminal_outcome: Path) -> None:
+def is_generated_artifact_path(rel: str) -> bool:
+    return (
+        rel in GENERATED_ARTIFACT_NAMES
+        or rel.startswith(GENERATED_ARTIFACT_PREFIXES)
+        or rel.endswith(GENERATED_ARTIFACT_SUFFIXES)
+    )
+
+
+def check_no_tracked_generated_files(root: Path) -> None:
+    if not (root / ".git").exists():
+        return
+    proc = subprocess.run(
+        ["git", "ls-files", "-z"],
+        cwd=root,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=False,
+    )
+    if proc.returncode != 0:
+        fail(f"git ls-files failed while checking tracked artifacts: {proc.stderr.strip()}")
+    offenders = sorted(
+        rel for rel in proc.stdout.split("\0") if rel and is_generated_artifact_path(rel)
+    )
+    if offenders:
+        fail("generated or transient artifacts are tracked: " + ", ".join(offenders))
+
+
+def check_required(
+    root: Path, project_root: Path, terminal_outcome: Path, *, require_terminal: bool
+) -> None:
     missing = []
     for rel in PROJECT_REQUIRED:
         if not (project_root / rel).is_file():
@@ -262,7 +314,7 @@ def check_required(root: Path, project_root: Path, terminal_outcome: Path) -> No
     for rel in ROOT_REQUIRED:
         if not (root / rel).is_file():
             missing.append(str(root / rel))
-    if not terminal_outcome.is_file():
+    if require_terminal and not terminal_outcome.is_file():
         missing.append(str(terminal_outcome))
     if missing:
         fail("missing required files: " + ", ".join(missing))
@@ -320,7 +372,9 @@ def check_reference_route_log(project_root: Path) -> None:
             fail(f"reference_route_log.md does not explain required route-log item: {label}")
 
 
-def check_english_deliverables(root: Path, project_root: Path, terminal_outcome_path: Path) -> None:
+def check_english_deliverables(
+    root: Path, project_root: Path, terminal_outcome_path: Path | None
+) -> None:
     for rel, base in [
         ("README_FOR_REVIEW.md", root),
         ("docs/research/sources.md", project_root),
@@ -328,6 +382,9 @@ def check_english_deliverables(root: Path, project_root: Path, terminal_outcome_
     ]:
         require_english_text(rel, (base / rel).read_text(encoding="utf-8"), minimum=40)
     check_reference_route_log(project_root)
+
+    if terminal_outcome_path is None or not terminal_outcome_path.exists():
+        return
 
     outcome = load_json(terminal_outcome_path)
     summary = outcome.get("summary")
@@ -550,8 +607,8 @@ def has_authoritative_zip_sha(obj: Any, path: str = "$") -> str | None:
     return None
 
 
-def check_no_internal_zip_sha(root: Path, terminal_outcome: Path) -> None:
-    for rel in ["manifest.json", "terminal_outcome/terminal_outcome.json"]:
+def check_no_internal_zip_sha(root: Path, terminal_outcome: Path | None) -> None:
+    for rel in ["manifest.json"]:
         path = root / rel
         if path.exists():
             found = has_authoritative_zip_sha(load_json(path))
@@ -562,7 +619,7 @@ def check_no_internal_zip_sha(root: Path, terminal_outcome: Path) -> None:
         text = readme.read_text(encoding="utf-8")
         if "zip" in text.lower() and HEX64_RE.search(text):
             fail("README_FOR_REVIEW.md appears to contain a final zip SHA256")
-    if terminal_outcome.exists():
+    if terminal_outcome is not None and terminal_outcome.exists():
         found = has_authoritative_zip_sha(load_json(terminal_outcome))
         if found:
             fail(f"terminal outcome treats final zip SHA256 as authoritative at {found}")
@@ -696,12 +753,13 @@ def check_terminal_outcome(root: Path, terminal_outcome_path: Path, packet_mode:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", required=True)
-    parser.add_argument("--terminal-outcome", default="terminal_outcome/terminal_outcome.json")
+    parser.add_argument("--terminal-outcome", default=None)
     parser.add_argument("--self-check-only", action="store_true")
     args = parser.parse_args()
 
     root = Path(args.root).resolve()
-    terminal_outcome = Path(args.terminal_outcome)
+    terminal_outcome_arg = args.terminal_outcome or "terminal_outcome/terminal_outcome.json"
+    terminal_outcome = Path(terminal_outcome_arg)
     if not terminal_outcome.is_absolute():
         terminal_outcome = root / terminal_outcome
 
@@ -718,18 +776,33 @@ def main() -> None:
 
     project_root = project_root_for(root)
     packet_mode = project_root != root
-    check_required(root, project_root, terminal_outcome)
+    require_terminal = packet_mode or args.terminal_outcome is not None
+    terminal_for_checks = terminal_outcome if require_terminal else None
+    terminal_product_success = (
+        terminal_for_checks is not None and terminal_claims_product_success(terminal_for_checks)
+    )
+    check_required(root, project_root, terminal_outcome, require_terminal=require_terminal)
+    check_no_tracked_generated_files(root)
     check_forbidden_lean(project_root)
-    check_english_deliverables(root, project_root, terminal_outcome)
+    check_english_deliverables(
+        root,
+        project_root,
+        terminal_for_checks,
+    )
     check_no_product_placeholders(project_root)
     check_derived_infinity_product_contract(
-        project_root, terminal_outcome, terminal_claims_product_success(terminal_outcome)
+        project_root, terminal_outcome, terminal_product_success
     )
-    check_positive_witness_source_gate(root, project_root, terminal_outcome)
-    check_no_internal_zip_sha(root, terminal_outcome)
-    check_verification(root, project_root, terminal_outcome)
+    if terminal_for_checks is not None:
+        check_positive_witness_source_gate(root, project_root, terminal_for_checks)
+    check_no_internal_zip_sha(root, terminal_for_checks)
+    if terminal_for_checks is not None and terminal_for_checks.exists():
+        if not (root / "run" / "verification.json").is_file():
+            fail("terminal outcome audit requires run/verification.json")
+        check_verification(root, project_root, terminal_for_checks)
     check_negative_fixture(root)
-    check_terminal_outcome(root, terminal_outcome, packet_mode)
+    if terminal_for_checks is not None and terminal_for_checks.exists():
+        check_terminal_outcome(root, terminal_for_checks, packet_mode)
     print("external_audit: passed")
 
 

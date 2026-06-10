@@ -1,1 +1,0 @@
-LeanLCAExactChallenge/OriginalFourTask/ProductData.lean:149:0: warning: Definition `LeanLCAExactChallenge.originalFourTaskProductDataOfStablePackage_yonedaExtAddCommGroup` of class type must be marked with `@[reducible]` or `@[implicit_reducible]`

@@ -1,2 +1,0 @@
-command=lake env lean run/w930_compactspace_bridge_probe_20260609.lean
-exit=0

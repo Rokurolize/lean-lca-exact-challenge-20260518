@@ -1,1 +1,16 @@
-/.lake
+/.lake/
+/run/
+/terminal_outcome/
+/packets/
+/manifest.json
+__pycache__/
+*.pyc
+*.log
+*.exit
+*.err
+*.status
+*.tsv
+*.olean
+*.ilean
+*.c
+*.o

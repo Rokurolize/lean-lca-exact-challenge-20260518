@@ -22,12 +22,16 @@ Future proof work should replace carried provider assumptions with source-level 
 
 ```bash
 lake build
-scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge
+scripts/audit_no_generated_files.sh
+scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge audit
+scripts/build_lean_audit_dependencies.sh
 lake env lean audit/RequiredDeclarations.lean
 lake env lean audit/ProductSuccessDeclarations.lean
-PYTHONDONTWRITEBYTECODE=1 python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json
-PYTHONDONTWRITEBYTECODE=1 python3 audit/original_four_task_contract_audit.py --root "$PWD" --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json
+lake env lean audit/OriginalFourTaskCompletionDeclarations.lean
+PYTHONDONTWRITEBYTECODE=1 python3 audit/external_audit.py --root .
 git diff --check
 ```
 
-Use the Lean sources, the audit declarations, and the concise research notes under `docs/research/` as the review surface.
+Use the Lean sources, the audit declarations, and the concise research notes under `docs/research/` as the review surface. Raw run logs, worker transcripts, packet manifests, terminal outcomes, and progress TSVs belong in a thread workspace or CI artifacts, not in the repository history.
+
+Maintenance policy and cleanup runbooks live under `docs/maintenance/`.

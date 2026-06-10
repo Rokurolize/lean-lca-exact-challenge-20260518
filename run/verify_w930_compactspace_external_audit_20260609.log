@@ -1,3 +1,0 @@
-command=python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json
-exit=0
-external_audit: passed

@@ -12,8 +12,9 @@ Reviewers should focus on:
 - `audit/RequiredDeclarations.lean`
 - `audit/ProductSuccessDeclarations.lean`
 - `audit/OriginalFourTaskCompletionDeclarations.lean`
+- `scripts/audit_no_generated_files.sh`
+- `.github/workflows/lean_action_ci.yml`
 - `docs/research/`
-- `terminal_outcome/terminal_outcome.json`
-- `run/verification.json`
+- `docs/maintenance/`
 
-Old packet extractions, worker files, progress TSVs, root manifests, run-log archives, and provider-search ledgers were removed because they duplicate stale evidence and make the challenge harder to review.
+Old packet extractions, worker files, progress TSVs, root manifests, terminal outcomes, run-log archives, and provider-search ledgers are intentionally excluded from the review surface because they duplicate stale evidence and make the challenge harder to review.

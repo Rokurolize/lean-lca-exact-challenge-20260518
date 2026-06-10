@@ -1,3 +1,0 @@
-command=scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge
-exit=0
-No forbidden Lean tokens found under LeanLCAExactChallenge.

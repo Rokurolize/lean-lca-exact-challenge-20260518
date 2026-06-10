@@ -5,11 +5,8 @@ on:
   pull_request:
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read # Read access to repository contents
-  pages: write # Write access to GitHub Pages
-  id-token: write # Write access to ID tokens
+  contents: read
 
 jobs:
   build:
@@ -17,5 +14,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
+      - name: Reject tracked generated artifacts
+        run: scripts/audit_no_generated_files.sh
       - uses: leanprover/lean-action@v1
-      - uses: leanprover-community/docgen-action@v1
+      - name: Check forbidden Lean tokens
+        run: scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge audit
+      - name: Build Lean audit dependencies
+        run: scripts/build_lean_audit_dependencies.sh
+      - name: Check Lean audit declarations
+        run: |
+          lake env lean audit/RequiredDeclarations.lean
+          lake env lean audit/ProductSuccessDeclarations.lean
+          lake env lean audit/OriginalFourTaskCompletionDeclarations.lean
+      - name: Run external source audit
+        run: PYTHONDONTWRITEBYTECODE=1 python3 audit/external_audit.py --root .
+      - name: Check whitespace
+        run: git diff --check
