@@ -1,4 +1,61 @@
 {
+  "schema": "lean_lca_exact_challenge.verification.v1",
+  "generated_utc": "2026-06-10T10:17:10Z",
+  "source_base_git_head": "ae8f4551cf8a95df006ac5fa0594ac18878c246d",
+  "source_tree_hash": "6d693f30a222fb1282223d02d8a0b13f5f7ce2c7cf2167ef72d13553c8fc28a6",
+  "source_file_count": 1202,
+  "product_success": false,
+  "product_success_claimed": false,
+  "summary": "Verification for the post-bridge stable-package frontier checkpoint. Product success remains false because the bridge consumes a caller-supplied StablePackage; no nullary stable package, stable-boundary input bundle, W1450 field-data input, or original four-task product witness exists.",
+  "commands": [
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "run/terminal_refresh_20260610T1014Z_lake_build.exit is 0."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "run/terminal_refresh_20260610T1014Z_forbidden_tokens.exit is 0."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "run/terminal_refresh_20260610T1014Z_required_declarations.exit is 0."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "run/terminal_refresh_20260610T1014Z_product_success_declarations.exit is 0 while terminal_outcome remains nonterminal."
+    },
+    {
+      "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
+      "status": "passed",
+      "evidence": "run/terminal_refresh_20260610T1014Z_original_four_task_declarations.exit is 0."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "run/terminal_refresh_20260610T1014Z_git_diff_check.exit is 0."
+    },
+    {
+      "command": "jq . run/verification.json terminal_outcome/terminal_outcome.json run/goal_identity_20260602_human_centered_positive_witness.json",
+      "status": "passed",
+      "evidence": "run/terminal_refresh_20260610T1014Z_json_parse.exit is 0."
+    },
+    {
+      "command": "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "passed",
+      "evidence": "run/terminal_refresh_20260610T1014Z_contract_audit.exit is 0 with terminal_claims_product_success=false."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "passed",
+      "evidence": "run/terminal_refresh_20260610T1014Z_external_audit.exit is 0 with source_tree_hash 6d693f30a222fb1282223d02d8a0b13f5f7ce2c7cf2167ef72d13553c8fc28a6."
+    }
+  ]
+}
+{
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
   "generated_utc": "2026-06-10T10:17:10Z",
   "source_base_git_head": "ae8f4551cf8a95df006ac5fa0594ac18878c246d",
@@ -75,4 +132,38 @@
     "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --positive-witness-contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md --terminal-outcome terminal_outcome/terminal_outcome.json",
     "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json"
   ]
+}
+{
+  "schema": "lean_lca_exact_challenge.goal_identity.v1",
+  "generated_utc": "2026-06-10T08:03:11Z",
+  "thread_id": "019ea5a4-a615-78b2-8944-d6f4ed0b24bb",
+  "worktree": "/home/roku/codex-thread-workspaces/019ea5a4-a615-78b2-8944-d6f4ed0b24bb/worktrees/lean-lca-clean-positive-witness-20260609",
+  "goal_file": {
+    "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_human_centered_positive_witness_completion_goal_20260602.md",
+    "sha256": "f1277a166976d49f2aa3b4aca48b18644038086fd289307009fe97e3097ef205"
+  },
+  "contracts": [
+    {
+      "name": "original_four_task_completion_contract_20260526",
+      "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
+      "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
+    },
+    {
+      "name": "positive_witness_completion_contract_20260530",
+      "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md",
+      "sha256": "3120c014b83e0c7c8f8160ca90447a1a73588096a354ace109e2fca4e4eab5ec"
+    }
+  ],
+  "git": {
+    "branch": "goal-clean-positive-witness-20260609-019ea5a4",
+    "head": "3c6af55b28a4ccbc8728187c4f9bc364901417f1",
+    "origin_main": "3c6af55b28a4ccbc8728187c4f9bc364901417f1",
+    "origin_main_ls_remote": "3c6af55b28a4ccbc8728187c4f9bc364901417f1",
+    "origin_feature": "3c6af55b28a4ccbc8728187c4f9bc364901417f1",
+    "origin_feature_ls_remote": "3c6af55b28a4ccbc8728187c4f9bc364901417f1"
+  },
+  "product_success": false,
+  "product_success_claimed": false,
+  "update_goal_complete_permitted": false,
+  "notes": "Identity and contract hashes refreshed for the W1450 continuation after the pushed W1479 full-data direct-localization boundary checkpoint 3c6af55b. Git fields record 3c6af55b as the source base for the W1450 4-input continuation; this artifact does not claim the original positive witness."
 }
