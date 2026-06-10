@@ -1,0 +1,87 @@
+{
+  "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
+  "generated_utc": "2026-06-10T02:57:10Z",
+  "source_base_git_head": "94f889b37539f1cc19f4a0d1bcf4146fc688ff28",
+  "git_head": "94f889b37539f1cc19f4a0d1bcf4146fc688ff28",
+  "outcome": "mathematical_frontier_nonterminal",
+  "product_success": false,
+  "product_success_claimed": false,
+  "product_complete": false,
+  "update_goal_allowed": false,
+  "summary": "This checkpoint exposes the already checked W1624 and W1625 direct-localization boundary routes through the canonical bounded-derived bridge and OriginalFourTaskProductData surface. W1624 consumes one W1007 branch-full-data input. W1625 eliminates that wrapper and lets ProductData point directly at the underlying W987 full-data provider. This is not product success because W987 full data is still caller-supplied and no nullary OriginalFourTaskProductSuccess declaration is introduced.",
+  "reference_route_log": "docs/research/reference_route_log.md",
+  "handoff": "run/w1625_full_data_productdata_bridge_checkpoint_20260610.md",
+  "latest_checkpoint": "run/w1625_full_data_productdata_bridge_checkpoint_20260610.md",
+  "latest_handoff": "run/w1625_full_data_productdata_bridge_checkpoint_20260610.md",
+  "new_frontier_input_count": 1,
+  "obligations_discharged": [
+    "Added BoundedDerived.Metrizable stable-package bridge for W1624 branch-full-data direct-localization input.",
+    "Added BoundedDerived.Metrizable stable-package bridge for W1625 full-data direct-localization input.",
+    "Added OriginalFourTaskProductData constructors and projection lemmas for W1624 and W1625.",
+    "Updated RequiredDeclarations to check the W1624/W1625 Dbounded, bounded-derived bridge, and ProductData surfaces."
+  ],
+  "obligations_derived_or_eliminated": [
+    "The product-data bridge no longer has to stop at the W1519 selected-cochain closedness surface.",
+    "The W1007 branch-full-data wrapper is no longer the final product-facing input surface for this route.",
+    "The remaining product-data input for this route is the underlying BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataProviderW987."
+  ],
+  "known_gaps": [
+    "No declaration currently defines OriginalFourTaskProductSuccess or originalFourTaskProductSuccess.",
+    "No nullary BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataProviderW987 was constructed.",
+    "The W987 full-data provider still packages non-nullary target, relation, closed-embedding, endpoint, normalized-source, localized-unit, and source-triangulation field obligations.",
+    "Typeclass synthesis still does not provide a nullary bounded-derived stable package for MetrizableLCA."
+  ],
+  "remaining_work": [
+    "Construct a mathematically honest nullary W987 full-data provider from true smaller providers, or identify the exact missing source theorem for each W987 leaf.",
+    "Use a nullary W987 provider to build the bounded-derived stable package and then the original four-task product success witness.",
+    "Run the Tier C review packet and full contract audit before permitting update_goal complete."
+  ],
+  "next_required_source_api": [
+    "noncomputable def Dbounded.nullaryBoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataProvider : BoundaryRelationTargetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataProviderW987",
+    "noncomputable def BoundedDerived.Metrizable.stablePackage : BoundedDerived.Metrizable.StablePackage",
+    "noncomputable def originalFourTaskProductSuccess : OriginalFourTaskProductSuccess"
+  ],
+  "verified_commands": [
+    "post-ProductData resumption gate saved under run/resumption_after_productdata_20260610T023310Z_*",
+    "stable Lean/mathlib v4.30.0 regression gate saved under run/stable_v4300_after_productdata_20260610T023310Z_*",
+    "lake build LeanLCAExactChallenge.BoundedDerived.MetrizableStableBridge",
+    "lake build LeanLCAExactChallenge.OriginalFourTask.ProductData",
+    "lake env lean audit/RequiredDeclarations.lean",
+    "git diff --check -- LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridge.lean LeanLCAExactChallenge/OriginalFourTask/ProductData.lean audit/RequiredDeclarations.lean run/goal_identity_20260602_human_centered_positive_witness.json",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge"
+  ]
+}
+{
+  "schema": "lean_lca_exact_challenge.goal_identity.v1",
+  "generated_utc": "2026-06-10T02:33:20Z",
+  "thread_id": "019ea5a4-a615-78b2-8944-d6f4ed0b24bb",
+  "worktree": "/home/roku/codex-thread-workspaces/019ea5a4-a615-78b2-8944-d6f4ed0b24bb/worktrees/lean-lca-clean-positive-witness-20260609",
+  "goal_file": {
+    "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_human_centered_positive_witness_completion_goal_20260602.md",
+    "sha256": "f1277a166976d49f2aa3b4aca48b18644038086fd289307009fe97e3097ef205"
+  },
+  "contracts": [
+    {
+      "name": "original_four_task_completion_contract_20260526",
+      "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
+      "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
+    },
+    {
+      "name": "positive_witness_completion_contract_20260530",
+      "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_false_positive_recovery_20260530/lean_lca_positive_witness_completion_contract_20260530.md",
+      "sha256": "3120c014b83e0c7c8f8160ca90447a1a73588096a354ace109e2fca4e4eab5ec"
+    }
+  ],
+  "git": {
+    "branch": "goal-clean-positive-witness-20260609-019ea5a4",
+    "head": "94f889b37539f1cc19f4a0d1bcf4146fc688ff28",
+    "origin_main": "94f889b37539f1cc19f4a0d1bcf4146fc688ff28",
+    "origin_main_ls_remote": "94f889b37539f1cc19f4a0d1bcf4146fc688ff28",
+    "origin_feature": "94f889b37539f1cc19f4a0d1bcf4146fc688ff28",
+    "origin_feature_ls_remote": "94f889b37539f1cc19f4a0d1bcf4146fc688ff28"
+  },
+  "product_success": false,
+  "product_success_claimed": false,
+  "update_goal_complete_permitted": false,
+  "notes": "Identity and contract hashes refreshed after the pushed ProductData Task 2/3 projection checkpoint. Git fields record the pushed 94f889b3 checkpoint; this artifact does not claim the original positive witness."
+}
