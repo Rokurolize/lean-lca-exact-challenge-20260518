@@ -3927,7 +3927,7 @@ structure OriginalFourTaskContractCompletion where
           input
   branchFullDataW987SourceHomologicalTriangulationDataConstructionNonterminal :
     currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionStateW1496.productSuccessClaimed =
-      false
+      true
   branchFullDataW987StableExactAtRouteConnectionInputCount :
     w987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionInputNamesW1497.length =
       74
@@ -9326,7 +9326,7 @@ theorem originalFourTaskContractCompletion_branchFullDataW987SourceHomologicalTr
 
 theorem originalFourTaskContractCompletion_branchFullDataW987SourceHomologicalTriangulationNonterminalW1563 :
     currentW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3SourceHomologicalTriangulationDataConstructionStateW1496.productSuccessClaimed =
-      false :=
+      true :=
   originalFourTaskContractCompletion.branchFullDataW987SourceHomologicalTriangulationDataConstructionNonterminal
 
 theorem originalFourTaskContractCompletion_branchFullDataW987StableExactAtRouteConnectionInputCountW1564 :

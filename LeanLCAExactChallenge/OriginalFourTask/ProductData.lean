@@ -4,6 +4,7 @@ import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroConcreteFieldsSelectedC
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroExactInputsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroSplitFieldsSelectedCochainComparisonProductRoute
 import LeanLCAExactChallenge.Derived.BoundarySourcePiZeroStructuralFieldsSelectedCochainComparisonProductRoute
+import LeanLCAExactChallenge.Derived.W987StableExactAtRouteConnectionGuardW1497
 import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundaryDirectLocalization
 import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundary
 import LeanLCAExactChallenge.Ext.Yoneda
@@ -647,6 +648,25 @@ theorem
   rw [
     originalFourTaskProductDataOfClosedEmbeddingW1496RawFieldInput_eq_directSourceW1539,
     originalFourTaskProductDataOfClosedEmbeddingDirectSourceW1539_eq_directLocalizationBoundaryW1533]
+
+/--
+Assemble product data from the W1497 stable ExactAt route output.
+-/
+noncomputable def originalFourTaskProductDataOfStableExactAtRouteConnectionW1497
+    (input :
+      Dbounded.W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionInputW1497) :
+    OriginalFourTaskProductData :=
+  originalFourTaskProductDataOfStablePackage
+    (Dbounded.boundedDerivedInfinityCategoryOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionW1497
+      input)
+
+theorem originalFourTaskProductDataOfStableExactAtRouteConnectionW1497_boundedDerivedInfinityCategory
+    (input :
+      Dbounded.W987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionInputW1497) :
+    (originalFourTaskProductDataOfStableExactAtRouteConnectionW1497 input).boundedDerivedInfinityCategory =
+      Dbounded.boundedDerivedInfinityCategoryOfW987BoundaryRelationTargetStrictPreimageObjectImageRightAdjointFunctorTargetSurjectivityCompactnessMappedCokernelPi1Pi2Pi3StableExactAtRouteConnectionW1497
+        input :=
+  rfl
 
 /-- Assemble product data from the current canonical stable-instance boundary. -/
 noncomputable def originalFourTaskProductDataOfStableInstanceBoundary
