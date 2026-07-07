@@ -141,6 +141,55 @@ def ofIso {K L : CochainComplex C ℤ} (h : ExactAcyclicWithCyclesData C K)
           rw [← e.hom.comm i (i + 1)]
       _ = L.d i (i + 1) := by rw [← Category.assoc, inv_f_hom_f, Category.id_comp]
 
+/-- Transport corrected cycle data along the cochain shift `⟦n⟧`.
+
+The cycle objects are reindexed by `n`; the projection absorbs the sign
+`n.negOnePow` carried by the shifted differential, together with the
+`eqToHom` transport identifying `Z (i + n + 1)` with `Z (i + 1 + n)`. -/
+def shift {K : CochainComplex C ℤ} (h : ExactAcyclicWithCyclesData C K) (n : ℤ) :
+    ExactAcyclicWithCyclesData C (K⟦n⟧) where
+  Z i := h.Z (i + n)
+  incl i := h.incl (i + n)
+  proj i := n.negOnePow •
+    (h.proj (i + n) ≫ eqToHom (congrArg h.Z (show i + n + 1 = i + 1 + n by omega)))
+  zero i := by
+    show h.incl (i + n) ≫
+        (n.negOnePow • (h.proj (i + n) ≫
+          eqToHom (congrArg h.Z (show i + n + 1 = i + 1 + n by omega)))) = 0
+    rw [Linear.comp_units_smul, ← Category.assoc, h.zero (i + n), zero_comp, smul_zero]
+  conflation i := by
+    have hj : i + n + 1 = i + 1 + n := by omega
+    have hzero : h.incl (i + n) ≫
+        (n.negOnePow • (h.proj (i + n) ≫ eqToHom (congrArg h.Z hj))) = 0 := by
+      rw [Linear.comp_units_smul, ← Category.assoc, h.zero (i + n), zero_comp, smul_zero]
+    have eiso : ShortComplex.mk (h.incl (i + n)) (h.proj (i + n)) (h.zero (i + n)) ≅
+        ShortComplex.mk (h.incl (i + n))
+          (n.negOnePow • (h.proj (i + n) ≫ eqToHom (congrArg h.Z hj))) hzero :=
+      ShortComplex.isoMk (Iso.refl _) (Iso.refl _)
+        ⟨n.negOnePow • eqToHom (congrArg h.Z hj),
+          n.negOnePow • eqToHom (congrArg h.Z hj.symm),
+          by
+            simp only [Linear.units_smul_comp, Linear.comp_units_smul, smul_smul,
+              Int.units_mul_self, eqToHom_trans, eqToHom_refl, one_smul],
+          by
+            simp only [Linear.units_smul_comp, Linear.comp_units_smul, smul_smul,
+              Int.units_mul_self, eqToHom_trans, eqToHom_refl, one_smul]⟩
+        (by simp)
+        (by
+          dsimp
+          rw [Category.id_comp, Linear.comp_units_smul])
+    exact QuillenExactCategory.conflation_iso_transport eiso (h.conflation (i + n))
+  d_eq i := by
+    show (n.negOnePow • (h.proj (i + n) ≫
+        eqToHom (congrArg h.Z (show i + n + 1 = i + 1 + n by omega)))) ≫
+          h.incl (i + 1 + n) =
+      n.negOnePow • K.d (i + n) (i + 1 + n)
+    have key : ∀ (m : ℤ) (hm : i + n + 1 = m),
+        (h.proj (i + n) ≫ eqToHom (congrArg h.Z hm)) ≫ h.incl m = K.d (i + n) m := by
+      rintro m rfl
+      rw [eqToHom_refl, Category.comp_id, h.d_eq (i + n)]
+    rw [Linear.units_smul_comp, key (i + 1 + n) (by omega)]
+
 end ExactAcyclicWithCyclesData
 
 /-- Any witness of corrected cycle-object data yields the corrected predicate. -/
@@ -190,6 +239,38 @@ theorem exactAcyclicWithCycles_mappingCone_congr_iff [HasBinaryBiproducts C]
     exactAcyclicWithCycles C (CochainComplex.mappingCone φ₁) ↔
       exactAcyclicWithCycles C (CochainComplex.mappingCone φ₂) :=
   exactAcyclicWithCycles_iff_of_iso C (mappingConeIsoOfCommIso C eK eL comm)
+
+/-- Corrected cycle-object acyclicity is stable under cochain shifts. -/
+theorem exactAcyclicWithCycles_shift (K : CochainComplex C ℤ) (n : ℤ)
+    (hK : exactAcyclicWithCycles C K) : exactAcyclicWithCycles C (K⟦n⟧) := by
+  obtain ⟨h⟩ := hK
+  exact ⟨h.shift n⟩
+
+/-- Corrected cycle-object acyclicity is invariant under cochain shifts. -/
+theorem exactAcyclicWithCycles_shift_iff (K : CochainComplex C ℤ) (n : ℤ) :
+    exactAcyclicWithCycles C (K⟦n⟧) ↔ exactAcyclicWithCycles C K := by
+  constructor
+  · intro hK
+    have hShift : exactAcyclicWithCycles C ((K⟦n⟧)⟦-n⟧) :=
+      exactAcyclicWithCycles_shift C (K⟦n⟧) (-n) hK
+    exact exactAcyclicWithCycles_of_iso C
+      ((shiftEquiv (CochainComplex C ℤ) n).unitIso.app K).symm hShift
+  · exact exactAcyclicWithCycles_shift C K n
+
+/-- Corrected acyclicity of mapping cones is invariant under cochain shifts.
+This is the corrected analogue of `exactAcyclic_mappingCone_shift_iff`. -/
+theorem exactAcyclicWithCycles_mappingCone_shift_iff [HasBinaryBiproducts C]
+    {K L : CochainComplex C ℤ} (f : K ⟶ L) (n : ℤ) :
+    exactAcyclicWithCycles C (CochainComplex.mappingCone (f⟦n⟧')) ↔
+      exactAcyclicWithCycles C (CochainComplex.mappingCone f) := by
+  constructor
+  · intro hf
+    have hShift : exactAcyclicWithCycles C ((CochainComplex.mappingCone f)⟦n⟧) :=
+      exactAcyclicWithCycles_of_iso C (CochainComplex.mappingCone.shiftIso f n).symm hf
+    exact (exactAcyclicWithCycles_shift_iff C (CochainComplex.mappingCone f) n).1 hShift
+  · intro hf
+    exact exactAcyclicWithCycles_of_iso C (CochainComplex.mappingCone.shiftIso f n)
+      (exactAcyclicWithCycles_shift C (CochainComplex.mappingCone f) n hf)
 
 /--
 The legacy predicate from `Derived.Bounded`, given a descriptive name.
