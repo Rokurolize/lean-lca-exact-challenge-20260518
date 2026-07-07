@@ -12,6 +12,7 @@ import LeanLCAExactChallenge.LCA.Pushout
 import LeanLCAExactChallenge.LCA.ExactCategory
 import LeanLCAExactChallenge.Ext.Yoneda
 import LeanLCAExactChallenge.Derived.Bounded
+import LeanLCAExactChallenge.Derived.ExactAcyclicCorrect
 import LeanLCAExactChallenge.Derived.BoundedFiniteProducts
 import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundary
 import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundaryDirectLocalization
