@@ -377,6 +377,97 @@ theorem challengeExactSequence_shortComplex_of_cyclesData
     challengeExactSequence (h.shortComplex i) :=
   (quillenConflation_iff_challengeExactSequence).1 (h.conflation i)
 
+/-- Naturality of the comparison between the explicit metrizable product model
+and the categorical binary biproduct. -/
+lemma biprodObjIsoBiprod_hom_naturality {A B A' B' : MetrizableLCA.{u}}
+    (f : A ⟶ A') (g : B ⟶ B') :
+    (biprodObjIsoBiprod A B).hom ≫ biprod.map f g =
+      biprodMap f g ≫ (biprodObjIsoBiprod A' B').hom := by
+  apply biprod.hom_ext
+  · simp only [Category.assoc, biprod.map_fst, biprodMap_biprodFst,
+      biprodObjIsoBiprod_hom_fst]
+    rw [← Category.assoc, biprodObjIsoBiprod_hom_fst]
+  · simp only [Category.assoc, biprod.map_snd, biprodMap_biprodSnd,
+      biprodObjIsoBiprod_hom_snd]
+    rw [← Category.assoc, biprodObjIsoBiprod_hom_snd]
+
+/-- The degreewise biproduct comparison intertwines the differentials of a
+binary biproduct of metrizable cochain complexes. -/
+lemma biprodXIso_hom_d (K L : CochainComplex MetrizableLCA.{u} ℤ) (i j : ℤ) :
+    (K ⊞ L).d i j ≫ (HomologicalComplex.biprodXIso K L j).hom =
+      (HomologicalComplex.biprodXIso K L i).hom ≫ biprod.map (K.d i j) (L.d i j) := by
+  apply biprod.hom_ext
+  · rw [Category.assoc, HomologicalComplex.biprodXIso_hom_fst, Category.assoc,
+      biprod.map_fst, ← Category.assoc, HomologicalComplex.biprodXIso_hom_fst,
+      HomologicalComplex.Hom.comm]
+  · rw [Category.assoc, HomologicalComplex.biprodXIso_hom_snd, Category.assoc,
+      biprod.map_snd, ← Category.assoc, HomologicalComplex.biprodXIso_hom_snd,
+      HomologicalComplex.Hom.comm]
+
+/-- Corrected cycle-object data for a binary biproduct of metrizable cochain
+complexes: the cycle objects are the degreewise biproducts of the given cycle
+objects, conjugated by the canonical comparison `(K ⊞ L).X i ≅ K.X i ⊞ L.X i`. -/
+def cyclesDataBiprod {K L : CochainComplex MetrizableLCA.{u} ℤ}
+    (hK : ExactAcyclicWithCyclesData MetrizableLCA.{u} K)
+    (hL : ExactAcyclicWithCyclesData MetrizableLCA.{u} L) :
+    ExactAcyclicWithCyclesData MetrizableLCA.{u} (K ⊞ L) where
+  Z i := hK.Z i ⊞ hL.Z i
+  incl i := biprod.map (hK.incl i) (hL.incl i) ≫
+    (HomologicalComplex.biprodXIso K L i).inv
+  proj i := (HomologicalComplex.biprodXIso K L i).hom ≫
+    biprod.map (hK.proj i) (hL.proj i)
+  zero i := by
+    apply biprod.hom_ext
+    · simp [hK.zero i]
+    · simp [hL.zero i]
+  conflation i := by
+    have hzero : (biprod.map (hK.incl i) (hL.incl i) ≫
+          (HomologicalComplex.biprodXIso K L i).inv) ≫
+        ((HomologicalComplex.biprodXIso K L i).hom ≫
+          biprod.map (hK.proj i) (hL.proj i)) = 0 := by
+      apply biprod.hom_ext
+      · simp [hK.zero i]
+      · simp [hL.zero i]
+    have eiso : strictShortExactBiprodComplex (hK.shortComplex i) (hL.shortComplex i) ≅
+        ShortComplex.mk
+          (biprod.map (hK.incl i) (hL.incl i) ≫
+            (HomologicalComplex.biprodXIso K L i).inv)
+          ((HomologicalComplex.biprodXIso K L i).hom ≫
+            biprod.map (hK.proj i) (hL.proj i)) hzero :=
+      ShortComplex.isoMk
+        (biprodObjIsoBiprod _ _)
+        (biprodObjIsoBiprod _ _ ≪≫ (HomologicalComplex.biprodXIso K L i).symm)
+        (biprodObjIsoBiprod _ _)
+        (by
+          dsimp [strictShortExactBiprodComplex, ExactAcyclicWithCyclesData.shortComplex]
+          rw [← Category.assoc, biprodObjIsoBiprod_hom_naturality, Category.assoc])
+        (by
+          dsimp [strictShortExactBiprodComplex, ExactAcyclicWithCyclesData.shortComplex]
+          rw [Category.assoc, Iso.inv_hom_id_assoc]
+          exact biprodObjIsoBiprod_hom_naturality _ _)
+    exact quillenConflation_of_strictShortExact
+      (strictShortExact_iso eiso
+        (strictShortExact_biprod
+          (strictShortExact_shortComplex_of_cyclesData hK i)
+          (strictShortExact_shortComplex_of_cyclesData hL i)))
+  d_eq i := by
+    rw [← cancel_mono (HomologicalComplex.biprodXIso K L (i + 1)).hom,
+      biprodXIso_hom_d]
+    apply biprod.hom_ext
+    · simp [hK.d_eq i]
+    · simp [hL.d_eq i]
+
+/-- Corrected metrizable cycle-object acyclicity is closed under binary
+biproducts. This is the corrected analogue of `exactAcyclic_biprod`. -/
+theorem exactAcyclicWithCycles_biprod
+    (K L : CochainComplex MetrizableLCA.{u} ℤ)
+    (hK : exactAcyclicWithCycles MetrizableLCA.{u} K)
+    (hL : exactAcyclicWithCycles MetrizableLCA.{u} L) :
+    exactAcyclicWithCycles MetrizableLCA.{u} (K ⊞ L) := by
+  obtain ⟨hK⟩ := hK
+  obtain ⟨hL⟩ := hL
+  exact ⟨cyclesDataBiprod hK hL⟩
+
 end MetrizableLCA
 
 end LeanLCAExactChallenge
