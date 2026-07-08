@@ -1,3 +1,4 @@
+import Mathlib.CategoryTheory.Preadditive.Transfer
 import LeanLCAExactChallenge.Derived.ExactAcyclicWithCyclesContractible
 import LeanLCAExactChallenge.Derived.BoundedDerivedWithCycles
 
@@ -924,6 +925,28 @@ theorem boundedExactWeakEquivalenceWithCyclesToBoundedVerdier_isLocalizedEquival
       (boundedExactWeakEquivalenceWithCycles C) := input.composite_isLocalization
   exact LocalizerMorphism.IsLocalizedEquivalence.of_isLocalization_of_isLocalization (Φ := Φ)
     (L₂ := (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q)
+
+/-- A bounded Verdier composite-localization input transports preadditivity back to the
+direct corrected bounded derived localization. -/
+noncomputable abbrev DboundedWithCycles.preadditiveOfBoundedVerdierLocalizationInput
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (input : BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput C) :
+    Preadditive (DboundedWithCycles C) := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let Φ := boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW C
+  haveI : Φ.IsLocalizedEquivalence :=
+    boundedExactWeakEquivalenceWithCyclesToBoundedVerdier_isLocalizedEquivalence C input
+  let F :=
+    Φ.localizedFunctor (DboundedWithCycles.localization C)
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+  haveI : F.IsEquivalence := by
+    dsimp [F]
+    infer_instance
+  exact CategoryTheory.Preadditive.ofFullyFaithful
+    (F := F) F.asEquivalence.fullyFaithfulFunctor
 
 /-- Homotopy-category descent transfers left calculus from the homotopy pullback class. -/
 theorem

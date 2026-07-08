@@ -118,6 +118,16 @@ def rightCalculusAssumptionOfHomotopyVerdier
     boundedExactWeakEquivalenceWithCycles_hasRightCalculusOfFractions_of_closed2Adjoint
       MetrizableLCA.{0} descent adjoint
 
+/-- Build corrected preadditivity from the bounded corrected homotopy Verdier localization
+comparison, without a chain-level left-calculus hypothesis. -/
+abbrev preadditiveOfBoundedVerdierLocalizationInput
+    [(boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (input :
+      BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput MetrizableLCA.{0}) :
+    Preadditive OrdinaryCategory :=
+  DboundedWithCycles.preadditiveOfBoundedVerdierLocalizationInput MetrizableLCA.{0} input
+
 /-- Semantic fields supplied by corrected left calculus and corrected finite-product closure. -/
 structure LeftCalculusSemanticFields : Type 1 where
   leftCalculus : WeakEquivalence.HasLeftCalculusOfFractions
