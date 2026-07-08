@@ -90,6 +90,11 @@ structure StablePackage : Type 2 where
     letI : Pretriangulated OrdinaryCategory := pretriangulatedStructure
     IsTriangulated OrdinaryCategory
 
+/-- Corrected stable package together with the source-facing left-calculus field. -/
+structure StablePackageWithLeftCalculus : Type 2 where
+  package : StablePackage
+  leftCalculus : WeakEquivalence.HasLeftCalculusOfFractions
+
 /-- The explicit source-facing left-calculus assumption for the corrected weak equivalences. -/
 structure LeftCalculusAssumption : Type 1 where
   leftCalculus : WeakEquivalence.HasLeftCalculusOfFractions
@@ -255,6 +260,11 @@ abbrev isTriangulatedOfBoundedVerdierLocalizationInput
     IsTriangulated OrdinaryCategory :=
   DboundedWithCycles.isTriangulatedOfBoundedVerdierLocalizationInput
     MetrizableLCA.{0} input
+
+/-- Bounded homotopy objects over metrizable LCA groups are directly `Closed₂`. -/
+abbrev boundedHomotopyClosed2 :
+    (boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+  boundedHomotopyObject_isTriangulatedClosed2_direct MetrizableLCA.{0}
 
 /-- Build bounded-homotopy `Closed₂` from the strict endpoint realization input. -/
 abbrev boundedHomotopyClosed2OfTrianglehIso13Realization
@@ -501,18 +511,21 @@ def stablePackageOfWalkingParallelPairBoundedVerdierLocalizationInput
 
 /-- Route-specific inputs that remain before the corrected stable package is fully inhabited. -/
 structure RouteSpecificInputs : Type 1 where
-  boundedHomotopyRealization :
-    boundedHomotopyObjectTrianglehIso13Realization MetrizableLCA.{0}
   homotopyIsoClosureRealization :
     exactAcyclicWithCyclesHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA.{0}
   descent : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA.{0}
   walkingParallelPairTransfer :
     DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputsFromNormalized
 
+/-- Extra route input needed only for the source-facing corrected left-calculus field. -/
+structure RouteSpecificLeftCalculusInputs : Type 1 extends RouteSpecificInputs where
+  localizedRightAdjoint :
+    BoundedHomotopyWithCyclesLocalizedRightAdjointInput MetrizableLCA.{0}
+
 /-- Build the corrected stable package from the bundled route-specific inputs. -/
 def stablePackageOfRouteSpecificInputs (inputs : RouteSpecificInputs) : StablePackage := by
   letI : (boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
-    boundedHomotopyClosed2OfTrianglehIso13Realization inputs.boundedHomotopyRealization
+    boundedHomotopyClosed2
   letI : (exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
     exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
       MetrizableLCA.{0} inputs.homotopyIsoClosureRealization
@@ -530,16 +543,28 @@ def stablePackageOfRouteSpecificInputs (inputs : RouteSpecificInputs) : StablePa
   exact stablePackageOfWalkingParallelPairBoundedVerdierLocalizationInput
     transferInputs boundedInput
 
+/-- Build the corrected stable package together with corrected left calculus from route inputs. -/
+def stablePackageWithLeftCalculusOfRouteSpecificInputs
+    (inputs : RouteSpecificLeftCalculusInputs) : StablePackageWithLeftCalculus := by
+  let routeInputs : RouteSpecificInputs := inputs.toRouteSpecificInputs
+  letI : (exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+      MetrizableLCA.{0} routeInputs.homotopyIsoClosureRealization
+  exact
+    { package := stablePackageOfRouteSpecificInputs routeInputs
+      leftCalculus :=
+        (leftCalculusAssumptionOfHomotopyVerdier
+          routeInputs.descent inputs.localizedRightAdjoint).leftCalculus }
+
 /-- Names of route-specific inputs still to discharge for a fully inhabited corrected package. -/
 def routeSpecificInputNames : List String :=
-  ["boundedHomotopyObjectTrianglehIso13Realization MetrizableLCA",
-    "exactAcyclicWithCyclesHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA",
+  ["exactAcyclicWithCyclesHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA",
     "ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA",
     "DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputsFromNormalized"]
 
-/-- Four route-specific inputs remain before the corrected package is fully inhabited. -/
+/-- Three route-specific inputs remain before the corrected package is fully inhabited. -/
 theorem routeSpecificInputNames_count :
-    routeSpecificInputNames.length = 4 :=
+    routeSpecificInputNames.length = 3 :=
   rfl
 
 /-- The corrected stable package carrier is the corrected ordinary quasicategory nerve. -/

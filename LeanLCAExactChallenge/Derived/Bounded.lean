@@ -1405,6 +1405,47 @@ theorem boundedHomotopyObject_distinguished_ext3_of_triangleh_iso12
     (boundedHomotopyObject_triangleh_ext3 C f hK hL)
 
 omit [QuillenExactCategory C] in
+/-- Bounded homotopy objects are closed under the third object of distinguished triangles.
+
+The proof lifts the transported first morphism of the distinguished triangle through the
+full bounded homotopy quotient, then represents the third object by the mapping cone of
+that lifted strict map between bounded complexes. -/
+theorem boundedHomotopyObject_isTriangulatedClosed3
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    (boundedHomotopyObject C).IsTriangulatedClosed₃ := by
+  apply ObjectProperty.IsTriangulatedClosed₃.mk'
+  intro T hT h₁ h₂
+  rcases h₁ with ⟨K₁, hK₁, ⟨e₁⟩⟩
+  rcases h₂ with ⟨K₂, hK₂, ⟨e₂⟩⟩
+  let B₁ : BoundedComplexCategory C := ⟨K₁, hK₁⟩
+  let B₂ : BoundedComplexCategory C := ⟨K₂, hK₂⟩
+  let F := BoundedComplexCategory.homotopyQuotientBounded C
+  let q : F.obj B₁ ⟶ F.obj B₂ :=
+    ObjectProperty.homMk (e₁.hom ≫ T.mor₁ ≫ e₂.inv)
+  let f : B₁ ⟶ B₂ := F.preimage q
+  have hmap :
+      (HomotopyCategory.quotient C (ComplexShape.up ℤ)).map f.hom =
+        e₁.hom ≫ T.mor₁ ≫ e₂.inv := by
+    exact congrArg (fun g => g.hom) (Functor.map_preimage F q)
+  have comm :
+      (CochainComplex.mappingCone.triangleh f.hom).mor₁ ≫ e₂.hom =
+        e₁.hom ≫ T.mor₁ := by
+    dsimp [CochainComplex.mappingCone.triangleh]
+    rw [hmap]
+    simp
+  exact boundedHomotopyObject_distinguished_ext3_of_triangleh_iso12
+    C hT f.hom e₁ e₂ comm hK₁ hK₂
+
+omit [QuillenExactCategory C] in
+/-- Bounded homotopy objects are closed under the middle object of distinguished triangles. -/
+theorem boundedHomotopyObject_isTriangulatedClosed2_direct
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    (boundedHomotopyObject C).IsTriangulatedClosed₂ := by
+  haveI : (boundedHomotopyObject C).IsTriangulatedClosed₃ :=
+    boundedHomotopyObject_isTriangulatedClosed3 C
+  exact ObjectProperty.IsTriangulatedClosed₂.of_isTriangulatedClosed₃
+
+omit [QuillenExactCategory C] in
 /-- In a distinguished triangle, compatible isomorphisms on the first and third objects
 identify it with a strict mapping-cone triangle enough to transfer the middle-object
 boundedness conclusion.
