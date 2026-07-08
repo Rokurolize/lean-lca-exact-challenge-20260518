@@ -323,6 +323,11 @@ abbrev BoundedExactAcyclicWithCyclesHomotopyVerdierCategory
     boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
   (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Localization
 
+/-- The ambient corrected homotopy Verdier quotient. -/
+abbrev ExactAcyclicWithCyclesHomotopyVerdierCategory
+    [HasZeroObject C] [HasBinaryBiproducts C] : Type (max u v) :=
+  (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Localization
+
 /-- The bounded corrected Verdier weak equivalences map to the ambient corrected `trW`. -/
 abbrev boundedExactAcyclicWithCyclesHomotopyObjectToIsoClosure_trW
     [HasZeroObject C] [HasBinaryBiproducts C]
@@ -342,6 +347,43 @@ abbrev boundedExactAcyclicWithCyclesHomotopyObjectToIsoClosure_trW
     (BoundedHomotopyCategory.ι C).map h ≫
       ((BoundedHomotopyCategory.ι C).commShiftIso (1 : ℤ)).hom.app X, ?_, hZ⟩
   exact (BoundedHomotopyCategory.ι C).map_distinguished _ hT
+
+/-- The comparison functor from the bounded corrected homotopy Verdier quotient to the
+ambient corrected homotopy Verdier quotient. -/
+noncomputable abbrev boundedExactAcyclicWithCyclesHomotopyVerdierComparison
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    BoundedExactAcyclicWithCyclesHomotopyVerdierCategory C ⥤
+      ExactAcyclicWithCyclesHomotopyVerdierCategory C := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  exact (boundedExactAcyclicWithCyclesHomotopyObjectToIsoClosure_trW C).localizedFunctor
+    (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+    (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q
+
+/-- The bounded-to-ambient corrected Verdier comparison commutes with the two Verdier
+localization functors. -/
+noncomputable def boundedExactAcyclicWithCyclesHomotopyVerdierComparisonLocalizationIso
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    BoundedHomotopyCategory.ι C ⋙ (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q ≅
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q ⋙
+        boundedExactAcyclicWithCyclesHomotopyVerdierComparison C := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let Φ := boundedExactAcyclicWithCyclesHomotopyObjectToIsoClosure_trW C
+  letI : CatCommSq Φ.functor (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+      (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q
+      (Φ.localizedFunctor (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+        (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q) :=
+    Φ.catCommSq (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+      (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q
+  exact CatCommSq.iso Φ.functor (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+    (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q
+    (Φ.localizedFunctor (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+      (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q)
 
 /-- Under closed₂ hypotheses, the corrected bounded homotopy Verdier quotient is preadditive. -/
 noncomputable instance
@@ -1036,6 +1078,49 @@ noncomputable def boundedVerdierComparisonLocalizationIso
     (Φ.localizedFunctor (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
       (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q)
 
+/-- Composing the corrected bounded Verdier comparison with the bounded-to-ambient comparison
+recovers the corrected homotopy-pullback to ambient comparison. -/
+noncomputable def boundedVerdierComparison_comp_ambientIso
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    BoundedHomotopyDerivedCategoryWithCycles.boundedVerdierComparison C ⋙
+        boundedExactAcyclicWithCyclesHomotopyVerdierComparison C ≅
+      BoundedHomotopyDerivedCategoryWithCycles.verdierComparison C := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let source : BoundedComplexCategory C ⥤ ExactAcyclicWithCyclesHomotopyVerdierCategory C :=
+    BoundedComplexCategory.homotopyQuotient C ⋙
+      (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q
+  let boundedSourceIso : source ≅
+      (boundedHomotopyExactWeakEquivalenceWithCycles C).Q ⋙
+        (BoundedHomotopyDerivedCategoryWithCycles.boundedVerdierComparison C ⋙
+          boundedExactAcyclicWithCyclesHomotopyVerdierComparison C) :=
+    Functor.isoWhiskerRight
+        (BoundedComplexCategory.homotopyQuotientBounded_comp_ι_iso C).symm
+        (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q ≪≫
+      Functor.associator _ _ _ ≪≫
+      Functor.isoWhiskerLeft (BoundedComplexCategory.homotopyQuotientBounded C)
+        (boundedExactAcyclicWithCyclesHomotopyVerdierComparisonLocalizationIso C) ≪≫
+      (Functor.associator _ _ _).symm ≪≫
+      Functor.isoWhiskerRight
+        (BoundedHomotopyDerivedCategoryWithCycles.boundedVerdierComparisonLocalizationIso C)
+        (boundedExactAcyclicWithCyclesHomotopyVerdierComparison C) ≪≫
+      Functor.associator _ _ _
+  haveI : Localization.Lifting (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
+      (boundedHomotopyExactWeakEquivalenceWithCycles C) source
+      (BoundedHomotopyDerivedCategoryWithCycles.boundedVerdierComparison C ⋙
+        boundedExactAcyclicWithCyclesHomotopyVerdierComparison C) :=
+    ⟨boundedSourceIso.symm⟩
+  haveI : Localization.Lifting (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
+      (boundedHomotopyExactWeakEquivalenceWithCycles C) source
+      (BoundedHomotopyDerivedCategoryWithCycles.verdierComparison C) :=
+    ⟨(BoundedHomotopyDerivedCategoryWithCycles.verdierComparisonLocalizationIso C).symm⟩
+  exact Localization.liftNatIso (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
+    (boundedHomotopyExactWeakEquivalenceWithCycles C) source source
+    (BoundedHomotopyDerivedCategoryWithCycles.boundedVerdierComparison C ⋙
+      boundedExactAcyclicWithCyclesHomotopyVerdierComparison C)
+    (BoundedHomotopyDerivedCategoryWithCycles.verdierComparison C) (Iso.refl source)
+
 end BoundedHomotopyDerivedCategoryWithCycles
 
 namespace DboundedWithCycles
@@ -1114,6 +1199,125 @@ noncomputable def verdierComparisonDirectLocalizationIso
     (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q
     (Φ.localizedFunctor (DboundedWithCycles.localization C)
       (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q)
+
+/-- The routed and direct corrected comparisons to the ambient homotopy Verdier quotient are
+canonically isomorphic because they lift the same bounded-complex functor. -/
+noncomputable def verdierComparisonDirectIso
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    DboundedWithCycles.verdierComparison C ≅ DboundedWithCycles.verdierComparisonDirect C :=
+  let source : BoundedComplexCategory C ⥤ ExactAcyclicWithCyclesHomotopyVerdierCategory C :=
+    BoundedComplexCategory.homotopyQuotient C ⋙
+      (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q
+  haveI : Localization.Lifting (DboundedWithCycles.localization C)
+      (boundedExactWeakEquivalenceWithCycles C) source (DboundedWithCycles.verdierComparison C) :=
+    ⟨(DboundedWithCycles.verdierComparisonLocalizationIso C).symm⟩
+  haveI : Localization.Lifting (DboundedWithCycles.localization C)
+      (boundedExactWeakEquivalenceWithCycles C) source
+      (DboundedWithCycles.verdierComparisonDirect C) :=
+    ⟨(DboundedWithCycles.verdierComparisonDirectLocalizationIso C).symm⟩
+  Localization.liftNatIso (DboundedWithCycles.localization C)
+    (boundedExactWeakEquivalenceWithCycles C) source source
+    (DboundedWithCycles.verdierComparison C) (DboundedWithCycles.verdierComparisonDirect C)
+    (Iso.refl source)
+
+/-- The comparison from the direct corrected bounded localization to the bounded corrected
+homotopy Verdier quotient, routed through the corrected homotopy-pullback localization. -/
+noncomputable abbrev boundedVerdierComparison
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    DboundedWithCycles C ⥤ BoundedExactAcyclicWithCyclesHomotopyVerdierCategory C :=
+  DboundedWithCycles.homotopyComparison C ⋙
+    BoundedHomotopyDerivedCategoryWithCycles.boundedVerdierComparison C
+
+/-- The routed direct-to-bounded-corrected-Verdier comparison commutes with the localization
+functors. -/
+noncomputable def boundedVerdierComparisonLocalizationIso
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    BoundedComplexCategory.homotopyQuotientBounded C ⋙
+        (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q ≅
+      DboundedWithCycles.localization C ⋙ DboundedWithCycles.boundedVerdierComparison C := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  exact BoundedHomotopyDerivedCategoryWithCycles.boundedVerdierComparisonLocalizationIso C ≪≫
+    Functor.isoWhiskerRight (DboundedWithCycles.homotopyComparisonLocalizationIso C)
+      (BoundedHomotopyDerivedCategoryWithCycles.boundedVerdierComparison C) ≪≫
+    Functor.associator _ _ _
+
+/-- The comparison from the direct corrected bounded localization to the bounded corrected
+homotopy Verdier quotient, induced directly by the composite localizer morphism. -/
+noncomputable abbrev boundedVerdierComparisonDirect
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    DboundedWithCycles C ⥤ BoundedExactAcyclicWithCyclesHomotopyVerdierCategory C := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  exact (boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW
+    C).localizedFunctor (DboundedWithCycles.localization C)
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+
+/-- The direct corrected bounded-to-bounded-Verdier comparison commutes with the localization
+functors. -/
+noncomputable def boundedVerdierComparisonDirectLocalizationIso
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    BoundedComplexCategory.homotopyQuotientBounded C ⋙
+        (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q ≅
+      DboundedWithCycles.localization C ⋙ DboundedWithCycles.boundedVerdierComparisonDirect C := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let Φ := boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW C
+  letI : CatCommSq Φ.functor (DboundedWithCycles.localization C)
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+      (Φ.localizedFunctor (DboundedWithCycles.localization C)
+        (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q) :=
+    Φ.catCommSq (DboundedWithCycles.localization C)
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+  exact CatCommSq.iso Φ.functor (DboundedWithCycles.localization C)
+    (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+    (Φ.localizedFunctor (DboundedWithCycles.localization C)
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q)
+
+/-- The routed and direct corrected comparisons to the bounded homotopy Verdier quotient are
+canonically isomorphic because they lift the same bounded-complex functor. -/
+noncomputable def boundedVerdierComparisonDirectIso
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    DboundedWithCycles.boundedVerdierComparison C ≅
+      DboundedWithCycles.boundedVerdierComparisonDirect C := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let source : BoundedComplexCategory C ⥤ BoundedExactAcyclicWithCyclesHomotopyVerdierCategory C :=
+    BoundedComplexCategory.homotopyQuotientBounded C ⋙
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+  haveI : Localization.Lifting (DboundedWithCycles.localization C)
+      (boundedExactWeakEquivalenceWithCycles C) source
+      (DboundedWithCycles.boundedVerdierComparison C) :=
+    ⟨(DboundedWithCycles.boundedVerdierComparisonLocalizationIso C).symm⟩
+  haveI : Localization.Lifting (DboundedWithCycles.localization C)
+      (boundedExactWeakEquivalenceWithCycles C) source
+      (DboundedWithCycles.boundedVerdierComparisonDirect C) :=
+    ⟨(DboundedWithCycles.boundedVerdierComparisonDirectLocalizationIso C).symm⟩
+  exact Localization.liftNatIso (DboundedWithCycles.localization C)
+    (boundedExactWeakEquivalenceWithCycles C) source source
+    (DboundedWithCycles.boundedVerdierComparison C)
+    (DboundedWithCycles.boundedVerdierComparisonDirect C) (Iso.refl source)
+
+/-- Composing the corrected direct-to-bounded-Verdier comparison with the bounded-to-ambient
+comparison recovers the corrected direct-to-ambient Verdier comparison. -/
+noncomputable def boundedVerdierComparison_comp_ambientIso
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    DboundedWithCycles.boundedVerdierComparison C ⋙
+        boundedExactAcyclicWithCyclesHomotopyVerdierComparison C ≅
+      DboundedWithCycles.verdierComparison C :=
+  Functor.associator _ _ _ ≪≫
+    Functor.isoWhiskerLeft (DboundedWithCycles.homotopyComparison C)
+      (BoundedHomotopyDerivedCategoryWithCycles.boundedVerdierComparison_comp_ambientIso C)
 
 /-- Under homotopy descent, the direct corrected localization and corrected homotopy pullback
 localization are equivalent. -/
