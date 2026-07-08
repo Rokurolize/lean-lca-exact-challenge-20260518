@@ -5,6 +5,8 @@ Remote branch: `cycle-object-exact-acyclic-handoff-20260708`.
 Implemented files:
 
 - `LeanLCAExactChallenge/Derived/ExactAcyclicCorrect.lean`
+- `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesClosure.lean`
+- `LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.lean`
 - `audit/SCOPE.md`
 - `audit/REPORT.md`
 
@@ -19,15 +21,29 @@ export LD_LIBRARY_PATH="$LDLIBS"
 lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/Derived/ExactAcyclicCorrect.olean \
   -i .lake/build/lib/lean/LeanLCAExactChallenge/Derived/ExactAcyclicCorrect.ilean \
   LeanLCAExactChallenge/Derived/ExactAcyclicCorrect.lean
+lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesClosure.olean \
+  -i .lake/build/lib/lean/LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesClosure.ilean \
+  LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesClosure.lean
+lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.olean \
+  -i .lake/build/lib/lean/LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.ilean \
+  LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.lean
 lean -j1 LeanLCAExactChallenge.lean
 ```
 
 Remaining tasks:
 
-1. Prove shift closure for `exactAcyclicWithCycles`.
-2. Prove mapping-cone isomorphism invariance.
-3. Prove biproduct or finite-product closure as needed.
-4. Build the `Dbounded` route using `boundedExactWeakEquivalenceWithCycles`.
-5. Migrate legacy `exactAcyclic` lemmas theorem-by-theorem.
+1. Prove or port a left-calculus-of-fractions theorem for `boundedExactWeakEquivalenceWithCycles`.
+2. Use that calculus theorem to promote the conditional `DboundedWithCycles` structure into the corrected stable package route.
+3. Migrate legacy `exactAcyclic` lemmas theorem-by-theorem only when the corresponding corrected theorem is needed.
+4. Keep the legacy degreewise `boundedExactWeakEquivalence` route labeled as compatibility-only.
 
-Note: this checkout had unrelated dirty files before this work began. This pass intentionally committed only the new cycle-object acyclicity artifacts and the one import line needed for them.
+Completed corrected closure milestones:
+
+- Mapping-cone isomorphism invariance.
+- Shift closure and bounded weak-equivalence shift compatibility.
+- MetrizableLCA binary biproduct closure.
+- MetrizableLCA finite-product closure via W151 Option-product decomposition.
+- Corrected bounded weak-equivalence finite-product stability over default-universe `MetrizableLCA`.
+- Separate corrected localization surface: `BoundedDerivedCategoryWithCycles`, `DboundedWithCycles`, and `DboundedWithCycles.localization`.
+
+Note: the older checkout at `/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518` had unrelated dirty files before this work began. Continue using the clean integration worktree unless the user explicitly asks otherwise.
