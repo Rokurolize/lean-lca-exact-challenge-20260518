@@ -431,7 +431,7 @@ structure RouteSpecificInputs : Type 1 where
   localizedRightAdjoint :
     BoundedHomotopyWithCyclesLocalizedRightAdjointInput MetrizableLCA.{0}
   walkingParallelPairTransfer :
-    DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputs
+    DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputsFromFixedTargets
   boundedHomotopyVerdierLocalization :
     letI : (boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
       boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
@@ -450,9 +450,11 @@ def stablePackageOfRouteSpecificInputs (inputs : RouteSpecificInputs) : StablePa
   let boundedInput :=
     BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput.ofHomotopy
       MetrizableLCA.{0} inputs.descent inputs.boundedHomotopyVerdierLocalization
+  let transferInputs :=
+    DboundedWithCycles.MetrizableLCA.walkingParallelPairFiniteShapeTransferInputs_of_fixedTargets
+      inputs.walkingParallelPairTransfer
   exact stablePackageOfHomotopyVerdierWalkingParallelPairBoundedVerdierLocalizationInput
-    inputs.descent inputs.localizedRightAdjoint inputs.walkingParallelPairTransfer
-    boundedInput
+    inputs.descent inputs.localizedRightAdjoint transferInputs boundedInput
 
 /-- Names of route-specific inputs still to discharge for a fully inhabited corrected package. -/
 def routeSpecificInputNames : List String :=
@@ -460,7 +462,7 @@ def routeSpecificInputNames : List String :=
     "exactAcyclicWithCyclesHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA",
     "ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA",
     "BoundedHomotopyWithCyclesLocalizedRightAdjointInput MetrizableLCA",
-    "DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputs",
+    "DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputsFromFixedTargets",
     "BoundedHomotopyExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput MetrizableLCA"]
 
 /-- Six route-specific inputs remain before the corrected package is fully inhabited. -/

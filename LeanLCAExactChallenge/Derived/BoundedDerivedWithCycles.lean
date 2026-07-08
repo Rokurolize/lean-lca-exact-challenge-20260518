@@ -167,6 +167,154 @@ structure WalkingParallelPairFiniteShapeTransferInputs : Type 1 where
         ((boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).functorCategory
           WalkingParallelPair))
 
+/-- Objectwise corrected localization functor for `WalkingParallelPair` diagrams. -/
+noncomputable abbrev walkingParallelPairObjectwiseLocalizationFunctor :
+    (WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0}) ⥤
+      (WalkingParallelPair ⥤ DboundedWithCycles MetrizableLCA.{0}) :=
+  ((Functor.whiskeringRight WalkingParallelPair
+      (BoundedComplexCategory MetrizableLCA.{0})
+      (DboundedWithCycles MetrizableLCA.{0})).obj
+      (DboundedWithCycles.localization MetrizableLCA.{0}))
+
+/-- Functor-category localization input for corrected `WalkingParallelPair` transfer. -/
+abbrev WalkingParallelPairFunctorCategoryLocalizationInput : Prop :=
+  walkingParallelPairObjectwiseLocalizationFunctor.IsLocalization
+    ((boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).functorCategory
+      WalkingParallelPair)
+
+/-- The objectwise corrected localization functor inverts objectwise corrected weak
+equivalences. -/
+lemma walkingParallelPairObjectwiseLocalization_inverts :
+    MorphismProperty.IsInvertedBy
+      ((boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).functorCategory
+        WalkingParallelPair)
+      walkingParallelPairObjectwiseLocalizationFunctor :=
+  fun _ _ f hf => by
+    haveI :
+        ∀ j : WalkingParallelPair,
+          IsIso ((walkingParallelPairObjectwiseLocalizationFunctor.map f).app j) :=
+      fun j =>
+        CategoryTheory.Localization.inverts
+          (DboundedWithCycles.localization MetrizableLCA.{0})
+          (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0})
+          (f.app j) (hf j)
+    exact NatIso.isIso_of_isIso_app _
+
+/-- Expanded fixed-target fields for the corrected objectwise WPP localization. -/
+structure WalkingParallelPairFunctorCategoryFixedTargetFields
+    (E : Type*) [Category E] where
+  inverts :
+    MorphismProperty.IsInvertedBy
+      ((boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).functorCategory
+        WalkingParallelPair)
+      walkingParallelPairObjectwiseLocalizationFunctor
+  lift :
+    ∀ (F : (WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0}) ⥤ E),
+      MorphismProperty.IsInvertedBy
+        ((boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).functorCategory
+          WalkingParallelPair) F →
+        (WalkingParallelPair ⥤ DboundedWithCycles MetrizableLCA.{0}) ⥤ E
+  fac :
+    ∀ (F : (WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0}) ⥤ E)
+      (hF :
+        MorphismProperty.IsInvertedBy
+          ((boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).functorCategory
+            WalkingParallelPair) F),
+      walkingParallelPairObjectwiseLocalizationFunctor ⋙ lift F hF = F
+  uniq :
+    ∀ (F₁ F₂ : (WalkingParallelPair ⥤ DboundedWithCycles MetrizableLCA.{0}) ⥤ E),
+      walkingParallelPairObjectwiseLocalizationFunctor ⋙ F₁ =
+        walkingParallelPairObjectwiseLocalizationFunctor ⋙ F₂ →
+      F₁ = F₂
+
+/-- Convert corrected fixed-target fields into mathlib's strict universal property. -/
+def WalkingParallelPairFunctorCategoryFixedTargetFields.toStrictUniversalProperty
+    {E : Type*} [Category E]
+    (fields : WalkingParallelPairFunctorCategoryFixedTargetFields E) :
+    CategoryTheory.Localization.StrictUniversalPropertyFixedTarget
+      walkingParallelPairObjectwiseLocalizationFunctor
+      ((boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).functorCategory
+        WalkingParallelPair)
+      E where
+  inverts := fields.inverts
+  lift := fields.lift
+  fac := fields.fac
+  uniq := fields.uniq
+
+/-- Remaining corrected fixed-target data after formal objectwise inversion is proved. -/
+structure WalkingParallelPairFunctorCategoryRemainingFixedTargetData
+    (E : Type*) [Category E] where
+  lift :
+    ∀ (F : (WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0}) ⥤ E),
+      MorphismProperty.IsInvertedBy
+        ((boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).functorCategory
+          WalkingParallelPair) F →
+        (WalkingParallelPair ⥤ DboundedWithCycles MetrizableLCA.{0}) ⥤ E
+  fac :
+    ∀ (F : (WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0}) ⥤ E)
+      (hF :
+        MorphismProperty.IsInvertedBy
+          ((boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).functorCategory
+            WalkingParallelPair) F),
+      walkingParallelPairObjectwiseLocalizationFunctor ⋙ lift F hF = F
+  uniq :
+    ∀ (F₁ F₂ : (WalkingParallelPair ⥤ DboundedWithCycles MetrizableLCA.{0}) ⥤ E),
+      walkingParallelPairObjectwiseLocalizationFunctor ⋙ F₁ =
+        walkingParallelPairObjectwiseLocalizationFunctor ⋙ F₂ →
+      F₁ = F₂
+
+/-- Add formal objectwise inversion to corrected remaining fixed-target data. -/
+def WalkingParallelPairFunctorCategoryRemainingFixedTargetData.toFields
+    {E : Type*} [Category E]
+    (data : WalkingParallelPairFunctorCategoryRemainingFixedTargetData E) :
+    WalkingParallelPairFunctorCategoryFixedTargetFields E where
+  inverts := walkingParallelPairObjectwiseLocalization_inverts
+  lift := data.lift
+  fac := data.fac
+  uniq := data.uniq
+
+/-- The two fixed targets sufficient for corrected WPP functor-category localization. -/
+structure WalkingParallelPairFunctorCategoryRemainingFixedTargetInputs : Type 1 where
+  targetData :
+    WalkingParallelPairFunctorCategoryRemainingFixedTargetData
+      (WalkingParallelPair ⥤ DboundedWithCycles MetrizableLCA.{0})
+  modelData :
+    WalkingParallelPairFunctorCategoryRemainingFixedTargetData
+      (((boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).functorCategory
+        WalkingParallelPair).Localization)
+
+/-- Build corrected WPP functor-category localization from fixed-target data. -/
+theorem walkingParallelPairFunctorCategoryLocalization_of_fixedTargetData
+    (inputs : WalkingParallelPairFunctorCategoryRemainingFixedTargetInputs) :
+    WalkingParallelPairFunctorCategoryLocalizationInput :=
+  Functor.IsLocalization.mk'
+    (L := walkingParallelPairObjectwiseLocalizationFunctor)
+    (W := (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).functorCategory
+      WalkingParallelPair)
+    inputs.targetData.toFields.toStrictUniversalProperty
+    inputs.modelData.toFields.toStrictUniversalProperty
+
+/-- Corrected finite-shape transfer with functor-category localization reduced to
+fixed-target universal-property data. -/
+structure WalkingParallelPairFiniteShapeTransferInputsFromFixedTargets : Type 1 where
+  limitStability :
+    (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair
+  colimitStability :
+    (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).IsStableUnderColimitsOfShape
+      WalkingParallelPair
+  fixedTargetInputs :
+    WalkingParallelPairFunctorCategoryRemainingFixedTargetInputs
+
+/-- Build corrected WPP transfer inputs from fixed-target functor-category data. -/
+def walkingParallelPairFiniteShapeTransferInputs_of_fixedTargets
+    (inputs : WalkingParallelPairFiniteShapeTransferInputsFromFixedTargets) :
+    WalkingParallelPairFiniteShapeTransferInputs where
+  limitStability := inputs.limitStability
+  colimitStability := inputs.colimitStability
+  functorCategoryLocalization :=
+    walkingParallelPairFunctorCategoryLocalization_of_fixedTargetData inputs.fixedTargetInputs
+
 /-- Equalizers in the corrected metrizable bounded derived category from finite-shape
 localization transfer. -/
 noncomputable abbrev hasEqualizersOfWalkingParallelPairTransfer
