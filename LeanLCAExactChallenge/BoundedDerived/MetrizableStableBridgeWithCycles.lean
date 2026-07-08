@@ -432,11 +432,6 @@ structure RouteSpecificInputs : Type 1 where
     BoundedHomotopyWithCyclesLocalizedRightAdjointInput MetrizableLCA.{0}
   walkingParallelPairTransfer :
     DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputsFromNormalized
-  boundedHomotopyVerdierLocalization :
-    letI : (boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
-      boundedHomotopyClosed2
-    BoundedHomotopyExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput
-      MetrizableLCA.{0}
 
 /-- Build the corrected stable package from the bundled route-specific inputs. -/
 def stablePackageOfRouteSpecificInputs (inputs : RouteSpecificInputs) : StablePackage := by
@@ -447,7 +442,9 @@ def stablePackageOfRouteSpecificInputs (inputs : RouteSpecificInputs) : StablePa
       MetrizableLCA.{0} inputs.homotopyIsoClosureRealization
   let boundedInput :=
     BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput.ofHomotopy
-      MetrizableLCA.{0} inputs.descent inputs.boundedHomotopyVerdierLocalization
+      MetrizableLCA.{0} inputs.descent
+      (BoundedHomotopyExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput.of_comp
+        MetrizableLCA.{0})
   let transferInputs :=
     DboundedWithCycles.MetrizableLCA.walkingParallelPairFiniteShapeTransferInputs_of_normalized
       inputs.walkingParallelPairTransfer
@@ -460,12 +457,11 @@ def routeSpecificInputNames : List String :=
     "exactAcyclicWithCyclesHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA",
     "ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA",
     "BoundedHomotopyWithCyclesLocalizedRightAdjointInput MetrizableLCA",
-    "DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputsFromNormalized",
-    "BoundedHomotopyExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput MetrizableLCA"]
+    "DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputsFromNormalized"]
 
-/-- Six route-specific inputs remain before the corrected package is fully inhabited. -/
+/-- Five route-specific inputs remain before the corrected package is fully inhabited. -/
 theorem routeSpecificInputNames_count :
-    routeSpecificInputNames.length = 6 :=
+    routeSpecificInputNames.length = 5 :=
   rfl
 
 /-- The corrected stable package carrier is the corrected ordinary quasicategory nerve. -/

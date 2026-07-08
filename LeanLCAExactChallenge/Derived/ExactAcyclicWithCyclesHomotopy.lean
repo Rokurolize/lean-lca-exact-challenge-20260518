@@ -1,3 +1,4 @@
+import Mathlib.CategoryTheory.Localization.Composition
 import Mathlib.CategoryTheory.Preadditive.Transfer
 import LeanLCAExactChallenge.Derived.ExactAcyclicWithCyclesContractible
 import LeanLCAExactChallenge.Derived.BoundedDerivedWithCycles
@@ -21,6 +22,27 @@ open CategoryTheory
 open CategoryTheory.Limits
 open CategoryTheory.Pretriangulated
 open scoped ZeroObject
+
+/-- A full essentially-surjective functor maps the inverse image of an isomorphism-respecting
+morphism property back onto that property. -/
+theorem MorphismProperty.le_map_inverseImage_of_full_essSurj
+    {D : Type*} {E : Type*} [Category D] [Category E]
+    (F : D ⥤ E) [F.Full] [F.EssSurj] (P : MorphismProperty E) [P.RespectsIso] :
+    P ≤ (P.inverseImage F).map F := by
+  intro X Y f hf
+  let X' := F.objPreimage X
+  let Y' := F.objPreimage Y
+  let eX := F.objObjPreimageIso X
+  let eY := F.objObjPreimageIso Y
+  let f' : X' ⟶ Y' := F.preimage (eX.hom ≫ f ≫ eY.inv)
+  refine ⟨X', Y', f', ?_, ?_⟩
+  · change P (F.map f')
+    rw [Functor.map_preimage]
+    exact (P.arrow_mk_iso_iff (Arrow.isoMk eX eY (by simp))).2 hf
+  · refine ⟨Arrow.isoMk eX eY ?_⟩
+    dsimp [f']
+    rw [Functor.map_preimage]
+    simp
 
 variable (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
 
@@ -965,6 +987,41 @@ structure BoundedHomotopyExactWeakEquivalenceWithCyclesBoundedVerdierLocalizatio
     (BoundedComplexCategory.homotopyQuotientBounded C ⋙
       (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q).IsLocalization
         (boundedHomotopyExactWeakEquivalenceWithCycles C)
+
+/-- The bounded homotopy quotient localization and the bounded corrected homotopy Verdier
+localization compose to the homotopy-pullback corrected weak-equivalence localization. -/
+def BoundedHomotopyExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput.of_comp
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    BoundedHomotopyExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput C where
+  composite_isLocalization := by
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    apply Functor.IsLocalization.comp
+      (L₁ := BoundedComplexCategory.homotopyQuotientBounded C)
+      (W₁ := (HomologicalComplex.homotopyEquivalences C (ComplexShape.up ℤ)).inverseImage
+        (BoundedComplexCategory.ι C))
+      (L₂ := (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q)
+      (W₂ := (boundedExactAcyclicWithCyclesHomotopyObject C).trW)
+    · intro K L f hf
+      change IsIso
+        ((boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q.map
+          ((BoundedComplexCategory.homotopyQuotientBounded C).map f))
+      apply MorphismProperty.Q_inverts
+      change ((boundedExactAcyclicWithCyclesHomotopyObject C).trW.inverseImage
+        (BoundedComplexCategory.homotopyQuotientBounded C)) f
+      rw [← boundedHomotopyExactWeakEquivalenceWithCycles_eq_boundedHomotopy_trW_inverseImage C]
+      exact hf
+    · intro K L f hf
+      rw [boundedHomotopyExactWeakEquivalenceWithCycles_eq_boundedHomotopy_trW_inverseImage C]
+      have : IsIso ((BoundedComplexCategory.homotopyQuotientBounded C).map f) :=
+        Localization.inverts (BoundedComplexCategory.homotopyQuotientBounded C) _ f hf
+      exact (boundedExactAcyclicWithCyclesHomotopyObject C).trW.of_isIso _
+    · intro K L f hf
+      rw [boundedHomotopyExactWeakEquivalenceWithCycles_eq_boundedHomotopy_trW_inverseImage C]
+      exact MorphismProperty.le_map_inverseImage_of_full_essSurj
+        (BoundedComplexCategory.homotopyQuotientBounded C)
+        (boundedExactAcyclicWithCyclesHomotopyObject C).trW f hf
 
 /-- Input saying that the direct corrected weak-equivalence localization is already the
 bounded corrected homotopy Verdier localization. -/
