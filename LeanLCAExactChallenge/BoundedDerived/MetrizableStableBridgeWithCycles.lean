@@ -423,8 +423,8 @@ def stablePackageOfHomotopyVerdierWalkingParallelPairBoundedVerdierLocalizationI
 
 /-- Route-specific inputs that remain before the corrected stable package is fully inhabited. -/
 structure RouteSpecificInputs : Type 1 where
-  boundedHomotopyRealization :
-    boundedHomotopyObjectTrianglehIso13Realization MetrizableLCA.{0}
+  boundedHomotopyClosed2 :
+    (boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂
   homotopyIsoClosureRealization :
     exactAcyclicWithCyclesHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA.{0}
   descent : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA.{0}
@@ -434,16 +434,14 @@ structure RouteSpecificInputs : Type 1 where
     DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputsFromFixedTargets
   boundedHomotopyVerdierLocalization :
     letI : (boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
-      boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
-        MetrizableLCA.{0} boundedHomotopyRealization
+      boundedHomotopyClosed2
     BoundedHomotopyExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput
       MetrizableLCA.{0}
 
 /-- Build the corrected stable package from the bundled route-specific inputs. -/
 def stablePackageOfRouteSpecificInputs (inputs : RouteSpecificInputs) : StablePackage := by
   letI : (boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
-    boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
-      MetrizableLCA.{0} inputs.boundedHomotopyRealization
+    inputs.boundedHomotopyClosed2
   letI : (exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
     exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
       MetrizableLCA.{0} inputs.homotopyIsoClosureRealization
@@ -458,7 +456,7 @@ def stablePackageOfRouteSpecificInputs (inputs : RouteSpecificInputs) : StablePa
 
 /-- Names of route-specific inputs still to discharge for a fully inhabited corrected package. -/
 def routeSpecificInputNames : List String :=
-  ["boundedHomotopyObjectTrianglehIso13Realization MetrizableLCA",
+  ["(boundedHomotopyObject MetrizableLCA).IsTriangulatedClosed₂",
     "exactAcyclicWithCyclesHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA",
     "ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA",
     "BoundedHomotopyWithCyclesLocalizedRightAdjointInput MetrizableLCA",
