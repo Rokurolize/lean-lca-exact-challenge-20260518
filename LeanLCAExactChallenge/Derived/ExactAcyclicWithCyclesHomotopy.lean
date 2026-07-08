@@ -1078,6 +1078,100 @@ noncomputable abbrev DboundedWithCycles.shiftFunctor_additiveOfBoundedVerdierLoc
     Functor.additive_of_iso (F.commShiftIso n).symm
   exact Functor.additive_of_comp_faithful (shiftFunctor (DboundedWithCycles C) n) F
 
+/-- A bounded Verdier composite-localization input transports the pretriangulated structure
+back to the direct corrected bounded derived localization. -/
+noncomputable abbrev DboundedWithCycles.pretriangulatedOfBoundedVerdierLocalizationInput
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (input : BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput C) :
+    letI : Preadditive (DboundedWithCycles C) :=
+      DboundedWithCycles.preadditiveOfBoundedVerdierLocalizationInput C input
+    letI : HasZeroObject (DboundedWithCycles C) :=
+      DboundedWithCycles.hasZeroObjectOfBoundedVerdierLocalizationInput C input
+    letI : ∀ n : ℤ, (shiftFunctor (DboundedWithCycles C) n).Additive :=
+      DboundedWithCycles.shiftFunctor_additiveOfBoundedVerdierLocalizationInput C input
+    Pretriangulated (DboundedWithCycles C) := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  letI : Preadditive (DboundedWithCycles C) :=
+    DboundedWithCycles.preadditiveOfBoundedVerdierLocalizationInput C input
+  letI : HasZeroObject (DboundedWithCycles C) :=
+    DboundedWithCycles.hasZeroObjectOfBoundedVerdierLocalizationInput C input
+  letI : ∀ n : ℤ, (shiftFunctor (DboundedWithCycles C) n).Additive :=
+    DboundedWithCycles.shiftFunctor_additiveOfBoundedVerdierLocalizationInput C input
+  let Φ := boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW C
+  haveI : Φ.IsLocalizedEquivalence :=
+    boundedExactWeakEquivalenceWithCyclesToBoundedVerdier_isLocalizedEquivalence C input
+  let F :=
+    Φ.localizedFunctor (DboundedWithCycles.localization C)
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+  haveI : F.IsEquivalence := by
+    dsimp [F]
+    infer_instance
+  haveI : F.Additive := F.asEquivalence.fullyFaithfulFunctor.additive_ofFullyFaithful
+  haveI : Φ.functor.CommShift ℤ := by
+    dsimp [Φ, boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW]
+    infer_instance
+  haveI : F.CommShift ℤ := by
+    dsimp [F]
+    infer_instance
+  exact
+    { distinguishedTriangles := fun T =>
+        F.mapTriangle.obj T ∈ distTriang (BoundedExactAcyclicWithCyclesHomotopyVerdierCategory C)
+      isomorphic_distinguished := by
+        intro T₁ hT₁ T₂ e
+        exact isomorphic_distinguished _ hT₁ _ (F.mapTriangle.mapIso e)
+      contractible_distinguished := by
+        intro X
+        exact isomorphic_distinguished _ (contractible_distinguished (F.obj X)) _
+          (Triangle.isoMk _ _ (Iso.refl _) (Iso.refl _) F.mapZeroObject)
+      distinguished_cocone_triangle := by
+        intro X Y f
+        obtain ⟨Z', g', h', mem⟩ := distinguished_cocone_triangle (F.map f)
+        let Z : DboundedWithCycles C := F.objPreimage Z'
+        let e : F.obj Z ≅ Z' := F.objObjPreimageIso Z'
+        refine ⟨Z, F.preimage (g' ≫ e.inv),
+          F.preimage (e.hom ≫ h' ≫ (F.commShiftIso (1 : ℤ)).inv.app X), ?_⟩
+        exact isomorphic_distinguished _ mem _
+          (Triangle.isoMk _ _ (Iso.refl _) (Iso.refl _) e
+            (by simp) (by simp) (by
+              dsimp [Functor.mapTriangle]
+              rw [F.map_preimage]
+              have hmap :
+                  (shiftFunctor (BoundedExactAcyclicWithCyclesHomotopyVerdierCategory C)
+                    (1 : ℤ)).map (𝟙 (F.obj X)) = 𝟙 _ := by
+                simp
+              rw [hmap, Category.comp_id]
+              simp only [Category.assoc]
+              have hinv :
+                  (F.commShiftIso (1 : ℤ)).inv.app X ≫
+                    (F.commShiftIso (1 : ℤ)).hom.app X = 𝟙 _ := by
+                exact congr_app (F.commShiftIso (1 : ℤ)).inv_hom_id X
+              have hinv_assoc :
+                  h' ≫ (F.commShiftIso (1 : ℤ)).inv.app X ≫
+                    (F.commShiftIso (1 : ℤ)).hom.app X = h' := by
+                change h' ≫ ((F.commShiftIso (1 : ℤ)).inv.app X ≫
+                  (F.commShiftIso (1 : ℤ)).hom.app X) = h'
+                erw [hinv, Category.comp_id]
+              simpa only [Category.assoc] using congrArg (fun k => e.hom ≫ k) hinv_assoc))
+      rotate_distinguished_triangle := by
+        intro T
+        exact (rotate_distinguished_triangle (F.mapTriangle.obj T)).trans
+          (distinguished_iff_of_iso (F.mapTriangleRotateIso.app T))
+      complete_distinguished_triangle_morphism := by
+        intro T₁ T₂ hT₁ hT₂ a b comm
+        obtain ⟨c, ⟨hc₁, hc₂⟩⟩ := complete_distinguished_triangle_morphism
+          (F.mapTriangle.obj T₁) (F.mapTriangle.obj T₂) hT₁ hT₂ (F.map a) (F.map b)
+          (by simpa using F.congr_map comm)
+        refine ⟨F.preimage c, ⟨?_, ?_⟩⟩
+        · apply F.map_injective
+          simpa using hc₁
+        · apply F.map_injective
+          rw [F.map_comp, F.map_comp, F.map_preimage]
+          erw [← cancel_mono ((F.commShiftIso (1 : ℤ)).hom.app T₂.obj₁)]
+          simpa [Category.assoc] using hc₂ }
+
 /-- Homotopy-category descent transfers left calculus from the homotopy pullback class. -/
 theorem
     boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_isoClosed

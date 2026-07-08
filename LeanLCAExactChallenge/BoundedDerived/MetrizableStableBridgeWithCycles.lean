@@ -186,6 +186,23 @@ abbrev shiftFunctorAdditiveOfBoundedVerdierLocalizationInput
   DboundedWithCycles.shiftFunctor_additiveOfBoundedVerdierLocalizationInput
     MetrizableLCA.{0} input n
 
+/-- Build corrected pretriangulation from the bounded corrected homotopy Verdier localization
+comparison, without a chain-level left-calculus hypothesis. -/
+abbrev pretriangulatedOfBoundedVerdierLocalizationInput
+    [(boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (input :
+      BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput MetrizableLCA.{0}) :
+    letI : Preadditive OrdinaryCategory :=
+      preadditiveOfBoundedVerdierLocalizationInput input
+    letI : HasZeroObject OrdinaryCategory :=
+      hasZeroObjectOfBoundedVerdierLocalizationInput input
+    letI : ∀ n : ℤ, (shiftFunctor OrdinaryCategory n).Additive :=
+      shiftFunctorAdditiveOfBoundedVerdierLocalizationInput input
+    Pretriangulated OrdinaryCategory :=
+  DboundedWithCycles.pretriangulatedOfBoundedVerdierLocalizationInput
+    MetrizableLCA.{0} input
+
 /-- Semantic fields supplied by corrected left calculus and corrected finite-product closure. -/
 structure LeftCalculusSemanticFields : Type 1 where
   leftCalculus : WeakEquivalence.HasLeftCalculusOfFractions
