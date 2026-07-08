@@ -423,8 +423,8 @@ def stablePackageOfHomotopyVerdierWalkingParallelPairBoundedVerdierLocalizationI
 
 /-- Route-specific inputs that remain before the corrected stable package is fully inhabited. -/
 structure RouteSpecificInputs : Type 1 where
-  boundedHomotopyClosed₂ :
-    (boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂
+  boundedHomotopyRealization :
+    boundedHomotopyObjectTrianglehIso13Realization MetrizableLCA.{0}
   homotopyIsoClosureClosed₂ :
     (exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂
   descent : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA.{0}
@@ -433,12 +433,16 @@ structure RouteSpecificInputs : Type 1 where
   walkingParallelPairTransfer :
     DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputs
   boundedVerdierLocalization :
+    letI : (boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+      boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
+        MetrizableLCA.{0} boundedHomotopyRealization
     BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput MetrizableLCA.{0}
 
 /-- Build the corrected stable package from the bundled route-specific inputs. -/
 def stablePackageOfRouteSpecificInputs (inputs : RouteSpecificInputs) : StablePackage := by
   letI : (boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
-    inputs.boundedHomotopyClosed₂
+    boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
+      MetrizableLCA.{0} inputs.boundedHomotopyRealization
   letI : (exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
     inputs.homotopyIsoClosureClosed₂
   exact stablePackageOfHomotopyVerdierWalkingParallelPairBoundedVerdierLocalizationInput
@@ -447,7 +451,7 @@ def stablePackageOfRouteSpecificInputs (inputs : RouteSpecificInputs) : StablePa
 
 /-- Names of route-specific inputs still to discharge for a fully inhabited corrected package. -/
 def routeSpecificInputNames : List String :=
-  ["(boundedHomotopyObject MetrizableLCA).IsTriangulatedClosed₂",
+  ["boundedHomotopyObjectTrianglehIso13Realization MetrizableLCA",
     "(exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA).IsTriangulatedClosed₂",
     "ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA",
     "BoundedHomotopyWithCyclesLocalizedRightAdjointInput MetrizableLCA",
