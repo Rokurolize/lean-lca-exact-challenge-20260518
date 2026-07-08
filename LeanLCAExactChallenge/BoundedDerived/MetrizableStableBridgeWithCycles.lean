@@ -421,6 +421,44 @@ def stablePackageOfHomotopyVerdierWalkingParallelPairBoundedVerdierLocalizationI
   pretriangulatedStructure := pretriangulatedOfBoundedVerdierLocalizationInput boundedInput
   triangulatedStructure := isTriangulatedOfBoundedVerdierLocalizationInput boundedInput
 
+/-- Route-specific inputs that remain before the corrected stable package is fully inhabited. -/
+structure RouteSpecificInputs : Type 1 where
+  boundedHomotopyClosed₂ :
+    (boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂
+  homotopyIsoClosureClosed₂ :
+    (exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂
+  descent : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA.{0}
+  localizedRightAdjoint :
+    BoundedHomotopyWithCyclesLocalizedRightAdjointInput MetrizableLCA.{0}
+  walkingParallelPairTransfer :
+    DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputs
+  boundedVerdierLocalization :
+    BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput MetrizableLCA.{0}
+
+/-- Build the corrected stable package from the bundled route-specific inputs. -/
+def stablePackageOfRouteSpecificInputs (inputs : RouteSpecificInputs) : StablePackage := by
+  letI : (boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    inputs.boundedHomotopyClosed₂
+  letI : (exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    inputs.homotopyIsoClosureClosed₂
+  exact stablePackageOfHomotopyVerdierWalkingParallelPairBoundedVerdierLocalizationInput
+    inputs.descent inputs.localizedRightAdjoint inputs.walkingParallelPairTransfer
+    inputs.boundedVerdierLocalization
+
+/-- Names of route-specific inputs still to discharge for a fully inhabited corrected package. -/
+def routeSpecificInputNames : List String :=
+  ["(boundedHomotopyObject MetrizableLCA).IsTriangulatedClosed₂",
+    "(exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA).IsTriangulatedClosed₂",
+    "ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA",
+    "BoundedHomotopyWithCyclesLocalizedRightAdjointInput MetrizableLCA",
+    "DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputs",
+    "BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput MetrizableLCA"]
+
+/-- Six route-specific inputs remain before the corrected package is fully inhabited. -/
+theorem routeSpecificInputNames_count :
+    routeSpecificInputNames.length = 6 :=
+  rfl
+
 /-- The corrected stable package carrier is the corrected ordinary quasicategory nerve. -/
 theorem stablePackage_carrier (P : StablePackage) :
     P.quasicategoryCarrier = rfl :=
