@@ -511,8 +511,8 @@ def stablePackageOfWalkingParallelPairBoundedVerdierLocalizationInput
 
 /-- Route-specific inputs that remain before the corrected stable package is fully inhabited. -/
 structure RouteSpecificInputs : Type 1 where
-  homotopyIsoClosureRealization :
-    exactAcyclicWithCyclesHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA.{0}
+  homotopyObjectClosed2 :
+    (exactAcyclicWithCyclesHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂
   descent : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA.{0}
   walkingParallelPairTransfer :
     DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputsFromNormalized
@@ -526,12 +526,11 @@ structure RouteSpecificLeftCalculusInputs : Type 1 extends RouteSpecificInputs w
 def stablePackageOfRouteSpecificInputs (inputs : RouteSpecificInputs) : StablePackage := by
   letI : (boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
     boundedHomotopyClosed2
-  letI : (exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
-    exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
-      MetrizableLCA.{0} inputs.homotopyIsoClosureRealization
   letI : (exactAcyclicWithCyclesHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
-    exactAcyclicWithCyclesHomotopyObjectClosed2OfDescentRealization
-      inputs.descent inputs.homotopyIsoClosureRealization
+    inputs.homotopyObjectClosed2
+  letI : (exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject
+      MetrizableLCA.{0}
   let boundedInput :=
     BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput.ofHomotopy
       MetrizableLCA.{0} inputs.descent
@@ -547,9 +546,11 @@ def stablePackageOfRouteSpecificInputs (inputs : RouteSpecificInputs) : StablePa
 def stablePackageWithLeftCalculusOfRouteSpecificInputs
     (inputs : RouteSpecificLeftCalculusInputs) : StablePackageWithLeftCalculus := by
   let routeInputs : RouteSpecificInputs := inputs.toRouteSpecificInputs
+  letI : (exactAcyclicWithCyclesHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    routeInputs.homotopyObjectClosed2
   letI : (exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
-    exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
-      MetrizableLCA.{0} routeInputs.homotopyIsoClosureRealization
+    exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject
+      MetrizableLCA.{0}
   exact
     { package := stablePackageOfRouteSpecificInputs routeInputs
       leftCalculus :=
@@ -558,7 +559,7 @@ def stablePackageWithLeftCalculusOfRouteSpecificInputs
 
 /-- Names of route-specific inputs still to discharge for a fully inhabited corrected package. -/
 def routeSpecificInputNames : List String :=
-  ["exactAcyclicWithCyclesHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA",
+  ["(exactAcyclicWithCyclesHomotopyObject MetrizableLCA).IsTriangulatedClosed₂",
     "ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA",
     "DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputsFromNormalized"]
 
