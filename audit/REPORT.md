@@ -27,6 +27,8 @@ with a cycle-object predicate. The full Verdier/localization proof stack is not 
 7. Added API, isomorphism transport, mapping-cone congruence, zero-object acyclicity, shift closure, and MetrizableLCA binary biproduct closure in `ExactAcyclicCorrect.lean`.
 8. Added `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesClosure.lean`, porting the corrected bounded weak-equivalence closure surface: arrow isomorphism invariance, shift compatibility, finite product closure over default-universe `MetrizableLCA`, and finite products of corrected bounded weak equivalences.
 9. Added `LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.lean`, a separate corrected localization surface with `BoundedDerivedCategoryWithCycles`, `DboundedWithCycles`, and `DboundedWithCycles.localization` based on `boundedExactWeakEquivalenceWithCycles`.
+10. Added `LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.lean`, a corrected MetrizableLCA stable package assumption surface tied to `DboundedWithCycles` and `boundedExactWeakEquivalenceWithCycles`.
+11. Added a corrected zero-object helper for `DboundedWithCycles` under the corrected left-calculus hypothesis.
 
 ## Assumption list
 
@@ -34,6 +36,7 @@ with a cycle-object predicate. The full Verdier/localization proof stack is not 
 - Existing `MetrizableLCA.quillenConflation_iff_challengeExactSequence` correctly connects `QuillenExactCategory.Conflation` with `challengeExactSequence`.
 - The new closure proofs still reuse existing project infrastructure for finite product decompositions and mapping-cone product comparison, including W151's Option-product comparison and the existing finite mapping-cone comparison input.
 - The existing legacy `Dbounded` route remains in the repository and is not globally replaced in this pass.
+- The corrected stable bridge is intentionally conditional: it exposes the exact remaining stable fields as assumptions instead of reusing legacy `Dbounded` semantic packages.
 
 ## Findings
 
@@ -106,25 +109,33 @@ The corrected route now has Lean-checked API for:
 - `DboundedWithCycles`
 - `DboundedWithCycles.localization`
 - `DboundedWithCycles.MetrizableLCA.hasFiniteProducts`
+- `DboundedWithCycles.hasZeroObjectOfHasLeftCalculusOfFractions`
+- `DboundedWithCycles.MetrizableLCA.hasZeroObject`
+- `BoundedDerivedWithCycles.Metrizable.StablePackage`
+- `BoundedDerivedWithCycles.Metrizable.LeftCalculusAssumption`
+- `BoundedDerivedWithCycles.Metrizable.LeftCalculusSemanticFields`
+- `BoundedDerivedWithCycles.Metrizable.RemainingStableSemanticFields`
+- `BoundedDerivedWithCycles.Metrizable.StableSemanticInput`
+- `BoundedDerivedWithCycles.Metrizable.stablePackageOfLeftCalculus`
 
 ## List of sorry / unproven spots
 
-The new files `LeanLCAExactChallenge/Derived/ExactAcyclicCorrect.lean`, `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesClosure.lean`, and `LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.lean` contain no `sorry` or `admit`.
+The new files `LeanLCAExactChallenge/Derived/ExactAcyclicCorrect.lean`, `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesClosure.lean`, `LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.lean`, and `LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.lean` contain no `sorry` or `admit`.
 
 Unproved in this pass:
 
 - Replacement of the existing `Dbounded` localization to use the new weak equivalences throughout the old theorem stack.
-- A proof that `boundedExactWeakEquivalenceWithCycles` has a left calculus of fractions. The corrected `DboundedWithCycles` surface is defined, and finite products are available conditionally on this calculus instance.
-- Migration of the old stable package route from legacy `Dbounded` to corrected `DboundedWithCycles`.
+- A proof that `boundedExactWeakEquivalenceWithCycles` has a left calculus of fractions. The corrected `DboundedWithCycles` surface is defined, and finite products, zero object, preadditivity, and shift additivity are available conditionally on this calculus instance.
+- Inhabited corrected finite limits, finite colimits, pretriangulated structure, and triangulated structure for `DboundedWithCycles MetrizableLCA.{0}`. The new `BoundedDerivedWithCycles.Metrizable.RemainingStableSemanticFields` record is the checked assumption surface for these fields.
 
 ## Verification commands
 
 The successful checks were run with direct `lean`, not with `lake env`, because Lake attempts network dependency repair in this restored bundle.
 
 ```bash
-export PATH="$PWD/.elan/toolchains/leanprover--lean4---v4.30.0/bin:$PATH"
-LIBS=$(find .lake -path '*/build/lib/lean' -type d | sort | paste -sd: -)
-LDLIBS=$(find .lake -path '*/build/lib' -type d | sort | paste -sd: -)
+export PATH="$HOME/.elan/toolchains/leanprover--lean4---v4.30.0/bin:$PATH"
+LIBS=$(find -L .lake -path '*/build/lib/lean' -type d | sort | paste -sd: -)
+LDLIBS=$(find -L .lake -path '*/build/lib' -type d | sort | paste -sd: -)
 export LEAN_PATH="$LIBS:$PWD"
 export LD_LIBRARY_PATH="$LDLIBS"
 lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/Derived/ExactAcyclicCorrect.olean \
@@ -136,6 +147,9 @@ lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/Derived/ExactAcyclicWithC
 lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.olean \
   -i .lake/build/lib/lean/LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.ilean \
   LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.lean
+lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.olean \
+  -i .lake/build/lib/lean/LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.ilean \
+  LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.lean
 lean -j1 LeanLCAExactChallenge.lean
 ```
 
@@ -143,4 +157,4 @@ All listed checks exited with code 0 in the restored offline bundle. WSL handoff
 
 ## Conclusion
 
-The invalid degreewise acyclicity definition is now isolated from the corrected construction. The project has a Lean-checked replacement predicate, checked `MetrizableLCA` bridge, checked isomorphism/shift/biproduct/finite-product closure, checked corrected bounded weak-equivalence finite-product stability, and a checked corrected `DboundedWithCycles` localization surface. The next formalization step is to prove or port the left-calculus-of-fractions input for `boundedExactWeakEquivalenceWithCycles`, then migrate the old stable package route theorem-by-theorem instead of relying on legacy `boundedExactWeakEquivalence`.
+The invalid degreewise acyclicity definition is now isolated from the corrected construction. The project has a Lean-checked replacement predicate, checked `MetrizableLCA` bridge, checked isomorphism/shift/biproduct/finite-product closure, checked corrected bounded weak-equivalence finite-product stability, a checked corrected `DboundedWithCycles` localization surface, and a checked corrected Metrizable stable package assumption surface. The next formalization step is to prove or port the left-calculus-of-fractions input for `boundedExactWeakEquivalenceWithCycles`, then inhabit the remaining corrected finite-limit, finite-colimit, pretriangulated, and triangulated fields without relying on legacy `boundedExactWeakEquivalence`.

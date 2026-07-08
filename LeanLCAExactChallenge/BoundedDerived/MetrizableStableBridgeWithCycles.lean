@@ -1,0 +1,232 @@
+import LeanLCAExactChallenge.Derived.BoundedDerivedWithCycles
+
+/-!
+# Corrected metrizable stable bridge for cycle-object acyclicity
+
+This module gives the corrected `DboundedWithCycles` route its own stable package surface.
+The fields are typed against `DboundedWithCycles MetrizableLCA` and the weak equivalences
+are `boundedExactWeakEquivalenceWithCycles`.
+
+The file intentionally keeps the remaining stable facts as explicit assumptions. It does
+not use the legacy `Dbounded` semantic package as evidence for the corrected route.
+-/
+
+set_option autoImplicit false
+
+noncomputable section
+
+namespace LeanLCAExactChallenge
+
+open CategoryTheory
+open CategoryTheory.Limits
+open scoped ZeroObject
+
+namespace BoundedDerivedWithCycles
+namespace Metrizable
+
+/-- Bounded cochain complexes over default-universe metrizable LCA groups. -/
+abbrev ComplexCategory : Type 1 :=
+  BoundedComplexCategory MetrizableLCA.{0}
+
+/-- The corrected ordinary bounded derived category for default-universe `MetrizableLCA`. -/
+abbrev OrdinaryCategory : Type 1 :=
+  DboundedWithCycles MetrizableLCA.{0}
+
+/-- Corrected bounded weak equivalences for default-universe `MetrizableLCA`. -/
+abbrev WeakEquivalence : MorphismProperty ComplexCategory :=
+  boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}
+
+/-- The corrected localization functor for default-universe `MetrizableLCA`. -/
+abbrev localization : ComplexCategory ⥤ OrdinaryCategory :=
+  DboundedWithCycles.localization MetrizableLCA.{0}
+
+/-- The ordinary quasicategory nerve attached to the corrected metrizable localization. -/
+abbrev infinityCategory : SSet.QCat :=
+  BoundedDerivedOrdinaryQuasicategoryWithCycles MetrizableLCA.{0}
+
+/-- Corrected weak equivalences are exactly the cycle-object acyclic mapping-cone maps. -/
+theorem weakEquivalence_iff_exactAcyclicWithCyclesMappingCone
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    WeakEquivalence f ↔
+      exactAcyclicWithCycles MetrizableLCA
+        (CochainComplex.mappingCone ((BoundedComplexCategory.ι MetrizableLCA).map f)) :=
+  Iff.rfl
+
+/--
+Product-facing stable bounded-derived data for the corrected metrizable route.
+
+The carrier and weak-equivalence class are recorded as fields so the package cannot be
+mistaken for the legacy localization surface.
+-/
+structure StablePackage : Type 2 where
+  quasicategoryCarrier :
+    infinityCategory = BoundedDerivedOrdinaryQuasicategoryWithCycles MetrizableLCA.{0}
+  weakEquivalenceClass :
+    WeakEquivalence = boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}
+  preadditive : Preadditive OrdinaryCategory
+  finiteProductInstance : HasFiniteProducts OrdinaryCategory
+  finiteLimitInstance : HasFiniteLimits OrdinaryCategory
+  finiteColimitInstance : HasFiniteColimits OrdinaryCategory
+  zeroObjectInstance : HasZeroObject OrdinaryCategory
+  shiftAdditiveAll :
+    letI : Preadditive OrdinaryCategory := preadditive
+    ∀ n : ℤ, (shiftFunctor OrdinaryCategory n).Additive
+  suspensionAdditive :
+    letI : Preadditive OrdinaryCategory := preadditive
+    letI : ∀ n : ℤ, (shiftFunctor OrdinaryCategory n).Additive := shiftAdditiveAll
+    (shiftFunctor OrdinaryCategory (1 : ℤ)).Additive
+  pretriangulatedStructure :
+    letI : Preadditive OrdinaryCategory := preadditive
+    letI : HasZeroObject OrdinaryCategory := zeroObjectInstance
+    letI : ∀ n : ℤ, (shiftFunctor OrdinaryCategory n).Additive := shiftAdditiveAll
+    Pretriangulated OrdinaryCategory
+  triangulatedStructure :
+    letI : Preadditive OrdinaryCategory := preadditive
+    letI : HasZeroObject OrdinaryCategory := zeroObjectInstance
+    letI : ∀ n : ℤ, (shiftFunctor OrdinaryCategory n).Additive := shiftAdditiveAll
+    letI : Pretriangulated OrdinaryCategory := pretriangulatedStructure
+    IsTriangulated OrdinaryCategory
+
+/-- The explicit source-facing left-calculus assumption for the corrected weak equivalences. -/
+structure LeftCalculusAssumption : Type 1 where
+  leftCalculus : WeakEquivalence.HasLeftCalculusOfFractions
+
+/-- Semantic fields supplied by corrected left calculus and corrected finite-product closure. -/
+structure LeftCalculusSemanticFields : Type 1 where
+  leftCalculus : WeakEquivalence.HasLeftCalculusOfFractions
+  preadditive : Preadditive OrdinaryCategory
+  zeroObject : HasZeroObject OrdinaryCategory
+  finiteProducts : HasFiniteProducts OrdinaryCategory
+  shiftAdditiveAll :
+    letI : Preadditive OrdinaryCategory := preadditive
+    ∀ n : ℤ, (shiftFunctor OrdinaryCategory n).Additive
+  suspensionAdditive :
+    letI : Preadditive OrdinaryCategory := preadditive
+    letI : ∀ n : ℤ, (shiftFunctor OrdinaryCategory n).Additive := shiftAdditiveAll
+    (shiftFunctor OrdinaryCategory (1 : ℤ)).Additive
+
+/-- Build the corrected semantic fields that are available from left calculus. -/
+def leftCalculusSemanticFields
+    (assumption : LeftCalculusAssumption) : LeftCalculusSemanticFields where
+  leftCalculus := assumption.leftCalculus
+  preadditive := by
+    letI : WeakEquivalence.HasLeftCalculusOfFractions := assumption.leftCalculus
+    exact DboundedWithCycles.preadditiveOfHasLeftCalculusOfFractions MetrizableLCA.{0}
+  zeroObject := by
+    letI : WeakEquivalence.HasLeftCalculusOfFractions := assumption.leftCalculus
+    exact DboundedWithCycles.MetrizableLCA.hasZeroObject
+  finiteProducts := by
+    letI : WeakEquivalence.HasLeftCalculusOfFractions := assumption.leftCalculus
+    exact DboundedWithCycles.MetrizableLCA.hasFiniteProducts
+  shiftAdditiveAll := by
+    letI : WeakEquivalence.HasLeftCalculusOfFractions := assumption.leftCalculus
+    intro n
+    exact DboundedWithCycles.shiftFunctor_additiveOfHasLeftCalculusOfFractions
+      MetrizableLCA.{0} n
+  suspensionAdditive := by
+    letI : WeakEquivalence.HasLeftCalculusOfFractions := assumption.leftCalculus
+    exact DboundedWithCycles.shiftFunctor_additiveOfHasLeftCalculusOfFractions
+      MetrizableLCA.{0} 1
+
+/-- Remaining stable fields for the corrected metrizable route after left calculus. -/
+structure RemainingStableSemanticFields (available : LeftCalculusSemanticFields) :
+    Type 1 where
+  finiteLimits : HasFiniteLimits OrdinaryCategory
+  finiteColimits : HasFiniteColimits OrdinaryCategory
+  pretriangulated :
+    letI : Preadditive OrdinaryCategory := available.preadditive
+    letI : HasZeroObject OrdinaryCategory := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor OrdinaryCategory n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated OrdinaryCategory
+  triangulated :
+    letI : Preadditive OrdinaryCategory := available.preadditive
+    letI : HasZeroObject OrdinaryCategory := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor OrdinaryCategory n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated OrdinaryCategory := pretriangulated
+    IsTriangulated OrdinaryCategory
+
+/-- Full corrected stable semantic input, split into derived and still-assumed fields. -/
+structure StableSemanticInput : Type 1 where
+  available : LeftCalculusSemanticFields
+  remaining : RemainingStableSemanticFields available
+
+/-- Assemble the full corrected stable semantic input from an explicit left-calculus field. -/
+def stableSemanticInputOfLeftCalculus
+    (assumption : LeftCalculusAssumption)
+    (remaining : RemainingStableSemanticFields (leftCalculusSemanticFields assumption)) :
+    StableSemanticInput where
+  available := leftCalculusSemanticFields assumption
+  remaining := remaining
+
+/-- Build the corrected stable package from its checked semantic input surface. -/
+def stablePackageOfSemanticInput (input : StableSemanticInput) : StablePackage where
+  quasicategoryCarrier := rfl
+  weakEquivalenceClass := rfl
+  preadditive := input.available.preadditive
+  finiteProductInstance := input.available.finiteProducts
+  finiteLimitInstance := input.remaining.finiteLimits
+  finiteColimitInstance := input.remaining.finiteColimits
+  zeroObjectInstance := input.available.zeroObject
+  shiftAdditiveAll := input.available.shiftAdditiveAll
+  suspensionAdditive := input.available.suspensionAdditive
+  pretriangulatedStructure := input.remaining.pretriangulated
+  triangulatedStructure := input.remaining.triangulated
+
+/-- Build the corrected stable package directly from left calculus plus remaining fields. -/
+def stablePackageOfLeftCalculus
+    (assumption : LeftCalculusAssumption)
+    (remaining : RemainingStableSemanticFields (leftCalculusSemanticFields assumption)) :
+    StablePackage :=
+  stablePackageOfSemanticInput (stableSemanticInputOfLeftCalculus assumption remaining)
+
+/-- The corrected stable package carrier is the corrected ordinary quasicategory nerve. -/
+theorem stablePackage_carrier (P : StablePackage) :
+    P.quasicategoryCarrier = rfl :=
+  rfl
+
+/-- The corrected stable package records the corrected weak-equivalence class. -/
+theorem stablePackage_weakEquivalenceClass (P : StablePackage) :
+    P.weakEquivalenceClass = rfl :=
+  rfl
+
+/-- Names of semantic fields derived from corrected left calculus in this bridge. -/
+def leftCalculusSemanticFieldNames : List String :=
+  ["(boundedExactWeakEquivalenceWithCycles MetrizableLCA).HasLeftCalculusOfFractions",
+    "Preadditive (DboundedWithCycles MetrizableLCA)",
+    "HasZeroObject (DboundedWithCycles MetrizableLCA)",
+    "HasFiniteProducts (DboundedWithCycles MetrizableLCA)",
+    "forall n, (shiftFunctor (DboundedWithCycles MetrizableLCA) n).Additive",
+    "(shiftFunctor (DboundedWithCycles MetrizableLCA) 1).Additive"]
+
+/-- Corrected left calculus currently supplies six named semantic fields. -/
+theorem leftCalculusSemanticFieldNames_count :
+    leftCalculusSemanticFieldNames.length = 6 :=
+  rfl
+
+/-- Remaining stable assumptions for the corrected route after the fields above. -/
+def remainingStableSemanticFieldNames : List String :=
+  ["HasFiniteLimits (DboundedWithCycles MetrizableLCA)",
+    "HasFiniteColimits (DboundedWithCycles MetrizableLCA)",
+    "Pretriangulated (DboundedWithCycles MetrizableLCA)",
+    "IsTriangulated (DboundedWithCycles MetrizableLCA)"]
+
+/-- Four stable semantic fields remain explicit in this checked corrected bridge. -/
+theorem remainingStableSemanticFieldNames_count :
+    remainingStableSemanticFieldNames.length = 4 :=
+  rfl
+
+/-- Current corrected bridge state: the assumption surface is checked, not inhabited. -/
+def currentMetrizableStableBridgeWithCyclesProductSuccessClaimed : Bool :=
+  false
+
+/-- The corrected bridge does not claim product success without the remaining inputs. -/
+theorem currentMetrizableStableBridgeWithCycles_productSuccess :
+    currentMetrizableStableBridgeWithCyclesProductSuccessClaimed = false :=
+  rfl
+
+end Metrizable
+end BoundedDerivedWithCycles
+
+end LeanLCAExactChallenge

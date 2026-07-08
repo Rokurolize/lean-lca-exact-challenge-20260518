@@ -53,6 +53,12 @@ theorem localization_additiveOfHasLeftCalculusOfFractions [HasBinaryBiproducts C
     (DboundedWithCycles.localization C).Additive := by
   infer_instance
 
+/-- Under a left-calculus hypothesis, the corrected localization has a zero object. -/
+theorem hasZeroObjectOfHasLeftCalculusOfFractions [HasBinaryBiproducts C] [HasZeroObject C]
+    [(boundedExactWeakEquivalenceWithCycles C).HasLeftCalculusOfFractions] :
+    HasZeroObject (DboundedWithCycles C) := by
+  infer_instance
+
 /-- Under a left-calculus hypothesis, corrected localized shifts are additive. -/
 theorem shiftFunctor_additiveOfHasLeftCalculusOfFractions [HasBinaryBiproducts C]
     [(boundedExactWeakEquivalenceWithCycles C).HasLeftCalculusOfFractions] (n : ℤ) :
@@ -81,6 +87,13 @@ abbrev hasFiniteProducts
   letI : (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).IsStableUnderFiniteProducts :=
     ExactAcyclicWithCyclesClosure.MetrizableLCA.isStableUnderFiniteProducts_metrizableLCA
   exact DboundedWithCycles.hasFiniteProductsOfStableFiniteProducts (C := MetrizableLCA.{0})
+
+/-- The corrected default-universe metrizable bounded derived category has a zero object
+once the corrected weak equivalences have a left calculus of fractions. -/
+abbrev hasZeroObject
+    [(boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).HasLeftCalculusOfFractions] :
+    HasZeroObject (DboundedWithCycles MetrizableLCA.{0}) :=
+  DboundedWithCycles.hasZeroObjectOfHasLeftCalculusOfFractions MetrizableLCA.{0}
 
 end MetrizableLCA
 
