@@ -2,6 +2,7 @@ import Mathlib.Algebra.Homology.CochainComplexPlus
 import Mathlib.Algebra.Homology.DerivedCategory.Basic
 import Mathlib.Algebra.Homology.Embedding.CochainComplex
 import Mathlib.Algebra.Homology.HomotopyCategory.MappingCone
+import Mathlib.Algebra.Homology.Precylinder
 import Mathlib.AlgebraicTopology.Quasicategory.Nerve
 import Mathlib.AlgebraicTopology.Quasicategory.StrictBicategory
 import Mathlib.AlgebraicTopology.SimplicialSet.NerveAdjunction
@@ -9,6 +10,7 @@ import Mathlib.CategoryTheory.Localization.CalculusOfFractions.OfAdjunction
 import Mathlib.CategoryTheory.Localization.CalculusOfFractions.Preadditive
 import Mathlib.CategoryTheory.Localization.FiniteProducts
 import Mathlib.CategoryTheory.Localization.HasLocalization
+import Mathlib.CategoryTheory.Localization.OfQuotient
 import Mathlib.CategoryTheory.Localization.Triangulated
 import Mathlib.CategoryTheory.ObjectProperty.ContainsZero
 import Mathlib.CategoryTheory.ObjectProperty.ShiftAdditive
@@ -30,6 +32,7 @@ namespace LeanLCAExactChallenge
 
 open CategoryTheory
 open CategoryTheory.Limits
+open HomotopicalAlgebra
 open scoped ZeroObject
 
 variable (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
@@ -186,6 +189,35 @@ theorem boundedCochainComplex_of_mappingCone_left [HasBinaryBiproducts C]
       (CochainComplex.mappingCone f).isZero_of_isStrictlyLE b (i - 1) (by omega)
     have hK := ((CochainComplex.mappingCone.isZero_X_iff f (i - 1)).1 hConeZero).1
     simpa using hK
+
+omit [QuillenExactCategory C] in
+/-- The standard cylinder of a bounded cochain complex is bounded. -/
+theorem boundedCochainComplex_cylinder [HasBinaryBiproducts C]
+    {K : CochainComplex C ℤ} (hK : boundedCochainComplex C K) :
+    boundedCochainComplex C (HomologicalComplex.cylinder K) := by
+  obtain ⟨a, b, hge, hle⟩ := hK
+  letI : K.IsStrictlyGE a := hge
+  letI : K.IsStrictlyLE b := hle
+  refine ⟨a - 1, b, ?_, ?_⟩
+  · rw [CochainComplex.isStrictlyGE_iff]
+    intro i hi
+    dsimp [HomologicalComplex.cylinder]
+    refine HomologicalComplex.homotopyCofiber.isZero_X _ _ ?_ (fun j hj => ?_)
+    · refine IsZero.of_iso ?_ ((HomologicalComplex.eval C (.up ℤ) i).mapBiprod _ _)
+      simpa only [biprod_isZero_iff] using
+        ⟨K.isZero_of_isStrictlyGE a i (by omega),
+          K.isZero_of_isStrictlyGE a i (by omega)⟩
+    · simp only [ComplexShape.up_Rel] at hj
+      exact K.isZero_of_isStrictlyGE a _ (by omega)
+  · rw [CochainComplex.isStrictlyLE_iff]
+    intro i hi
+    dsimp [HomologicalComplex.cylinder]
+    refine HomologicalComplex.homotopyCofiber.isZero_X _ _ ?_ (fun j hj => ?_)
+    · refine IsZero.of_iso ?_ ((HomologicalComplex.eval C (.up ℤ) i).mapBiprod _ _)
+      simpa only [biprod_isZero_iff] using
+        ⟨K.isZero_of_isStrictlyLE b i hi, K.isZero_of_isStrictlyLE b i hi⟩
+    · simp only [ComplexShape.up_Rel] at hj
+      exact K.isZero_of_isStrictlyLE b j (by omega)
 
 /-- The full category of bounded cochain complexes before localization. -/
 abbrev BoundedComplexCategory : Type (max u v) :=
@@ -1179,6 +1211,49 @@ abbrev BoundedComplexCategory.homotopyQuotientBounded [HasBinaryBiproducts C] :
     BoundedComplexCategory C ⥤ BoundedHomotopyCategory C :=
   (boundedHomotopyObject C).lift (BoundedComplexCategory.homotopyQuotient C)
     (fun K => boundedHomotopyObject_quotient_obj C K.2)
+
+omit [QuillenExactCategory C] in
+/-- The pre-cylinder object of a bounded cochain complex, internal to bounded complexes. -/
+noncomputable abbrev BoundedComplexCategory.precylinder [HasBinaryBiproducts C]
+    (K : BoundedComplexCategory C) : Precylinder K :=
+  K.obj.precylinder.toFullSubcategory (boundedCochainComplex_cylinder C K.property)
+
+omit [QuillenExactCategory C] in
+instance BoundedComplexCategory.homotopyQuotientBounded_essSurj [HasBinaryBiproducts C] :
+    (BoundedComplexCategory.homotopyQuotientBounded C).EssSurj where
+  mem_essImage K := by
+    rcases K.property with ⟨L, hL, ⟨e⟩⟩
+    exact ⟨⟨L, hL⟩, ⟨ObjectProperty.isoMk (P := boundedHomotopyObject C) e⟩⟩
+
+omit [QuillenExactCategory C] in
+instance BoundedComplexCategory.homotopyQuotientBounded_full [HasBinaryBiproducts C] :
+    (BoundedComplexCategory.homotopyQuotientBounded C).Full := by
+  dsimp [BoundedComplexCategory.homotopyQuotientBounded]
+  infer_instance
+
+omit [QuillenExactCategory C] in
+/-- The bounded homotopy quotient localizes bounded complexes at bounded homotopy
+equivalences. -/
+instance BoundedComplexCategory.homotopyQuotientBounded_isLocalization
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    (BoundedComplexCategory.homotopyQuotientBounded C).IsLocalization
+      ((HomologicalComplex.homotopyEquivalences C (ComplexShape.up ℤ)).inverseImage
+        (BoundedComplexCategory.ι C)) :=
+  Functor.isLocalization_of_essSurj_of_full_of_exists_cylinders _ _
+    (fun _ _ f hf => by
+      simpa [← isIso_iff_of_reflects_iso _ (BoundedHomotopyCategory.ι C),
+        ← HomotopyCategory.inverseImage_quotient_isomorphisms] using hf)
+    (by
+      rintro K L f₀ f₁ hf
+      obtain ⟨f₀, rfl⟩ := ObjectProperty.homMk_surjective f₀
+      obtain ⟨f₁, rfl⟩ := ObjectProperty.homMk_surjective f₁
+      replace hf := HomotopyCategory.homotopyOfEq f₀ f₁
+        ((BoundedHomotopyCategory.ι _).congr_map hf)
+      exact ⟨BoundedComplexCategory.precylinder C K,
+        Precylinder.LeftHomotopy.fullSubcategoryEquiv.symm
+          { h := HomologicalComplex.cylinder.desc _ _ hf },
+        ⟨HomologicalComplex.cylinder.homotopyEquiv _
+          (fun n => ⟨n - 1, by simp [ComplexShape.up_Rel]⟩), rfl⟩⟩)
 
 omit [QuillenExactCategory C] in
 /-- The lifted bounded homotopy quotient composes with the bounded-homotopy inclusion to
