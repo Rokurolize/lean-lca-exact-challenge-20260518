@@ -214,6 +214,33 @@ theorem
     (exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂ := by
   infer_instance
 
+/-- If corrected acyclicity descends to the homotopy category, `Closed₂` for its iso-closure
+reflects back to the underlying corrected homotopy-object predicate. -/
+theorem
+    exactAcyclicWithCyclesHomotopyObject_isTriangulatedClosed2_of_isoClosure_closed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicWithCyclesHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    (exactAcyclicWithCyclesHomotopyObject C).IsTriangulatedClosed₂ := by
+  rw [← ObjectProperty.isoClosure_eq_self (P := exactAcyclicWithCyclesHomotopyObject C)]
+  infer_instance
+
+/-- Homotopy descent plus strict realization make the corrected homotopy-object predicate
+itself `Closed₂`, not only its iso-closure. -/
+theorem
+    exactAcyclicWithCyclesHomotopyObject_isTriangulatedClosed2_of_descent_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (descent : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput C)
+    (realize : exactAcyclicWithCyclesHomotopyIsoClosureTrianglehIso13Realization C) :
+    (exactAcyclicWithCyclesHomotopyObject C).IsTriangulatedClosed₂ := by
+  haveI : (exactAcyclicWithCyclesHomotopyObject C).IsClosedUnderIsomorphisms :=
+    exactAcyclicWithCyclesHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+      C descent
+  haveI : (exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+      C realize
+  exact exactAcyclicWithCyclesHomotopyObject_isTriangulatedClosed2_of_isoClosure_closed2 C
+
 /-- Closing corrected acyclic homotopy objects under isomorphism does not change `trW`. -/
 theorem exactAcyclicWithCyclesHomotopyIsoClosure_trW
     [HasZeroObject C] [HasBinaryBiproducts C] :

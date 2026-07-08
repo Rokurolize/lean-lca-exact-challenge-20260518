@@ -263,6 +263,15 @@ abbrev boundedHomotopyClosed2OfTrianglehIso13Realization
   boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
     MetrizableLCA.{0} realize
 
+/-- Build corrected homotopy-object `Closed₂` from descent and strict realization. -/
+abbrev exactAcyclicWithCyclesHomotopyObjectClosed2OfDescentRealization
+    (descent : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA.{0})
+    (realize :
+      exactAcyclicWithCyclesHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA.{0}) :
+    (exactAcyclicWithCyclesHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+  exactAcyclicWithCyclesHomotopyObject_isTriangulatedClosed2_of_descent_realization
+    MetrizableLCA.{0} descent realize
+
 /-- Semantic fields supplied by corrected left calculus and corrected finite-product closure. -/
 structure LeftCalculusSemanticFields : Type 1 where
   leftCalculus : WeakEquivalence.HasLeftCalculusOfFractions
@@ -507,6 +516,9 @@ def stablePackageOfRouteSpecificInputs (inputs : RouteSpecificInputs) : StablePa
   letI : (exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
     exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
       MetrizableLCA.{0} inputs.homotopyIsoClosureRealization
+  letI : (exactAcyclicWithCyclesHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    exactAcyclicWithCyclesHomotopyObjectClosed2OfDescentRealization
+      inputs.descent inputs.homotopyIsoClosureRealization
   let boundedInput :=
     BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput.ofHomotopy
       MetrizableLCA.{0} inputs.descent
