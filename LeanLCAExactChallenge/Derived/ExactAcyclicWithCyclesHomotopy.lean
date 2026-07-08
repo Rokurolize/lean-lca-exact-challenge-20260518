@@ -612,6 +612,63 @@ noncomputable instance boundedHomotopyExactWeakEquivalenceWithCycles_containsIde
   dsimp [boundedHomotopyExactWeakEquivalenceWithCycles]
   infer_instance
 
+/-- The homotopy pullback class maps to the ambient corrected homotopy `trW`. -/
+abbrev boundedHomotopyExactWeakEquivalenceWithCyclesToIsoClosure_trW
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    LocalizerMorphism (boundedHomotopyExactWeakEquivalenceWithCycles C)
+      (exactAcyclicWithCyclesHomotopyIsoClosure C).trW where
+  functor := BoundedComplexCategory.homotopyQuotient C
+  map := by
+    intro K L f hf
+    exact hf
+
+/-- The homotopy pullback class maps to the bounded corrected homotopy `trW`. -/
+noncomputable abbrev boundedHomotopyExactWeakEquivalenceWithCyclesToBoundedHomotopy_trW
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    LocalizerMorphism (boundedHomotopyExactWeakEquivalenceWithCycles C)
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  refine
+    { functor := BoundedComplexCategory.homotopyQuotientBounded C
+      map := ?_ }
+  intro K L f hf
+  change (boundedExactAcyclicWithCyclesHomotopyObject C).trW
+    ((BoundedComplexCategory.homotopyQuotientBounded C).map f)
+  rw [ObjectProperty.inverseImage_trW_iff]
+  simpa [boundedHomotopyExactWeakEquivalenceWithCycles,
+    BoundedComplexCategory.homotopyQuotientBounded] using hf
+
+/-- The homotopy pullback class is the bounded corrected homotopy `trW` pullback. -/
+theorem
+    boundedHomotopyExactWeakEquivalenceWithCycles_eq_boundedHomotopy_trW_inverseImage
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    boundedHomotopyExactWeakEquivalenceWithCycles C =
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.inverseImage
+        (BoundedComplexCategory.homotopyQuotientBounded C) := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  haveI : (boundedHomotopyObject C).IsTriangulated :=
+    boundedHomotopyObject_isTriangulated_of_isTriangulatedClosed2 C
+  ext K L f
+  change (exactAcyclicWithCyclesHomotopyIsoClosure C).trW
+        ((BoundedComplexCategory.homotopyQuotient C).map f) ↔
+      ((exactAcyclicWithCyclesHomotopyIsoClosure C).inverseImage
+          (BoundedHomotopyCategory.ι C)).trW
+        ((BoundedComplexCategory.homotopyQuotientBounded C).map f)
+  rw [ObjectProperty.inverseImage_trW_iff]
+  let W : MorphismProperty (HomotopyCategory C (ComplexShape.up ℤ)) :=
+    (exactAcyclicWithCyclesHomotopyIsoClosure C).trW
+  let e := Arrow.isoOfNatIso (BoundedComplexCategory.homotopyQuotientBounded_comp_ι_iso C)
+    (Arrow.mk f)
+  exact (W.arrow_mk_iso_iff e).symm
+
 /-- The bounded-complex functor into the corrected homotopy Verdier quotient. -/
 noncomputable abbrev boundedHomotopyWithCyclesLocalizedVerdierFunctor
     [HasZeroObject C] [HasBinaryBiproducts C] :
@@ -757,6 +814,23 @@ theorem
     exactAcyclicWithCyclesHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
       C I
   exact boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopyWithCycles_of_isoClosed C
+
+/-- Homotopy descent identifies direct weak equivalences with bounded homotopy `trW`. -/
+theorem
+    boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopy_trW_of_homotopyEquivInvariance
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    (I : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput C) :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    boundedExactWeakEquivalenceWithCycles C =
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.inverseImage
+        (BoundedComplexCategory.homotopyQuotientBounded C) := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  rw [boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopyWithCycles_of_homotopyEquivInvariance
+    C I]
+  exact boundedHomotopyExactWeakEquivalenceWithCycles_eq_boundedHomotopy_trW_inverseImage C
 
 /-- Homotopy-equivalence invariance transfers left calculus from the homotopy pullback class. -/
 theorem

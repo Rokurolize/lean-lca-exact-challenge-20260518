@@ -161,6 +161,9 @@ The corrected route now has Lean-checked API for:
 - `boundedExactWeakEquivalenceWithCycles_le_exactAcyclicWithCyclesHomotopy_trW_inverseImage`
 - `boundedHomotopyExactWeakEquivalenceWithCycles`
 - `boundedHomotopyExactWeakEquivalenceWithCycles_containsIdentities`
+- `boundedHomotopyExactWeakEquivalenceWithCyclesToIsoClosure_trW`
+- `boundedHomotopyExactWeakEquivalenceWithCyclesToBoundedHomotopy_trW`
+- `boundedHomotopyExactWeakEquivalenceWithCycles_eq_boundedHomotopy_trW_inverseImage`
 - `boundedHomotopyWithCyclesLocalizedVerdierFunctor`
 - `BoundedHomotopyWithCyclesLocalizedRightAdjointInput`
 - `BoundedHomotopyWithCyclesLocalizedLeftAdjointInput`
@@ -173,6 +176,7 @@ The corrected route now has Lean-checked API for:
 - `boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_isoClosed`
 - `boundedExactWeakEquivalenceWithCycles_hasRightCalculusOfFractions_of_isoClosed`
 - `boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopyWithCycles_of_homotopyEquivInvariance`
+- `boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopy_trW_of_homotopyEquivInvariance`
 - `boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_homotopyEquivInvariance`
 - `boundedExactWeakEquivalenceWithCycles_hasRightCalculusOfFractions_of_homotopyEquivInvariance`
 - `boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_closed2Adjoint`
@@ -302,6 +306,8 @@ The corrected homotopy surface now carries the two-sided calculus bridge as well
 The corrected route now also has the bounded-homotopy object-property layer: `boundedExactAcyclicWithCyclesHomotopyObject` is the inverse image of the corrected iso-closed homotopy acyclic objects along `BoundedHomotopyCategory.ι`, and under the bounded-source and corrected-acyclic closed₂ inputs Lean proves it is triangulated. This mirrors the Q/Qh structural layer without using legacy bounded weak equivalences as evidence.
 
 The bounded homotopy Verdier quotient surface is also checked conditionally: under the same closed₂ inputs, Lean constructs `BoundedExactAcyclicWithCyclesHomotopyVerdierCategory` with preadditive, zero-object, shift-additivity, pretriangulated, and triangulated instances, plus the localizer morphism from bounded corrected homotopy `trW` to the ambient corrected homotopy `trW`. This is still a homotopy-quotient layer rather than the final `DboundedWithCycles` stable package, but it removes another generic structural gap in the corrected Q/Qh route.
+
+The bounded-complex homotopy pullback class is now checked equivalent to the bounded-homotopy `trW` pullback along `BoundedComplexCategory.homotopyQuotientBounded`. With the explicit homotopy-descent input, Lean identifies direct corrected weak equivalences with that bounded-homotopy `trW` pullback as well.
 
 The corrected derived surface now derives finite biproducts and finite coproducts from corrected left calculus and finite-product stability. The corrected weak-equivalence class itself is also checked stable under finite coproducts, and its opposite class is checked stable under finite products. The stable bridge therefore records eight checked left-calculus semantic fields: left calculus, preadditivity, zero object, finite products, finite biproducts, finite coproducts, all shift functor additivity, and suspension additivity.
 
