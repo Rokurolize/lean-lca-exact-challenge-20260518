@@ -48,6 +48,10 @@ Completed corrected closure milestones:
   `LeanLCAExactChallenge/LCA/IdempotentComplete.lean`, foundation for
   homotopy-invariance and contractible-implies-acyclic for
   `exactAcyclicWithCycles`.
+- Contractible implies corrected-acyclic:
+  `exactAcyclicWithCycles_of_contractingHomotopy` (general exact-category level over
+  `IsIdempotentComplete`) and its MetrizableLCA specialization in
+  `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.lean`.
 
 - Mapping-cone isomorphism invariance.
 - Shift closure and bounded weak-equivalence shift compatibility.

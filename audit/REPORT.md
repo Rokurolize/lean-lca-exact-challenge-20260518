@@ -182,6 +182,25 @@ property of the bounded homotopy category. Verified by direct
 `lean -j1 LeanLCAExactChallenge.lean`, both exit code 0, and the file contains
 no `sorry`, `admit`, `axiom`, or `unsafe`.
 
+## Contractible-implies-acyclic milestone
+
+`LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.lean` now proves, at
+general exact-category level (Bühler, Exact categories, Prop. 10.9 pattern):
+
+- `exactAcyclicWithCycles_of_contractingHomotopy` — for `C` preadditive with
+  `QuillenExactCategory C` and `IsIdempotentComplete C`, any cochain complex with a
+  contracting homotopy `Homotopy (𝟙 K) 0` satisfies `exactAcyclicWithCycles C K`;
+- `MetrizableLCA.exactAcyclicWithCycles_of_contractingHomotopy` — the MetrizableLCA
+  specialization via the idempotent-completeness instance.
+
+Proof content: the homotopy identity `𝟙 = dNext + prevD` yields orthogonal idempotents
+degreewise; splitting the cycle idempotent through `IsIdempotentComplete` produces the
+cycle objects; the resulting degreewise split short complexes are conflations via the
+project's `QuillenExactCategory.split_conflation`; the differential factors through the
+splittings. No legacy `exactAcyclic` ingredient is used. Verified by direct
+`lean -j1` on the new file and on `LeanLCAExactChallenge.lean`, both exit code 0, and
+the file contains no `sorry`, `admit`, `axiom`, or `unsafe`.
+
 ## Conclusion
 
 The invalid degreewise acyclicity definition is now isolated from the corrected construction. The project has a Lean-checked replacement predicate, checked `MetrizableLCA` bridge, checked isomorphism/shift/biproduct/finite-product closure, checked corrected bounded weak-equivalence finite-product stability, a checked corrected `DboundedWithCycles` localization surface, and a checked corrected Metrizable stable package assumption surface. The next formalization step is to prove or port the left-calculus-of-fractions input for `boundedExactWeakEquivalenceWithCycles`, then inhabit the remaining corrected finite-limit, finite-colimit, pretriangulated, and triangulated fields without relying on legacy `boundedExactWeakEquivalence`.

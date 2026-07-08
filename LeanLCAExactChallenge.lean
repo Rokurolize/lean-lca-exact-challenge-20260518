@@ -15,6 +15,7 @@ import LeanLCAExactChallenge.Ext.Yoneda
 import LeanLCAExactChallenge.Derived.Bounded
 import LeanLCAExactChallenge.Derived.ExactAcyclicCorrect
 import LeanLCAExactChallenge.Derived.ExactAcyclicWithCyclesClosure
+import LeanLCAExactChallenge.Derived.ExactAcyclicWithCyclesContractible
 import LeanLCAExactChallenge.Derived.BoundedDerivedWithCycles
 import LeanLCAExactChallenge.Derived.BoundedFiniteProducts
 import LeanLCAExactChallenge.Derived.MetrizableStableInstanceBoundary
