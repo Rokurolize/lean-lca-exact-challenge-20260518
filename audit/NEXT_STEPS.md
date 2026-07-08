@@ -70,7 +70,12 @@ Completed corrected closure milestones:
   `exactAcyclicWithCyclesHomotopyObject`,
   `ExactAcyclicWithCyclesHomotopyEquivInvarianceInput`,
   `exactAcyclicWithCyclesHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance`,
+  `exactAcyclicWithCyclesHomotopyEquivInvarianceInput_of_isClosedUnderIsomorphisms`,
+  `exactAcyclicWithCyclesHomotopyEquivInvarianceInput_iff_isClosedUnderIsomorphisms`,
   `exactAcyclicWithCyclesHomotopyIsoClosure`,
+  `exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2`,
+  `exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject`,
+  `exactAcyclicWithCyclesHomotopyObject_isTriangulated_of_isTriangulatedClosed2`,
   `boundedHomotopyExactWeakEquivalenceWithCycles`, and the checked inclusion
   `boundedExactWeakEquivalenceWithCycles_le_boundedHomotopyExactWeakEquivalenceWithCycles`
   plus the checked conditional equality

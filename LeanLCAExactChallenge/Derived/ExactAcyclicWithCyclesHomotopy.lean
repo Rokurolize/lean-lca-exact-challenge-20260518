@@ -53,6 +53,31 @@ theorem
     exact I.exactAcyclicWithCycles_of_homotopyEquiv
       (HomotopyCategory.homotopyEquivOfIso e) hX
 
+/-- Homotopy-category iso-closedness gives homotopy-equivalence invariance. -/
+theorem
+    exactAcyclicWithCyclesHomotopyEquivInvarianceInput_of_isClosedUnderIsomorphisms
+    (hP : (exactAcyclicWithCyclesHomotopyObject C).IsClosedUnderIsomorphisms) :
+    ExactAcyclicWithCyclesHomotopyEquivInvarianceInput C := by
+  haveI := hP
+  exact
+    { exactAcyclicWithCycles_of_homotopyEquiv := by
+        intro K L e hK
+        exact (exactAcyclicWithCyclesHomotopyObject C).prop_of_iso
+          (HomotopyCategory.isoOfHomotopyEquiv e) hK }
+
+/-- The explicit homotopy-equivalence input is exactly homotopy-category iso-closedness. -/
+theorem
+    exactAcyclicWithCyclesHomotopyEquivInvarianceInput_iff_isClosedUnderIsomorphisms :
+    ExactAcyclicWithCyclesHomotopyEquivInvarianceInput C ↔
+      (exactAcyclicWithCyclesHomotopyObject C).IsClosedUnderIsomorphisms := by
+  constructor
+  · exact
+      exactAcyclicWithCyclesHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+        C
+  · exact
+      exactAcyclicWithCyclesHomotopyEquivInvarianceInput_of_isClosedUnderIsomorphisms
+        C
+
 /-- Corrected acyclic homotopy objects contain a zero object. -/
 instance exactAcyclicWithCyclesHomotopyObject_containsZero [HasZeroObject C] :
     (exactAcyclicWithCyclesHomotopyObject C).ContainsZero where
@@ -92,6 +117,21 @@ noncomputable instance exactAcyclicWithCyclesHomotopyIsoClosure_isStableUnderShi
     exact ⟨(shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) n).mapIso e ≪≫
       (((HomotopyCategory.quotient C (ComplexShape.up ℤ)).commShiftIso n).app K₀).symm⟩
 
+/-- The isomorphism closure is triangulated once distinguished-triangle closure is supplied. -/
+theorem
+    exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    (exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulated where
+
+/-- Distinguished-triangle closure of the underlying predicate transfers to its iso-closure. -/
+theorem
+    exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicWithCyclesHomotopyObject C).IsTriangulatedClosed₂] :
+    (exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂ := by
+  infer_instance
+
 /-- Closing corrected acyclic homotopy objects under isomorphism does not change `trW`. -/
 theorem exactAcyclicWithCyclesHomotopyIsoClosure_trW
     [HasZeroObject C] [HasBinaryBiproducts C] :
@@ -111,6 +151,14 @@ noncomputable instance
     exact (exactAcyclicWithCyclesHomotopyObject C).prop_of_iso
       (((HomotopyCategory.quotient C (ComplexShape.up ℤ)).commShiftIso n).app K₀)
       (exactAcyclicWithCycles_shift C K₀ n hK)
+
+/-- With iso-closedness, the remaining triangulated-subcategory obligation is closed₂. -/
+theorem
+    exactAcyclicWithCyclesHomotopyObject_isTriangulated_of_isTriangulatedClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicWithCyclesHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(exactAcyclicWithCyclesHomotopyObject C).IsTriangulatedClosed₂] :
+    (exactAcyclicWithCyclesHomotopyObject C).IsTriangulated where
 
 /-- A map whose cone is corrected acyclic lies in the corrected homotopy `trW` class. -/
 theorem

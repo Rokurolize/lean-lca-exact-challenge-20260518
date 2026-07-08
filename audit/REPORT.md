@@ -122,7 +122,12 @@ The corrected route now has Lean-checked API for:
 - `exactAcyclicWithCyclesHomotopyObject`
 - `ExactAcyclicWithCyclesHomotopyEquivInvarianceInput`
 - `exactAcyclicWithCyclesHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance`
+- `exactAcyclicWithCyclesHomotopyEquivInvarianceInput_of_isClosedUnderIsomorphisms`
+- `exactAcyclicWithCyclesHomotopyEquivInvarianceInput_iff_isClosedUnderIsomorphisms`
 - `exactAcyclicWithCyclesHomotopyIsoClosure`
+- `exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2`
+- `exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject`
+- `exactAcyclicWithCyclesHomotopyObject_isTriangulated_of_isTriangulatedClosed2`
 - `exactAcyclicWithCyclesHomotopyObject_trW_quotient_map_of_exactAcyclicWithCycles_mappingCone`
 - `exactAcyclicWithCyclesHomotopyObject_trW_quotient_map_iff_exactAcyclicWithCycles_mappingCone`
 - `exactAcyclicWithCyclesHomotopyIsoClosure_trW_quotient_map_iff_mappingCone`
@@ -244,7 +249,9 @@ This is real progress toward the Q/Qh route, because the corrected chain localiz
 
 The file proves zero-object containment, iso-closure shift stability, `ObjectProperty.trW_isoClosure` compatibility, direct cone-acyclic maps entering the corrected homotopy `trW` class, the conditional equivalence between direct cone acyclicity and `trW` after homotopy-category descent, and the unconditional inclusion `boundedExactWeakEquivalenceWithCycles ≤ boundedHomotopyExactWeakEquivalenceWithCycles`.
 
-The homotopy-descent assumption is now a checked Lean input surface, `ExactAcyclicWithCyclesHomotopyEquivInvarianceInput`. From that input, Lean proves `exactAcyclicWithCyclesHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance` and the direct/homotopy pullback equality `boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopyWithCycles_of_homotopyEquivInvariance`.
+The homotopy-descent assumption is now a checked Lean input surface, `ExactAcyclicWithCyclesHomotopyEquivInvarianceInput`. Lean proves this input equivalent to homotopy-category isomorphism closedness of `exactAcyclicWithCyclesHomotopyObject`, and from it proves the direct/homotopy pullback equality `boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopyWithCycles_of_homotopyEquivInvariance`.
+
+The same file now also exposes the corrected conditional triangulated-object surface: once the corrected object predicate has the required `IsTriangulatedClosed₂` closure, Lean supplies `IsTriangulated` for both the object predicate and its isomorphism closure.
 
 This does not consume legacy `boundedExactWeakEquivalence` or legacy `Dbounded` facts. The remaining mathematical assumption is explicit: the corrected object predicate still needs the cone/distinguished-triangle closure that makes it descend through homotopy-category isomorphisms and become triangulated.
 
