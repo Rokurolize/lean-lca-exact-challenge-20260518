@@ -30,6 +30,7 @@ with a cycle-object predicate. The full Verdier/localization proof stack is not 
 10. Added `LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.lean`, a corrected MetrizableLCA stable package assumption surface tied to `DboundedWithCycles` and `boundedExactWeakEquivalenceWithCycles`.
 11. Added a corrected zero-object helper for `DboundedWithCycles` under the corrected left-calculus hypothesis.
 12. Extended `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.lean` with the first homotopy-invariance bridge for the corrected route: the mapping cone of a homotopy equivalence is contractible in the homotopy category sense, and homotopy equivalences of bounded complexes are `boundedExactWeakEquivalenceWithCycles`.
+13. Added `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesHomotopy.lean`, the corrected homotopy-category object-property surface: `exactAcyclicWithCyclesHomotopyObject`, its iso-closure, corrected `trW` mapping-cone detection, and the checked comparison from direct bounded corrected weak equivalences into the corrected homotopy `trW` pullback.
 
 ## Assumption list
 
@@ -118,6 +119,15 @@ The corrected route now has Lean-checked API for:
 - `boundedExactWeakEquivalenceWithCycles_containsIdentities`
 - `boundedExactWeakEquivalenceWithCycles_of_homotopyEquiv`
 - `homotopyEquivalences_le_boundedExactWeakEquivalenceWithCycles`
+- `exactAcyclicWithCyclesHomotopyObject`
+- `exactAcyclicWithCyclesHomotopyIsoClosure`
+- `exactAcyclicWithCyclesHomotopyObject_trW_quotient_map_of_exactAcyclicWithCycles_mappingCone`
+- `exactAcyclicWithCyclesHomotopyObject_trW_quotient_map_iff_exactAcyclicWithCycles_mappingCone`
+- `exactAcyclicWithCyclesHomotopyIsoClosure_trW_quotient_map_iff_mappingCone`
+- `boundedExactWeakEquivalenceWithCycles_le_exactAcyclicWithCyclesHomotopy_trW_inverseImage`
+- `boundedHomotopyExactWeakEquivalenceWithCycles`
+- `boundedExactWeakEquivalenceWithCycles_le_boundedHomotopyExactWeakEquivalenceWithCycles`
+- `boundedHomotopyExactWeakEquivalenceWithCycles_iff_mappingCone_isoClosure`
 - `BoundedDerivedWithCycles.Metrizable.StablePackage`
 - `BoundedDerivedWithCycles.Metrizable.LeftCalculusAssumption`
 - `BoundedDerivedWithCycles.Metrizable.LeftCalculusSemanticFields`
@@ -127,7 +137,7 @@ The corrected route now has Lean-checked API for:
 
 ## List of sorry / unproven spots
 
-The new files `LeanLCAExactChallenge/Derived/ExactAcyclicCorrect.lean`, `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesClosure.lean`, `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.lean`, `LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.lean`, and `LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.lean` contain no `sorry` or `admit`.
+The new files `LeanLCAExactChallenge/Derived/ExactAcyclicCorrect.lean`, `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesClosure.lean`, `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.lean`, `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesHomotopy.lean`, `LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.lean`, and `LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.lean` contain no `sorry` or `admit`.
 
 Unproved in this pass:
 
@@ -158,6 +168,9 @@ lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/Derived/BoundedDerivedWit
 lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.olean \
   -i .lake/build/lib/lean/LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.ilean \
   LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.lean
+lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesHomotopy.olean \
+  -i .lake/build/lib/lean/LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesHomotopy.ilean \
+  LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesHomotopy.lean
 lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.olean \
   -i .lake/build/lib/lean/LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.ilean \
   LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.lean
@@ -222,6 +235,14 @@ the file contains no `sorry`, `admit`, `axiom`, or `unsafe`.
 
 This is real progress toward the Q/Qh route, because the corrected chain localization functor now has the Lean-checked input needed to invert homotopy equivalences. It does not yet prove the full `trW` comparison or calculus of fractions; those still require the corrected acyclic-object cone/triangle closure.
 
+## Corrected homotopy-object `trW` surface
+
+`LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesHomotopy.lean` now mirrors the non-legacy part of the old Verdier skeleton with corrected predicates only. It defines the homotopy-category object predicate `exactAcyclicWithCyclesHomotopyObject`, its iso-closure `exactAcyclicWithCyclesHomotopyIsoClosure`, and `boundedHomotopyExactWeakEquivalenceWithCycles`.
+
+The file proves zero-object containment, iso-closure shift stability, `ObjectProperty.trW_isoClosure` compatibility, direct cone-acyclic maps entering the corrected homotopy `trW` class, the conditional equivalence between direct cone acyclicity and `trW` after homotopy-category descent, and the unconditional inclusion `boundedExactWeakEquivalenceWithCycles ≤ boundedHomotopyExactWeakEquivalenceWithCycles`.
+
+This does not consume legacy `boundedExactWeakEquivalence` or legacy `Dbounded` facts. The remaining mathematical assumption is explicit: the corrected object predicate still needs the cone/distinguished-triangle closure that makes it descend through homotopy-category isomorphisms and become triangulated.
+
 ## Conclusion
 
-The invalid degreewise acyclicity definition is now isolated from the corrected construction. The project has a Lean-checked replacement predicate, checked `MetrizableLCA` bridge, checked isomorphism/shift/biproduct/finite-product closure, checked corrected bounded weak-equivalence finite-product stability, a checked corrected `DboundedWithCycles` localization surface, and a checked corrected Metrizable stable package assumption surface. The next formalization step is to prove or port the left-calculus-of-fractions input for `boundedExactWeakEquivalenceWithCycles`, then inhabit the remaining corrected finite-limit, finite-colimit, pretriangulated, and triangulated fields without relying on legacy `boundedExactWeakEquivalence`.
+The invalid degreewise acyclicity definition is now isolated from the corrected construction. The project has a Lean-checked replacement predicate, checked `MetrizableLCA` bridge, checked isomorphism/shift/biproduct/finite-product closure, checked corrected bounded weak-equivalence finite-product stability, checked contractible and homotopy-equivalence bridges, a checked corrected homotopy-object `trW` surface, a checked corrected `DboundedWithCycles` localization surface, and a checked corrected Metrizable stable package assumption surface. The next formalization step is the corrected acyclic-object cone/distinguished-triangle closure, then the Q/Qh localization comparison and the remaining pretriangulated/triangulated fields without relying on legacy `boundedExactWeakEquivalence`.

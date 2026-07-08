@@ -7,6 +7,7 @@ Implemented files:
 - `LeanLCAExactChallenge/Derived/ExactAcyclicCorrect.lean`
 - `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesClosure.lean`
 - `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.lean`
+- `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesHomotopy.lean`
 - `LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.lean`
 - `LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.lean`
 - `audit/SCOPE.md`
@@ -32,6 +33,9 @@ lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/Derived/BoundedDerivedWit
 lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.olean \
   -i .lake/build/lib/lean/LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.ilean \
   LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.lean
+lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesHomotopy.olean \
+  -i .lake/build/lib/lean/LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesHomotopy.ilean \
+  LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesHomotopy.lean
 lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.olean \
   -i .lake/build/lib/lean/LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.ilean \
   LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.lean
@@ -62,6 +66,12 @@ Completed corrected closure milestones:
   `boundedExactWeakEquivalenceWithCycles_of_homotopyEquiv`, and
   `homotopyEquivalences_le_boundedExactWeakEquivalenceWithCycles` in
   `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.lean`.
+- Corrected homotopy-object `trW` surface:
+  `exactAcyclicWithCyclesHomotopyObject`,
+  `exactAcyclicWithCyclesHomotopyIsoClosure`,
+  `boundedHomotopyExactWeakEquivalenceWithCycles`, and the checked inclusion
+  `boundedExactWeakEquivalenceWithCycles_le_boundedHomotopyExactWeakEquivalenceWithCycles`
+  in `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesHomotopy.lean`.
 
 - Mapping-cone isomorphism invariance.
 - Shift closure and bounded weak-equivalence shift compatibility.
