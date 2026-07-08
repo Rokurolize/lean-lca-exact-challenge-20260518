@@ -6,6 +6,7 @@ Implemented files:
 
 - `LeanLCAExactChallenge/Derived/ExactAcyclicCorrect.lean`
 - `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesClosure.lean`
+- `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.lean`
 - `LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.lean`
 - `LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.lean`
 - `audit/SCOPE.md`
@@ -28,6 +29,9 @@ lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/Derived/ExactAcyclicWithC
 lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.olean \
   -i .lake/build/lib/lean/LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.ilean \
   LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.lean
+lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.olean \
+  -i .lake/build/lib/lean/LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.ilean \
+  LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.lean
 lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.olean \
   -i .lake/build/lib/lean/LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.ilean \
   LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.lean
@@ -36,11 +40,12 @@ lean -j1 LeanLCAExactChallenge.lean
 
 Remaining tasks:
 
-1. Prove or port a left-calculus-of-fractions theorem for `boundedExactWeakEquivalenceWithCycles`.
-2. Inhabit `BoundedDerivedWithCycles.Metrizable.RemainingStableSemanticFields` by proving corrected finite limits, finite colimits, pretriangulated structure, and triangulated structure for `DboundedWithCycles MetrizableLCA.{0}`.
-3. Attempt the Lean/mathlib stable-version migration only in an isolated sibling worktree. The attempt must update `lean-toolchain` and Lake dependencies coherently, must not reuse `v4.30.0` compiled artifacts as evidence, and must pass the baseline direct-Lean checks before any migration commit.
-4. Migrate legacy `exactAcyclic` lemmas theorem-by-theorem only when the corresponding corrected theorem is needed.
-5. Keep the legacy degreewise `boundedExactWeakEquivalence` route labeled as compatibility-only.
+1. Prove corrected acyclic-object cone/distinguished-triangle closure, then use the completed homotopy-equivalence inclusion to compare `boundedExactWeakEquivalenceWithCycles` with the bounded homotopy `trW` class.
+2. Prove or port the Q/Qh localization route that replaces the chain-level left-calculus assumption for `boundedExactWeakEquivalenceWithCycles`.
+3. Inhabit the corrected replacement stable package for `DboundedWithCycles MetrizableLCA.{0}`: pretriangulated and triangulated structures, plus the honest finite-product/finite-coproduct or biproduct surface. Do not try to prove ordinary finite limits/finite colimits unless the mathematical objection in `audit/HANDOVER.md` is overturned.
+4. Attempt the Lean/mathlib stable-version migration only in an isolated sibling worktree. The attempt must update `lean-toolchain` and Lake dependencies coherently, must not reuse `v4.30.0` compiled artifacts as evidence, and must pass the baseline direct-Lean checks before any migration commit.
+5. Migrate legacy `exactAcyclic` lemmas theorem-by-theorem only when the corresponding corrected theorem is needed.
+6. Keep the legacy degreewise `boundedExactWeakEquivalence` route labeled as compatibility-only.
 
 Completed corrected closure milestones:
 
@@ -51,6 +56,11 @@ Completed corrected closure milestones:
 - Contractible implies corrected-acyclic:
   `exactAcyclicWithCycles_of_contractingHomotopy` (general exact-category level over
   `IsIdempotentComplete`) and its MetrizableLCA specialization in
+  `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.lean`.
+- Homotopy equivalences of bounded complexes are corrected weak equivalences:
+  `mappingCone_contractingHomotopy_of_homotopyEquiv`,
+  `boundedExactWeakEquivalenceWithCycles_of_homotopyEquiv`, and
+  `homotopyEquivalences_le_boundedExactWeakEquivalenceWithCycles` in
   `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.lean`.
 
 - Mapping-cone isomorphism invariance.

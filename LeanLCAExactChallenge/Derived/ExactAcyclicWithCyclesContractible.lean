@@ -14,6 +14,8 @@ noncomputable section
 
 open CategoryTheory
 open CategoryTheory.Category
+open CategoryTheory.Limits
+open CategoryTheory.Pretriangulated
 open HomologicalComplex
 
 universe v u
@@ -209,5 +211,67 @@ theorem MetrizableLCA.exactAcyclicWithCycles_of_contractingHomotopy
     exactAcyclicWithCycles MetrizableLCA K :=
   exactAcyclicWithCycles_of_data MetrizableLCA
     (exactAcyclicWithCyclesDataOfContractingHomotopy K h)
+
+theorem mappingCone_contractingHomotopy_of_homotopyEquiv
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    {K L : CochainComplex C ℤ} (e : HomotopyEquiv K L) :
+    Nonempty (Homotopy (𝟙 (CochainComplex.mappingCone e.hom)) 0) := by
+  let Q : CochainComplex C ℤ ⥤ HomotopyCategory C (ComplexShape.up ℤ) :=
+    HomotopyCategory.quotient C (ComplexShape.up ℤ)
+  have hIso : IsIso (Q.map e.hom) := by
+    change IsIso (HomotopyCategory.isoOfHomotopyEquiv e).hom
+    infer_instance
+  have hZeroTriangle : IsZero (CochainComplex.mappingCone.triangleh e.hom).obj₃ := by
+    exact Triangle.isZero₃_of_isIso₁
+      (CochainComplex.mappingCone.triangleh e.hom)
+      (HomotopyCategory.mappingCone_triangleh_distinguished e.hom) hIso
+  have hZero : IsZero (Q.obj (CochainComplex.mappingCone e.hom)) := by
+    simpa [CochainComplex.mappingCone.triangleh, Q] using hZeroTriangle
+  exact (HomotopyCategory.isZero_quotient_obj_iff (CochainComplex.mappingCone e.hom)).1
+    hZero
+
+theorem boundedExactWeakEquivalenceWithCycles_of_contractibleMappingCone
+    [HasBinaryBiproducts C] [QuillenExactCategory C] [IsIdempotentComplete C]
+    {K L : BoundedComplexCategory C} (f : K ⟶ L)
+    (h : Homotopy
+      (𝟙 (CochainComplex.mappingCone ((BoundedComplexCategory.ι C).map f))) 0) :
+    boundedExactWeakEquivalenceWithCycles C f :=
+  exactAcyclicWithCycles_of_contractingHomotopy C
+    (CochainComplex.mappingCone ((BoundedComplexCategory.ι C).map f)) h
+
+theorem boundedExactWeakEquivalenceWithCycles_id
+    [HasBinaryBiproducts C] [QuillenExactCategory C] [IsIdempotentComplete C]
+    (K : BoundedComplexCategory C) :
+    boundedExactWeakEquivalenceWithCycles C (𝟙 K) := by
+  apply boundedExactWeakEquivalenceWithCycles_of_contractibleMappingCone
+    (C := C) (K := K) (L := K) (𝟙 K)
+  simpa using
+    CochainComplex.mappingCone.homotopyToZeroOfId ((BoundedComplexCategory.ι C).obj K)
+
+noncomputable instance boundedExactWeakEquivalenceWithCycles_containsIdentities
+    [HasBinaryBiproducts C] [QuillenExactCategory C] [IsIdempotentComplete C] :
+    (boundedExactWeakEquivalenceWithCycles C).ContainsIdentities where
+  id_mem K := boundedExactWeakEquivalenceWithCycles_id (C := C) K
+
+theorem boundedExactWeakEquivalenceWithCycles_of_homotopyEquiv
+    [HasZeroObject C] [HasBinaryBiproducts C] [QuillenExactCategory C]
+    [IsIdempotentComplete C] {K L : BoundedComplexCategory C} {f : K ⟶ L}
+    (hf : HomologicalComplex.homotopyEquivalences C (ComplexShape.up ℤ)
+      ((BoundedComplexCategory.ι C).map f)) :
+    boundedExactWeakEquivalenceWithCycles C f := by
+  rcases hf with ⟨e, he⟩
+  obtain ⟨h⟩ := mappingCone_contractingHomotopy_of_homotopyEquiv e
+  change exactAcyclicWithCycles C
+    (CochainComplex.mappingCone ((BoundedComplexCategory.ι C).map f))
+  rw [← he]
+  exact exactAcyclicWithCycles_of_contractingHomotopy C (CochainComplex.mappingCone e.hom) h
+
+theorem homotopyEquivalences_le_boundedExactWeakEquivalenceWithCycles
+    [HasZeroObject C] [HasBinaryBiproducts C] [QuillenExactCategory C]
+    [IsIdempotentComplete C] :
+    (HomologicalComplex.homotopyEquivalences C (ComplexShape.up ℤ)).inverseImage
+      (BoundedComplexCategory.ι C) ≤ boundedExactWeakEquivalenceWithCycles C := by
+  intro K L f hf
+  exact boundedExactWeakEquivalenceWithCycles_of_homotopyEquiv (C := C) hf
 
 end LeanLCAExactChallenge

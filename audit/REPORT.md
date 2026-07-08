@@ -29,6 +29,7 @@ with a cycle-object predicate. The full Verdier/localization proof stack is not 
 9. Added `LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.lean`, a separate corrected localization surface with `BoundedDerivedCategoryWithCycles`, `DboundedWithCycles`, and `DboundedWithCycles.localization` based on `boundedExactWeakEquivalenceWithCycles`.
 10. Added `LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.lean`, a corrected MetrizableLCA stable package assumption surface tied to `DboundedWithCycles` and `boundedExactWeakEquivalenceWithCycles`.
 11. Added a corrected zero-object helper for `DboundedWithCycles` under the corrected left-calculus hypothesis.
+12. Extended `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.lean` with the first homotopy-invariance bridge for the corrected route: the mapping cone of a homotopy equivalence is contractible in the homotopy category sense, and homotopy equivalences of bounded complexes are `boundedExactWeakEquivalenceWithCycles`.
 
 ## Assumption list
 
@@ -111,6 +112,12 @@ The corrected route now has Lean-checked API for:
 - `DboundedWithCycles.MetrizableLCA.hasFiniteProducts`
 - `DboundedWithCycles.hasZeroObjectOfHasLeftCalculusOfFractions`
 - `DboundedWithCycles.MetrizableLCA.hasZeroObject`
+- `mappingCone_contractingHomotopy_of_homotopyEquiv`
+- `boundedExactWeakEquivalenceWithCycles_of_contractibleMappingCone`
+- `boundedExactWeakEquivalenceWithCycles_id`
+- `boundedExactWeakEquivalenceWithCycles_containsIdentities`
+- `boundedExactWeakEquivalenceWithCycles_of_homotopyEquiv`
+- `homotopyEquivalences_le_boundedExactWeakEquivalenceWithCycles`
 - `BoundedDerivedWithCycles.Metrizable.StablePackage`
 - `BoundedDerivedWithCycles.Metrizable.LeftCalculusAssumption`
 - `BoundedDerivedWithCycles.Metrizable.LeftCalculusSemanticFields`
@@ -120,12 +127,13 @@ The corrected route now has Lean-checked API for:
 
 ## List of sorry / unproven spots
 
-The new files `LeanLCAExactChallenge/Derived/ExactAcyclicCorrect.lean`, `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesClosure.lean`, `LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.lean`, and `LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.lean` contain no `sorry` or `admit`.
+The new files `LeanLCAExactChallenge/Derived/ExactAcyclicCorrect.lean`, `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesClosure.lean`, `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.lean`, `LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.lean`, and `LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.lean` contain no `sorry` or `admit`.
 
 Unproved in this pass:
 
 - Replacement of the existing `Dbounded` localization to use the new weak equivalences throughout the old theorem stack.
 - A proof that `boundedExactWeakEquivalenceWithCycles` has a left calculus of fractions. The corrected `DboundedWithCycles` surface is defined, and finite products, zero object, preadditivity, and shift additivity are available conditionally on this calculus instance.
+- The completed homotopy-equivalence inclusion is not yet the full Verdier comparison: the reverse comparison with the bounded homotopy `trW` class still needs the corrected acyclic-object distinguished-triangle closure.
 - Inhabited corrected finite limits, finite colimits, pretriangulated structure, and triangulated structure for `DboundedWithCycles MetrizableLCA.{0}`. The new `BoundedDerivedWithCycles.Metrizable.RemainingStableSemanticFields` record is the checked assumption surface for these fields.
 
 ## Verification commands
@@ -147,6 +155,9 @@ lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/Derived/ExactAcyclicWithC
 lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.olean \
   -i .lake/build/lib/lean/LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.ilean \
   LeanLCAExactChallenge/Derived/BoundedDerivedWithCycles.lean
+lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.olean \
+  -i .lake/build/lib/lean/LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.ilean \
+  LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.lean
 lean -j1 -o .lake/build/lib/lean/LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.olean \
   -i .lake/build/lib/lean/LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.ilean \
   LeanLCAExactChallenge/BoundedDerived/MetrizableStableBridgeWithCycles.lean
@@ -200,6 +211,16 @@ project's `QuillenExactCategory.split_conflation`; the differential factors thro
 splittings. No legacy `exactAcyclic` ingredient is used. Verified by direct
 `lean -j1` on the new file and on `LeanLCAExactChallenge.lean`, both exit code 0, and
 the file contains no `sorry`, `admit`, `axiom`, or `unsafe`.
+
+## Homotopy-equivalences corrected weak-equivalence milestone
+
+`LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.lean` now also proves the first formal M3 bridge:
+
+- `mappingCone_contractingHomotopy_of_homotopyEquiv` — if `e : HomotopyEquiv K L`, then `mappingCone e.hom` has a contracting homotopy. The proof uses `HomotopyCategory.isoOfHomotopyEquiv`, the distinguished mapping-cone triangle, `Triangle.isZero₃_of_isIso₁`, and `HomotopyCategory.isZero_quotient_obj_iff`, not the legacy degreewise acyclicity predicate.
+- `boundedExactWeakEquivalenceWithCycles_of_contractibleMappingCone` and `boundedExactWeakEquivalenceWithCycles_id` — contractible mapping cones and identities are corrected bounded weak equivalences by the already-proved contractible-implies-corrected-acyclic theorem.
+- `boundedExactWeakEquivalenceWithCycles_containsIdentities`, `boundedExactWeakEquivalenceWithCycles_of_homotopyEquiv`, and `homotopyEquivalences_le_boundedExactWeakEquivalenceWithCycles` — the corrected bounded weak-equivalence class contains all homotopy equivalences of bounded complexes.
+
+This is real progress toward the Q/Qh route, because the corrected chain localization functor now has the Lean-checked input needed to invert homotopy equivalences. It does not yet prove the full `trW` comparison or calculus of fractions; those still require the corrected acyclic-object cone/triangle closure.
 
 ## Conclusion
 
