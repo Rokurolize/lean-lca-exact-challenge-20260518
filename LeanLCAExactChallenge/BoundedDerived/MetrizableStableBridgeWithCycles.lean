@@ -159,6 +159,40 @@ abbrev hasFiniteCoproductsOfBoundedVerdierLocalizationInput
   DboundedWithCycles.hasFiniteCoproductsOfBoundedVerdierLocalizationInput MetrizableLCA.{0}
     input
 
+/-- Build corrected finite limits from WPP equalizers and the finite products supplied by the
+bounded corrected homotopy Verdier localization comparison. -/
+abbrev hasFiniteLimitsOfWalkingParallelPairBoundedVerdierLocalizationInput
+    [(boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (transferInputs :
+      DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputs)
+    (input :
+      BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput MetrizableLCA.{0}) :
+    HasFiniteLimits OrdinaryCategory := by
+  letI : HasFiniteProducts OrdinaryCategory :=
+    hasFiniteProductsOfBoundedVerdierLocalizationInput input
+  letI : HasEqualizers OrdinaryCategory :=
+    DboundedWithCycles.MetrizableLCA.hasEqualizersOfWalkingParallelPairTransfer
+      transferInputs
+  exact hasFiniteLimits_of_hasEqualizers_and_finite_products
+
+/-- Build corrected finite colimits from WPP coequalizers and the finite coproducts supplied by
+the bounded corrected homotopy Verdier localization comparison. -/
+abbrev hasFiniteColimitsOfWalkingParallelPairBoundedVerdierLocalizationInput
+    [(boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (transferInputs :
+      DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputs)
+    (input :
+      BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput MetrizableLCA.{0}) :
+    HasFiniteColimits OrdinaryCategory := by
+  letI : HasFiniteCoproducts OrdinaryCategory :=
+    hasFiniteCoproductsOfBoundedVerdierLocalizationInput input
+  letI : HasCoequalizers OrdinaryCategory :=
+    DboundedWithCycles.MetrizableLCA.hasCoequalizersOfWalkingParallelPairTransfer
+      transferInputs
+  exact hasFiniteColimits_of_hasCoequalizers_and_finite_coproducts
+
 /-- Build corrected finite biproducts from the bounded corrected homotopy Verdier localization
 comparison, without a chain-level left-calculus hypothesis. -/
 abbrev hasFiniteBiproductsOfBoundedVerdierLocalizationInput
@@ -421,6 +455,34 @@ def stablePackageOfHomotopyVerdierWalkingParallelPairBoundedVerdierLocalizationI
   pretriangulatedStructure := pretriangulatedOfBoundedVerdierLocalizationInput boundedInput
   triangulatedStructure := isTriangulatedOfBoundedVerdierLocalizationInput boundedInput
 
+/-- Build the corrected stable package from WPP finite-shape transfer and the checked bounded
+Verdier localized-equivalence input, without a chain-level left-calculus hypothesis. -/
+def stablePackageOfWalkingParallelPairBoundedVerdierLocalizationInput
+    [(boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (transferInputs :
+      DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputs)
+    (boundedInput :
+      BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput MetrizableLCA.{0}) :
+    StablePackage where
+  quasicategoryCarrier := rfl
+  weakEquivalenceClass := rfl
+  preadditive := preadditiveOfBoundedVerdierLocalizationInput boundedInput
+  finiteProductInstance := hasFiniteProductsOfBoundedVerdierLocalizationInput boundedInput
+  finiteBiproductInstance := hasFiniteBiproductsOfBoundedVerdierLocalizationInput boundedInput
+  finiteCoproductInstance := hasFiniteCoproductsOfBoundedVerdierLocalizationInput boundedInput
+  finiteLimitInstance :=
+    hasFiniteLimitsOfWalkingParallelPairBoundedVerdierLocalizationInput
+      transferInputs boundedInput
+  finiteColimitInstance :=
+    hasFiniteColimitsOfWalkingParallelPairBoundedVerdierLocalizationInput
+      transferInputs boundedInput
+  zeroObjectInstance := hasZeroObjectOfBoundedVerdierLocalizationInput boundedInput
+  shiftAdditiveAll := shiftFunctorAdditiveOfBoundedVerdierLocalizationInput boundedInput
+  suspensionAdditive := shiftFunctorAdditiveOfBoundedVerdierLocalizationInput boundedInput 1
+  pretriangulatedStructure := pretriangulatedOfBoundedVerdierLocalizationInput boundedInput
+  triangulatedStructure := isTriangulatedOfBoundedVerdierLocalizationInput boundedInput
+
 /-- Route-specific inputs that remain before the corrected stable package is fully inhabited. -/
 structure RouteSpecificInputs : Type 1 where
   boundedHomotopyClosed2 :
@@ -428,8 +490,6 @@ structure RouteSpecificInputs : Type 1 where
   homotopyIsoClosureRealization :
     exactAcyclicWithCyclesHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA.{0}
   descent : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA.{0}
-  localizedRightAdjoint :
-    BoundedHomotopyWithCyclesLocalizedRightAdjointInput MetrizableLCA.{0}
   walkingParallelPairTransfer :
     DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputsFromNormalized
 
@@ -448,20 +508,19 @@ def stablePackageOfRouteSpecificInputs (inputs : RouteSpecificInputs) : StablePa
   let transferInputs :=
     DboundedWithCycles.MetrizableLCA.walkingParallelPairFiniteShapeTransferInputs_of_normalized
       inputs.walkingParallelPairTransfer
-  exact stablePackageOfHomotopyVerdierWalkingParallelPairBoundedVerdierLocalizationInput
-    inputs.descent inputs.localizedRightAdjoint transferInputs boundedInput
+  exact stablePackageOfWalkingParallelPairBoundedVerdierLocalizationInput
+    transferInputs boundedInput
 
 /-- Names of route-specific inputs still to discharge for a fully inhabited corrected package. -/
 def routeSpecificInputNames : List String :=
   ["(boundedHomotopyObject MetrizableLCA).IsTriangulatedClosed₂",
     "exactAcyclicWithCyclesHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA",
     "ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA",
-    "BoundedHomotopyWithCyclesLocalizedRightAdjointInput MetrizableLCA",
     "DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputsFromNormalized"]
 
-/-- Five route-specific inputs remain before the corrected package is fully inhabited. -/
+/-- Four route-specific inputs remain before the corrected package is fully inhabited. -/
 theorem routeSpecificInputNames_count :
-    routeSpecificInputNames.length = 5 :=
+    routeSpecificInputNames.length = 4 :=
   rfl
 
 /-- The corrected stable package carrier is the corrected ordinary quasicategory nerve. -/
