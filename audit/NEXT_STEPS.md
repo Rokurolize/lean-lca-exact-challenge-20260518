@@ -44,6 +44,11 @@ Remaining tasks:
 
 Completed corrected closure milestones:
 
+- Idempotent completeness: `IsIdempotentComplete MetrizableLCA.{u}` in
+  `LeanLCAExactChallenge/LCA/IdempotentComplete.lean`, foundation for
+  homotopy-invariance and contractible-implies-acyclic for
+  `exactAcyclicWithCycles`.
+
 - Mapping-cone isomorphism invariance.
 - Shift closure and bounded weak-equivalence shift compatibility.
 - MetrizableLCA binary biproduct closure.

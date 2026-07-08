@@ -10,6 +10,7 @@ import LeanLCAExactChallenge.LCA.ForgottenCokernel
 import LeanLCAExactChallenge.LCA.Pullback
 import LeanLCAExactChallenge.LCA.Pushout
 import LeanLCAExactChallenge.LCA.ExactCategory
+import LeanLCAExactChallenge.LCA.IdempotentComplete
 import LeanLCAExactChallenge.Ext.Yoneda
 import LeanLCAExactChallenge.Derived.Bounded
 import LeanLCAExactChallenge.Derived.ExactAcyclicCorrect

@@ -167,6 +167,21 @@ A stable `v4.31.0` migration was not committed because changing `lean-toolchain`
 
 The checked code milestone was committed as `43009683` (`Add corrected metrizable cycles stable bridge`) on branch `integrate-cycle-object-main-20260708`, then an audit-status commit `9e4547a0` (`Record corrected cycles bridge push status`) was pushed. A live post-fetch check before the version-policy audit update showed local `HEAD` and `origin/main` both at `9e4547a0`. The only untracked local paths observed were the `.lake` symlink used for local direct-Lean checking and `2026-07-08-085025-local-command-caveatcaveat-the-messages-below.txt`; neither was staged or committed.
 
+## Idempotent completeness milestone
+
+`LeanLCAExactChallenge/LCA/IdempotentComplete.lean` now proves
+`IsIdempotentComplete MetrizableLCA.{u}` via mathlib's
+`isIdempotentComplete_iff_hasEqualizer_of_id_and_idempotent` and the existing
+`HasFiniteLimits MetrizableLCA` equalizer infrastructure from `LCA.Pullback`.
+This is a foundation for the corrected route: homotopy-invariance of
+`exactAcyclicWithCycles` and "contractible implies acyclic" (the Bühler
+Chapter 10 arguments) require (weak) idempotent completeness, and both are
+prerequisites for presenting the corrected acyclics as a triangulated object
+property of the bounded homotopy category. Verified by direct
+`lean -j1 LeanLCAExactChallenge/LCA/IdempotentComplete.lean` and
+`lean -j1 LeanLCAExactChallenge.lean`, both exit code 0, and the file contains
+no `sorry`, `admit`, `axiom`, or `unsafe`.
+
 ## Conclusion
 
 The invalid degreewise acyclicity definition is now isolated from the corrected construction. The project has a Lean-checked replacement predicate, checked `MetrizableLCA` bridge, checked isomorphism/shift/biproduct/finite-product closure, checked corrected bounded weak-equivalence finite-product stability, a checked corrected `DboundedWithCycles` localization surface, and a checked corrected Metrizable stable package assumption surface. The next formalization step is to prove or port the left-calculus-of-fractions input for `boundedExactWeakEquivalenceWithCycles`, then inhabit the remaining corrected finite-limit, finite-colimit, pretriangulated, and triangulated fields without relying on legacy `boundedExactWeakEquivalence`.
