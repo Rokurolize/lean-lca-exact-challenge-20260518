@@ -94,7 +94,7 @@ Completed corrected closure milestones:
 - Shift closure and bounded weak-equivalence shift compatibility.
 - MetrizableLCA binary biproduct closure.
 - MetrizableLCA finite-product closure via W151 Option-product decomposition.
-- Corrected bounded weak-equivalence finite-product stability over default-universe `MetrizableLCA`.
+- Corrected bounded weak-equivalence finite-product and finite-coproduct stability over default-universe `MetrizableLCA`, plus finite-product stability for the opposite corrected weak-equivalence class.
 - Separate corrected localization surface: `BoundedDerivedCategoryWithCycles`, `DboundedWithCycles`, and `DboundedWithCycles.localization`.
 - Corrected finite biproduct/coproduct semantic surface: `DboundedWithCycles.hasFiniteBiproductsOfStableFiniteProducts`, `DboundedWithCycles.hasFiniteCoproductsOfStableFiniteProducts`, `DboundedWithCycles.MetrizableLCA.hasFiniteBiproducts`, and `DboundedWithCycles.MetrizableLCA.hasFiniteCoproducts`.
 - Corrected Metrizable stable bridge assumption surface: `BoundedDerivedWithCycles.Metrizable.StablePackage`, explicit with-cycles left calculus, derived preadditive/zero/finite-products/finite-biproducts/finite-coproducts/shift-additivity fields, and remaining finite-limit/finite-colimit/pretriangulated/triangulated assumptions.

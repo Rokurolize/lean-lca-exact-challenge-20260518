@@ -29,7 +29,7 @@ namespace ExactAcyclicWithCyclesClosure
 
 variable (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
 
-/-- Extract the corrected mapping-cone acyclicity witness from a corrected bounded weak equivalence. -/
+/-- Extract corrected mapping-cone acyclicity from a corrected bounded weak equivalence. -/
 theorem exactAcyclicWithCycles_mappingCone_of_boundedExactWeakEquivalenceWithCycles
     [HasBinaryBiproducts C]
     {K L : BoundedComplexCategory C} {f : K ⟶ L}
@@ -197,13 +197,29 @@ theorem finiteProductMappingConeInput_metrizableLCA :
       (BoundedFiniteProducts.includedProductIso X₂) hcomm).2 hCochain
   simpa [boundedExactWeakEquivalenceWithCycles] using hBounded
 
-/-- Corrected bounded weak equivalences over default-universe `MetrizableLCA` are stable under finite products. -/
+/-- Corrected bounded weak equivalences over `MetrizableLCA` are stable under finite products. -/
 theorem isStableUnderFiniteProducts_metrizableLCA :
     (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).IsStableUnderFiniteProducts where
   isStableUnderProductsOfShape J _ := by
     exact MorphismProperty.IsStableUnderProductsOfShape.mk
       (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}) J
       (finiteProductMappingConeInput_metrizableLCA J)
+
+/-- Corrected bounded weak equivalences over `MetrizableLCA` are stable under finite coproducts. -/
+theorem isStableUnderFiniteCoproducts_metrizableLCA :
+    (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).IsStableUnderFiniteCoproducts := by
+  letI : (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).IsStableUnderFiniteProducts :=
+    isStableUnderFiniteProducts_metrizableLCA
+  exact BoundedFiniteProducts.finiteCoproductStability_of_finiteProductStability
+    (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0})
+
+/-- The opposite corrected weak equivalence class is stable under finite products. -/
+theorem isStableUnderFiniteProducts_op_metrizableLCA :
+    ((boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).op).IsStableUnderFiniteProducts := by
+  letI : (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).IsStableUnderFiniteCoproducts :=
+    isStableUnderFiniteCoproducts_metrizableLCA
+  exact BoundedFiniteProducts.op_isStableUnderFiniteProducts_of_isStableUnderFiniteCoproducts
+    (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0})
 
 end MetrizableLCA
 

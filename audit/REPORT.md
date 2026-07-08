@@ -107,6 +107,8 @@ The corrected route now has Lean-checked API for:
 - `ExactAcyclicWithCyclesClosure.boundedExactWeakEquivalenceWithCycles_isCompatibleWithShift`
 - `ExactAcyclicWithCyclesClosure.MetrizableLCA.finiteExactAcyclicWithCyclesProductClosure_of_w151`
 - `ExactAcyclicWithCyclesClosure.MetrizableLCA.isStableUnderFiniteProducts_metrizableLCA`
+- `ExactAcyclicWithCyclesClosure.MetrizableLCA.isStableUnderFiniteCoproducts_metrizableLCA`
+- `ExactAcyclicWithCyclesClosure.MetrizableLCA.isStableUnderFiniteProducts_op_metrizableLCA`
 - `BoundedDerivedCategoryWithCycles`
 - `DboundedWithCycles`
 - `DboundedWithCycles.localization`
@@ -277,7 +279,7 @@ The same file now also exposes the corrected conditional triangulated-object sur
 
 The corrected homotopy surface now carries the left-calculus bridge as well: if the corrected iso-closed homotopy object predicate has `IsTriangulatedClosed₂` and the localized Verdier composite has the recorded right-adjoint/unit input, Lean proves left calculus for `boundedHomotopyExactWeakEquivalenceWithCycles`; with the homotopy-descent input, Lean transfers that left calculus to `boundedExactWeakEquivalenceWithCycles`. `MetrizableStableBridgeWithCycles.lean` exposes this as `leftCalculusAssumptionOfHomotopyVerdier`.
 
-The corrected derived surface now derives finite biproducts and finite coproducts from corrected left calculus and finite-product stability. The stable bridge therefore records eight checked left-calculus semantic fields: left calculus, preadditivity, zero object, finite products, finite biproducts, finite coproducts, all shift functor additivity, and suspension additivity.
+The corrected derived surface now derives finite biproducts and finite coproducts from corrected left calculus and finite-product stability. The corrected weak-equivalence class itself is also checked stable under finite coproducts, and its opposite class is checked stable under finite products. The stable bridge therefore records eight checked left-calculus semantic fields: left calculus, preadditivity, zero object, finite products, finite biproducts, finite coproducts, all shift functor additivity, and suspension additivity.
 
 This does not consume legacy `boundedExactWeakEquivalence` or legacy `Dbounded` facts. The remaining mathematical assumption is explicit: the corrected object predicate still needs the cone/distinguished-triangle closure that makes it descend through homotopy-category isomorphisms and become triangulated.
 
