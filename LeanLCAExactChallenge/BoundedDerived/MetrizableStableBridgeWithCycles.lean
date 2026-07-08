@@ -432,11 +432,12 @@ structure RouteSpecificInputs : Type 1 where
     BoundedHomotopyWithCyclesLocalizedRightAdjointInput MetrizableLCA.{0}
   walkingParallelPairTransfer :
     DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputs
-  boundedVerdierLocalization :
+  boundedHomotopyVerdierLocalization :
     letI : (boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
       boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
         MetrizableLCA.{0} boundedHomotopyRealization
-    BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput MetrizableLCA.{0}
+    BoundedHomotopyExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput
+      MetrizableLCA.{0}
 
 /-- Build the corrected stable package from the bundled route-specific inputs. -/
 def stablePackageOfRouteSpecificInputs (inputs : RouteSpecificInputs) : StablePackage := by
@@ -446,9 +447,12 @@ def stablePackageOfRouteSpecificInputs (inputs : RouteSpecificInputs) : StablePa
   letI : (exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
     exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
       MetrizableLCA.{0} inputs.homotopyIsoClosureRealization
+  let boundedInput :=
+    BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput.ofHomotopy
+      MetrizableLCA.{0} inputs.descent inputs.boundedHomotopyVerdierLocalization
   exact stablePackageOfHomotopyVerdierWalkingParallelPairBoundedVerdierLocalizationInput
     inputs.descent inputs.localizedRightAdjoint inputs.walkingParallelPairTransfer
-    inputs.boundedVerdierLocalization
+    boundedInput
 
 /-- Names of route-specific inputs still to discharge for a fully inhabited corrected package. -/
 def routeSpecificInputNames : List String :=
@@ -457,7 +461,7 @@ def routeSpecificInputNames : List String :=
     "ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA",
     "BoundedHomotopyWithCyclesLocalizedRightAdjointInput MetrizableLCA",
     "DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputs",
-    "BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput MetrizableLCA"]
+    "BoundedHomotopyExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput MetrizableLCA"]
 
 /-- Six route-specific inputs remain before the corrected package is fully inhabited. -/
 theorem routeSpecificInputNames_count :

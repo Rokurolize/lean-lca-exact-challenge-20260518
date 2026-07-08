@@ -954,6 +954,18 @@ noncomputable abbrev
   exact (boundedExactWeakEquivalenceWithCyclesToHomotopyExactWeakEquivalenceWithCycles C).comp
     (boundedHomotopyExactWeakEquivalenceWithCyclesToBoundedHomotopy_trW C)
 
+/-- Input saying that the homotopy-pullback corrected weak-equivalence localization is already
+the bounded corrected homotopy Verdier localization. -/
+structure BoundedHomotopyExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] : Type (max u v) where
+  composite_isLocalization :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    (BoundedComplexCategory.homotopyQuotientBounded C ⋙
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q).IsLocalization
+        (boundedHomotopyExactWeakEquivalenceWithCycles C)
+
 /-- Input saying that the direct corrected weak-equivalence localization is already the
 bounded corrected homotopy Verdier localization. -/
 structure BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput
@@ -965,6 +977,21 @@ structure BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput
     (BoundedComplexCategory.homotopyQuotientBounded C ⋙
       (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q).IsLocalization
         (boundedExactWeakEquivalenceWithCycles C)
+
+/-- Homotopy descent turns homotopy-pullback bounded Verdier localization into the direct
+corrected bounded Verdier localization input. -/
+def BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput.ofHomotopy
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    (descent : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput C)
+    (input : BoundedHomotopyExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput C) :
+    BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput C where
+  composite_isLocalization := by
+    haveI : (exactAcyclicWithCyclesHomotopyObject C).IsClosedUnderIsomorphisms :=
+      exactAcyclicWithCyclesHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+        C descent
+    rw [boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopyWithCycles_of_isoClosed C]
+    exact input.composite_isLocalization
 
 /-- The composite-localization input makes the direct map to the bounded corrected homotopy
 Verdier localizer a localized equivalence. -/
