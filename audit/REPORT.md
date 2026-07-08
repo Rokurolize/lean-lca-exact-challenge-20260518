@@ -155,9 +155,17 @@ lean -j1 LeanLCAExactChallenge.lean
 
 All listed checks exited with code 0 in the restored offline bundle. WSL handoff should re-run the same direct-`lean` checks with the local toolchain path available in that checkout.
 
+## Version policy
+
+This milestone remains intentionally verified on the repository-pinned toolchain. Live local evidence at the version-policy check was: `lean-toolchain` contains `leanprover/lean4:v4.30.0`; `lean --version` reports Lean 4.30.0 commit `d024af099ca4bf2c86f649261ebf59565dc8c622`; `lake-manifest.json` pins mathlib to rev `c5ea00351c28e24afc9f0f84379aa41082b1188f` with `inputRev` `v4.30.0`; and the restored `.lake/packages/mathlib` checkout is tagged `v4.30.0` with matching toolchain `leanprover/lean4:v4.30.0`.
+
+Official GitHub release data observed during the version-policy check showed Lean stable `v4.31.0`, Lean prerelease `v4.32.0-rc1`, mathlib stable `v4.31.0`, and mathlib prerelease `v4.32.0-rc1`; mathlib master's `lean-toolchain` was `leanprover/lean4:v4.32.0-rc1`. The local machine has Lean toolchains for `v4.31.0` and `v4.32.0-rc1`, but the restored verified dependency cache is `v4.30.0`-only.
+
+A stable `v4.31.0` migration was not committed because changing `lean-toolchain` alone would create an incoherent verification state: the manifest, mathlib checkout, inherited dependencies, and compiled `.olean` artifacts all need to move together. A valid stable migration requires a separate coherent Lake dependency update plus rebuilt or fetched `v4.31.0` artifacts, followed by the full baseline direct-Lean checks. Until that separate migration is completed, the proof route is verified against the repository pin.
+
 ## Repository state
 
-The checked code milestone was committed as `43009683` (`Add corrected metrizable cycles stable bridge`) on branch `integrate-cycle-object-main-20260708`. A fast-forward push advanced `origin/main` from `5fe91958` to `43009683`; a post-push fetch showed local `HEAD` and `origin/main` both at `43009683`. The only untracked local paths observed after the push were the `.lake` symlink used for local direct-Lean checking and `2026-07-08-085025-local-command-caveatcaveat-the-messages-below.txt`; neither was staged or committed.
+The checked code milestone was committed as `43009683` (`Add corrected metrizable cycles stable bridge`) on branch `integrate-cycle-object-main-20260708`, then an audit-status commit `9e4547a0` (`Record corrected cycles bridge push status`) was pushed. A live post-fetch check before the version-policy audit update showed local `HEAD` and `origin/main` both at `9e4547a0`. The only untracked local paths observed were the `.lake` symlink used for local direct-Lean checking and `2026-07-08-085025-local-command-caveatcaveat-the-messages-below.txt`; neither was staged or committed.
 
 ## Conclusion
 
