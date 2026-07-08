@@ -203,9 +203,9 @@ The new files `LeanLCAExactChallenge/Derived/ExactAcyclicCorrect.lean`, `LeanLCA
 Unproved in this pass:
 
 - Replacement of the existing `Dbounded` localization to use the new weak equivalences throughout the old theorem stack.
-- A proof that `boundedExactWeakEquivalenceWithCycles` has a left calculus of fractions. The corrected `DboundedWithCycles` surface is defined, finite products, zero object, preadditivity, and shift additivity are available conditionally on this calculus instance, and `leftCalculusAssumptionOfHomotopyVerdier` now reduces the assumption to explicit corrected homotopy Verdier inputs.
+- A proof that `boundedExactWeakEquivalenceWithCycles` has a left calculus of fractions. The corrected `DboundedWithCycles` surface is defined, finite products, finite biproducts, finite coproducts, zero object, preadditivity, and shift additivity are available conditionally on this calculus instance, and `leftCalculusAssumptionOfHomotopyVerdier` now reduces the assumption to explicit corrected homotopy Verdier inputs.
 - The completed homotopy-equivalence inclusion is not yet the full Verdier comparison: the reverse comparison with the bounded homotopy `trW` class still needs the corrected acyclic-object distinguished-triangle closure.
-- Inhabited corrected finite limits, finite colimits, pretriangulated structure, and triangulated structure for `DboundedWithCycles MetrizableLCA.{0}`. Finite products, finite biproducts, and finite coproducts are now derived from corrected left calculus; the new `BoundedDerivedWithCycles.Metrizable.RemainingStableSemanticFields` record remains the checked assumption surface for the remaining fields.
+- Inhabited corrected finite limits, finite colimits, pretriangulated structure, and triangulated structure for `DboundedWithCycles MetrizableLCA.{0}`. Finite limits and finite colimits now reduce to corrected equalizer/coequalizer transfer for the walking parallel pair; finite products, finite biproducts, and finite coproducts are derived from corrected left calculus; the new `BoundedDerivedWithCycles.Metrizable.RemainingStableSemanticFields` record remains the checked assumption surface for the remaining fields.
 
 ## Verification commands
 
