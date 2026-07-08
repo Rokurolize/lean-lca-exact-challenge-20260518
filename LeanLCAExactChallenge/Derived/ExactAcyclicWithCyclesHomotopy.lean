@@ -895,6 +895,36 @@ noncomputable abbrev
   exact (boundedExactWeakEquivalenceWithCyclesToHomotopyExactWeakEquivalenceWithCycles C).comp
     (boundedHomotopyExactWeakEquivalenceWithCyclesToBoundedHomotopy_trW C)
 
+/-- Input saying that the direct corrected weak-equivalence localization is already the
+bounded corrected homotopy Verdier localization. -/
+structure BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] : Type (max u v) where
+  composite_isLocalization :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    (BoundedComplexCategory.homotopyQuotientBounded C ⋙
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q).IsLocalization
+        (boundedExactWeakEquivalenceWithCycles C)
+
+/-- The composite-localization input makes the direct map to the bounded corrected homotopy
+Verdier localizer a localized equivalence. -/
+theorem boundedExactWeakEquivalenceWithCyclesToBoundedVerdier_isLocalizedEquivalence
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    (input : BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput C) :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    (boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW
+      C).IsLocalizedEquivalence := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let Φ := boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW C
+  haveI : (Φ.functor ⋙ (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q).IsLocalization
+      (boundedExactWeakEquivalenceWithCycles C) := input.composite_isLocalization
+  exact LocalizerMorphism.IsLocalizedEquivalence.of_isLocalization_of_isLocalization (Φ := Φ)
+    (L₂ := (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q)
+
 /-- Homotopy-category descent transfers left calculus from the homotopy pullback class. -/
 theorem
     boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_isoClosed
