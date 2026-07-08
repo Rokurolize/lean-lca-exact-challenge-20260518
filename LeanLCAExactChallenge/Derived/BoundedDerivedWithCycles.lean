@@ -77,6 +77,28 @@ abbrev hasFiniteProductsOfStableFiniteProducts [HasFiniteLimits C]
   change HasFiniteProducts (boundedExactWeakEquivalenceWithCycles C).Localization
   infer_instance
 
+/-- In the preadditive corrected localization, finite products upgrade to finite biproducts. -/
+abbrev hasFiniteBiproductsOfStableFiniteProducts [HasFiniteLimits C]
+    [HasBinaryBiproducts C]
+    [(boundedExactWeakEquivalenceWithCycles C).HasLeftCalculusOfFractions]
+    [(boundedExactWeakEquivalenceWithCycles C).IsStableUnderFiniteProducts] :
+    HasFiniteBiproducts (DboundedWithCycles C) := by
+  letI : Preadditive (DboundedWithCycles C) :=
+    DboundedWithCycles.preadditiveOfHasLeftCalculusOfFractions C
+  letI : HasFiniteProducts (DboundedWithCycles C) :=
+    DboundedWithCycles.hasFiniteProductsOfStableFiniteProducts C
+  exact HasFiniteBiproducts.of_hasFiniteProducts
+
+/-- Finite biproducts supply finite coproducts in the corrected localization. -/
+abbrev hasFiniteCoproductsOfStableFiniteProducts [HasFiniteLimits C]
+    [HasBinaryBiproducts C]
+    [(boundedExactWeakEquivalenceWithCycles C).HasLeftCalculusOfFractions]
+    [(boundedExactWeakEquivalenceWithCycles C).IsStableUnderFiniteProducts] :
+    HasFiniteCoproducts (DboundedWithCycles C) := by
+  letI : HasFiniteBiproducts (DboundedWithCycles C) :=
+    DboundedWithCycles.hasFiniteBiproductsOfStableFiniteProducts C
+  infer_instance
+
 namespace MetrizableLCA
 
 /-- The corrected default-universe metrizable bounded derived category has finite products
@@ -87,6 +109,24 @@ abbrev hasFiniteProducts
   letI : (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).IsStableUnderFiniteProducts :=
     ExactAcyclicWithCyclesClosure.MetrizableLCA.isStableUnderFiniteProducts_metrizableLCA
   exact DboundedWithCycles.hasFiniteProductsOfStableFiniteProducts (C := MetrizableLCA.{0})
+
+/-- The corrected default-universe metrizable bounded derived category has finite biproducts
+once the corrected weak equivalences have a left calculus of fractions. -/
+abbrev hasFiniteBiproducts
+    [(boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).HasLeftCalculusOfFractions] :
+    HasFiniteBiproducts (DboundedWithCycles MetrizableLCA.{0}) := by
+  letI : (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).IsStableUnderFiniteProducts :=
+    ExactAcyclicWithCyclesClosure.MetrizableLCA.isStableUnderFiniteProducts_metrizableLCA
+  exact DboundedWithCycles.hasFiniteBiproductsOfStableFiniteProducts (C := MetrizableLCA.{0})
+
+/-- The corrected default-universe metrizable bounded derived category has finite coproducts
+once the corrected weak equivalences have a left calculus of fractions. -/
+abbrev hasFiniteCoproducts
+    [(boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).HasLeftCalculusOfFractions] :
+    HasFiniteCoproducts (DboundedWithCycles MetrizableLCA.{0}) := by
+  letI : HasFiniteBiproducts (DboundedWithCycles MetrizableLCA.{0}) :=
+    DboundedWithCycles.MetrizableLCA.hasFiniteBiproducts
+  infer_instance
 
 /-- The corrected default-universe metrizable bounded derived category has a zero object
 once the corrected weak equivalences have a left calculus of fractions. -/

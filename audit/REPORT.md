@@ -111,6 +111,10 @@ The corrected route now has Lean-checked API for:
 - `DboundedWithCycles`
 - `DboundedWithCycles.localization`
 - `DboundedWithCycles.MetrizableLCA.hasFiniteProducts`
+- `DboundedWithCycles.hasFiniteBiproductsOfStableFiniteProducts`
+- `DboundedWithCycles.hasFiniteCoproductsOfStableFiniteProducts`
+- `DboundedWithCycles.MetrizableLCA.hasFiniteBiproducts`
+- `DboundedWithCycles.MetrizableLCA.hasFiniteCoproducts`
 - `DboundedWithCycles.hasZeroObjectOfHasLeftCalculusOfFractions`
 - `DboundedWithCycles.MetrizableLCA.hasZeroObject`
 - `mappingCone_contractingHomotopy_of_homotopyEquiv`
@@ -170,7 +174,7 @@ Unproved in this pass:
 - Replacement of the existing `Dbounded` localization to use the new weak equivalences throughout the old theorem stack.
 - A proof that `boundedExactWeakEquivalenceWithCycles` has a left calculus of fractions. The corrected `DboundedWithCycles` surface is defined, finite products, zero object, preadditivity, and shift additivity are available conditionally on this calculus instance, and `leftCalculusAssumptionOfHomotopyVerdier` now reduces the assumption to explicit corrected homotopy Verdier inputs.
 - The completed homotopy-equivalence inclusion is not yet the full Verdier comparison: the reverse comparison with the bounded homotopy `trW` class still needs the corrected acyclic-object distinguished-triangle closure.
-- Inhabited corrected finite limits, finite colimits, pretriangulated structure, and triangulated structure for `DboundedWithCycles MetrizableLCA.{0}`. The new `BoundedDerivedWithCycles.Metrizable.RemainingStableSemanticFields` record is the checked assumption surface for these fields.
+- Inhabited corrected finite limits, finite colimits, pretriangulated structure, and triangulated structure for `DboundedWithCycles MetrizableLCA.{0}`. Finite products, finite biproducts, and finite coproducts are now derived from corrected left calculus; the new `BoundedDerivedWithCycles.Metrizable.RemainingStableSemanticFields` record remains the checked assumption surface for the remaining fields.
 
 ## Verification commands
 
@@ -273,8 +277,10 @@ The same file now also exposes the corrected conditional triangulated-object sur
 
 The corrected homotopy surface now carries the left-calculus bridge as well: if the corrected iso-closed homotopy object predicate has `IsTriangulatedClosed₂` and the localized Verdier composite has the recorded right-adjoint/unit input, Lean proves left calculus for `boundedHomotopyExactWeakEquivalenceWithCycles`; with the homotopy-descent input, Lean transfers that left calculus to `boundedExactWeakEquivalenceWithCycles`. `MetrizableStableBridgeWithCycles.lean` exposes this as `leftCalculusAssumptionOfHomotopyVerdier`.
 
+The corrected derived surface now derives finite biproducts and finite coproducts from corrected left calculus and finite-product stability. The stable bridge therefore records eight checked left-calculus semantic fields: left calculus, preadditivity, zero object, finite products, finite biproducts, finite coproducts, all shift functor additivity, and suspension additivity.
+
 This does not consume legacy `boundedExactWeakEquivalence` or legacy `Dbounded` facts. The remaining mathematical assumption is explicit: the corrected object predicate still needs the cone/distinguished-triangle closure that makes it descend through homotopy-category isomorphisms and become triangulated.
 
 ## Conclusion
 
-The invalid degreewise acyclicity definition is now isolated from the corrected construction. The project has a Lean-checked replacement predicate, checked `MetrizableLCA` bridge, checked isomorphism/shift/biproduct/finite-product closure, checked corrected bounded weak-equivalence finite-product stability, checked contractible and homotopy-equivalence bridges, a checked corrected homotopy-object `trW` surface, a checked corrected `DboundedWithCycles` localization surface, and a checked corrected Metrizable stable package assumption surface. The next formalization step is the corrected acyclic-object cone/distinguished-triangle closure, then the Q/Qh localization comparison and the remaining pretriangulated/triangulated fields without relying on legacy `boundedExactWeakEquivalence`.
+The invalid degreewise acyclicity definition is now isolated from the corrected construction. The project has a Lean-checked replacement predicate, checked `MetrizableLCA` bridge, checked isomorphism/shift/biproduct/finite-product closure, checked corrected bounded weak-equivalence finite-product stability, checked contractible and homotopy-equivalence bridges, a checked corrected homotopy-object `trW` surface, a checked corrected `DboundedWithCycles` localization surface, checked finite product/biproduct/coproduct semantic fields, and a checked corrected Metrizable stable package assumption surface. The next formalization step is the corrected acyclic-object cone/distinguished-triangle closure, then the Q/Qh localization comparison and the remaining pretriangulated/triangulated fields without relying on legacy `boundedExactWeakEquivalence`.

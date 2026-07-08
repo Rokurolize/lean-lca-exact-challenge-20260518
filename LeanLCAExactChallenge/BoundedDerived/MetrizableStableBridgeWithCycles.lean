@@ -66,6 +66,8 @@ structure StablePackage : Type 2 where
     WeakEquivalence = boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}
   preadditive : Preadditive OrdinaryCategory
   finiteProductInstance : HasFiniteProducts OrdinaryCategory
+  finiteBiproductInstance : HasFiniteBiproducts OrdinaryCategory
+  finiteCoproductInstance : HasFiniteCoproducts OrdinaryCategory
   finiteLimitInstance : HasFiniteLimits OrdinaryCategory
   finiteColimitInstance : HasFiniteColimits OrdinaryCategory
   zeroObjectInstance : HasZeroObject OrdinaryCategory
@@ -108,6 +110,8 @@ structure LeftCalculusSemanticFields : Type 1 where
   preadditive : Preadditive OrdinaryCategory
   zeroObject : HasZeroObject OrdinaryCategory
   finiteProducts : HasFiniteProducts OrdinaryCategory
+  finiteBiproducts : HasFiniteBiproducts OrdinaryCategory
+  finiteCoproducts : HasFiniteCoproducts OrdinaryCategory
   shiftAdditiveAll :
     letI : Preadditive OrdinaryCategory := preadditive
     ∀ n : ℤ, (shiftFunctor OrdinaryCategory n).Additive
@@ -129,6 +133,12 @@ def leftCalculusSemanticFields
   finiteProducts := by
     letI : WeakEquivalence.HasLeftCalculusOfFractions := assumption.leftCalculus
     exact DboundedWithCycles.MetrizableLCA.hasFiniteProducts
+  finiteBiproducts := by
+    letI : WeakEquivalence.HasLeftCalculusOfFractions := assumption.leftCalculus
+    exact DboundedWithCycles.MetrizableLCA.hasFiniteBiproducts
+  finiteCoproducts := by
+    letI : WeakEquivalence.HasLeftCalculusOfFractions := assumption.leftCalculus
+    exact DboundedWithCycles.MetrizableLCA.hasFiniteCoproducts
   shiftAdditiveAll := by
     letI : WeakEquivalence.HasLeftCalculusOfFractions := assumption.leftCalculus
     intro n
@@ -177,6 +187,8 @@ def stablePackageOfSemanticInput (input : StableSemanticInput) : StablePackage w
   weakEquivalenceClass := rfl
   preadditive := input.available.preadditive
   finiteProductInstance := input.available.finiteProducts
+  finiteBiproductInstance := input.available.finiteBiproducts
+  finiteCoproductInstance := input.available.finiteCoproducts
   finiteLimitInstance := input.remaining.finiteLimits
   finiteColimitInstance := input.remaining.finiteColimits
   zeroObjectInstance := input.available.zeroObject
@@ -208,12 +220,14 @@ def leftCalculusSemanticFieldNames : List String :=
     "Preadditive (DboundedWithCycles MetrizableLCA)",
     "HasZeroObject (DboundedWithCycles MetrizableLCA)",
     "HasFiniteProducts (DboundedWithCycles MetrizableLCA)",
+    "HasFiniteBiproducts (DboundedWithCycles MetrizableLCA)",
+    "HasFiniteCoproducts (DboundedWithCycles MetrizableLCA)",
     "forall n, (shiftFunctor (DboundedWithCycles MetrizableLCA) n).Additive",
     "(shiftFunctor (DboundedWithCycles MetrizableLCA) 1).Additive"]
 
-/-- Corrected left calculus currently supplies six named semantic fields. -/
+/-- Corrected left calculus currently supplies eight named semantic fields. -/
 theorem leftCalculusSemanticFieldNames_count :
-    leftCalculusSemanticFieldNames.length = 6 :=
+    leftCalculusSemanticFieldNames.length = 8 :=
   rfl
 
 /-- Remaining stable assumptions for the corrected route after the fields above. -/
