@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.Derived.ExactAcyclicWithCyclesContractible
+import LeanLCAExactChallenge.Derived.BoundedDerivedWithCycles
 
 /-!
 # Homotopy-category surface for cycle-object acyclicity
@@ -761,6 +762,18 @@ theorem boundedExactWeakEquivalenceWithCycles_le_boundedHomotopyExactWeakEquival
     exactAcyclicWithCyclesHomotopyIsoClosure_trW_quotient_map_of_exactAcyclicWithCycles_mappingCone
       C ((BoundedComplexCategory.ι C).map f) hf
 
+/-- The identity functor sends direct corrected weak equivalences to the corrected homotopy
+pullback weak equivalences. -/
+abbrev boundedExactWeakEquivalenceWithCyclesToHomotopyExactWeakEquivalenceWithCycles
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    LocalizerMorphism (boundedExactWeakEquivalenceWithCycles C)
+      (boundedHomotopyExactWeakEquivalenceWithCycles C) where
+  functor := 𝟭 _
+  map := by
+    intro K L f hf
+    exact boundedExactWeakEquivalenceWithCycles_le_boundedHomotopyExactWeakEquivalenceWithCycles
+      C f hf
+
 /-- The iso-closed homotopy pullback class is membership of the corrected cone object. -/
 theorem boundedHomotopyExactWeakEquivalenceWithCycles_iff_mappingCone_isoClosure
     [HasZeroObject C] [HasBinaryBiproducts C] {K L : BoundedComplexCategory C} (f : K ⟶ L) :
@@ -782,6 +795,63 @@ theorem
   dsimp [boundedHomotopyExactWeakEquivalenceWithCycles]
   rw [exactAcyclicWithCyclesHomotopyIsoClosure_trW C]
   exact boundedExactWeakEquivalenceWithCycles_eq_exactAcyclicWithCyclesHomotopy_trW_inverseImage C
+
+/-- Under homotopy descent, the identity localizer morphism is induced by equality of the
+direct and corrected homotopy pullback weak-equivalence classes. -/
+abbrev boundedExactWeakEquivalenceWithCyclesToHomotopyExactWeakEquivalenceWithCyclesOfIsoClosed
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicWithCyclesHomotopyObject C).IsClosedUnderIsomorphisms] :
+    LocalizerMorphism (boundedExactWeakEquivalenceWithCycles C)
+      (boundedHomotopyExactWeakEquivalenceWithCycles C) :=
+  LocalizerMorphism.ofEq (F := 𝟭 (BoundedComplexCategory C)) (by
+    ext K L f
+    simp only [MorphismProperty.inverseImage, Functor.id_map]
+    rw [boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopyWithCycles_of_isoClosed C]
+    rfl)
+
+instance boundedExactWeakEquivalenceWithCyclesToHomotopyOfIsoClosed_localizedEquivalence
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicWithCyclesHomotopyObject C).IsClosedUnderIsomorphisms] :
+    (boundedExactWeakEquivalenceWithCyclesToHomotopyExactWeakEquivalenceWithCyclesOfIsoClosed
+      C).IsLocalizedEquivalence := by
+  haveI :
+      (boundedExactWeakEquivalenceWithCyclesToHomotopyExactWeakEquivalenceWithCyclesOfIsoClosed
+        C).functor.IsEquivalence := by
+    dsimp
+      [boundedExactWeakEquivalenceWithCyclesToHomotopyExactWeakEquivalenceWithCyclesOfIsoClosed]
+    infer_instance
+  apply LocalizerMorphism.IsLocalizedEquivalence.of_equivalence
+  intro K L f hf
+  refine ⟨K, L, f, ?_, ?_⟩
+  · rw [boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopyWithCycles_of_isoClosed C]
+    exact hf
+  · simpa
+      [boundedExactWeakEquivalenceWithCyclesToHomotopyExactWeakEquivalenceWithCyclesOfIsoClosed]
+      using (Nonempty.intro (Iso.refl (Arrow.mk f)))
+
+/-- Direct corrected weak equivalences also map to the corrected homotopy Verdier weak
+equivalences. -/
+abbrev boundedExactWeakEquivalenceWithCyclesToExactAcyclicWithCyclesHomotopyIsoClosure_trW
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    LocalizerMorphism (boundedExactWeakEquivalenceWithCycles C)
+      (exactAcyclicWithCyclesHomotopyIsoClosure C).trW :=
+  (boundedExactWeakEquivalenceWithCyclesToHomotopyExactWeakEquivalenceWithCycles C).comp
+    (boundedHomotopyExactWeakEquivalenceWithCyclesToIsoClosure_trW C)
+
+/-- Direct corrected weak equivalences also map to the bounded corrected homotopy Verdier weak
+equivalences by first passing through the corrected homotopy pullback class. -/
+noncomputable abbrev
+    boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    LocalizerMorphism (boundedExactWeakEquivalenceWithCycles C)
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  exact (boundedExactWeakEquivalenceWithCyclesToHomotopyExactWeakEquivalenceWithCycles C).comp
+    (boundedHomotopyExactWeakEquivalenceWithCyclesToBoundedHomotopy_trW C)
 
 /-- Homotopy-category descent transfers left calculus from the homotopy pullback class. -/
 theorem
@@ -885,5 +955,176 @@ theorem
   exact
     boundedExactWeakEquivalenceWithCycles_hasRightCalculusOfFractions_of_homotopyEquivInvariance
       C H
+
+/-!
+## Localized comparison categories
+
+The following declarations mirror the legacy Q/Qh comparison layer, but every localizer is
+the corrected cycle-object weak equivalence or its corrected homotopy pullback.
+-/
+
+/-- The corrected homotopy/Verdier pullback localization. -/
+abbrev BoundedHomotopyDerivedCategoryWithCycles
+    [HasZeroObject C] [HasBinaryBiproducts C] : Type (max u v) :=
+  (boundedHomotopyExactWeakEquivalenceWithCycles C).Localization
+
+namespace BoundedHomotopyDerivedCategoryWithCycles
+
+/-- The comparison from the corrected homotopy pullback localization to the ambient corrected
+homotopy Verdier quotient. -/
+noncomputable abbrev verdierComparison [HasZeroObject C] [HasBinaryBiproducts C] :
+    BoundedHomotopyDerivedCategoryWithCycles C ⥤
+      MorphismProperty.Localization ((exactAcyclicWithCyclesHomotopyIsoClosure C).trW) :=
+  (boundedHomotopyExactWeakEquivalenceWithCyclesToIsoClosure_trW C).localizedFunctor
+    (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
+    (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q
+
+/-- The corrected homotopy pullback comparison commutes with the two localization functors. -/
+noncomputable def verdierComparisonLocalizationIso
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    BoundedComplexCategory.homotopyQuotient C ⋙
+        (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q ≅
+      (boundedHomotopyExactWeakEquivalenceWithCycles C).Q ⋙
+        BoundedHomotopyDerivedCategoryWithCycles.verdierComparison C :=
+  let Φ := boundedHomotopyExactWeakEquivalenceWithCyclesToIsoClosure_trW C
+  letI : CatCommSq Φ.functor (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
+      (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q
+      (Φ.localizedFunctor (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
+        (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q) :=
+    Φ.catCommSq (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
+      (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q
+  CatCommSq.iso Φ.functor (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
+    (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q
+    (Φ.localizedFunctor (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
+      (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q)
+
+/-- The corrected homotopy pullback localization factors through the bounded corrected
+homotopy Verdier quotient. -/
+noncomputable abbrev boundedVerdierComparison
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    BoundedHomotopyDerivedCategoryWithCycles C ⥤
+      BoundedExactAcyclicWithCyclesHomotopyVerdierCategory C := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  exact (boundedHomotopyExactWeakEquivalenceWithCyclesToBoundedHomotopy_trW
+    C).localizedFunctor (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+
+/-- The corrected bounded Verdier comparison commutes with the bounded homotopy quotient and
+the two localization functors. -/
+noncomputable def boundedVerdierComparisonLocalizationIso
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    BoundedComplexCategory.homotopyQuotientBounded C ⋙
+        (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q ≅
+      (boundedHomotopyExactWeakEquivalenceWithCycles C).Q ⋙
+        BoundedHomotopyDerivedCategoryWithCycles.boundedVerdierComparison C := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let Φ := boundedHomotopyExactWeakEquivalenceWithCyclesToBoundedHomotopy_trW C
+  letI : CatCommSq Φ.functor (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+      (Φ.localizedFunctor (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
+        (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q) :=
+    Φ.catCommSq (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+  exact CatCommSq.iso Φ.functor (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
+    (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+    (Φ.localizedFunctor (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q)
+
+end BoundedHomotopyDerivedCategoryWithCycles
+
+namespace DboundedWithCycles
+
+/-- The comparison from the direct corrected bounded localization to the corrected homotopy
+pullback localization. -/
+noncomputable abbrev homotopyComparison [HasZeroObject C] [HasBinaryBiproducts C] :
+    DboundedWithCycles C ⥤ BoundedHomotopyDerivedCategoryWithCycles C :=
+  (boundedExactWeakEquivalenceWithCyclesToHomotopyExactWeakEquivalenceWithCycles C).localizedFunctor
+    (DboundedWithCycles.localization C) (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
+
+/-- The corrected homotopy comparison commutes with the localization functors. -/
+noncomputable def homotopyComparisonLocalizationIso
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    (boundedHomotopyExactWeakEquivalenceWithCycles C).Q ≅
+      DboundedWithCycles.localization C ⋙ DboundedWithCycles.homotopyComparison C :=
+  let Φ := boundedExactWeakEquivalenceWithCyclesToHomotopyExactWeakEquivalenceWithCycles C
+  letI : CatCommSq Φ.functor (DboundedWithCycles.localization C)
+      (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
+      (Φ.localizedFunctor (DboundedWithCycles.localization C)
+        (boundedHomotopyExactWeakEquivalenceWithCycles C).Q) :=
+    Φ.catCommSq (DboundedWithCycles.localization C)
+      (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
+  by
+    simpa [boundedExactWeakEquivalenceWithCyclesToHomotopyExactWeakEquivalenceWithCycles,
+      DboundedWithCycles.homotopyComparison] using
+      CatCommSq.iso Φ.functor (DboundedWithCycles.localization C)
+        (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
+        (Φ.localizedFunctor (DboundedWithCycles.localization C)
+          (boundedHomotopyExactWeakEquivalenceWithCycles C).Q)
+
+/-- The comparison from the direct corrected bounded localization to the ambient corrected
+homotopy Verdier quotient, routed through the corrected homotopy pullback localization. -/
+noncomputable abbrev verdierComparison [HasZeroObject C] [HasBinaryBiproducts C] :
+    DboundedWithCycles C ⥤
+      MorphismProperty.Localization ((exactAcyclicWithCyclesHomotopyIsoClosure C).trW) :=
+  DboundedWithCycles.homotopyComparison C ⋙
+    BoundedHomotopyDerivedCategoryWithCycles.verdierComparison C
+
+/-- The routed corrected bounded-to-Verdier comparison commutes with the localization
+functors. -/
+noncomputable def verdierComparisonLocalizationIso
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    BoundedComplexCategory.homotopyQuotient C ⋙
+        (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q ≅
+      DboundedWithCycles.localization C ⋙ DboundedWithCycles.verdierComparison C :=
+  BoundedHomotopyDerivedCategoryWithCycles.verdierComparisonLocalizationIso C ≪≫
+    Functor.isoWhiskerRight (DboundedWithCycles.homotopyComparisonLocalizationIso C)
+      (BoundedHomotopyDerivedCategoryWithCycles.verdierComparison C) ≪≫
+    Functor.associator _ _ _
+
+/-- The comparison from the direct corrected bounded localization to the ambient corrected
+homotopy Verdier quotient, induced directly by the composite localizer morphism. -/
+noncomputable abbrev verdierComparisonDirect [HasZeroObject C] [HasBinaryBiproducts C] :
+    DboundedWithCycles C ⥤
+      MorphismProperty.Localization ((exactAcyclicWithCyclesHomotopyIsoClosure C).trW) :=
+  (boundedExactWeakEquivalenceWithCyclesToExactAcyclicWithCyclesHomotopyIsoClosure_trW
+    C).localizedFunctor (DboundedWithCycles.localization C)
+      (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q
+
+/-- The direct corrected bounded-to-Verdier comparison commutes with the localization
+functors. -/
+noncomputable def verdierComparisonDirectLocalizationIso
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    BoundedComplexCategory.homotopyQuotient C ⋙
+        (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q ≅
+      DboundedWithCycles.localization C ⋙ DboundedWithCycles.verdierComparisonDirect C :=
+  let Φ := boundedExactWeakEquivalenceWithCyclesToExactAcyclicWithCyclesHomotopyIsoClosure_trW C
+  letI : CatCommSq Φ.functor (DboundedWithCycles.localization C)
+      (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q
+      (Φ.localizedFunctor (DboundedWithCycles.localization C)
+        (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q) :=
+    Φ.catCommSq (DboundedWithCycles.localization C)
+      (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q
+  CatCommSq.iso Φ.functor (DboundedWithCycles.localization C)
+    (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q
+    (Φ.localizedFunctor (DboundedWithCycles.localization C)
+      (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q)
+
+/-- Under homotopy descent, the direct corrected localization and corrected homotopy pullback
+localization are equivalent. -/
+noncomputable def homotopyComparisonEquivalenceOfIsoClosed
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicWithCyclesHomotopyObject C).IsClosedUnderIsomorphisms] :
+    DboundedWithCycles C ≌ BoundedHomotopyDerivedCategoryWithCycles C :=
+  ((boundedExactWeakEquivalenceWithCyclesToHomotopyExactWeakEquivalenceWithCyclesOfIsoClosed
+    C).localizedFunctor (DboundedWithCycles.localization C)
+      (boundedHomotopyExactWeakEquivalenceWithCycles C).Q).asEquivalence
+
+end DboundedWithCycles
 
 end LeanLCAExactChallenge
