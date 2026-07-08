@@ -80,6 +80,8 @@ Completed corrected closure milestones:
   `exactAcyclicWithCyclesHomotopyObject_trW_hasRightCalculusOfFractions_of_isTriangulated`,
   `exactAcyclicWithCyclesHomotopyObject_trW_hasLeftCalculusOfFractions_of_closed2`,
   `exactAcyclicWithCyclesHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_closed2`,
+  `boundedExactAcyclicWithCyclesHomotopyObject`,
+  `boundedExactAcyclicWithCyclesHomotopyObject_isTriangulated_of_closed2`,
   `boundedHomotopyWithCyclesLocalizedVerdierFunctor`,
   `BoundedHomotopyWithCyclesLocalizedRightAdjointInput`,
   `BoundedHomotopyWithCyclesLocalizedLeftAdjointInput`,

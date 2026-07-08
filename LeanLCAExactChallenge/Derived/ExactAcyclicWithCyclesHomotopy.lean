@@ -268,6 +268,52 @@ theorem
     exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
   infer_instance
 
+/-- Corrected acyclic bounded homotopy objects inside the bounded homotopy category. -/
+abbrev boundedExactAcyclicWithCyclesHomotopyObject :
+    ObjectProperty (BoundedHomotopyCategory C) :=
+  (exactAcyclicWithCyclesHomotopyIsoClosure C).inverseImage (BoundedHomotopyCategory.ι C)
+
+/-- Corrected acyclic bounded homotopy objects are isomorphism-closed. -/
+instance boundedExactAcyclicWithCyclesHomotopyObject_isClosedUnderIsomorphisms :
+    (boundedExactAcyclicWithCyclesHomotopyObject C).IsClosedUnderIsomorphisms := by
+  dsimp [boundedExactAcyclicWithCyclesHomotopyObject]
+  infer_instance
+
+/-- Corrected acyclic bounded homotopy objects contain zero. -/
+instance boundedExactAcyclicWithCyclesHomotopyObject_containsZero [HasZeroObject C] :
+    (boundedExactAcyclicWithCyclesHomotopyObject C).ContainsZero := by
+  dsimp [boundedExactAcyclicWithCyclesHomotopyObject]
+  infer_instance
+
+/-- Corrected acyclic bounded homotopy objects are shift-stable once the source is triangulated. -/
+noncomputable instance boundedExactAcyclicWithCyclesHomotopyObject_isStableUnderShift
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    (boundedExactAcyclicWithCyclesHomotopyObject C).IsStableUnderShift ℤ := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  dsimp [boundedExactAcyclicWithCyclesHomotopyObject]
+  infer_instance
+
+/-- Under the two closed₂ inputs, corrected acyclic bounded homotopy objects are triangulated. -/
+theorem boundedExactAcyclicWithCyclesHomotopyObject_isTriangulated_of_closed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    (boundedExactAcyclicWithCyclesHomotopyObject C).IsTriangulated := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  haveI : (boundedHomotopyObject C).IsTriangulated :=
+    boundedHomotopyObject_isTriangulated_of_isTriangulatedClosed2 C
+  haveI : (exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulated :=
+    exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
+  dsimp [boundedExactAcyclicWithCyclesHomotopyObject]
+  infer_instance
+
 /-- A map whose cone is corrected acyclic lies in the corrected homotopy `trW` class. -/
 theorem
     exactAcyclicWithCyclesHomotopyObject_trW_quotient_map_of_exactAcyclicWithCycles_mappingCone

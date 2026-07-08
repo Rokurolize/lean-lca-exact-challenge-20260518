@@ -144,6 +144,8 @@ The corrected route now has Lean-checked API for:
 - `exactAcyclicWithCyclesHomotopyObject_trW_hasRightCalculusOfFractions_of_homotopyObjectClosed2`
 - `exactAcyclicWithCyclesHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_closed2`
 - `exactAcyclicWithCyclesHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_closed2`
+- `boundedExactAcyclicWithCyclesHomotopyObject`
+- `boundedExactAcyclicWithCyclesHomotopyObject_isTriangulated_of_closed2`
 - `exactAcyclicWithCyclesHomotopyObject_trW_quotient_map_of_exactAcyclicWithCycles_mappingCone`
 - `exactAcyclicWithCyclesHomotopyObject_trW_quotient_map_iff_exactAcyclicWithCycles_mappingCone`
 - `exactAcyclicWithCyclesHomotopyIsoClosure_trW_quotient_map_iff_mappingCone`
@@ -287,6 +289,8 @@ The homotopy-descent assumption is now a checked Lean input surface, `ExactAcycl
 The same file now also exposes the corrected conditional triangulated-object surface: once the corrected object predicate has the required `IsTriangulatedClosed₂` closure, Lean supplies `IsTriangulated` for both the object predicate and its isomorphism closure.
 
 The corrected homotopy surface now carries the two-sided calculus bridge as well: if the corrected iso-closed homotopy object predicate has `IsTriangulatedClosed₂`, Lean proves Verdier left and right calculus for the homotopy `trW` class. With the recorded localized right-adjoint/unit input it pulls left calculus back to `boundedHomotopyExactWeakEquivalenceWithCycles`; with the recorded localized left-adjoint/counit input it pulls right calculus back. With homotopy descent, Lean transfers both calculi to `boundedExactWeakEquivalenceWithCycles`. `MetrizableStableBridgeWithCycles.lean` exposes these as `leftCalculusAssumptionOfHomotopyVerdier` and `rightCalculusAssumptionOfHomotopyVerdier`.
+
+The corrected route now also has the bounded-homotopy object-property layer: `boundedExactAcyclicWithCyclesHomotopyObject` is the inverse image of the corrected iso-closed homotopy acyclic objects along `BoundedHomotopyCategory.ι`, and under the bounded-source and corrected-acyclic closed₂ inputs Lean proves it is triangulated. This mirrors the Q/Qh structural layer without using legacy bounded weak equivalences as evidence.
 
 The corrected derived surface now derives finite biproducts and finite coproducts from corrected left calculus and finite-product stability. The corrected weak-equivalence class itself is also checked stable under finite coproducts, and its opposite class is checked stable under finite products. The stable bridge therefore records eight checked left-calculus semantic fields: left calculus, preadditivity, zero object, finite products, finite biproducts, finite coproducts, all shift functor additivity, and suspension additivity.
 
