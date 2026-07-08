@@ -314,6 +314,149 @@ theorem boundedExactAcyclicWithCyclesHomotopyObject_isTriangulated_of_closed2
   dsimp [boundedExactAcyclicWithCyclesHomotopyObject]
   infer_instance
 
+/-- The corrected bounded homotopy Verdier quotient under the bounded-source closure input. -/
+abbrev BoundedExactAcyclicWithCyclesHomotopyVerdierCategory
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] : Type (max u v) :=
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Localization
+
+/-- Under closed₂ hypotheses, the corrected bounded homotopy Verdier quotient is preadditive. -/
+noncomputable instance
+    boundedExactAcyclicWithCyclesHomotopyVerdierCategory_preadditive_of_closed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    Preadditive (BoundedExactAcyclicWithCyclesHomotopyVerdierCategory C) := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let W : MorphismProperty (BoundedHomotopyCategory C) :=
+    (boundedExactAcyclicWithCyclesHomotopyObject C).trW
+  haveI : (boundedExactAcyclicWithCyclesHomotopyObject C).IsTriangulated :=
+    boundedExactAcyclicWithCyclesHomotopyObject_isTriangulated_of_closed2 C
+  haveI : W.HasLeftCalculusOfFractions := by
+    dsimp [W]
+    infer_instance
+  exact Localization.preadditive W.Q W
+
+/-- Under closed₂ hypotheses, the corrected bounded homotopy Verdier quotient has zero. -/
+instance boundedExactAcyclicWithCyclesHomotopyVerdierCategory_hasZeroObject_of_closed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    HasZeroObject (BoundedExactAcyclicWithCyclesHomotopyVerdierCategory C) := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let W : MorphismProperty (BoundedHomotopyCategory C) :=
+    (boundedExactAcyclicWithCyclesHomotopyObject C).trW
+  change HasZeroObject W.Localization
+  exact W.Q.hasZeroObject_of_additive
+
+/-- Under closed₂ hypotheses, the corrected bounded homotopy Verdier quotient has shifts. -/
+noncomputable instance boundedExactAcyclicWithCyclesHomotopyVerdierCategory_hasShift_of_closed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    HasShift (BoundedExactAcyclicWithCyclesHomotopyVerdierCategory C) ℤ := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let W : MorphismProperty (BoundedHomotopyCategory C) :=
+    (boundedExactAcyclicWithCyclesHomotopyObject C).trW
+  haveI : (boundedExactAcyclicWithCyclesHomotopyObject C).IsTriangulated :=
+    boundedExactAcyclicWithCyclesHomotopyObject_isTriangulated_of_closed2 C
+  haveI : W.IsCompatibleWithShift ℤ := by
+    dsimp [W]
+    infer_instance
+  exact HasShift.localized W.Q W ℤ
+
+/-- Under closed₂ hypotheses, the corrected bounded homotopy localization commutes with shifts. -/
+noncomputable instance
+    boundedExactAcyclicWithCyclesHomotopyVerdierCategory_localization_commShift_of_closed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    ((boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q).CommShift ℤ := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let W : MorphismProperty (BoundedHomotopyCategory C) :=
+    (boundedExactAcyclicWithCyclesHomotopyObject C).trW
+  haveI : (boundedExactAcyclicWithCyclesHomotopyObject C).IsTriangulated :=
+    boundedExactAcyclicWithCyclesHomotopyObject_isTriangulated_of_closed2 C
+  haveI : W.IsCompatibleWithShift ℤ := by
+    dsimp [W]
+    infer_instance
+  exact Functor.CommShift.localized W.Q W ℤ
+
+/-- Under closed₂ hypotheses, localized shifts on the corrected quotient are additive. -/
+instance boundedExactAcyclicWithCyclesHomotopyVerdierCategory_shiftFunctor_additive_of_closed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂] (n : ℤ) :
+    (shiftFunctor (BoundedExactAcyclicWithCyclesHomotopyVerdierCategory C) n).Additive := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let W : MorphismProperty (BoundedHomotopyCategory C) :=
+    (boundedExactAcyclicWithCyclesHomotopyObject C).trW
+  haveI : (boundedExactAcyclicWithCyclesHomotopyObject C).IsTriangulated :=
+    boundedExactAcyclicWithCyclesHomotopyObject_isTriangulated_of_closed2 C
+  haveI : W.HasLeftCalculusOfFractions := by
+    dsimp [W]
+    infer_instance
+  change (shiftFunctor W.Localization n).Additive
+  rw [Localization.functor_additive_iff W.Q W]
+  exact Functor.additive_of_iso (W.Q.commShiftIso n)
+
+/-- Under closed₂ hypotheses, the corrected bounded homotopy Verdier quotient is pretriangulated. -/
+noncomputable instance
+    boundedExactAcyclicWithCyclesHomotopyVerdierCategory_pretriangulated_of_closed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    Pretriangulated (BoundedExactAcyclicWithCyclesHomotopyVerdierCategory C) := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let W : MorphismProperty (BoundedHomotopyCategory C) :=
+    (boundedExactAcyclicWithCyclesHomotopyObject C).trW
+  haveI : (boundedHomotopyObject C).IsTriangulated :=
+    boundedHomotopyObject_isTriangulated_of_isTriangulatedClosed2 C
+  haveI : (boundedExactAcyclicWithCyclesHomotopyObject C).IsTriangulated :=
+    boundedExactAcyclicWithCyclesHomotopyObject_isTriangulated_of_closed2 C
+  haveI : W.HasLeftCalculusOfFractions := by
+    dsimp [W]
+    infer_instance
+  haveI : W.IsCompatibleWithTriangulation := by
+    dsimp [W]
+    infer_instance
+  exact Triangulated.Localization.pretriangulated W.Q W
+
+/-- Under closed₂ hypotheses, the corrected bounded homotopy Verdier quotient is triangulated. -/
+instance boundedExactAcyclicWithCyclesHomotopyVerdierCategory_isTriangulated_of_closed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    IsTriangulated (BoundedExactAcyclicWithCyclesHomotopyVerdierCategory C) := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let W : MorphismProperty (BoundedHomotopyCategory C) :=
+    (boundedExactAcyclicWithCyclesHomotopyObject C).trW
+  haveI : (boundedHomotopyObject C).IsTriangulated :=
+    boundedHomotopyObject_isTriangulated_of_isTriangulatedClosed2 C
+  haveI : (boundedExactAcyclicWithCyclesHomotopyObject C).IsTriangulated :=
+    boundedExactAcyclicWithCyclesHomotopyObject_isTriangulated_of_closed2 C
+  haveI : W.HasLeftCalculusOfFractions := by
+    dsimp [W]
+    infer_instance
+  haveI : W.IsCompatibleWithTriangulation := by
+    dsimp [W]
+    infer_instance
+  haveI : W.Q.IsTriangulated :=
+    Triangulated.Localization.isTriangulated_functor W.Q W
+  change IsTriangulated W.Localization
+  exact Triangulated.Localization.isTriangulated W.Q W
+
 /-- A map whose cone is corrected acyclic lies in the corrected homotopy `trW` class. -/
 theorem
     exactAcyclicWithCyclesHomotopyObject_trW_quotient_map_of_exactAcyclicWithCycles_mappingCone
