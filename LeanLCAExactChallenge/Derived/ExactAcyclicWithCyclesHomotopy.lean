@@ -1042,6 +1042,42 @@ noncomputable abbrev DboundedWithCycles.hasFiniteBiproductsOfBoundedVerdierLocal
     DboundedWithCycles.hasFiniteProductsOfBoundedVerdierLocalizationInput C input
   exact HasFiniteBiproducts.of_hasFiniteProducts
 
+/-- A bounded Verdier composite-localization input transports shift additivity back to the
+direct corrected bounded derived localization. -/
+noncomputable abbrev DboundedWithCycles.shiftFunctor_additiveOfBoundedVerdierLocalizationInput
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (input : BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput C) (n : ℤ) :
+    letI : Preadditive (DboundedWithCycles C) :=
+      DboundedWithCycles.preadditiveOfBoundedVerdierLocalizationInput C input
+    (shiftFunctor (DboundedWithCycles C) n).Additive := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  letI : Preadditive (DboundedWithCycles C) :=
+    DboundedWithCycles.preadditiveOfBoundedVerdierLocalizationInput C input
+  let Φ := boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW C
+  haveI : Φ.IsLocalizedEquivalence :=
+    boundedExactWeakEquivalenceWithCyclesToBoundedVerdier_isLocalizedEquivalence C input
+  let F :=
+    Φ.localizedFunctor (DboundedWithCycles.localization C)
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+  haveI : F.IsEquivalence := by
+    dsimp [F]
+    infer_instance
+  haveI : F.Additive := F.asEquivalence.fullyFaithfulFunctor.additive_ofFullyFaithful
+  haveI : Φ.functor.CommShift ℤ := by
+    dsimp [Φ, boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW]
+    infer_instance
+  haveI : F.CommShift ℤ := by
+    dsimp [F]
+    infer_instance
+  haveI : (F ⋙ shiftFunctor (BoundedExactAcyclicWithCyclesHomotopyVerdierCategory C) n).Additive :=
+    inferInstance
+  haveI : (shiftFunctor (DboundedWithCycles C) n ⋙ F).Additive :=
+    Functor.additive_of_iso (F.commShiftIso n).symm
+  exact Functor.additive_of_comp_faithful (shiftFunctor (DboundedWithCycles C) n) F
+
 /-- Homotopy-category descent transfers left calculus from the homotopy pullback class. -/
 theorem
     boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_isoClosed

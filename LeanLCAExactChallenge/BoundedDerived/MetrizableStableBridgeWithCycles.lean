@@ -172,6 +172,20 @@ abbrev hasFiniteBiproductsOfBoundedVerdierLocalizationInput
   DboundedWithCycles.hasFiniteBiproductsOfBoundedVerdierLocalizationInput MetrizableLCA.{0}
     input
 
+/-- Build corrected shift additivity from the bounded corrected homotopy Verdier localization
+comparison, without a chain-level left-calculus hypothesis. -/
+abbrev shiftFunctorAdditiveOfBoundedVerdierLocalizationInput
+    [(boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (input :
+      BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput MetrizableLCA.{0})
+    (n : ℤ) :
+    letI : Preadditive OrdinaryCategory :=
+      preadditiveOfBoundedVerdierLocalizationInput input
+    (shiftFunctor OrdinaryCategory n).Additive :=
+  DboundedWithCycles.shiftFunctor_additiveOfBoundedVerdierLocalizationInput
+    MetrizableLCA.{0} input n
+
 /-- Semantic fields supplied by corrected left calculus and corrected finite-product closure. -/
 structure LeftCalculusSemanticFields : Type 1 where
   leftCalculus : WeakEquivalence.HasLeftCalculusOfFractions
