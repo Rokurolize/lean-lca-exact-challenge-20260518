@@ -322,6 +322,26 @@ abbrev BoundedExactAcyclicWithCyclesHomotopyVerdierCategory
     boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
   (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Localization
 
+/-- The bounded corrected Verdier weak equivalences map to the ambient corrected `trW`. -/
+abbrev boundedExactAcyclicWithCyclesHomotopyObjectToIsoClosure_trW
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    LocalizerMorphism (boundedExactAcyclicWithCyclesHomotopyObject C).trW
+      (exactAcyclicWithCyclesHomotopyIsoClosure C).trW := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  refine
+    { functor := BoundedHomotopyCategory.ι C
+      map := ?_ }
+  intro X Y f hf
+  rcases hf with ⟨Z, g, h, hT, hZ⟩
+  refine ⟨(BoundedHomotopyCategory.ι C).obj Z, (BoundedHomotopyCategory.ι C).map g,
+    (BoundedHomotopyCategory.ι C).map h ≫
+      ((BoundedHomotopyCategory.ι C).commShiftIso (1 : ℤ)).hom.app X, ?_, hZ⟩
+  exact (BoundedHomotopyCategory.ι C).map_distinguished _ hT
+
 /-- Under closed₂ hypotheses, the corrected bounded homotopy Verdier quotient is preadditive. -/
 noncomputable instance
     boundedExactAcyclicWithCyclesHomotopyVerdierCategory_preadditive_of_closed2
@@ -339,6 +359,25 @@ noncomputable instance
     dsimp [W]
     infer_instance
   exact Localization.preadditive W.Q W
+
+/-- Under closed₂ hypotheses, the corrected bounded homotopy Verdier functor is additive. -/
+instance boundedExactAcyclicWithCyclesHomotopyVerdierCategory_localization_additive_of_closed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    ((boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q).Additive := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let W : MorphismProperty (BoundedHomotopyCategory C) :=
+    (boundedExactAcyclicWithCyclesHomotopyObject C).trW
+  haveI : (boundedExactAcyclicWithCyclesHomotopyObject C).IsTriangulated :=
+    boundedExactAcyclicWithCyclesHomotopyObject_isTriangulated_of_closed2 C
+  haveI : W.HasLeftCalculusOfFractions := by
+    dsimp [W]
+    infer_instance
+  exact Localization.functor_additive W.Q W
 
 /-- Under closed₂ hypotheses, the corrected bounded homotopy Verdier quotient has zero. -/
 instance boundedExactAcyclicWithCyclesHomotopyVerdierCategory_hasZeroObject_of_closed2

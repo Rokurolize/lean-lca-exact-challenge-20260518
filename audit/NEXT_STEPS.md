@@ -83,6 +83,7 @@ Completed corrected closure milestones:
   `boundedExactAcyclicWithCyclesHomotopyObject`,
   `boundedExactAcyclicWithCyclesHomotopyObject_isTriangulated_of_closed2`,
   `BoundedExactAcyclicWithCyclesHomotopyVerdierCategory`,
+  `boundedExactAcyclicWithCyclesHomotopyObjectToIsoClosure_trW`,
   `boundedExactAcyclicWithCyclesHomotopyVerdierCategory_pretriangulated_of_closed2`,
   `boundedExactAcyclicWithCyclesHomotopyVerdierCategory_isTriangulated_of_closed2`,
   `boundedHomotopyWithCyclesLocalizedVerdierFunctor`,
