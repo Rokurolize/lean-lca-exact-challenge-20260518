@@ -122,6 +122,8 @@ The corrected route now has Lean-checked API for:
 - `DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputs`
 - `DboundedWithCycles.MetrizableLCA.hasEqualizersOfWalkingParallelPairTransfer`
 - `DboundedWithCycles.MetrizableLCA.hasCoequalizersOfWalkingParallelPairTransfer`
+- `DboundedWithCycles.MetrizableLCA.hasFiniteLimitsOfWalkingParallelPairTransfer`
+- `DboundedWithCycles.MetrizableLCA.hasFiniteColimitsOfWalkingParallelPairTransfer`
 - `DboundedWithCycles.hasZeroObjectOfHasLeftCalculusOfFractions`
 - `DboundedWithCycles.MetrizableLCA.hasZeroObject`
 - `mappingCone_contractingHomotopy_of_homotopyEquiv`

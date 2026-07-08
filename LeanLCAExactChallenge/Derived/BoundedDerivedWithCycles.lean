@@ -211,6 +211,22 @@ noncomputable abbrev hasCoequalizersOfWalkingParallelPairTransfer
     (DboundedWithCycles.localization MetrizableLCA.{0})
     (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}) WalkingParallelPair
 
+/-- Corrected WPP transfer plus left calculus gives finite limits. -/
+noncomputable abbrev hasFiniteLimitsOfWalkingParallelPairTransfer
+    [(boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs : WalkingParallelPairFiniteShapeTransferInputs) :
+    HasFiniteLimits (DboundedWithCycles MetrizableLCA.{0}) :=
+  DboundedWithCycles.MetrizableLCA.hasFiniteLimitsOfEqualizers
+    (DboundedWithCycles.MetrizableLCA.hasEqualizersOfWalkingParallelPairTransfer inputs)
+
+/-- Corrected WPP transfer plus left calculus gives finite colimits. -/
+noncomputable abbrev hasFiniteColimitsOfWalkingParallelPairTransfer
+    [(boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs : WalkingParallelPairFiniteShapeTransferInputs) :
+    HasFiniteColimits (DboundedWithCycles MetrizableLCA.{0}) :=
+  DboundedWithCycles.MetrizableLCA.hasFiniteColimitsOfCoequalizers
+    (DboundedWithCycles.MetrizableLCA.hasCoequalizersOfWalkingParallelPairTransfer inputs)
+
 /-- The corrected default-universe metrizable bounded derived category has a zero object
 once the corrected weak equivalences have a left calculus of fractions. -/
 abbrev hasZeroObject
