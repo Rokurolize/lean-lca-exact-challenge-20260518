@@ -128,6 +128,16 @@ abbrev preadditiveOfBoundedVerdierLocalizationInput
     Preadditive OrdinaryCategory :=
   DboundedWithCycles.preadditiveOfBoundedVerdierLocalizationInput MetrizableLCA.{0} input
 
+/-- Build a corrected zero object from the bounded corrected homotopy Verdier localization
+comparison, without a chain-level left-calculus hypothesis. -/
+abbrev hasZeroObjectOfBoundedVerdierLocalizationInput
+    [(boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (input :
+      BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput MetrizableLCA.{0}) :
+    HasZeroObject OrdinaryCategory :=
+  DboundedWithCycles.hasZeroObjectOfBoundedVerdierLocalizationInput MetrizableLCA.{0} input
+
 /-- Semantic fields supplied by corrected left calculus and corrected finite-product closure. -/
 structure LeftCalculusSemanticFields : Type 1 where
   leftCalculus : WeakEquivalence.HasLeftCalculusOfFractions

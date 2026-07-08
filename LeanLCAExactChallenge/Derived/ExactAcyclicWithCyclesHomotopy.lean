@@ -948,6 +948,42 @@ noncomputable abbrev DboundedWithCycles.preadditiveOfBoundedVerdierLocalizationI
   exact CategoryTheory.Preadditive.ofFullyFaithful
     (F := F) F.asEquivalence.fullyFaithfulFunctor
 
+/-- A bounded Verdier composite-localization input transports a zero object back to the
+direct corrected bounded derived localization. -/
+noncomputable abbrev DboundedWithCycles.hasZeroObjectOfBoundedVerdierLocalizationInput
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (input : BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput C) :
+    HasZeroObject (DboundedWithCycles C) := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let Φ := boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW C
+  haveI : Φ.IsLocalizedEquivalence :=
+    boundedExactWeakEquivalenceWithCyclesToBoundedVerdier_isLocalizedEquivalence C input
+  let F :=
+    Φ.localizedFunctor (DboundedWithCycles.localization C)
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+  haveI : F.IsEquivalence := by
+    dsimp [F]
+    infer_instance
+  let X₀ : DboundedWithCycles C := F.objPreimage 0
+  have hFX₀ : IsZero (F.obj X₀) :=
+    IsZero.of_iso (isZero_zero _) (F.objObjPreimageIso 0)
+  exact IsZero.hasZeroObject
+    { unique_to := by
+        intro Y
+        refine ⟨⟨⟨F.preimage (hFX₀.to_ (F.obj Y))⟩, ?_⟩⟩
+        intro f
+        apply F.map_injective
+        exact hFX₀.eq_of_src _ _
+      unique_from := by
+        intro Y
+        refine ⟨⟨⟨F.preimage (hFX₀.from_ (F.obj Y))⟩, ?_⟩⟩
+        intro f
+        apply F.map_injective
+        exact hFX₀.eq_of_tgt _ _ }
+
 /-- Homotopy-category descent transfers left calculus from the homotopy pullback class. -/
 theorem
     boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_isoClosed
