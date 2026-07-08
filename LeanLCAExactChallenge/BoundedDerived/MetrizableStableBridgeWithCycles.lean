@@ -257,6 +257,32 @@ def stablePackageOfLeftCalculus
     StablePackage :=
   stablePackageOfSemanticInput (stableSemanticInputOfLeftCalculus assumption remaining)
 
+/-- Assemble the corrected stable input from the homotopy Verdier left-calculus route and WPP
+finite-shape transfer. -/
+def stableSemanticInputOfHomotopyVerdierWalkingParallelPairTransfer
+    [(exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (descent : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA.{0})
+    (adjoint : BoundedHomotopyWithCyclesLocalizedRightAdjointInput MetrizableLCA.{0})
+    (inputs : WalkingParallelPairTransferStableSemanticInputs
+      (leftCalculusSemanticFields
+        (leftCalculusAssumptionOfHomotopyVerdier descent adjoint))) :
+    StableSemanticInput :=
+  stableSemanticInputOfLeftCalculus (leftCalculusAssumptionOfHomotopyVerdier descent adjoint)
+    (remainingStableSemanticFieldsOfWalkingParallelPairTransfer inputs)
+
+/-- Build the corrected stable package from the homotopy Verdier left-calculus route and WPP
+finite-shape transfer. -/
+def stablePackageOfHomotopyVerdierWalkingParallelPairTransfer
+    [(exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (descent : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA.{0})
+    (adjoint : BoundedHomotopyWithCyclesLocalizedRightAdjointInput MetrizableLCA.{0})
+    (inputs : WalkingParallelPairTransferStableSemanticInputs
+      (leftCalculusSemanticFields
+        (leftCalculusAssumptionOfHomotopyVerdier descent adjoint))) :
+    StablePackage :=
+  stablePackageOfSemanticInput
+    (stableSemanticInputOfHomotopyVerdierWalkingParallelPairTransfer descent adjoint inputs)
+
 /-- The corrected stable package carrier is the corrected ordinary quasicategory nerve. -/
 theorem stablePackage_carrier (P : StablePackage) :
     P.quasicategoryCarrier = rfl :=
