@@ -65,6 +65,32 @@ structure ExactAcyclicWithCyclesHomotopyEquivInvarianceInput : Prop where
     ∀ {K L : CochainComplex C ℤ}, HomotopyEquiv K L →
       exactAcyclicWithCycles C K → exactAcyclicWithCycles C L
 
+/-- Homology-level detection input for corrected cycle-object acyclicity.  This isolates the
+homotopy-invariant homology part from the exact-category cycle-object realization part. -/
+structure ExactAcyclicWithCyclesHomologyDetectionInput : Prop where
+  hasHomology : ∀ (K : CochainComplex C ℤ) (i : ℤ), K.HasHomology i
+  isZero_homology_of_exactAcyclicWithCycles :
+    ∀ (K : CochainComplex C ℤ), exactAcyclicWithCycles C K →
+      ∀ i : ℤ, letI : K.HasHomology i := hasHomology K i; IsZero (K.homology i)
+  exactAcyclicWithCycles_of_isZero_homology :
+    ∀ (K : CochainComplex C ℤ),
+      (∀ i : ℤ, letI : K.HasHomology i := hasHomology K i; IsZero (K.homology i)) →
+        exactAcyclicWithCycles C K
+
+/-- Homology detection of corrected cycle-object acyclicity implies invariance under
+homotopy equivalences, since homotopy equivalences induce isomorphisms on homology. -/
+theorem exactAcyclicWithCyclesHomotopyEquivInvarianceInput_of_homologyDetection
+    (H : ExactAcyclicWithCyclesHomologyDetectionInput C) :
+    ExactAcyclicWithCyclesHomotopyEquivInvarianceInput C where
+  exactAcyclicWithCycles_of_homotopyEquiv := by
+    intro K L e hK
+    apply H.exactAcyclicWithCycles_of_isZero_homology
+    intro i
+    letI : K.HasHomology i := H.hasHomology K i
+    letI : L.HasHomology i := H.hasHomology L i
+    exact IsZero.of_iso (H.isZero_homology_of_exactAcyclicWithCycles K hK i)
+      (HomotopyEquiv.toHomologyIso e i).symm
+
 /-- Homotopy-equivalence invariance makes the corrected homotopy object predicate iso-closed. -/
 theorem
     exactAcyclicWithCyclesHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
