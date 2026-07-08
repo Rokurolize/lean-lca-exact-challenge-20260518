@@ -128,14 +128,32 @@ The corrected route now has Lean-checked API for:
 - `exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2`
 - `exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject`
 - `exactAcyclicWithCyclesHomotopyObject_isTriangulated_of_isTriangulatedClosed2`
+- `exactAcyclicWithCyclesHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulated`
+- `exactAcyclicWithCyclesHomotopyObject_trW_hasRightCalculusOfFractions_of_isTriangulated`
+- `exactAcyclicWithCyclesHomotopyObject_trW_hasLeftCalculusOfFractions_of_closed2`
+- `exactAcyclicWithCyclesHomotopyObject_trW_hasRightCalculusOfFractions_of_closed2`
+- `exactAcyclicWithCyclesHomotopyObject_trW_hasLeftCalculusOfFractions_of_isoClosureClosed2`
+- `exactAcyclicWithCyclesHomotopyObject_trW_hasRightCalculusOfFractions_of_isoClosureClosed2`
+- `exactAcyclicWithCyclesHomotopyObject_trW_hasLeftCalculusOfFractions_of_homotopyObjectClosed2`
+- `exactAcyclicWithCyclesHomotopyObject_trW_hasRightCalculusOfFractions_of_homotopyObjectClosed2`
+- `exactAcyclicWithCyclesHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_closed2`
 - `exactAcyclicWithCyclesHomotopyObject_trW_quotient_map_of_exactAcyclicWithCycles_mappingCone`
 - `exactAcyclicWithCyclesHomotopyObject_trW_quotient_map_iff_exactAcyclicWithCycles_mappingCone`
 - `exactAcyclicWithCyclesHomotopyIsoClosure_trW_quotient_map_iff_mappingCone`
 - `boundedExactWeakEquivalenceWithCycles_le_exactAcyclicWithCyclesHomotopy_trW_inverseImage`
 - `boundedHomotopyExactWeakEquivalenceWithCycles`
+- `boundedHomotopyExactWeakEquivalenceWithCycles_containsIdentities`
+- `boundedHomotopyWithCyclesLocalizedVerdierFunctor`
+- `BoundedHomotopyWithCyclesLocalizedRightAdjointInput`
+- `boundedHomotopyExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_adjoint`
+- `boundedHomotopyExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_closed2Adjoint`
 - `boundedExactWeakEquivalenceWithCycles_le_boundedHomotopyExactWeakEquivalenceWithCycles`
 - `boundedHomotopyExactWeakEquivalenceWithCycles_iff_mappingCone_isoClosure`
+- `boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_isoClosed`
 - `boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopyWithCycles_of_homotopyEquivInvariance`
+- `boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_homotopyEquivInvariance`
+- `boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_closed2Adjoint`
+- `BoundedDerivedWithCycles.Metrizable.leftCalculusAssumptionOfHomotopyVerdier`
 - `BoundedDerivedWithCycles.Metrizable.StablePackage`
 - `BoundedDerivedWithCycles.Metrizable.LeftCalculusAssumption`
 - `BoundedDerivedWithCycles.Metrizable.LeftCalculusSemanticFields`
@@ -150,7 +168,7 @@ The new files `LeanLCAExactChallenge/Derived/ExactAcyclicCorrect.lean`, `LeanLCA
 Unproved in this pass:
 
 - Replacement of the existing `Dbounded` localization to use the new weak equivalences throughout the old theorem stack.
-- A proof that `boundedExactWeakEquivalenceWithCycles` has a left calculus of fractions. The corrected `DboundedWithCycles` surface is defined, and finite products, zero object, preadditivity, and shift additivity are available conditionally on this calculus instance.
+- A proof that `boundedExactWeakEquivalenceWithCycles` has a left calculus of fractions. The corrected `DboundedWithCycles` surface is defined, finite products, zero object, preadditivity, and shift additivity are available conditionally on this calculus instance, and `leftCalculusAssumptionOfHomotopyVerdier` now reduces the assumption to explicit corrected homotopy Verdier inputs.
 - The completed homotopy-equivalence inclusion is not yet the full Verdier comparison: the reverse comparison with the bounded homotopy `trW` class still needs the corrected acyclic-object distinguished-triangle closure.
 - Inhabited corrected finite limits, finite colimits, pretriangulated structure, and triangulated structure for `DboundedWithCycles MetrizableLCA.{0}`. The new `BoundedDerivedWithCycles.Metrizable.RemainingStableSemanticFields` record is the checked assumption surface for these fields.
 
@@ -252,6 +270,8 @@ The file proves zero-object containment, iso-closure shift stability, `ObjectPro
 The homotopy-descent assumption is now a checked Lean input surface, `ExactAcyclicWithCyclesHomotopyEquivInvarianceInput`. Lean proves this input equivalent to homotopy-category isomorphism closedness of `exactAcyclicWithCyclesHomotopyObject`, and from it proves the direct/homotopy pullback equality `boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopyWithCycles_of_homotopyEquivInvariance`.
 
 The same file now also exposes the corrected conditional triangulated-object surface: once the corrected object predicate has the required `IsTriangulatedClosed₂` closure, Lean supplies `IsTriangulated` for both the object predicate and its isomorphism closure.
+
+The corrected homotopy surface now carries the left-calculus bridge as well: if the corrected iso-closed homotopy object predicate has `IsTriangulatedClosed₂` and the localized Verdier composite has the recorded right-adjoint/unit input, Lean proves left calculus for `boundedHomotopyExactWeakEquivalenceWithCycles`; with the homotopy-descent input, Lean transfers that left calculus to `boundedExactWeakEquivalenceWithCycles`. `MetrizableStableBridgeWithCycles.lean` exposes this as `leftCalculusAssumptionOfHomotopyVerdier`.
 
 This does not consume legacy `boundedExactWeakEquivalence` or legacy `Dbounded` facts. The remaining mathematical assumption is explicit: the corrected object predicate still needs the cone/distinguished-triangle closure that makes it descend through homotopy-category isomorphisms and become triangulated.
 

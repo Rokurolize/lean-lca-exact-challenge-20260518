@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.Derived.BoundedDerivedWithCycles
+import LeanLCAExactChallenge.Derived.ExactAcyclicWithCyclesHomotopy
 
 /-!
 # Corrected metrizable stable bridge for cycle-object acyclicity
@@ -90,6 +91,16 @@ structure StablePackage : Type 2 where
 /-- The explicit source-facing left-calculus assumption for the corrected weak equivalences. -/
 structure LeftCalculusAssumption : Type 1 where
   leftCalculus : WeakEquivalence.HasLeftCalculusOfFractions
+
+/-- Build corrected left calculus from the homotopy Verdier route inputs. -/
+def leftCalculusAssumptionOfHomotopyVerdier
+    [(exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (descent : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA.{0})
+    (adjoint : BoundedHomotopyWithCyclesLocalizedRightAdjointInput MetrizableLCA.{0}) :
+    LeftCalculusAssumption where
+  leftCalculus :=
+    boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_closed2Adjoint
+      MetrizableLCA.{0} descent adjoint
 
 /-- Semantic fields supplied by corrected left calculus and corrected finite-product closure. -/
 structure LeftCalculusSemanticFields : Type 1 where

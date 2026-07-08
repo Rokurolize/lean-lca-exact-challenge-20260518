@@ -160,6 +160,104 @@ theorem
     [(exactAcyclicWithCyclesHomotopyObject C).IsTriangulatedClosed₂] :
     (exactAcyclicWithCyclesHomotopyObject C).IsTriangulated where
 
+/-- A triangulated corrected object predicate gives left calculus for its `trW` class. -/
+theorem
+    exactAcyclicWithCyclesHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulated
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicWithCyclesHomotopyObject C).IsTriangulated] :
+    (exactAcyclicWithCyclesHomotopyObject C).trW.HasLeftCalculusOfFractions := by
+  infer_instance
+
+/-- A triangulated corrected object predicate gives right calculus for its `trW` class. -/
+theorem
+    exactAcyclicWithCyclesHomotopyObject_trW_hasRightCalculusOfFractions_of_isTriangulated
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicWithCyclesHomotopyObject C).IsTriangulated] :
+    (exactAcyclicWithCyclesHomotopyObject C).trW.HasRightCalculusOfFractions := by
+  infer_instance
+
+/-- Iso-closedness and closed₂ give left calculus for the corrected object `trW` class. -/
+theorem
+    exactAcyclicWithCyclesHomotopyObject_trW_hasLeftCalculusOfFractions_of_closed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicWithCyclesHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(exactAcyclicWithCyclesHomotopyObject C).IsTriangulatedClosed₂] :
+    (exactAcyclicWithCyclesHomotopyObject C).trW.HasLeftCalculusOfFractions := by
+  haveI : (exactAcyclicWithCyclesHomotopyObject C).IsTriangulated :=
+    exactAcyclicWithCyclesHomotopyObject_isTriangulated_of_isTriangulatedClosed2 C
+  exact
+    exactAcyclicWithCyclesHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulated
+      C
+
+/-- Iso-closedness and closed₂ give right calculus for the corrected object `trW` class. -/
+theorem
+    exactAcyclicWithCyclesHomotopyObject_trW_hasRightCalculusOfFractions_of_closed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicWithCyclesHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(exactAcyclicWithCyclesHomotopyObject C).IsTriangulatedClosed₂] :
+    (exactAcyclicWithCyclesHomotopyObject C).trW.HasRightCalculusOfFractions := by
+  haveI : (exactAcyclicWithCyclesHomotopyObject C).IsTriangulated :=
+    exactAcyclicWithCyclesHomotopyObject_isTriangulated_of_isTriangulatedClosed2 C
+  exact
+    exactAcyclicWithCyclesHomotopyObject_trW_hasRightCalculusOfFractions_of_isTriangulated
+      C
+
+/-- Triangulating the iso-closure gives left calculus for the corrected object `trW`. -/
+theorem
+    exactAcyclicWithCyclesHomotopyObject_trW_hasLeftCalculusOfFractions_of_isoClosureClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    (exactAcyclicWithCyclesHomotopyObject C).trW.HasLeftCalculusOfFractions := by
+  haveI : (exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulated :=
+    exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
+  rw [← exactAcyclicWithCyclesHomotopyIsoClosure_trW C]
+  infer_instance
+
+/-- Triangulating the iso-closure gives right calculus for the corrected object `trW`. -/
+theorem
+    exactAcyclicWithCyclesHomotopyObject_trW_hasRightCalculusOfFractions_of_isoClosureClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    (exactAcyclicWithCyclesHomotopyObject C).trW.HasRightCalculusOfFractions := by
+  haveI : (exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulated :=
+    exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
+  rw [← exactAcyclicWithCyclesHomotopyIsoClosure_trW C]
+  infer_instance
+
+/-- Closed₂ for the underlying predicate gives left calculus through the iso-closure. -/
+theorem
+    exactAcyclicWithCyclesHomotopyObject_trW_hasLeftCalculusOfFractions_of_homotopyObjectClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicWithCyclesHomotopyObject C).IsTriangulatedClosed₂] :
+    (exactAcyclicWithCyclesHomotopyObject C).trW.HasLeftCalculusOfFractions := by
+  haveI : (exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject C
+  exact
+    exactAcyclicWithCyclesHomotopyObject_trW_hasLeftCalculusOfFractions_of_isoClosureClosed2
+      C
+
+/-- Closed₂ for the underlying predicate gives right calculus through the iso-closure. -/
+theorem
+    exactAcyclicWithCyclesHomotopyObject_trW_hasRightCalculusOfFractions_of_homotopyObjectClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicWithCyclesHomotopyObject C).IsTriangulatedClosed₂] :
+    (exactAcyclicWithCyclesHomotopyObject C).trW.HasRightCalculusOfFractions := by
+  haveI : (exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject C
+  exact
+    exactAcyclicWithCyclesHomotopyObject_trW_hasRightCalculusOfFractions_of_isoClosureClosed2
+      C
+
+/-- Closed₂ for the iso-closure gives Verdier left calculus directly. -/
+theorem
+    exactAcyclicWithCyclesHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_closed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.HasLeftCalculusOfFractions := by
+  haveI : (exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulated :=
+    exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
+  infer_instance
+
 /-- A map whose cone is corrected acyclic lies in the corrected homotopy `trW` class. -/
 theorem
     exactAcyclicWithCyclesHomotopyObject_trW_quotient_map_of_exactAcyclicWithCycles_mappingCone
@@ -269,6 +367,58 @@ abbrev boundedHomotopyExactWeakEquivalenceWithCycles
   (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.inverseImage
     (BoundedComplexCategory.homotopyQuotient C)
 
+/-- The corrected homotopy pullback weak equivalences contain identities. -/
+noncomputable instance boundedHomotopyExactWeakEquivalenceWithCycles_containsIdentities
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    (boundedHomotopyExactWeakEquivalenceWithCycles C).ContainsIdentities := by
+  dsimp [boundedHomotopyExactWeakEquivalenceWithCycles]
+  infer_instance
+
+/-- The bounded-complex functor into the corrected homotopy Verdier quotient. -/
+noncomputable abbrev boundedHomotopyWithCyclesLocalizedVerdierFunctor
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    BoundedComplexCategory C ⥤
+      MorphismProperty.Localization ((exactAcyclicWithCyclesHomotopyIsoClosure C).trW) :=
+  BoundedComplexCategory.homotopyQuotient C ⋙
+    (exactAcyclicWithCyclesHomotopyIsoClosure C).trW.Q
+
+/-- Adjunction input for pulling Verdier left calculus back to bounded complexes. -/
+structure BoundedHomotopyWithCyclesLocalizedRightAdjointInput
+    [HasZeroObject C] [HasBinaryBiproducts C] : Type (max u v) where
+  rightAdjoint :
+    MorphismProperty.Localization ((exactAcyclicWithCyclesHomotopyIsoClosure C).trW) ⥤
+      BoundedComplexCategory C
+  adjunction :
+    boundedHomotopyWithCyclesLocalizedVerdierFunctor C ⊣ rightAdjoint
+  unit_mem :
+    (boundedHomotopyExactWeakEquivalenceWithCycles C).functorCategory
+      (BoundedComplexCategory C) adjunction.unit
+
+/-- A localized right adjoint gives left calculus for the corrected homotopy pullback. -/
+theorem
+    boundedHomotopyExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_adjoint
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [((exactAcyclicWithCyclesHomotopyIsoClosure C).trW).HasLeftCalculusOfFractions]
+    (I : BoundedHomotopyWithCyclesLocalizedRightAdjointInput C) :
+    (boundedHomotopyExactWeakEquivalenceWithCycles C).HasLeftCalculusOfFractions :=
+  inverseImage_hasLeftCalculusOfFractions_of_localizedRightAdjoint
+    (BoundedComplexCategory.homotopyQuotient C)
+    ((exactAcyclicWithCyclesHomotopyIsoClosure C).trW)
+    I.rightAdjoint I.adjunction I.unit_mem
+
+/-- Closed₂ plus a localized right adjoint give left calculus for the homotopy pullback. -/
+theorem
+    boundedHomotopyExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_closed2Adjoint
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (I : BoundedHomotopyWithCyclesLocalizedRightAdjointInput C) :
+    (boundedHomotopyExactWeakEquivalenceWithCycles C).HasLeftCalculusOfFractions := by
+  haveI : ((exactAcyclicWithCyclesHomotopyIsoClosure C).trW).HasLeftCalculusOfFractions :=
+    exactAcyclicWithCyclesHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_closed2 C
+  exact
+    boundedHomotopyExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_adjoint
+      C I
+
 /-- Direct corrected weak equivalences map into the iso-closed homotopy pullback class. -/
 theorem boundedExactWeakEquivalenceWithCycles_le_boundedHomotopyExactWeakEquivalenceWithCycles
     [HasZeroObject C] [HasBinaryBiproducts C] :
@@ -301,6 +451,16 @@ theorem
   rw [exactAcyclicWithCyclesHomotopyIsoClosure_trW C]
   exact boundedExactWeakEquivalenceWithCycles_eq_exactAcyclicWithCyclesHomotopy_trW_inverseImage C
 
+/-- Homotopy-category descent transfers left calculus from the homotopy pullback class. -/
+theorem
+    boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_isoClosed
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicWithCyclesHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalenceWithCycles C).HasLeftCalculusOfFractions] :
+    (boundedExactWeakEquivalenceWithCycles C).HasLeftCalculusOfFractions := by
+  rw [boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopyWithCycles_of_isoClosed C]
+  infer_instance
+
 /-- Homotopy-equivalence invariance is the explicit input needed for the homotopy comparison. -/
 theorem
     boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopyWithCycles_of_homotopyEquivInvariance
@@ -312,5 +472,32 @@ theorem
     exactAcyclicWithCyclesHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
       C I
   exact boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopyWithCycles_of_isoClosed C
+
+/-- Homotopy-equivalence invariance transfers left calculus from the homotopy pullback class. -/
+theorem
+    boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_homotopyEquivInvariance
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (I : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput C)
+    [(boundedHomotopyExactWeakEquivalenceWithCycles C).HasLeftCalculusOfFractions] :
+    (boundedExactWeakEquivalenceWithCycles C).HasLeftCalculusOfFractions := by
+  haveI : (exactAcyclicWithCyclesHomotopyObject C).IsClosedUnderIsomorphisms :=
+    exactAcyclicWithCyclesHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+      C I
+  exact boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_isoClosed C
+
+/-- Closed₂, a localized right adjoint, and homotopy descent give direct left calculus. -/
+theorem
+    boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_closed2Adjoint
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (H : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput C)
+    (I : BoundedHomotopyWithCyclesLocalizedRightAdjointInput C) :
+    (boundedExactWeakEquivalenceWithCycles C).HasLeftCalculusOfFractions := by
+  haveI : (boundedHomotopyExactWeakEquivalenceWithCycles C).HasLeftCalculusOfFractions :=
+    boundedHomotopyExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_closed2Adjoint
+      C I
+  exact
+    boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_homotopyEquivInvariance
+      C H
 
 end LeanLCAExactChallenge
