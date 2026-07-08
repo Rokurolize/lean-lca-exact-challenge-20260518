@@ -128,6 +128,28 @@ abbrev hasFiniteCoproducts
     DboundedWithCycles.MetrizableLCA.hasFiniteBiproducts
   infer_instance
 
+/-- Equalizers plus the corrected finite products give finite limits in the corrected
+metrizable bounded derived category. -/
+abbrev hasFiniteLimitsOfEqualizers
+    [(boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (equalizers : HasEqualizers (DboundedWithCycles MetrizableLCA.{0})) :
+    HasFiniteLimits (DboundedWithCycles MetrizableLCA.{0}) := by
+  letI : HasFiniteProducts (DboundedWithCycles MetrizableLCA.{0}) :=
+    DboundedWithCycles.MetrizableLCA.hasFiniteProducts
+  letI : HasEqualizers (DboundedWithCycles MetrizableLCA.{0}) := equalizers
+  exact hasFiniteLimits_of_hasEqualizers_and_finite_products
+
+/-- Coequalizers plus the corrected finite coproducts give finite colimits in the corrected
+metrizable bounded derived category. -/
+abbrev hasFiniteColimitsOfCoequalizers
+    [(boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (coequalizers : HasCoequalizers (DboundedWithCycles MetrizableLCA.{0})) :
+    HasFiniteColimits (DboundedWithCycles MetrizableLCA.{0}) := by
+  letI : HasFiniteCoproducts (DboundedWithCycles MetrizableLCA.{0}) :=
+    DboundedWithCycles.MetrizableLCA.hasFiniteCoproducts
+  letI : HasCoequalizers (DboundedWithCycles MetrizableLCA.{0}) := coequalizers
+  exact hasFiniteColimits_of_hasCoequalizers_and_finite_coproducts
+
 /-- The corrected default-universe metrizable bounded derived category has a zero object
 once the corrected weak equivalences have a left calculus of fractions. -/
 abbrev hasZeroObject

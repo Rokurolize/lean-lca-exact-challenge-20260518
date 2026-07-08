@@ -166,8 +166,8 @@ def leftCalculusSemanticFields
 /-- Remaining stable fields for the corrected metrizable route after left calculus. -/
 structure RemainingStableSemanticFields (available : LeftCalculusSemanticFields) :
     Type 1 where
-  finiteLimits : HasFiniteLimits OrdinaryCategory
-  finiteColimits : HasFiniteColimits OrdinaryCategory
+  equalizers : HasEqualizers OrdinaryCategory
+  coequalizers : HasCoequalizers OrdinaryCategory
   pretriangulated :
     letI : Preadditive OrdinaryCategory := available.preadditive
     letI : HasZeroObject OrdinaryCategory := available.zeroObject
@@ -203,8 +203,14 @@ def stablePackageOfSemanticInput (input : StableSemanticInput) : StablePackage w
   finiteProductInstance := input.available.finiteProducts
   finiteBiproductInstance := input.available.finiteBiproducts
   finiteCoproductInstance := input.available.finiteCoproducts
-  finiteLimitInstance := input.remaining.finiteLimits
-  finiteColimitInstance := input.remaining.finiteColimits
+  finiteLimitInstance := by
+    letI : WeakEquivalence.HasLeftCalculusOfFractions := input.available.leftCalculus
+    exact DboundedWithCycles.MetrizableLCA.hasFiniteLimitsOfEqualizers
+      input.remaining.equalizers
+  finiteColimitInstance := by
+    letI : WeakEquivalence.HasLeftCalculusOfFractions := input.available.leftCalculus
+    exact DboundedWithCycles.MetrizableLCA.hasFiniteColimitsOfCoequalizers
+      input.remaining.coequalizers
   zeroObjectInstance := input.available.zeroObject
   shiftAdditiveAll := input.available.shiftAdditiveAll
   suspensionAdditive := input.available.suspensionAdditive
@@ -246,8 +252,8 @@ theorem leftCalculusSemanticFieldNames_count :
 
 /-- Remaining stable assumptions for the corrected route after the fields above. -/
 def remainingStableSemanticFieldNames : List String :=
-  ["HasFiniteLimits (DboundedWithCycles MetrizableLCA)",
-    "HasFiniteColimits (DboundedWithCycles MetrizableLCA)",
+  ["HasEqualizers (DboundedWithCycles MetrizableLCA)",
+    "HasCoequalizers (DboundedWithCycles MetrizableLCA)",
     "Pretriangulated (DboundedWithCycles MetrizableLCA)",
     "IsTriangulated (DboundedWithCycles MetrizableLCA)"]
 
