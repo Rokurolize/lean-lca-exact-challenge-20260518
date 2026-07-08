@@ -513,7 +513,7 @@ def stablePackageOfWalkingParallelPairBoundedVerdierLocalizationInput
 structure RouteSpecificInputs : Type 1 where
   homotopyObjectClosed2 :
     (exactAcyclicWithCyclesHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂
-  homologyDetection : ExactAcyclicWithCyclesHomologyDetectionInput MetrizableLCA.{0}
+  exactAtDetection : ExactAcyclicWithCyclesExactAtDetectionInput MetrizableLCA.{0}
   walkingParallelPairTransfer :
     DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputsFromNormalized
 
@@ -531,9 +531,12 @@ def stablePackageOfRouteSpecificInputs (inputs : RouteSpecificInputs) : StablePa
   letI : (exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
     exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject
       MetrizableLCA.{0}
+  let homologyDetection : ExactAcyclicWithCyclesHomologyDetectionInput MetrizableLCA.{0} :=
+    exactAcyclicWithCyclesHomologyDetectionInput_of_exactAtDetection
+      MetrizableLCA.{0} inputs.exactAtDetection
   let descent : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA.{0} :=
     exactAcyclicWithCyclesHomotopyEquivInvarianceInput_of_homologyDetection
-      MetrizableLCA.{0} inputs.homologyDetection
+      MetrizableLCA.{0} homologyDetection
   let boundedInput :=
     BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput.ofHomotopy
       MetrizableLCA.{0} descent
@@ -554,9 +557,12 @@ def stablePackageWithLeftCalculusOfRouteSpecificInputs
   letI : (exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
     exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject
       MetrizableLCA.{0}
+  let homologyDetection : ExactAcyclicWithCyclesHomologyDetectionInput MetrizableLCA.{0} :=
+    exactAcyclicWithCyclesHomologyDetectionInput_of_exactAtDetection
+      MetrizableLCA.{0} routeInputs.exactAtDetection
   let descent : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA.{0} :=
     exactAcyclicWithCyclesHomotopyEquivInvarianceInput_of_homologyDetection
-      MetrizableLCA.{0} routeInputs.homologyDetection
+      MetrizableLCA.{0} homologyDetection
   exact
     { package := stablePackageOfRouteSpecificInputs routeInputs
       leftCalculus :=
@@ -566,7 +572,7 @@ def stablePackageWithLeftCalculusOfRouteSpecificInputs
 /-- Names of route-specific inputs still to discharge for a fully inhabited corrected package. -/
 def routeSpecificInputNames : List String :=
   ["(exactAcyclicWithCyclesHomotopyObject MetrizableLCA).IsTriangulatedClosed₂",
-    "ExactAcyclicWithCyclesHomologyDetectionInput MetrizableLCA",
+    "ExactAcyclicWithCyclesExactAtDetectionInput MetrizableLCA",
     "DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputsFromNormalized"]
 
 /-- Three route-specific inputs remain before the corrected package is fully inhabited. -/

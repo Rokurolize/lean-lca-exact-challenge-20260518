@@ -77,6 +77,34 @@ structure ExactAcyclicWithCyclesHomologyDetectionInput : Prop where
       (∀ i : ℤ, letI : K.HasHomology i := hasHomology K i; IsZero (K.homology i)) →
         exactAcyclicWithCycles C K
 
+/-- Degreewise exactness detection input for corrected cycle-object acyclicity. -/
+structure ExactAcyclicWithCyclesExactAtDetectionInput : Prop where
+  hasHomology : ∀ (K : CochainComplex C ℤ) (i : ℤ), K.HasHomology i
+  exactAt_of_exactAcyclicWithCycles :
+    ∀ (K : CochainComplex C ℤ), exactAcyclicWithCycles C K → ∀ i : ℤ, K.ExactAt i
+  exactAcyclicWithCycles_of_exactAt :
+    ∀ (K : CochainComplex C ℤ), (∀ i : ℤ, K.ExactAt i) →
+      exactAcyclicWithCycles C K
+
+/-- Degreewise exactness detection supplies homology detection for corrected cycle-object
+acyclicity. -/
+theorem exactAcyclicWithCyclesHomologyDetectionInput_of_exactAtDetection
+    (E : ExactAcyclicWithCyclesExactAtDetectionInput C) :
+    ExactAcyclicWithCyclesHomologyDetectionInput C where
+  hasHomology := E.hasHomology
+  isZero_homology_of_exactAcyclicWithCycles := by
+    intro K hK i
+    letI : K.HasHomology i := E.hasHomology K i
+    exact (HomologicalComplex.exactAt_iff_isZero_homology (K := K) (i := i)).mp
+      (E.exactAt_of_exactAcyclicWithCycles K hK i)
+  exactAcyclicWithCycles_of_isZero_homology := by
+    intro K hK
+    apply E.exactAcyclicWithCycles_of_exactAt
+    intro i
+    letI : K.HasHomology i := E.hasHomology K i
+    exact (HomologicalComplex.exactAt_iff_isZero_homology (K := K) (i := i)).mpr
+      (hK i)
+
 /-- Homology detection of corrected cycle-object acyclicity implies invariance under
 homotopy equivalences, since homotopy equivalences induce isomorphisms on homology. -/
 theorem exactAcyclicWithCyclesHomotopyEquivInvarianceInput_of_homologyDetection
