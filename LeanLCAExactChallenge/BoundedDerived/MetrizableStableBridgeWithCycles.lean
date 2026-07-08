@@ -195,6 +195,39 @@ def stableSemanticInputOfLeftCalculus
   available := leftCalculusSemanticFields assumption
   remaining := remaining
 
+/-- Transfer data that supplies the finite-shape part of the remaining corrected fields. -/
+structure WalkingParallelPairTransferStableSemanticInputs
+    (available : LeftCalculusSemanticFields) : Type 1 where
+  transferInputs :
+    DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputs
+  pretriangulated :
+    letI : Preadditive OrdinaryCategory := available.preadditive
+    letI : HasZeroObject OrdinaryCategory := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor OrdinaryCategory n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated OrdinaryCategory
+  triangulated :
+    letI : Preadditive OrdinaryCategory := available.preadditive
+    letI : HasZeroObject OrdinaryCategory := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor OrdinaryCategory n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated OrdinaryCategory := pretriangulated
+    IsTriangulated OrdinaryCategory
+
+/-- WPP finite-shape transfer supplies equalizers and coequalizers for the remaining fields. -/
+def remainingStableSemanticFieldsOfWalkingParallelPairTransfer
+    {available : LeftCalculusSemanticFields}
+    (inputs : WalkingParallelPairTransferStableSemanticInputs available) :
+    RemainingStableSemanticFields available where
+  equalizers :=
+    DboundedWithCycles.MetrizableLCA.hasEqualizersOfWalkingParallelPairTransfer
+      inputs.transferInputs
+  coequalizers :=
+    DboundedWithCycles.MetrizableLCA.hasCoequalizersOfWalkingParallelPairTransfer
+      inputs.transferInputs
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
 /-- Build the corrected stable package from its checked semantic input surface. -/
 def stablePackageOfSemanticInput (input : StableSemanticInput) : StablePackage where
   quasicategoryCarrier := rfl

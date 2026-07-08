@@ -150,6 +150,67 @@ abbrev hasFiniteColimitsOfCoequalizers
   letI : HasCoequalizers (DboundedWithCycles MetrizableLCA.{0}) := coequalizers
   exact hasFiniteColimits_of_hasCoequalizers_and_finite_coproducts
 
+/-- Inputs that transfer equalizers and coequalizers for the corrected metrizable
+bounded derived category from bounded complexes. -/
+structure WalkingParallelPairFiniteShapeTransferInputs : Type 1 where
+  limitStability :
+    (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair
+  colimitStability :
+    (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).IsStableUnderColimitsOfShape
+      WalkingParallelPair
+  functorCategoryLocalization :
+    (((Functor.whiskeringRight WalkingParallelPair
+      (BoundedComplexCategory MetrizableLCA.{0})
+      (DboundedWithCycles MetrizableLCA.{0})).obj
+      (DboundedWithCycles.localization MetrizableLCA.{0})).IsLocalization
+        ((boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).functorCategory
+          WalkingParallelPair))
+
+/-- Equalizers in the corrected metrizable bounded derived category from finite-shape
+localization transfer. -/
+noncomputable abbrev hasEqualizersOfWalkingParallelPairTransfer
+    (inputs : WalkingParallelPairFiniteShapeTransferInputs) :
+    HasEqualizers (DboundedWithCycles MetrizableLCA.{0}) := by
+  letI :
+      (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+        WalkingParallelPair := inputs.limitStability
+  letI :
+      (((Functor.whiskeringRight WalkingParallelPair
+        (BoundedComplexCategory MetrizableLCA.{0})
+        (DboundedWithCycles MetrizableLCA.{0})).obj
+        (DboundedWithCycles.localization MetrizableLCA.{0})).IsLocalization
+          ((boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).functorCategory
+            WalkingParallelPair)) := inputs.functorCategoryLocalization
+  haveI : HasLimitsOfShape WalkingParallelPair
+      (BoundedComplexCategory MetrizableLCA.{0}) := by
+    infer_instance
+  exact CategoryTheory.Localization.hasLimitsOfShape_of_functorCategoryLocalization
+    (DboundedWithCycles.localization MetrizableLCA.{0})
+    (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}) WalkingParallelPair
+
+/-- Coequalizers in the corrected metrizable bounded derived category from finite-shape
+localization transfer. -/
+noncomputable abbrev hasCoequalizersOfWalkingParallelPairTransfer
+    (inputs : WalkingParallelPairFiniteShapeTransferInputs) :
+    HasCoequalizers (DboundedWithCycles MetrizableLCA.{0}) := by
+  letI :
+      (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).IsStableUnderColimitsOfShape
+        WalkingParallelPair := inputs.colimitStability
+  letI :
+      (((Functor.whiskeringRight WalkingParallelPair
+        (BoundedComplexCategory MetrizableLCA.{0})
+        (DboundedWithCycles MetrizableLCA.{0})).obj
+        (DboundedWithCycles.localization MetrizableLCA.{0})).IsLocalization
+          ((boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}).functorCategory
+            WalkingParallelPair)) := inputs.functorCategoryLocalization
+  haveI : HasColimitsOfShape WalkingParallelPair
+      (BoundedComplexCategory MetrizableLCA.{0}) := by
+    infer_instance
+  exact CategoryTheory.Localization.hasColimitsOfShape_of_functorCategoryLocalization
+    (DboundedWithCycles.localization MetrizableLCA.{0})
+    (boundedExactWeakEquivalenceWithCycles MetrizableLCA.{0}) WalkingParallelPair
+
 /-- The corrected default-universe metrizable bounded derived category has a zero object
 once the corrected weak equivalences have a left calculus of fractions. -/
 abbrev hasZeroObject
