@@ -425,8 +425,8 @@ def stablePackageOfHomotopyVerdierWalkingParallelPairBoundedVerdierLocalizationI
 structure RouteSpecificInputs : Type 1 where
   boundedHomotopyRealization :
     boundedHomotopyObjectTrianglehIso13Realization MetrizableLCA.{0}
-  homotopyIsoClosureClosed₂ :
-    (exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂
+  homotopyIsoClosureRealization :
+    exactAcyclicWithCyclesHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA.{0}
   descent : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA.{0}
   localizedRightAdjoint :
     BoundedHomotopyWithCyclesLocalizedRightAdjointInput MetrizableLCA.{0}
@@ -444,7 +444,8 @@ def stablePackageOfRouteSpecificInputs (inputs : RouteSpecificInputs) : StablePa
     boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
       MetrizableLCA.{0} inputs.boundedHomotopyRealization
   letI : (exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
-    inputs.homotopyIsoClosureClosed₂
+    exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+      MetrizableLCA.{0} inputs.homotopyIsoClosureRealization
   exact stablePackageOfHomotopyVerdierWalkingParallelPairBoundedVerdierLocalizationInput
     inputs.descent inputs.localizedRightAdjoint inputs.walkingParallelPairTransfer
     inputs.boundedVerdierLocalization
@@ -452,7 +453,7 @@ def stablePackageOfRouteSpecificInputs (inputs : RouteSpecificInputs) : StablePa
 /-- Names of route-specific inputs still to discharge for a fully inhabited corrected package. -/
 def routeSpecificInputNames : List String :=
   ["boundedHomotopyObjectTrianglehIso13Realization MetrizableLCA",
-    "(exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA).IsTriangulatedClosed₂",
+    "exactAcyclicWithCyclesHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA",
     "ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA",
     "BoundedHomotopyWithCyclesLocalizedRightAdjointInput MetrizableLCA",
     "DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputs",

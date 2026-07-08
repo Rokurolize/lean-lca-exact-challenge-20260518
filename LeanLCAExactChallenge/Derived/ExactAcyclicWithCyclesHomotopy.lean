@@ -119,6 +119,64 @@ noncomputable instance exactAcyclicWithCyclesHomotopyIsoClosure_isStableUnderShi
     exact ⟨(shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) n).mapIso e ≪≫
       (((HomotopyCategory.quotient C (ComplexShape.up ℤ)).commShiftIso n).app K₀).symm⟩
 
+/-- In a standard mapping-cone triangle, corrected acyclicity of the target is exactly the
+middle-object corrected homotopy predicate. -/
+theorem exactAcyclicWithCyclesHomotopyObject_triangleh_ext2 [HasBinaryBiproducts C]
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (hL : exactAcyclicWithCycles C L) :
+    exactAcyclicWithCyclesHomotopyObject C (CochainComplex.mappingCone.triangleh f).obj₂ :=
+  hL
+
+/-- In a distinguished triangle, compatible isomorphisms on the first and third objects
+identify it with a strict mapping-cone triangle enough to transfer corrected acyclicity of
+the middle object into the corrected homotopy-object isomorphism closure. -/
+theorem exactAcyclicWithCyclesHomotopyObject_distinguished_ext2_of_triangleh_iso13
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    {T : Triangle (HomotopyCategory C (ComplexShape.up ℤ))}
+    (hT : T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)))
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+    (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃)
+    (comm : (CochainComplex.mappingCone.triangleh f).mor₃ ≫
+        (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map e₁.hom =
+      e₃.hom ≫ T.mor₃)
+    (hL : exactAcyclicWithCycles C L) :
+    exactAcyclicWithCyclesHomotopyIsoClosure C T.obj₂ := by
+  let e : CochainComplex.mappingCone.triangleh f ≅ T :=
+    isoTriangleOfIso₁₃ (CochainComplex.mappingCone.triangleh f) T
+      (HomotopyCategory.mappingCone_triangleh_distinguished f) hT e₁ e₃ comm
+  exact ⟨_, exactAcyclicWithCyclesHomotopyObject_triangleh_ext2 C f hL,
+    ⟨(Triangle.π₂.mapIso e).symm⟩⟩
+
+/-- The strict-realization input needed to make the isomorphism closure of corrected
+acyclic homotopy objects closed under distinguished triangles. -/
+abbrev exactAcyclicWithCyclesHomotopyIsoClosureTrianglehIso13Realization
+    [HasZeroObject C] [HasBinaryBiproducts C] : Prop :=
+  ∀ {T : Triangle (HomotopyCategory C (ComplexShape.up ℤ))},
+    T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)) →
+    exactAcyclicWithCyclesHomotopyIsoClosure C T.obj₁ →
+    exactAcyclicWithCyclesHomotopyIsoClosure C T.obj₃ →
+    ∃ (K L : CochainComplex C ℤ) (f : K ⟶ L)
+      (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+      (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃),
+        (CochainComplex.mappingCone.triangleh f).mor₃ ≫
+            (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map e₁.hom =
+          e₃.hom ≫ T.mor₃ ∧
+        exactAcyclicWithCycles C L
+
+/-- Strict realization gives middle-object distinguished-triangle closure for the corrected
+homotopy-object isomorphism closure. -/
+theorem
+    exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : exactAcyclicWithCyclesHomotopyIsoClosureTrianglehIso13Realization C) :
+    (exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂ := by
+  apply ObjectProperty.IsTriangulatedClosed₂.mk'
+  intro T hT h₁ h₃
+  rcases realize hT h₁ h₃ with ⟨K, L, f, e₁, e₃, comm, hL⟩
+  exact exactAcyclicWithCyclesHomotopyObject_distinguished_ext2_of_triangleh_iso13 C
+    hT f e₁ e₃ comm hL
+
 /-- The isomorphism closure is triangulated once distinguished-triangle closure is supplied. -/
 theorem
     exactAcyclicWithCyclesHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2
