@@ -926,6 +926,44 @@ theorem boundedExactWeakEquivalenceWithCyclesToBoundedVerdier_isLocalizedEquival
   exact LocalizerMorphism.IsLocalizedEquivalence.of_isLocalization_of_isLocalization (Φ := Φ)
     (L₂ := (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q)
 
+set_option linter.unusedVariables false in
+/-- The localized functor from the direct corrected bounded derived category to the bounded
+corrected homotopy Verdier quotient associated to the composite-localization input. -/
+noncomputable abbrev DboundedWithCycles.boundedVerdierLocalizedFunctorOfInput
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (input : BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput C) :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    DboundedWithCycles C ⥤ BoundedExactAcyclicWithCyclesHomotopyVerdierCategory C := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let Φ := boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW C
+  haveI : Φ.IsLocalizedEquivalence :=
+    boundedExactWeakEquivalenceWithCyclesToBoundedVerdier_isLocalizedEquivalence C input
+  exact Φ.localizedFunctor (DboundedWithCycles.localization C)
+    (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+
+/-- The localized functor from the direct corrected bounded derived category commutes with
+shifts. -/
+noncomputable abbrev DboundedWithCycles.boundedVerdierLocalizedFunctorOfInput_commShift
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (input : BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput C) :
+    (DboundedWithCycles.boundedVerdierLocalizedFunctorOfInput C input).CommShift ℤ := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let Φ := boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW C
+  haveI : Φ.IsLocalizedEquivalence :=
+    boundedExactWeakEquivalenceWithCyclesToBoundedVerdier_isLocalizedEquivalence C input
+  haveI : Φ.functor.CommShift ℤ := by
+    dsimp [Φ, boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW]
+    infer_instance
+  dsimp [DboundedWithCycles.boundedVerdierLocalizedFunctorOfInput]
+  infer_instance
+
 /-- A bounded Verdier composite-localization input transports preadditivity back to the
 direct corrected bounded derived localization. -/
 noncomputable abbrev DboundedWithCycles.preadditiveOfBoundedVerdierLocalizationInput
@@ -1059,9 +1097,7 @@ noncomputable abbrev DboundedWithCycles.shiftFunctor_additiveOfBoundedVerdierLoc
   let Φ := boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW C
   haveI : Φ.IsLocalizedEquivalence :=
     boundedExactWeakEquivalenceWithCyclesToBoundedVerdier_isLocalizedEquivalence C input
-  let F :=
-    Φ.localizedFunctor (DboundedWithCycles.localization C)
-      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+  let F := DboundedWithCycles.boundedVerdierLocalizedFunctorOfInput C input
   haveI : F.IsEquivalence := by
     dsimp [F]
     infer_instance
@@ -1069,9 +1105,9 @@ noncomputable abbrev DboundedWithCycles.shiftFunctor_additiveOfBoundedVerdierLoc
   haveI : Φ.functor.CommShift ℤ := by
     dsimp [Φ, boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW]
     infer_instance
-  haveI : F.CommShift ℤ := by
-    dsimp [F]
-    infer_instance
+  let comm : F.CommShift ℤ :=
+    DboundedWithCycles.boundedVerdierLocalizedFunctorOfInput_commShift C input
+  letI : F.CommShift ℤ := comm
   haveI : (F ⋙ shiftFunctor (BoundedExactAcyclicWithCyclesHomotopyVerdierCategory C) n).Additive :=
     inferInstance
   haveI : (shiftFunctor (DboundedWithCycles C) n ⋙ F).Additive :=
@@ -1171,6 +1207,85 @@ noncomputable abbrev DboundedWithCycles.pretriangulatedOfBoundedVerdierLocalizat
           rw [F.map_comp, F.map_comp, F.map_preimage]
           erw [← cancel_mono ((F.commShiftIso (1 : ℤ)).hom.app T₂.obj₁)]
           simpa [Category.assoc] using hc₂ }
+
+/-- The transferred pretriangulated structure has distinguished triangles exactly when their
+image in the bounded corrected homotopy Verdier quotient is distinguished. -/
+theorem DboundedWithCycles.distinguished_iff_boundedVerdierLocalizedFunctorOfInput
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (input : BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput C)
+    (T : Triangle (DboundedWithCycles C)) :
+    letI : Preadditive (DboundedWithCycles C) :=
+      DboundedWithCycles.preadditiveOfBoundedVerdierLocalizationInput C input
+    letI : HasZeroObject (DboundedWithCycles C) :=
+      DboundedWithCycles.hasZeroObjectOfBoundedVerdierLocalizationInput C input
+    letI : ∀ n : ℤ, (shiftFunctor (DboundedWithCycles C) n).Additive :=
+      DboundedWithCycles.shiftFunctor_additiveOfBoundedVerdierLocalizationInput C input
+    letI : Pretriangulated (DboundedWithCycles C) :=
+      DboundedWithCycles.pretriangulatedOfBoundedVerdierLocalizationInput C input
+    let F := DboundedWithCycles.boundedVerdierLocalizedFunctorOfInput C input
+    haveI : (boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW
+        C).functor.CommShift ℤ := by
+      dsimp [boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW]
+      infer_instance
+    letI : F.CommShift ℤ :=
+      DboundedWithCycles.boundedVerdierLocalizedFunctorOfInput_commShift C input
+    T ∈ distTriang (DboundedWithCycles C) ↔
+      F.mapTriangle.obj T ∈
+        distTriang (BoundedExactAcyclicWithCyclesHomotopyVerdierCategory C) := by
+  rfl
+
+/-- A bounded Verdier composite-localization input transports the triangulated structure
+back to the direct corrected bounded derived localization. -/
+noncomputable abbrev DboundedWithCycles.isTriangulatedOfBoundedVerdierLocalizationInput
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (input : BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput C) :
+    letI : Preadditive (DboundedWithCycles C) :=
+      DboundedWithCycles.preadditiveOfBoundedVerdierLocalizationInput C input
+    letI : HasZeroObject (DboundedWithCycles C) :=
+      DboundedWithCycles.hasZeroObjectOfBoundedVerdierLocalizationInput C input
+    letI : ∀ n : ℤ, (shiftFunctor (DboundedWithCycles C) n).Additive :=
+      DboundedWithCycles.shiftFunctor_additiveOfBoundedVerdierLocalizationInput C input
+    letI : Pretriangulated (DboundedWithCycles C) :=
+      DboundedWithCycles.pretriangulatedOfBoundedVerdierLocalizationInput C input
+    IsTriangulated (DboundedWithCycles C) := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  letI : Preadditive (DboundedWithCycles C) :=
+    DboundedWithCycles.preadditiveOfBoundedVerdierLocalizationInput C input
+  letI : HasZeroObject (DboundedWithCycles C) :=
+    DboundedWithCycles.hasZeroObjectOfBoundedVerdierLocalizationInput C input
+  letI : ∀ n : ℤ, (shiftFunctor (DboundedWithCycles C) n).Additive :=
+    DboundedWithCycles.shiftFunctor_additiveOfBoundedVerdierLocalizationInput C input
+  letI : Pretriangulated (DboundedWithCycles C) :=
+    DboundedWithCycles.pretriangulatedOfBoundedVerdierLocalizationInput C input
+  let Φ := boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW C
+  haveI : Φ.IsLocalizedEquivalence :=
+    boundedExactWeakEquivalenceWithCyclesToBoundedVerdier_isLocalizedEquivalence C input
+  let F := DboundedWithCycles.boundedVerdierLocalizedFunctorOfInput C input
+  haveI : F.IsEquivalence := by
+    dsimp [F]
+    infer_instance
+  haveI : F.Full := F.asEquivalence.fullyFaithfulFunctor.full
+  haveI : F.Faithful := F.asEquivalence.fullyFaithfulFunctor.faithful
+  haveI : Φ.functor.CommShift ℤ := by
+    dsimp [Φ, boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW]
+    infer_instance
+  let comm : F.CommShift ℤ :=
+    DboundedWithCycles.boundedVerdierLocalizedFunctorOfInput_commShift C input
+  letI : F.CommShift ℤ := comm
+  haveI : F.IsTriangulated := by
+    exact
+      { map_distinguished := by
+          intro T hT
+          have hiff :=
+            DboundedWithCycles.distinguished_iff_boundedVerdierLocalizedFunctorOfInput
+              C input T
+          simpa [F] using hiff.mp hT }
+  exact IsTriangulated.of_fully_faithful_triangulated_functor F
 
 /-- Homotopy-category descent transfers left calculus from the homotopy pullback class. -/
 theorem

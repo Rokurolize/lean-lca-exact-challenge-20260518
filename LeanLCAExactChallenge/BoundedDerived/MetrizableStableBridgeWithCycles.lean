@@ -203,6 +203,25 @@ abbrev pretriangulatedOfBoundedVerdierLocalizationInput
   DboundedWithCycles.pretriangulatedOfBoundedVerdierLocalizationInput
     MetrizableLCA.{0} input
 
+/-- Build corrected triangulation from the bounded corrected homotopy Verdier localization
+comparison, without a chain-level left-calculus hypothesis. -/
+abbrev isTriangulatedOfBoundedVerdierLocalizationInput
+    [(boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (input :
+      BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput MetrizableLCA.{0}) :
+    letI : Preadditive OrdinaryCategory :=
+      preadditiveOfBoundedVerdierLocalizationInput input
+    letI : HasZeroObject OrdinaryCategory :=
+      hasZeroObjectOfBoundedVerdierLocalizationInput input
+    letI : ∀ n : ℤ, (shiftFunctor OrdinaryCategory n).Additive :=
+      shiftFunctorAdditiveOfBoundedVerdierLocalizationInput input
+    letI : Pretriangulated OrdinaryCategory :=
+      pretriangulatedOfBoundedVerdierLocalizationInput input
+    IsTriangulated OrdinaryCategory :=
+  DboundedWithCycles.isTriangulatedOfBoundedVerdierLocalizationInput
+    MetrizableLCA.{0} input
+
 /-- Semantic fields supplied by corrected left calculus and corrected finite-product closure. -/
 structure LeftCalculusSemanticFields : Type 1 where
   leftCalculus : WeakEquivalence.HasLeftCalculusOfFractions
@@ -367,6 +386,40 @@ def stablePackageOfHomotopyVerdierWalkingParallelPairTransfer
     StablePackage :=
   stablePackageOfSemanticInput
     (stableSemanticInputOfHomotopyVerdierWalkingParallelPairTransfer descent adjoint inputs)
+
+/-- Build the corrected stable package from the homotopy Verdier left-calculus route, WPP
+finite-shape transfer, and bounded Verdier localized-equivalence input. -/
+def stablePackageOfHomotopyVerdierWalkingParallelPairBoundedVerdierLocalizationInput
+    [(boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (descent : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA.{0})
+    (adjoint : BoundedHomotopyWithCyclesLocalizedRightAdjointInput MetrizableLCA.{0})
+    (transferInputs :
+      DboundedWithCycles.MetrizableLCA.WalkingParallelPairFiniteShapeTransferInputs)
+    (boundedInput :
+      BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput MetrizableLCA.{0}) :
+    StablePackage where
+  quasicategoryCarrier := rfl
+  weakEquivalenceClass := rfl
+  preadditive := preadditiveOfBoundedVerdierLocalizationInput boundedInput
+  finiteProductInstance := hasFiniteProductsOfBoundedVerdierLocalizationInput boundedInput
+  finiteBiproductInstance := hasFiniteBiproductsOfBoundedVerdierLocalizationInput boundedInput
+  finiteCoproductInstance := hasFiniteCoproductsOfBoundedVerdierLocalizationInput boundedInput
+  finiteLimitInstance := by
+    let left := leftCalculusAssumptionOfHomotopyVerdier descent adjoint
+    letI : WeakEquivalence.HasLeftCalculusOfFractions := left.leftCalculus
+    exact DboundedWithCycles.MetrizableLCA.hasFiniteLimitsOfWalkingParallelPairTransfer
+      transferInputs
+  finiteColimitInstance := by
+    let left := leftCalculusAssumptionOfHomotopyVerdier descent adjoint
+    letI : WeakEquivalence.HasLeftCalculusOfFractions := left.leftCalculus
+    exact DboundedWithCycles.MetrizableLCA.hasFiniteColimitsOfWalkingParallelPairTransfer
+      transferInputs
+  zeroObjectInstance := hasZeroObjectOfBoundedVerdierLocalizationInput boundedInput
+  shiftAdditiveAll := shiftFunctorAdditiveOfBoundedVerdierLocalizationInput boundedInput
+  suspensionAdditive := shiftFunctorAdditiveOfBoundedVerdierLocalizationInput boundedInput 1
+  pretriangulatedStructure := pretriangulatedOfBoundedVerdierLocalizationInput boundedInput
+  triangulatedStructure := isTriangulatedOfBoundedVerdierLocalizationInput boundedInput
 
 /-- The corrected stable package carrier is the corrected ordinary quasicategory nerve. -/
 theorem stablePackage_carrier (P : StablePackage) :
