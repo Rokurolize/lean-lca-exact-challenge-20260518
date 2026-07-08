@@ -155,6 +155,10 @@ lean -j1 LeanLCAExactChallenge.lean
 
 All listed checks exited with code 0 in the restored offline bundle. WSL handoff should re-run the same direct-`lean` checks with the local toolchain path available in that checkout.
 
+## Repository state
+
+The checked code milestone was committed as `43009683` (`Add corrected metrizable cycles stable bridge`) on branch `integrate-cycle-object-main-20260708`. A fast-forward push advanced `origin/main` from `5fe91958` to `43009683`; a post-push fetch showed local `HEAD` and `origin/main` both at `43009683`. The only untracked local paths observed after the push were the `.lake` symlink used for local direct-Lean checking and `2026-07-08-085025-local-command-caveatcaveat-the-messages-below.txt`; neither was staged or committed.
+
 ## Conclusion
 
 The invalid degreewise acyclicity definition is now isolated from the corrected construction. The project has a Lean-checked replacement predicate, checked `MetrizableLCA` bridge, checked isomorphism/shift/biproduct/finite-product closure, checked corrected bounded weak-equivalence finite-product stability, a checked corrected `DboundedWithCycles` localization surface, and a checked corrected Metrizable stable package assumption surface. The next formalization step is to prove or port the left-calculus-of-fractions input for `boundedExactWeakEquivalenceWithCycles`, then inhabit the remaining corrected finite-limit, finite-colimit, pretriangulated, and triangulated fields without relying on legacy `boundedExactWeakEquivalence`.
