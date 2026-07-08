@@ -120,6 +120,8 @@ The corrected route now has Lean-checked API for:
 - `boundedExactWeakEquivalenceWithCycles_of_homotopyEquiv`
 - `homotopyEquivalences_le_boundedExactWeakEquivalenceWithCycles`
 - `exactAcyclicWithCyclesHomotopyObject`
+- `ExactAcyclicWithCyclesHomotopyEquivInvarianceInput`
+- `exactAcyclicWithCyclesHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance`
 - `exactAcyclicWithCyclesHomotopyIsoClosure`
 - `exactAcyclicWithCyclesHomotopyObject_trW_quotient_map_of_exactAcyclicWithCycles_mappingCone`
 - `exactAcyclicWithCyclesHomotopyObject_trW_quotient_map_iff_exactAcyclicWithCycles_mappingCone`
@@ -128,6 +130,7 @@ The corrected route now has Lean-checked API for:
 - `boundedHomotopyExactWeakEquivalenceWithCycles`
 - `boundedExactWeakEquivalenceWithCycles_le_boundedHomotopyExactWeakEquivalenceWithCycles`
 - `boundedHomotopyExactWeakEquivalenceWithCycles_iff_mappingCone_isoClosure`
+- `boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopyWithCycles_of_homotopyEquivInvariance`
 - `BoundedDerivedWithCycles.Metrizable.StablePackage`
 - `BoundedDerivedWithCycles.Metrizable.LeftCalculusAssumption`
 - `BoundedDerivedWithCycles.Metrizable.LeftCalculusSemanticFields`
@@ -240,6 +243,8 @@ This is real progress toward the Q/Qh route, because the corrected chain localiz
 `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesHomotopy.lean` now mirrors the non-legacy part of the old Verdier skeleton with corrected predicates only. It defines the homotopy-category object predicate `exactAcyclicWithCyclesHomotopyObject`, its iso-closure `exactAcyclicWithCyclesHomotopyIsoClosure`, and `boundedHomotopyExactWeakEquivalenceWithCycles`.
 
 The file proves zero-object containment, iso-closure shift stability, `ObjectProperty.trW_isoClosure` compatibility, direct cone-acyclic maps entering the corrected homotopy `trW` class, the conditional equivalence between direct cone acyclicity and `trW` after homotopy-category descent, and the unconditional inclusion `boundedExactWeakEquivalenceWithCycles ≤ boundedHomotopyExactWeakEquivalenceWithCycles`.
+
+The homotopy-descent assumption is now a checked Lean input surface, `ExactAcyclicWithCyclesHomotopyEquivInvarianceInput`. From that input, Lean proves `exactAcyclicWithCyclesHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance` and the direct/homotopy pullback equality `boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopyWithCycles_of_homotopyEquivInvariance`.
 
 This does not consume legacy `boundedExactWeakEquivalence` or legacy `Dbounded` facts. The remaining mathematical assumption is explicit: the corrected object predicate still needs the cone/distinguished-triangle closure that makes it descend through homotopy-category isomorphisms and become triangulated.
 

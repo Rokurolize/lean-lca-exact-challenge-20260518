@@ -35,6 +35,24 @@ theorem exactAcyclicWithCyclesHomotopyObject_quotient_obj_iff
       exactAcyclicWithCycles C K := by
   rfl
 
+/-- Object-level input for making corrected acyclicity descend to the homotopy category. -/
+structure ExactAcyclicWithCyclesHomotopyEquivInvarianceInput : Prop where
+  exactAcyclicWithCycles_of_homotopyEquiv :
+    ∀ {K L : CochainComplex C ℤ}, HomotopyEquiv K L →
+      exactAcyclicWithCycles C K → exactAcyclicWithCycles C L
+
+/-- Homotopy-equivalence invariance makes the corrected homotopy object predicate iso-closed. -/
+theorem
+    exactAcyclicWithCyclesHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+    (I : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput C) :
+    (exactAcyclicWithCyclesHomotopyObject C).IsClosedUnderIsomorphisms where
+  of_iso := by
+    intro X Y e hX
+    obtain ⟨K, rfl⟩ := HomotopyCategory.quotient_obj_surjective X
+    obtain ⟨L, rfl⟩ := HomotopyCategory.quotient_obj_surjective Y
+    exact I.exactAcyclicWithCycles_of_homotopyEquiv
+      (HomotopyCategory.homotopyEquivOfIso e) hX
+
 /-- Corrected acyclic homotopy objects contain a zero object. -/
 instance exactAcyclicWithCyclesHomotopyObject_containsZero [HasZeroObject C] :
     (exactAcyclicWithCyclesHomotopyObject C).ContainsZero where
@@ -234,5 +252,17 @@ theorem
   dsimp [boundedHomotopyExactWeakEquivalenceWithCycles]
   rw [exactAcyclicWithCyclesHomotopyIsoClosure_trW C]
   exact boundedExactWeakEquivalenceWithCycles_eq_exactAcyclicWithCyclesHomotopy_trW_inverseImage C
+
+/-- Homotopy-equivalence invariance is the explicit input needed for the homotopy comparison. -/
+theorem
+    boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopyWithCycles_of_homotopyEquivInvariance
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (I : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput C) :
+    boundedExactWeakEquivalenceWithCycles C =
+      boundedHomotopyExactWeakEquivalenceWithCycles C := by
+  haveI : (exactAcyclicWithCyclesHomotopyObject C).IsClosedUnderIsomorphisms :=
+    exactAcyclicWithCyclesHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+      C I
+  exact boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopyWithCycles_of_isoClosed C
 
 end LeanLCAExactChallenge

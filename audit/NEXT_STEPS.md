@@ -44,7 +44,7 @@ lean -j1 LeanLCAExactChallenge.lean
 
 Remaining tasks:
 
-1. Prove corrected acyclic-object cone/distinguished-triangle closure, then use the completed homotopy-equivalence inclusion to compare `boundedExactWeakEquivalenceWithCycles` with the bounded homotopy `trW` class.
+1. Prove corrected acyclic-object cone/distinguished-triangle closure and discharge `ExactAcyclicWithCyclesHomotopyEquivInvarianceInput`, then use the checked equality theorem to compare `boundedExactWeakEquivalenceWithCycles` with the bounded homotopy `trW` class.
 2. Prove or port the Q/Qh localization route that replaces the chain-level left-calculus assumption for `boundedExactWeakEquivalenceWithCycles`.
 3. Inhabit the corrected replacement stable package for `DboundedWithCycles MetrizableLCA.{0}`: pretriangulated and triangulated structures, plus the honest finite-product/finite-coproduct or biproduct surface. Do not try to prove ordinary finite limits/finite colimits unless the mathematical objection in `audit/HANDOVER.md` is overturned.
 4. Attempt the Lean/mathlib stable-version migration only in an isolated sibling worktree. The attempt must update `lean-toolchain` and Lake dependencies coherently, must not reuse `v4.30.0` compiled artifacts as evidence, and must pass the baseline direct-Lean checks before any migration commit.
@@ -68,9 +68,13 @@ Completed corrected closure milestones:
   `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesContractible.lean`.
 - Corrected homotopy-object `trW` surface:
   `exactAcyclicWithCyclesHomotopyObject`,
+  `ExactAcyclicWithCyclesHomotopyEquivInvarianceInput`,
+  `exactAcyclicWithCyclesHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance`,
   `exactAcyclicWithCyclesHomotopyIsoClosure`,
   `boundedHomotopyExactWeakEquivalenceWithCycles`, and the checked inclusion
   `boundedExactWeakEquivalenceWithCycles_le_boundedHomotopyExactWeakEquivalenceWithCycles`
+  plus the checked conditional equality
+  `boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopyWithCycles_of_homotopyEquivInvariance`
   in `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesHomotopy.lean`.
 
 - Mapping-cone isomorphism invariance.
