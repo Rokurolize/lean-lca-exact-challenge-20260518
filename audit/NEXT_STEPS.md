@@ -44,7 +44,7 @@ lean -j1 LeanLCAExactChallenge.lean
 
 Remaining tasks:
 
-1. Prove corrected acyclic-object cone/distinguished-triangle closure, discharge `ExactAcyclicWithCyclesHomotopyEquivInvarianceInput`, and construct the localized right-adjoint/unit input so `leftCalculusAssumptionOfHomotopyVerdier` inhabits corrected left calculus.
+1. Prove corrected acyclic-object cone/distinguished-triangle closure, discharge `ExactAcyclicWithCyclesHomotopyEquivInvarianceInput`, and construct the localized right-adjoint/unit and left-adjoint/counit inputs so the homotopy Verdier builders inhabit corrected left and right calculus.
 2. Prove or port the remaining Q/Qh localization route needed to replace the chain-level left-calculus assumption for `boundedExactWeakEquivalenceWithCycles`.
 3. Inhabit the corrected replacement stable package for `DboundedWithCycles MetrizableLCA.{0}`: ordinary finite limits, ordinary finite colimits, pretriangulated structure, and triangulated structure. The honest finite-product/finite-biproduct/finite-coproduct surface is now checked; do not try to prove ordinary finite limits/finite colimits unless the mathematical objection in `audit/HANDOVER.md` is overturned.
 4. Attempt the Lean/mathlib stable-version migration only in an isolated sibling worktree. The attempt must update `lean-toolchain` and Lake dependencies coherently, must not reuse `v4.30.0` compiled artifacts as evidence, and must pass the baseline direct-Lean checks before any migration commit.
@@ -82,8 +82,11 @@ Completed corrected closure milestones:
   `exactAcyclicWithCyclesHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_closed2`,
   `boundedHomotopyWithCyclesLocalizedVerdierFunctor`,
   `BoundedHomotopyWithCyclesLocalizedRightAdjointInput`,
+  `BoundedHomotopyWithCyclesLocalizedLeftAdjointInput`,
   `boundedHomotopyExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_closed2Adjoint`,
+  `boundedHomotopyExactWeakEquivalenceWithCycles_hasRightCalculusOfFractions_of_closed2Adjoint`,
   `boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_closed2Adjoint`,
+  `boundedExactWeakEquivalenceWithCycles_hasRightCalculusOfFractions_of_closed2Adjoint`,
   `boundedHomotopyExactWeakEquivalenceWithCycles`, and the checked inclusion
   `boundedExactWeakEquivalenceWithCycles_le_boundedHomotopyExactWeakEquivalenceWithCycles`
   plus the checked conditional equality
@@ -98,7 +101,7 @@ Completed corrected closure milestones:
 - Separate corrected localization surface: `BoundedDerivedCategoryWithCycles`, `DboundedWithCycles`, and `DboundedWithCycles.localization`.
 - Corrected finite biproduct/coproduct semantic surface: `DboundedWithCycles.hasFiniteBiproductsOfStableFiniteProducts`, `DboundedWithCycles.hasFiniteCoproductsOfStableFiniteProducts`, `DboundedWithCycles.MetrizableLCA.hasFiniteBiproducts`, and `DboundedWithCycles.MetrizableLCA.hasFiniteCoproducts`.
 - Corrected Metrizable stable bridge assumption surface: `BoundedDerivedWithCycles.Metrizable.StablePackage`, explicit with-cycles left calculus, derived preadditive/zero/finite-products/finite-biproducts/finite-coproducts/shift-additivity fields, and remaining finite-limit/finite-colimit/pretriangulated/triangulated assumptions.
-- Corrected Metrizable homotopy Verdier left-calculus builder: `BoundedDerivedWithCycles.Metrizable.leftCalculusAssumptionOfHomotopyVerdier`.
+- Corrected Metrizable homotopy Verdier calculus builders: `BoundedDerivedWithCycles.Metrizable.leftCalculusAssumptionOfHomotopyVerdier` and `BoundedDerivedWithCycles.Metrizable.rightCalculusAssumptionOfHomotopyVerdier`.
 - Version-policy blocker recorded: the repository remains verified on its coherent `v4.30.0` pin because the restored manifest, mathlib checkout, and compiled dependency cache are `v4.30.0`-only; stable `v4.31.0` requires a separate coherent dependency migration and full baseline verification.
 
 Note: the older checkout at `/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518` had unrelated dirty files before this work began. Continue using the clean integration worktree unless the user explicitly asks otherwise.

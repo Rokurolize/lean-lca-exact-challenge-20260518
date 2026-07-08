@@ -94,6 +94,10 @@ structure StablePackage : Type 2 where
 structure LeftCalculusAssumption : Type 1 where
   leftCalculus : WeakEquivalence.HasLeftCalculusOfFractions
 
+/-- The explicit source-facing right-calculus assumption for the corrected weak equivalences. -/
+structure RightCalculusAssumption : Type 1 where
+  rightCalculus : WeakEquivalence.HasRightCalculusOfFractions
+
 /-- Build corrected left calculus from the homotopy Verdier route inputs. -/
 def leftCalculusAssumptionOfHomotopyVerdier
     [(exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
@@ -102,6 +106,16 @@ def leftCalculusAssumptionOfHomotopyVerdier
     LeftCalculusAssumption where
   leftCalculus :=
     boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_closed2Adjoint
+      MetrizableLCA.{0} descent adjoint
+
+/-- Build corrected right calculus from the homotopy Verdier route inputs. -/
+def rightCalculusAssumptionOfHomotopyVerdier
+    [(exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (descent : ExactAcyclicWithCyclesHomotopyEquivInvarianceInput MetrizableLCA.{0})
+    (adjoint : BoundedHomotopyWithCyclesLocalizedLeftAdjointInput MetrizableLCA.{0}) :
+    RightCalculusAssumption where
+  rightCalculus :=
+    boundedExactWeakEquivalenceWithCycles_hasRightCalculusOfFractions_of_closed2Adjoint
       MetrizableLCA.{0} descent adjoint
 
 /-- Semantic fields supplied by corrected left calculus and corrected finite-product closure. -/

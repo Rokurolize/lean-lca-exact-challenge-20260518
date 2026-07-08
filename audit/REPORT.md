@@ -143,6 +143,7 @@ The corrected route now has Lean-checked API for:
 - `exactAcyclicWithCyclesHomotopyObject_trW_hasLeftCalculusOfFractions_of_homotopyObjectClosed2`
 - `exactAcyclicWithCyclesHomotopyObject_trW_hasRightCalculusOfFractions_of_homotopyObjectClosed2`
 - `exactAcyclicWithCyclesHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_closed2`
+- `exactAcyclicWithCyclesHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_closed2`
 - `exactAcyclicWithCyclesHomotopyObject_trW_quotient_map_of_exactAcyclicWithCycles_mappingCone`
 - `exactAcyclicWithCyclesHomotopyObject_trW_quotient_map_iff_exactAcyclicWithCycles_mappingCone`
 - `exactAcyclicWithCyclesHomotopyIsoClosure_trW_quotient_map_iff_mappingCone`
@@ -151,15 +152,23 @@ The corrected route now has Lean-checked API for:
 - `boundedHomotopyExactWeakEquivalenceWithCycles_containsIdentities`
 - `boundedHomotopyWithCyclesLocalizedVerdierFunctor`
 - `BoundedHomotopyWithCyclesLocalizedRightAdjointInput`
+- `BoundedHomotopyWithCyclesLocalizedLeftAdjointInput`
 - `boundedHomotopyExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_adjoint`
 - `boundedHomotopyExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_closed2Adjoint`
+- `boundedHomotopyExactWeakEquivalenceWithCycles_hasRightCalculusOfFractions_of_adjoint`
+- `boundedHomotopyExactWeakEquivalenceWithCycles_hasRightCalculusOfFractions_of_closed2Adjoint`
 - `boundedExactWeakEquivalenceWithCycles_le_boundedHomotopyExactWeakEquivalenceWithCycles`
 - `boundedHomotopyExactWeakEquivalenceWithCycles_iff_mappingCone_isoClosure`
 - `boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_isoClosed`
+- `boundedExactWeakEquivalenceWithCycles_hasRightCalculusOfFractions_of_isoClosed`
 - `boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopyWithCycles_of_homotopyEquivInvariance`
 - `boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_homotopyEquivInvariance`
+- `boundedExactWeakEquivalenceWithCycles_hasRightCalculusOfFractions_of_homotopyEquivInvariance`
 - `boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_closed2Adjoint`
+- `boundedExactWeakEquivalenceWithCycles_hasRightCalculusOfFractions_of_closed2Adjoint`
 - `BoundedDerivedWithCycles.Metrizable.leftCalculusAssumptionOfHomotopyVerdier`
+- `BoundedDerivedWithCycles.Metrizable.RightCalculusAssumption`
+- `BoundedDerivedWithCycles.Metrizable.rightCalculusAssumptionOfHomotopyVerdier`
 - `BoundedDerivedWithCycles.Metrizable.StablePackage`
 - `BoundedDerivedWithCycles.Metrizable.LeftCalculusAssumption`
 - `BoundedDerivedWithCycles.Metrizable.LeftCalculusSemanticFields`
@@ -277,7 +286,7 @@ The homotopy-descent assumption is now a checked Lean input surface, `ExactAcycl
 
 The same file now also exposes the corrected conditional triangulated-object surface: once the corrected object predicate has the required `IsTriangulatedClosed₂` closure, Lean supplies `IsTriangulated` for both the object predicate and its isomorphism closure.
 
-The corrected homotopy surface now carries the left-calculus bridge as well: if the corrected iso-closed homotopy object predicate has `IsTriangulatedClosed₂` and the localized Verdier composite has the recorded right-adjoint/unit input, Lean proves left calculus for `boundedHomotopyExactWeakEquivalenceWithCycles`; with the homotopy-descent input, Lean transfers that left calculus to `boundedExactWeakEquivalenceWithCycles`. `MetrizableStableBridgeWithCycles.lean` exposes this as `leftCalculusAssumptionOfHomotopyVerdier`.
+The corrected homotopy surface now carries the two-sided calculus bridge as well: if the corrected iso-closed homotopy object predicate has `IsTriangulatedClosed₂`, Lean proves Verdier left and right calculus for the homotopy `trW` class. With the recorded localized right-adjoint/unit input it pulls left calculus back to `boundedHomotopyExactWeakEquivalenceWithCycles`; with the recorded localized left-adjoint/counit input it pulls right calculus back. With homotopy descent, Lean transfers both calculi to `boundedExactWeakEquivalenceWithCycles`. `MetrizableStableBridgeWithCycles.lean` exposes these as `leftCalculusAssumptionOfHomotopyVerdier` and `rightCalculusAssumptionOfHomotopyVerdier`.
 
 The corrected derived surface now derives finite biproducts and finite coproducts from corrected left calculus and finite-product stability. The corrected weak-equivalence class itself is also checked stable under finite coproducts, and its opposite class is checked stable under finite products. The stable bridge therefore records eight checked left-calculus semantic fields: left calculus, preadditivity, zero object, finite products, finite biproducts, finite coproducts, all shift functor additivity, and suspension additivity.
 
