@@ -984,6 +984,64 @@ noncomputable abbrev DboundedWithCycles.hasZeroObjectOfBoundedVerdierLocalizatio
         apply F.map_injective
         exact hFX₀.eq_of_tgt _ _ }
 
+/-- A bounded Verdier composite-localization input transports finite products back to the
+direct corrected bounded derived localization. -/
+noncomputable abbrev DboundedWithCycles.hasFiniteProductsOfBoundedVerdierLocalizationInput
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (input : BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput C) :
+    HasFiniteProducts (DboundedWithCycles C) := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let Φ := boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW C
+  haveI : Φ.IsLocalizedEquivalence :=
+    boundedExactWeakEquivalenceWithCyclesToBoundedVerdier_isLocalizedEquivalence C input
+  let F :=
+    Φ.localizedFunctor (DboundedWithCycles.localization C)
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+  haveI : F.IsEquivalence := by
+    dsimp [F]
+    infer_instance
+  exact ⟨fun n => Adjunction.hasLimitsOfShape_of_equivalence F⟩
+
+/-- A bounded Verdier composite-localization input transports finite coproducts back to the
+direct corrected bounded derived localization. -/
+noncomputable abbrev DboundedWithCycles.hasFiniteCoproductsOfBoundedVerdierLocalizationInput
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (input : BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput C) :
+    HasFiniteCoproducts (DboundedWithCycles C) := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let Φ := boundedExactWeakEquivalenceWithCyclesToBoundedExactAcyclicWithCyclesHomotopy_trW C
+  haveI : Φ.IsLocalizedEquivalence :=
+    boundedExactWeakEquivalenceWithCyclesToBoundedVerdier_isLocalizedEquivalence C input
+  let F :=
+    Φ.localizedFunctor (DboundedWithCycles.localization C)
+      (boundedExactAcyclicWithCyclesHomotopyObject C).trW.Q
+  haveI : F.IsEquivalence := by
+    dsimp [F]
+    infer_instance
+  exact ⟨fun n => Adjunction.hasColimitsOfShape_of_equivalence F⟩
+
+/-- A bounded Verdier composite-localization input transports finite biproducts back to the
+direct corrected bounded derived localization. -/
+noncomputable abbrev DboundedWithCycles.hasFiniteBiproductsOfBoundedVerdierLocalizationInput
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (input : BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput C) :
+    letI : Preadditive (DboundedWithCycles C) :=
+      DboundedWithCycles.preadditiveOfBoundedVerdierLocalizationInput C input
+    HasFiniteBiproducts (DboundedWithCycles C) := by
+  letI : Preadditive (DboundedWithCycles C) :=
+    DboundedWithCycles.preadditiveOfBoundedVerdierLocalizationInput C input
+  letI : HasFiniteProducts (DboundedWithCycles C) :=
+    DboundedWithCycles.hasFiniteProductsOfBoundedVerdierLocalizationInput C input
+  exact HasFiniteBiproducts.of_hasFiniteProducts
+
 /-- Homotopy-category descent transfers left calculus from the homotopy pullback class. -/
 theorem
     boundedExactWeakEquivalenceWithCycles_hasLeftCalculusOfFractions_of_isoClosed

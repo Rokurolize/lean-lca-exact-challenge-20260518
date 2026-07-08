@@ -102,7 +102,7 @@ Completed corrected closure milestones:
   `boundedExactWeakEquivalenceWithCycles_eq_boundedHomotopyWithCycles_of_homotopyEquivInvariance`
   in `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesHomotopy.lean`.
 - Direct-to-bounded-Verdier localized-equivalence reduction: `BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput` and `boundedExactWeakEquivalenceWithCyclesToBoundedVerdier_isLocalizedEquivalence` in `LeanLCAExactChallenge/Derived/ExactAcyclicWithCyclesHomotopy.lean`.
-- Independent bounded-Verdier preadditivity and zero-object transfer: `DboundedWithCycles.preadditiveOfBoundedVerdierLocalizationInput`, `DboundedWithCycles.hasZeroObjectOfBoundedVerdierLocalizationInput`, `BoundedDerivedWithCycles.Metrizable.preadditiveOfBoundedVerdierLocalizationInput`, and `BoundedDerivedWithCycles.Metrizable.hasZeroObjectOfBoundedVerdierLocalizationInput`.
+- Independent bounded-Verdier preadditivity, zero-object, finite-product, finite-coproduct, and finite-biproduct transfer: `DboundedWithCycles.preadditiveOfBoundedVerdierLocalizationInput`, `DboundedWithCycles.hasZeroObjectOfBoundedVerdierLocalizationInput`, `DboundedWithCycles.hasFiniteProductsOfBoundedVerdierLocalizationInput`, `DboundedWithCycles.hasFiniteCoproductsOfBoundedVerdierLocalizationInput`, `DboundedWithCycles.hasFiniteBiproductsOfBoundedVerdierLocalizationInput`, and the matching `BoundedDerivedWithCycles.Metrizable.*BoundedVerdierLocalizationInput` wrappers.
 
 - Mapping-cone isomorphism invariance.
 - Shift closure and bounded weak-equivalence shift compatibility.

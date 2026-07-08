@@ -138,6 +138,40 @@ abbrev hasZeroObjectOfBoundedVerdierLocalizationInput
     HasZeroObject OrdinaryCategory :=
   DboundedWithCycles.hasZeroObjectOfBoundedVerdierLocalizationInput MetrizableLCA.{0} input
 
+/-- Build corrected finite products from the bounded corrected homotopy Verdier localization
+comparison, without a chain-level left-calculus hypothesis. -/
+abbrev hasFiniteProductsOfBoundedVerdierLocalizationInput
+    [(boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (input :
+      BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput MetrizableLCA.{0}) :
+    HasFiniteProducts OrdinaryCategory :=
+  DboundedWithCycles.hasFiniteProductsOfBoundedVerdierLocalizationInput MetrizableLCA.{0} input
+
+/-- Build corrected finite coproducts from the bounded corrected homotopy Verdier localization
+comparison, without a chain-level left-calculus hypothesis. -/
+abbrev hasFiniteCoproductsOfBoundedVerdierLocalizationInput
+    [(boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (input :
+      BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput MetrizableLCA.{0}) :
+    HasFiniteCoproducts OrdinaryCategory :=
+  DboundedWithCycles.hasFiniteCoproductsOfBoundedVerdierLocalizationInput MetrizableLCA.{0}
+    input
+
+/-- Build corrected finite biproducts from the bounded corrected homotopy Verdier localization
+comparison, without a chain-level left-calculus hypothesis. -/
+abbrev hasFiniteBiproductsOfBoundedVerdierLocalizationInput
+    [(boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    [(exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (input :
+      BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput MetrizableLCA.{0}) :
+    letI : Preadditive OrdinaryCategory :=
+      preadditiveOfBoundedVerdierLocalizationInput input
+    HasFiniteBiproducts OrdinaryCategory :=
+  DboundedWithCycles.hasFiniteBiproductsOfBoundedVerdierLocalizationInput MetrizableLCA.{0}
+    input
+
 /-- Semantic fields supplied by corrected left calculus and corrected finite-product closure. -/
 structure LeftCalculusSemanticFields : Type 1 where
   leftCalculus : WeakEquivalence.HasLeftCalculusOfFractions
