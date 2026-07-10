@@ -86,6 +86,84 @@ structure ExactAcyclicWithCyclesExactAtDetectionInput : Prop where
     ∀ (K : CochainComplex C ℤ), (∀ i : ℤ, K.ExactAt i) →
       exactAcyclicWithCycles C K
 
+/-- Reverse degreewise exactness detection input.  For `MetrizableLCA`, the forward
+direction is supplied by the cycle-object kernel calculation. -/
+structure ExactAcyclicWithCyclesExactAtReverseDetectionInput : Prop where
+  hasHomology : ∀ (K : CochainComplex C ℤ) (i : ℤ), K.HasHomology i
+  exactAcyclicWithCycles_of_exactAt :
+    ∀ (K : CochainComplex C ℤ), (∀ i : ℤ, K.ExactAt i) →
+      exactAcyclicWithCycles C K
+
+/-- Canonical strict kernel cycles give the reverse direction for `MetrizableLCA`. -/
+theorem exactAcyclicWithCyclesExactAtReverseDetectionInput_of_metrizableCanonicalCycleStrict
+    (E : MetrizableLCA.ExactAtCanonicalCycleStrictInput.{u}) :
+    ExactAcyclicWithCyclesExactAtReverseDetectionInput MetrizableLCA.{u} where
+  hasHomology := E.hasHomology
+  exactAcyclicWithCycles_of_exactAt := by
+    intro K hK
+    exact MetrizableLCA.exactAcyclicWithCycles_of_exactAtCanonicalCycleStrictInput E K hK
+
+/-- Canonical boundary open maps give the reverse direction for `MetrizableLCA`. -/
+theorem exactAcyclicWithCyclesExactAtReverseDetectionInput_of_metrizableCanonicalCycleOpenMap
+    (E : MetrizableLCA.ExactAtCanonicalCycleOpenMapInput.{u}) :
+    ExactAcyclicWithCyclesExactAtReverseDetectionInput MetrizableLCA.{u} :=
+  exactAcyclicWithCyclesExactAtReverseDetectionInput_of_metrizableCanonicalCycleStrict
+    (MetrizableLCA.exactAtCanonicalCycleStrictInput_of_openMapInput E)
+
+/-- Canonical boundary topology gives the reverse direction for `MetrizableLCA`. -/
+theorem exactAcyclicWithCyclesExactAtReverseDetectionInput_of_metrizableBoundaryTopology
+    (hasHomology : ∀ (K : CochainComplex MetrizableLCA.{u} ℤ) (i : ℤ), K.HasHomology i)
+    (E : MetrizableLCA.ExactAtCanonicalCycleBoundaryTopologyInput.{u}) :
+    ExactAcyclicWithCyclesExactAtReverseDetectionInput MetrizableLCA.{u} :=
+  exactAcyclicWithCyclesExactAtReverseDetectionInput_of_metrizableCanonicalCycleStrict
+    (MetrizableLCA.exactAtCanonicalCycleStrictInput_of_boundaryTopologyInput hasHomology E)
+
+/-- Sigma-compact source boundary maps give the reverse direction for `MetrizableLCA`. -/
+theorem exactAcyclicWithCyclesExactAtReverseDetectionInput_of_metrizableSigmaCompactSource
+    (E : MetrizableLCA.ExactAtCanonicalCycleSigmaCompactSourceInput.{u}) :
+    ExactAcyclicWithCyclesExactAtReverseDetectionInput MetrizableLCA.{u} :=
+  exactAcyclicWithCyclesExactAtReverseDetectionInput_of_metrizableCanonicalCycleOpenMap
+    (MetrizableLCA.exactAtCanonicalCycleOpenMapInput_of_sigmaCompactSourceInput E)
+
+/-- Sigma-compact source topology gives the reverse direction for `MetrizableLCA`. -/
+theorem exactAcyclicWithCyclesExactAtReverseDetectionInput_of_metrizableSigmaCompactTopology
+    (hasHomology : ∀ (K : CochainComplex MetrizableLCA.{u} ℤ) (i : ℤ), K.HasHomology i)
+    (E : MetrizableLCA.ExactAtCanonicalCycleSigmaCompactSourceTopologyInput.{u}) :
+    ExactAcyclicWithCyclesExactAtReverseDetectionInput MetrizableLCA.{u} :=
+  exactAcyclicWithCyclesExactAtReverseDetectionInput_of_metrizableBoundaryTopology
+    hasHomology
+    (MetrizableLCA.exactAtCanonicalCycleBoundaryTopologyInput_of_sigmaCompactSourceTopologyInput
+      E)
+
+/-- Canonical differential-open maps give the reverse direction for `MetrizableLCA`. -/
+theorem
+    exactAcyclicWithCyclesExactAtReverseDetectionInput_of_metrizableDifferentialOpenMap
+    (E : MetrizableLCA.ExactAtCanonicalCycleDifferentialOpenMapInput.{u}) :
+    ExactAcyclicWithCyclesExactAtReverseDetectionInput MetrizableLCA.{u} :=
+  exactAcyclicWithCyclesExactAtReverseDetectionInput_of_metrizableCanonicalCycleOpenMap
+    (MetrizableLCA.exactAtCanonicalCycleOpenMapInput_of_differentialOpenMapInput E)
+
+/-- Canonical differential topology gives the reverse direction for `MetrizableLCA`. -/
+theorem
+    exactAcyclicWithCyclesExactAtReverseDetectionInput_of_metrizableDifferentialTopology
+    (hasHomology : ∀ (K : CochainComplex MetrizableLCA.{u} ℤ) (i : ℤ), K.HasHomology i)
+    (E : MetrizableLCA.ExactAtCanonicalCycleDifferentialTopologyInput.{u}) :
+    ExactAcyclicWithCyclesExactAtReverseDetectionInput MetrizableLCA.{u} :=
+  exactAcyclicWithCyclesExactAtReverseDetectionInput_of_metrizableBoundaryTopology
+    hasHomology
+    (MetrizableLCA.exactAtCanonicalCycleBoundaryTopologyInput_of_differentialTopologyInput E)
+
+/-- Metrizable cycle-object data imply degreewise exactness, so any reverse
+realization input upgrades to two-sided `ExactAt` detection on that route. -/
+theorem exactAcyclicWithCyclesExactAtDetectionInput_of_metrizableReverse
+    (E : ExactAcyclicWithCyclesExactAtReverseDetectionInput MetrizableLCA.{u}) :
+    ExactAcyclicWithCyclesExactAtDetectionInput MetrizableLCA.{u} where
+  hasHomology := E.hasHomology
+  exactAt_of_exactAcyclicWithCycles := by
+    intro K hK i
+    exact MetrizableLCA.exactAt_of_exactAcyclicWithCycles E.hasHomology hK i
+  exactAcyclicWithCycles_of_exactAt := E.exactAcyclicWithCycles_of_exactAt
+
 /-- Degreewise exactness detection supplies homology detection for corrected cycle-object
 acyclicity. -/
 theorem exactAcyclicWithCyclesHomologyDetectionInput_of_exactAtDetection
@@ -104,6 +182,56 @@ theorem exactAcyclicWithCyclesHomologyDetectionInput_of_exactAtDetection
     letI : K.HasHomology i := E.hasHomology K i
     exact (HomologicalComplex.exactAt_iff_isZero_homology (K := K) (i := i)).mpr
       (hK i)
+
+/-- Homology detection identifies the corrected homotopy predicate with the homological
+kernel of the degree-zero homology functor. -/
+theorem exactAcyclicWithCyclesHomotopyObject_eq_homologicalKernel_of_homologyDetection
+    [CategoryWithHomology C]
+    (H : ExactAcyclicWithCyclesHomologyDetectionInput C) :
+    exactAcyclicWithCyclesHomotopyObject C =
+      (HomotopyCategory.homologyFunctor C (ComplexShape.up ℤ) 0).homologicalKernel := by
+  ext X
+  rw [Functor.mem_homologicalKernel_iff]
+  constructor
+  · intro h n
+    obtain ⟨K, rfl⟩ := HomotopyCategory.quotient_obj_surjective X
+    change IsZero ((HomotopyCategory.homologyFunctor C (ComplexShape.up ℤ) n).obj
+      ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj K))
+    have hKzero := H.isZero_homology_of_exactAcyclicWithCycles K h n
+    change IsZero ((HomologicalComplex.homologyFunctor C (ComplexShape.up ℤ) n).obj K)
+      at hKzero
+    exact IsZero.of_iso hKzero
+      ((HomotopyCategory.homologyFunctorFactors C (ComplexShape.up ℤ) n).app K)
+  · intro h
+    obtain ⟨K, rfl⟩ := HomotopyCategory.quotient_obj_surjective X
+    apply H.exactAcyclicWithCycles_of_isZero_homology
+    intro n
+    have hn := h n
+    change IsZero ((HomotopyCategory.homologyFunctor C (ComplexShape.up ℤ) n).obj
+      ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj K)) at hn
+    have hKzero :
+        IsZero ((HomologicalComplex.homologyFunctor C (ComplexShape.up ℤ) n).obj K) :=
+      IsZero.of_iso hn
+        ((HomotopyCategory.homologyFunctorFactors C (ComplexShape.up ℤ) n).app K).symm
+    change IsZero (K.homology n)
+    exact hKzero
+
+/-- If the corrected predicate is identified with the homological kernel of a homological
+functor, mathlib supplies the middle-object distinguished-triangle closure directly. -/
+theorem exactAcyclicWithCyclesHomotopyObject_isTriangulatedClosed2_of_homologicalKernel
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    {A : Type*} [Category A] [Abelian A]
+    (F : HomotopyCategory C (ComplexShape.up ℤ) ⥤ A)
+    [F.IsHomological]
+    (identify : ∀ X, exactAcyclicWithCyclesHomotopyObject C X ↔ F.homologicalKernel X) :
+    (exactAcyclicWithCyclesHomotopyObject C).IsTriangulatedClosed₂ where
+  ext₂' := by
+    intro T hT h₁ h₃
+    have h₂ : F.homologicalKernel.isoClosure T.obj₂ :=
+      ObjectProperty.ext_of_isTriangulatedClosed₂' (P := F.homologicalKernel) T hT
+        ((identify T.obj₁).mp h₁) ((identify T.obj₃).mp h₃)
+    rcases h₂ with ⟨X₂, hX₂, e⟩
+    exact ⟨X₂, (identify X₂).mpr hX₂, e⟩
 
 /-- Homology detection of corrected cycle-object acyclicity implies invariance under
 homotopy equivalences, since homotopy equivalences induce isomorphisms on homology. -/
@@ -194,6 +322,65 @@ noncomputable instance exactAcyclicWithCyclesHomotopyIsoClosure_isStableUnderShi
       exactAcyclicWithCycles_shift C K₀ n hK', ?_⟩
     exact ⟨(shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) n).mapIso e ≪≫
       (((HomotopyCategory.quotient C (ComplexShape.up ℤ)).commShiftIso n).app K₀).symm⟩
+
+/-- For metrizable LCA groups, compatible identifications of the first two objects of a
+distinguished triangle with a strict mapping-cone triangle transfer corrected acyclicity
+to the third object. -/
+theorem
+    metrizableExactAcyclicWithCyclesHomotopyIsoClosure_distinguished_ext3_of_triangleh_iso12
+    {T : Triangle (HomotopyCategory MetrizableLCA.{u} (ComplexShape.up ℤ))}
+    (hT : T ∈ distTriang (HomotopyCategory MetrizableLCA.{u} (ComplexShape.up ℤ)))
+    {K L : CochainComplex MetrizableLCA.{u} ℤ} (f : K ⟶ L)
+    (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+    (e₂ : (CochainComplex.mappingCone.triangleh f).obj₂ ≅ T.obj₂)
+    (comm : (CochainComplex.mappingCone.triangleh f).mor₁ ≫ e₂.hom =
+      e₁.hom ≫ T.mor₁)
+    (hK : exactAcyclicWithCycles MetrizableLCA.{u} K)
+    (hL : exactAcyclicWithCycles MetrizableLCA.{u} L) :
+    exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{u} T.obj₃ := by
+  let e : CochainComplex.mappingCone.triangleh f ≅ T :=
+    isoTriangleOfIso₁₂ (CochainComplex.mappingCone.triangleh f) T
+      (HomotopyCategory.mappingCone_triangleh_distinguished f) hT e₁ e₂ comm
+  refine ⟨_, MetrizableLCA.exactAcyclicWithCycles_mappingCone f hK hL, ?_⟩
+  exact ⟨(Triangle.π₃.mapIso e).symm⟩
+
+/-- The isomorphism closure of corrected acyclic metrizable LCA complexes is closed under
+mapping-cone third objects of arbitrary distinguished triangles. -/
+theorem metrizableExactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed3 :
+    (exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{u}).IsTriangulatedClosed₃ := by
+  apply ObjectProperty.IsTriangulatedClosed₃.mk'
+  intro T hT h₁ h₂
+  rcases h₁ with ⟨X₁, hX₁, ⟨e₁⟩⟩
+  rcases h₂ with ⟨X₂, hX₂, ⟨e₂⟩⟩
+  obtain ⟨K₁, rfl⟩ := HomotopyCategory.quotient_obj_surjective X₁
+  obtain ⟨K₂, rfl⟩ := HomotopyCategory.quotient_obj_surjective X₂
+  let F := HomotopyCategory.quotient MetrizableLCA.{u} (ComplexShape.up ℤ)
+  let q : F.obj K₁ ⟶ F.obj K₂ := e₁.inv ≫ T.mor₁ ≫ e₂.hom
+  let f : K₁ ⟶ K₂ := F.preimage q
+  have hmap : F.map f = e₁.inv ≫ T.mor₁ ≫ e₂.hom := by
+    exact Functor.map_preimage F q
+  have comm : (CochainComplex.mappingCone.triangleh f).mor₁ ≫ e₂.inv =
+      e₁.inv ≫ T.mor₁ := by
+    dsimp [CochainComplex.mappingCone.triangleh]
+    rw [hmap]
+    simp
+  exact
+    metrizableExactAcyclicWithCyclesHomotopyIsoClosure_distinguished_ext3_of_triangleh_iso12
+      hT f e₁.symm e₂.symm comm hX₁ hX₂
+
+/-- The corrected acyclic metrizable LCA homotopy iso-closure is unconditionally closed in
+the middle-object sense. -/
+theorem metrizableExactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_direct :
+    (exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{u}).IsTriangulatedClosed₂ := by
+  haveI :
+      (exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{u}).IsTriangulatedClosed₃ :=
+    metrizableExactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed3
+  exact ObjectProperty.IsTriangulatedClosed₂.of_isTriangulatedClosed₃
+
+noncomputable instance
+    metrizableExactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2 :
+    (exactAcyclicWithCyclesHomotopyIsoClosure MetrizableLCA.{u}).IsTriangulatedClosed₂ :=
+  metrizableExactAcyclicWithCyclesHomotopyIsoClosure_isTriangulatedClosed2_direct
 
 /-- In a standard mapping-cone triangle, corrected acyclicity of the target is exactly the
 middle-object corrected homotopy predicate. -/

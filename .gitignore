@@ -1,4 +1,6 @@
 /.lake/
+.lake
+.lake/
 /run/
 /terminal_outcome/
 /packets/
