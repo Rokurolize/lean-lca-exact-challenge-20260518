@@ -11,6 +11,8 @@ an oplax monoidal functor.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -31,9 +33,8 @@ theorem alternatingAlexanderWhitney_coassociativity_whiskered
       (alternatingFaceMapComplex (ModuleCat ℤ)).map (α_ X Y Z).hom ≫
         alternatingAlexanderWhitney X (Y ⊗ Z) ≫
         (alternatingChains X ◁ alternatingAlexanderWhitney Y Z) := by
-  simpa only [MonoidalCategory.tensorHom_id,
-    MonoidalCategory.id_tensorHom] using
-    alternatingAlexanderWhitney_coassociativity X Y Z
+  rw [← MonoidalCategory.tensorHom_id, ← MonoidalCategory.id_tensorHom]
+  exact alternatingAlexanderWhitney_coassociativity X Y Z
 
 theorem alternatingAlexanderWhitney_coassociativity_with_retractions
     (X Y Z : SimplicialObject (ModuleCat.{0} ℤ)) :

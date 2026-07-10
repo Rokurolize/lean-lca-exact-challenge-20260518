@@ -14,6 +14,8 @@ pushout half of the exact-category condition.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 universe u
 
@@ -70,8 +72,13 @@ lemma pushoutRelationMap_closedEmbedding (hS : strictShortExact S) (a : S.X₁ �
   have hgraph : IsClosedEmbedding graph :=
     isClosedEmbedding_graph_of_continuous (continuous_neg.comp a.hom.continuous)
   have hproduct : IsClosedEmbedding productMap := by
-    simpa [productMap] using hS.closed_inclusion.prodMap
+    have h := hS.closed_inclusion.prodMap
       (Topology.IsClosedEmbedding.id : IsClosedEmbedding (id : Y → Y))
+    have hfun : productMap = Prod.map (S.f : S.X₁ → S.X₂) (id : Y → Y) := by
+      funext p
+      rfl
+    rw [hfun]
+    exact h
   have hcomp : IsClosedEmbedding (productMap ∘ graph) := hproduct.comp hgraph
   have hfun : (productMap ∘ graph) = (pushoutRelationMap a : S.X₁ → S.X₂ × Y) := by
     funext x
@@ -103,8 +110,13 @@ lemma pushoutRelationCosetMap_closedEmbedding (hS : strictShortExact S) (a : S.X
     IsClosedEmbedding (pushoutRelationCosetMap a) := by
   let productMap : S.X₁ × Y → S.X₂ × Y := fun p => (S.f p.1, p.2)
   have hproduct : IsClosedEmbedding productMap := by
-    simpa [productMap] using hS.closed_inclusion.prodMap
+    have h := hS.closed_inclusion.prodMap
       (Topology.IsClosedEmbedding.id : IsClosedEmbedding (id : Y → Y))
+    have hfun : productMap = Prod.map (S.f : S.X₁ → S.X₂) (id : Y → Y) := by
+      funext p
+      rfl
+    rw [hfun]
+    exact h
   have hcomp : IsClosedEmbedding (productMap ∘ pushoutShearHomeomorph a) :=
     hproduct.comp (pushoutShearHomeomorph a).isClosedEmbedding
   have hfun : (productMap ∘ pushoutShearHomeomorph a) = pushoutRelationCosetMap a := by
@@ -183,6 +195,7 @@ lemma pushoutQuotientMap_preimage_inr_image (a : S.X₁ ⟶ Y)
     have hx' : (S.f x, -a x) = p - ((0 : S.X₂), y) := hx
     ext
     · have hfst := congrArg Prod.fst hx'
+      change S.f x = p.1
       simpa using hfst
     · have hsnd := congrArg Prod.snd hx'
       have hsnd' := congrArg (fun t : Y => t + y) hsnd
@@ -229,6 +242,8 @@ lemma pushoutInr_injective (hS : strictShortExact S) (a : S.X₁ ⟶ Y)
   have hfst := congrArg Prod.fst hx
   have hx0 : x = 0 := by
     apply hS.closed_inclusion.injective
+    change (S.f x, -a x).1 =
+      ((((0 : S.X₂), y₁) : S.X₂ × Y) - ((0 : S.X₂), y₂)).1 at hfst
     simpa using hfst
   have hsnd := congrArg Prod.snd hx
   have hdiff : y₁ - y₂ = 0 := by
@@ -415,7 +430,8 @@ lemma pushoutProductToCokernel_openMap (hS : strictShortExact S) (Y : Metrizable
     IsOpenMap (pushoutProductToCokernel S Y : pushoutProductObj S Y → S.X₃) := by
   have h : IsOpenMap (fun p : S.X₂ × Y => S.g p.1) :=
     hS.open_map.comp isOpenMap_fst
-  simpa [pushoutProductToCokernel] using h
+  change IsOpenMap (fun p : S.X₂ × Y => S.g p.1)
+  exact h
 
 lemma pushoutCokernelMap_openMap (hS : strictShortExact S) (a : S.X₁ ⟶ Y)
     (hN : IsClosed (pushoutSubgroup a : Set (S.X₂ × Y))) :
@@ -435,12 +451,14 @@ lemma pushoutCokernelMap_openMap (hS : strictShortExact S) (a : S.X₁ ⟶ Y)
         ⟨p, hp⟩
       refine ⟨p, ?_, ?_⟩
       · have hpq : q p = u := by
-          simpa [q] using hp
+          change pushoutQuotientMap a hN p = u
+          exact hp
         change q p ∈ U
         rw [hpq]
         exact huU
       · have hpq : q p = u := by
-          simpa [q] using hp
+          change pushoutQuotientMap a hN p = u
+          exact hp
         have hcomp' : e (q p) = (pushoutProductToCokernel S Y) p := by
           exact congrArg (fun h : pushoutProductObj S Y ⟶ S.X₃ => h p)
             (pushoutQuotientMap_cokernel a hN)
@@ -472,7 +490,9 @@ lemma pushoutCokernelMap_algebraic_exact (hS : strictShortExact S) (a : S.X₁ �
   have hg : S.g p.1 = 0 := by
     have hcomp := congrArg (fun h : pushoutProductObj S Y ⟶ S.X₃ => h p)
       (pushoutQuotientMap_cokernel a hN)
-    simpa [pushoutProductToCokernel] using hcomp.symm.trans hq
+    have hzero := hcomp.symm.trans hq
+    change S.g p.1 = 0 at hzero
+    exact hzero
   rcases hS.algebraic_exact p.1 hg with ⟨x, hx⟩
   refine ⟨p.2 + a x, ?_⟩
   apply QuotientAddGroup.eq_iff_sub_mem.mpr
@@ -525,22 +545,22 @@ lemma pushoutIsoPushoutObj_hom_inl (hS : strictShortExact S) (a : S.X₁ ⟶ Y)
     [HasPushout S.f a] :
     pushout.inl S.f a ≫ (pushoutIsoPushoutObj hS a).hom =
       pushoutInl a (pushoutSubgroup_closed hS a) := by
-  simpa [pushoutIsoPushoutObj] using
-    (IsColimit.comp_coconePointUniqueUpToIso_hom
-      (pushoutIsPushout S.f a)
-      (pushoutIsColimit a (pushoutSubgroup_closed hS a))
-      WalkingSpan.left)
+  change pushout.inl S.f a ≫ (pushoutIsoPushoutObj hS a).hom =
+    (pushoutCocone a (pushoutSubgroup_closed hS a)).ι.app WalkingSpan.left
+  exact IsColimit.comp_coconePointUniqueUpToIso_hom
+    (pushoutIsPushout S.f a)
+    (pushoutIsColimit a (pushoutSubgroup_closed hS a)) WalkingSpan.left
 
 @[simp]
 lemma pushoutIsoPushoutObj_hom_inr (hS : strictShortExact S) (a : S.X₁ ⟶ Y)
     [HasPushout S.f a] :
     pushout.inr S.f a ≫ (pushoutIsoPushoutObj hS a).hom =
       pushoutInr a (pushoutSubgroup_closed hS a) := by
-  simpa [pushoutIsoPushoutObj] using
-    (IsColimit.comp_coconePointUniqueUpToIso_hom
-      (pushoutIsPushout S.f a)
-      (pushoutIsColimit a (pushoutSubgroup_closed hS a))
-      WalkingSpan.right)
+  change pushout.inr S.f a ≫ (pushoutIsoPushoutObj hS a).hom =
+    (pushoutCocone a (pushoutSubgroup_closed hS a)).ι.app WalkingSpan.right
+  exact IsColimit.comp_coconePointUniqueUpToIso_hom
+    (pushoutIsPushout S.f a)
+    (pushoutIsColimit a (pushoutSubgroup_closed hS a)) WalkingSpan.right
 
 lemma strictShortExact_categorical_pushout (hS : strictShortExact S)
     (a : S.X₁ ⟶ Y) [HasPushout S.f a] :

@@ -13,6 +13,8 @@ additive subgroup of the product cut out by the equality relation.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 universe u
 
@@ -251,7 +253,8 @@ noncomputable def equalizerIsLimit : IsLimit (equalizerFork r s) :=
       simpa [equalizerFork] using equalizerLift_ι r s t.ι t.condition)
     (fun _t m hm => by
       apply equalizer_hom_ext r s
-      simpa [equalizerFork] using hm)
+      change m ≫ equalizerι r s = _t.ι at hm
+      exact hm.trans (equalizerLift_ι r s _t.ι _t.condition).symm)
 
 lemma equalizerι_closedEmbedding_explicit :
     IsClosedEmbedding (equalizerι r s : equalizerObj r s → E) :=
@@ -520,7 +523,8 @@ lemma pullbackKernelMap_closedEmbedding {X : MetrizableLCA.{u}} (i : X ⟶ B)
     exact Topology.IsEmbedding.subtypeVal
   have hcomp : IsClosedEmbedding ((fun p : pullbackObj f g => (p.1 : A × B)) ∘
       (pullbackKernelMap f g i zero : X → pullbackObj f g)) := by
-    simpa [Function.comp_def, pullbackKernelMap] using hprod
+    change IsClosedEmbedding (fun x : X => ((0 : A), i x))
+    exact hprod
   exact Topology.IsClosedEmbedding.of_comp hval hcomp
 
 lemma strictShortExact_pullback {S : ShortComplex MetrizableLCA.{u}} (hS : strictShortExact S)

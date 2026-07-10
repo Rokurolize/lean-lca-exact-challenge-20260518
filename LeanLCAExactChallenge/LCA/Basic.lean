@@ -334,9 +334,11 @@ lemma biprodDesc_unique {A B T : MetrizableLCA.{u}} (f : A ⟶ T) (g : B ⟶ T)
     m p = m ((p.1, 0) + (0, p.2)) := congrArg (fun q => m q) hp
     _ = m (p.1, 0) + m (0, p.2) := map_add m.hom (p.1, 0) (0, p.2)
     _ = f p.1 + g p.2 := by
-      have hf := congrArg (fun h : A ⟶ T => h p.1) hfst
-      have hg := congrArg (fun h : B ⟶ T => h p.2) hsnd
-      simpa using congrArg₂ (fun x y => x + y) hf hg
+      have hf : m (p.1, 0) = f p.1 := by
+        rw [← MetrizableLCA.biprodInl_apply, ← MetrizableLCA.comp_apply, hfst]
+      have hg : m ((0 : A), p.2) = g p.2 := by
+        rw [← MetrizableLCA.biprodInr_apply, ← MetrizableLCA.comp_apply, hsnd]
+      rw [hf, hg]
     _ = biprodDesc f g p := rfl
 
 /-- Explicit binary biproduct data for metrizable locally compact abelian groups. -/

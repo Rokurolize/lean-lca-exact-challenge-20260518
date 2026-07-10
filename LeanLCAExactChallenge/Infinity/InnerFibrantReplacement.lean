@@ -33,8 +33,8 @@ object of the arrow category. -/
 def toTerminalArrow : SSet.{u} ⥤ Arrow SSet.{u} where
   obj X := Arrow.mk (terminalIsTerminal.from X)
   map {X Y} f := Arrow.homMk f (𝟙 _) (terminalIsTerminal.hom_ext _ _)
-  map_id X := by ext <;> simp
-  map_comp f g := by ext <;> simp
+  map_id X := by ext <;> rfl
+  map_comp f g := by ext <;> rfl
 
 /-- Functorial inner-fibrant replacement of simplicial sets. -/
 def innerFibrantReplacementFunctor : SSet.{u} ⥤ SSet.{u} :=
@@ -71,8 +71,9 @@ theorem innerFibrantReplacement_to_terminal_innerFibration (X : SSet.{u}) :
 
 /-- Every chosen inner-fibrant replacement is a quasicategory. -/
 instance (X : SSet.{u}) : SSet.Quasicategory (innerFibrantReplacement X) :=
-  SSet.quasicategory_of_from_innerFibrations _ terminalIsTerminal
-    (innerFibrantReplacement_to_terminal_innerFibration X)
+  (SSet.quasicategory_iff_of_isTerminal
+        (terminalIsTerminal.from (innerFibrantReplacement X)) terminalIsTerminal).mpr
+    ⟨innerFibrantReplacement_to_terminal_innerFibration X⟩
 
 /-- The chosen inner-fibrant replacement, bundled as an object of `SSet.QCat`. -/
 def innerFibrantReplacementQCat (X : SSet.{u}) : SSet.QCat :=

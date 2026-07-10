@@ -148,7 +148,7 @@ lemma cokernel_desc_ker_le {k : B ⟶ Z} (hk : f ≫ k = 0) :
     simpa using h
   · change IsClosed {b : B | k.hom.toAddMonoidHom b = 0}
     have hcont : Continuous fun b : B => k b := k.hom.continuous
-    simpa using isClosed_singleton.preimage hcont
+    exact isClosed_singleton.preimage hcont
 
 /-- The morphism induced from a map that kills `f`. -/
 def cokernelDesc {k : B ⟶ Z} (hk : f ≫ k = 0) : cokernelObj f ⟶ Z :=
@@ -258,9 +258,9 @@ lemma coequalizerπ_surjective {A B : MetrizableLCA.{u}} (f g : A ⟶ B) :
   let e : cf.pt ≅ coequalizer f g :=
     IsColimit.coconePointUniqueUpToIso hcf (colimit.isColimit (parallelPair f g))
   have hπe : cf.π ≫ e.hom = coequalizer.π f g := by
-    simpa [e] using
-      (IsColimit.comp_coconePointUniqueUpToIso_hom hcf
-        (colimit.isColimit (parallelPair f g)) WalkingParallelPair.one)
+    change cf.π ≫ e.hom = colimit.ι (parallelPair f g) WalkingParallelPair.one
+    exact IsColimit.comp_coconePointUniqueUpToIso_hom hcf
+      (colimit.isColimit (parallelPair f g)) WalkingParallelPair.one
   have hck : cf.π = cokernelπ (f - g) := by
     simpa [cf, ck] using Preadditive.coforkOfCokernelCofork_π ck
   have hsurj : Function.Surjective
@@ -288,9 +288,9 @@ lemma coequalizerπ_openMap {A B : MetrizableLCA.{u}} (f g : A ⟶ B) :
   let e : cf.pt ≅ coequalizer f g :=
     IsColimit.coconePointUniqueUpToIso hcf (colimit.isColimit (parallelPair f g))
   have hπe : cf.π ≫ e.hom = coequalizer.π f g := by
-    simpa [e] using
-      (IsColimit.comp_coconePointUniqueUpToIso_hom hcf
-        (colimit.isColimit (parallelPair f g)) WalkingParallelPair.one)
+    change cf.π ≫ e.hom = colimit.ι (parallelPair f g) WalkingParallelPair.one
+    exact IsColimit.comp_coconePointUniqueUpToIso_hom hcf
+      (colimit.isColimit (parallelPair f g)) WalkingParallelPair.one
   have hck : cf.π = cokernelπ (f - g) := by
     simpa [cf, ck] using Preadditive.coforkOfCokernelCofork_π ck
   have hopen : IsOpenMap
@@ -309,9 +309,9 @@ lemma isColimit_cofork_π_surjective {A B : MetrizableLCA.{u}} {f g : A ⟶ B}
   let e : coequalizer f g ≅ cf.pt :=
     IsColimit.coconePointUniqueUpToIso (colimit.isColimit (parallelPair f g)) hcf
   have hπe : coequalizer.π f g ≫ e.hom = cf.π := by
-    simpa [e] using
-      (IsColimit.comp_coconePointUniqueUpToIso_hom
-        (colimit.isColimit (parallelPair f g)) hcf WalkingParallelPair.one)
+    change colimit.ι (parallelPair f g) WalkingParallelPair.one ≫ e.hom = cf.π
+    exact IsColimit.comp_coconePointUniqueUpToIso_hom
+      (colimit.isColimit (parallelPair f g)) hcf WalkingParallelPair.one
   have hsurj :
       Function.Surjective
         ((coequalizer.π f g ≫ e.hom : B ⟶ cf.pt) : B → cf.pt) := by
@@ -325,9 +325,9 @@ lemma isColimit_cofork_π_openMap {A B : MetrizableLCA.{u}} {f g : A ⟶ B}
   let e : coequalizer f g ≅ cf.pt :=
     IsColimit.coconePointUniqueUpToIso (colimit.isColimit (parallelPair f g)) hcf
   have hπe : coequalizer.π f g ≫ e.hom = cf.π := by
-    simpa [e] using
-      (IsColimit.comp_coconePointUniqueUpToIso_hom
-        (colimit.isColimit (parallelPair f g)) hcf WalkingParallelPair.one)
+    change colimit.ι (parallelPair f g) WalkingParallelPair.one ≫ e.hom = cf.π
+    exact IsColimit.comp_coconePointUniqueUpToIso_hom
+      (colimit.isColimit (parallelPair f g)) hcf WalkingParallelPair.one
   have hopen :
       IsOpenMap ((coequalizer.π f g ≫ e.hom : B ⟶ cf.pt) : B → cf.pt) := by
     exact openMap_comp_iso (coequalizer.π f g) e (coequalizerπ_openMap f g)

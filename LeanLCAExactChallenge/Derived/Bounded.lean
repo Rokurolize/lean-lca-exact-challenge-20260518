@@ -25,6 +25,8 @@ morphisms whose mapping cone is exact in the chosen Quillen exact structure.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 universe v u
 
@@ -3619,8 +3621,11 @@ noncomputable def homotopyComparisonLocalizationIso
     Φ.catCommSq (Dbounded.localization C)
       (boundedHomotopyExactWeakEquivalence C).Q
   by
-    simpa [boundedExactWeakEquivalenceToHomotopyExactWeakEquivalence,
-      Dbounded.homotopyComparison] using
+    change (boundedHomotopyExactWeakEquivalence C).Q ≅
+      Dbounded.localization C ⋙
+        Φ.localizedFunctor (Dbounded.localization C)
+          (boundedHomotopyExactWeakEquivalence C).Q
+    exact (Functor.leftUnitor _).symm ≪≫
       CatCommSq.iso Φ.functor (Dbounded.localization C)
         (boundedHomotopyExactWeakEquivalence C).Q
         (Φ.localizedFunctor (Dbounded.localization C)

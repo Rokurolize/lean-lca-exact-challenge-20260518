@@ -144,7 +144,8 @@ theorem compressedAlexanderWhitney_degeneraciesVanish (m : ℕ) :
         have hx' :
             X.σ i ≫ X.map (alexanderWhitneyFront (n + 1) p).op ≫
               DoldKan.PInfty.f p = 0 := by
-          simpa only [op_comp, Functor.map_comp, Category.assoc] using hx
+          rw [SimplicialObject.σ_def, ← Category.assoc, ← Functor.map_comp, ← op_comp]
+          exact hx
         have hx'' :
             (X.σ i ≫ X.map (alexanderWhitneyFront (n + 1) p).op) ≫
               DoldKan.PInfty.f p = 0 := by
@@ -158,7 +159,8 @@ theorem compressedAlexanderWhitney_degeneraciesVanish (m : ℕ) :
         have hy' :
             Y.σ i ≫ Y.map (alexanderWhitneyBack (n + 1) p).op ≫
               DoldKan.PInfty.f (n + 1 - p) = 0 := by
-          simpa only [op_comp, Functor.map_comp, Category.assoc] using hy
+          rw [SimplicialObject.σ_def, ← Category.assoc, ← Functor.map_comp, ← op_comp]
+          exact hy
         have hy'' :
             (Y.σ i ≫ Y.map (alexanderWhitneyBack (n + 1) p).op) ≫
               DoldKan.PInfty.f (n + 1 - p) = 0 := by
@@ -229,11 +231,11 @@ theorem pInfty_comp_compressedAlexanderWhitneyToNormalized :
           MonoidalCategory.tensorHom_comp_tensorHom _ _ _ _
       _ = HomologicalComplex.tensorHom pX pY := by
         rw [show PX ≫ pX = pX by
-          simpa only [PX, pX] using
-            DoldKan.PInfty_comp_PInftyToNormalizedMooreComplex X]
+          dsimp only [PX, pX]
+          exact DoldKan.PInfty_comp_PInftyToNormalizedMooreComplex X]
         rw [show PY ≫ pY = pY by
-          simpa only [PY, pY] using
-            DoldKan.PInfty_comp_PInftyToNormalizedMooreComplex Y]
+          dsimp only [PY, pY]
+          exact DoldKan.PInfty_comp_PInftyToNormalizedMooreComplex Y]
         rfl
   calc
     (DoldKan.PInfty : alternatingChains (X ⊗ Y) ⟶
@@ -255,9 +257,20 @@ theorem pInfty_comp_compressedAlexanderWhitneyToNormalized :
     _ = alternatingAlexanderWhitney X Y ≫
         HomologicalComplex.tensorHom PX PY ≫
         HomologicalComplex.tensorHom pX pY := by
-      simpa only [PX, PY, Category.assoc] using congrArg
+      have h := congrArg
         (fun t => t ≫ HomologicalComplex.tensorHom pX pY)
         (pInfty_comp_compressedAlexanderWhitney X Y)
+      dsimp only [PX, PY] at h ⊢
+      calc
+        _ = ((DoldKan.PInfty : alternatingChains (X ⊗ Y) ⟶
+              alternatingChains (X ⊗ Y)) ≫
+              alternatingAlexanderWhitney X Y ≫
+              HomologicalComplex.tensorHom DoldKan.PInfty DoldKan.PInfty) ≫
+            HomologicalComplex.tensorHom pX pY := (Category.assoc _ _ _).symm
+        _ = (alternatingAlexanderWhitney X Y ≫
+              HomologicalComplex.tensorHom DoldKan.PInfty DoldKan.PInfty) ≫
+            HomologicalComplex.tensorHom pX pY := h
+        _ = _ := Category.assoc _ _ _
     _ = alternatingAlexanderWhitney X Y ≫
         HomologicalComplex.tensorHom
           (DoldKan.PInftyToNormalizedMooreComplex X)

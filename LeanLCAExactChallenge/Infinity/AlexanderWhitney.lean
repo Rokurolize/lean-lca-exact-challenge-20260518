@@ -308,15 +308,16 @@ theorem alexanderWhitneyEarlyFace_tensor (p q i : ℕ) (hi : i ≤ p) :
           X.δ (⟨i, by omega⟩ : Fin (p + 2)) =
         X.δ (⟨i, by omega⟩ : Fin (p + q + 2)) ≫
           X.map (SimplexCategory.subinterval (n := p + q) 0 p (by omega)).op := by
-    simpa only [op_comp, Functor.map_comp] using congrArg (fun f => X.map f.op)
+    simpa only [op_comp, Functor.map_comp, SimplicialObject.δ_def, alexanderWhitneyFront]
+      using congrArg (fun f => X.map f.op)
       (alexanderWhitneyFront_face (p + q) p i (by omega) hi)
   have hy :
       Y.map
           (SimplexCategory.subinterval (n := p + q + 1) (p + 1) q (by omega)).op =
         Y.δ (⟨i, by omega⟩ : Fin (p + q + 2)) ≫
           Y.map (SimplexCategory.subinterval (n := p + q) p q (by omega)).op := by
-    simpa only [op_comp, Functor.map_comp] using congrArg (fun f => Y.map f.op)
-      (alexanderWhitneyBack_early_face p q i hi)
+    simpa only [op_comp, Functor.map_comp, SimplicialObject.δ_def] using
+      congrArg (fun f => Y.map f.op) (alexanderWhitneyBack_early_face p q i hi)
   change
     (X.δ (⟨i, by omega⟩ : Fin (p + q + 2)) ⊗ₘ
         Y.δ (⟨i, by omega⟩ : Fin (p + q + 2))) ≫ _ = _
@@ -339,16 +340,16 @@ theorem alexanderWhitneyLateFace_tensor (p q : ℕ)
       X.map (SimplexCategory.subinterval (n := p + q + 1) 0 p (by omega)).op =
         X.δ (⟨p + i, by omega⟩ : Fin (p + q + 2)) ≫
           X.map (SimplexCategory.subinterval (n := p + q) 0 p (by omega)).op := by
-    simpa only [op_comp, Functor.map_comp] using congrArg (fun f => X.map f.op)
-      (alexanderWhitneyFront_late_face p q i hi)
+    simpa only [op_comp, Functor.map_comp, SimplicialObject.δ_def] using
+      congrArg (fun f => X.map f.op) (alexanderWhitneyFront_late_face p q i hi)
   have hy :
       Y.map
           (SimplexCategory.subinterval (n := p + q + 1) p (q + 1) (by omega)).op ≫
           Y.δ i =
         Y.δ (⟨p + i, by omega⟩ : Fin (p + q + 2)) ≫
           Y.map (SimplexCategory.subinterval (n := p + q) p q (by omega)).op := by
-    simpa only [op_comp, Functor.map_comp] using congrArg (fun f => Y.map f.op)
-      (alexanderWhitneyBack_face p q i)
+    simpa only [op_comp, Functor.map_comp, SimplicialObject.δ_def] using
+      congrArg (fun f => Y.map f.op) (alexanderWhitneyBack_face p q i)
   change
     (X.δ (⟨p + i, by omega⟩ : Fin (p + q + 2)) ⊗ₘ
         Y.δ (⟨p + i, by omega⟩ : Fin (p + q + 2))) ≫ _ = _
@@ -373,16 +374,16 @@ theorem alexanderWhitneyBoundary_tensor (p q : ℕ) :
           (SimplexCategory.subinterval (n := p + q + 1) 0 (p + 1) (by omega)).op ≫
           X.δ (Fin.last (p + 1)) =
         X.map (SimplexCategory.subinterval (n := p + q + 1) 0 p (by omega)).op := by
-    simpa only [op_comp, Functor.map_comp] using congrArg (fun f => X.map f.op)
-      (alexanderWhitneyFront_last p q)
+    simpa only [op_comp, Functor.map_comp, SimplicialObject.δ_def] using
+      congrArg (fun f => X.map f.op) (alexanderWhitneyFront_last p q)
   have hy :
       Y.map
           (SimplexCategory.subinterval (n := p + q + 1) p (q + 1) (by omega)).op ≫
           Y.δ (0 : Fin (q + 2)) =
         Y.map
           (SimplexCategory.subinterval (n := p + q + 1) (p + 1) q (by omega)).op := by
-    simpa only [op_comp, Functor.map_comp] using congrArg (fun f => Y.map f.op)
-      (alexanderWhitneyBack_zero_face p q)
+    simpa only [op_comp, Functor.map_comp, SimplicialObject.δ_def] using
+      congrArg (fun f => Y.map f.op) (alexanderWhitneyBack_zero_face p q)
   rw [MonoidalCategory.tensorHom_comp_tensorHom,
     MonoidalCategory.tensorHom_comp_tensorHom]
   rw [hx, hy]
@@ -400,7 +401,7 @@ theorem alexanderWhitneyFirstInternal_tensor (p q : ℕ) (i : Fin (p + 1)) :
           Y.δ (⟨i, by omega⟩ : Fin (p + q + 2))) ≫
         (X.map (SimplexCategory.subinterval (n := p + q) 0 p (by omega)).op ⊗ₘ
           Y.map (SimplexCategory.subinterval (n := p + q) p q (by omega)).op) := by
-  simpa only using (alexanderWhitneyEarlyFace_tensor X Y p q i (by omega)).symm
+  exact (alexanderWhitneyEarlyFace_tensor X Y p q i (by omega)).symm
 
 /-- The internal second-factor faces of the back-adjacent source cut agree with the late
 diagonal faces of the tensor simplex. -/
@@ -419,8 +420,9 @@ theorem alexanderWhitneySecondInternal_tensor (p q : ℕ) (i : Fin (q + 1)) :
     ext
     simp
     omega
-  simpa only [hface] using
-    (alexanderWhitneyLateFace_tensor X Y p q i.succ (by simp)).symm
+  have hterm := (alexanderWhitneyLateFace_tensor X Y p q i.succ (by simp)).symm
+  rw [hface] at hterm
+  exact hterm
 
 /-- Multiplying two alternating signs adds their exponents. -/
 theorem neg_one_pow_smul_smul {A B : ModuleCat.{0} ℤ} (p i : ℕ) (f : A ⟶ B) :
@@ -456,7 +458,7 @@ theorem sum_faces_split {A B : ModuleCat.{0} ℤ} (p q : ℕ)
   have hleft : (∑ i, g i) = ∑ i, f i := by
     exact Fintype.sum_equiv (Fin.castOrderIso h).toEquiv g f (fun i => rfl)
   rw [← hleft]
-  simpa only [g, Fin.val_cast, Fin.val_castAdd, Fin.val_natAdd] using hsum
+  exact hsum
 
 /-- Split an alternating face sum into its early and late families at the cut. -/
 theorem alternating_sum_faces_split {A B : ModuleCat.{0} ℤ} (p q : ℕ)
@@ -676,7 +678,7 @@ theorem first_inclusion_d_comp_projection (p q : ℕ) :
           (curriedTensor (ModuleCat ℤ)) (ComplexShape.down ℕ)
           (p + 1) q (q + p) ≫
             tensorPairProjection X Y p q (q + p) (by omega) := by
-    simpa only using hD₁assoc
+    exact hD₁assoc
   have hD₂assoc' :
       (HomologicalComplex.ιTensorObj (alternatingChains X) (alternatingChains Y)
           (p + 1) q (q + p + 1) (by omega) ≫
@@ -688,7 +690,7 @@ theorem first_inclusion_d_comp_projection (p q : ℕ) :
           (curriedTensor (ModuleCat ℤ)) (ComplexShape.down ℕ)
           (p + 1) q (q + p) ≫
             tensorPairProjection X Y p q (q + p) (by omega) := by
-    simpa only using hD₂assoc
+    exact hD₂assoc
   rw [HomologicalComplex.mapBifunctor.d_eq, Preadditive.comp_add,
     Preadditive.add_comp, hD₁assoc', hD₂assoc']
   rw [HomologicalComplex.mapBifunctor.d₁_eq _ _ _ _
@@ -702,9 +704,9 @@ theorem first_inclusion_d_comp_projection (p q : ℕ) :
   · rw [HomologicalComplex.mapBifunctor.d₂_eq_zero _ _ _ _
       (p + 1) 0 (0 + p) (by simp [ComplexShape.down])]
     rw [zero_comp]
-    simpa only [Category.comp_id] using
-      (add_zero (((curriedTensor (ModuleCat ℤ)).map
-        ((alternatingChains X).d (p + 1) p)).app ((alternatingChains Y).X 0)))
+    erw [Category.comp_id]
+    exact add_zero (((curriedTensor (ModuleCat ℤ)).map
+      ((alternatingChains X).d (p + 1) p)).app ((alternatingChains Y).X 0))
   · rw [HomologicalComplex.mapBifunctor.d₂_eq _ _ _ _ (p + 1)
       (show (ComplexShape.down ℕ).Rel (q + 1) q by simp [ComplexShape.down])
       (q + 1 + p) (by change p + 1 + q = q + 1 + p; omega)]
@@ -715,10 +717,10 @@ theorem first_inclusion_d_comp_projection (p q : ℕ) :
         intro h
         exact Nat.succ_ne_self p (congrArg Prod.fst h))]
     rw [comp_zero, smul_zero]
-    simpa only [Category.comp_id] using
-      (add_zero (((curriedTensor (ModuleCat ℤ)).map
-        ((alternatingChains X).d (p + 1) p)).app
-          ((alternatingChains Y).X (q + 1))))
+    erw [Category.comp_id]
+    exact add_zero (((curriedTensor (ModuleCat ℤ)).map
+      ((alternatingChains X).d (p + 1) p)).app
+        ((alternatingChains Y).X (q + 1)))
 
 /-- The second-factor part of the total differential lands in the preceding back cut,
 with the tensor-complex sign determined by the first degree. The first-factor part has a
@@ -755,7 +757,7 @@ theorem second_inclusion_d_comp_projection (p q : ℕ) :
           (curriedTensor (ModuleCat ℤ)) (ComplexShape.down ℕ)
           p (q + 1) (q + p) ≫
             tensorPairProjection X Y p q (q + p) (by omega) := by
-    simpa only using hD₁assoc
+    exact hD₁assoc
   have hD₂assoc' :
       (HomologicalComplex.ιTensorObj (alternatingChains X) (alternatingChains Y)
           p (q + 1) (q + p + 1) (by omega) ≫
@@ -767,7 +769,7 @@ theorem second_inclusion_d_comp_projection (p q : ℕ) :
           (curriedTensor (ModuleCat ℤ)) (ComplexShape.down ℕ)
           p (q + 1) (q + p) ≫
             tensorPairProjection X Y p q (q + p) (by omega) := by
-    simpa only using hD₂assoc
+    exact hD₂assoc
   rw [HomologicalComplex.mapBifunctor.d_eq, Preadditive.comp_add,
     Preadditive.add_comp, hD₁assoc', hD₂assoc']
   rw [HomologicalComplex.mapBifunctor.d₂_eq _ _ _ _ p
@@ -842,7 +844,7 @@ theorem nonadjacent_inclusion_d_comp_projection
           (curriedTensor (ModuleCat ℤ)) (ComplexShape.down ℕ)
           i j (q + p) ≫
             tensorPairProjection X Y p q (q + p) (by omega) := by
-    simpa only using hD₁assoc
+    exact hD₁assoc
   have hD₂assoc' :
       (HomologicalComplex.ιTensorObj (alternatingChains X) (alternatingChains Y)
           i j (q + p + 1) hij ≫
@@ -854,7 +856,7 @@ theorem nonadjacent_inclusion_d_comp_projection
           (curriedTensor (ModuleCat ℤ)) (ComplexShape.down ℕ)
           i j (q + p) ≫
             tensorPairProjection X Y p q (q + p) (by omega) := by
-    simpa only using hD₂assoc
+    exact hD₂assoc
   rw [HomologicalComplex.mapBifunctor.d_eq, Preadditive.comp_add,
     Preadditive.add_comp, hD₁assoc', hD₂assoc']
   have hd₁ :
@@ -944,7 +946,8 @@ theorem alternatingAlexanderWhitneyDegree_d_comp_projection (p q : ℕ) :
                 (SimplexCategory.subinterval
                   (n := q + p + 1) (p + 1) q (by omega)).op) ≫ t)
         (first_inclusion_d_comp_projection X Y p q)
-      simpa only [Category.assoc] using h
+      rw [Category.assoc]
+      exact h
     · rw [second_summand_eq_pair]
       have h := congrArg
         (fun t =>
@@ -955,7 +958,8 @@ theorem alternatingAlexanderWhitneyDegree_d_comp_projection (p q : ℕ) :
                 (SimplexCategory.subinterval
                   (n := q + p + 1) p (q + 1) (by omega)).op) ≫ t)
         (second_inclusion_d_comp_projection X Y p q)
-      simpa only [Category.assoc] using h
+      rw [Category.assoc]
+      exact h
   · intro r hra hrb
     simp only [alternatingAlexanderWhitneySummand, Category.assoc]
     have hnon := nonadjacent_inclusion_d_comp_projection X Y
@@ -972,7 +976,8 @@ theorem alternatingAlexanderWhitneyDegree_d_comp_projection (p q : ℕ) :
       (fun t =>
         (X.map (alexanderWhitneyFront (q + p + 1) r).op ⊗ₘ
           Y.map (alexanderWhitneyBack (q + p + 1) r).op) ≫ t) hnon
-    simpa only [Category.assoc, comp_zero] using hassoc
+    simp only [Category.assoc] at hassoc ⊢
+    exact hassoc
 
 /-- Expand the front-adjacent contribution into its internal faces and last boundary face. -/
 theorem first_factor_faces_expansion (p q : ℕ) :
@@ -1025,8 +1030,8 @@ theorem first_factor_faces_expansion (p q : ℕ) :
               Y.δ (⟨i, by omega⟩ : Fin (p + q + 2))) ≫
             (X.map (SimplexCategory.subinterval (n := p + q) 0 p (by omega)).op ⊗ₘ
               Y.map (SimplexCategory.subinterval (n := p + q) p q (by omega)).op) := by
-      simpa only [front, curriedTensor_map_app, ← tensorHom_id] using
-        alexanderWhitneyFirstInternal_tensor X Y p q i
+      simp only [front, curriedTensor_map_app, ← tensorHom_id]
+      exact alexanderWhitneyFirstInternal_tensor X Y p q i
     calc
       _ = ((-1 : ℤ) ^ (i : ℕ)) •
           (front ≫ ((curriedTensor (ModuleCat ℤ)).map (X.δ i.castSucc)).app
@@ -1094,8 +1099,8 @@ theorem second_factor_faces_expansion (p q : ℕ) :
               Y.δ (⟨p + 1 + i, by omega⟩ : Fin (p + q + 2))) ≫
             (X.map (SimplexCategory.subinterval (n := p + q) 0 p (by omega)).op ⊗ₘ
               Y.map (SimplexCategory.subinterval (n := p + q) p q (by omega)).op) := by
-      simpa only [back, curriedTensor_obj_map, ← id_tensorHom] using
-        alexanderWhitneySecondInternal_tensor X Y p q i
+      simp only [back, curriedTensor_obj_map, ← id_tensorHom]
+      exact alexanderWhitneySecondInternal_tensor X Y p q i
     calc
       ((-1 : ℤ) ^ p) •
           (back ≫ (((-1 : ℤ) ^ (i.succ : ℕ)) • _)) =
@@ -1339,7 +1344,8 @@ theorem aw_target_d_projection_explicit_pq (p q : ℕ) :
                 (SimplexCategory.subinterval
                   (n := p + q + 1) (p + 1) q (by omega)).op) ≫ t)
         (first_inclusion_d_comp_projection_pq X Y p q)
-      simpa only [Category.assoc] using h
+      rw [Category.assoc]
+      exact h
     · rw [alternatingAlexanderWhitneySummand_pair X Y p (q + 1)]
       have h := congrArg
         (fun t =>
@@ -1350,7 +1356,8 @@ theorem aw_target_d_projection_explicit_pq (p q : ℕ) :
                 (SimplexCategory.subinterval
                   (n := p + q + 1) p (q + 1) (by omega)).op) ≫ t)
         (second_inclusion_d_comp_projection_pq X Y p q)
-      simpa only [Category.assoc] using h
+      rw [Category.assoc]
+      exact h
   · intro r hra hrb
     rw [alternatingAlexanderWhitneySummand_pair X Y r (p + q + 1 - r)]
     have hnon := nonadjacent_inclusion_d_comp_projection_pq X Y
@@ -1369,7 +1376,8 @@ theorem aw_target_d_projection_explicit_pq (p q : ℕ) :
               (n := p + q + 1) 0 r (by omega)).op ⊗ₘ
           Y.map (SimplexCategory.subinterval
               (n := p + q + 1) r (p + q + 1 - r) (by omega)).op) ≫ t) hnon
-    simpa only [Category.assoc, comp_zero] using hassoc
+    simp only [Category.assoc] at hassoc ⊢
+    exact hassoc
 
 theorem alternatingAlexanderWhitney_projected_chain (p q : ℕ) :
     (alternatingChains (X ⊗ Y)).d (p + q + 1) (p + q) ≫
@@ -1390,15 +1398,15 @@ theorem alternatingAlexanderWhitneyDegree_comp_pairProjection (p q : ℕ) :
         Y.map (SimplexCategory.subinterval (n := p + q) p q (by omega)).op := by
   rw [alternatingAlexanderWhitneyDegree, Preadditive.sum_comp,
     Finset.sum_eq_single (⟨p, by omega⟩ : Fin (p + q + 1))]
-  · rw [alternatingAlexanderWhitneySummand_pair X Y p q]
+  · rw [alternatingAlexanderWhitneySummand_pair X Y p q (p + q) rfl]
     have h := congrArg
       (fun t =>
         (X.map (SimplexCategory.subinterval (n := p + q) 0 p (by omega)).op ⊗ₘ
           Y.map (SimplexCategory.subinterval (n := p + q) p q (by omega)).op) ≫ t)
       (ιTensorObj_tensorPairProjection_self X Y p q (p + q) rfl)
-    simpa only [Category.assoc, Category.comp_id] using h
+    exact (Category.assoc _ _ _).trans (h.trans (Category.comp_id _))
   · intro r _ hrp
-    rw [alternatingAlexanderWhitneySummand_pair X Y r (p + q - r)]
+    rw [alternatingAlexanderWhitneySummand_pair X Y r (p + q - r) (p + q) (by omega)]
     have h := ιTensorObj_tensorPairProjection_of_ne X Y
       r (p + q - r) p q (p + q) (by omega) rfl (by
         intro hpair
@@ -1410,7 +1418,7 @@ theorem alternatingAlexanderWhitneyDegree_comp_pairProjection (p q : ℕ) :
         (X.map (SimplexCategory.subinterval (n := p + q) 0 r (by omega)).op ⊗ₘ
           Y.map
             (SimplexCategory.subinterval (n := p + q) r (p + q - r) (by omega)).op) ≫ t) h
-    simpa only [Category.assoc, comp_zero] using hassoc
+    exact (Category.assoc _ _ _).trans hassoc
   · simp
 
 theorem tensorDegree_hom_ext_pair
@@ -1518,7 +1526,7 @@ theorem alternatingAlexanderWhitneySummand_natural
       ((alternatingFaceMapComplex (ModuleCat ℤ)).obj X')
       ((alternatingFaceMapComplex (ModuleCat ℤ)).obj Y')
       p (n - p) n (by omega)) hpre
-  simpa only [Category.assoc] using hpreAssoc
+  exact (Category.assoc _ _ _).symm.trans (hpreAssoc.trans (Category.assoc _ _ _))
 
 /-- The Alexander--Whitney degree maps are natural in both simplicial modules. -/
 theorem alternatingAlexanderWhitneyDegree_natural
@@ -1644,7 +1652,7 @@ theorem normalizedAlexanderWhitney_natural
         (DoldKan.PInftyToNormalizedMooreComplex X')
         (DoldKan.PInftyToNormalizedMooreComplex Y'))
     ((inclusionOfMooreComplex (ModuleCat ℤ)).naturality (f ⊗ₘ g)).symm
-  simpa only [Category.assoc] using hinc
+  exact (Category.assoc _ _ _).symm.trans (hinc.trans (Category.assoc _ _ _))
 
 /-- The normalized Alexander--Whitney counit on the monoidal unit. -/
 def normalizedAlexanderWhitneyUnit :
@@ -1665,7 +1673,9 @@ def normalizedAlexanderWhitneyUnit :
     (0 : Fin 1) (by simp)
   have hz := (Limits.kernelSubobject_factors_iff
     (𝟙 (𝟙_ (ModuleCat ℤ))) _).mp hf
-  simpa only [Category.comp_id] using hz
+  rw [Category.comp_id] at hz
+  exact (congrArg (fun t => (t ≫ inv (⊤ : Subobject (𝟙_ (ModuleCat ℤ))).arrow) ≫
+    (⊤ : Subobject (𝟙_ (ModuleCat ℤ))).arrow) hz).trans (by simp only [zero_comp]; rfl)
 
 @[simp]
 theorem normalizedAlexanderWhitneyUnit_f_zero :
@@ -1695,6 +1705,7 @@ theorem normalizedAlexanderWhitneyUnitViaEpsilon_eq :
       normalizedAlexanderWhitneyUnit := by
   apply HomologicalComplex.to_single_hom_ext
   simp [normalizedAlexanderWhitneyUnitViaEpsilon]
+  rfl
 
 /-- Retracting alternating chains and then applying the normalized unit map is the standard
 alternating-chain augmentation. -/
@@ -1706,6 +1717,7 @@ theorem pInfty_comp_normalizedAlexanderWhitneyUnit :
         (SimplicialObject.Augmented.const.obj (𝟙_ (ModuleCat ℤ))) := by
   apply HomologicalComplex.to_single_hom_ext
   simp
+  exact Subobject.factorThru_arrow _ _ _
 
 /-- Naturality of normalized Alexander--Whitney in its left variable. -/
 theorem normalizedAlexanderWhitney_natural_left

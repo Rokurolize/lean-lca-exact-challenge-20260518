@@ -8,6 +8,8 @@ alternating face-map complexes and then for normalized Moore complexes.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -53,7 +55,9 @@ theorem alternatingAlexanderWhitney_right_unit_component
         n 0 n (by omega) := by
   have hq_zero : q = 0 := by omega
   subst q
-  simp [alternatingAlexanderWhitneyUnit]
+  simp only [alternatingAlexanderWhitneyUnit, AlternatingFaceMapComplex.ε_app_f_zero]
+  change ((alternatingChains X).X n ◁ 𝟙 (𝟙_ (ModuleCat ℤ))) ≫ _ = _
+  rw [whiskerLeft_id, Category.id_comp]
 
 set_option linter.flexible false in
 theorem alternatingAlexanderWhitney_left_unitality
@@ -90,16 +94,6 @@ theorem alternatingAlexanderWhitney_left_unitality
     | zero => simp_all
     | succ p =>
       simp [alternatingAlexanderWhitneyUnit]
-      have hzero :
-          (0 : (alternatingChains
-                (𝟙_ (SimplicialObject (ModuleCat.{0} ℤ)))).X (p + 1) ⟶
-              ((ChainComplex.single₀ (ModuleCat ℤ)).obj
-                (𝟙_ (ModuleCat ℤ))).X (p + 1)) ▷
-            (alternatingChains X).X (n - (p + 1)) = 0 := by
-        exact MonoidalPreadditive.zero_whiskerRight
-      erw [hzero]
-      erw [zero_comp]
-      simp
   · simp
 
 set_option linter.flexible false in
@@ -150,16 +144,6 @@ theorem alternatingAlexanderWhitney_right_unitality
       rw [hq]
       exact AlternatingFaceMapComplex.ε_app_f_succ _ q
     erw [heps]
-    simp
-    have hzero :
-        (alternatingChains X).X p ◁
-          (0 : (alternatingChains
-                (𝟙_ (SimplicialObject (ModuleCat.{0} ℤ)))).X (n - (p : ℕ)) ⟶
-              ((ChainComplex.single₀ (ModuleCat ℤ)).obj
-                (𝟙_ (ModuleCat ℤ))).X (n - (p : ℕ))) = 0 := by
-      exact MonoidalPreadditive.whiskerLeft_zero
-    erw [hzero]
-    erw [zero_comp]
     simp
   · simp
 
@@ -217,8 +201,13 @@ theorem normalizedAlexanderWhitney_left_unitality
         exact MonoidalCategory.tensorHom_comp_tensorHom _ _ _ _
       _ = _ := by
         rw [pInfty_comp_normalizedAlexanderWhitneyUnit]
-        simp
-        rfl
+        change HomologicalComplex.tensorHom alternatingAlexanderWhitneyUnit
+          (DoldKan.PInftyToNormalizedMooreComplex X ≫ 𝟙 _) = _
+        exact congrArg
+          (fun t : alternatingChains X ⟶
+              (normalizedMooreComplex (ModuleCat ℤ)).obj X ↦
+            HomologicalComplex.tensorHom alternatingAlexanderWhitneyUnit t)
+          (Category.comp_id (DoldKan.PInftyToNormalizedMooreComplex X))
   simp only [Category.assoc]
   erw [htensor]
   have htensor_def :
@@ -305,8 +294,12 @@ theorem normalizedAlexanderWhitney_right_unitality
         exact MonoidalCategory.tensorHom_comp_tensorHom _ _ _ _
       _ = _ := by
         rw [pInfty_comp_normalizedAlexanderWhitneyUnit]
-        simp
-        rfl
+        change HomologicalComplex.tensorHom
+          (DoldKan.PInftyToNormalizedMooreComplex X ≫ 𝟙 _)
+          alternatingAlexanderWhitneyUnit = _
+        exact congrArg
+          (fun t ↦ HomologicalComplex.tensorHom t alternatingAlexanderWhitneyUnit)
+          (Category.comp_id _)
   simp only [Category.assoc]
   erw [htensor]
   have htensor_def :
@@ -349,7 +342,7 @@ theorem normalizedAlexanderWhitney_right_unitality
       change inclusionOfMooreComplexMap X ≫
         DoldKan.PInftyToNormalizedMooreComplex X = 𝟙 _ at hsplit
       rw [hsplit]
-      simp
+      rw [id_whiskerRight, Category.comp_id]
 
 end DoldKanMonoidal
 end Infinity

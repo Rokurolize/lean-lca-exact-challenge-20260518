@@ -119,7 +119,8 @@ theorem fullSubcomplexOnVertices_quasicategory (X : SSet.{u})
       exact hp
     refine ⟨SSet.Subcomplex.lift σ hRange, ?_⟩
     apply (cancel_mono A.ι).1
-    simpa only [Category.assoc, SSet.Subcomplex.lift_ι] using hσ
+    rw [Category.assoc, SSet.Subcomplex.lift_ι]
+    exact hσ
 
 /-- Relative mapping objects inherit quasicategory closure from the ambient internal Hom. -/
 theorem relativeInternalHom_quasicategory {X : SSet.{u}} (W : EdgeMarking X)

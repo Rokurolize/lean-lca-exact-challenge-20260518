@@ -90,6 +90,7 @@ def quillenExactCategory : QuillenExactCategory MetrizableLCA.{u} where
       refine ⟨⟨x, ?_⟩, rfl⟩
       simpa [equalizerSubgroup] using hx
 
+@[reducible]
 instance instQuillenExactCategory : QuillenExactCategory MetrizableLCA.{u} :=
   quillenExactCategory
 

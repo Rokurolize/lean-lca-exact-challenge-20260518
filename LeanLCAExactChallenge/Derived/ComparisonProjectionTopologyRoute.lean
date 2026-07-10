@@ -12,6 +12,8 @@ isomorphism.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -45,7 +47,10 @@ theorem cokernelCofork_π_surjective_of_isColimitW815
     exact surjective_comp_iso (cokernelπ f) e
       (quotientMap_surjective B (cokernelSubgroup f)
         (AddSubgroup.isClosed_topologicalClosure _))
-  simpa [ck₀, ck, hπe] using hsurj
+  have hπe' : (cokernelπ f ≫ e.hom : B ⟶ Q) = π := by
+    simpa [ck₀, ck] using hπe
+  rw [← hπe']
+  exact hsurj
 
 /-- A limiting cokernel cofork in `MetrizableLCA` has an open projection. -/
 theorem cokernelCofork_π_openMap_of_isColimitW815
@@ -67,7 +72,10 @@ theorem cokernelCofork_π_openMap_of_isColimitW815
     exact openMap_comp_iso (cokernelπ f) e
       (quotientMap_openMap B (cokernelSubgroup f)
         (AddSubgroup.isClosed_topologicalClosure _))
-  simpa [ck₀, ck, hπe] using hopen
+  have hπe' : (cokernelπ f ≫ e.hom : B ⟶ Q) = π := by
+    simpa [ck₀, ck] using hπe
+  rw [← hπe']
+  exact hopen
 
 /-- A limiting kernel fork in `MetrizableLCA` has a closed-embedding inclusion. -/
 theorem kernelFork_ι_closedEmbedding_of_isLimitW815

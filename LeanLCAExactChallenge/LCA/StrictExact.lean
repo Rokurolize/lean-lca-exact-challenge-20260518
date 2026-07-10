@@ -83,7 +83,9 @@ noncomputable def forgetToAddCommGrpCat_kernelForkOfStrictShortExact
   haveI : Mono (S.map forgetToAddCommGrpCat).f := by
     refine ConcreteCategory.mono_of_injective _ ?_
     intro x y hxy
-    exact hS.closed_inclusion.injective (by simpa using hxy)
+    apply hS.closed_inclusion.injective
+    change S.f x = S.f y at hxy
+    exact hxy
   exact hExact.fIsKernel
 
 /-- After forgetting topology, the right map of a strict short exact sequence is
@@ -97,7 +99,9 @@ noncomputable def forgetToAddCommGrpCat_cokernelCoforkOfStrictShortExact
     refine ConcreteCategory.epi_of_surjective _ ?_
     intro z
     rcases hS.surjective z with ⟨y, hy⟩
-    exact ⟨y, by simpa using hy⟩
+    refine ⟨y, ?_⟩
+    change S.g y = z
+    exact hy
   exact hExact.gIsCokernel
 
 lemma strictShortExact_of_exact_of_topology {S : ShortComplex MetrizableLCA.{u}}
@@ -343,10 +347,11 @@ lemma strictShortExact_biprod {S T : ShortComplex MetrizableLCA.{u}}
       exact Prod.ext hx hy⟩
   algebraic_exact := by
     intro p hp
+    change (S.g p.1, T.g p.2) = (0, 0) at hp
     have hS_zero : S.g p.1 = 0 := by
-      simpa [strictShortExactBiprodComplex] using congrArg Prod.fst hp
+      exact congrArg Prod.fst hp
     have hT_zero : T.g p.2 = 0 := by
-      simpa [strictShortExactBiprodComplex] using congrArg Prod.snd hp
+      exact congrArg Prod.snd hp
     rcases hS.algebraic_exact p.1 hS_zero with ⟨x, hx⟩
     rcases hT.algebraic_exact p.2 hT_zero with ⟨y, hy⟩
     exact ⟨(x, y), by

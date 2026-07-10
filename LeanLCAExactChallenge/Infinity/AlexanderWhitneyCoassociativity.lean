@@ -8,6 +8,8 @@ The proof compares the two iterated maps on every triple tensor summand.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -118,8 +120,10 @@ theorem tensorHom_comp_complexTensorPairProjection
       HomologicalComplex.ιMapBifunctor,
       HomologicalComplex₂.ιTotal, GradedObject.ιMapObj]
     erw [hL, hK']
-    simpa only [Category.comp_id] using
-      (MonoidalCategory.tensorHom_def (f.f i) (g.f j)).symm
+    change (f.f i ▷ K₂.X j ≫ L₁.X i ◁ g.f j) ≫
+      𝟙 (L₁.X i ⊗ L₂.X j) = f.f i ⊗ₘ g.f j
+    rw [Category.comp_id]
+    exact (MonoidalCategory.tensorHom_def (f.f i) (g.f j)).symm
   · have hpairs : (a, b) ≠ (i, j) := by
       intro hp
       exact hai (congrArg Prod.fst hp)
@@ -151,7 +155,8 @@ def complexRightTripleProjection
     (K L M : ChainComplex (ModuleCat.{0} ℤ) ℕ)
     (p q r n : ℕ) (h : p + q + r = n) :
     (K ⊗ (L ⊗ M)).X n ⟶ K.X p ⊗ (L.X q ⊗ M.X r) :=
-  complexTensorPairProjection K (L ⊗ M) p (q + r) n (by omega) ≫
+  complexTensorPairProjection K (HomologicalComplex.tensorObj L M)
+      p (q + r) n (by omega) ≫
     (𝟙 (K.X p) ⊗ₘ complexTensorPairProjection L M q r (q + r) rfl)
 
 theorem aw_right_iterated_projection (p q r : ℕ) :
@@ -202,13 +207,13 @@ theorem aw_right_iterated_projection (p q r : ℕ) :
       rw [← Y.map_comp, ← Z.map_comp]
       simp only [← op_comp]
       rw [aw_middle_right, aw_back_back]
-      rfl
 
 def complexLeftTripleProjection
     (K L M : ChainComplex (ModuleCat.{0} ℤ) ℕ)
     (p q r n : ℕ) (h : p + q + r = n) :
     ((K ⊗ L) ⊗ M).X n ⟶ (K.X p ⊗ L.X q) ⊗ M.X r :=
-  complexTensorPairProjection (K ⊗ L) M (p + q) r n (by omega) ≫
+  complexTensorPairProjection (HomologicalComplex.tensorObj K L) M
+      (p + q) r n (by omega) ≫
     (complexTensorPairProjection K L p q (p + q) rfl ⊗ₘ 𝟙 (M.X r))
 
 @[reassoc (attr := simp)]
@@ -237,9 +242,8 @@ lemma complexRightTripleIncl_proj_self (K L M : ChainComplex (ModuleCat.{0} ℤ)
   have ho :
       Sigma.ι (complexTensorFamily K (L ⊗ M) n) io ≫
           Sigma.π (complexTensorFamily K (L ⊗ M) n) io =
-        𝟙 (K.X p ⊗ (L ⊗ M).X (q + r)) := by
-    simpa only [complexTensorFamily] using
-      Sigma.ι_π_eq_id (complexTensorFamily K (L ⊗ M) n) io
+        𝟙 (complexTensorFamily K (L ⊗ M) n io) :=
+    Sigma.ι_π_eq_id (complexTensorFamily K (L ⊗ M) n) io
   dsimp [io, ii, complexTensorFamily] at ho ⊢
   slice_lhs 2 3 => erw [ho]
   slice_lhs 1 2 => erw [Category.comp_id]
@@ -286,9 +290,8 @@ lemma complexRightTripleIncl_proj_ne (K L M : ChainComplex (ModuleCat.{0} ℤ) �
     have ho :
         Sigma.ι (complexTensorFamily K (L ⊗ M) n) io ≫
             Sigma.π (complexTensorFamily K (L ⊗ M) n) io =
-          𝟙 (K.X p ⊗ (L ⊗ M).X (q + r)) := by
-      simpa only [complexTensorFamily] using
-        Sigma.ι_π_eq_id (complexTensorFamily K (L ⊗ M) n) io
+          𝟙 (complexTensorFamily K (L ⊗ M) n io) :=
+      Sigma.ι_π_eq_id (complexTensorFamily K (L ⊗ M) n) io
     dsimp [io, iis, iit, complexTensorFamily] at ho ⊢
     slice_lhs 2 3 => erw [ho]
     slice_lhs 1 2 => erw [Category.comp_id]
@@ -339,7 +342,6 @@ lemma complexRightTripleIncl_proj_ne (K L M : ChainComplex (ModuleCat.{0} ℤ) �
     slice_lhs 2 3 => erw [hz]
     slice_lhs 1 2 => erw [comp_zero]
     erw [zero_comp]
-    rfl
 
 @[reassoc (attr := simp)]
 lemma complexLeftTripleIncl_proj_self (K L M : ChainComplex (ModuleCat.{0} ℤ) ℕ)
@@ -367,9 +369,8 @@ lemma complexLeftTripleIncl_proj_self (K L M : ChainComplex (ModuleCat.{0} ℤ) 
   have ho :
       Sigma.ι (complexTensorFamily (K ⊗ L) M n) io ≫
           Sigma.π (complexTensorFamily (K ⊗ L) M n) io =
-        𝟙 ((K ⊗ L).X (p + q) ⊗ M.X r) := by
-    simpa only [complexTensorFamily] using
-      Sigma.ι_π_eq_id (complexTensorFamily (K ⊗ L) M n) io
+        𝟙 (complexTensorFamily (K ⊗ L) M n io) :=
+    Sigma.ι_π_eq_id (complexTensorFamily (K ⊗ L) M n) io
   dsimp [io, ii, complexTensorFamily] at ho ⊢
   slice_lhs 2 3 => erw [ho]
   slice_lhs 1 2 => erw [Category.comp_id]
@@ -415,9 +416,8 @@ lemma complexLeftTripleIncl_proj_ne (K L M : ChainComplex (ModuleCat.{0} ℤ) �
     have ho :
         Sigma.ι (complexTensorFamily (K ⊗ L) M n) io ≫
             Sigma.π (complexTensorFamily (K ⊗ L) M n) io =
-          𝟙 ((K ⊗ L).X (p + q) ⊗ M.X r) := by
-      simpa only [complexTensorFamily] using
-        Sigma.ι_π_eq_id (complexTensorFamily (K ⊗ L) M n) io
+          𝟙 (complexTensorFamily (K ⊗ L) M n io) :=
+      Sigma.ι_π_eq_id (complexTensorFamily (K ⊗ L) M n) io
     dsimp [io, iis, iit, complexTensorFamily] at ho ⊢
     slice_lhs 2 3 => erw [ho]
     slice_lhs 1 2 => erw [Category.comp_id]
@@ -467,7 +467,6 @@ lemma complexLeftTripleIncl_proj_ne (K L M : ChainComplex (ModuleCat.{0} ℤ) �
     slice_lhs 2 3 => erw [hz]
     slice_lhs 1 2 => erw [comp_zero]
     erw [zero_comp]
-    rfl
 
 theorem aw_left_iterated_projection (p q r : ℕ) :
     (alternatingAlexanderWhitney (X ⊗ Y) Z).f (p + q + r) ≫
@@ -515,7 +514,6 @@ theorem aw_left_iterated_projection (p q r : ℕ) :
       rw [← X.map_comp, ← Y.map_comp]
       simp only [← op_comp]
       rw [aw_front_front, aw_middle_left]
-      rfl
 
 theorem complexAssociator_comp_rightTripleProjection
     (K L M : ChainComplex (ModuleCat.{0} ℤ) ℕ)
@@ -609,7 +607,7 @@ theorem alternatingAlexanderWhitney_coassociativity_projected
               ((alternatingChains Z).X (p + q + r))).hom ≫ t)
         (aw_right_iterated_projection X Y Z p q r).symm
       simpa only [Category.assoc, alternatingFaceMapComplex_map_f,
-        Monoidal.associator_hom_app] using hright
+        alternatingFaceMapComplex_obj_X, Monoidal.associator_hom_app] using hright
 
 theorem tensorLeft_complexTensor_hom_ext
     (K L M : ChainComplex (ModuleCat.{0} ℤ) ℕ)
@@ -650,7 +648,8 @@ theorem tensorLeft_complexTensor_hom_ext
       ∑ j, (𝟙 (K.X p) ⊗ₘ Sigma.π F j) ≫
           (𝟙 (K.X p) ⊗ₘ Sigma.ι F j) =
         𝟙 (K.X p ⊗ (L ⊗ M).X n) := by
-    simpa only [F, complexTensorFamily] using htensor
+    dsimp only [F, complexTensorFamily, HomologicalComplex.tensorObj] at htensor ⊢
+    exact htensor
   have hfg :
       f = g ≫ ∑ j, (𝟙 (K.X p) ⊗ₘ Sigma.π F j) ≫
         (𝟙 (K.X p) ⊗ₘ Sigma.ι F j) := by
@@ -659,7 +658,6 @@ theorem tensorLeft_complexTensor_hom_ext
       _ = f ≫ ∑ j, (𝟙 (K.X p) ⊗ₘ Sigma.π F j) ≫
             (𝟙 (K.X p) ⊗ₘ Sigma.ι F j) := by
         erw [htensor']
-        rfl
       _ = ∑ j, f ≫ ((𝟙 (K.X p) ⊗ₘ Sigma.π F j) ≫
             (𝟙 (K.X p) ⊗ₘ Sigma.ι F j)) := by
         rw [Preadditive.comp_sum]
@@ -689,14 +687,16 @@ theorem complexRightTriple_hom_ext
     (ComplexShape.π (ComplexShape.down ℕ) (ComplexShape.down ℕ)
       (ComplexShape.down ℕ)) ⁻¹' {n} }
   letI : Fintype J := Fintype.ofEquiv (Fin (n + 1)) (tensorCutEquiv n)
-  apply finiteCoproduct_hom_ext (complexTensorFamily K (L ⊗ M) n)
+  apply finiteCoproduct_hom_ext
+    (complexTensorFamily K (HomologicalComplex.tensorObj L M) n)
   rintro ⟨⟨p, s⟩, hps⟩
   change p + s = n at hps
   apply tensorLeft_complexTensor_hom_ext K L M p s
   intro q r hqr
   subst s
   have hpqr : p + q + r = n := by omega
-  simpa only [complexRightTripleProjection, Category.assoc] using
+  simpa only [complexRightTripleProjection, complexTensorPairProjection,
+    Category.assoc] using
     h p q r hpqr
 
 theorem alternatingAlexanderWhitney_coassociativity :

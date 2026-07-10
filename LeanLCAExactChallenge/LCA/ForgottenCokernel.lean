@@ -134,12 +134,28 @@ theorem forgottenMappedExplicitCokernelCocone_ι_one {X Y : MetrizableLCA.{0}}
       underlyingAddCommGrpFunctor.map (cokernelπ f) :=
   rfl
 
+set_option backward.isDefEq.respectTransparency false in
 /-- The forgotten algebraic cokernel diagram is the W433 mapped diagram. -/
 def forgottenCokernelParallelPairIso {X Y : MetrizableLCA.{0}} (f : X ⟶ Y) :
     parallelPair (underlyingAddCommGrpFunctor.map f) 0 ≅
       parallelPair f 0 ⋙ underlyingAddCommGrpFunctor :=
   parallelPair.ext (Iso.refl _) (Iso.refl _) (by simp) (by simp)
 
+set_option backward.isDefEq.respectTransparency false in
+@[simp]
+theorem forgottenCokernelParallelPairIso_inv_app_zero
+    {X Y : MetrizableLCA.{0}} (f : X ⟶ Y) :
+    (forgottenCokernelParallelPairIso f).inv.app WalkingParallelPair.zero = 𝟙 _ :=
+  rfl
+
+set_option backward.isDefEq.respectTransparency false in
+@[simp]
+theorem forgottenCokernelParallelPairIso_inv_app_one
+    {X Y : MetrizableLCA.{0}} (f : X ⟶ Y) :
+    (forgottenCokernelParallelPairIso f).inv.app WalkingParallelPair.one = 𝟙 _ :=
+  rfl
+
+set_option backward.isDefEq.respectTransparency false in
 /-- The typed forgotten cokernel cofork and the W433 mapped cocone are the same cocone. -/
 def forgottenCokernelCoforkMappedCoconeIso {X Y : MetrizableLCA.{0}} (f : X ⟶ Y) :
     (Cocone.precompose (forgottenCokernelParallelPairIso f).inv).obj
@@ -147,9 +163,9 @@ def forgottenCokernelCoforkMappedCoconeIso {X Y : MetrizableLCA.{0}} (f : X ⟶ 
       forgottenMappedExplicitCokernelCocone f :=
   Cocone.ext (Iso.refl _) (by
     rintro (_ | _)
-    · simp [forgottenCokernelParallelPairIso, forgottenCokernelCofork,
+    · simp [forgottenCokernelCofork,
         forgottenMappedExplicitCokernelCocone, forgottenCokernelπ]
-    · simp [forgottenCokernelParallelPairIso, forgottenCokernelCofork,
+    · simp [forgottenCokernelCofork,
         forgottenMappedExplicitCokernelCocone, forgottenCokernelπ])
 
 /--
@@ -187,7 +203,7 @@ theorem algebraicRange_le_ker_of_forgotten_condition {X Y : MetrizableLCA.{0}}
         (⊤ : AddSubgroup (underlyingAddCommGrpFunctor.obj X)) ≤ k.hom.ker := by
   intro y hy
   rcases hy with ⟨x, _hx, rfl⟩
-  change k (f x) = 0
+  change k ((underlyingAddCommGrpFunctor.map f) x) = 0
   have h := congrArg (fun q : underlyingAddCommGrpFunctor.obj X ⟶ Z => q x) hk
   simpa using h
 
