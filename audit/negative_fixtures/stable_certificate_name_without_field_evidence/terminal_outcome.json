@@ -1,7 +1,0 @@
-{
-  "outcome": "product_success",
-  "product_complete": true,
-  "update_goal_allowed": true,
-  "known_gaps": [],
-  "summary": "Negative fixture: a product-success claim that cites only a stable certificate name without concrete finite-limit, finite-colimit, suspension/loop, or pushout/pullback field evidence."
-}

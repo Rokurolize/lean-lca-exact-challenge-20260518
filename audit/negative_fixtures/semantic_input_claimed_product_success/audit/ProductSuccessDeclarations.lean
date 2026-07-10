@@ -1,6 +1,0 @@
-namespace LeanLCAExactChallenge
-
-#check Dbounded.MetrizableOrdinaryStableSemanticInput
-#check Dbounded.boundedDerivedInfinityCategoryOfMetrizableOrdinaryInput
-
-end LeanLCAExactChallenge

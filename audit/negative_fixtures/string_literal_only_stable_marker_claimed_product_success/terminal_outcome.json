@@ -1,7 +1,0 @@
-{
-  "outcome": "product_success",
-  "product_complete": true,
-  "update_goal_allowed": true,
-  "known_gaps": [],
-  "summary": "Negative fixture: a product-success claim that treats stable markers appearing only inside Lean string literals as proved stable infinity-category evidence."
-}

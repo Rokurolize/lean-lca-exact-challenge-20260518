@@ -1,4 +1,0 @@
-import LeanLCAExactChallenge.Infinity.FunctorQuasicategory
-
-#check LeanLCAExactChallenge.Infinity.InnerHornPushoutProductIsInnerAnodyne
-#check LeanLCAExactChallenge.Infinity.quasicategory_ihom_of_innerHornPushoutProduct

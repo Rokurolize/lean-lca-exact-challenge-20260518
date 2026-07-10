@@ -4,11 +4,11 @@
 [mcp_servers.lean-lsp]
 command = "uvx"
 args = ["lean-lsp-mcp"]
-cwd = "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518"
+cwd = "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518-origin-main-push-20260708"
 startup_timeout_sec = 30
 tool_timeout_sec = 600
 enabled = true
 
 [mcp_servers.lean-lsp.env]
-LEAN_PROJECT_PATH = "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518"
+LEAN_PROJECT_PATH = "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518-origin-main-push-20260708"
 LEAN_LOG_LEVEL = "INFO"
