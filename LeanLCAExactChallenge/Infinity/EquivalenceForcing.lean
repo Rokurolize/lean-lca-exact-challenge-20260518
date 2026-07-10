@@ -108,7 +108,7 @@ theorem EquivalenceIntervalExtension.edgeIsEquivalence
   have hfm : EdgeIsEquivalence (forward.map h.map) := hf.map h.map
   have hedge : (forward.map h.map).edge = e.edge := by
     have hr := congrArg SSet.yonedaEquiv h.restrict
-    simpa [equivalenceIntervalInclusion, SSet.yonedaEquiv_comp] using hr
+    simpa [forward, equivalenceIntervalInclusion, SSet.yonedaEquiv_comp] using hr
   let ea := forward.map h.map
   have hsrc :
       h.map.app (op ⦋0⦌)

@@ -44,13 +44,12 @@ theorem equivalenceIntervalRestriction_isEquivalence {Q : SSet.{u}}
   let ea := (CategoryTheory.nerve.edgeMk equivalenceIntervalForward).map F
   have hea : EdgeIsEquivalence ea :=
     (edgeIsEquivalence_nerve_of_isIso equivalenceIntervalForward).map F
+  change EdgeIsEquivalence (SSet.Edge.mk' ea.edge)
   let ea' := SSet.Edge.castEndpoints ea.src_eq ea.tgt_eq ea
   have hea' : EdgeIsEquivalence ea' := hea.castEndpoints ea.src_eq ea.tgt_eq
-  have heq : ea' = SSet.Edge.mk' (equivalenceIntervalRestriction F) := by
+  have heq : ea' = SSet.Edge.mk' ea.edge := by
     apply SSet.Edge.ext
-    simp only [ea', SSet.Edge.castEndpoints_edge, SSet.Edge.mk'_edge,
-      equivalenceIntervalRestriction]
-    rfl
+    simp only [ea', SSet.Edge.castEndpoints_edge, SSet.Edge.mk'_edge]
   simpa only [heq] using hea'
 
 /-- The subtype of `1`-simplices whose associated edge is an equivalence. -/

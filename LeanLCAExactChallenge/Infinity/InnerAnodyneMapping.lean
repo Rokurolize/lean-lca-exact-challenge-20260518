@@ -304,6 +304,54 @@ lemma endpointsInclusion_comp_contractionOfMonoRLP
   letI : HasLiftingProperty i p := hlp
   exact sq.fac_left
 
+/-- The contraction stays in the fibers of the map with the mono right lifting property. -/
+lemma contractionOfMonoRLP_comp
+    {X Y : SSet.{u}} (p : X ⟶ Y)
+    (hp : (monomorphisms SSet.{u}).rlp p) :
+    contractionOfMonoRLP p hp ≫ p =
+      CartesianMonoidalCategory.fst X
+          (CategoryTheory.nerve EquivalenceInterval.{u}) ≫ p := by
+  let s := sectionOfMonoRLP p hp
+  have hs : s ≫ p = 𝟙 Y := sectionOfMonoRLP_comp p hp
+  let i := X ◁ equivalenceEndpointsInclusion.{u}
+  let q := CartesianMonoidalCategory.fst X
+    (CategoryTheory.nerve EquivalenceInterval.{u}) ≫ p
+  let sq : CommSq (endpointDesc (𝟙 X) (p ≫ s)) i p q :=
+    ⟨endpointDesc_comp p s hs⟩
+  have hlp : HasLiftingProperty i p :=
+    hp _ (monomorphisms.infer_property _)
+  letI : HasLiftingProperty i p := hlp
+  exact sq.fac_right
+
+/--
+Chosen strong deformation-retraction data carried by a simplicial map with the right
+lifting property against every monomorphism. The homotopy is parametrized by the
+free-living equivalence, fixes the map to the target, and runs from the identity to the
+section-retraction composite.
+-/
+structure MonoRLPStrongDeformationRetraction
+    {X Y : SSet.{u}} (p : X ⟶ Y) where
+  retraction : Y ⟶ X
+  retraction_comp : retraction ≫ p = 𝟙 Y
+  contraction : X ⊗ CategoryTheory.nerve EquivalenceInterval.{u} ⟶ X
+  contraction_comp : contraction ≫ p =
+    CartesianMonoidalCategory.fst X
+        (CategoryTheory.nerve EquivalenceInterval.{u}) ≫ p
+  endpoints :
+    (X ◁ equivalenceEndpointsInclusion.{u}) ≫ contraction =
+      endpointDesc (𝟙 X) (p ≫ retraction)
+
+/-- Package the canonical section and contraction produced by the mono right lifting property. -/
+noncomputable def monoRLPStrongDeformationRetraction
+    {X Y : SSet.{u}} (p : X ⟶ Y)
+    (hp : (monomorphisms SSet.{u}).rlp p) :
+    MonoRLPStrongDeformationRetraction p where
+  retraction := sectionOfMonoRLP p hp
+  retraction_comp := sectionOfMonoRLP_comp p hp
+  contraction := contractionOfMonoRLP p hp
+  contraction_comp := contractionOfMonoRLP_comp p hp
+  endpoints := endpointsInclusion_comp_contractionOfMonoRLP p hp
+
 /-- The contraction carries the forward free equivalence to an internal-hom edge. -/
 noncomputable def contractionEquivalenceEdge {X Y : SSet.{u}} (p : X ⟶ Y)
     (hp : (monomorphisms SSet.{u}).rlp p) :
