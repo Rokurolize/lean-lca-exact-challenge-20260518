@@ -32,3 +32,16 @@ surface. Raw run logs, worker transcripts, packet manifests, terminal outcomes, 
 TSVs belong in a thread workspace or CI artifacts, not in the repository history.
 
 Maintenance policy and cleanup runbooks live under `docs/maintenance/`.
+
+## Tooling Setup
+
+Claude Code users get two things auto-configured from this repo:
+
+- **lean4-skills plugin** ([cameronfreer/lean4-skills](https://github.com/cameronfreer/lean4-skills)):
+  `.claude/settings.json` registers the marketplace and enables the `lean4` plugin, so
+  Claude Code prompts to install it on next launch. Manual install:
+  `/plugin marketplace add cameronfreer/lean4-skills` then `/plugin install lean4`.
+- **lean-lsp-mcp** ([oOo0oOo/lean-lsp-mcp](https://github.com/oOo0oOo/lean-lsp-mcp)): configured
+  via `.mcp.json` (runs through `uvx`, requires [uv](https://docs.astral.sh/uv/)). For
+  reliability with plugin subagents, also register it at user scope:
+  `claude mcp add --transport stdio --scope user lean-lsp -- uvx lean-lsp-mcp`.
