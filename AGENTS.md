@@ -34,9 +34,3 @@ and remaining tasks.
 ## Lean 4 workflows
 
 Use the installed `lean4` skill for theorem-proving work in this repository.
-
-## lean-lsp-mcp
-
-The lean-lsp MCP server (https://github.com/oOo0oOo/lean-lsp-mcp, run via `uvx lean-lsp-mcp`)
-is configured for Codex in `.codex/config.toml` and for Claude Code in `.mcp.json`. Prefer
-its diagnostics/goal tools over raw `lake env lean` for interactive proof work.
