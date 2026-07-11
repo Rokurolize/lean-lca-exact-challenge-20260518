@@ -1048,6 +1048,58 @@ private def categoricalNerveQCat (E : Cat.{u, u}) : SSet.QCat.{u} :=
     change SSet.Quasicategory (CategoryTheory.nerve E)
     infer_instance⟩
 
+set_option backward.isDefEq.respectTransparency false in
+theorem internalHomNerveHomotopyEquivalence_precomp_naturality
+    {X L : SSet.{u}} (f : X ⟶ L) (E : Cat.{u, u}) :
+    (internalHomNerveHomotopyEquivalence L E).functor ⋙
+        (Functor.whiskeringLeft (SSet.hoFunctor.obj X)
+          (SSet.hoFunctor.obj L) E).obj (SSet.hoFunctor.map f).toFunctor =
+      homotopyPrecomp f (nerveFunctor.obj E) ⋙
+        (internalHomNerveHomotopyEquivalence X E).functor := by
+  have hsset :
+      (internalHomNerveIso L E).inv ≫
+          nerveFunctor.map
+            (((Functor.whiskeringLeft (SSet.hoFunctor.obj X)
+              (SSet.hoFunctor.obj L) E).obj
+                (SSet.hoFunctor.map f).toFunctor).toCatHom) =
+        internalHomPrecomp f (nerveFunctor.obj E) ≫
+          (internalHomNerveIso X E).inv := by
+    apply (cancel_mono (internalHomNerveIso X E).hom).1
+    simp only [Category.assoc, Iso.inv_hom_id, Category.comp_id]
+    rw [internalHomNerveIso_precomp_naturality f E]
+    simp only [← Category.assoc, Iso.inv_hom_id, Category.id_comp]
+  have hho := congrArg SSet.hoFunctor.map hsset
+  simp only [SSet.hoFunctor.map_comp] at hho
+  let P : (ihom (SSet.hoFunctor.obj L)).obj E ⟶
+      (ihom (SSet.hoFunctor.obj X)).obj E :=
+    ((Functor.whiskeringLeft (SSet.hoFunctor.obj X)
+      (SSet.hoFunctor.obj L) E).obj
+        (SSet.hoFunctor.map f).toFunctor).toCatHom
+  have hcounit := nerveFunctorCompHoFunctorIso.hom.naturality P
+  simp only [Functor.comp_map, Functor.id_map] at hcounit
+  have hcat :
+      ((SSet.hoFunctor.map (internalHomNerveIso L E).inv) ≫
+          nerveFunctorCompHoFunctorIso.hom.app
+            ((ihom (SSet.hoFunctor.obj L)).obj E)) ≫ P =
+        SSet.hoFunctor.map (internalHomPrecomp f (nerveFunctor.obj E)) ≫
+          ((SSet.hoFunctor.map (internalHomNerveIso X E).inv) ≫
+            nerveFunctorCompHoFunctorIso.hom.app
+              ((ihom (SSet.hoFunctor.obj X)).obj E)) := by
+    rw [Category.assoc, ← hcounit]
+    rw [← Category.assoc, hho, Category.assoc]
+  exact congrArg Cat.Hom.toFunctor hcat
+
+/-- The source-presentation square, exposed as a natural isomorphism for compatibility
+arguments that must not demand strict equality of quasi-inverse composites. -/
+noncomputable def internalHomNerveHomotopyEquivalencePrecompIso
+    {X L : SSet.{u}} (f : X ⟶ L) (E : Cat.{u, u}) :
+    (internalHomNerveHomotopyEquivalence L E).functor ⋙
+        (Functor.whiskeringLeft (SSet.hoFunctor.obj X)
+          (SSet.hoFunctor.obj L) E).obj (SSet.hoFunctor.map f).toFunctor ≅
+      homotopyPrecomp f (nerveFunctor.obj E) ⋙
+        (internalHomNerveHomotopyEquivalence X E).functor :=
+  eqToIso (internalHomNerveHomotopyEquivalence_precomp_naturality f E)
+
 /-- A mapping-quasicategory localization induces, for every ordinary target category,
 an equivalence from functors out of its homotopy category to the ordinary full
 subcategory selected by marked-edge inversion. -/
