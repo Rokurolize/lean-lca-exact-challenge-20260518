@@ -291,6 +291,12 @@ def nilSummandIsoOriginal (X Y : ComplexCategory) {n : ℤ}
   exact (ρ_ (factorModule d 0)) ≪≫
     eqToIso hfactor
 
+/-- Canonical degree profile on the zero-length word. -/
+def nilDegreeProfile (X Y : ComplexCategory) (n : ℤ) :
+    DegreeProfile (nil X Y) n where
+  arrowDegree _ := n
+  totalDegree := by simp [nil]
+
 /-- Tensor map of an internal-differential summand before inserting the Koszul sign. -/
 def internalDifferentialTensorMap {X Y : ComplexCategory}
     {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
@@ -313,6 +319,18 @@ actual coproduct over all acyclic words and all compatible allocations of ordina
 degrees. -/
 def quotientGradedModule (X Y : ComplexCategory) (n : ℤ) : ModuleCat.{1} ℤ :=
   ∐ fun s : GradedSummandIndex X Y n ↦ largeSummandModule s
+
+/-- Inclusion of the original homogeneous Hom module as the zero-word summand of the
+Drinfeld carrier (after the necessary universe lift). -/
+def originalHomInclusion (X Y : ComplexCategory) (n : ℤ) :
+    Quiver.Hom
+      ((ModuleCat.uliftFunctor.{1} ℤ).obj ((dgHomZModuleCochainComplex X Y).X n))
+      (quotientGradedModule X Y n) :=
+  (ModuleCat.uliftFunctor.{1} ℤ).map
+      (nilSummandIsoOriginal X Y (nilDegreeProfile X Y n)).inv ≫
+    Limits.Sigma.ι
+      (fun s : GradedSummandIndex X Y n ↦ largeSummandModule s)
+      ⟨nil X Y, nilDegreeProfile X Y n⟩
 
 /-- One internal-differential term, included into the degree-`n+1` coproduct carrier.  The
 Koszul coefficient is deliberately kept separate from this unsigned structural map. -/
