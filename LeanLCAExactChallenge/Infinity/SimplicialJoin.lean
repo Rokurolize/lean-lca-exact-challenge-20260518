@@ -425,6 +425,45 @@ lemma ordinalSumCutRight_apply {U A B : SimplexCategory}
         omega⟩).val - (A.len + 1) := by
   rfl
 
+/-- The augmented finite ordinal having exactly `k` vertices. -/
+def augmentedSimplexOfCard : ℕ → AugmentedSimplexCategory
+  | 0 => WithInitial.star
+  | k + 1 => WithInitial.of (SimplexCategory.mk k)
+
+/-- The two cut blocks concatenate back to the original source ordinal. -/
+lemma ordinalSumCut_tensorObj_eq {U A B : SimplexCategory}
+    (q : U ⟶ AugmentedSimplexCategory.tensorObjOf A B) :
+    AugmentedSimplexCategory.tensorObj
+        (augmentedSimplexOfCard (ordinalSumCut q))
+        (augmentedSimplexOfCard (U.len + 1 - ordinalSumCut q)) =
+      WithInitial.of U := by
+  have hc := ordinalSumCut_le q
+  by_cases h0 : ordinalSumCut q = 0
+  · rw [h0]
+    simp [augmentedSimplexOfCard, AugmentedSimplexCategory.tensorObj]
+  by_cases htop : ordinalSumCut q = U.len + 1
+  · rw [htop]
+    simp [augmentedSimplexOfCard, AugmentedSimplexCategory.tensorObj]
+  obtain ⟨c, hcEq⟩ := Nat.exists_eq_succ_of_ne_zero h0
+  rw [hcEq]
+  have hr : 0 < U.len + 1 - (c + 1) := by omega
+  obtain ⟨r, hrEq⟩ := Nat.exists_eq_succ_of_ne_zero (Nat.ne_of_gt hr)
+  rw [hrEq]
+  simp only [augmentedSimplexOfCard, AugmentedSimplexCategory.tensorObj]
+  congr 2
+  apply SimplexCategory.ext
+  simp only [SimplexCategory.len_mk]
+  omega
+
+/-- The canonical ordinal-sum decomposition map determined by the cut. -/
+def ordinalSumCutDecomposition {U A B : SimplexCategory}
+    (q : U ⟶ AugmentedSimplexCategory.tensorObjOf A B) :
+    WithInitial.of U ⟶
+      AugmentedSimplexCategory.tensorObj
+        (augmentedSimplexOfCard (ordinalSumCut q))
+        (augmentedSimplexOfCard (U.len + 1 - ordinalSumCut q)) :=
+  eqToHom (ordinalSumCut_tensorObj_eq q).symm
+
 /-- The distinguished object in the pointwise Kan-extension category computing
 Day convolution in augmented degree `-1`. -/
 def tensorCostructuredStar :
@@ -1989,6 +2028,21 @@ lemma ordinaryJoinTransportedRightLeg_range
   rw [ordinaryJoinTransportedRightLeg, SSet.Subcomplex.range_comp,
     SSet.Subcomplex.range_eq_top, SSet.Subcomplex.image_top]
   exact representableJoin_rightCoface_range.{u} m n j
+
+/-- Two transported right faces meet in the transported codimension-two
+face obtained by deleting both shifted right-block vertices. -/
+lemma ordinaryJoinTransportedRightLeg_ranges_inf
+    (m n : ℕ) (j k : Fin (n + 2)) :
+    SSet.Subcomplex.range (ordinaryJoinTransportedRightLeg.{u} m n j) ⊓
+        SSet.Subcomplex.range (ordinaryJoinTransportedRightLeg.{u} m n k) =
+      SSet.stdSimplex.face
+        ({(⟨m + 1 + j.val, by omega⟩ : Fin (m + n + 3)),
+          (⟨m + 1 + k.val, by omega⟩ : Fin (m + n + 3))}ᶜ) := by
+  rw [ordinaryJoinTransportedRightLeg_range,
+    ordinaryJoinTransportedRightLeg_range, SSet.stdSimplex.face_inter_face]
+  congr 1
+  ext x
+  simp
 
 theorem dayInternalHomMap_comp
     {F G G' G'' H H' H'' : AugmentedSSet.{u}}
