@@ -1381,25 +1381,6 @@ theorem dayConvolutionMap_comp
   rw [← Functor.map_comp]
   congr 2
 
-lemma simplicialJoinMap_comp {X X' X'' Y Y' Y'' : SSet.{u}}
-    (f : X ⟶ X') (f' : X' ⟶ X'') (g : Y ⟶ Y') (g' : Y' ⟶ Y'') :
-    simplicialJoinMap f g ≫ simplicialJoinMap f' g' =
-      simplicialJoinMap (f ≫ f') (g ≫ g') := by
-  letI := augmentedDayConvolution
-    (emptyAugmentation.{u}.obj X) (emptyAugmentation.{u}.obj Y)
-  letI := augmentedDayConvolution
-    (emptyAugmentation.{u}.obj X') (emptyAugmentation.{u}.obj Y')
-  letI := augmentedDayConvolution
-    (emptyAugmentation.{u}.obj X'') (emptyAugmentation.{u}.obj Y'')
-  change forgetAugmentation.{u}.map
-      (CategoryTheory.MonoidalCategory.DayConvolution.map
-        (emptyAugmentation.{u}.map f) (emptyAugmentation.{u}.map g)) ≫
-    forgetAugmentation.{u}.map
-      (CategoryTheory.MonoidalCategory.DayConvolution.map
-        (emptyAugmentation.{u}.map f') (emptyAugmentation.{u}.map g')) = _
-  rw [← forgetAugmentation.map_comp, dayConvolutionMap_comp]
-  simp
-
 @[simp]
 theorem dayConvolutionMap_id
     (F G : AugmentedSSet.{u})
@@ -1643,60 +1624,6 @@ lemma representableJoinHornInitial_eq_iSup_multicoforkRanges
   exact SSet.range_eq_iSup_of_isColimit
     (representableJoinHornIsColimit.{u} m i hn)
     (representableJoinHornMap m n i)
-
-lemma representableJoinHornCocone_right_comp (m n : ℕ)
-    (i : Fin (n + 2)) (j : ({i}ᶜ : Set (Fin (n + 2)))) :
-    simplicialJoinMap (𝟙 (Δ[m] : SSet.{u}))
-          (SSet.stdSimplex.faceSingletonComplIso.{u} j.1).hom ≫
-          (representableJoinHornCocone.{u} m i).ι.app
-            (Limits.WalkingMultispan.right j) ≫
-          representableJoinHornMap m (n + 1) i =
-      simplicialJoinMap (𝟙 (Δ[m] : SSet.{u}))
-          (SSet.stdSimplex.map (SimplexCategory.δ j.1)) ≫
-        (simplicialJoinStdSimplexIsoNat m (n + 1)).hom := by
-  dsimp [representableJoinHornCocone, augmentedRepresentableJoinHornCocone,
-    singletonAugmentationHornCocone]
-  unfold representableJoinHornMap
-  slice_lhs 1 2 => rw [simplicialJoinMap_comp]
-  slice_lhs 1 2 => rw [simplicialJoinMap_comp]
-  simp
-
-lemma representableJoinHornCocone_right_range (m n : ℕ)
-    (i : Fin (n + 2)) (j : ({i}ᶜ : Set (Fin (n + 2)))) :
-    SSet.Subcomplex.range
-        ((representableJoinHornCocone.{u} m i).ι.app
-            (Limits.WalkingMultispan.right j) ≫
-          representableJoinHornMap m (n + 1) i) =
-      SSet.stdSimplex.face
-        ({(joinShiftedVertex m (n + 1) j.1)}ᶜ) := by
-  have h := congrArg SSet.Subcomplex.range
-    (representableJoinHornCocone_right_comp.{u} m n i j)
-  rw [SSet.Subcomplex.range_comp, SSet.Subcomplex.range_eq_top,
-    SSet.Subcomplex.image_top] at h
-  exact h.trans (representableJoin_rightCoface_range.{u} m n j.1)
-
-lemma representableJoinHornInitial_eq_iSup_rightFaces (m n : ℕ)
-    (i : Fin (n + 2)) :
-    representableJoinHornInitial m (n + 1) i =
-      ⨆ (j : ({i}ᶜ : Set (Fin (n + 2)))), SSet.stdSimplex.face
-        ({joinShiftedVertex m (n + 1) j.1}ᶜ) := by
-  rw [representableJoinHornInitial_eq_iSup_multicoforkRanges m (n + 1) i (by omega)]
-  apply le_antisymm
-  · rw [iSup_le_iff]
-    intro x
-    rcases x with a | j
-    · refine le_trans ?_ (le_iSup (fun j : ({i}ᶜ : Set (Fin (n + 2))) ↦
-          SSet.stdSimplex.face ({joinShiftedVertex m (n + 1) j.1}ᶜ)) a.1.1)
-      rw [← (representableJoinHornCocone.{u} m i).w
-        (Limits.WalkingMultispan.Hom.fst a)]
-      rw [Category.assoc, SSet.Subcomplex.range_comp]
-      exact SSet.Subcomplex.image_le_range _ _
-    · rw [representableJoinHornCocone_right_range m n i j]
-      exact le_iSup _ j
-  · rw [iSup_le_iff]
-    intro j
-    rw [← representableJoinHornCocone_right_range m n i j]
-    exact le_iSup _ (Limits.WalkingMultispan.right j)
 
 
 /-- The ordinary simplicial slice underlying the augmented Day internal hom. -/
