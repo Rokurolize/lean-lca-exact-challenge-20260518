@@ -378,6 +378,20 @@ noncomputable def PulledRelativeFunctorProperty
       ((internalHomNerveIso L E).hom.app (Opposite.op ⦋0⦌)
         (CategoryTheory.nerveEquiv.symm F)))
 
+/-- The morphism property on the simplicial homotopy category represented by marked
+edges.  `HEq` records the endpoint transports inherent in the path-quotient
+presentation of the homotopy category. -/
+def markedHomotopyMorphismProperty {L : SSet.{u}} (W : EdgeMarking L) :
+    MorphismProperty (SSet.hoFunctor.obj L) :=
+  fun _ _ f ↦ ∃ (x y : L _⦋0⦌) (e : SSet.Edge x y),
+    W.marked e.edge ∧ HEq f (edgeHomotopyClass e)
+
+theorem markedHomotopyMorphismProperty_edge_mem
+    {L : SSet.{u}} (W : EdgeMarking L) {x y : L _⦋0⦌}
+    (e : SSet.Edge x y) (he : W.marked e.edge) :
+    markedHomotopyMorphismProperty W (edgeHomotopyClass e) :=
+  ⟨x, y, e, he, HEq.rfl⟩
+
 /-- A simplicial isomorphism restricts to the full subcomplexes cut out by a vertex
 predicate and its pullback. -/
 noncomputable def fullSubcomplexOnVerticesIsoOfIso {X Y : SSet.{u}} (e : X ≅ Y)
