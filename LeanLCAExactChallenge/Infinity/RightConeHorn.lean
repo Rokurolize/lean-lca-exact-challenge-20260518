@@ -363,49 +363,64 @@ lemma representableJoinHornInitial_sup_baseFace_eq_shiftedHorn
   · apply sup_le
     · apply iSup_le
       rintro ⟨j, hj⟩
-      exact SSet.face_le_horn
-        (⟨j.val + 1, by omega⟩ : Fin (0 + (r + 1) + 2))
-        (⟨i.val + 1, by omega⟩ : Fin (0 + (r + 1) + 2)) (by
-        intro h
-        have : j = i := by
-          apply Fin.ext
-          simpa only [Fin.mk.injEq] using congrArg Fin.val h
-        exact hj (by simpa using this))
-    · exact SSet.face_le_horn
-        (0 : Fin (0 + (r + 1) + 2))
-        (⟨i.val + 1, by omega⟩ : Fin (0 + (r + 1) + 2)) (by
+      exact le_iSup (fun q :
+        ({(⟨i.val + 1, by omega⟩ : Fin (0 + (r + 1) + 2))}ᶜ :
+          Set (Fin (0 + (r + 1) + 2))) =>
+        SSet.stdSimplex.face ({q.1}ᶜ))
+        ⟨⟨0 + 1 + j.val, by omega⟩, by
+          simp only [Set.mem_compl_iff, Set.mem_singleton_iff]
           intro h
-          have := congrArg Fin.val h
-          simp only [Fin.val_zero, Fin.val_mk] at this
-          omega)
-  · apply iSup_le
-    rintro ⟨j, hj⟩
-    revert hj
-    refine Fin.cases ?_ (fun k hj => ?_) j
-    · intro _
-      exact le_sup_right
-    · apply le_sup_of_le_left
-      exact le_iSup (fun q : ({i}ᶜ : Set (Fin (r + 2))) =>
-        SSet.stdSimplex.face
-          ({(⟨0 + 1 + q.1.val, by omega⟩ :
-            Fin (0 + (r + 1) + 2))}ᶜ)) ⟨k, by
-          intro hki
           apply hj
           apply Fin.ext
-          simp only [Fin.val_succ, Fin.val_mk]
-          simpa using congrArg Fin.val hki⟩
-
-lemma range_leftConeHornCornerStdMap_eq_shiftedHorn
-    (n : ℕ) (i : Fin (n + 1)) (hi : i < Fin.last n) :
-    SSet.Subcomplex.range (leftConeHornCornerStdMap.{u} n i) =
-      SSet.horn (n + 1) i.succ := by
-  cases n with
-  | zero => omega
-  | succ r =>
-      rw [range_leftConeHornCornerStdMap_eq_sup]
-      simpa only [Nat.zero_add, Nat.succ_eq_add_one, Nat.add_assoc,
-        Nat.add_comm, Nat.add_left_comm] using
-        representableJoinHornInitial_sup_baseFace_eq_shiftedHorn (u := u) r i
+          have hv := congrArg Fin.val h
+          simp only [Fin.val_mk] at hv
+          omega⟩
+    · exact le_iSup (fun q :
+        ({(⟨i.val + 1, by omega⟩ : Fin (0 + (r + 1) + 2))}ᶜ :
+          Set (Fin (0 + (r + 1) + 2))) =>
+        SSet.stdSimplex.face ({q.1}ᶜ)) ⟨0, by
+          simp only [Set.mem_compl_iff, Set.mem_singleton_iff]
+          intro h
+          have hv := congrArg Fin.val h
+          simp only [Fin.val_zero, Fin.val_mk] at hv
+          omega⟩
+  · apply iSup_le
+    rintro ⟨j, hj⟩
+    by_cases hj0 : j = 0
+    · subst j
+      exact le_sup_right
+    · let k : Fin (r + 2) := ⟨j.val - 1, by
+          have hjpos : 0 < j.val := Fin.pos_iff_ne_zero.mpr hj0
+          omega⟩
+      have hface :
+          (⟨0 + 1 + k.val, by omega⟩ : Fin (0 + (r + 1) + 2)) = j := by
+        apply Fin.ext
+        have hjpos : 0 < j.val := Fin.pos_iff_ne_zero.mpr hj0
+        dsimp [k]
+        omega
+      have hki : k ≠ i := by
+        intro h
+        apply hj
+        simp only [Set.mem_singleton_iff]
+        apply Fin.ext
+        have hv := congrArg Fin.val h
+        have hf := congrArg Fin.val hface
+        dsimp [k] at hv hf
+        simp only [Fin.val_mk] at hf ⊢
+        omega
+      have hle : SSet.stdSimplex.face
+          ({(⟨0 + 1 + k.val, by omega⟩ : Fin (0 + (r + 1) + 2))}ᶜ) ≤
+          (⨆ q : ({i}ᶜ : Set (Fin (r + 2))), SSet.stdSimplex.face
+            ({(⟨0 + 1 + q.1.val, by omega⟩ :
+              Fin (0 + (r + 1) + 2))}ᶜ)) ⊔
+            SSet.stdSimplex.face ({(0 : Fin (0 + (r + 1) + 2))}ᶜ) :=
+        le_sup_of_le_left (le_iSup (fun q : ({i}ᶜ : Set (Fin (r + 2))) =>
+          SSet.stdSimplex.face
+            ({(⟨0 + 1 + q.1.val, by omega⟩ :
+              Fin (0 + (r + 1) + 2))}ᶜ)) ⟨k, by simpa using hki⟩)
+      convert hle using 1
+      simp only [Subtype.coe_eta]
+      rw [hface]
 
 lemma emptyJoinCell_zero_eq_baseFace (r : ℕ) :
     SSet.Subcomplex.ofSimplex
@@ -415,7 +430,17 @@ lemma emptyJoinCell_zero_eq_baseFace (r : ℕ) :
   congr 1
   ext x
   simp [joinSigmaOneVertices, joinFirstVertices, joinSecondVertices]
+  constructor
+  · rintro ⟨a, rfl⟩
+    simp
+  · intro hx
+    obtain rfl | ⟨a, rfl⟩ := Fin.eq_zero_or_eq_succ x
+    · exact (hx rfl).elim
+    · exact ⟨⟨a.val, by omega⟩, by apply Fin.ext; simp [Nat.add_comm]⟩
 
+/- The abandoned range-factorization route is retained temporarily below for reference.
+It is superseded by the canonical join-sigma bicartesian-square transport. -/
+/-
 lemma range_horn_comp_rightConeBase_eq_emptyHornRange
     (r : ℕ) (i : Fin (r + 2)) :
     SSet.Subcomplex.range
@@ -423,10 +448,23 @@ lemma range_horn_comp_rightConeBase_eq_emptyHornRange
           simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[r + 1] ≫
           (simplicialJoinStdSimplexIsoNat 0 (r + 1)).hom) =
       joinSigmaOneHornRange 0 (r + 1) (∅ : Finset (Fin 1)) i := by
-  rw [← Category.assoc, rightCone_rightInclusion_stdSimplex]
-  rw [SSet.Subcomplex.range_comp, SSet.horn_eq_iSup,
+  rw [rightCone_rightInclusion_stdSimplex]
+  rw [SSet.Subcomplex.range_comp]
+  have hr : SSet.Subcomplex.range (SSet.horn (r + 1) i).ι =
+      SSet.horn (r + 1) i := Subfunctor.range_ι _
+  rw [hr]
+  rw [SSet.horn_eq_iSup,
     SSet.Subcomplex.image_iSup]
-  rw [joinSigmaOneHornRange_eq_iSup_erasedFaces]
+  have hjoin : joinSigmaOneHornRange.{u} 0 (r + 1)
+      (∅ : Finset (Fin 1)) i =
+      ⨆ (k : ({i}ᶜ : Set (Fin (r + 2)))), SSet.stdSimplex.face
+        ((joinSigmaOneVertices 0 (r + 1) (∅ : Finset (Fin 1))).erase
+          (joinSigmaOne 0 (r + 1) (∅ : Finset (Fin 1)) k.1)) := by
+    simpa only [Finset.card_empty, Nat.zero_add,
+      joinSigmaOneDistinguishedIndex] using
+      joinSigmaOneHornRange_eq_iSup_erasedFaces (u := u) 0 r
+        (∅ : Finset (Fin 1)) i
+  rw [hjoin]
   congr 1
   funext j
   rw [← stdSimplex_range_map_delta j.1, ← SSet.Subcomplex.range_comp]
@@ -546,5 +584,6 @@ lemma leftConeHornCornerMap_innerAnodyne
       (simplicialJoinStdSimplexIsoNat 0 n).hom) ≫
       (simplicialJoinStdSimplexIsoNat 0 n).inv) at hc
   simpa only [Category.assoc, Iso.hom_inv_id, Category.comp_id] using hc
+-/
 
 end LeanLCAExactChallenge.Infinity
