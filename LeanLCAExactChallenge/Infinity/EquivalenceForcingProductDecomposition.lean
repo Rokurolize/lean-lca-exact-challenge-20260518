@@ -83,6 +83,19 @@ open Simplicial
 
 variable {C : Type u} [Category.{v} C] (R : RelativeCategoryData C)
 
+/-- The marking condition in every simplicial degree is imposed vertexwise: an `n`-simplex
+belongs to the relative internal hom exactly when each of its vertices represents a map that
+inverts every marked edge. -/
+theorem mem_relativeInternalHom_iff_vertices_invert
+    {X Q : SSet.{max u v}} (W : EdgeMarking X) {U : SimplexCategoryᵒᵖ}
+    (s : ((ihom X).obj Q).obj U) :
+    s ∈ (relativeInternalHom W Q).obj U ↔
+      ∀ i : Fin (U.unop.len + 1),
+        InvertsMarkedEdges W
+          (internalHomVertexMap X Q
+            (((ihom X).obj Q).map (SimplexCategory.const ⦋0⦌ U.unop i).op s)) :=
+  mem_fullSubcomplexOnVertices_iff _ _ _
+
 /-- Evaluation of maps out of the coproduct of free equivalences at one weak arrow. -/
 def weakEquivalenceMappingComponent (Q : SSet.{max u v})
     (a : WeakEquivalenceArrow C R) :
