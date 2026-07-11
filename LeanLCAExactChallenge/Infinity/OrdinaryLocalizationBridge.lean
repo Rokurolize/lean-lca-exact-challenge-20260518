@@ -328,6 +328,17 @@ def internalHomReflectionPre (L : SSet.{u}) (E : Cat.{u, u}) :
       (ihom L).obj (nerveFunctor.obj E) :=
   (MonoidalClosed.pre (nerveAdjunction.unit.app L)).app (nerveFunctor.obj E)
 
+/-- Extracting a vertex after reflection-unit precomposition is ordinary
+precomposition of the extracted simplicial map. -/
+theorem internalHomVertexMap_reflectionPre (L : SSet.{u}) (E : Cat.{u, u})
+    (v : ((ihom (nerveFunctor.obj (SSet.hoFunctor.obj L))).obj
+      (nerveFunctor.obj E)) _⦋0⦌) :
+    internalHomVertexMap L (nerveFunctor.obj E)
+      ((internalHomReflectionPre L E).app (Opposite.op ⦋0⦌) v) =
+      nerveAdjunction.unit.app L ≫ internalHomVertexMap
+        (nerveFunctor.obj (SSet.hoFunctor.obj L)) (nerveFunctor.obj E) v := by
+  rfl
+
 /-- The Yoneda component used to test internal Homs into categorical nerves. -/
 noncomputable def internalHomToNerveYonedaEquiv
     (Z L : SSet.{u}) (E : Cat.{u, u}) :
@@ -421,6 +432,23 @@ noncomputable def internalHomNerveIso (L : SSet.{u}) (E : Cat.{u, u}) :
     internalHomReflectionPre_isIso L E
   exact nerveInternalHomIso (SSet.hoFunctor.obj L) E ≪≫
     @asIso SSet _ _ _ (internalHomReflectionPre L E) hPre
+
+/-- The vertex transported by the arbitrary-source internal-Hom nerve isomorphism
+is the nerve of the corresponding functor, precomposed with the reflection unit. -/
+theorem internalHomNerveIso_vertex_map (L : SSet.{u}) (E : Cat.{u, u})
+    (F : (ihom (SSet.hoFunctor.obj L)).obj E) :
+    internalHomVertexMap L (nerveFunctor.obj E)
+      ((internalHomNerveIso L E).hom.app (Opposite.op ⦋0⦌)
+        (CategoryTheory.nerveEquiv.symm F)) =
+      nerveAdjunction.unit.app L ≫ nerveFunctor.map F.toCatHom := by
+  rw [show (internalHomNerveIso L E).hom.app (Opposite.op ⦋0⦌)
+      (CategoryTheory.nerveEquiv.symm F) =
+    (internalHomReflectionPre L E).app (Opposite.op ⦋0⦌)
+      ((nerveInternalHomIso (SSet.hoFunctor.obj L) E).hom.app
+        (Opposite.op ⦋0⦌) (CategoryTheory.nerveEquiv.symm F)) by rfl]
+  rw [internalHomVertexMap_reflectionPre]
+  rw [nerveInternalHomIso_vertex_map]
+  rfl
 
 /-- The marking-inverting vertex predicate transported to the ordinary functor category by
 the internal-Hom nerve isomorphism. -/
