@@ -453,4 +453,64 @@ noncomputable def leftConeHornRangeBicartSq (r : ℕ) (i : Fin (r + 2)) :
       ← emptyJoinCell_zero_eq_baseFace,
       initial_inf_emptyJoinCell_eq_hornRange]
 
+noncomputable def leftConeHornSourceIsPushoutRange
+    (r : ℕ) (i : Fin (r + 2)) :
+    let f := simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[r + 1, i]
+    let g := (SSet.horn (r + 1) i).ι
+    let h := representableJoinHornMap.{u} 0 (r + 1) i
+    let k := simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[r + 1] ≫
+      (simplicialJoinStdSimplexIsoNat 0 (r + 1)).hom
+    let sq := leftConeHornRangeBicartSq.{u} r i
+    IsPushout f g
+      (SSet.Subcomplex.toRange h ≫ SSet.Subcomplex.homOfLE sq.le₂₄)
+      (SSet.Subcomplex.toRange k ≫ SSet.Subcomplex.homOfLE sq.le₃₄) := by
+  dsimp only
+  let f := simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[r + 1, i]
+  let g := (SSet.horn (r + 1) i).ι
+  let h := representableJoinHornMap.{u} 0 (r + 1) i
+  let k := simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[r + 1] ≫
+    (simplicialJoinStdSimplexIsoNat 0 (r + 1)).hom
+  let sq := leftConeHornRangeBicartSq.{u} r i
+  let e₁ := simplicialSetIsoRangeOfMono (g ≫ k)
+  let e₂ := simplicialSetIsoRangeOfMono h
+  let e₃ := simplicialSetIsoRangeOfMono k
+  refine sq.isPushout.of_iso' e₁ e₂ e₃ (Iso.refl _) ?_ ?_ ?_ ?_
+  · apply (cancel_mono (SSet.Subcomplex.range h).ι).mp
+    simp [e₁, e₂, f, g, h, k, sq, simplicialSetIsoRangeOfMono,
+      Category.assoc]
+  · apply (cancel_mono (SSet.Subcomplex.range k).ι).mp
+    simp [e₁, e₃, g, k, sq, simplicialSetIsoRangeOfMono,
+      Category.assoc]
+  · simp [e₂, h, sq, simplicialSetIsoRangeOfMono, Category.assoc]
+  · simp [e₃, k, sq, simplicialSetIsoRangeOfMono, Category.assoc]
+
+noncomputable def leftConeHornSourceRangeIso (r : ℕ) (i : Fin (r + 2)) :
+    pushout (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[r + 1, i])
+        (SSet.horn (r + 1) i).ι ≅
+      ((representableJoinHornInitial 0 (r + 1) i ⊔
+        SSet.stdSimplex.face ({(0 : Fin (0 + (r + 1) + 2))}ᶜ)) : SSet.{u}) :=
+  (leftConeHornSourceIsPushoutRange.{u} r i).isoPushout.symm
+
+lemma leftConeHornSourceRangeIso_hom_ι (r : ℕ) (i : Fin (r + 2)) :
+    (leftConeHornSourceRangeIso.{u} r i).hom ≫
+        (representableJoinHornInitial 0 (r + 1) i ⊔
+          SSet.stdSimplex.face ({(0 : Fin (0 + (r + 1) + 2))}ᶜ)).ι =
+      leftConeHornCornerStdMap (r + 1) i := by
+  apply pushout.hom_ext
+  · rw [← Category.assoc]
+    rw [leftConeHornSourceRangeIso, Iso.symm_hom,
+      IsPushout.inl_isoPushout_inv]
+    simp [representableJoinHornMap, leftConeHornCornerStdMap,
+      Category.assoc]
+  · rw [← Category.assoc]
+    rw [leftConeHornSourceRangeIso, Iso.symm_hom,
+      IsPushout.inr_isoPushout_inv]
+    simp [leftConeHornCornerStdMap, Category.assoc]
+
+noncomputable instance leftConeHornCornerStdMap_mono
+    (r : ℕ) (i : Fin (r + 2)) :
+    Mono (leftConeHornCornerStdMap.{u} (r + 1) i) := by
+  rw [← leftConeHornSourceRangeIso_hom_ι (u := u) r i]
+  infer_instance
+
 end LeanLCAExactChallenge.Infinity
