@@ -23,12 +23,12 @@ open CategoryTheory.MonoidalCategory
 
 universe u
 
-universe v w
+universe v w x
 
 /-- In a Cat-enriched ordinary category, the transported horizontal composite has the
 expected enriched-composition normal form after applying `Hom.base`. -/
 theorem catEnrichedOrdinary_base_hComp
-    {C : Type u} [Category.{v} C] [EnrichedOrdinaryCategory Cat.{w, u} C]
+    {C : Type x} [Category.{v} C] [EnrichedOrdinaryCategory Cat.{w, u} C]
     {a b c : CategoryTheory.CatEnrichedOrdinary C}
     {f f' : a ⟶ b} {g g' : b ⟶ c} (eta : f ⟶ f') (theta : g ⟶ g') :
     CategoryTheory.CatEnrichedOrdinary.Hom.base
@@ -185,6 +185,77 @@ theorem qcat_eHomWhiskerLeft_eq_hoFunctor_map_ihom
   change SSet.hoFunctor.map
       (@eHomWhiskerLeft SSet _ _ SSet _ _ A.obj X.obj Y.obj f.hom) = _
   rfl
+
+set_option maxHeartbeats 800000 in
+set_option backward.isDefEq.respectTransparency false in
+/-- The explicit equivalence from maps out of the tensor unit to the homotopy category
+intertwines bicategorical postcomposition with the homotopy-category functor. -/
+theorem qcatUnitHomEquivalence_postcomp
+    {X Y : SSet.QCat.{u}} (f : X ⟶ Y) :
+    Bicategory.postcomp qcatTensorUnit f ⋙ (qcatUnitHomEquivalence Y).functor =
+      (qcatUnitHomEquivalence X).functor ⋙ (SSet.hoFunctor.map f.hom).toFunctor := by
+  refine CategoryTheory.Functor.ext
+    (F := Bicategory.postcomp qcatTensorUnit f ⋙ (qcatUnitHomEquivalence Y).functor)
+    (G := (qcatUnitHomEquivalence X).functor ⋙
+      (SSet.hoFunctor.map f.hom).toFunctor) (fun g ↦ ?_) ?_
+  · rfl
+  intro g g' α
+  dsimp [qcatUnitHomEquivalence, qcatHomToEnrichedHom,
+    CategoryTheory.Equivalence.trans, Cat.equivOfIso, CategoryTheory.Functor.asEquivalence]
+  change (SSet.hoFunctor.mapIso
+      (MonoidalClosed.unitIsoSelf (C := SSet.{u}) (X := Y.obj))).hom.toFunctor.map
+        (CategoryTheory.CatEnrichedOrdinary.Hom.base
+          (CategoryTheory.CatEnrichedOrdinary.hComp α
+            (CategoryTheory.CatEnrichedOrdinary.Hom.mk
+              (f := f) (g := f)
+              (𝟙 (CategoryTheory.CatEnrichedOrdinary.homEquiv f))))) = _
+  have hcomp := catEnrichedOrdinary_base_hComp α
+    (CategoryTheory.CatEnrichedOrdinary.Hom.mk
+      (f := f) (g := f)
+      (𝟙 (CategoryTheory.CatEnrichedOrdinary.homEquiv f)))
+  rw [hcomp]
+  simp only [CategoryTheory.CatEnrichedOrdinary.base_mk, Functor.map_comp]
+  rw [show CategoryTheory.CatEnriched.hComp
+      (CategoryTheory.CatEnrichedOrdinary.Hom.base α)
+      (𝟙 (CategoryTheory.CatEnrichedOrdinary.homEquiv f)) =
+        (@eHomWhiskerLeft Cat _ _ SSet.QCat _ _ qcatTensorUnit X Y f).toFunctor.map
+          (CategoryTheory.CatEnrichedOrdinary.Hom.base α) by rfl]
+  rw! (castMode := .all) [qcat_eHomWhiskerLeft_eq_hoFunctor_map_ihom qcatTensorUnit f]
+  congr 1
+  have hn := congrArg SSet.hoFunctor.map
+    ((MonoidalClosed.unitNatIso (C := SSet.{u})).inv.naturality f.hom)
+  simp only [SSet.hoFunctor.map_comp] at hn
+  dsimp [qcatTensorUnit, MonoidalClosed.unitIsoSelf, CategoryTheory.Functor.mapIso]
+  simp
+  apply eq_of_heq
+  have hn' := congrArg CategoryTheory.Cat.Hom.toFunctor hn
+  have hh := CategoryTheory.Functor.hcongr_hom hn'
+    (CategoryTheory.CatEnrichedOrdinary.Hom.base α)
+  simp [Functor.comp_map] at hh
+  exact HEq.trans (by
+    congr
+    apply eq_of_heq
+    exact eqRec_heq_iff_heq.mpr HEq.rfl) (HEq.trans (heq_of_eq hh) (by rfl))
+
+set_option backward.isDefEq.respectTransparency false in
+/-- A bicategorical equivalence of quasicategories induces an equivalence on homotopy
+categories. -/
+theorem IsBicategoricalEquivalence.hoFunctor_isEquivalence
+    {X Y : SSet.QCat.{u}} {f : X ⟶ Y} (hf : IsBicategoricalEquivalence f) :
+    (SSet.hoFunctor.map f.hom).toFunctor.IsEquivalence := by
+  obtain ⟨e, rfl⟩ := hf
+  haveI : (Bicategory.postcomp qcatTensorUnit e.hom).IsEquivalence :=
+    bicategoricalEquivalence_postcomp_isEquivalence e qcatTensorUnit
+  haveI : (qcatUnitHomEquivalence X).functor.IsEquivalence := inferInstance
+  haveI : (qcatUnitHomEquivalence Y).functor.IsEquivalence := inferInstance
+  haveI : (Bicategory.postcomp qcatTensorUnit e.hom ⋙
+      (qcatUnitHomEquivalence Y).functor).IsEquivalence := inferInstance
+  haveI : ((qcatUnitHomEquivalence X).functor ⋙
+      (SSet.hoFunctor.map e.hom.hom).toFunctor).IsEquivalence := by
+    rw [← qcatUnitHomEquivalence_postcomp e.hom]
+    infer_instance
+  exact CategoryTheory.Functor.isEquivalence_of_comp_left
+    (qcatUnitHomEquivalence X).functor (SSet.hoFunctor.map e.hom.hom).toFunctor
 
 /-- Maps between nerves are exactly ordinary functors.  This is the fully-faithful
 starting point for comparing the mapping localization with its ordinary truncation. -/
