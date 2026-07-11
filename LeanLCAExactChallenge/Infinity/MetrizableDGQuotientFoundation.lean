@@ -280,6 +280,26 @@ def internalDifferentialLargeMap {X Y : ComplexCategory}
       (fun s : GradedSummandIndex X Y (n + 1) ↦ largeSummandModule s)
       ⟨w, d.raise i⟩
 
+/-- Total degree of the tensor entries strictly preceding an arrow factor, including one
+degree-`-1` contracting symbol for every preceding intermediate object. -/
+def DegreeProfile.prefixTotal {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin (w.length + 1)) : ℤ :=
+  (∑ j ∈ Finset.univ.filter (fun j : Fin (w.length + 1) ↦ j < i), d.arrowDegree j) -
+    i.val
+
+/-- The Koszul sign of the internal differential on the `i`-th arrow factor. -/
+def DegreeProfile.internalSign {X Y : ComplexCategory}
+    {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
+    (i : Fin (w.length + 1)) : ℤ :=
+  if Even (d.prefixTotal i) then 1 else -1
+
+/-- Sum of all signed internal-differential terms leaving one homogeneous word summand. -/
+def internalDifferentialFromSummand {X Y : ComplexCategory}
+    {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n) :
+    Quiver.Hom (largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+      (quotientGradedModule X Y (n + 1)) :=
+  ∑ i, d.internalSign i • internalDifferentialLargeMap d i
+
 @[simp]
 theorem singleton_object (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory)
     (i : Fin (singleton X Y A).length) : (singleton X Y A).object i = A.obj :=
