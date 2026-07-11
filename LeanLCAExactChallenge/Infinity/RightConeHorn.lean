@@ -317,4 +317,36 @@ lemma leftConeHornCornerMap_inr (n : ℕ) (i : Fin (n + 1)) :
         (SSet.horn n i).ι ≫ leftConeHornCornerMap n i =
       simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[n] := by
   apply pushout.inr_desc
+
+/-- The cone-horn corner transported to its standard ambient simplex. -/
+noncomputable def leftConeHornCornerStdMap (n : ℕ) (i : Fin (n + 1)) :
+    pushout (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[n, i])
+        (SSet.horn n i).ι ⟶ Δ[0 + n + 1] :=
+  leftConeHornCornerMap n i ≫ (simplicialJoinStdSimplexIsoNat 0 n).hom
+
+lemma range_leftConeHornCornerStdMap_eq_sup (n : ℕ) (i : Fin (n + 1)) :
+    SSet.Subcomplex.range (leftConeHornCornerStdMap.{u} n i) =
+      representableJoinHornInitial 0 n i ⊔
+        SSet.stdSimplex.face ({(0 : Fin (0 + n + 2))}ᶜ) := by
+  let f := simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[n, i]
+  let g := (SSet.horn n i).ι
+  let h := simplicialJoinMap (𝟙 (Δ[0] : SSet.{u})) g ≫
+    (simplicialJoinStdSimplexIsoNat 0 n).hom
+  let k := simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[n] ≫
+    (simplicialJoinStdSimplexIsoNat 0 n).hom
+  have w : f ≫ h = g ≫ k := by
+    dsimp only [f, g, h, k]
+    rw [← Category.assoc, ← rightCone_rightInclusion_naturality]
+    rw [Category.assoc]
+  have hm : leftConeHornCornerStdMap n i = pushout.desc h k w := by
+    apply pushout.hom_ext
+    · rw [pushout.inl_desc]
+      dsimp only [leftConeHornCornerStdMap]
+      rw [← Category.assoc, leftConeHornCornerMap_inl]
+    · rw [pushout.inr_desc]
+      dsimp only [leftConeHornCornerStdMap]
+      rw [← Category.assoc, leftConeHornCornerMap_inr]
+  rw [hm, range_pushout_desc_eq_sup]
+  change representableJoinHornInitial 0 n i ⊔ _ = _
+  rw [range_rightConeBaseLeg]
 end LeanLCAExactChallenge.Infinity
