@@ -884,6 +884,29 @@ lemma positiveCanonicalConeHorn_le₃₂_ι (s : ℕ) (i : Fin (s + 3)) :
         (joinSigmaOneVertices 0 (s + 2) (∅ : Finset (Fin 1)))).ι :=
   SSet.Subcomplex.homOfLE_ι _
 
+lemma positiveCanonicalConeHornCornerMap_right
+    (s : ℕ) (i : Fin (s + 3)) :
+    (emptyJoinFaceIso (s + 1)).hom ≫
+        SSet.Subcomplex.homOfLE
+          (leftConeHornCanonicalBicartSq (s + 1) i).le₃₄ ≫
+        positiveCanonicalConeHornCornerMap.{u} s i =
+      simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[s + 2] := by
+  calc
+    _ = (emptyJoinFaceIso (s + 1)).hom ≫
+          (SSet.stdSimplex.face
+            (joinSigmaOneVertices 0 (s + 2) (∅ : Finset (Fin 1)))).ι ≫
+          (simplicialJoinStdSimplexIsoNat 0 (s + 2)).inv := by
+        rw [positiveCanonicalConeHornCornerMap]
+        slice_lhs 2 3 => rw [positiveCanonicalConeHorn_le₃₂_ι]
+    _ = SSet.stdSimplex.map (standardJoinRightOperator 0 (s + 2)) ≫
+          (simplicialJoinStdSimplexIsoNat 0 (s + 2)).inv := by
+        rw [← Category.assoc, emptyJoinFaceIso_hom_ι]
+    _ = (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[s + 2] ≫
+          (simplicialJoinStdSimplexIsoNat 0 (s + 2)).hom) ≫
+          (simplicialJoinStdSimplexIsoNat 0 (s + 2)).inv := by
+        rw [rightCone_rightInclusion_stdSimplex]
+    _ = _ := by rw [Category.assoc, Iso.hom_inv_id, Category.comp_id]
+
 lemma positiveCanonicalConeHornCornerMap_innerAnodyne
     (s : ℕ) (i : Fin (s + 3)) (hi : i < Fin.last (s + 2)) :
     SSet.innerAnodyneExtensions
