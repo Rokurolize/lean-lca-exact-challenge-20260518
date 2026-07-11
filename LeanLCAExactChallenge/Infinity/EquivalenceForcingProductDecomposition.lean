@@ -80,6 +80,42 @@ theorem weakEquivalenceMappingComponent_restriction_to_equivalenceEdges
     equivalenceIntervalRestrictionToEquivalenceEdges_comp_inclusion] using
       (weakEquivalenceMappingComponent_restriction R Q a).symm
 
+/-- The presentation mapping object, identified with the standard pullback of the two family
+restriction maps. -/
+noncomputable def equivalenceForcingPresentationMappingPullbackIso
+    (Q : SSet.{max u v}) :
+    (ihom (equivalenceForcingPresentation R)).obj Q ≅
+      pullback
+        (internalHomPrecomp (weakIntervalsToEquivalences R) Q)
+        (internalHomPrecomp (weakIntervalsToNerve R) Q) :=
+  (equivalenceForcingPresentationMapping_isPullback R Q).isoPullback
+
+/-- Under the standard pullback identification, the second projection is precomposition by
+the map from the ordinary nerve to the equivalence-forcing presentation. -/
+@[reassoc]
+theorem equivalenceForcingPresentationMappingPullbackIso_hom_snd
+    (Q : SSet.{max u v}) :
+    (equivalenceForcingPresentationMappingPullbackIso R Q).hom ≫
+        pullback.snd
+          (internalHomPrecomp (weakIntervalsToEquivalences R) Q)
+          (internalHomPrecomp (weakIntervalsToNerve R) Q) =
+      internalHomPrecomp (toEquivalenceForcingPresentation R) Q :=
+  (equivalenceForcingPresentationMapping_isPullback R Q).isoPullback_hom_snd
+
+/-- Consequently, after forgetting the equivalence-edge witnesses, the genuine presentation
+comparison is exactly the second projection of this pullback. -/
+@[reassoc]
+theorem equivalenceForcingPresentationMappingPullbackIso_hom_snd_eq_comparison
+    (Q : SSet.QCat.{max u v}) :
+    (equivalenceForcingPresentationMappingPullbackIso R Q.obj).hom ≫
+        pullback.snd
+          (internalHomPrecomp (weakIntervalsToEquivalences R) Q.obj)
+          (internalHomPrecomp (weakIntervalsToNerve R) Q.obj) =
+      equivalenceForcingPresentationMappingComparison R Q ≫
+        (relativeInternalHom (relativeNerveEdgeMarking R) Q.obj).ι := by
+  rw [equivalenceForcingPresentationMappingPullbackIso_hom_snd,
+    equivalenceForcingPresentationMappingComparison_comp_inclusion]
+
 end RelativeCategoryData
 end Infinity
 end LeanLCAExactChallenge
