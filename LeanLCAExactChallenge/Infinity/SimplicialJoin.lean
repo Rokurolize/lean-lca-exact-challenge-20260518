@@ -1098,6 +1098,17 @@ def joinSigmaOneHornRange (m n : ℕ) (T : Finset (Fin (m + 1)))
     (Δ[m + n + 1] : SSet.{u}).Subcomplex :=
   SSet.Subcomplex.range (joinSigmaOneHornMap m n T i)
 
+lemma joinSigmaOneHornRange_eq_image (m n : ℕ)
+    (T : Finset (Fin (m + 1))) (i : Fin (n + 1)) :
+    joinSigmaOneHornRange m n T i =
+      (SSet.horn (T.card + n) (joinSigmaOneDistinguishedIndex n T i)).image
+        ((joinSigmaOneFaceIso m n T).hom ≫
+          (SSet.stdSimplex.face (joinSigmaOneVertices m n T)).ι) := by
+  rw [joinSigmaOneHornRange, joinSigmaOneHornMap,
+    SSet.Subcomplex.range_comp]
+  congr 1
+  exact Subfunctor.range_ι _
+
 lemma joinSigmaOneHornRange_le_face (m n : ℕ)
     (T : Finset (Fin (m + 1))) (i : Fin (n + 1)) :
     joinSigmaOneHornRange m n T i ≤
@@ -1501,6 +1512,7 @@ lemma representableJoinHornInitial_eq_iSup_multicoforkRanges
   exact SSet.range_eq_iSup_of_isColimit
     (representableJoinHornIsColimit.{u} m i hn)
     (representableJoinHornMap m n i)
+
 
 /-- The ordinary simplicial slice underlying the augmented Day internal hom. -/
 def simplicialSlice (X Q : SSet.{u}) : SSet.{u} :=
