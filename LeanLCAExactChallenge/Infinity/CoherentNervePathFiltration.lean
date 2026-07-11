@@ -640,6 +640,15 @@ noncomputable def liftedPiBitsCubeIsoExplicit : (n : ℕ) →
           MonoidalCategory.tensorIso (liftedPiBitsCubeIsoExplicit n)
             stdSimplexOneIsoNerveFinTwo.symm
 
+/-- Evaluation of a lifted bitvector at one cubical coordinate. -/
+def liftedPiBitsEval (n : ℕ) (a : Fin n) :
+    CategoryTheory.Functor (LiftedPiBits.{u} n) (ULift.{u} (Fin 2)) where
+  obj b := b.val a
+  map f := f a
+  map_id _ := rfl
+  map_comp _ _ := rfl
+
+
 /-- A numbering of the internal vertices identifies the path poset with the lifted cubical
 bitvector category. -/
 noncomputable def thickPathLiftedPiBitsEquiv {J : Type u} [LinearOrder J]
@@ -1159,6 +1168,27 @@ theorem knownAt_iff_bitvector_corner (c : PathChain r i j) (k : J)
     · right
       refine ⟨x.1, le_of_lt x.2.1, le_of_lt x.2.2, hxk, ?_⟩
       simpa using hx
+
+/-- Endpoint signs for the cubical corner supplied by the `k`th coherent horn: the coordinate
+of `k` is fixed at `1`, while every other internal coordinate is fixed at `0`. -/
+noncomputable def coherentCornerSign (k : J) (hik : i < k) (hkj : k < j)
+    (n : ℕ) (e : InteriorVertex i j ≃ Fin n) : Fin n → Fin 2 :=
+  fun a ↦ if e.symm a = ⟨k, hik, hkj⟩ then 1 else 0
+
+@[simp]
+theorem coherentCornerSign_at_missing (k : J) (hik : i < k) (hkj : k < j)
+    (n : ℕ) (e : InteriorVertex i j ≃ Fin n) :
+    coherentCornerSign k hik hkj n e (e ⟨k, hik, hkj⟩) = 1 := by
+  simp [coherentCornerSign]
+
+theorem coherentCornerSign_of_ne (k : J) (hik : i < k) (hkj : k < j)
+    (n : ℕ) (e : InteriorVertex i j ≃ Fin n) (a : Fin n)
+    (ha : (e.symm a).1 ≠ k) : coherentCornerSign k hik hkj n e a = 0 := by
+  simp only [coherentCornerSign]
+  split
+  · rename_i h
+    exact (ha (congrArg Subtype.val h)).elim
+  · rfl
 
 /-- A chain is nondegenerate when distinct indices carry distinct paths.  For a monotone chain
 in a poset this is the strict-chain condition. -/
