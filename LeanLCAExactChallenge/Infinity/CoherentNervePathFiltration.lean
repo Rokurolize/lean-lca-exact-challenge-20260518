@@ -1,6 +1,7 @@
 import Mathlib.AlgebraicTopology.SimplicialNerve
 import Mathlib.AlgebraicTopology.SimplicialSet.Horn
 import Mathlib.AlgebraicTopology.SimplicialSet.Nonsingular
+import Mathlib.AlgebraicTopology.SimplicialSet.SubcomplexColimits
 import Mathlib.Order.Extension.Well
 
 /-!
@@ -30,6 +31,17 @@ theorem image_preimage_eq_inf_range {X Y : SSet.{u}} (B : Y.Subcomplex) (f : X �
     exact ⟨hx, ⟨x, rfl⟩⟩
   · rintro ⟨hy, x, rfl⟩
     exact ⟨x, hy, rfl⟩
+
+/-- The union of two subcomplexes is obtained by gluing them along their intersection. -/
+theorem inf_inclusions_isPushout {X : SSet.{u}} (A B : X.Subcomplex) :
+    IsPushout
+      (SSet.Subcomplex.homOfLE (inf_le_left : A ⊓ B ≤ A))
+      (SSet.Subcomplex.homOfLE (inf_le_right : A ⊓ B ≤ B))
+      (SSet.Subcomplex.homOfLE (le_sup_left : A ≤ A ⊔ B))
+      (SSet.Subcomplex.homOfLE (le_sup_right : B ≤ A ⊔ B)) :=
+  SSet.Subcomplex.BicartSq.isPushout
+    ({ sup_eq := rfl
+       inf_eq := rfl } : SSet.Subcomplex.BicartSq (A ⊓ B) A B (A ⊔ B))
 
 end SSet.Subcomplex
 
@@ -2464,6 +2476,94 @@ theorem GlobalPairIndex.previousStage_inf_upper_ofSimplex_eq_hornRange {k : J}
     rw [p.hornRange_eq_horn_image_upperMap,
       ← p.range_upperMap]
     exact SSet.Subcomplex.image_le_range (SSet.horn (p.1 + 1) p.2.position) p.upperMap
+
+/-- The upper simplex classifying a global pair is a monomorphism. -/
+noncomputable instance GlobalPairIndex.mono_upperMap {k : J}
+    (p : GlobalPairIndex i j k) : Mono p.upperMap := by
+  rw [NatTrans.mono_iff_mono_app]
+  intro U
+  rw [mono_iff_injective]
+  intro x y hxy
+  apply SSet.stdSimplex.objEquiv.injective
+  apply SimplexCategory.Hom.ext
+  apply OrderHom.ext
+  funext a
+  apply p.2.rankedInnerFacePair.upperNondegenerate
+  have hxy' :
+      (SSet.yonedaEquiv.symm p.2.upperChain.toNerveSimplex).app U
+          (SSet.stdSimplex.objEquiv.symm (SSet.stdSimplex.objEquiv x)) =
+        (SSet.yonedaEquiv.symm p.2.upperChain.toNerveSimplex).app U
+          (SSet.stdSimplex.objEquiv.symm (SSet.stdSimplex.objEquiv y)) := by
+    simpa [upperMap] using hxy
+  rw [SSet.yonedaEquiv_symm_app_objEquiv_symm,
+    SSet.yonedaEquiv_symm_app_objEquiv_symm] at hxy'
+  exact congrArg (fun z ↦ (PathChain.ofNerveSimplex z).path a) hxy'
+
+/-- The horn map of a global pair is a monomorphism. -/
+noncomputable instance GlobalPairIndex.mono_hornMap {k : J}
+    (p : GlobalPairIndex i j k) : Mono p.2.rankedInnerFacePair.hornMap := by
+  change Mono ((SSet.horn (p.1 + 1) p.2.position).ι ≫ p.upperMap)
+  infer_instance
+
+/-- The canonical identification of the attaching horn with the actual overlap subcomplex. -/
+noncomputable def GlobalPairIndex.hornIsoOverlap {k : J}
+    (p : GlobalPairIndex i j k) :
+    (SSet.horn (p.1 + 1) p.2.position : SSet) ≅
+      ((p.previousStage ⊓
+        SSet.Subcomplex.ofSimplex p.2.upperChain.toNerveSimplex :
+          (CategoryTheory.nerve (ThickPath i j)).Subcomplex) : SSet) := by
+  let f := (SSet.horn (p.1 + 1) p.2.position).ι ≫ p.upperMap
+  letI : Mono f := by dsimp [f]; infer_instance
+  change (SSet.horn (p.1 + 1) p.2.position : SSet) ≅ _
+  exact asIso (SSet.Subcomplex.toRange f) ≪≫
+    SSet.Subcomplex.eqToIso p.previousStage_inf_upper_ofSimplex_eq_hornRange.symm
+
+/-- The canonical identification of the standard simplex with the subcomplex it generates. -/
+noncomputable def GlobalPairIndex.simplexIsoUpperRange {k : J}
+    (p : GlobalPairIndex i j k) :
+    Δ[p.1 + 1] ≅
+      (SSet.Subcomplex.ofSimplex p.2.upperChain.toNerveSimplex : SSet) :=
+  asIso (SSet.Subcomplex.toRange p.upperMap) ≪≫
+    SSet.Subcomplex.eqToIso p.range_upperMap
+
+/-- The attaching horn mapped into the stage preceding a global pair. -/
+noncomputable def GlobalPairIndex.hornToPreviousStage {k : J}
+    (p : GlobalPairIndex i j k) :
+    (SSet.horn (p.1 + 1) p.2.position : SSet) ⟶ (p.previousStage : SSet) :=
+  p.hornIsoOverlap.hom ≫
+    SSet.Subcomplex.homOfLE (inf_le_left :
+      p.previousStage ⊓ SSet.Subcomplex.ofSimplex p.2.upperChain.toNerveSimplex ≤
+        p.previousStage)
+
+/-- The preceding-stage inclusion in the stage obtained by adjoining the upper simplex. -/
+noncomputable def GlobalPairIndex.previousToNextStage {k : J}
+    (p : GlobalPairIndex i j k) : (p.previousStage : SSet) ⟶ (p.nextStage : SSet) :=
+  SSet.Subcomplex.homOfLE p.previousStage_le_nextStage
+
+/-- The upper standard simplex mapped into the stage obtained by adjoining it. -/
+noncomputable def GlobalPairIndex.simplexToNextStage {k : J}
+    (p : GlobalPairIndex i j k) : Δ[p.1 + 1] ⟶ (p.nextStage : SSet) :=
+  p.simplexIsoUpperRange.hom ≫
+    SSet.Subcomplex.homOfLE (le_sup_right :
+      SSet.Subcomplex.ofSimplex p.2.upperChain.toNerveSimplex ≤ p.nextStage)
+
+/-- Each successor step in the path filtration is the actual pushout of an inner horn. -/
+theorem GlobalPairIndex.innerHornAttachment_isPushout {k : J}
+    (p : GlobalPairIndex i j k) :
+    IsPushout p.hornToPreviousStage
+      (SSet.horn (p.1 + 1) p.2.position).ι
+      p.previousToNextStage p.simplexToNextStage := by
+  let A := p.previousStage
+  let B := SSet.Subcomplex.ofSimplex p.2.upperChain.toNerveSimplex
+  have h := SSet.Subcomplex.inf_inclusions_isPushout A B
+  apply h.of_iso'
+    p.hornIsoOverlap (Iso.refl _) p.simplexIsoUpperRange (Iso.refl _)
+  · rfl
+  · apply (cancel_mono B.ι).1
+    simp [hornIsoOverlap, simplexIsoUpperRange, upperMap]
+    rfl
+  · rfl
+  · rfl
 
 /-- A chain outside the known horn has full greatest path and its least path avoids `k`,
 expressed without choosing a decidable finite enumeration. -/
