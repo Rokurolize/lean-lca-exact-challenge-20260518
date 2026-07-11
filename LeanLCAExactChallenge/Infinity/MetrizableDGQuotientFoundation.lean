@@ -432,6 +432,17 @@ theorem eraseIntermediate_singleton (X Y : ComplexCategory)
   apply eq_nil_of_length_eq_zero
   rfl
 
+/-- A contracted one-letter summand is canonically an original Hom summand in degree one
+higher. -/
+def singletonContractedSummandIsoOriginal (X Y : ComplexCategory)
+    (A : CorrectedAcyclicComplexCategory) {n : ℤ}
+    (d : DegreeProfile (singleton X Y A) n)
+    (i : Fin (singleton X Y A).length) :
+    summandModule (d.contract i) ≅ (dgHomZModuleCochainComplex X Y).X (n + 1) :=
+  let h := eraseIntermediate_singleton X Y A i
+  summandModuleCastWordIso h (d.contract i) ≪≫
+    nilSummandIsoOriginal X Y ((d.contract i).castWord h)
+
 end DrinfeldWord
 end MetrizableBoundedComplexes
 end Infinity
