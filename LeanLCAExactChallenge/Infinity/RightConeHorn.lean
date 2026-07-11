@@ -937,6 +937,32 @@ lemma positiveCanonicalConeHorn_pointIso_to_ambient
   have hp := positiveJoinHornIsoRange_hom_initial_ι s i
   exact (congrArg (fun k ↦ (positiveJoinHornIsoRange s i).hom ≫ k) hle).trans hp
 
+lemma representableJoinHornMap_comp_stdIso_inv
+    (s : ℕ) (i : Fin (s + 3)) :
+    representableJoinHornMap.{u} 0 (s + 2) i ≫
+        (simplicialJoinStdSimplexIsoNat 0 (s + 2)).inv =
+      simplicialJoinMap (𝟙 (Δ[0] : SSet.{u})) (SSet.horn (s + 2) i).ι := by
+  rw [representableJoinHornMap, Category.assoc, Iso.hom_inv_id,
+    Category.comp_id]
+
+lemma positiveCanonicalConeHornCornerMap_left
+    (s : ℕ) (i : Fin (s + 3)) :
+    positiveCanonicalConeHornLeftComposite.{u} s i ≫
+        positiveCanonicalConeHornCornerMap s i =
+      simplicialJoinMap (𝟙 (Δ[0] : SSet.{u})) (SSet.horn (s + 2) i).ι := by
+  have ha := positiveCanonicalConeHorn_pointIso_to_ambient s i
+  have hb := representableJoinHornMap_comp_stdIso_inv s i
+  calc
+    _ = (positiveCanonicalConeHornLeftComposite s i ≫
+          positiveCanonicalConeHornApex.ι s i) ≫
+        (simplicialJoinStdSimplexIsoNat 0 (s + 2)).inv := by
+      rfl
+    _ = representableJoinHornMap 0 (s + 2) i ≫
+        (simplicialJoinStdSimplexIsoNat 0 (s + 2)).inv :=
+      congrArg (fun k ↦ k ≫
+        (simplicialJoinStdSimplexIsoNat 0 (s + 2)).inv) ha
+    _ = _ := hb
+
 lemma positiveCanonicalConeHornCornerMap_right
     (s : ℕ) (i : Fin (s + 3)) :
     (emptyJoinFaceIso (s + 1)).hom ≫
