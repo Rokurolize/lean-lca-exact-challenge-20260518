@@ -753,6 +753,8 @@ theorem subcomplex_eqToIso_hom_comp_inclusion
   subst h
   rfl
 
+attribute [reassoc] subcomplex_eqToIso_hom_comp_inclusion
+
 noncomputable def subcomplexEqToIsoInclusionIso
     {X : SSet.{u}} {A B : X.Subcomplex} (h : A = B) :
     (SSet.hoFunctor.map
@@ -774,6 +776,19 @@ noncomputable def relativeInternalHomNerveIso
     fullSubcomplexOnVerticesIsoOfIso (internalHomNerveIso L E)
       (relativeInternalHomNerveVertexProperty W E)
 
+private theorem relativeInternalHomNerveFullSubcategory_hom_comp_inclusion
+    {L : SSet.{u}} (W : EdgeMarking L) (E : Cat.{u, u}) :
+    (nerveFullSubcategoryIsoFullSubcomplex
+        (PulledRelativeFunctorProperty W E)).hom ≫
+      (fullSubcomplexOnVertices
+        (nerveFunctor.obj ((ihom (SSet.hoFunctor.obj L)).obj E))
+        (fun v ↦ PulledRelativeFunctorProperty W E
+          (CategoryTheory.nerveEquiv v))).ι =
+      nerveFunctor.map
+        (ObjectProperty.ι (PulledRelativeFunctorProperty W E)).toCatHom := by
+  ext U F
+  rfl
+
 /-- For an arbitrary simplicial set `L`, mapping into a categorical nerve has homotopy
 category the ordinary functor category out of `ho L`. -/
 noncomputable def internalHomNerveHomotopyEquivalence (L : SSet.{u}) (E : Cat.{u, u}) :
@@ -793,6 +808,69 @@ noncomputable def relativeInternalHomNerveHomotopyEquivalence
     ((SSet.hoFunctor.mapIso (relativeInternalHomNerveIso W E)).symm ≪≫
       nerveFunctorCompHoFunctorIso.app
         (Cat.of (PulledRelativeFunctorProperty W E).FullSubcategory))
+
+set_option maxHeartbeats 500000 in
+set_option backward.isDefEq.respectTransparency false in
+theorem relativeInternalHomNerveHomotopyEquivalence_comp_inclusion
+    {L : SSet.{u}} (W : EdgeMarking L) (E : Cat.{u, u}) :
+    (relativeInternalHomNerveHomotopyEquivalence W E).functor ⋙
+        ObjectProperty.ι (PulledRelativeFunctorProperty W E) =
+      (SSet.hoFunctor.map (relativeInternalHom W (nerveFunctor.obj E)).ι).toFunctor ⋙
+        (internalHomNerveHomotopyEquivalence L E).functor := by
+  have hhom :
+      (relativeInternalHomNerveIso W E).hom ≫
+          (relativeInternalHom W (nerveFunctor.obj E)).ι =
+        nerveFunctor.map
+            (ObjectProperty.ι (PulledRelativeFunctorProperty W E)).toCatHom ≫
+          (internalHomNerveIso L E).hom := by
+    change (relativeInternalHomNerveIso W E).hom ≫
+        (fullSubcomplexOnVertices ((ihom L).obj (nerveFunctor.obj E))
+          (relativeInternalHomNerveVertexProperty W E)).ι = _
+    dsimp only [relativeInternalHomNerveIso]
+    simp only [Iso.trans_hom, Category.assoc]
+    rw [fullSubcomplexOnVerticesIsoOfIso_hom_comp_inclusion
+      (internalHomNerveIso L E) (relativeInternalHomNerveVertexProperty W E)]
+    rw [subcomplex_eqToIso_hom_comp_inclusion_assoc
+      (relativeInternalHomNerveSourceSubcomplex_eq W E)]
+    simpa only [Category.assoc] using congrArg
+      (fun k ↦ k ≫ (internalHomNerveIso L E).hom)
+      (relativeInternalHomNerveFullSubcategory_hom_comp_inclusion W E)
+  have hinv :
+      (relativeInternalHomNerveIso W E).inv ≫
+          nerveFunctor.map
+            (ObjectProperty.ι (PulledRelativeFunctorProperty W E)).toCatHom =
+        (relativeInternalHom W (nerveFunctor.obj E)).ι ≫
+          (internalHomNerveIso L E).inv := by
+    apply (cancel_mono (internalHomNerveIso L E).hom).1
+    simp only [Category.assoc, Iso.inv_hom_id, Category.comp_id]
+    rw [← hhom]
+    simp only [← Category.assoc, Iso.inv_hom_id, Category.id_comp]
+  have hho := congrArg SSet.hoFunctor.map hinv
+  simp only [SSet.hoFunctor.map_comp] at hho
+  let I : Cat.of (PulledRelativeFunctorProperty W E).FullSubcategory ⟶
+      (ihom (SSet.hoFunctor.obj L)).obj E :=
+    (ObjectProperty.ι (PulledRelativeFunctorProperty W E)).toCatHom
+  have hcounit := nerveFunctorCompHoFunctorIso.hom.naturality I
+  simp only [Functor.comp_map, Functor.id_map] at hcounit
+  have hcat :
+      ((SSet.hoFunctor.map (relativeInternalHomNerveIso W E).inv) ≫
+          nerveFunctorCompHoFunctorIso.hom.app
+            (Cat.of (PulledRelativeFunctorProperty W E).FullSubcategory)) ≫ I =
+        SSet.hoFunctor.map (relativeInternalHom W (nerveFunctor.obj E)).ι ≫
+          ((SSet.hoFunctor.map (internalHomNerveIso L E).inv) ≫
+            nerveFunctorCompHoFunctorIso.hom.app
+              ((ihom (SSet.hoFunctor.obj L)).obj E)) := by
+    rw [Category.assoc, ← hcounit]
+    rw [← Category.assoc, hho, Category.assoc]
+  exact congrArg Cat.Hom.toFunctor hcat
+
+noncomputable def relativeInternalHomNerveHomotopyEquivalenceCompInclusionIso
+    {L : SSet.{u}} (W : EdgeMarking L) (E : Cat.{u, u}) :
+    (relativeInternalHomNerveHomotopyEquivalence W E).functor ⋙
+        ObjectProperty.ι (PulledRelativeFunctorProperty W E) ≅
+      (SSet.hoFunctor.map (relativeInternalHom W (nerveFunctor.obj E)).ι).toFunctor ⋙
+        (internalHomNerveHomotopyEquivalence L E).functor :=
+  eqToIso (relativeInternalHomNerveHomotopyEquivalence_comp_inclusion W E)
 
 /-- In a Cat-enriched ordinary category, the transported horizontal composite has the
 expected enriched-composition normal form after applying `Hom.base`. -/
