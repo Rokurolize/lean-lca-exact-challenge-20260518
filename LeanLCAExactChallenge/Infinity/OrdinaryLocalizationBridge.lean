@@ -1210,6 +1210,60 @@ private noncomputable def mappingLocalizationComparisonEquivalence
     IsBicategoricalEquivalence.hoFunctor_isEquivalence d.isEquivalence
   exact (SSet.hoFunctor.map d.comparison).toFunctor.asEquivalence
 
+private noncomputable def mappingLocalizationOrdinarySourceFactor
+    {L : SSet.QCat.{u}} (E : Cat.{u, u}) :
+    (ihom (SSet.hoFunctor.obj L.obj)).obj E ⥤
+      SSet.hoFunctor.obj ((ihom L.obj).obj (nerveFunctor.obj E)) :=
+  (internalHomNerveHomotopyEquivalence L.obj E).inverse
+
+private noncomputable def mappingLocalizationOrdinaryComparisonFactor
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    SSet.hoFunctor.obj ((ihom L.obj).obj (nerveFunctor.obj E)) ⥤
+      SSet.hoFunctor.obj (relativeInternalHom W (nerveFunctor.obj E)) :=
+  (mappingLocalizationComparisonEquivalence h E).functor
+
+private noncomputable def mappingLocalizationOrdinaryRelativeFactor
+    {A : SSet.QCat.{u}} (W : EdgeMarking A.obj) (E : Cat.{u, u}) :
+    SSet.hoFunctor.obj (relativeInternalHom W (nerveFunctor.obj E)) ⥤
+      (PulledRelativeFunctorProperty W E).FullSubcategory :=
+  (relativeInternalHomNerveHomotopyEquivalence W E).functor
+
+private instance mappingLocalizationOrdinarySourceFactor_isEquivalence
+    {L : SSet.QCat.{u}} (E : Cat.{u, u}) :
+    (mappingLocalizationOrdinarySourceFactor (L := L) E).IsEquivalence := by
+  dsimp only [mappingLocalizationOrdinarySourceFactor]
+  infer_instance
+
+private instance mappingLocalizationOrdinaryComparisonFactor_isEquivalence
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    (mappingLocalizationOrdinaryComparisonFactor h E).IsEquivalence := by
+  dsimp only [mappingLocalizationOrdinaryComparisonFactor]
+  infer_instance
+
+private instance mappingLocalizationOrdinaryRelativeFactor_isEquivalence
+    {A : SSet.QCat.{u}} (W : EdgeMarking A.obj) (E : Cat.{u, u}) :
+    (mappingLocalizationOrdinaryRelativeFactor W E).IsEquivalence := by
+  dsimp only [mappingLocalizationOrdinaryRelativeFactor]
+  infer_instance
+
+noncomputable def mappingLocalizationOrdinaryForwardFunctor
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    (ihom (SSet.hoFunctor.obj L.obj)).obj E ⥤
+      (PulledRelativeFunctorProperty W E).FullSubcategory :=
+  mappingLocalizationOrdinarySourceFactor E ⋙
+    mappingLocalizationOrdinaryComparisonFactor h E ⋙
+      mappingLocalizationOrdinaryRelativeFactor W E
+
+instance mappingLocalizationOrdinaryForwardFunctor_isEquivalence
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    (mappingLocalizationOrdinaryForwardFunctor h E).IsEquivalence := by
+  dsimp only [mappingLocalizationOrdinaryForwardFunctor]
+  infer_instance
+
 set_option backward.isDefEq.respectTransparency false in
 theorem internalHomNerveHomotopyEquivalence_precomp_naturality
     {X L : SSet.{u}} (f : X ⟶ L) (E : Cat.{u, u}) :
