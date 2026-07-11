@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.Infinity.MetrizableDGMappingZModule
+import Mathlib.Algebra.Category.ModuleCat.Ulift
 
 /-!
 # Object words for a corrected Drinfeld dg quotient
@@ -39,6 +40,8 @@ structure DrinfeldWord (X Y : ComplexCategory) where
   intermediate : Fin length → CorrectedAcyclicComplexCategory
 
 namespace DrinfeldWord
+
+open CategoryTheory.MonoidalCategory
 
 /-- The length-zero word, indexing the original dg Hom complex. -/
 def nil (X Y : ComplexCategory) : DrinfeldWord X Y where
@@ -107,6 +110,37 @@ sum of the ordinary Hom degrees minus the word length. -/
 structure DegreeProfile {X Y : ComplexCategory} (w : DrinfeldWord X Y) (n : ℤ) where
   arrowDegree : Fin (w.length + 1) → ℤ
   totalDegree : (∑ i, arrowDegree i) - w.length = n
+
+/-- The ordinary Hom-cochain module attached to one arrow of a degree-profiled word. -/
+def factorModule {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin (w.length + 1)) : ModuleCat.{0} ℤ :=
+  (dgHomZModuleCochainComplex (w.arrowSource i) (w.arrowTarget i)).X
+    (d.arrowDegree i)
+
+/-- Right-associated tensor product of a finite list of integer modules. -/
+def tensorModuleList : List (ModuleCat.{0} ℤ) → ModuleCat.{0} ℤ
+  | [] => 𝟙_ (ModuleCat.{0} ℤ)
+  | M :: Ms => M ⊗ tensorModuleList Ms
+
+/-- The tensor-product module belonging to one word and one compatible degree profile. -/
+def summandModule {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) : ModuleCat.{0} ℤ :=
+  tensorModuleList (List.ofFn (factorModule d))
+
+/-- Index of a homogeneous summand of the corrected Drinfeld quotient. -/
+abbrev GradedSummandIndex (X Y : ComplexCategory) (n : ℤ) :=
+  Σ w : DrinfeldWord X Y, DegreeProfile w n
+
+/-- A word summand lifted to the universe in which the family of all acyclic words is small. -/
+def largeSummandModule {X Y : ComplexCategory} {n : ℤ}
+    (s : GradedSummandIndex X Y n) : ModuleCat.{1} ℤ :=
+  (ModuleCat.uliftFunctor.{1} ℤ).obj (summandModule s.2)
+
+/-- The homogeneous carrier of the corrected Drinfeld quotient Hom complex.  This is the
+actual coproduct over all acyclic words and all compatible allocations of ordinary Hom
+degrees. -/
+def quotientGradedModule (X Y : ComplexCategory) (n : ℤ) : ModuleCat.{1} ℤ :=
+  ∐ fun s : GradedSummandIndex X Y n ↦ largeSummandModule s
 
 @[simp]
 theorem singleton_object (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory)
