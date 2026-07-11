@@ -648,6 +648,76 @@ def liftedPiBitsEval (n : ℕ) (a : Fin n) :
   map_id _ := rfl
   map_comp _ _ := rfl
 
+theorem liftedPiBitsCubeIsoExplicit_succ_fst (n : ℕ) (U : SimplexCategoryᵒᵖ)
+    (x : (CategoryTheory.nerve (LiftedPiBits.{u} (n + 1))).obj U) :
+    ((liftedPiBitsCubeIsoExplicit (n + 1)).hom.app U x).1 =
+      (liftedPiBitsCubeIsoExplicit n).hom.app U
+        ((CategoryTheory.nerveMap
+          (liftedPiBitsSuccFunctor n ⋙
+            CategoryTheory.Prod.fst (LiftedPiBits.{u} n) (ULift.{u} (Fin 2)))).app U x) :=
+  rfl
+
+theorem liftedPiBitsCubeIsoExplicit_succ_snd (n : ℕ) (U : SimplexCategoryᵒᵖ)
+    (x : (CategoryTheory.nerve (LiftedPiBits.{u} (n + 1))).obj U) :
+    ((liftedPiBitsCubeIsoExplicit (n + 1)).hom.app U x).2 =
+      stdSimplexOneIsoNerveFinTwo.inv.app U
+        ((CategoryTheory.nerveMap
+          (liftedPiBitsSuccFunctor n ⋙
+            CategoryTheory.Prod.snd (LiftedPiBits.{u} n) (ULift.{u} (Fin 2)))).app U x) :=
+  rfl
+
+theorem liftedPiBitsEval_castSucc (n : ℕ) (a : Fin n) (U : SimplexCategoryᵒᵖ)
+    (x : (CategoryTheory.nerve (LiftedPiBits.{u} (n + 1))).obj U) :
+    (CategoryTheory.nerveMap (liftedPiBitsEval n a)).app U
+        ((CategoryTheory.nerveMap
+          (liftedPiBitsSuccFunctor n ⋙
+            CategoryTheory.Prod.fst (LiftedPiBits.{u} n) (ULift.{u} (Fin 2)))).app U x) =
+      (CategoryTheory.nerveMap (liftedPiBitsEval (n + 1) a.castSucc)).app U x :=
+  rfl
+
+theorem liftedPiBitsEval_last (n : ℕ) (U : SimplexCategoryᵒᵖ)
+    (x : (CategoryTheory.nerve (LiftedPiBits.{u} (n + 1))).obj U) :
+    (CategoryTheory.nerveMap
+        (liftedPiBitsSuccFunctor n ⋙
+          CategoryTheory.Prod.snd (LiftedPiBits.{u} n) (ULift.{u} (Fin 2)))).app U x =
+      (CategoryTheory.nerveMap (liftedPiBitsEval (n + 1) (Fin.last n))).app U x :=
+  rfl
+
+theorem mem_liftedIntervalCubeCorner_explicit_iff : ∀ (n : ℕ) (ε : Fin n → Fin 2)
+    (U : SimplexCategoryᵒᵖ) (x : (CategoryTheory.nerve (LiftedPiBits.{u} n)).obj U),
+    (liftedPiBitsCubeIsoExplicit n).hom.app U x ∈
+        (liftedIntervalCubeCorner n ε).obj U ↔
+      ∃ a : Fin n, (CategoryTheory.nerveMap (liftedPiBitsEval n a)).app U x ∈
+        ((SSet.horn 1 (ε a)).preimage stdSimplexOneIsoNerveFinTwo.inv).obj U
+  | 0, ε, U, x => by simp [liftedIntervalCubeCorner]
+  | n + 1, ε, U, x => by
+      rw [show liftedIntervalCubeCorner (n + 1) ε =
+        (liftedIntervalCubeCorner n (fun a ↦ ε a.castSucc)).unionProd
+          (SSet.horn 1 (ε (Fin.last n))) from rfl]
+      have hm := SSet.Subcomplex.mem_unionProd_iff
+        (S := liftedIntervalCubeCorner n (fun a ↦ ε a.castSucc))
+        (T := SSet.horn 1 (ε (Fin.last n)))
+        ((liftedPiBitsCubeIsoExplicit (n + 1)).hom.app U x)
+      refine hm.trans ?_
+      rw [liftedPiBitsCubeIsoExplicit_succ_fst,
+        liftedPiBitsCubeIsoExplicit_succ_snd,
+        mem_liftedIntervalCubeCorner_explicit_iff n (fun a ↦ ε a.castSucc)]
+      constructor
+      · rintro (hlast | ⟨a, ha⟩)
+        · refine ⟨Fin.last n, ?_⟩
+          simpa [SSet.Subcomplex.preimage_obj, liftedPiBitsEval_last] using hlast
+        · refine ⟨a.castSucc, ?_⟩
+          simpa [SSet.Subcomplex.preimage_obj, liftedPiBitsEval_castSucc] using ha
+      · rintro ⟨a, ha⟩
+        induction a using Fin.lastCases with
+        | last =>
+            left
+            simpa [SSet.Subcomplex.preimage_obj, liftedPiBitsEval_last] using ha
+        | cast b =>
+            right
+            refine ⟨b, ?_⟩
+            simpa [SSet.Subcomplex.preimage_obj, liftedPiBitsEval_castSucc] using ha
+
 
 /-- A numbering of the internal vertices identifies the path poset with the lifted cubical
 bitvector category. -/
