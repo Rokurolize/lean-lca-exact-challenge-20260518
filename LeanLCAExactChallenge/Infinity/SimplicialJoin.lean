@@ -628,6 +628,57 @@ def simplicialJoinMap {X X' Y Y' : SSet.{u}}
     (CategoryTheory.MonoidalCategory.DayConvolution.map
       (emptyAugmentation.{u}.map f) (emptyAugmentation.{u}.map g))
 
+/-- Include the right factor into a simplicial join. -/
+def simplicialJoinRightInclusion (X Y : SSet.{u}) : Y ⟶ simplicialJoin X Y := by
+  let F := emptyAugmentation.{u}.obj X
+  let G := emptyAugmentation.{u}.obj Y
+  letI := augmentedDayConvolution F G
+  let uF : Unique (F.obj (Opposite.op WithInitial.star)) :=
+    (Limits.Types.isTerminalEquivUnique _) (emptyAugmentationStarIsTerminal X)
+  refine
+    { app := fun U y ↦
+        (CategoryTheory.MonoidalCategory.DayConvolution.unit F G).app
+          (Opposite.op WithInitial.star,
+            AugmentedSimplexCategory.inclusion.op.obj U) (default, y)
+      naturality := ?_ }
+  intro U V f
+  apply ConcreteCategory.hom_ext
+  intro y
+  have h := congrFun ((CategoryTheory.MonoidalCategory.DayConvolution.unit F G).naturality
+    ((𝟙 (Opposite.op WithInitial.star),
+      AugmentedSimplexCategory.inclusion.op.map f))) (default, y)
+  exact h
+
+@[reassoc]
+theorem simplicialJoinRightInclusion_naturality
+    {X X' Y Y' : SSet.{u}} (f : X ⟶ X') (g : Y ⟶ Y') :
+    simplicialJoinRightInclusion X Y ≫ simplicialJoinMap f g =
+      g ≫ simplicialJoinRightInclusion X' Y' := by
+  apply NatTrans.ext
+  funext U
+  apply ConcreteCategory.hom_ext
+  intro y
+  let F := emptyAugmentation.{u}.obj X
+  let G := emptyAugmentation.{u}.obj Y
+  let F' := emptyAugmentation.{u}.obj X'
+  let G' := emptyAugmentation.{u}.obj Y'
+  letI := augmentedDayConvolution F G
+  letI := augmentedDayConvolution F' G'
+  change (CategoryTheory.MonoidalCategory.DayConvolution.unit F G).app
+      (Opposite.op WithInitial.star, AugmentedSimplexCategory.inclusion.op.obj U)
+        (default, y) |> (CategoryTheory.MonoidalCategory.DayConvolution.map
+          (emptyAugmentation.map f) (emptyAugmentation.map g)).app _ = _
+  have h := congrFun (CategoryTheory.MonoidalCategory.DayConvolution.unit_app_map_app
+    (emptyAugmentation.map f) (emptyAugmentation.map g)
+    (Opposite.op WithInitial.star) (AugmentedSimplexCategory.inclusion.op.obj U))
+      (default, y)
+  simpa [F, G, F', G'] using h
+
+/-- The ordinal embedding of the right block in a representable join. -/
+def standardJoinRightOperator (m n : ℕ) :=
+  SimplexCategory.mkHom
+    (Fin.natAddOrderEmb (m + 1) : Fin (n + 1) →o Fin (m + n + 2))
+
 /-- Extending a standard simplex to augmented degree is the augmented
 representable at the same finite ordinal. -/
 def emptyAugmentationStdSimplexIso (n : SimplexCategory) :
@@ -1172,6 +1223,14 @@ def simplicialJoinStdSimplexIso (m n : SimplexCategory) :
 def simplicialJoinStdSimplexIsoNat (m n : ℕ) :
     simplicialJoin (Δ[m] : SSet.{u}) Δ[n] ≅ Δ[m + n + 1] :=
   simplicialJoinStdSimplexIso.{u} (SimplexCategory.mk m) (SimplexCategory.mk n)
+
+/-- On standard simplices, the right-factor inclusion is the shifted ordinal embedding. -/
+theorem simplicialJoinRightInclusion_stdSimplex (m n : ℕ) :
+    simplicialJoinRightInclusion (Δ[m] : SSet.{u}) (Δ[n] : SSet.{u}) ≫
+      (simplicialJoinStdSimplexIsoNat m n).hom =
+    SSet.stdSimplex.map (standardJoinRightOperator m n) := by
+  apply SSet.yonedaEquiv.injective
+  rfl
 
 theorem simplicialJoinStdSimplexIsoNat_naturality_rightCoface
     (m n : ℕ) (j : Fin (n + 2)) :
