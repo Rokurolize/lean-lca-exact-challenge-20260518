@@ -1098,6 +1098,20 @@ def joinSigmaOneHornRange (m n : ℕ) (T : Finset (Fin (m + 1)))
     (Δ[m + n + 1] : SSet.{u}).Subcomplex :=
   SSet.Subcomplex.range (joinSigmaOneHornMap m n T i)
 
+lemma joinSigmaOneHornRange_le_face (m n : ℕ)
+    (T : Finset (Fin (m + 1))) (i : Fin (n + 1)) :
+    joinSigmaOneHornRange m n T i ≤
+      SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex m n T) := by
+  rw [← joinSigmaOneFace_eq_ofSimplex]
+  rw [joinSigmaOneHornRange, joinSigmaOneHornMap,
+    SSet.Subcomplex.range_comp]
+  rw [SSet.Subcomplex.image_comp]
+  simpa using SSet.Subcomplex.image_le_range
+    ((SSet.Subcomplex.range
+      (SSet.horn (T.card + n) (joinSigmaOneDistinguishedIndex n T i)).ι).image
+        (joinSigmaOneFaceIso m n T).hom)
+    (SSet.stdSimplex.face (joinSigmaOneVertices m n T)).ι
+
 /-- Join of a representable with the specified horn, as a map to the ambient
 representable join simplex. -/
 def representableJoinHornMap (m n : ℕ) (i : Fin (n + 1)) :
@@ -1140,6 +1154,67 @@ lemma joinSigmaOne_of_card_le_stage (m n : ℕ) (i : Fin (n + 1))
       representableJoinHornStage m n i r := by
   rw [representableJoinHornStage]
   exact le_sup_of_le_right (le_iSup_of_le T (le_iSup_of_le hT le_rfl))
+
+lemma joinSigmaOneVertices_univ (m n : ℕ) :
+    joinSigmaOneVertices m n (Finset.univ : Finset (Fin (m + 1))) =
+      Finset.univ := by
+  ext x
+  simp only [joinSigmaOneVertices, Finset.mem_union, joinFirstVertices,
+    joinSecondVertices, Finset.mem_map, Finset.mem_univ, true_and]
+  constructor
+  · intro _
+    simp
+  · intro _
+    by_cases hx : x.val < m + 1
+    · left
+      exact ⟨⟨x.val, hx⟩, by ext; simp⟩
+    · right
+      refine ⟨⟨x.val - (m + 1), by omega⟩, ?_⟩
+      ext
+      simp
+      omega
+
+/-- The cardinal filtration is exhaustive after all first-block vertices have
+been admitted. -/
+lemma representableJoinHornStage_eq_top (m n : ℕ) (i : Fin (n + 1)) :
+    representableJoinHornStage m n i (m + 1) = ⊤ := by
+  apply top_unique
+  have h := joinSigmaOne_of_card_le_stage m n i (m + 1)
+    (Finset.univ : Finset (Fin (m + 1))) (by simp)
+  rw [← joinSigmaOneFace_eq_ofSimplex] at h
+  simpa [joinSigmaOneVertices_univ] using h
+
+/-- The lattice square which adjoins one paired upper simplex to a filtration
+term.  Its upper-left corner is the actual intersection, so this statement is
+independent of the later horn identification. -/
+lemma representableJoinHornStage_adjoin_bicartSq
+    (m n r : ℕ) (i : Fin (n + 1)) (T : Finset (Fin (m + 1))) :
+    SSet.Subcomplex.BicartSq
+      (representableJoinHornStage m n i r ⊓
+        SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex m n T))
+      (representableJoinHornStage m n i r)
+      (SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex m n T))
+      (representableJoinHornStage m n i r ⊔
+        SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex m n T)) where
+  sup_eq := rfl
+  inf_eq := rfl
+
+/-- Adjoining a paired upper simplex is an actual pushout along its
+intersection with the preceding filtration term. -/
+lemma representableJoinHornStage_adjoin_isPushout
+    (m n r : ℕ) (i : Fin (n + 1)) (T : Finset (Fin (m + 1))) :
+    IsPushout
+      (SSet.Subcomplex.homOfLE (inf_le_left :
+        representableJoinHornStage m n i r ⊓
+          SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex m n T) ≤
+            representableJoinHornStage m n i r))
+      (SSet.Subcomplex.homOfLE (inf_le_right :
+        representableJoinHornStage m n i r ⊓
+          SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex m n T) ≤
+            SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex m n T)))
+      (SSet.Subcomplex.homOfLE le_sup_left)
+      (SSet.Subcomplex.homOfLE le_sup_right) :=
+  (representableJoinHornStage_adjoin_bicartSq m n r i T).isPushout
 
 /-- The chosen internal hom for Day convolution on augmented simplicial sets,
 obtained by taking the explicit Type-valued end pointwise. -/
