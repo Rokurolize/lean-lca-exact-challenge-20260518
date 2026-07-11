@@ -1225,6 +1225,20 @@ lemma subcomplex_range_eq_of_precomp_iso {X Y Z : SSet.{u}}
       (SSet.Subcomplex.range_comp e f).symm
     _ = SSet.Subcomplex.range g := congrArg SSet.Subcomplex.range h
 
+/-- A monomorphism of simplicial sets is canonically isomorphic to its range
+through the range factorization. -/
+noncomputable def simplicialSetIsoRangeOfMono {X Y : SSet.{u}}
+    (f : X ⟶ Y) [Mono f] : X ≅ (SSet.Subcomplex.range f : SSet.{u}) := by
+  let tr := SSet.Subcomplex.toRange f
+  letI : Mono tr := mono_of_mono_fac (SSet.Subcomplex.toRange_ι f)
+  letI : Epi tr := by
+    rw [NatTrans.epi_iff_epi_app]
+    intro U
+    rw [epi_iff_surjective]
+    rintro ⟨y, ⟨x, rfl⟩⟩
+    exact ⟨x, rfl⟩
+  exact asIso tr
+
 lemma isColimit_range_desc_component {J : Type*} [Category J]
     {D : J ⥤ SSet.{u}} {c : Cocone D} (hc : IsColimit c)
     (t : Cocone D) (j : J) :
