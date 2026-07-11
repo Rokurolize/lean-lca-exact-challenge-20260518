@@ -119,6 +119,71 @@ theorem hoFunctor_map_reflectionUnit_whiskerRight_isIso (L Z : SSet.{u}) :
     (CartesianMonoidalCategory.prodComparison_natural_whiskerRight SSet.hoFunctor
       (B := Z) (nerveAdjunction.unit.app L))
 
+set_option maxHeartbeats 800000 in
+set_option backward.isDefEq.respectTransparency false in
+/-- Under the Yoneda component, internal-Hom precomposition is ordinary precomposition by
+the reflected tensor-unit map. -/
+theorem internalHomToNerveYonedaEquiv_postcomp
+    (L Z : SSet.{u}) (E : Cat.{u, u})
+    (f : Z ⟶ (ihom (nerveFunctor.obj (SSet.hoFunctor.obj L))).obj
+      (nerveFunctor.obj E)) :
+    internalHomToNerveYonedaEquiv Z L E (f ≫ internalHomReflectionPre L E) =
+      SSet.hoFunctor.map (nerveAdjunction.unit.app L ▷ Z) ≫
+        internalHomToNerveYonedaEquiv Z
+          (nerveFunctor.obj (SSet.hoFunctor.obj L)) E f := by
+  dsimp [internalHomToNerveYonedaEquiv, internalHomReflectionPre]
+  rw [MonoidalClosed.homEquiv_symm_apply_eq, MonoidalClosed.uncurry_pre_app]
+  rw [MonoidalClosed.homEquiv_symm_apply_eq]
+  exact nerveAdjunction.homEquiv_naturality_left_symm
+    (nerveAdjunction.unit.app L ▷ Z) (MonoidalClosed.uncurry f)
+
+set_option backward.isDefEq.respectTransparency false in
+/-- Every Yoneda component of reflection-unit internal-Hom precomposition is bijective. -/
+theorem internalHomReflectionPre_yoneda_bijective
+    (L : SSet.{u}) (E : Cat.{u, u}) (Z : SSet.{u}) :
+    Function.Bijective (fun f : Z ⟶
+      (ihom (nerveFunctor.obj (SSet.hoFunctor.obj L))).obj (nerveFunctor.obj E) ↦
+        f ≫ internalHomReflectionPre L E) := by
+  letI : IsIso (SSet.hoFunctor.map (nerveAdjunction.unit.app L ▷ Z)) :=
+    hoFunctor_map_reflectionUnit_whiskerRight_isIso L Z
+  constructor
+  · intro f g h
+    apply (internalHomToNerveYonedaEquiv Z
+      (nerveFunctor.obj (SSet.hoFunctor.obj L)) E).injective
+    apply (cancel_epi (SSet.hoFunctor.map (nerveAdjunction.unit.app L ▷ Z))).1
+    rw [← internalHomToNerveYonedaEquiv_postcomp,
+      ← internalHomToNerveYonedaEquiv_postcomp]
+    exact congrArg (internalHomToNerveYonedaEquiv Z L E) h
+  · intro g
+    let f := (internalHomToNerveYonedaEquiv Z
+      (nerveFunctor.obj (SSet.hoFunctor.obj L)) E).symm
+        (inv (SSet.hoFunctor.map (nerveAdjunction.unit.app L ▷ Z)) ≫
+          internalHomToNerveYonedaEquiv Z L E g)
+    refine ⟨f, ?_⟩
+    apply (internalHomToNerveYonedaEquiv Z L E).injective
+    rw [internalHomToNerveYonedaEquiv_postcomp]
+    dsimp [f]
+    rw [Equiv.apply_symm_apply, IsIso.hom_inv_id_assoc]
+
+/-- Reflection-unit precomposition is an isomorphism of simplicial internal Homs into a
+categorical nerve. -/
+theorem internalHomReflectionPre_isIso (L : SSet.{u}) (E : Cat.{u, u}) :
+    IsIso (internalHomReflectionPre L E) :=
+  isIso_of_yoneda_map_bijective (internalHomReflectionPre L E)
+    (internalHomReflectionPre_yoneda_bijective L E)
+
+/-- For an arbitrary simplicial set `L`, mapping into a categorical nerve has homotopy
+category the ordinary functor category out of `ho L`. -/
+noncomputable def internalHomNerveHomotopyEquivalence (L : SSet.{u}) (E : Cat.{u, u}) :
+    SSet.hoFunctor.obj ((ihom L).obj (nerveFunctor.obj E)) ≌
+      (ihom (SSet.hoFunctor.obj L)).obj E := by
+  let hPre : IsIso (internalHomReflectionPre L E) :=
+    internalHomReflectionPre_isIso L E
+  let preIso := @asIso SSet _ _ _ (internalHomReflectionPre L E) hPre
+  let totalIso := nerveInternalHomIso (SSet.hoFunctor.obj L) E ≪≫ preIso
+  exact Cat.equivOfIso ((SSet.hoFunctor.mapIso totalIso).symm ≪≫
+    nerveFunctorCompHoFunctorIso.app ((ihom (SSet.hoFunctor.obj L)).obj E))
+
 /-- In a Cat-enriched ordinary category, the transported horizontal composite has the
 expected enriched-composition normal form after applying `Hom.base`. -/
 theorem catEnrichedOrdinary_base_hComp
