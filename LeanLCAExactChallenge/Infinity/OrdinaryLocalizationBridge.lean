@@ -598,7 +598,7 @@ theorem markedHomotopyMorphismProperty_isInvertedBy_hoFunctor_map
   obtain ⟨a, ha, hg⟩ := hg
   have hi := hf a ha
   have hg' := congrArg (SSet.hoFunctor.map f).toFunctor.mapArrow.obj hg
-  change IsIso (Arrow.mk ((SSet.hoFunctor.map f).toFunctor.map g)).hom
+  change IsIso ((SSet.hoFunctor.map f).toFunctor.map g)
   rw [show Arrow.mk ((SSet.hoFunctor.map f).toFunctor.map g) =
     Arrow.mk ((SSet.hoFunctor.map f).toFunctor.map
       (edgeHomotopyClass (SSet.Edge.mk' a))) by exact hg']
@@ -636,20 +636,15 @@ category of functors inverting the marked homotopy morphism property. -/
 noncomputable def pulledRelativeFunctorPropertyEquivalence
     {L : SSet.{u}} (W : EdgeMarking L) (E : Cat.{u, u}) :
     (PulledRelativeFunctorProperty W E).FullSubcategory ≌
-      (markedHomotopyMorphismProperty W).FunctorsInverting E where
-  functor :=
-    { obj := fun F ↦ ⟨F.obj,
-        (pulledRelativeFunctorProperty_iff_isInvertedBy W E F.obj).mp F.property⟩
-      map := fun α ↦ α }
-  inverse :=
-    { obj := fun F ↦ ⟨F.obj,
-        (pulledRelativeFunctorProperty_iff_isInvertedBy W E F.obj).mpr F.property⟩
-      map := fun α ↦ α }
-  unitIso := NatIso.ofComponents (fun _ ↦ Iso.refl _)
-  counitIso := NatIso.ofComponents (fun _ ↦ Iso.refl _)
-  functor_unitIso_hom := by
-    intro F
-    rfl
+      (markedHomotopyMorphismProperty W).FunctorsInverting E := by
+  have h : PulledRelativeFunctorProperty W E =
+      fun F ↦ (markedHomotopyMorphismProperty W).IsInvertedBy F := by
+    funext F
+    exact propext (pulledRelativeFunctorProperty_iff_isInvertedBy W E F)
+  rw [h]
+  change (markedHomotopyMorphismProperty W).FunctorsInverting E ≌
+    (markedHomotopyMorphismProperty W).FunctorsInverting E
+  exact CategoryTheory.Equivalence.refl
 
 set_option backward.isDefEq.respectTransparency false in
 /-- The predicate-transport equivalence commutes with the two full-subcategory
@@ -660,7 +655,13 @@ theorem pulledRelativeFunctorPropertyEquivalence_comp_inclusion
         ObjectProperty.ι
           (fun F : (ihom (SSet.hoFunctor.obj L)).obj E ↦
             (markedHomotopyMorphismProperty W).IsInvertedBy F) =
-      ObjectProperty.ι (PulledRelativeFunctorProperty W E) := rfl
+      ObjectProperty.ι (PulledRelativeFunctorProperty W E) := by
+  let h : PulledRelativeFunctorProperty W E =
+      fun F ↦ (markedHomotopyMorphismProperty W).IsInvertedBy F := by
+    funext F
+    exact propext (pulledRelativeFunctorProperty_iff_isInvertedBy W E F)
+  subst h
+  rfl
 
 /-- A simplicial isomorphism restricts to the full subcomplexes cut out by a vertex
 predicate and its pullback. -/
