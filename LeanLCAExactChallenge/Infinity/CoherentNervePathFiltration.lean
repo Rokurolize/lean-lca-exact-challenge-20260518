@@ -1101,6 +1101,38 @@ vertex of the interval. -/
 def KnownAt (c : PathChain r i j) (k : J) : Prop :=
   k ∈ c.first.I ∨ ∃ l : J, i ≤ l ∧ l ≤ j ∧ l ≠ k ∧ l ∉ c.last.I
 
+/-- In Boolean coordinates, the coherent-horn latching condition is a cubical corner:
+the missing coordinate is fixed at `1` on the first path, or one of the other coordinates is
+fixed at `0` on the last path. -/
+theorem knownAt_iff_bitvector_corner (c : PathChain r i j) (k : J)
+    (hik : i < k) (hkj : k < j) :
+    c.KnownAt k ↔
+      (thickPathBitvectorOrderIso (le_trans (le_of_lt hik) (le_of_lt hkj)) c.first)
+          ⟨k, hik, hkj⟩ = 1 ∨
+        ∃ x : InteriorVertex i j, x.1 ≠ k ∧
+          (thickPathBitvectorOrderIso (le_trans (le_of_lt hik) (le_of_lt hkj)) c.last) x = 0 := by
+  classical
+  simp only [KnownAt, thickPathBitvectorOrderIso, OrderIso.trans_apply,
+    setBitvectorOrderIso, thickPathInteriorOrderIso]
+  constructor
+  · rintro (hk | ⟨l, hil, hlj, hlk, hl⟩)
+    · exact Or.inl (by simp [hk])
+    · have hil' : i < l := lt_of_le_of_ne hil (by
+        intro h
+        apply hl
+        simpa [h] using c.last.left)
+      have hlj' : l < j := lt_of_le_of_ne hlj (by
+        intro h
+        apply hl
+        simpa [h] using c.last.right)
+      exact Or.inr ⟨⟨l, hil', hlj'⟩, hlk, by simp [hl]⟩
+  · rintro (hk | ⟨x, hxk, hx⟩)
+    · left
+      simpa using hk
+    · right
+      refine ⟨x.1, le_of_lt x.2.1, le_of_lt x.2.2, hxk, ?_⟩
+      simpa using hx
+
 /-- A chain is nondegenerate when distinct indices carry distinct paths.  For a monotone chain
 in a poset this is the strict-chain condition. -/
 def IsNondegenerate (c : PathChain r i j) : Prop := Function.Injective c.path
