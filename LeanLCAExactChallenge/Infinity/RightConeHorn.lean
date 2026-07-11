@@ -513,4 +513,38 @@ noncomputable instance leftConeHornCornerStdMap_mono
   rw [← leftConeHornSourceRangeIso_hom_ι (u := u) r i]
   infer_instance
 
+lemma leftConeHornCornerStdMap_innerAnodyne
+    (n : ℕ) (i : Fin (n + 1)) (hi : i < Fin.last n) :
+    SSet.innerAnodyneExtensions (leftConeHornCornerStdMap.{u} n i) := by
+  cases n with
+  | zero => omega
+  | succ r =>
+      let D := representableJoinHornInitial 0 (r + 1) i ⊔
+        SSet.stdSimplex.face ({(0 : Fin (0 + (r + 1) + 2))}ᶜ)
+      have hD : D = SSet.horn (0 + (r + 1) + 1)
+          (⟨i.val + 1, by omega⟩ : Fin (0 + (r + 1) + 2)) :=
+        representableJoinHornInitial_sup_baseFace_eq_shiftedHorn r i
+      have hι : SSet.innerAnodyneExtensions D.ι := by
+        rw [hD]
+        exact SSet.innerAnodyneExtensions.horn_ι (by omega) (by
+          simpa only [Fin.lt_iff_val_lt_val, Fin.val_mk, Fin.val_last] using hi)
+      have he := SSet.innerAnodyneExtensions.of_isIso
+        (leftConeHornSourceRangeIso.{u} r i).hom
+      have hc := SSet.innerAnodyneExtensions.comp_mem _ _ he hι
+      rw [leftConeHornSourceRangeIso_hom_ι] at hc
+      exact hc
+
+lemma leftConeHornCornerMap_innerAnodyne
+    (n : ℕ) (i : Fin (n + 1)) (hi : i < Fin.last n) :
+    SSet.innerAnodyneExtensions (leftConeHornCornerMap.{u} n i) := by
+  have hs := leftConeHornCornerStdMap_innerAnodyne (u := u) n i hi
+  have he := SSet.innerAnodyneExtensions.of_isIso
+    (simplicialJoinStdSimplexIsoNat 0 n).inv
+  have hc := SSet.innerAnodyneExtensions.comp_mem _ _ hs he
+  change SSet.innerAnodyneExtensions
+    ((leftConeHornCornerMap n i ≫
+      (simplicialJoinStdSimplexIsoNat 0 n).hom) ≫
+      (simplicialJoinStdSimplexIsoNat 0 n).inv) at hc
+  simpa only [Category.assoc, Iso.hom_inv_id, Category.comp_id] using hc
+
 end LeanLCAExactChallenge.Infinity
