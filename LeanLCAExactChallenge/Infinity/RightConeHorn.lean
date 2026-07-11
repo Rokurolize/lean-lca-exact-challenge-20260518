@@ -437,4 +437,20 @@ lemma range_horn_comp_rightConeBase_eq_emptyHornRange
     joinSigmaOne, joinSigmaOneVertices, joinFirstVertices,
     joinSecondVertices, joinSigmaOneDistinguishedIndex]
 
+noncomputable def leftConeHornRangeBicartSq (r : ℕ) (i : Fin (r + 2)) :
+    SSet.Subcomplex.BicartSq
+      (SSet.Subcomplex.range
+        ((SSet.horn (r + 1) i).ι ≫
+          simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[r + 1] ≫
+          (simplicialJoinStdSimplexIsoNat 0 (r + 1)).hom))
+      (representableJoinHornInitial 0 (r + 1) i)
+      (SSet.stdSimplex.face ({(0 : Fin (0 + (r + 1) + 2))}ᶜ))
+      (representableJoinHornInitial 0 (r + 1) i ⊔
+        SSet.stdSimplex.face ({(0 : Fin (0 + (r + 1) + 2))}ᶜ)) where
+  sup_eq := rfl
+  inf_eq := by
+    rw [range_horn_comp_rightConeBase_eq_emptyHornRange,
+      ← emptyJoinCell_zero_eq_baseFace,
+      initial_inf_emptyJoinCell_eq_hornRange]
+
 end LeanLCAExactChallenge.Infinity
