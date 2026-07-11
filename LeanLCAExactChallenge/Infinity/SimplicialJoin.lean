@@ -1025,6 +1025,14 @@ lemma isColimit_range_desc_component {J : Type*} [Category J]
       SSet.Subcomplex.range (t.ι.app j) := by
   exact congrArg SSet.Subcomplex.range (hc.fac t j)
 
+lemma isColimit_desc_extend_self {J : Type*} [Category J]
+    {D : J ⥤ SSet.{u}} {c : Cocone D} (hc : IsColimit c)
+    {X : SSet.{u}} (f : c.pt ⟶ X) : hc.desc (c.extend f) = f := by
+  apply hc.hom_ext
+  intro j
+  rw [hc.fac]
+  rfl
+
 /-! ## The paired simplices in the representable join-horn filtration -/
 
 /-- Vertices in the first block selected by `T`. -/
