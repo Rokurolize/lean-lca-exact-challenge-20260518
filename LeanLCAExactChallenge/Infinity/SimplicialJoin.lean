@@ -2858,6 +2858,7 @@ lemma representableJoinHornPointIso_hom
       SSet.Subcomplex.toRange (representableJoinHornMap m (n + 2) i) := by
   apply (representableJoinHornIsColimit.{u} m i (by omega)).hom_ext
   intro j
+  dsimp only [representableJoinHornPointIso]
   rw [IsColimit.comp_coconePointUniqueUpToIso_hom]
   rcases j with a | j
   · dsimp [representableJoinHornRangeCoconePrecompose,
