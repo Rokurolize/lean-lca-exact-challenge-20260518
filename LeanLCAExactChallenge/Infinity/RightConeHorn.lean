@@ -624,4 +624,24 @@ noncomputable def positiveJoinHornIsoRange (s : ℕ) (i : Fin (s + 3)) :
     (representableJoinHornRangeCoconePrecompose.{u} 0 s i).pt
   exact representableJoinHornPointIso 0 s i
 
+noncomputable def normalizedEmptyJoinHornIso (r : ℕ) (i : Fin (r + 2)) :
+    (Λ[r + 1, i] : SSet.{u}) ≅
+      (SSet.horn (0 + (r + 1))
+        (Fin.cast (congrArg (fun n => n + 1) (Nat.zero_add (r + 1)).symm) i) :
+        SSet.{u}) := by
+  let hN : 0 + (r + 1) = r + 1 := Nat.zero_add _
+  let a : Σ n : ℕ, Fin (n + 1) := ⟨r + 1, i⟩
+  let b : Σ n : ℕ, Fin (n + 1) :=
+    ⟨0 + (r + 1), Fin.cast (congrArg (fun n => n + 1) hN.symm) i⟩
+  have hab : a = b := by
+    apply Sigma.ext hN.symm
+    apply (Fin.heq_ext_iff (congrArg (fun n => n + 1) hN.symm)).2
+    simp [a, b]
+  have h : (SSet.horn (r + 1) i : SSet.{u}) =
+      (SSet.horn (0 + (r + 1))
+        (Fin.cast (congrArg (fun n => n + 1) hN.symm) i) : SSet.{u}) := by
+    exact congrArg (fun p : Σ n : ℕ, Fin (n + 1) =>
+      (SSet.horn p.1 p.2 : SSet.{u})) hab
+  exact eqToIso h
+
 end LeanLCAExactChallenge.Infinity
