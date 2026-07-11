@@ -332,6 +332,81 @@ noncomputable def finBitvectorNerveSuccIso (n : ℕ) :
         (Preorder.smallCategory ((Fin n → Fin 2) × Fin 2)) :=
   nerveOrderIso (finBitvectorSuccOrderIso n)
 
+/-- Non-reducible wrapper selecting the thin preorder category on bitvectors. -/
+@[ext]
+structure ThinBits (n : ℕ) where
+  val : Fin n → Fin 2
+
+instance (n : ℕ) : PartialOrder (ThinBits n) :=
+  PartialOrder.lift ThinBits.val (fun _ _ h ↦ ThinBits.ext h)
+
+/-- Non-reducible wrapper selecting the pointwise Pi category on the same bitvectors. -/
+@[ext]
+structure PiBits (n : ℕ) where
+  val : Fin n → Fin 2
+
+instance (n : ℕ) : CategoryTheory.Category (PiBits n) where
+  Hom a b := ∀ i, a.val i ⟶ b.val i
+  id _ _ := 𝟙 _
+  comp f g i := f i ≫ g i
+  assoc _ _ _ := rfl
+
+instance (n : ℕ) (a b : PiBits n) : Subsingleton (a ⟶ b) :=
+  Pi.instSubsingleton
+
+/-- Forget the pointwise categorical presentation to the thin presentation. -/
+def piBitsToThinBitsFunctor (n : ℕ) : CategoryTheory.Functor (PiBits n) (ThinBits n) where
+  obj b := ⟨b.val⟩
+  map f := homOfLE (fun i ↦ leOfHom (f i))
+  map_id _ := rfl
+  map_comp _ _ := rfl
+
+/-- Recover the pointwise categorical presentation from the thin presentation. -/
+def thinBitsToPiBitsFunctor (n : ℕ) : CategoryTheory.Functor (ThinBits n) (PiBits n) where
+  obj b := ⟨b.val⟩
+  map f i := homOfLE (leOfHom f i)
+  map_id _ := rfl
+  map_comp _ _ := rfl
+
+noncomputable def piBitsThinBitsEquivalence (n : ℕ) : PiBits n ≌ ThinBits n :=
+  CategoryTheory.Equivalence.mk (piBitsToThinBitsFunctor n) (thinBitsToPiBitsFunctor n)
+    (NatIso.ofComponents (fun b ↦ Iso.refl _))
+    (NatIso.ofComponents (fun b ↦ Iso.refl _))
+
+/-- The two thin presentations have isomorphic ordinary nerves. -/
+noncomputable def piBitsThinBitsNerveIso (n : ℕ) :
+    CategoryTheory.nerve (PiBits n) ≅ CategoryTheory.nerve (ThinBits n) where
+  hom := CategoryTheory.nerveMap (piBitsToThinBitsFunctor n)
+  inv := CategoryTheory.nerveMap (thinBitsToPiBitsFunctor n)
+  hom_inv_id := by
+    change CategoryTheory.nerveFunctor.map (piBitsToThinBitsFunctor n).toCatHom ≫
+      CategoryTheory.nerveFunctor.map (thinBitsToPiBitsFunctor n).toCatHom = _
+    rw [← CategoryTheory.Functor.map_comp]
+    have hf : piBitsToThinBitsFunctor n ⋙ thinBitsToPiBitsFunctor n =
+        CategoryTheory.Functor.id (PiBits n) := by
+      exact CategoryTheory.Functor.ext
+        (h_obj := fun _ ↦ rfl) (h_map := fun _ _ _ ↦ Subsingleton.elim _ _)
+    have hc : (piBitsToThinBitsFunctor n).toCatHom ≫
+        (thinBitsToPiBitsFunctor n).toCatHom = 𝟙 _ := by
+      apply CategoryTheory.Cat.Hom.ext
+      exact hf
+    rw [hc, CategoryTheory.Functor.map_id]
+    rfl
+  inv_hom_id := by
+    change CategoryTheory.nerveFunctor.map (thinBitsToPiBitsFunctor n).toCatHom ≫
+      CategoryTheory.nerveFunctor.map (piBitsToThinBitsFunctor n).toCatHom = _
+    rw [← CategoryTheory.Functor.map_comp]
+    have hf : thinBitsToPiBitsFunctor n ⋙ piBitsToThinBitsFunctor n =
+        CategoryTheory.Functor.id (ThinBits n) := by
+      exact CategoryTheory.Functor.ext
+        (h_obj := fun _ ↦ rfl) (h_map := fun _ _ _ ↦ Subsingleton.elim _ _)
+    have hc : (thinBitsToPiBitsFunctor n).toCatHom ≫
+        (piBitsToThinBitsFunctor n).toCatHom = 𝟙 _ := by
+      apply CategoryTheory.Cat.Hom.ext
+      exact hf
+    rw [hc, CategoryTheory.Functor.map_id]
+    rfl
+
 /-- The prefix of a path at one of its vertices. -/
 def beforePath {J : Type u} [LinearOrder J] {i j k : J} (P : ThickPath i j)
     (hk : k ∈ P.I) : ThickPath i k where
