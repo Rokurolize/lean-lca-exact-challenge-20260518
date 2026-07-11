@@ -35,6 +35,47 @@ theorem forgetAugmentation_augmentedMapOfUnderlyingToEmptyAugmentation
       (augmentedMapOfUnderlyingToEmptyAugmentation K Q ψ) = ψ := by
   apply forgetAugmentation_augmentedMapOfFixedUnderlying
 
+/-- The ordinary restriction of the singleton-augmentation comparison, with
+both endpoints displayed as the join carrier.  Keeping this transport explicit
+avoids relying on semireducible carrier equalities. -/
+noncomputable def convolutionSingletonUnderlyingIso (X K : SSet.{u}) :
+    simplicialJoin X K ≅ simplicialJoin X K := by
+  letI := augmentedDayConvolution
+    (emptyAugmentation.{u}.obj X) (emptyAugmentation.{u}.obj K)
+  let e := forgetAugmentation.{u}.mapIso
+    (convolutionSingletonAugmentationIso X K)
+  change simplicialJoin X K ≅ simplicialJoin X K at e
+  exact e
+
+/-- Lift an ordinary map out of a join to the augmented Day convolution. -/
+noncomputable def augmentedJoinMapOfUnderlying
+    (X K Q : SSet.{u}) (ψ : simplicialJoin X K ⟶ Q) :
+    letI := augmentedDayConvolution
+      (emptyAugmentation.{u}.obj X) (emptyAugmentation.{u}.obj K)
+    CategoryTheory.MonoidalCategory.DayConvolution.convolution
+        (emptyAugmentation.{u}.obj X) (emptyAugmentation.{u}.obj K) ⟶
+      emptyAugmentation.{u}.obj Q := by
+  letI := augmentedDayConvolution
+    (emptyAugmentation.{u}.obj X) (emptyAugmentation.{u}.obj K)
+  exact (convolutionSingletonAugmentationIso X K).inv ≫
+    augmentedMapOfUnderlyingToEmptyAugmentation (simplicialJoin X K) Q
+      ((convolutionSingletonUnderlyingIso X K).hom ≫ ψ)
+
+@[simp]
+theorem forgetAugmentation_augmentedJoinMapOfUnderlying
+    (X K Q : SSet.{u}) (ψ : simplicialJoin X K ⟶ Q) :
+    letI := augmentedDayConvolution
+      (emptyAugmentation.{u}.obj X) (emptyAugmentation.{u}.obj K)
+    forgetAugmentation.{u}.map
+      (augmentedJoinMapOfUnderlying X K Q ψ) = ψ := by
+  letI := augmentedDayConvolution
+    (emptyAugmentation.{u}.obj X) (emptyAugmentation.{u}.obj K)
+  rw [augmentedJoinMapOfUnderlying, Functor.map_comp,
+    forgetAugmentation_augmentedMapOfUnderlyingToEmptyAugmentation]
+  change (convolutionSingletonUnderlyingIso X K).inv ≫
+    (convolutionSingletonUnderlyingIso X K).hom ≫ ψ = ψ
+  rw [← Category.assoc, Iso.inv_hom_id, Category.id_comp]
+
 set_option backward.isDefEq.respectTransparency false in
 set_option maxHeartbeats 200000 in
 /-- The fixed-base Day transpose is natural under precomposition of the simplicial
