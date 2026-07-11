@@ -825,6 +825,49 @@ theorem dgHomPrecompositionPathFiberSSet_isPullback (T : ComplexCategory)
       (dgMappingSSetRealizationFunctor.map (dgHomPrecompositionZeroEndpoints T f))
       (dgMappingSSetRealizationFunctor.map (dgHomPrecompositionPathEndpoints T K)) :=
   (dgHomPrecompositionPathFiber_isPullback T f).map dgMappingSSetRealizationFunctor
+
+/-- Identify the actual enriched mapping object out of the cone with the realized strict
+path-fiber pullback. -/
+def directDGMappingConePathFiberEnrichedHomIso (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    (directDGMappingConeObject f ⟶[SSet] directDGObject T) ≅
+      dgMappingSSetRealizationFunctor.obj (dgHomPrecompositionPathFiber T f) :=
+  eqToIso (directDG_enrichedHom_eq (dgMappingConeObject f) T) ≪≋
+    dgMappingConePathFiberSSetIso T f
+
+/-- First leg of the enriched cone homotopy-fiber square. -/
+def directDGMappingConePathFiberFst (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    (directDGMappingConeObject f ⟶[SSet] directDGObject T) ⟶
+      dgMappingSSetRealizationFunctor.obj (dgHomZModuleCochainComplex L T) :=
+  (directDGMappingConePathFiberEnrichedHomIso T f).hom ≫
+    dgMappingSSetRealizationFunctor.map
+      (Limits.pullback.fst (dgHomPrecompositionZeroEndpoints T f)
+        (dgHomPrecompositionPathEndpoints T K))
+
+/-- Path leg of the enriched cone homotopy-fiber square. -/
+def directDGMappingConePathFiberSnd (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    (directDGMappingConeObject f ⟶[SSet] directDGObject T) ⟶
+      dgMappingSSetRealizationFunctor.obj (dgHomPrecompositionPathObject T K) :=
+  (directDGMappingConePathFiberEnrichedHomIso T f).hom ≫
+    dgMappingSSetRealizationFunctor.map
+      (Limits.pullback.snd (dgHomPrecompositionZeroEndpoints T f)
+        (dgHomPrecompositionPathEndpoints T K))
+
+/-- The actual enriched cone mapping object is the strict simplicial pullback of the realized
+path-object endpoint diagram, hence a path-object model of the homotopy fiber. -/
+theorem directDGMappingCone_enrichedHom_isPathFiberPullback (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    IsPullback
+      (directDGMappingConePathFiberFst T f)
+      (directDGMappingConePathFiberSnd T f)
+      (dgMappingSSetRealizationFunctor.map (dgHomPrecompositionZeroEndpoints T f))
+      (dgMappingSSetRealizationFunctor.map (dgHomPrecompositionPathEndpoints T K)) := by
+  apply (dgHomPrecompositionPathFiberSSet_isPullback T f).of_iso'
+    (directDGMappingConePathFiberEnrichedHomIso T f)
+    (Iso.refl _) (Iso.refl _) (Iso.refl _)
+  all_goals simp [directDGMappingConePathFiberFst, directDGMappingConePathFiberSnd]
   · ext n x
     simp [dgMappingConeHomToPathFiber,
       dgMappingConeHomToPathObject,
