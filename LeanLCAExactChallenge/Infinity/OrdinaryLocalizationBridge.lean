@@ -81,6 +81,12 @@ noncomputable def internalHomNerveReflectionIso (L : SSet.{u}) (E : Cat.{u, u}) 
   exact (asIso (nerveAdjunction.unit.app
     ((ihom L).obj (nerveFunctor.obj E)))).symm
 
+/-- Precomposition along the reflection unit, with a categorical nerve as target. -/
+def internalHomReflectionPre (L : SSet.{u}) (E : Cat.{u, u}) :
+    (ihom (nerveFunctor.obj (SSet.hoFunctor.obj L))).obj (nerveFunctor.obj E) ⟶
+      (ihom L).obj (nerveFunctor.obj E) :=
+  (MonoidalClosed.pre (nerveAdjunction.unit.app L)).app (nerveFunctor.obj E)
+
 /-- In a Cat-enriched ordinary category, the transported horizontal composite has the
 expected enriched-composition normal form after applying `Hom.base`. -/
 theorem catEnrichedOrdinary_base_hComp
