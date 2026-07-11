@@ -576,6 +576,32 @@ theorem liftedIntervalCubeLastHorn_hasLiftingProperty {E B : SSet.{u}} (p : E �
   rw [SSet.anodyneExtensions_eq_llp_rlp] at h
   exact h p hp
 
+/-- The actual cubical latching objects arising from a coherent inner horn are corner horns:
+for every coordinate exactly one endpoint face is prescribed.  The function `ε` records the
+chosen endpoint in each coordinate. -/
+noncomputable def liftedIntervalCubeCorner : (n : ℕ) → (Fin n → Fin 2) →
+    (liftedIntervalCube n).Subcomplex
+  | 0, _ => ⊥
+  | n + 1, ε =>
+      liftedIntervalCubeCorner n (fun a ↦ ε a.castSucc) |>.unionProd
+        (SSet.horn 1 (ε (Fin.last n)))
+
+/-- A cubical corner horn is an iterated pushout-product of one-dimensional horn inclusions,
+so its inclusion is an anodyne extension. -/
+theorem liftedIntervalCubeCorner_anodyne (n : ℕ) (ε : Fin (n + 1) → Fin 2) :
+    SSet.anodyneExtensions (liftedIntervalCubeCorner (n + 1) ε).ι :=
+  SSet.anodyneExtensions_unionProd_ι
+    (liftedIntervalCubeCorner n (fun a ↦ ε a.castSucc))
+    (SSet.horn 1 (ε (Fin.last n)))
+    (SSet.anodyneExtensions.horn_ι (ε (Fin.last n)))
+
+theorem liftedIntervalCubeCorner_hasLiftingProperty {E B : SSet.{u}} (p : E ⟶ B)
+    (hp : SSet.modelCategoryQuillen.J.rlp p) (n : ℕ) (ε : Fin (n + 1) → Fin 2) :
+    HasLiftingProperty (liftedIntervalCubeCorner (n + 1) ε).ι p := by
+  have h := liftedIntervalCubeCorner_anodyne n ε
+  rw [SSet.anodyneExtensions_eq_llp_rlp] at h
+  exact h p hp
+
 /-- The nerve of lifted bitvectors is recursively a product of walking intervals. -/
 noncomputable def liftedPiBitsCubeIso : (n : ℕ) →
     CategoryTheory.nerve (LiftedPiBits.{u} n) ≅ liftedIntervalCube n
