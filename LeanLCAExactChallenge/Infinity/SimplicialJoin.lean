@@ -2303,6 +2303,33 @@ lemma representableJoinHornStage_inf_joinSigmaOne_eq_hornRange
     (representableJoinHornStage_inf_joinSigmaOne_le_hornRange m n r i T hT)
     (joinSigmaOneHornRange_le_stage_inf m n r i T hT)
 
+lemma representableJoinHornStage_adjoin_hornRange_bicartSq
+    (m n r : ℕ) (i : Fin (n + 2)) (T : Finset (Fin (m + 1)))
+    (hT : T.card = r + 1) :
+    SSet.Subcomplex.BicartSq
+      (joinSigmaOneHornRange m (n + 1) T i)
+      (representableJoinHornStage m (n + 1) i r)
+      (SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex m (n + 1) T))
+      (representableJoinHornStage m (n + 1) i r ⊔
+        SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex m (n + 1) T)) where
+  sup_eq := rfl
+  inf_eq := representableJoinHornStage_inf_joinSigmaOne_eq_hornRange
+    m n r i T hT
+
+lemma representableJoinHornStage_adjoin_hornRange_isPushout
+    (m n r : ℕ) (i : Fin (n + 2)) (T : Finset (Fin (m + 1)))
+    (hT : T.card = r + 1) :
+    IsPushout
+      (SSet.Subcomplex.homOfLE
+        (representableJoinHornStage_adjoin_hornRange_bicartSq m n r i T hT).le₁₂)
+      (SSet.Subcomplex.homOfLE
+        (representableJoinHornStage_adjoin_hornRange_bicartSq m n r i T hT).le₁₃)
+      (SSet.Subcomplex.homOfLE
+        (representableJoinHornStage_adjoin_hornRange_bicartSq m n r i T hT).le₂₄)
+      (SSet.Subcomplex.homOfLE
+        (representableJoinHornStage_adjoin_hornRange_bicartSq m n r i T hT).le₃₄) :=
+  (representableJoinHornStage_adjoin_hornRange_bicartSq m n r i T hT).isPushout
+
 /-- The ordinary simplicial slice underlying the augmented Day internal hom. -/
 def simplicialSlice (X Q : SSet.{u}) : SSet.{u} :=
   forgetAugmentation.{u}.obj
