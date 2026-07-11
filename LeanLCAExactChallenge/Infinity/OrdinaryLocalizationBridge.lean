@@ -1,6 +1,7 @@
 import LeanLCAExactChallenge.Infinity.EquivalenceIntervalExtension
 import LeanLCAExactChallenge.Infinity.MetrizableEquivalenceForcingHomotopy
 import Mathlib.AlgebraicTopology.SimplicialSet.NerveAdjunction
+import Mathlib.CategoryTheory.Monoidal.Closed.Enrichment
 
 /-!
 # Ordinary localization bridge
@@ -48,6 +49,16 @@ theorem catEnriched_hComp_eq_eComp_map
     CategoryTheory.CatEnriched.hComp eta theta =
       (eComp Cat a b c).toFunctor.map (eta, theta) := by
   rfl
+
+/-- In the self-enrichment of simplicial sets, postcomposition in the enriched Hom object is
+the ordinary internal-Hom map. -/
+theorem sset_eHomWhiskerLeft_eq_ihom_map
+    (A : SSet.{u}) {X Y : SSet.{u}} (f : X ⟶ Y) :
+    @eHomWhiskerLeft SSet.{u} _ _ SSet.{u} _
+      (MonoidalClosed.enrichedOrdinaryCategorySelf SSet.{u}) A X Y f =
+      (ihom A).map f := by
+  exact MonoidalClosed.enrichedOrdinaryCategorySelf_eHomWhiskerLeft
+    (C := SSet.{u}) A f
 
 /-- Postcomposition with the forward map of a bicategorical adjoint equivalence is an
 equivalence of ordinary hom-categories. -/
