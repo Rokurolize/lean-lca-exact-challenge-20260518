@@ -52,6 +52,15 @@ noncomputable def nerveInternalHomIso (C E : Cat.{u, u}) :
   exact @asIso SSet _ _ _
     ((expComparison nerveFunctor.{u, u} C).natTrans.app E) hApp
 
+/-- On homotopy categories, the internal Hom between two nerves is the categorical
+functor category. -/
+noncomputable def nerveInternalHomHomotopyEquivalence (C E : Cat.{u, u}) :
+    SSet.hoFunctor.obj
+        ((ihom (nerveFunctor.obj C)).obj (nerveFunctor.obj E)) ≌
+      (ihom C).obj E :=
+  Cat.equivOfIso ((SSet.hoFunctor.mapIso (nerveInternalHomIso C E)).symm ≪≫
+    nerveFunctorCompHoFunctorIso.app ((ihom C).obj E))
+
 /-- Internal Homs into categorical nerves are again categorical nerves up to isomorphism. -/
 theorem internalHomNerve_mem_essImage (L : SSet.{u}) (E : Cat.{u, u}) :
     nerveFunctor.{u, u}.essImage ((ihom L).obj (nerveFunctor.obj E)) :=
