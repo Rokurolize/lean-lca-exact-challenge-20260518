@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.Infinity.MetrizableDGSimplicialCategoryOrdinaryEquivalence
+import Mathlib.Algebra.Homology.HomotopyCofiber
 
 /-!
 # Mapping-cone objects in the bounded dg carrier
@@ -69,6 +70,16 @@ theorem dgMappingConeObject_obj {K L : ComplexCategory} (f : K ⟶ L) :
     (dgMappingConeObject f).obj =
       CochainComplex.mappingCone ((boundedCochainComplex MetrizableLCA.{0}).ι.map f) :=
   rfl
+
+/-- The genuine maps-out universal property of the project mapping cone. -/
+noncomputable def dgMappingConeDescEquiv (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    (Σ (α : L.obj ⟶ T.obj),
+      Homotopy (((boundedCochainComplex MetrizableLCA.{0}).ι.map f) ≫ α) 0) ≃
+      ((dgMappingConeObject f).obj ⟶ T.obj) := by
+  exact HomologicalComplex.homotopyCofiber.descEquiv
+    (φ := (boundedCochainComplex MetrizableLCA.{0}).ι.map f) T.obj
+    (fun j ↦ ⟨j - 1, by simp⟩)
 
 /-- The degree-zero inclusion of the target into the mapping cone, retained in the bounded
 dg carrier. -/
