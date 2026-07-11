@@ -13,6 +13,8 @@ injectivity and the concrete fiber-saturation condition are available.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -147,7 +149,7 @@ theorem comparisonBijectiveEmbeddingTarget_of_fiberSaturationW818
     leftRightHomologyComparison'_embedding_of_bijective_saturatedW818
       S.leftHomologyData S.rightHomologyData
       (by
-        simpa [ShortComplex.leftRightHomologyComparison] using h.1)
+        exact h.1)
       h.2⟩
 
 /--

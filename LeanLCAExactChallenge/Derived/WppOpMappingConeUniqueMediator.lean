@@ -19,6 +19,8 @@ No product-completion claim is made here.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 set_option maxHeartbeats 800000
 
 noncomputable section
@@ -188,7 +190,8 @@ theorem rightLegMediator_fac {J : Type} [Category J]
         rightLegMediator hc₂ L =
         (BoundedComplexCategory.ι MetrizableLCA.{0}).map
           (c₂.ι.app j ≫ hc₂.desc L.rightCocone) ≫ L.ptIso.hom := by
-          simp [rightLegMediator, Category.assoc]
+          rw [Functor.map_comp]
+          rfl
     _ = (BoundedComplexCategory.ι MetrizableLCA.{0}).map
           (L.rightCocone.ι.app j) ≫ L.ptIso.hom := by
           simpa using congrArg

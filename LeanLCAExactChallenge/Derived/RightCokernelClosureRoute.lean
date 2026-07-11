@@ -13,6 +13,8 @@ canonical left-right homology comparison.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -51,9 +53,8 @@ theorem isColimit_cokernel_cofork_eq_zero_mem_closure_rangeW820
   let e : Q ≅ cokernelObj f :=
     IsColimit.coconePointUniqueUpToIso hp (cokernelIsColimit f)
   have hpe : p ≫ e.hom = cokernelπ f := by
-    simpa [e] using
-      (IsColimit.comp_coconePointUniqueUpToIso_hom
-        hp (cokernelIsColimit f) WalkingParallelPair.one)
+    exact IsColimit.comp_coconePointUniqueUpToIso_hom
+      hp (cokernelIsColimit f) WalkingParallelPair.one
   have hcok0 : cokernelπ f b = 0 := by
     calc
       cokernelπ f b = (p ≫ e.hom) b := by

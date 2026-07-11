@@ -18,6 +18,8 @@ or claim that these carriers form a simplicial category.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -52,8 +54,10 @@ def doldKanGammaZeroIso (T : ChainComplex AddCommGrpCat ℕ) :
       hom_inv_id := ?_
       inv_hom_id := ?_ }
   · rw [← s.cofan_inj_id 0]
-    simpa [p] using s.ι_desc (op ⦋0⦌) p
-      (SimplicialObject.Splitting.IndexSet.id (op ⦋0⦌))
+    exact (s.ι_desc (op ⦋0⦌) p
+      (SimplicialObject.Splitting.IndexSet.id (op ⦋0⦌))).trans (by
+        dsimp only [p]
+        apply eqToHom_refl)
   · apply s.hom_ext'
     intro A
     have hA := doldKanIndexSet_zero_eq_id A
@@ -70,7 +74,14 @@ def doldKanGammaZeroIso (T : ChainComplex AddCommGrpCat ℕ) :
       dsimp only [p]
       apply eqToHom_refl
     rw [hp]
-    simpa only [Category.id_comp, Category.comp_id] using (s.cofan_inj_id 0).symm
+    calc
+      𝟙 _ ≫ s.ι 0 = s.ι 0 := Category.id_comp _
+      _ = (s.cofan (op ⦋0⦌)).inj
+          (SimplicialObject.Splitting.IndexSet.id (op ⦋0⦌)) :=
+        (s.cofan_inj_id 0).symm
+      _ = (s.cofan (op ⦋0⦌)).inj
+          (SimplicialObject.Splitting.IndexSet.id (op ⦋0⦌)) ≫ 𝟙 _ :=
+        (Category.comp_id _).symm
 
 /-- The abstract Dold--Kan inverse has the same degree-zero comparison as its explicit
 construction. -/

@@ -9,6 +9,8 @@ does not replace the legacy `Dbounded` declarations in `Derived.Bounded`.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 

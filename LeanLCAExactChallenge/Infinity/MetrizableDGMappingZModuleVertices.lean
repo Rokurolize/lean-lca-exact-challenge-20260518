@@ -8,6 +8,8 @@ sets agrees on vertices with ordinary composition of bounded-complex morphisms.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -90,9 +92,8 @@ theorem dgMappingZModuleSimplicialComposition_f_zero_apply
               (dgMappingZModuleChainComplex K L)).inv f))) := by
   have h := ConcreteCategory.congr_hom
     (dgMappingZModuleSimplicialComposition_f_zero K L M) (f ⊗ₜ[ℤ] g)
-  simpa only [CategoryTheory.comp_apply,
-    ModuleCat.MonoidalCategory.braiding_hom_apply,
-    ModuleCat.MonoidalCategory.tensorHom_tmul] using h
+  simp only [CategoryTheory.comp_apply] at h
+  exact h
 
 theorem dgMappingZModuleSSetComposition_f_zero_apply
     (K L M : ComplexCategory)
@@ -112,7 +113,7 @@ theorem dgMappingZModuleSSetComposition_f_zero_apply
             ((zModuleDoldKanInverseZeroIso
               (dgMappingZModuleChainComplex K L)).inv f))) := by
   simpa [dgMappingZModuleSSetComposition,
-    simplicialZModuleTensorPairing] using
+    simplicialZModuleTensorPairing, CategoryTheory.comp_apply] using
       dgMappingZModuleSimplicialComposition_f_zero_apply K L M f g
 
 theorem dgMappingZModuleVerticesEquivBoundedMorphisms_comp
@@ -144,4 +145,3 @@ theorem dgMappingZModuleVerticesEquivBoundedMorphisms_comp
 end MetrizableBoundedComplexes
 end Infinity
 end LeanLCAExactChallenge
-

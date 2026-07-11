@@ -9,6 +9,8 @@ composition.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -30,9 +32,7 @@ lemma ιTensorObj_tensorHom_direct
         (HomologicalComplex.tensorHom f g).f n =
       (f.f p ⊗ₘ g.f q) ≫
         HomologicalComplex.ιTensorObj L₁ L₂ p q n h := by
-  simpa only [MonoidalCategory.tensorHom_def] using
-    (HomologicalComplex.ι_mapBifunctorMap f g
-      (curriedTensor (ModuleCat ℤ)) (ComplexShape.down ℕ) p q n h)
+  exact GradedObject.Monoidal.ι_tensorHom f.f g.f p q n h
 
 theorem dgTruncatedCompositionComponentReversed_assoc
     (W X Y Z : ComplexCategory) {p q r n : ℕ} (h : p + q + r = n) :
@@ -101,7 +101,7 @@ theorem dgTruncatedCompositionComponentReversed_assoc
             (show p + q = p + q by rfl) (a ⊗ₜ[ℤ] b)) =
         dgTruncatedCompositionToCochain Y X W
           (show p + q = p + q by rfl) (a ⊗ₜ[ℤ] b) := by
-    simpa only [ModuleCat.comp_apply] using hab
+    exact hab
   have hbc' :
       ((dgHomZModuleCochainComplex Z X).truncLE'ToRestriction
           ComplexShape.embeddingDownNat).f (q + r)
@@ -109,7 +109,7 @@ theorem dgTruncatedCompositionComponentReversed_assoc
             (show q + r = q + r by rfl) (b ⊗ₜ[ℤ] c)) =
         dgTruncatedCompositionToCochain Z Y X
           (show q + r = q + r by rfl) (b ⊗ₜ[ℤ] c) := by
-    simpa only [ModuleCat.comp_apply] using hbc
+    exact hbc
   rw [hab', hbc']
   rw [dgTruncatedCompositionToCochain_tmul,
     dgTruncatedCompositionToCochain_tmul]
@@ -216,7 +216,20 @@ theorem dgTruncatedCompositionReversed_assoc
           GradedObject.Monoidal.ιTensorObj
             (DirectMappingChain Y W).X
             (DirectMappingChain Z Y).X (p + q) r n h := by
-    simpa only [] using ιTensorObj_tensorHom_direct
+    change
+      HomologicalComplex.ιTensorObj
+            (HomologicalComplex.tensorObj
+              (DirectMappingChain X W) (DirectMappingChain Y X))
+            (DirectMappingChain Z Y) (p + q) r n h ≫
+          (HomologicalComplex.tensorHom
+            (dgTruncatedCompositionReversed Y X W)
+            (𝟙 (DirectMappingChain Z Y))).f n =
+        (((dgTruncatedCompositionReversed Y X W).f (p + q) ⊗ₘ
+            𝟙 ((DirectMappingChain Z Y).X r)) ≫
+          HomologicalComplex.ιTensorObj
+            (DirectMappingChain Y W) (DirectMappingChain Z Y)
+            (p + q) r n h)
+    exact ιTensorObj_tensorHom_direct
       (dgTruncatedCompositionReversed Y X W)
       (𝟙 (DirectMappingChain Z Y)) h
   have houterR :
@@ -235,7 +248,21 @@ theorem dgTruncatedCompositionReversed_assoc
             (DirectMappingChain X W).X
             (DirectMappingChain Z X).X p (q + r) n
               (show p + (q + r) = n by omega) := by
-    simpa only [] using ιTensorObj_tensorHom_direct
+    change
+      HomologicalComplex.ιTensorObj
+            (DirectMappingChain X W)
+            (HomologicalComplex.tensorObj
+              (DirectMappingChain Y X) (DirectMappingChain Z Y))
+            p (q + r) n (show p + (q + r) = n by omega) ≫
+          (HomologicalComplex.tensorHom
+            (𝟙 (DirectMappingChain X W))
+            (dgTruncatedCompositionReversed Z Y X)).f n =
+        ((𝟙 ((DirectMappingChain X W).X p) ⊗ₘ
+            (dgTruncatedCompositionReversed Z Y X).f (q + r)) ≫
+          HomologicalComplex.ιTensorObj
+            (DirectMappingChain X W) (DirectMappingChain Z X)
+            p (q + r) n (show p + (q + r) = n by omega))
+    exact ιTensorObj_tensorHom_direct
       (𝟙 (DirectMappingChain X W))
       (dgTruncatedCompositionReversed Z Y X)
       (show p + (q + r) = n by omega)

@@ -12,6 +12,8 @@ the selected target is strictly exact acyclic.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 universe v u
 
@@ -50,7 +52,7 @@ theorem exactAcyclicTrianglehIso13SelectedCochainStrictification_of_closed2_homo
     (exactAcyclicHomotopyObject C).prop_of_iso
       (Pretriangulated.Triangle.π₂.mapIso e) hT₂
   have hL : exactAcyclic C L := by
-    simpa using hSelectedTarget
+    exact hSelectedTarget
   exact ⟨{
     selectedSource := K
     selectedTarget := L
@@ -58,7 +60,7 @@ theorem exactAcyclicTrianglehIso13SelectedCochainStrictification_of_closed2_homo
     triangleSourceIso := (Pretriangulated.Triangle.π₁.mapIso e).symm
     triangleConeIso := (Pretriangulated.Triangle.π₃.mapIso e).symm
     triangleComm := by
-      simpa using e.inv.comm₃
+      exact e.inv.comm₃
     targetExactAcyclic := hL }⟩
 
 namespace Dbounded

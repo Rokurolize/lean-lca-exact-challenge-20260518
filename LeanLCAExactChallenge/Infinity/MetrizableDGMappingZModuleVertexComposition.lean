@@ -8,6 +8,8 @@ proves that the transported dg composition acts as ordinary composition on pure 
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -94,7 +96,7 @@ theorem addCommGrp_truncLEToRestriction_f_zero
       ((H.op).pOpcycles 0).unop = H.iCycles 0 := by
     dsimp [HomologicalComplex.opcyclesOpIso, HomologicalComplex.pOpcycles,
       HomologicalComplex.iCycles]
-    simpa using congrArg Quiver.Hom.unop
+    exact congrArg Quiver.Hom.unop
       (H.sc 0).op_pOpcycles_opcyclesOpIso_hom
   have hcancel : (H.opcyclesOpIso 0).hom.unop ≫
       (H.opcyclesOpIso 0).inv.unop = 𝟙 _ :=
@@ -134,7 +136,7 @@ theorem module_truncLEToRestriction_f_zero
       ((H.op).pOpcycles 0).unop = H.iCycles 0 := by
     dsimp [HomologicalComplex.opcyclesOpIso, HomologicalComplex.pOpcycles,
       HomologicalComplex.iCycles]
-    simpa using congrArg Quiver.Hom.unop
+    exact congrArg Quiver.Hom.unop
       (H.sc 0).op_pOpcycles_opcyclesOpIso_hom
   have hcancel : (H.opcyclesOpIso 0).hom.unop ≫
       (H.opcyclesOpIso 0).inv.unop = 𝟙 _ :=
@@ -256,8 +258,11 @@ theorem dgMappingZModuleZeroCochainMap_eq (K L : ComplexCategory) :
         (FH.truncLE'ToRestriction e).f 0 ≫ t.f 0 := by
     have h := HomologicalComplex.congr_hom
       (HomologicalComplex.truncLE'ToRestriction_naturality t e) 0
-    simpa only [HomologicalComplex.comp_f,
-      HomologicalComplex.restrictionMap_f] using h
+    change
+      (HomologicalComplex.truncLE'Map t e).f 0 ≫
+          (D.truncLE'ToRestriction e).f 0 =
+        (FH.truncLE'ToRestriction e).f 0 ≫ t.f (e.f 0)
+    exact h
   have ht : t.f 0 =
       transportedToCanonicalZModuleNatIso.hom.app (H.X 0) := by
     dsimp [t, transportedHomIsoDirect, canonicalMappedHomIsoDirect]
@@ -282,8 +287,14 @@ theorem dgMappingZModuleZeroCochainMap_eq (K L : ComplexCategory) :
         transportedToCanonicalZModuleNatIso.hom.app
             ((dgMappingChainComplex K L).X 0) ≫
           canonicalZModuleFunctor.map r := by
-    simpa only [H, r, dgMappingChainComplex] using
-      transportedToCanonicalZModuleNatIso.hom.naturality r
+    change
+      addCommGrpToZModule.map r ≫
+          transportedToCanonicalZModuleNatIso.hom.app
+            ((HomologicalComplex.restriction H e).X 0) =
+        transportedToCanonicalZModuleNatIso.hom.app
+            ((H.truncLE' e).X 0) ≫
+          canonicalZModuleFunctor.map r
+    exact transportedToCanonicalZModuleNatIso.hom.naturality r
   change (((mapTruncHomIso K L).hom.f 0 ≫
       (HomologicalComplex.truncLE'Map t e).f 0) ≫
       (D.truncLE'ToRestriction e).f 0) =
@@ -337,13 +348,10 @@ theorem dgMappingZModuleChainComposition_zero_toCochain
     (dgMappingZModuleChainComplexIsoDirect L M).hom
     (dgMappingZModuleChainComplexIsoDirect K L).hom).f 0
   let c := (dgTruncatedCompositionReversed K L M).f 0
-  have hιraw := HomologicalComplex.ι_mapBifunctorMap
-    (dgMappingZModuleChainComplexIsoDirect L M).hom
-    (dgMappingZModuleChainComplexIsoDirect K L).hom
-    (curriedTensor (ModuleCat ℤ)) (ComplexShape.down ℕ) 0 0 0 rfl
   have hι : iT ≫ t = (fLM ⊗ₘ fKL) ≫ iD := by
-    simpa only [iT, t, fLM, fKL, iD,
-      MonoidalCategory.tensorHom_def] using hιraw
+    exact GradedObject.Monoidal.ι_tensorHom
+      (dgMappingZModuleChainComplexIsoDirect L M).hom.f
+      (dgMappingZModuleChainComplexIsoDirect K L).hom.f 0 0 0 rfl
   have hdeg := ιTensorObj_dgTruncatedCompositionDegreeReversed
     (K := K) (L := L) (M := M) (p := 0) (q := 0) (n := 0) rfl
   have hcomponent :=
@@ -402,9 +410,20 @@ theorem dgMappingZModuleZeroCochain_comp
         (dgMappingZModuleZeroCochain L M y) rfl := by
   have h := ConcreteCategory.congr_hom
     (dgMappingZModuleChainComposition_zero_toCochain K L M) (y ⊗ₜ[ℤ] x)
-  simpa only [dgMappingZModuleZeroCochain,
-    ModuleCat.MonoidalCategory.tensorHom_tmul,
-    dgTruncatedCompositionToCochain_tmul] using h
+  change
+    ((dgHomZModuleCochainComplex K M).truncLE'ToRestriction
+        ComplexShape.embeddingDownNat).f 0
+      ((dgMappingZModuleChainComplexIsoDirect K M).hom.f 0
+        ((dgMappingZModuleChainComposition K L M).f 0
+          (HomologicalComplex.ιTensorObj
+            (dgMappingZModuleChainComplex L M)
+            (dgMappingZModuleChainComplex K L) 0 0 0 rfl (y ⊗ₜ[ℤ] x)))) =
+      dgTruncatedCompositionToCochain K L M rfl
+        ((dgMappingZModuleChainComplexIsoDirect L M).hom.f 0 y ⊗ₜ[ℤ]
+          (dgMappingZModuleChainComplexIsoDirect K L).hom.f 0 x)
+  simp only [CategoryTheory.comp_apply,
+    ModuleCat.MonoidalCategory.tensorHom_tmul] at h
+  exact h
 
 theorem dgMappingZModuleZeroCochain_f_eq_boundedHom
     (K L : ComplexCategory)
@@ -439,7 +458,6 @@ theorem dgMappingZModuleZeroCochain_f_eq_boundedHom
           (underlyingComplex K) (underlyingComplex L) 0) := by
     rw [CategoryTheory.comp_apply, hpreimageApply]
     simp [canonicalZModuleFunctor, dgCocycleToCochain, z, c]
-    rfl
   have hcochain : dgMappingZModuleZeroCochain K L x =
       (c : CochainComplex.HomComplex.Cochain
         (underlyingComplex K) (underlyingComplex L) 0) := by
@@ -449,7 +467,16 @@ theorem dgMappingZModuleZeroCochain_f_eq_boundedHom
           canonicalZModuleFunctor.map
             ((dgMappingChainComplexZeroIsoCocycle K L).hom ≫
               dgCocycleToCochain K L)) x := by
-      simpa only [dgMappingZModuleZeroCochain] using h
+      change
+        ((dgHomZModuleCochainComplex K L).truncLE'ToRestriction
+            ComplexShape.embeddingDownNat).f 0
+          ((dgMappingZModuleChainComplexIsoDirect K L).hom.f 0 x) =
+            canonicalZModuleFunctor.map
+              ((dgMappingChainComplexZeroIsoCocycle K L).hom ≫
+                dgCocycleToCochain K L)
+              ((transportedToCanonicalZModuleIso
+                ((dgMappingChainComplex K L).X 0)).hom x)
+      exact h
     exact hleft.trans hright
   have hpreimage :
       dgMappingZModuleChainComplexZeroEquivBoundedHom K L x =
@@ -502,13 +529,11 @@ theorem dgMappingZModuleChainComposition_zero_tmul
           (dgMappingZModuleZeroCochain L M y) rfl).v i i (add_zero i) =
         (dgMappingZModuleZeroCochain K L x).v i i (add_zero i) ≫
           (dgMappingZModuleZeroCochain L M y).v i i (add_zero i) := by
-    simpa only [] using
-      CochainComplex.HomComplex.Cochain.zero_cochain_comp_v
-        (dgMappingZModuleZeroCochain K L x)
-        (dgMappingZModuleZeroCochain L M y) i i (add_zero i)
+    exact CochainComplex.HomComplex.Cochain.zero_cochain_comp_v
+      (dgMappingZModuleZeroCochain K L x)
+      (dgMappingZModuleZeroCochain L M y) i i (add_zero i)
   simpa only [w] using hv.trans hcomp
 
 end MetrizableBoundedComplexes
 end Infinity
 end LeanLCAExactChallenge
-

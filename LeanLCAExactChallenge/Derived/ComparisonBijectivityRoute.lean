@@ -7,6 +7,8 @@ comparison in `MetrizableLCA`, then feed W820 to obtain
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -159,9 +161,8 @@ theorem leftRightHomologyComparison'_bijectiveW821
 theorem comparisonBijectiveTargetW821
     (S : ShortComplex MetrizableLCA.{0}) :
     comparisonBijectiveTargetW820 S := by
-  simpa [comparisonBijectiveTargetW820, ShortComplex.leftRightHomologyComparison]
-    using leftRightHomologyComparison'_bijectiveW821
-      S.leftHomologyData S.rightHomologyData
+  exact leftRightHomologyComparison'_bijectiveW821
+    S.leftHomologyData S.rightHomologyData
 
 /-- W821 proves the homology structure for the strict metrizable LCA category. -/
 theorem categoryWithHomology_of_leftRightComparisonBijectiveW821 :

@@ -14,6 +14,8 @@ subgroup.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -41,13 +43,19 @@ theorem kernelFork_range_of_apply_eq_zeroW819
   let e : fork.pt ≅ MetrizableLCA.equalizerObj g 0 :=
     IsLimit.conePointUniqueUpToIso hι (MetrizableLCA.equalizerIsLimit g 0)
   let y : MetrizableLCA.equalizerObj g 0 :=
-    ⟨x, by simpa [MetrizableLCA.zero_apply] using hx⟩
+    ⟨x, by
+      change g x = (0 : A ⟶ B) x
+      rw [MetrizableLCA.zero_apply]
+      exact hx⟩
   refine ⟨e.inv y, ?_⟩
   have hcomp :
       e.hom ≫ MetrizableLCA.equalizerι g 0 = ι := by
-    simpa [fork, MetrizableLCA.equalizerFork] using
-      (IsLimit.conePointUniqueUpToIso_hom_comp
-        hι (MetrizableLCA.equalizerIsLimit g 0) WalkingParallelPair.zero)
+    change
+      (IsLimit.conePointUniqueUpToIso hι
+          (MetrizableLCA.equalizerIsLimit g 0)).hom ≫
+        MetrizableLCA.equalizerι g 0 = ι
+    exact IsLimit.conePointUniqueUpToIso_hom_comp
+      hι (MetrizableLCA.equalizerIsLimit g 0) WalkingParallelPair.zero
   have heval :
       (MetrizableLCA.equalizerι g 0) (e.hom (e.inv y)) =
         ι (e.inv y) := by

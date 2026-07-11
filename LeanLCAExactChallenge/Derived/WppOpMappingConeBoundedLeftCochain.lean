@@ -12,6 +12,8 @@ left cochains, and these descend along the included `c₁` colimit.
 
 set_option autoImplicit false
 set_option maxHeartbeats 900000
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -146,7 +148,8 @@ theorem leftCochainOfBoundedTestCocone_comp_fac {J : Type} [Category J]
         ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j)) (leg j) := by
   apply HomComplex.Cochain.ext
   intro p q hpq
-  simpa [leftCochainOfBoundedTestCocone, HomComplex.Cochain.ofHom_comp] using
+  simpa [leftCochainOfBoundedTestCocone, HomComplex.Cochain.ofHom_comp,
+    boundedLeftEvalCocone] using
     (isColimitOfPreserves
       (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) p) hc₁i).fac
       (boundedLeftEvalCocone f leg hleg p q hpq) j

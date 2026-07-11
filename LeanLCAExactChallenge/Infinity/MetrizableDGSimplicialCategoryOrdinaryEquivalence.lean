@@ -14,6 +14,8 @@ equivalence of simplicially enriched categories, simplicial nerves, or quasicate
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -69,13 +71,10 @@ theorem dgMappingDirectZModuleChainComposition_zero_tmul
   let t := (HomologicalComplex.tensorHom
     (dgMappingZModuleChainComplexIsoDirect L M).hom
     (dgMappingZModuleChainComplexIsoDirect K L).hom).f 0
-  have hιraw := HomologicalComplex.ι_mapBifunctorMap
-    (dgMappingZModuleChainComplexIsoDirect L M).hom
-    (dgMappingZModuleChainComplexIsoDirect K L).hom
-    (curriedTensor (ModuleCat ℤ)) (ComplexShape.down ℕ) 0 0 0 rfl
   have hι : iT ≫ t = (fLM ⊗ₘ fKL) ≫ iD := by
-    simpa only [iT, t, fLM, fKL, iD,
-      MonoidalCategory.tensorHom_def] using hιraw
+    exact GradedObject.Monoidal.ι_tensorHom
+      (dgMappingZModuleChainComplexIsoDirect L M).hom.f
+      (dgMappingZModuleChainComplexIsoDirect K L).hom.f 0 0 0 rfl
   have hLM := HomologicalComplex.congr_hom
     (dgMappingZModuleChainComplexIsoDirect L M).inv_hom_id 0
   have hKL := HomologicalComplex.congr_hom
@@ -197,9 +196,8 @@ theorem dgMappingDirectZModuleSimplicialComposition_f_zero_apply
   have h := ConcreteCategory.congr_hom
     (dgMappingDirectZModuleSimplicialComposition_f_zero K L M)
     (f ⊗ₜ[ℤ] g)
-  simpa only [CategoryTheory.comp_apply,
-    ModuleCat.MonoidalCategory.braiding_hom_apply,
-    ModuleCat.MonoidalCategory.tensorHom_tmul] using h
+  simp only [CategoryTheory.comp_apply] at h
+  exact h
 
 /-- Elementwise degree-zero formula after forgetting to simplicial sets. -/
 theorem dgMappingDirectZModuleSSetComposition_f_zero_apply
@@ -218,7 +216,7 @@ theorem dgMappingDirectZModuleSSetComposition_f_zero_apply
             ((zModuleDoldKanInverseZeroIso
               (dgMappingDirectZModuleChainComplex K L)).inv f))) := by
   simpa [dgMappingDirectZModuleSSetComposition,
-    simplicialZModuleTensorPairing] using
+    simplicialZModuleTensorPairing, CategoryTheory.comp_apply] using
       dgMappingDirectZModuleSimplicialComposition_f_zero_apply K L M f g
 
 /-- The object of the opposite direct simplicial-module category represented by a complex. -/

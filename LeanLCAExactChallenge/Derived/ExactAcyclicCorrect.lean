@@ -21,6 +21,9 @@ those cycle objects.
 
 noncomputable section
 
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
+
 open CategoryTheory
 open CategoryTheory.Category
 open CategoryTheory.Limits
@@ -1046,7 +1049,7 @@ lemma mappingConeCyclesSecondPullbackToFactor_hom_inv
                 pullback.fst (-(cyclesDataMap hK hL f (i + 1 + 1)))
                   (hL.proj (i + 1)) := by
                     simp only [mappingConeCyclesSecondPullbackBase,
-                      Preadditive.comp_neg] at hc
+                      Preadditive.comp_neg] at hc ⊢
                     simpa only [Preadditive.comp_neg, Preadditive.neg_comp,
                       neg_neg] using congrArg Neg.neg hc.symm
     · simp only [Category.id_comp]
@@ -1271,7 +1274,6 @@ noncomputable def mappingConeCyclesIncl_isLimit
       (fun q => q ≫
         pullback.fst (-(cyclesDataMap hK hL f (i + 1 + 1)))
           (hL.proj (i + 1))) hk
-    dsimp at h
     rw [Category.assoc, mappingConeCyclesProj_fst] at h
     simpa only [zero_comp, Category.assoc, Preadditive.comp_neg,
       Preadditive.neg_comp, neg_eq_zero] using h
@@ -1292,7 +1294,6 @@ noncomputable def mappingConeCyclesIncl_isLimit
       (fun q => q ≫
         pullback.snd (-(cyclesDataMap hK hL f (i + 1 + 1)))
           (hL.proj (i + 1))) hk
-    dsimp at h
     rw [Category.assoc, mappingConeCyclesProj_snd] at h
     simpa only [zero_comp, Category.assoc, Preadditive.comp_add, b] using h
   haveI : Mono (hL.incl (i + 1)) :=
@@ -1440,7 +1441,8 @@ theorem forgetToAddCommGrpCat_exactAt_of_cyclesData
   have hproj_zero : h.proj i y = 0 := by
     have hycomp : (h.proj i ≫ h.incl (i + 1)) y = 0 := by
       rw [h.d_eq i]
-      simpa [Kf] using hy
+      change K.d i (i + 1) y = 0 at hy
+      exact hy
     have hycomp' : h.incl (i + 1) (h.proj i y) = h.incl (i + 1) 0 := by
       simpa using hycomp
     exact hstrict_next.closed_inclusion.injective hycomp'
@@ -1463,7 +1465,8 @@ theorem forgetToAddCommGrpCat_exactAt_of_cyclesData
         simpa [eprev, Category.assoc] using hdprev.symm
       _ = h.incl i z := by rw [hzprev]
       _ = y := hz
-  simpa [Kf] using hdx
+  change K.d (i - 1) i x = y
+  exact hdx
 
 /-- Corrected acyclic complexes are degreewise exact after forgetting topology. -/
 theorem forgetToAddCommGrpCat_exactAt_of_exactAcyclicWithCycles
@@ -1505,9 +1508,9 @@ theorem exactAt_of_forgetToAddCommGrpCat_exactAt
           K.X (i - 1) → Z) := by
     intro z
     have hz : dout (κ z) = 0 := by
-      have hzcat := congrArg (fun q : Z ⟶ K.X (i + 1) => q z)
-        (kernel.condition dout)
-      simp [κ, dout] at hzcat ⊢
+      have hzcat := ConcreteCategory.congr_hom (kernel.condition dout) z
+      change dout (κ z) = 0 at hzcat
+      exact hzcat
     obtain ⟨x, hx⟩ := hExact' (κ z) (by
       change dout (κ z) = 0
       exact hz)
@@ -1520,9 +1523,12 @@ theorem exactAt_of_forgetToAddCommGrpCat_exactAt
           (kernel.lift dout din
             (by dsimp [din, dout]; exact K.d_comp_d (i - 1) i (i + 1)) x) =
           din x := by
-        simp [κ]
+        simpa [κ] using ConcreteCategory.congr_hom
+          (kernel.lift_ι dout din
+            (by dsimp [din, dout]; exact K.d_comp_d (i - 1) i (i + 1))) x
       _ = κ z := by
-        simpa [Kf, din, κ] using hx
+        change din x = κ z at hx
+        exact hx
   exact ConcreteCategory.epi_of_surjective _ hSurj
 
 /-- The canonical boundary map from a term to the next kernel object. -/
@@ -1580,7 +1586,7 @@ lemma exists_preimage_kernel_ι_of_apply_eq_zero {A B : MetrizableLCA.{u}} (f : 
   let e : (CategoryTheory.Limits.kernel (C := MetrizableLCA.{u}) f :
       MetrizableLCA.{u}) ≃ₜ+ equalizerObj f (0 : A ⟶ B) :=
     isoToContinuousAddEquiv (equalizerIsoEqualizerObj f (0 : A ⟶ B))
-  let y : equalizerObj f (0 : A ⟶ B) := ⟨a, by simpa using ha⟩
+  let y : equalizerObj f (0 : A ⟶ B) := ⟨a, by simpa [equalizerSubgroup] using ha⟩
   refine ⟨e.symm y, ?_⟩
   have hhom : (equalizerIsoEqualizerObj f (0 : A ⟶ B)).hom ≫
       equalizerι f (0 : A ⟶ B) =

@@ -23,6 +23,8 @@ No product-completion claim is made.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 set_option maxHeartbeats 800000
 
 noncomputable section
@@ -853,17 +855,14 @@ theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_exact_componentTop
   let cs : Cocone S := (degreeShortComplexFunctor i).mapCocone ck
   have hcs : IsColimit cs := by
     refine ShortComplex.isColimitOfIsColimitπ _ ?_ ?_ ?_
-    · simpa [degreeShortComplexFunctor, HomologicalComplex.shortComplexFunctor, cs] using
-        (isColimitOfPreserves
-          (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ)
-            ((ComplexShape.up ℤ).prev i)) hck)
-    · simpa [degreeShortComplexFunctor, HomologicalComplex.shortComplexFunctor, cs] using
-        (isColimitOfPreserves
-          (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) i) hck)
-    · simpa [degreeShortComplexFunctor, HomologicalComplex.shortComplexFunctor, cs] using
-        (isColimitOfPreserves
-          (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ)
-            ((ComplexShape.up ℤ).next i)) hck)
+    · exact isColimitOfPreserves
+        (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ)
+          ((ComplexShape.up ℤ).prev i)) hck
+    · exact isColimitOfPreserves
+        (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) i) hck
+    · exact isColimitOfPreserves
+        (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ)
+          ((ComplexShape.up ℤ).next i)) hck
   have hS : ∀ j : WalkingParallelPairᵒᵖ, MetrizableLCA.strictShortExact (S.obj j) := by
     intro j
     exact hK j i
@@ -902,17 +901,14 @@ theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_consolidated_front
   let cs : Cocone S := (degreeShortComplexFunctor i).mapCocone ck
   have hcs : IsColimit cs := by
     refine ShortComplex.isColimitOfIsColimitπ _ ?_ ?_ ?_
-    · simpa [degreeShortComplexFunctor, HomologicalComplex.shortComplexFunctor, cs] using
-        (isColimitOfPreserves
-          (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ)
-            ((ComplexShape.up ℤ).prev i)) hck)
-    · simpa [degreeShortComplexFunctor, HomologicalComplex.shortComplexFunctor, cs] using
-        (isColimitOfPreserves
-          (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) i) hck)
-    · simpa [degreeShortComplexFunctor, HomologicalComplex.shortComplexFunctor, cs] using
-        (isColimitOfPreserves
-          (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ)
-            ((ComplexShape.up ℤ).next i)) hck)
+    · exact isColimitOfPreserves
+        (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ)
+          ((ComplexShape.up ℤ).prev i)) hck
+    · exact isColimitOfPreserves
+        (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) i) hck
+    · exact isColimitOfPreserves
+        (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ)
+          ((ComplexShape.up ℤ).next i)) hck
   have hS : ∀ j : WalkingParallelPairᵒᵖ, MetrizableLCA.strictShortExact (S.obj j) := by
     intro j
     exact hK j i

@@ -9,6 +9,8 @@ This module packages the Option-index step, the empty-index base case, equivalen
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 universe u
 
@@ -162,22 +164,24 @@ theorem optionTransportedFanMapFstNaturality {J : Type u} [Finite J]
       (Pi.map' Subtype.val (fun b : {x : Option J // x = none} => f ↑b)) ≫
         limit.π (Discrete.functor fun i : {x : Option J // x = none} => L ↑i) default =
       limit.π (Discrete.functor K) (Discrete.mk none) ≫ f none := by
-    have h := Limits.Pi.map'_comp_π (p := Subtype.val)
-      (q := fun b : {x : Option J // x = none} => f b.val)
-      (b := (default : Discrete {x : Option J // x = none}).as)
-    have hval : ((default : Discrete {x : Option J // x = none}).as).val = none :=
-      ((default : Discrete {x : Option J // x = none}).as).property
-    simpa [Pi.π, hval] using h
+    change (Pi.map' Subtype.val (fun b : {x : Option J // x = none} => f ↑b)) ≫
+        Pi.π (fun i : {x : Option J // x = none} => L ↑i) ⟨none, rfl⟩ =
+      Pi.π K none ≫ f none
+    exact
+      (Limits.Pi.map'_comp_π (p := Subtype.val)
+        (q := fun b : {x : Option J // x = none} => f b.val)
+        (b := ⟨none, rfl⟩))
   have hright :
       ((Pi.map' Subtype.val fun x : {x : Option J // x = none} => 𝟙 (K ↑x)) ≫
         limit.π (Discrete.functor fun i : {x : Option J // x = none} => K ↑i) default) ≫ f none =
       limit.π (Discrete.functor K) (Discrete.mk none) ≫ f none := by
+    change ((Pi.map' Subtype.val fun x : {x : Option J // x = none} => 𝟙 (K ↑x)) ≫
+        Pi.π (fun i : {x : Option J // x = none} => K ↑i) ⟨none, rfl⟩) ≫ f none =
+      Pi.π K none ≫ f none
     have h := Limits.Pi.map'_comp_π (p := Subtype.val)
       (q := fun b : {x : Option J // x = none} => 𝟙 (K b.val))
-      (b := (default : Discrete {x : Option J // x = none}).as)
-    have hval : ((default : Discrete {x : Option J // x = none}).as).val = none :=
-      ((default : Discrete {x : Option J // x = none}).as).property
-    simpa [Pi.π, hval, Category.assoc] using congrArg (fun g => g ≫ f none) h
+      (b := ⟨none, rfl⟩)
+    simpa [Category.assoc] using congrArg (fun g => g ≫ f none) h
   rw [hleft, hright]
 
 /--
@@ -200,17 +204,23 @@ theorem optionProductComplexTransportedBinaryFan_snd_π {J : Type u} [Finite J]
   letI : HasProduct
       ((fun i : {x : Option J // ¬ x = none} => K i.val) ∘
         ⇑(OptionProductDecompositionW151.optionSomeComplementEquiv J).symm) := by
-    simpa [Function.comp, OptionProductDecompositionW151.optionTail,
-      OptionProductDecompositionW151.optionSomeComplementEquiv]
-      using (inferInstance : HasProduct (OptionProductDecompositionW151.optionTail MetrizableLCA K))
+    change HasProduct (OptionProductDecompositionW151.optionTail MetrizableLCA K)
+    infer_instance
   have hreindex :
       (Pi.reindex (OptionProductDecompositionW151.optionSomeComplementEquiv J).symm
           (fun i : {x : Option J // ¬ x = none} => K i.val)).inv ≫
           Pi.π (OptionProductDecompositionW151.optionTail MetrizableLCA K) j =
         Pi.π (fun i : {x : Option J // ¬ x = none} => K i.val)
           ((OptionProductDecompositionW151.optionSomeComplementEquiv J).symm j) := by
-    simpa [OptionProductDecompositionW151.optionTail,
-      OptionProductDecompositionW151.optionSomeComplementEquiv] using
+    change
+      (Pi.reindex (OptionProductDecompositionW151.optionSomeComplementEquiv J).symm
+          (fun i : {x : Option J // ¬ x = none} => K i.val)).inv ≫
+          Pi.π
+            ((fun i : {x : Option J // ¬ x = none} => K i.val) ∘
+              ⇑(OptionProductDecompositionW151.optionSomeComplementEquiv J).symm) j =
+        Pi.π (fun i : {x : Option J // ¬ x = none} => K i.val)
+          ((OptionProductDecompositionW151.optionSomeComplementEquiv J).symm j)
+    exact
       (Pi.reindex_inv_π (OptionProductDecompositionW151.optionSomeComplementEquiv J).symm
         (fun i : {x : Option J // ¬ x = none} => K i.val) j)
   change (Pi.map' Subtype.val (fun x : {x : Option J // ¬ x = none} => 𝟙 (K ↑x))) ≫

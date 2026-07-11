@@ -11,6 +11,8 @@ asserted.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -153,9 +155,7 @@ theorem metrizableEquivalenceForcingMappingLocalizationProperty_of_comparisons
       hprod (relativeNerveEdgeMarking relativeCategory)
       metrizableEquivalenceForcingQCatMap Q
       metrizableEquivalenceForcingMap_invertsMarkedEdges (by
-        simpa only [MetrizableEquivalenceForcingCanonicalComparisonIsEquivalence,
-          metrizableEquivalenceForcingMappingComparison,
-          metrizableEquivalenceForcingQCatMap] using hEquiv Q)⟩)
+        exact hEquiv Q)⟩)
 
 /-- The presentation-to-quasicategory map is inner anodyne. -/
 theorem metrizableToEquivalenceForcingQCat_innerAnodyne :

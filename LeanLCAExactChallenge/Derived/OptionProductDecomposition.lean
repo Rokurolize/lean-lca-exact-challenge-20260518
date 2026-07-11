@@ -14,6 +14,8 @@ instances needed by the finite-product induction route.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 universe w v u
 
@@ -66,6 +68,14 @@ def optionSomeComplementEquiv (J : Type w) :
   right_inv := by
     intro j
     rfl
+
+/-- The inverse equivalence, displayed with its `some`-valued map definitionally exposed. -/
+def optionSomeComplementEquivInverse (J : Type w) :
+    J ≃ {x : Option J // ¬ x = none} where
+  toFun j := ⟨some j, by simp⟩
+  invFun := optionSomeComplementEquiv J
+  left_inv := (optionSomeComplementEquiv J).right_inv
+  right_inv := (optionSomeComplementEquiv J).left_inv
 
 theorem optionSomeComplementEquiv_apply_some {J : Type w} (j : J) :
     optionSomeComplementEquiv J ⟨some j, by simp⟩ = j :=
@@ -249,12 +259,11 @@ noncomputable def complementSubproductReindexIso {J : Type w}
   by
     letI : HasProduct
         ((fun i : {x : Option J // ¬ x = none} => K i.val) ∘
-          ⇑(optionSomeComplementEquiv J).symm) := by
-      simpa [Function.comp, optionTail, optionSomeComplementEquiv]
-        using (inferInstance : HasProduct (optionTail C K))
-    simpa [Function.comp, optionTail, optionSomeComplementEquiv]
-      using (Limits.Pi.reindex (optionSomeComplementEquiv J).symm
-        (fun i : {x : Option J // ¬ x = none} => K i.val)).symm
+          ⇑(optionSomeComplementEquivInverse J)) := by
+      change HasProduct (optionTail C K)
+      infer_instance
+    exact (Limits.Pi.reindex (optionSomeComplementEquivInverse J)
+      (fun i : {x : Option J // ¬ x = none} => K i.val)).symm
 
 /--
 The complex-level binary fan after composing the raw `Option` product split with the singleton
@@ -392,12 +401,11 @@ noncomputable def complementSubproductDegreeReindexIso {J : Type w}
   by
     letI : HasProduct
         ((fun i : {x : Option J // ¬ x = none} => (K i.val).X n) ∘
-          ⇑(optionSomeComplementEquiv J).symm) := by
-      simpa [Function.comp, optionTailDegree, optionSomeComplementEquiv]
-        using (inferInstance : HasProduct (optionTailDegree C K n))
-    simpa [Function.comp, optionTailDegree, optionSomeComplementEquiv]
-      using (Limits.Pi.reindex (optionSomeComplementEquiv J).symm
-        (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)).symm
+          ⇑(optionSomeComplementEquivInverse J)) := by
+      change HasProduct (optionTailDegree C K n)
+      infer_instance
+    exact (Limits.Pi.reindex (optionSomeComplementEquivInverse J)
+      (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)).symm
 
 noncomputable def optionProductDegreeTransportedBinaryFan {J : Type w}
     (K : Option J → CochainComplex C ℤ) (n : ℤ)
@@ -624,10 +632,8 @@ noncomputable def optionProductDegreeFanWithEvaluatedTargetsIsLimit {J : Type w}
       cases j
       · simp [Cone.postcompose, optionProductDegreeFanWithEvaluatedTargets, s, eP, eR, α,
           mapPairIso]
-        exact congrArg (fun q => eP.hom ≫ q) (BinaryFan.π_app_left s)
       · simp [Cone.postcompose, optionProductDegreeFanWithEvaluatedTargets, s, eP, eR, α,
-          mapPairIso]
-        exact congrArg (fun q => eP.hom ≫ q) (BinaryFan.π_app_right s))
+          mapPairIso])
 
 /-- The remaining typed comparison before transporting the degreewise `IsLimit` proof. -/
 abbrev EvaluatedDegreeFanComparison {J : Type w}
@@ -709,18 +715,24 @@ theorem optionProductDegreeTransportedBinaryFan_snd_π
   dsimp [optionProductDegreeTransportedBinaryFan, complementSubproductDegreeReindexIso]
   letI : HasProduct
       ((fun i : {x : Option J // ¬ x = none} => (K i.val).X n) ∘
-        ⇑(optionSomeComplementEquiv J).symm) := by
-    simpa [Function.comp, optionTailDegree, optionTail, optionSomeComplementEquiv]
-      using (inferInstance : HasProduct (optionTailDegree C K n))
+        ⇑(optionSomeComplementEquivInverse J)) := by
+    change HasProduct (optionTailDegree C K n)
+    infer_instance
   have hπ :
-      (Pi.reindex (optionSomeComplementEquiv J).symm
+      (Pi.reindex (optionSomeComplementEquivInverse J)
           (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)).inv ≫
           Pi.π (optionTailDegree C K n) j =
         Pi.π (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)
           ((optionSomeComplementEquiv J).symm j) := by
-    simpa [optionTailDegree, optionTail, optionSomeComplementEquiv] using
-      (Pi.reindex_inv_π (optionSomeComplementEquiv J).symm
-        (fun i : {x : Option J // ¬ x = none} => (K i.val).X n) j)
+    change
+      (Pi.reindex (optionSomeComplementEquivInverse J)
+          (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)).inv ≫
+          Pi.π ((fun i : {x : Option J // ¬ x = none} => (K i.val).X n) ∘
+            ⇑(optionSomeComplementEquivInverse J)) j =
+        Pi.π (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)
+          (optionSomeComplementEquivInverse J j)
+    exact Pi.reindex_inv_π (optionSomeComplementEquivInverse J)
+      (fun i : {x : Option J // ¬ x = none} => (K i.val).X n) j
   simpa [Category.assoc] using
     congrArg (fun q => (optionProductDegreeBinaryFan C K n).snd ≫ q) hπ
 
@@ -741,18 +753,24 @@ theorem complementSubproductReindexIso_hom_evalTail_hom_π
   simp only [complementSubproductReindexIso, evalTailProductPointIso_hom_π]
   letI : HasProduct
       ((fun i : {x : Option J // ¬ x = none} => K i.val) ∘
-        ⇑(optionSomeComplementEquiv J).symm) := by
-    simpa [Function.comp, optionTail, optionSomeComplementEquiv]
-      using (inferInstance : HasProduct (optionTail C K))
+        ⇑(optionSomeComplementEquivInverse J)) := by
+    change HasProduct (optionTail C K)
+    infer_instance
   have hπ :
-      (Pi.reindex (optionSomeComplementEquiv J).symm
+      (Pi.reindex (optionSomeComplementEquivInverse J)
           (fun i : {x : Option J // ¬ x = none} => K i.val)).inv ≫
           Pi.π (optionTail C K) j =
         Pi.π (fun i : {x : Option J // ¬ x = none} => K i.val)
           ((optionSomeComplementEquiv J).symm j) := by
-    simpa [optionTail, optionSomeComplementEquiv] using
-      (Pi.reindex_inv_π (optionSomeComplementEquiv J).symm
-        (fun i : {x : Option J // ¬ x = none} => K i.val) j)
+    change
+      (Pi.reindex (optionSomeComplementEquivInverse J)
+          (fun i : {x : Option J // ¬ x = none} => K i.val)).inv ≫
+          Pi.π ((fun i : {x : Option J // ¬ x = none} => K i.val) ∘
+            ⇑(optionSomeComplementEquivInverse J)) j =
+        Pi.π (fun i : {x : Option J // ¬ x = none} => K i.val)
+          (optionSomeComplementEquivInverse J j)
+    exact Pi.reindex_inv_π (optionSomeComplementEquivInverse J)
+      (fun i : {x : Option J // ¬ x = none} => K i.val) j
   simpa [HomologicalComplex.comp_f] using congrArg (fun q => q.f n) hπ
 
 /--
@@ -943,13 +961,13 @@ theorem evaluatedDegreeFanComparisonLeft_direct {J : Type w}
   have hleft_degree_limit :
       (Pi.binaryFanOfProp K (fun x : Option J => x = none)).fst.f n ≫
           (limit.π (Discrete.functor fun i : {x : Option J // x = none} => K i.val)
-            default).f n =
+            ⟨(default : {x : Option J // x = none})⟩).f n =
         (Pi.π K (default : {x : Option J // x = none}).val).f n := by
     simpa [Pi.π] using hleft_degree
   have hright_degree_limit :
       (Pi.binaryFanOfProp (fun i : Option J => (K i).X n) (fun x : Option J => x = none)).fst ≫
           limit.π (Discrete.functor fun i : {x : Option J // x = none} => (K i.val).X n)
-            default =
+            ⟨(default : {x : Option J // x = none})⟩ =
         Pi.π (fun i : Option J => (K i).X n)
           (default : {x : Option J // x = none}).val := by
     simpa [Pi.π] using hright_degree
@@ -960,8 +978,13 @@ theorem evaluatedDegreeFanComparisonLeft_direct {J : Type w}
   refine hleft_degree_limit.trans ?_
   refine (evalProductPointIso_hom_π C K n
     (default : {x : Option J // x = none}).val).symm.trans ?_
-  simpa [Category.assoc] using
-    congrArg (fun f => (evalProductPointIso C K n).hom ≫ f) hright_degree_limit.symm
+  have h := congrArg (fun f => (evalProductPointIso C K n).hom ≫ f)
+    hright_degree_limit.symm
+  convert h using 1
+  have hdefault : (default : Discrete {x : Option J // x = none}) =
+      ⟨(default : {x : Option J // x = none})⟩ := Subsingleton.elim _ _
+  cases hdefault
+  rfl
 
 /--
 Binary-fan extensionality reduces the evaluated fan comparison to exactly the two projection legs.
@@ -983,7 +1006,6 @@ theorem evaluatedDegreeFanComparison_of_left_right {J : Type w}
     EvaluatedDegreeFanComparisonRight, evaluatedOptionProductComplexBinaryFan,
     optionProductDegreeFanWithEvaluatedTargets] at hleft hright ⊢
   rw [hleft, hright]
-  rfl
 
 /--
 After `evaluatedDegreeFanComparisonLeft_direct`, only the right leg remains to prove the full

@@ -11,6 +11,8 @@ corrected bounded mapping-cone weak equivalences to the corresponding `trW` clas
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -1947,12 +1949,10 @@ noncomputable def homotopyComparisonLocalizationIso
     Φ.catCommSq (DboundedWithCycles.localization C)
       (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
   by
-    simpa [boundedExactWeakEquivalenceWithCyclesToHomotopyExactWeakEquivalenceWithCycles,
-      DboundedWithCycles.homotopyComparison] using
-      CatCommSq.iso Φ.functor (DboundedWithCycles.localization C)
-        (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
-        (Φ.localizedFunctor (DboundedWithCycles.localization C)
-          (boundedHomotopyExactWeakEquivalenceWithCycles C).Q)
+    exact CatCommSq.iso Φ.functor (DboundedWithCycles.localization C)
+      (boundedHomotopyExactWeakEquivalenceWithCycles C).Q
+      (Φ.localizedFunctor (DboundedWithCycles.localization C)
+        (boundedHomotopyExactWeakEquivalenceWithCycles C).Q)
 
 /-- The comparison from the direct corrected bounded localization to the ambient corrected
 homotopy Verdier quotient, routed through the corrected homotopy pullback localization. -/

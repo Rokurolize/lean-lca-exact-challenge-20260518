@@ -7,6 +7,8 @@ short exact sequences in `MetrizableLCA`.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 namespace LeanLCAExactChallenge
 
@@ -67,7 +69,7 @@ abbrev boundedHomotopyLocalizedEndpointShortExactUnitConflationWitnessOfStrictEx
   rcases boundedHomotopyLocalizedEndpointShortExactUnitStrictExactWitness X with ⟨K, hK, hIso⟩
   exact ⟨K, by
     intro i
-    simpa [MetrizableLCA.quillenExactCategory] using hK i, hIso⟩
+    exact MetrizableLCA.quillenConflation_of_strictShortExact (hK i), hIso⟩
 
 /--
 W936 preserves W935's endpoint short-exact field while requiring the unit

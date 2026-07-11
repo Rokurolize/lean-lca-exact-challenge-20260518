@@ -10,6 +10,8 @@ degree-zero projections.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -56,8 +58,8 @@ theorem gammaZero_projection_eq_zeroIso_inv
   have hI := doldKanIndexSet_zero_eq_id I
   subst I
   rw [SimplicialObject.Splitting.cofan_inj_πSummand_eq_id]
-  simpa using
-    (zModuleDoldKanInverseZeroIso_inv_on_identity_summand A).symm
+  change 𝟙 (A.X 0) = _
+  exact (zModuleDoldKanInverseZeroIso_inv_on_identity_summand A).symm
 
 theorem zModuleDoldKanInverseZeroIso_inv_naturality
     {A B : ChainComplex (ModuleCat.{0} ℤ) ℕ} (f : A ⟶ B) :
@@ -84,7 +86,6 @@ theorem zModuleDoldKanInverseZeroIso_inv_naturality
             (SimplicialObject.Splitting.IndexSet.id (op ⦋0⦌))) ≫
           (zModuleDoldKanInverseZeroIso B).inv := by
       rw [gammaZero_map_on_identity_summand f]
-      rfl
     _ = f.f 0 ≫
           (((AlgebraicTopology.DoldKan.Γ₀.splitting B).cofan
             (op ⦋0⦌)).inj
@@ -200,7 +201,6 @@ theorem zModuleDoldKanCounit_f_zero
   simp [zModuleDoldKanCounitKaroubiMap,
     AlgebraicTopology.DoldKan.N₁_iso_normalizedMooreComplex_comp_toKaroubi,
     gammaZero_projection_eq_zeroIso_inv]
-  rfl
 
 theorem normalizedAlexanderWhitney_f_zero_explicit
     (X Y : SimplicialObject (ModuleCat.{0} ℤ)) :
@@ -213,13 +213,8 @@ theorem normalizedAlexanderWhitney_f_zero_explicit
             ((normalizedMooreComplex (ModuleCat ℤ)).obj Y) 0 0 0 rfl := by
   simp [DoldKanMonoidal.normalizedAlexanderWhitney,
     DoldKanMonoidal.alternatingAlexanderWhitney_f,
-    DoldKanMonoidal.alternatingAlexanderWhitneyDegree_zero]
-  have hι := HomologicalComplex.ι_mapBifunctorMap
-    (DoldKan.PInftyToNormalizedMooreComplex X)
-    (DoldKan.PInftyToNormalizedMooreComplex Y)
-    (curriedTensor (ModuleCat ℤ)) (ComplexShape.down ℕ) 0 0 0 rfl
-  simpa only [MonoidalCategory.tensorHom_def] using congrArg
-    (fun t => (NormalizedMooreComplex.objX (X ⊗ Y) 0).arrow ≫ t) hι
+    DoldKanMonoidal.alternatingAlexanderWhitneyDegree_zero,
+    MonoidalCategory.tensorHom_def, Category.assoc]
 
 theorem pInftyToNormalized_comp_counit_f_zero
     (T : ChainComplex (ModuleCat.{0} ℤ) ℕ) :
@@ -256,10 +251,6 @@ theorem normalizedAlexanderWhitney_comp_counits_f_zero
           (zModuleDoldKanInverseZeroIso B).inv) ≫
         HomologicalComplex.ιTensorObj A B 0 0 0 rfl := by
   rw [normalizedAlexanderWhitney_f_zero_explicit]
-  have hιraw := HomologicalComplex.ι_mapBifunctorMap
-    (DoldKanMonoidal.zModuleDoldKanEquivalence.counitIso.hom.app A)
-    (DoldKanMonoidal.zModuleDoldKanEquivalence.counitIso.hom.app B)
-    (curriedTensor (ModuleCat ℤ)) (ComplexShape.down ℕ) 0 0 0 rfl
   have hι :
       HomologicalComplex.ιTensorObj
             ((normalizedMooreComplex (ModuleCat ℤ)).obj
@@ -273,7 +264,10 @@ theorem normalizedAlexanderWhitney_comp_counits_f_zero
         ((DoldKanMonoidal.zModuleDoldKanEquivalence.counitIso.hom.app A).f 0 ⊗ₘ
           (DoldKanMonoidal.zModuleDoldKanEquivalence.counitIso.hom.app B).f 0) ≫
             HomologicalComplex.ιTensorObj A B 0 0 0 rfl := by
-    simpa only [MonoidalCategory.tensorHom_def] using hιraw
+    exact GradedObject.Monoidal.ι_tensorHom
+      (DoldKanMonoidal.zModuleDoldKanEquivalence.counitIso.hom.app A).f
+      (DoldKanMonoidal.zModuleDoldKanEquivalence.counitIso.hom.app B).f
+      0 0 0 rfl
   let X := DoldKanMonoidal.zModuleDoldKanEquivalence.inverse.obj A
   let Y := DoldKanMonoidal.zModuleDoldKanEquivalence.inverse.obj B
   let pA := (DoldKan.PInftyToNormalizedMooreComplex X).f 0

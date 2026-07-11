@@ -14,6 +14,8 @@ not use the legacy `Dbounded` semantic package as evidence for the corrected rou
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -276,7 +278,7 @@ theorem forgetfulHomologicalKernelExactAtInput :
       IsZero
         ((HomotopyCategory.homologyFunctor AddCommGrpCat.{0} (ComplexShape.up ℤ) (0 : ℤ)).obj
           ((HomotopyCategory.quotient AddCommGrpCat.{0} (ComplexShape.up ℤ)).obj Kf)) := by
-    simpa [forgetfulHomologyKernelFunctor, Kf] using hQShift
+    exact hQShift
   have hZero : IsZero (Kf.homology (0 : ℤ)) :=
     IsZero.of_iso hQShift'
       ((HomotopyCategory.homologyFunctorFactors AddCommGrpCat.{0}
@@ -323,7 +325,7 @@ theorem forgetfulHomologicalKernelExactAtInput_of_preservesHomology
       IsZero
         ((HomotopyCategory.homologyFunctor AddCommGrpCat.{0} (ComplexShape.up ℤ) (0 : ℤ)).obj
           ((HomotopyCategory.quotient AddCommGrpCat.{0} (ComplexShape.up ℤ)).obj Kf)) := by
-    simpa [forgetfulHomologyKernelFunctor, Kf] using hQShift
+    exact hQShift
   have hZero : IsZero (Kf.homology (0 : ℤ)) :=
     IsZero.of_iso hQShift'
       ((HomotopyCategory.homologyFunctorFactors AddCommGrpCat.{0}
@@ -341,7 +343,7 @@ theorem forgetfulHomologicalKernelExactAtInput_of_preservesHomology
         (S :=
           (HomologicalComplex.sc
             ((shiftFunctor (CochainComplex MetrizableLCA.{0} ℤ) i).obj K) 0))).mpr
-        (by simpa [Kf] using hForgetExactAt)
+        hForgetExactAt
   rw [HomologicalComplex.exactAt_iff] at hShiftExact
   rw [HomologicalComplex.exactAt_iff]
   exact ShortComplex.exact_of_iso

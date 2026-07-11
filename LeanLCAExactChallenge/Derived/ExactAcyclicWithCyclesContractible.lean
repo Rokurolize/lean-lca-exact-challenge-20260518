@@ -9,6 +9,8 @@ acyclic for the corrected cycle-object exact-category predicate.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 

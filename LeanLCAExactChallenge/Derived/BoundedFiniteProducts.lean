@@ -13,6 +13,8 @@ bounded-complex inclusion functor.
 
 set_option autoImplicit false
 set_option maxHeartbeats 2000000
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 universe w v v1 v2 u u1 u2
 
@@ -765,7 +767,7 @@ def Dbounded.metrizableWalkingParallelPairFixedTargetInputs_of_normalized
   model_uniq := inputs.model_uniq
 
 /-- Build the two fixed-target packages from one strict-representative lift blueprint. -/
-def Dbounded.metrizableWalkingParallelPairFixedTargetInputs_of_blueprint
+noncomputable def Dbounded.metrizableWalkingParallelPairFixedTargetInputs_of_blueprint
     (inputs : Dbounded.MetrizableWalkingParallelPairFixedTargetBlueprintInputs) :
     Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs where
   targetData :=

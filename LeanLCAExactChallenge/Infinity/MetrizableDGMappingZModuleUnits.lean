@@ -8,6 +8,8 @@ truncated Hom complex. It proves the two chain-level unit laws for truncated com
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -48,7 +50,7 @@ private lemma truncLEToRestriction_f_zero_local
       H.iCycles 0 := by
     dsimp [HomologicalComplex.opcyclesOpIso, HomologicalComplex.pOpcycles,
       HomologicalComplex.iCycles]
-    simpa using congrArg Quiver.Hom.unop
+    exact congrArg Quiver.Hom.unop
       (H.sc 0).op_pOpcycles_opcyclesOpIso_hom
   have hcancel : (H.opcyclesOpIso 0).hom.unop ≫
       (H.opcyclesOpIso 0).inv.unop = 𝟙 _ :=
@@ -146,9 +148,7 @@ lemma ιTensorObj_tensorHom_local
         (HomologicalComplex.tensorHom f g).f n =
       (f.f p ⊗ₘ g.f q) ≫
         HomologicalComplex.ιTensorObj L₁ L₂ p q n h := by
-  simpa only [MonoidalCategory.tensorHom_def] using
-    (HomologicalComplex.ι_mapBifunctorMap f g
-      (curriedTensor (ModuleCat ℤ)) (ComplexShape.down ℕ) p q n h)
+  exact GradedObject.Monoidal.ι_tensorHom f.f g.f p q n h
 
 theorem dgMappingDirectZModuleChainIdentity_comp
     (K L : ComplexCategory) :

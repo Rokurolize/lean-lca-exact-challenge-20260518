@@ -30,6 +30,8 @@ do not yet live in one importable module.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -2351,15 +2353,7 @@ def forgottenExplicitCokernelCoforkW485_isColimit_of_closedRange_w487
     {X Y : MetrizableLCA.{0}} (f : X ⟶ Y)
     (hclosed : IsClosed (Set.range (f : X → Y))) :
     IsColimit (forgottenExplicitCokernelCoforkW485 f) := by
-  simpa [
-    forgottenExplicitCokernelCoforkW485,
-    forgottenCokernelπW485,
-    forgottenCokernelπ_conditionW485,
-    underlyingForgetfulFunctorW485,
-    MetrizableLCA.forgottenCokernelCofork,
-    MetrizableLCA.forgottenCokernelπ,
-    MetrizableLCA.forgottenCokernelπ_condition] using
-    (forgottenCokernelCoforkIsColimit_of_closedRange_w487 f hclosed)
+  exact forgottenCokernelCoforkIsColimit_of_closedRange_w487 f hclosed
 
 /-- Transport data identifying the selected component coforks with explicit quotient coforks. -/
 structure SelectedComponentQuotientIdentificationInputsW485
@@ -3330,10 +3324,19 @@ def selectedForgottenTargetMappedCoconeW493
         forgottenShortComplexFunctor.map
           (cs.ι.app (walkingParallelPairOpEquiv.functor.obj j))
       naturality := fun {j j'} f => by
-        simpa only [Functor.comp_obj, Functor.comp_map, Functor.const_obj_obj,
-          Functor.const_obj_map, Category.comp_id] using
-          congrArg forgottenShortComplexFunctor.map
-            (cs.w (walkingParallelPairOpEquiv.functor.map f)) }
+        calc
+          forgottenShortComplexFunctor.map
+                (S.map (walkingParallelPairOpEquiv.functor.map f)) ≫
+              forgottenShortComplexFunctor.map
+                (cs.ι.app (walkingParallelPairOpEquiv.functor.obj j')) =
+            forgottenShortComplexFunctor.map
+              (S.map (walkingParallelPairOpEquiv.functor.map f) ≫
+                cs.ι.app (walkingParallelPairOpEquiv.functor.obj j')) :=
+              (forgottenShortComplexFunctor.map_comp _ _).symm
+          _ = forgottenShortComplexFunctor.map
+              (cs.ι.app (walkingParallelPairOpEquiv.functor.obj j)) :=
+            congrArg forgottenShortComplexFunctor.map
+              (cs.w (walkingParallelPairOpEquiv.functor.map f)) }
 
 /-- The mapped ordinary cocone is the selected cofork after the parallel-pair iso. -/
 def selectedForgottenTargetMappedCoconeIsoPrecomposeCoforkW493
@@ -4613,9 +4616,8 @@ theorem w318ColimitMapLegCompatibility_of_target_component_w504
   cases j using Opposite.rec
   rename_i j
   cases j
-  · simpa [ordinaryTargetIndexW478] using htarget
-  · simpa [ordinarySourceIndexW504] using
-      source_component_of_target_component_w504 htarget
+  · exact htarget
+  · exact source_component_of_target_component_w504 htarget
 
 /--
 Raw target-leg call-site fields for the selected W461 map. W504 removes the
@@ -5096,8 +5098,7 @@ theorem targetPointIdentification_target_leg_of_transport_w506
         wppOpOrdinaryQuotientMapW478 Y ≫
           (transportedPointIdentificationW506 Y cy hcy).hom := by
   have htarget := transportedPointIdentification_target_leg_hom_w506 hcy hlegY
-  simpa [ordinaryMapOfWppOpNatTransW506, Category.assoc] using
-    congrArg (fun f => α.app ordinaryTargetIndexW478 ≫ f) htarget.symm
+  exact congrArg (fun f => α.app ordinaryTargetIndexW478 ≫ f) htarget.symm
 
 /--
 Call-site fields after W506 constructs the point identifications from the
@@ -8160,9 +8161,7 @@ def selectedMappedCokernelComponentπ₁_isColimit_of_closedRangeOnly_w521
             underlyingForgetfulFunctorW485) :=
       (selectedMetrizableComponentπ₁CokernelCoforkW521 S cs).mapIsColimit
         hOrigπ₁ underlyingForgetfulFunctorW485
-    simpa [selectedMetrizableComponentπ₁CokernelCoforkW521,
-      selectedForgottenComponentπ₁CokernelCoforkW485,
-      underlyingForgetfulFunctorW485, selectedMetrizableDifferenceπ₁W485] using hMap
+    exact hMap
   exact projectionπ₁_isColimit_of_selectedComponentπ₁_w485 hSelected
 
 /-- The second selected projected mapped cokernel colimit follows from closed range alone. -/
@@ -8205,9 +8204,7 @@ def selectedMappedCokernelComponentπ₂_isColimit_of_closedRangeOnly_w521
             underlyingForgetfulFunctorW485) :=
       (selectedMetrizableComponentπ₂CokernelCoforkW521 S cs).mapIsColimit
         hOrigπ₂ underlyingForgetfulFunctorW485
-    simpa [selectedMetrizableComponentπ₂CokernelCoforkW521,
-      selectedForgottenComponentπ₂CokernelCoforkW485,
-      underlyingForgetfulFunctorW485, selectedMetrizableDifferenceπ₂W485] using hMap
+    exact hMap
   exact projectionπ₂_isColimit_of_selectedComponentπ₂_w485 hSelected
 
 /-- The third selected projected mapped cokernel colimit follows from closed range alone. -/
@@ -8250,9 +8247,7 @@ def selectedMappedCokernelComponentπ₃_isColimit_of_closedRangeOnly_w521
             underlyingForgetfulFunctorW485) :=
       (selectedMetrizableComponentπ₃CokernelCoforkW521 S cs).mapIsColimit
         hOrigπ₃ underlyingForgetfulFunctorW485
-    simpa [selectedMetrizableComponentπ₃CokernelCoforkW521,
-      selectedForgottenComponentπ₃CokernelCoforkW485,
-      underlyingForgetfulFunctorW485, selectedMetrizableDifferenceπ₃W485] using hMap
+    exact hMap
   exact projectionπ₃_isColimit_of_selectedComponentπ₃_w485 hSelected
 
 /-- Closed-range-only component fields give the selected mapped short-complex cokernel colimit. -/
@@ -32548,12 +32543,11 @@ theorem
         hasHomology ((shiftFunctor (CochainComplex MetrizableLCA.{0} ℤ) n).obj K) 0
       letI : (forget₂ MetrizableLCA.{0} Ab.{0}).PreservesHomology :=
         endpointTopology.forgetPreservesHomology
-      simpa [Kf] using
-        (ShortComplex.exact_iff_exact_map_forget₂
-          (S :=
-            (HomologicalComplex.sc
-              ((shiftFunctor (CochainComplex MetrizableLCA.{0} ℤ) n).obj K) 0))).mp
-          hExactAt
+      exact (ShortComplex.exact_iff_exact_map_forget₂
+        (S :=
+          (HomologicalComplex.sc
+            ((shiftFunctor (CochainComplex MetrizableLCA.{0} ℤ) n).obj K) 0))).mp
+        hExactAt
     have hZero : IsZero (Kf.homology (0 : ℤ)) :=
       (HomologicalComplex.exactAt_iff_isZero_homology (K := Kf) (i := (0 : ℤ))).mp
         hForgetExactAt
@@ -32601,7 +32595,7 @@ theorem metrizableExactAt_of_forgetfulHomologicalKernelEndpointW666
       IsZero
         ((HomotopyCategory.homologyFunctor AddCommGrpCat.{0} (ComplexShape.up ℤ) (0 : ℤ)).obj
           ((HomotopyCategory.quotient AddCommGrpCat.{0} (ComplexShape.up ℤ)).obj Kf)) := by
-    simpa [MetrizableForgetfulHomologyKernelFunctorW665, Kf] using hQShift
+    exact hQShift
   have hZero : IsZero (Kf.homology (0 : ℤ)) :=
     IsZero.of_iso hQShift'
       ((HomotopyCategory.homologyFunctorFactors AddCommGrpCat.{0}
@@ -32622,7 +32616,7 @@ theorem metrizableExactAt_of_forgetfulHomologicalKernelEndpointW666
         (S :=
           (HomologicalComplex.sc
             ((shiftFunctor (CochainComplex MetrizableLCA.{0} ℤ) i).obj K) 0))).mpr
-        (by simpa [Kf] using hForgetExactAt)
+        hForgetExactAt
   rw [HomologicalComplex.exactAt_iff] at hShiftExact
   rw [HomologicalComplex.exactAt_iff]
   exact ShortComplex.exact_of_iso
@@ -33113,12 +33107,11 @@ theorem
         hasHomology ((shiftFunctor (CochainComplex MetrizableLCA.{0} ℤ) n).obj K) 0
       letI : (forget₂ MetrizableLCA.{0} Ab.{0}).PreservesHomology :=
         I.forgetPreservesHomology
-      simpa [Kf] using
-        (ShortComplex.exact_iff_exact_map_forget₂
-          (S :=
-            (HomologicalComplex.sc
-              ((shiftFunctor (CochainComplex MetrizableLCA.{0} ℤ) n).obj K) 0))).mp
-          hExactAt
+      exact (ShortComplex.exact_iff_exact_map_forget₂
+        (S :=
+          (HomologicalComplex.sc
+            ((shiftFunctor (CochainComplex MetrizableLCA.{0} ℤ) n).obj K) 0))).mp
+        hExactAt
     have hZero : IsZero (Kf.homology (0 : ℤ)) :=
       (HomologicalComplex.exactAt_iff_isZero_homology (K := Kf) (i := (0 : ℤ))).mp
         hForgetExactAt
@@ -33166,7 +33159,7 @@ theorem metrizableExactAt_of_forgetfulHomologicalKernelKernelCokernelConditioned
       IsZero
         ((HomotopyCategory.homologyFunctor AddCommGrpCat.{0} (ComplexShape.up ℤ) (0 : ℤ)).obj
           ((HomotopyCategory.quotient AddCommGrpCat.{0} (ComplexShape.up ℤ)).obj Kf)) := by
-    simpa [MetrizableForgetfulHomologyKernelFunctorW665, Kf] using hQShift
+    exact hQShift
   have hZero : IsZero (Kf.homology (0 : ℤ)) :=
     IsZero.of_iso hQShift'
       ((HomotopyCategory.homologyFunctorFactors AddCommGrpCat.{0}
@@ -33187,7 +33180,7 @@ theorem metrizableExactAt_of_forgetfulHomologicalKernelKernelCokernelConditioned
         (S :=
           (HomologicalComplex.sc
             ((shiftFunctor (CochainComplex MetrizableLCA.{0} ℤ) i).obj K) 0))).mpr
-        (by simpa [Kf] using hForgetExactAt)
+        hForgetExactAt
   rw [HomologicalComplex.exactAt_iff] at hShiftExact
   rw [HomologicalComplex.exactAt_iff]
   exact ShortComplex.exact_of_iso
@@ -38307,7 +38300,7 @@ def mappedExplicitKernelForkIsLimitCoreW691 {X Y : MetrizableLCA.{0}} (f : X ⟶
               congrArg (fun q : t.pt ⟶ underlyingForgetfulFunctorW495.obj Y => q x)
                 t.condition
             change f (t.ι x) = (0 : Y)
-            simpa using h⟩
+            exact h⟩
         map_zero' := by
           apply Subtype.ext
           exact map_zero t.ι.hom

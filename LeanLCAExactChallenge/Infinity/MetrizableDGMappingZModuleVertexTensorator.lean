@@ -9,6 +9,8 @@ the tensor product of the canonical degree-zero Dold--Kan projections.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -66,18 +68,29 @@ theorem inverseTensorator_f_zero
     (DoldKanMonoidal.zModuleDoldKanEquivalence.inverse.obj (A ⊗ B)) 0).arrow
   have hincRaw := HomologicalComplex.congr_hom
     ((inclusionOfMooreComplex (ModuleCat ℤ)).naturality μ) 0
+  have hqAB :
+      ((inclusionOfMooreComplex (ModuleCat ℤ)).app
+        (DoldKanMonoidal.zModuleDoldKanEquivalence.inverse.obj (A ⊗ B))).f 0 =
+        qAB := by
+    dsimp only [qAB]
+    exact inclusionOfMooreComplexMap_f _ 0
+  have hq :
+      ((inclusionOfMooreComplex (ModuleCat ℤ)).app (X ⊗ Y)).f 0 = q := by
+    dsimp only [q]
+    exact inclusionOfMooreComplexMap_f _ 0
   have hinc :
       ((normalizedMooreComplex (ModuleCat ℤ)).map μ).f 0 ≫ qAB =
         q ≫ μ.app (op ⦋0⦌) := by
-    simpa only [HomologicalComplex.comp_f,
-      inclusionOfMooreComplexMap_f,
-      alternatingFaceMapComplex_map_f] using hincRaw
-  have hzero := zModuleDoldKanCounit_f_zero (A ⊗ B)
+    rw [← hqAB, ← hq]
+    exact hincRaw
   have hzero' :
       qAB ≫ (zModuleDoldKanInverseZeroIso (A ⊗ B)).inv =
         (DoldKanMonoidal.zModuleDoldKanEquivalence.counitIso.hom.app
           (A ⊗ B)).f 0 := by
-    simpa only [qAB] using hzero.symm
+    change (NormalizedMooreComplex.objX
+        (DoldKanMonoidal.zModuleDoldKanEquivalence.inverse.obj (A ⊗ B)) 0).arrow ≫
+      (zModuleDoldKanInverseZeroIso (A ⊗ B)).inv = _
+    rw [zModuleDoldKanCounit_f_zero]
   have hchain := HomologicalComplex.congr_hom
     (normalizedMoore_map_inverseTensorator_comp_counit A B) 0
   have hAW := normalizedAlexanderWhitney_comp_counits_f_zero A B
@@ -128,4 +141,3 @@ theorem inverseTensorator_f_zero
 end MetrizableBoundedComplexes
 end Infinity
 end LeanLCAExactChallenge
-

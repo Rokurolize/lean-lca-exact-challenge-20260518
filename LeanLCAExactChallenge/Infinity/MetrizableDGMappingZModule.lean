@@ -12,6 +12,8 @@ lives in the algebraic tensor category needed by Alexander--Whitney.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -98,8 +100,7 @@ def transportedToCanonicalZModuleNatIso :
     rw [Functor.map_comp, Functor.map_comp,
       Functor.preimageIso_hom, Functor.preimageIso_hom, Functor.map_preimage,
       Functor.map_preimage]
-    simpa using
-      zModuleAddCommGrpEquivalence.counitIso.hom.naturality f
+    exact zModuleAddCommGrpEquivalence.counitIso.hom.naturality f
 
 /-- Mapping the additive Hom complex canonically agrees with the direct module Hom complex. -/
 def canonicalMappedHomIsoDirect (K L : ComplexCategory) :
@@ -484,7 +485,7 @@ private lemma truncLE'ToRestriction_f_zero
       H.iCycles 0 := by
     dsimp [HomologicalComplex.opcyclesOpIso, HomologicalComplex.pOpcycles,
       HomologicalComplex.iCycles]
-    simpa using congrArg Quiver.Hom.unop
+    exact congrArg Quiver.Hom.unop
       (H.sc 0).op_pOpcycles_opcyclesOpIso_hom
   have hcancel : (H.opcyclesOpIso 0).hom.unop ≫
       (H.opcyclesOpIso 0).inv.unop = 𝟙 _ :=
@@ -791,11 +792,11 @@ lemma dgTruncatedCompositionToRestrictionDegree_comm
         ((dgHomZModuleCochainComplex K L).truncLE'ToRestriction
           ComplexShape.embeddingDownNat).f q
             ((dgMappingDirectZModuleChainComplex K L).d (q + 1) q x) := by
-      simpa [x'] using ConcreteCategory.congr_hom
+      exact ConcreteCategory.congr_hom
         (((dgHomZModuleCochainComplex K L).truncLE'ToRestriction
           ComplexShape.embeddingDownNat).comm (q + 1) q) x
     have hy : CochainComplex.HomComplex.δ 0 1 y' = 0 := by
-      simpa [y'] using ConcreteCategory.congr_hom
+      exact ConcreteCategory.congr_hom
         (truncLE'ToRestriction_f_zero_d (dgHomZModuleCochainComplex L M)) y
     rw [hx, hy]
     simp [y']
@@ -831,13 +832,13 @@ lemma dgTruncatedCompositionToRestrictionDegree_comm
     rw [CochainComplex.HomComplex.δ_comp x' y'
       (by dsimp [x', y']; omega) 1 (-p) (-m) (by omega) rfl (by omega)]
     have hx : CochainComplex.HomComplex.δ 0 1 x' = 0 := by
-      simpa [x'] using ConcreteCategory.congr_hom
+      exact ConcreteCategory.congr_hom
         (truncLE'ToRestriction_f_zero_d (dgHomZModuleCochainComplex K L)) x
     have hy : CochainComplex.HomComplex.δ (-(p + 1 : ℕ) : ℤ) (-p) y' =
         ((dgHomZModuleCochainComplex L M).truncLE'ToRestriction
           ComplexShape.embeddingDownNat).f p
             ((dgMappingDirectZModuleChainComplex L M).d (p + 1) p y) := by
-      simpa [y'] using ConcreteCategory.congr_hom
+      exact ConcreteCategory.congr_hom
         (((dgHomZModuleCochainComplex L M).truncLE'ToRestriction
           ComplexShape.embeddingDownNat).comm (p + 1) p) y
     rw [hx, hy]
@@ -884,14 +885,14 @@ lemma dgTruncatedCompositionToRestrictionDegree_comm
         ((dgHomZModuleCochainComplex K L).truncLE'ToRestriction
           ComplexShape.embeddingDownNat).f q
             ((dgMappingDirectZModuleChainComplex K L).d (q + 1) q x) := by
-      simpa [x'] using ConcreteCategory.congr_hom
+      exact ConcreteCategory.congr_hom
         (((dgHomZModuleCochainComplex K L).truncLE'ToRestriction
           ComplexShape.embeddingDownNat).comm (q + 1) q) x
     have hy : CochainComplex.HomComplex.δ (-(p + 1 : ℕ) : ℤ) (-p) y' =
         ((dgHomZModuleCochainComplex L M).truncLE'ToRestriction
           ComplexShape.embeddingDownNat).f p
             ((dgMappingDirectZModuleChainComplex L M).d (p + 1) p y) := by
-      simpa [y'] using ConcreteCategory.congr_hom
+      exact ConcreteCategory.congr_hom
         (((dgHomZModuleCochainComplex L M).truncLE'ToRestriction
           ComplexShape.embeddingDownNat).comm (p + 1) p) y
     rw [hx, hy]
@@ -900,7 +901,6 @@ lemma dgTruncatedCompositionToRestrictionDegree_comm
       rw [Int.negOnePow_neg]
       exact Int.coe_negOnePow_natCast (p + 1)
     rw [Units.smul_def, hsign]
-    rfl
 
 /-- Composition is a chain map on the directly truncated integer-module Hom complexes. -/
 def dgTruncatedCompositionReversed (K L M : ComplexCategory) :
@@ -985,8 +985,10 @@ def zModuleDoldKanInverseZeroIso (T : ChainComplex (ModuleCat.{0} ℤ) ℕ) :
       hom_inv_id := ?_
       inv_hom_id := ?_ }
   · rw [← s.cofan_inj_id 0]
-    simpa [p] using s.ι_desc (op ⦋0⦌) p
-      (SimplicialObject.Splitting.IndexSet.id (op ⦋0⦌))
+    exact (s.ι_desc (op ⦋0⦌) p
+      (SimplicialObject.Splitting.IndexSet.id (op ⦋0⦌))).trans (by
+        dsimp only [p]
+        apply eqToHom_refl)
   · apply s.hom_ext'
     intro A
     have hA := doldKanIndexSet_zero_eq_id A
@@ -1003,7 +1005,14 @@ def zModuleDoldKanInverseZeroIso (T : ChainComplex (ModuleCat.{0} ℤ) ℕ) :
       dsimp only [p]
       apply eqToHom_refl
     rw [hp]
-    simpa only [Category.id_comp, Category.comp_id] using (s.cofan_inj_id 0).symm
+    calc
+      𝟙 _ ≫ s.ι 0 = s.ι 0 := Category.id_comp _
+      _ = (s.cofan (op ⦋0⦌)).inj
+          (SimplicialObject.Splitting.IndexSet.id (op ⦋0⦌)) :=
+        (s.cofan_inj_id 0).symm
+      _ = (s.cofan (op ⦋0⦌)).inj
+          (SimplicialObject.Splitting.IndexSet.id (op ⦋0⦌)) ≫ 𝟙 _ :=
+        (Category.comp_id _).symm
 
 /-- Degree zero of the integer-module mapping chain complex is the bounded morphism type. -/
 def dgMappingZModuleChainComplexZeroEquivBoundedHom (K L : ComplexCategory) :

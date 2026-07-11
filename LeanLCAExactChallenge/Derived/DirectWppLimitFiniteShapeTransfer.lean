@@ -10,6 +10,8 @@ used by the `Dbounded` finite-shape transfer constructor.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -718,7 +720,7 @@ theorem walkingParallelPair_limit_π_zero_closedEmbedding
   have hfork : IsLimit (Fork.ofCone c) := forkOfConeIsLimit hc
   have hclosed := MetrizableLCA.isLimit_fork_ι_closedEmbedding
     (F.map WalkingParallelPairHom.left) (F.map WalkingParallelPairHom.right) hfork
-  simpa [Fork.ofCone] using hclosed
+  exact hclosed
 
 /-- Direct WPP limit certificate for preserving closed embeddings on induced maps. -/
 theorem wppLimit_lca_limitMap_injective_inducing_closedImage_direct :
@@ -814,11 +816,11 @@ theorem wppLimit_lca_limitMap_injective_inducing_closedImage_direct :
             ex.inv ≫ (Fork.ofCone cx).ι =
               MetrizableLCA.equalizerι
                 (X.map WalkingParallelPairHom.left) (X.map WalkingParallelPairHom.right) := by
-          simpa [ex] using
-            (IsLimit.conePointUniqueUpToIso_inv_comp hfx
-              (MetrizableLCA.equalizerIsLimit
-                (X.map WalkingParallelPairHom.left) (X.map WalkingParallelPairHom.right))
-              WalkingParallelPair.zero)
+          change ex.inv ≫ fx.ι = _
+          exact IsLimit.conePointUniqueUpToIso_inv_comp hfx
+            (MetrizableLCA.equalizerIsLimit
+              (X.map WalkingParallelPairHom.left) (X.map WalkingParallelPairHom.right))
+            WalkingParallelPair.zero
         have hxπ : πx₀ x = x₀ := by
           change (ex.inv ≫ (Fork.ofCone cx).ι) z = x₀
           rw [hex_inv]
@@ -1274,8 +1276,12 @@ theorem wppLimit_lca_sourceDifferenceMap_surjective_of_cokernelTopBoundary
   let δ : X.obj WalkingParallelPair.zero ⟶ X.obj WalkingParallelPair.one :=
     X.map WalkingParallelPairHom.left - X.map WalkingParallelPairHom.right
   rcases hboundary X cx hcx with ⟨hopen, hcok⟩
-  simpa [δ] using
-    MetrizableLCA.surjective_of_cokernelSubgroup_eq_top_of_isOpenMap δ hcok hopen
+  intro y
+  rcases MetrizableLCA.surjective_of_cokernelSubgroup_eq_top_of_isOpenMap
+      δ hcok hopen y with ⟨x, hx⟩
+  refine ⟨x, ?_⟩
+  change δ x = y
+  exact hx
 
 /-- Cokernel-pi-zero data supplies pure LCA source-difference surjectivity. -/
 theorem wppLimit_lca_sourceDifferenceMap_surjective_of_cokernelPiZeroBoundary
@@ -1503,12 +1509,12 @@ theorem rightSurjective_walkingParallelPair_limitClosure_of_zeroCorrectionBounda
         MetrizableLCA.equalizerι
           (S.map WalkingParallelPairHom.left).τ₂
           (S.map WalkingParallelPairHom.right).τ₂ := by
-    simpa [e₂] using
-      (IsLimit.conePointUniqueUpToIso_inv_comp hf₂
-        (MetrizableLCA.equalizerIsLimit
-          (S.map WalkingParallelPairHom.left).τ₂
-          (S.map WalkingParallelPairHom.right).τ₂)
-        WalkingParallelPair.zero)
+    change e₂.inv ≫ f₂.ι = _
+    exact IsLimit.conePointUniqueUpToIso_inv_comp hf₂
+      (MetrizableLCA.equalizerIsLimit
+        (S.map WalkingParallelPairHom.left).τ₂
+        (S.map WalkingParallelPairHom.right).τ₂)
+      WalkingParallelPair.zero
   have hx₂π :
       (cs.π.app WalkingParallelPair.zero).τ₂ x₂ =
         x₂₀ - (S.obj WalkingParallelPair.zero).f u₁₀ := by
@@ -1708,12 +1714,12 @@ theorem algebraicExact_walkingParallelPair_limitClosure_direct :
         MetrizableLCA.equalizerι
           (S.map WalkingParallelPairHom.left).τ₁
           (S.map WalkingParallelPairHom.right).τ₁ := by
-    simpa [e₁] using
-      (IsLimit.conePointUniqueUpToIso_inv_comp hf₁
-        (MetrizableLCA.equalizerIsLimit
-          (S.map WalkingParallelPairHom.left).τ₁
-          (S.map WalkingParallelPairHom.right).τ₁)
-        WalkingParallelPair.zero)
+    change e₁.inv ≫ f₁.ι = _
+    exact IsLimit.conePointUniqueUpToIso_inv_comp hf₁
+      (MetrizableLCA.equalizerIsLimit
+        (S.map WalkingParallelPairHom.left).τ₁
+        (S.map WalkingParallelPairHom.right).τ₁)
+      WalkingParallelPair.zero
   have hx₁π :
       (cs.π.app WalkingParallelPair.zero).τ₁ x₁ = x₁₀ := by
     change (e₁.inv ≫ (Fork.ofCone c₁).ι) z = x₁₀
@@ -1801,17 +1807,22 @@ theorem exactAcyclic_walkingParallelPair_limitClosure_of_fields
   let cs : Cone S := (degreeShortComplexFunctor i).mapCone ck
   have hcs : IsLimit cs := by
     refine ShortComplex.isLimitOfIsLimitπ _ ?_ ?_ ?_
-    · simpa [degreeShortComplexFunctor, HomologicalComplex.shortComplexFunctor, cs] using
-        (isLimitOfPreserves
-          (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ)
-            ((ComplexShape.up ℤ).prev i)) hck)
-    · simpa [degreeShortComplexFunctor, HomologicalComplex.shortComplexFunctor, cs] using
-        (isLimitOfPreserves
-          (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) i) hck)
-    · simpa [degreeShortComplexFunctor, HomologicalComplex.shortComplexFunctor, cs] using
-        (isLimitOfPreserves
-          (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ)
-            ((ComplexShape.up ℤ).next i)) hck)
+    · change IsLimit
+        ((HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ)
+          ((ComplexShape.up ℤ).prev i)).mapCone ck)
+      exact isLimitOfPreserves
+        (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ)
+          ((ComplexShape.up ℤ).prev i)) hck
+    · change IsLimit
+        ((HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) i).mapCone ck)
+      exact isLimitOfPreserves
+        (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) i) hck
+    · change IsLimit
+        ((HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ)
+          ((ComplexShape.up ℤ).next i)).mapCone ck)
+      exact isLimitOfPreserves
+        (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ)
+          ((ComplexShape.up ℤ).next i)) hck
   have hS : ∀ j : WalkingParallelPair, MetrizableLCA.strictShortExact (S.obj j) := by
     intro j
     exact hK j i
