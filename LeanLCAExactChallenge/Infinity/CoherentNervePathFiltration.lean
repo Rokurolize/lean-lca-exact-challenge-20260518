@@ -1048,6 +1048,17 @@ theorem toNerveSimplex_obj (c : PathChain r i j) (a : Fin (r + 1)) :
     (c.toNerveSimplex).obj a = c.path a :=
   rfl
 
+/-- Coordinate evaluation of the explicit cubical presentation records exactly the
+corresponding bit of every path in the chain. -/
+theorem thickPathToLiftedPiBits_toNerveSimplex_obj (c : PathChain r i j)
+    (hij : i ≤ j) (n : ℕ) (e : InteriorVertex i j ≃ Fin n)
+    (a : Fin (r + 1)) (q : Fin n) :
+    (((CategoryTheory.nerveMap
+      (thickPathToLiftedPiBitsFunctor hij n e)).app
+        (Opposite.op (SimplexCategory.mk r)) c.toNerveSimplex).obj a).val q =
+      ULift.up ((thickPathBitvectorOrderIso hij (c.path a)) (e.symm q)) :=
+  rfl
+
 /-- Passing from a path chain to the corresponding nerve simplex and back changes no paths. -/
 theorem ofNerveSimplex_toNerveSimplex (c : PathChain r i j) :
     ofNerveSimplex c.toNerveSimplex = c := by
