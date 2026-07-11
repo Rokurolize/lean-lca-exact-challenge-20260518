@@ -164,7 +164,7 @@ def strictSingletonAugmentation : SSet.{u} ⥤ AugmentedSSet.{u} where
     apply NatTrans.ext
     funext j
     rcases j with ⟨(j | _)⟩ <;> rfl
-  map_comp f g := by
+  map_comp {X Y Z} f g := by
     apply NatTrans.ext
     funext j
     rcases j with ⟨(j | _)⟩ <;> rfl
@@ -1421,6 +1421,55 @@ theorem dayConvolutionMap_id
   rw [h]
   simp only [CategoryTheory.Functor.map_id, Category.id_comp,
     Functor.whiskerLeft_id', Category.comp_id]
+
+/-- The ordinary simplicial join as an actual bifunctor.  Its object formula
+is the restriction of the chosen augmented Day convolution. -/
+def ordinaryJoinBifunctor : SSet.{u} × SSet.{u} ⥤ SSet.{u} where
+  obj X :=
+    letI := augmentedDayConvolution
+      (emptyAugmentation.{u}.obj X.1) (emptyAugmentation.{u}.obj X.2)
+    forgetAugmentation.{u}.obj
+      (CategoryTheory.MonoidalCategory.DayConvolution.convolution
+        (emptyAugmentation.{u}.obj X.1) (emptyAugmentation.{u}.obj X.2))
+  map {X Y} f := by
+    letI := augmentedDayConvolution
+      (emptyAugmentation.{u}.obj X.1) (emptyAugmentation.{u}.obj X.2)
+    letI := augmentedDayConvolution
+      (emptyAugmentation.{u}.obj Y.1) (emptyAugmentation.{u}.obj Y.2)
+    exact Functor.whiskerLeft AugmentedSimplexCategory.inclusion.op
+      (CategoryTheory.MonoidalCategory.DayConvolution.map
+        (emptyAugmentation.{u}.map f.1) (emptyAugmentation.{u}.map f.2))
+  map_id X := by
+    letI := augmentedDayConvolution
+      (emptyAugmentation.{u}.obj X.1) (emptyAugmentation.{u}.obj X.2)
+    apply NatTrans.ext
+    funext U
+    change (CategoryTheory.MonoidalCategory.DayConvolution.map
+      (emptyAugmentation.{u}.map (𝟙 X.1))
+      (emptyAugmentation.{u}.map (𝟙 X.2))).app _ = _
+    rw [emptyAugmentation.map_id, emptyAugmentation.map_id,
+      dayConvolutionMap_id]
+    rfl
+  map_comp {X Y Z} f g := by
+    letI := augmentedDayConvolution
+      (emptyAugmentation.{u}.obj X.1) (emptyAugmentation.{u}.obj X.2)
+    letI := augmentedDayConvolution
+      (emptyAugmentation.{u}.obj Y.1) (emptyAugmentation.{u}.obj Y.2)
+    letI := augmentedDayConvolution
+      (emptyAugmentation.{u}.obj Z.1) (emptyAugmentation.{u}.obj Z.2)
+    apply NatTrans.ext
+    funext U
+    change (CategoryTheory.MonoidalCategory.DayConvolution.map
+      (emptyAugmentation.{u}.map (f.1 ≫ g.1))
+      (emptyAugmentation.{u}.map (f.2 ≫ g.2))).app _ = _
+    rw [emptyAugmentation.map_comp, emptyAugmentation.map_comp,
+      ← dayConvolutionMap_comp]
+    rfl
+
+/-- The bifunctor object is the previously defined simplicial join. -/
+def ordinaryJoinBifunctorObjIso (X Y : SSet.{u}) :
+    ordinaryJoinBifunctor.{u}.obj (X, Y) ≅ simplicialJoin X Y :=
+  Iso.refl _
 
 theorem dayInternalHomMap_comp
     {F G G' G'' H H' H'' : AugmentedSSet.{u}}
