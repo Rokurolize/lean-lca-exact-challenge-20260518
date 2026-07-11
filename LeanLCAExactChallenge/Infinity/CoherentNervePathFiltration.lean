@@ -2377,6 +2377,17 @@ theorem GlobalPairIndex.lower_not_mem_previousStage {k : J}
   · exact p.lower_not_mem_earlierStage hearlier
   · exact p.2.lower_not_mem_hornRange hhorn
 
+/-- The upper simplex itself is absent from the previous stage, since otherwise simplicial
+closure would put its distinguished lower face there as well. -/
+theorem GlobalPairIndex.upper_not_mem_previousStage {k : J}
+    (p : GlobalPairIndex i j k) :
+    p.2.upperChain.toNerveSimplex ∉ p.previousStage.obj _ := by
+  intro hu
+  apply p.lower_not_mem_previousStage
+  have hface := p.previousStage.map (SimplexCategory.δ p.2.position).op hu
+  rw [← p.2.nerve_face_upper_eq_lower]
+  exact hface
+
 /-- A chain outside the known horn has full greatest path and its least path avoids `k`,
 expressed without choosing a decidable finite enumeration. -/
 theorem not_knownAt_iff (c : PathChain r i j) (k : J) :
