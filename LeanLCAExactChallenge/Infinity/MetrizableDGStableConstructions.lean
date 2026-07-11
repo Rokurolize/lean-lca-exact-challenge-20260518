@@ -868,6 +868,54 @@ theorem directDGMappingCone_enrichedHom_isPathFiberPullback (T : ComplexCategory
     (directDGMappingConePathFiberEnrichedHomIso T f)
     (Iso.refl _) (Iso.refl _) (Iso.refl _)
   all_goals simp [directDGMappingConePathFiberFst, directDGMappingConePathFiberSnd]
+
+/-! ## The dual maps-in path fiber -/
+
+/-- Standard chain path object on maps from `T` into the cone. -/
+abbrev dgHomPostcompositionPathObject (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    CochainComplex (ModuleCat.{0} ℤ) ℤ :=
+  HomologicalComplex.pathObject
+    (dgHomZModuleCochainComplex T (dgMappingConeObject f))
+
+/-- Endpoint map for the maps-in path object. -/
+def dgHomPostcompositionPathEndpoints (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    dgHomPostcompositionPathObject T f ⟶
+      (dgHomZModuleCochainComplex T (dgMappingConeObject f) ⨯
+        dgHomZModuleCochainComplex T (dgMappingConeObject f)) :=
+  Limits.prod.lift
+    (HomologicalComplex.pathObject.π₀
+      (dgHomZModuleCochainComplex T (dgMappingConeObject f)))
+    (HomologicalComplex.pathObject.π₁
+      (dgHomZModuleCochainComplex T (dgMappingConeObject f)))
+
+/-- Postcomposition by `L → Cone(f)`, paired with the zero endpoint. -/
+def dgHomPostcompositionZeroEndpoints (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    dgHomZModuleCochainComplex T L ⟶
+      (dgHomZModuleCochainComplex T (dgMappingConeObject f) ⨯
+        dgHomZModuleCochainComplex T (dgMappingConeObject f)) :=
+  Limits.prod.lift (dgHomZModulePostcomposition T (dgMappingConeInr f)) 0
+
+/-- Strict path-object pullback modeling the homotopy fiber of postcomposition by the cone
+inclusion. -/
+abbrev dgHomPostcompositionPathFiber (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    CochainComplex (ModuleCat.{0} ℤ) ℤ :=
+  Limits.pullback (dgHomPostcompositionZeroEndpoints T f)
+    (dgHomPostcompositionPathEndpoints T f)
+
+theorem dgHomPostcompositionPathFiber_isPullback (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    IsPullback
+      (Limits.pullback.fst (dgHomPostcompositionZeroEndpoints T f)
+        (dgHomPostcompositionPathEndpoints T f))
+      (Limits.pullback.snd (dgHomPostcompositionZeroEndpoints T f)
+        (dgHomPostcompositionPathEndpoints T f))
+      (dgHomPostcompositionZeroEndpoints T f)
+      (dgHomPostcompositionPathEndpoints T f) :=
+  IsPullback.of_hasPullback _ _
   · ext n x
     simp [dgMappingConeHomToPathFiber,
       dgMappingConeHomToPathObject,
