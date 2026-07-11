@@ -18,6 +18,20 @@ universe u v
 
 namespace LeanLCAExactChallenge
 namespace Infinity
+
+open CategoryTheory.MorphismProperty
+
+/-- The right lifting property against all monomorphisms is stable under arbitrary products
+of maps. -/
+theorem piMap_mem_monomorphisms_rlp {J : Type*} {A B : J → SSet.{max u v}}
+    [CategoryTheory.Limits.HasProduct A] [CategoryTheory.Limits.HasProduct B]
+    (f : (j : J) → A j ⟶ B j)
+    (hf : ∀ j, (monomorphisms SSet.{max u v}).rlp (f j)) :
+    (monomorphisms SSet.{max u v}).rlp (CategoryTheory.Limits.Pi.map f) := by
+  intro K L i hi
+  letI (j : J) : CategoryTheory.HasLiftingProperty i (f j) := hf j i hi
+  infer_instance
+
 namespace RelativeCategoryData
 
 open CategoryTheory
