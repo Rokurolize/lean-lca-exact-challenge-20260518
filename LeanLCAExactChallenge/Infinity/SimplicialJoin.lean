@@ -2482,6 +2482,7 @@ lemma representableJoinHornCocone_left_comp_range
     have hface : l ≫ (SSet.horn (n + 2) i).ι =
         (SSet.stdSimplex.face {j.1, k.1}ᶜ).ι := by
       rfl
+
     let F := augmentedDayTensorLeft (emptyAugmentation.{u}.obj (Δ[m] : SSet.{u}))
     have hF : F.map (emptyAugmentation.{u}.map l) ≫
           F.map (emptyAugmentation.{u}.map (SSet.horn (n + 2) i).ι) =
@@ -2543,6 +2544,55 @@ lemma representableJoinHornCocone_left_comp_range
         ({(⟨m + 1 + a.1.1.1.val, by omega⟩ : Fin (m + n + 4)),
           (⟨m + 1 + a.1.2.1.val, by omega⟩ : Fin (m + n + 4))}ᶜ) := by
       rfl
+
+/-- Every left leg of the convolved horn multicofork remains a monomorphism
+after mapping to the ambient representable join simplex. -/
+lemma representableJoinHornCocone_left_comp_mono
+    (m n : ℕ) (i : Fin (n + 3))
+    (a : (Limits.MultispanShape.ofLinearOrder
+      ({i}ᶜ : Set (Fin (n + 3)))).L) :
+    Mono ((representableJoinHornCocone.{u} m i).ι.app (.left a) ≫
+      representableJoinHornMap m (n + 2) i) := by
+  let f := (representableJoinHornCocone.{u} m i).ι.app (.left a) ≫
+    representableJoinHornMap m (n + 2) i
+  let tr := SSet.Subcomplex.toRange f
+  let j := a.1.1
+  let k := a.1.2
+  have hjk : j.1 < k.1 := a.2
+  let e := ordinaryJoinBifunctor.{u}.map
+    ((𝟙 (Δ[m] : SSet.{u}), (SSet.stdSimplex.facePairComplIso.{u}
+      j.1 k.1 hjk).hom) :
+      ((Δ[m] : SSet.{u}), (Δ[n] : SSet.{u})) ⟶
+        ((Δ[m] : SSet.{u}),
+          (SSet.stdSimplex.face {j.1, k.1}ᶜ : SSet.{u})))
+  letI : IsIso e := by
+    dsimp [e]
+    apply ordinaryJoinBifunctor_map_isIso
+  let J := (⟨m + 1 + j.1.val, by omega⟩ : Fin (m + n + 4))
+  let K := (⟨m + 1 + k.1.val, by omega⟩ : Fin (m + n + 4))
+  have hJK : J < K := by simpa [J, K, Fin.lt_def] using hjk
+  have hr : SSet.Subcomplex.range f = SSet.stdSimplex.face {J, K}ᶜ := by
+    exact representableJoinHornCocone_left_comp_range m n i a
+  let E := (asIso e).symm ≪≫ simplicialJoinStdSimplexIsoNat m n ≪≫
+    SSet.stdSimplex.facePairComplIso J K hJK ≪≫
+      SSet.Subcomplex.toSSetFunctor.mapIso (eqToIso hr.symm)
+  haveI : Mono tr := by
+    rw [NatTrans.mono_iff_mono_app]
+    intro U
+    rw [mono_iff_injective]
+    letI : Finite ((SSet.Subcomplex.toSSetFunctor.obj
+        (SSet.Subcomplex.range f)).obj U) :=
+      Finite.of_injective ((SSet.Subcomplex.range f).ι.app U)
+        ((mono_iff_injective _).mp inferInstance)
+    letI : Finite ((ordinaryJoinBifunctor.{u}.obj
+        ((Δ[m] : SSet.{u}), (SSet.stdSimplex.face {j.1, k.1}ᶜ : SSet.{u}))).obj U) :=
+      Finite.of_injective (E.app U).toEquiv (E.app U).toEquiv.injective
+    apply (Finite.injective_iff_surjective_of_equiv ((E.app U).toEquiv)).2
+    rintro ⟨y, x, rfl⟩
+    exact ⟨x, rfl⟩
+  change Mono f
+  change Mono (tr ≫ (SSet.Subcomplex.range f).ι)
+  infer_instance
 
 lemma representableJoinHornInitial_eq_iSup_rightRanges
     (m n : ℕ) (i : Fin (n + 2)) :
