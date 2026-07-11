@@ -2,6 +2,7 @@ import LeanLCAExactChallenge.Infinity.EquivalenceIntervalExtension
 import LeanLCAExactChallenge.Infinity.MetrizableEquivalenceForcingHomotopy
 import Mathlib.AlgebraicTopology.SimplicialSet.NerveAdjunction
 import Mathlib.CategoryTheory.Monoidal.Closed.Enrichment
+import Mathlib.CategoryTheory.Monoidal.Closed.Ideal
 
 /-!
 # Ordinary localization bridge
@@ -24,6 +25,13 @@ open CategoryTheory.MonoidalCategory
 universe u
 
 universe v w x
+
+private instance nerveFunctor_exponentialIdeal : ExponentialIdeal nerveFunctor.{u, u} := by
+  letI : Limits.PreservesLimitsOfShape (Discrete Limits.WalkingPair)
+      (reflector nerveFunctor.{u, u}) := by
+    change Limits.PreservesLimitsOfShape (Discrete Limits.WalkingPair) SSet.hoFunctor.{u}
+    infer_instance
+  apply exponentialIdeal_of_preservesBinaryProducts
 
 /-- In a Cat-enriched ordinary category, the transported horizontal composite has the
 expected enriched-composition normal form after applying `Hom.base`. -/
