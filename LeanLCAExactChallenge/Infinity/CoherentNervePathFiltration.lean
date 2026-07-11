@@ -392,6 +392,7 @@ noncomputable def piBitsThinBitsNerveIso (n : ℕ) :
       exact hf
     rw [hc, CategoryTheory.Functor.map_id]
     rfl
+
   inv_hom_id := by
     change CategoryTheory.nerveFunctor.map (thinBitsToPiBitsFunctor n).toCatHom ≫
       CategoryTheory.nerveFunctor.map (piBitsToThinBitsFunctor n).toCatHom = _
@@ -406,6 +407,11 @@ noncomputable def piBitsThinBitsNerveIso (n : ℕ) :
       exact hf
     rw [hc, CategoryTheory.Functor.map_id]
     rfl
+
+/-- The universe-lifted walking ordered pair is exactly the standard one-simplex. -/
+noncomputable def stdSimplexOneIsoNerveFinTwo :
+    (Δ[1] : SSet.{u}) ≅ CategoryTheory.nerve (ULift.{u} (Fin 2)) :=
+  SSet.stdSimplex.isoNerve 1
 
 /-- The prefix of a path at one of its vertices. -/
 def beforePath {J : Type u} [LinearOrder J] {i j k : J} (P : ThickPath i j)
