@@ -1425,20 +1425,8 @@ theorem dayConvolutionMap_id
 /-- The ordinary simplicial join as an actual bifunctor.  Its object formula
 is the restriction of the chosen augmented Day convolution. -/
 def ordinaryJoinBifunctor : SSet.{u} × SSet.{u} ⥤ SSet.{u} where
-  obj X :=
-    letI := augmentedDayConvolution
-      (emptyAugmentation.{u}.obj X.1) (emptyAugmentation.{u}.obj X.2)
-    forgetAugmentation.{u}.obj
-      (CategoryTheory.MonoidalCategory.DayConvolution.convolution
-        (emptyAugmentation.{u}.obj X.1) (emptyAugmentation.{u}.obj X.2))
-  map {X Y} f := by
-    letI := augmentedDayConvolution
-      (emptyAugmentation.{u}.obj X.1) (emptyAugmentation.{u}.obj X.2)
-    letI := augmentedDayConvolution
-      (emptyAugmentation.{u}.obj Y.1) (emptyAugmentation.{u}.obj Y.2)
-    exact Functor.whiskerLeft AugmentedSimplexCategory.inclusion.op
-      (CategoryTheory.MonoidalCategory.DayConvolution.map
-        (emptyAugmentation.{u}.map f.1) (emptyAugmentation.{u}.map f.2))
+  obj X := simplicialJoin X.1 X.2
+  map f := simplicialJoinMap f.1 f.2
   map_id X := by
     letI := augmentedDayConvolution
       (emptyAugmentation.{u}.obj X.1) (emptyAugmentation.{u}.obj X.2)
@@ -1470,6 +1458,17 @@ def ordinaryJoinBifunctor : SSet.{u} × SSet.{u} ⥤ SSet.{u} where
 def ordinaryJoinBifunctorObjIso (X Y : SSet.{u}) :
     ordinaryJoinBifunctor.{u}.obj (X, Y) ≅ simplicialJoin X Y :=
   Iso.refl _
+
+lemma ordinaryJoinBifunctor_map_isIso {X X' Y Y' : SSet.{u}}
+    (f : X ⟶ X') (g : Y ⟶ Y') [IsIso f] [IsIso g] :
+    IsIso (ordinaryJoinBifunctor.{u}.map
+      ((f, g) : (X, Y) ⟶ (X', Y'))) := by
+  let fg : (X, Y) ⟶ (X', Y') := (f, g)
+  letI : IsIso fg := by
+    apply IsIso.mk
+    refine ⟨(inv f, inv g), ?_, ?_⟩ <;> ext <;> simp [fg]
+  change IsIso (ordinaryJoinBifunctor.{u}.map fg)
+  infer_instance
 
 theorem dayInternalHomMap_comp
     {F G G' G'' H H' H'' : AugmentedSSet.{u}}
