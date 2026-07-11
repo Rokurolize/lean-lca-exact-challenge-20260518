@@ -18,6 +18,15 @@ namespace MetrizableBoundedComplexes
 
 open CategoryTheory
 
+/-- The cochain shift, retained as an actual object of the bounded dg carrier. -/
+def dgShiftObject (K : ComplexCategory) (n : ℤ) : ComplexCategory :=
+  (shiftFunctor ComplexCategory n).obj K
+
+/-- Shifted objects also belong to the honest direct simplicial dg category. -/
+def directDGShiftObject (K : ComplexCategory) (n : ℤ) :
+    DirectDGSimplicialCategory :=
+  directDGObject (dgShiftObject K n)
+
 /-- The mapping cone of a morphism of bounded complexes, as an actual object of the bounded
 dg carrier. -/
 def dgMappingConeObject {K L : ComplexCategory} (f : K ⟶ L) : ComplexCategory :=
