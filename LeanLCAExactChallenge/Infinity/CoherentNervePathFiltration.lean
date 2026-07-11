@@ -2635,6 +2635,25 @@ theorem Extended2GlobalPairIndex.previousStage_le_nextStage {i j k : J}
     p.previousStage hik hkj ≤ p.nextStage hik hkj :=
   le_sup_left
 
+/-- A known-base index cannot be attached by taking its known lower face as the missing horn
+face: that face is already present in every earlier stage.  This records the obstruction which
+forces any complete matching to pair the known-base cell upward by a different construction. -/
+theorem EntryKnownBaseIndex.lower_mem_extended2EarlierStage {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) (p : EntryKnownBaseIndex i j k) :
+    p.rankedKanFacePair.lower.toNerveSimplex ∈
+      (Extended2GlobalPairIndex.earlierStage hik hkj (.inr (.inl p))).obj _ := by
+  have hle : knownPathSubcomplex i j k ≤
+      Extended2GlobalPairIndex.earlierStage hik hkj (.inr (.inl p)) := le_sup_left
+  exact hle _ p.lower_known
+
+theorem EntryKnownBaseIndex.lower_mem_extended2PreviousStage {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) (p : EntryKnownBaseIndex i j k) :
+    p.rankedKanFacePair.lower.toNerveSimplex ∈
+      (Extended2GlobalPairIndex.previousStage hik hkj (.inr (.inl p))).obj _ :=
+  (show Extended2GlobalPairIndex.earlierStage hik hkj (.inr (.inl p)) ≤
+      Extended2GlobalPairIndex.previousStage hik hkj (.inr (.inl p)) from le_sup_left)
+    _ (p.lower_mem_extended2EarlierStage hik hkj)
+
 /-- There are no selected inner-face cells in degree zero. -/
 theorem EntryLowerCell.false_of_degreeZero {k : J} (p : EntryLowerCell 0 i j k) : False := by
   have hpos := p.rankedInnerFacePair.face_pos
