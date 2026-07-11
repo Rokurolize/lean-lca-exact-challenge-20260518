@@ -266,6 +266,72 @@ noncomputable def nerveBinaryProductIso (C D : Type u) [Category.{u} C] [Categor
   asIso (CategoryTheory.Limits.prodComparison CategoryTheory.nerveFunctor
     (CategoryTheory.Cat.of C) (CategoryTheory.Cat.of D))
 
+/-- Split an `(n+1)`-bit vector into its first `n` bits and its last bit. -/
+def finBitvectorSuccOrderIso (n : ℕ) :
+    (Fin (n + 1) → Fin 2) ≃o ((Fin n → Fin 2) × Fin 2) where
+  toFun b := (⟨fun a ↦ b a.castSucc, b (Fin.last n)⟩)
+  invFun b := Fin.lastCases b.2 b.1
+  left_inv b := by
+    funext a
+    refine Fin.lastCases ?_ (fun i ↦ ?_) a
+    · simp
+    · simp
+  right_inv b := by
+    ext a
+    · simp
+    · simp
+  map_rel_iff' := by
+    intro a b
+    constructor
+    · rintro ⟨hinit, hlast⟩ i
+      refine Fin.lastCases ?_ (fun q ↦ ?_) i
+      · exact hlast
+      · exact hinit q
+    · intro h
+      exact ⟨fun i ↦ h i.castSucc, h (Fin.last n)⟩
+
+/-- An order isomorphism induces an actual isomorphism of ordinary nerves. -/
+noncomputable def nerveOrderIso {α β : Type u} [PartialOrder α] [PartialOrder β]
+    (e : α ≃o β) : CategoryTheory.nerve α ≅ CategoryTheory.nerve β where
+  hom := CategoryTheory.nerveMap e.equivalence.functor
+  inv := CategoryTheory.nerveMap e.equivalence.inverse
+  hom_inv_id := by
+    change CategoryTheory.nerveFunctor.map e.equivalence.functor.toCatHom ≫
+      CategoryTheory.nerveFunctor.map e.equivalence.inverse.toCatHom = _
+    rw [← CategoryTheory.Functor.map_comp]
+    have hf : e.equivalence.functor ⋙ e.equivalence.inverse =
+        CategoryTheory.Functor.id α := by
+      exact CategoryTheory.Functor.ext
+        (h_obj := fun a ↦ e.left_inv a)
+        (h_map := fun _ _ _ ↦ Subsingleton.elim _ _)
+    have hc : e.equivalence.functor.toCatHom ≫ e.equivalence.inverse.toCatHom = 𝟙 _ := by
+      apply CategoryTheory.Cat.Hom.ext
+      exact hf
+    rw [hc, CategoryTheory.Functor.map_id]
+    rfl
+  inv_hom_id := by
+    change CategoryTheory.nerveFunctor.map e.equivalence.inverse.toCatHom ≫
+      CategoryTheory.nerveFunctor.map e.equivalence.functor.toCatHom = _
+    rw [← CategoryTheory.Functor.map_comp]
+    have hf : e.equivalence.inverse ⋙ e.equivalence.functor =
+        CategoryTheory.Functor.id β := by
+      exact CategoryTheory.Functor.ext
+        (h_obj := fun b ↦ e.right_inv b)
+        (h_map := fun _ _ _ ↦ Subsingleton.elim _ _)
+    have hc : e.equivalence.inverse.toCatHom ≫ e.equivalence.functor.toCatHom = 𝟙 _ := by
+      apply CategoryTheory.Cat.Hom.ext
+      exact hf
+    rw [hc, CategoryTheory.Functor.map_id]
+    rfl
+
+/-- One cubical coordinate splits off as one copy of the walking interval. -/
+noncomputable def finBitvectorNerveSuccIso (n : ℕ) :
+    @CategoryTheory.nerve (Fin (n + 1) → Fin 2)
+      (Preorder.smallCategory (Fin (n + 1) → Fin 2)) ≅
+      @CategoryTheory.nerve ((Fin n → Fin 2) × Fin 2)
+        (Preorder.smallCategory ((Fin n → Fin 2) × Fin 2)) :=
+  nerveOrderIso (finBitvectorSuccOrderIso n)
+
 /-- The prefix of a path at one of its vertices. -/
 def beforePath {J : Type u} [LinearOrder J] {i j k : J} (P : ThickPath i j)
     (hk : k ∈ P.I) : ThickPath i k where
