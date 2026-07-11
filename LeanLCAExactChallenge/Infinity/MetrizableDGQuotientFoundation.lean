@@ -112,6 +112,13 @@ def arrowTarget {X Y : ComplexCategory} (w : DrinfeldWord X Y)
     (i : Fin (w.length + 1)) : ComplexCategory :=
   w.vertex i.succ
 
+/-- Adjacent arrow factors meet at the same intermediate vertex. -/
+theorem arrowTarget_castSucc_eq_arrowSource_succ {X Y : ComplexCategory}
+    (w : DrinfeldWord X Y) (i : Fin w.length) :
+    w.arrowTarget i.castSucc = w.arrowSource i.succ := by
+  unfold arrowTarget arrowSource
+  congr 1
+
 @[simp]
 theorem vertex_zero {X Y : ComplexCategory} (w : DrinfeldWord X Y) :
     w.vertex 0 = X :=
