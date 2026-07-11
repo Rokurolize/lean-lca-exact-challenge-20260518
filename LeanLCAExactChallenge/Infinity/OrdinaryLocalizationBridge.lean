@@ -450,6 +450,29 @@ theorem internalHomNerveIso_vertex_map (L : SSet.{u}) (E : Cat.{u, u})
   rw [nerveInternalHomIso_vertex_map]
   rfl
 
+set_option backward.isDefEq.respectTransparency false in
+/-- Reflecting a simplicial set, applying a functor, and then using the nerve-reflection
+counit recovers the original ordinary functor. -/
+theorem reflectionUnit_nerveFunctor_hoFunctor_counit
+    (L : SSet.{u}) (E : Cat.{u, u}) (F : SSet.hoFunctor.obj L ⥤ E) :
+    (SSet.hoFunctor.map
+      (nerveAdjunction.unit.app L ≫ nerveFunctor.map F.toCatHom)).toFunctor ⋙
+        (nerveFunctorCompHoFunctorIso.app E).hom.toFunctor = F := by
+  rw [SSet.hoFunctor.map_comp]
+  change (SSet.hoFunctor.map (nerveAdjunction.unit.app L)).toFunctor ⋙
+    (SSet.hoFunctor.map (nerveFunctor.map F.toCatHom)).toFunctor ⋙
+      (nerveFunctorCompHoFunctorIso.app E).hom.toFunctor = F
+  rw [show (SSet.hoFunctor.map (nerveFunctor.map F.toCatHom)).toFunctor ⋙
+      (nerveFunctorCompHoFunctorIso.app E).hom.toFunctor =
+    (nerveFunctorCompHoFunctorIso.app (SSet.hoFunctor.obj L)).hom.toFunctor ⋙ F by
+      exact congrArg Cat.Hom.toFunctor
+        ((nerveFunctorCompHoFunctorIso).hom.naturality F.toCatHom)]
+  rw [← Functor.assoc]
+  rw [show (SSet.hoFunctor.map (nerveAdjunction.unit.app L)).toFunctor ⋙
+      (nerveFunctorCompHoFunctorIso.app (SSet.hoFunctor.obj L)).hom.toFunctor = 𝟭 _ by
+    exact congrArg Cat.Hom.toFunctor (nerveAdjunction.left_triangle_components L)]
+  exact Functor.id_comp F
+
 /-- The marking-inverting vertex predicate transported to the ordinary functor category by
 the internal-Hom nerve isomorphism. -/
 noncomputable def PulledRelativeFunctorProperty
