@@ -207,6 +207,23 @@ def fullSubcomplexToNerveFullSubcategory
     ext s i
     rfl
 
+/-- A categorical full subcategory has nerve equal to the full vertex subcomplex. -/
+noncomputable def nerveFullSubcategoryIsoFullSubcomplex
+    {C : Type u} [Category.{u} C] (P : ObjectProperty C) :
+    CategoryTheory.nerve P.FullSubcategory ≅
+      (fullSubcomplexOnVertices (CategoryTheory.nerve C)
+        (fun v ↦ P (CategoryTheory.nerveEquiv v)) : SSet.{u}) where
+  hom := nerveFullSubcategoryToFullSubcomplex P
+  inv := fullSubcomplexToNerveFullSubcategory P
+  hom_inv_id := by
+    ext U s i
+    rfl
+  inv_hom_id := by
+    ext U s
+    apply Subtype.ext
+    exact congrArg id (composableArrowsToFullSubcategory_forget P s.val
+      (fun i ↦ s.property i))
+
 /-- The reflection unit exhibits an internal Hom into a nerve as the nerve of its homotopy
 category. -/
 noncomputable def internalHomNerveReflectionIso (L : SSet.{u}) (E : Cat.{u, u}) :
