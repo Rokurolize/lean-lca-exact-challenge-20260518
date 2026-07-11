@@ -200,6 +200,7 @@ noncomputable def thickPathNerveBooleanIso {J : Type u} [LinearOrder J]
       exact thickPathInteriorFunctor_comp hij
     rw [hc, CategoryTheory.Functor.map_id]
     rfl
+
   inv_hom_id := by
     change CategoryTheory.nerveFunctor.map
         (interiorThickPathFunctor hij).toCatHom ≫
@@ -212,6 +213,46 @@ noncomputable def thickPathNerveBooleanIso {J : Type u} [LinearOrder J]
       exact interiorThickPathFunctor_comp hij
     rw [hc, CategoryTheory.Functor.map_id]
     rfl
+
+/-- Boolean subsets as literal `0/1` bitvectors. -/
+noncomputable def setBitvectorOrderIso (α : Type u) : Set α ≃o (α → Fin 2) := by
+  classical
+  exact
+    { toFun := fun S a ↦ if a ∈ S then 1 else 0
+      invFun := fun b ↦ {a | b a = 1}
+      left_inv := fun S ↦ by
+        ext a
+        simp
+      right_inv := fun b ↦ by
+        funext a
+        have hb : b a = 0 ∨ b a = 1 := by
+          have hv := (b a).isLt
+          change (b a).val < 2 at hv
+          omega
+        rcases hb with hb | hb <;> simp [hb]
+      map_rel_iff' := by
+        intro S T
+        constructor
+        · intro h a ha
+          have hat := h a
+          change (if a ∈ S then (1 : Fin 2) else 0) ≤
+            (if a ∈ T then 1 else 0) at hat
+          rw [if_pos ha] at hat
+          by_contra hnot
+          rw [if_neg hnot] at hat
+          omega
+        · intro h a
+          change (if a ∈ S then (1 : Fin 2) else 0) ≤
+            (if a ∈ T then 1 else 0)
+          by_cases ha : a ∈ S
+          · have hta := h ha
+            simp [ha, hta]
+          · simp [ha] }
+
+/-- A thick path is therefore a bitvector indexed by its internal vertices. -/
+noncomputable def thickPathBitvectorOrderIso {J : Type u} [LinearOrder J]
+    {i j : J} (hij : i ≤ j) : ThickPath i j ≃o (InteriorVertex i j → Fin 2) :=
+  (thickPathInteriorOrderIso hij).trans (setBitvectorOrderIso (InteriorVertex i j))
 
 /-- The prefix of a path at one of its vertices. -/
 def beforePath {J : Type u} [LinearOrder J] {i j k : J} (P : ThickPath i j)
