@@ -213,6 +213,31 @@ theorem dgMappingConeCochainAddEquiv_symm_delta
   exact CochainComplex.mappingCone.δ_liftCochain
     ((boundedCochainComplex MetrizableLCA.{0}).ι.map f) a b rfl (n + 2) (by omega)
 
+/-- Postcomposition by a bounded chain map as a morphism of the untruncated dg Hom cochain
+complexes. -/
+def dgHomZModulePostcomposition (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    dgHomZModuleCochainComplex T K ⟶ dgHomZModuleCochainComplex T L where
+  f n := ModuleCat.ofHom
+    { toFun := fun γ ↦ γ.comp
+        (CochainComplex.HomComplex.Cochain.ofHom f.hom) (add_zero n)
+      map_add' := fun γ γ' ↦
+        CochainComplex.HomComplex.Cochain.add_comp γ γ' _ (add_zero n)
+      map_smul' := fun r γ ↦
+        CochainComplex.HomComplex.Cochain.smul_comp r γ _ (add_zero n) }
+  comm' n m _ := by
+    apply ModuleCat.hom_ext
+    apply LinearMap.ext
+    intro γ
+    simp [dgHomZModuleCochainComplex, ConcreteCategory.comp_apply,
+      CochainComplex.HomComplex.δ_comp_ofHom]
+
+/-- The coordinate complex for maps into `Cone(f)` is itself the ordinary mapping cone of
+postcomposition by `f`. -/
+abbrev dgMappingConeCoordinateCochainComplex (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) : CochainComplex (ModuleCat.{0} ℤ) ℤ :=
+  CochainComplex.mappingCone (dgHomZModulePostcomposition T f)
+
 /-- The same cone, regarded as an object of the honest direct simplicial dg category. -/
 def directDGMappingConeObject {K L : ComplexCategory} (f : K ⟶ L) :
     DirectDGSimplicialCategory :=
