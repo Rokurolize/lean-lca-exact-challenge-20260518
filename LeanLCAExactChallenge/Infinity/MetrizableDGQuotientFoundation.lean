@@ -62,6 +62,25 @@ def append {X Y Z : ComplexCategory} (w : DrinfeldWord X Y) (v : DrinfeldWord Y 
   length := w.length + v.length
   intermediate := Fin.addCases w.intermediate v.intermediate
 
+/-- Remove one intermediate acyclic object.  These are the target words of the contraction
+terms in the Drinfeld differential. -/
+def eraseIntermediate {X Y : ComplexCategory} :
+    (w : DrinfeldWord X Y) → Fin w.length → DrinfeldWord X Y
+  | ⟨0, intermediate⟩, i => Fin.elim0 i
+  | ⟨k + 1, intermediate⟩, i =>
+      { length := k
+        intermediate := fun j ↦ intermediate (i.succAbove j) }
+
+@[simp]
+theorem eraseIntermediate_length {X Y : ComplexCategory}
+    (w : DrinfeldWord X Y) (i : Fin w.length) :
+    (eraseIntermediate w i).length + 1 = w.length := by
+  cases w with
+  | mk n intermediate =>
+      cases n with
+      | zero => exact Fin.elim0 i
+      | succ k => rfl
+
 @[simp]
 theorem append_length {X Y Z : ComplexCategory}
     (w : DrinfeldWord X Y) (v : DrinfeldWord Y Z) :
@@ -122,6 +141,43 @@ def DegreeProfile.raise {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
       simp
     rw [hi]
     have hd := d.totalDegree
+    omega
+
+/-- Merge the two ordinary Hom degrees adjacent to an intermediate object.  The chosen
+`succAbove` enumeration omits the left factor and adds its degree to the surviving right
+factor. -/
+def contractedArrowDegree {k : ℕ} (a : Fin (k + 1) → ℤ) (i : Fin k) : Fin k → ℤ :=
+  fun j ↦ a (i.castSucc.succAbove j) + if j = i then a i.castSucc else 0
+
+theorem sum_contractedArrowDegree {k : ℕ} (a : Fin (k + 1) → ℤ) (i : Fin k) :
+    ∑ j, contractedArrowDegree a i j = ∑ j, a j := by
+  rw [show (∑ j, contractedArrowDegree a i j) =
+      (∑ j, a (i.castSucc.succAbove j)) +
+        ∑ j, (if j = i then a i.castSucc else 0) by
+    simp only [contractedArrowDegree, Finset.sum_add_distrib]]
+  simp only [Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  rw [Fin.sum_univ_succAbove a i.castSucc]
+  exact add_comm _ _
+
+/-- Degree profile of the contraction term at an intermediate object.  Merging two adjacent
+ordinary Hom factors preserves their degree sum, while deleting one degree-`-1` contracting
+generator raises the total quotient degree by one. -/
+def DegreeProfile.contract {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    DegreeProfile (eraseIntermediate w i) (n + 1) where
+  arrowDegree j := contractedArrowDegree d.arrowDegree i
+    (Fin.cast (eraseIntermediate_length w i) j)
+  totalDegree := by
+    have hs : (∑ j, contractedArrowDegree d.arrowDegree i
+          (Fin.cast (eraseIntermediate_length w i) j)) =
+        ∑ j, contractedArrowDegree d.arrowDegree i j := by
+      apply Fintype.sum_equiv (finCongr (eraseIntermediate_length w i))
+      intro j
+      rfl
+    rw [hs]
+    rw [sum_contractedArrowDegree]
+    have hd := d.totalDegree
+    have hl := eraseIntermediate_length w i
     omega
 
 /-- The ordinary Hom-cochain module attached to one arrow of a degree-profiled word. -/
