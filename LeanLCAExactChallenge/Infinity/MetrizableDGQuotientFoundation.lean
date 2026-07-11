@@ -180,6 +180,12 @@ theorem sum_contractedArrowDegree {k : ℕ} (a : Fin (k + 1) → ℤ) (i : Fin k
   rw [Fin.sum_univ_succAbove a i.castSucc]
   exact add_comm _ _
 
+/-- At the surviving contraction index, the new arrow degree is the sum of
+the two adjacent original arrow degrees. -/
+theorem contractedArrowDegree_self {k : ℕ} (a : Fin (k + 1) → ℤ) (i : Fin k) :
+    contractedArrowDegree a i i = a i.succ + a i.castSucc := by
+  simp [contractedArrowDegree]
+
 /-- Degree profile of the contraction term at an intermediate object.  Merging two adjacent
 ordinary Hom factors preserves their degree sum, while deleting one degree-`-1` contracting
 generator raises the total quotient degree by one. -/
