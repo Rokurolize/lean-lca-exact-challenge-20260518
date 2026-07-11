@@ -349,4 +349,49 @@ lemma range_leftConeHornCornerStdMap_eq_sup (n : ℕ) (i : Fin (n + 1)) :
   rw [hm, range_pushout_desc_eq_sup]
   change representableJoinHornInitial 0 n i ⊔ _ = _
   rw [range_rightConeBaseLeg]
+
+set_option maxHeartbeats 800000 in
+lemma representableJoinHornInitial_sup_baseFace_eq_shiftedHorn
+    (r : ℕ) (i : Fin (r + 2)) :
+    representableJoinHornInitial.{u} 0 (r + 1) i ⊔
+        SSet.stdSimplex.face ({(0 : Fin (0 + (r + 1) + 2))}ᶜ) =
+      SSet.horn (0 + (r + 1) + 1)
+        (⟨i.val + 1, by omega⟩ : Fin (0 + (r + 1) + 2)) := by
+  rw [representableJoinHornInitial_eq_iSup_shiftedRightFaces,
+    SSet.horn_eq_iSup]
+  apply le_antisymm
+  · apply sup_le
+    · apply iSup_le
+      rintro ⟨j, hj⟩
+      exact SSet.face_le_horn
+        (⟨j.val + 1, by omega⟩ : Fin (0 + (r + 1) + 2))
+        (⟨i.val + 1, by omega⟩ : Fin (0 + (r + 1) + 2)) (by
+        intro h
+        have : j = i := by
+          apply Fin.ext
+          simpa only [Fin.mk.injEq] using congrArg Fin.val h
+        exact hj (by simpa using this))
+    · exact SSet.face_le_horn
+        (0 : Fin (0 + (r + 1) + 2))
+        (⟨i.val + 1, by omega⟩ : Fin (0 + (r + 1) + 2)) (by
+          intro h
+          have := congrArg Fin.val h
+          simp only [Fin.val_zero, Fin.val_mk] at this
+          omega)
+  · apply iSup_le
+    rintro ⟨j, hj⟩
+    revert hj
+    refine Fin.cases ?_ (fun k hj => ?_) j
+    · intro _
+      exact le_sup_right
+    · apply le_sup_of_le_left
+      exact le_iSup (fun q : ({i}ᶜ : Set (Fin (r + 2))) =>
+        SSet.stdSimplex.face
+          ({(⟨0 + 1 + q.1.val, by omega⟩ :
+            Fin (0 + (r + 1) + 2))}ᶜ)) ⟨k, by
+          intro hki
+          apply hj
+          apply Fin.ext
+          simp only [Fin.val_succ, Fin.val_mk]
+          simpa using congrArg Fin.val hki⟩
 end LeanLCAExactChallenge.Infinity
