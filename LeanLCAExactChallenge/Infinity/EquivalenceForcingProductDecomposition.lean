@@ -1,6 +1,7 @@
 import LeanLCAExactChallenge.Infinity.EquivalenceForcing
 import LeanLCAExactChallenge.Infinity.EquivalenceIntervalExtension
 import LeanLCAExactChallenge.Infinity.MarkedRelativeLifting
+import Mathlib.CategoryTheory.Limits.Shapes.Opposites.Products
 
 /-!
 # Product decomposition of equivalence-forcing mapping maps
@@ -19,6 +20,8 @@ universe u v
 namespace LeanLCAExactChallenge
 namespace Infinity
 
+open CategoryTheory
+open CategoryTheory.MonoidalCategory
 open CategoryTheory.MorphismProperty
 
 /-- The right lifting property against all monomorphisms is stable under arbitrary products
@@ -31,6 +34,46 @@ theorem piMap_mem_monomorphisms_rlp {J : Type*} {A B : J → SSet.{max u v}}
   intro K L i hi
   letI (j : J) : CategoryTheory.HasLiftingProperty i (f j) := hf j i hi
   infer_instance
+
+def internalHomCoproductFan {J : Type*} (A : J → SSet.{u})
+    [Limits.HasCoproduct A] (Q : SSet.{u}) :
+    Limits.Fan (fun j ↦ (ihom (A j)).obj Q) :=
+  Limits.Fan.mk ((ihom (∐ A)).obj Q)
+    (fun j ↦ internalHomPrecomp (Limits.Sigma.ι A j) Q)
+
+noncomputable def internalHomCoproductFanIsLimit {J : Type*}
+    (A : J → SSet.{u}) [Limits.HasCoproduct A] (Q : SSet.{u}) :
+    Limits.IsLimit (internalHomCoproductFan A Q) := by
+  let c := Limits.Cofan.mk (∐ A) (Limits.Sigma.ι A)
+  let h : Limits.IsLimit c.op :=
+    Limits.Cofan.IsColimit.op (Limits.coproductIsCoproduct A)
+  let F := MonoidalClosed.internalHom.flip.obj Q
+  let hm := Limits.isLimitOfPreserves F h
+  let hm' := (Limits.Fan.isLimitMapConeEquiv F _ c.op).toFun hm
+  refine Limits.IsLimit.ofIsoLimit hm' ?_
+  refine Limits.Cone.ext (Iso.refl _) ?_
+  rintro ⟨j⟩
+  rfl
+
+/-- The canonical comparison from maps out of a coproduct to the product of the mapping
+objects of its summands. -/
+noncomputable def internalHomCoproductIsoProduct {J : Type*}
+    (A : J → SSet.{u}) [Limits.HasCoproduct A] (Q : SSet.{u})
+    [Limits.HasProduct fun j ↦ (ihom (A j)).obj Q] :
+    (ihom (∐ A)).obj Q ≅ ∏ᶜ fun j ↦ (ihom (A j)).obj Q :=
+  (internalHomCoproductFanIsLimit A Q).conePointUniqueUpToIso
+    (Limits.productIsProduct fun j ↦ (ihom (A j)).obj Q)
+
+/-- Every projection of the coproduct-to-product comparison is evaluation at the
+corresponding coproduct summand. -/
+@[reassoc]
+theorem internalHomCoproductIsoProduct_hom_π {J : Type*}
+    (A : J → SSet.{u}) [Limits.HasCoproduct A] (Q : SSet.{u})
+    [Limits.HasProduct fun j ↦ (ihom (A j)).obj Q] (j : J) :
+    (internalHomCoproductIsoProduct A Q).hom ≫
+        Limits.Pi.π (fun j ↦ (ihom (A j)).obj Q) j =
+      internalHomPrecomp (Limits.Sigma.ι A j) Q :=
+  Limits.IsLimit.conePointUniqueUpToIso_hom_comp _ _ _
 
 namespace RelativeCategoryData
 
