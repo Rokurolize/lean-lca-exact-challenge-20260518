@@ -273,6 +273,24 @@ def summandModule {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) : ModuleCat.{0} ℤ :=
   tensorModuleList (List.ofFn (factorModule d))
 
+/-- The length-zero word summand is canonically the original homogeneous Hom module. -/
+def nilSummandIsoOriginal (X Y : ComplexCategory) {n : ℤ}
+    (d : DegreeProfile (nil X Y) n) :
+    summandModule d ≅ (dgHomZModuleCochainComplex X Y).X n := by
+  have hdeg : d.arrowDegree 0 = n := by
+    have hd := d.totalDegree
+    rw [Fin.sum_univ_succ] at hd
+    simpa [nil] using hd
+  have hsource : (nil X Y).arrowSource 0 = X := rfl
+  have htarget : (nil X Y).arrowTarget 0 = Y := by
+    change (nil X Y).vertex (0 : Fin 1).succ = Y
+    exact vertex_last (nil X Y)
+  have hfactor : factorModule d 0 = (dgHomZModuleCochainComplex X Y).X n := by
+    simp only [factorModule]
+    rw [hsource, htarget, hdeg]
+  exact (ρ_ (factorModule d 0)) ≪≫
+    eqToIso hfactor
+
 /-- Tensor map of an internal-differential summand before inserting the Koszul sign. -/
 def internalDifferentialTensorMap {X Y : ComplexCategory}
     {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
