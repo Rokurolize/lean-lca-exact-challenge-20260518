@@ -1,5 +1,4 @@
 import LeanLCAExactChallenge.Infinity.MetrizableDGSimplicialCategoryOrdinaryEquivalence
-import Mathlib.Algebra.Category.ModuleCat.Biproducts
 
 /-!
 # Mapping-cone objects in the bounded dg carrier
@@ -230,7 +229,7 @@ def dgHomZModulePostcomposition (T : ComplexCategory)
     apply ModuleCat.hom_ext
     apply LinearMap.ext
     intro γ
-    simp [dgHomZModuleCochainComplex,
+    simp [dgHomZModuleCochainComplex, ConcreteCategory.comp_apply,
       CochainComplex.HomComplex.δ_comp_ofHom]
 
 /-- The coordinate complex for maps into `Cone(f)` is itself the ordinary mapping cone of
@@ -238,24 +237,6 @@ postcomposition by `f`. -/
 abbrev dgMappingConeCoordinateCochainComplex (T : ComplexCategory)
     {K L : ComplexCategory} (f : K ⟶ L) : CochainComplex (ModuleCat.{0} ℤ) ℤ :=
   CochainComplex.mappingCone (dgHomZModulePostcomposition T f)
-
-/-- Degreewise module isomorphism from the actual Hom into `Cone(f)` to the packaged
-coordinate cone complex. -/
-def dgMappingConeCochainComponentIso (T : ComplexCategory)
-    {K L : ComplexCategory} (f : K ⟶ L) (n : ℤ) :
-    (dgHomZModuleCochainComplex T (dgMappingConeObject f)).X n ≅
-      (dgMappingConeCoordinateCochainComplex T f).X n := by
-  change ModuleCat.of ℤ
-      (CochainComplex.HomComplex.Cochain T.obj
-        (CochainComplex.mappingCone
-          ((boundedCochainComplex MetrizableLCA.{0}).ι.map f)) n) ≅ _
-  exact Iso.trans (dgMappingConeCochainLinearEquiv T f n).toModuleIso
-    (Iso.trans
-      (ModuleCat.biprodIsoProd
-        ((dgHomZModuleCochainComplex T K).X (n + 1))
-        ((dgHomZModuleCochainComplex T L).X n)).symm
-      (HomologicalComplex.homotopyCofiber.XIsoBiprod
-        (dgHomZModulePostcomposition T f) n (n + 1) rfl).symm)
 
 /-- The same cone, regarded as an object of the honest direct simplicial dg category. -/
 def directDGMappingConeObject {K L : ComplexCategory} (f : K ⟶ L) :
