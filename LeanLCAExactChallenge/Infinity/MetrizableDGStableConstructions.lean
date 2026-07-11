@@ -40,6 +40,12 @@ theorem directDGZeroObject_isZero : IsZero directDGZeroObject := by
       { default := e.symm (h0.from_ (directDGToComplexFunctor.obj Y))
         uniq := fun f ↦ e.injective (h0.eq_of_tgt (e f) (e _)) }⟩
 
+/-- The verified zero object supplies the ordinary zero-object structure underlying the direct
+simplicial enrichment. -/
+noncomputable instance directDGSimplicialCategory_hasZeroObject :
+    HasZeroObject DirectDGSimplicialCategory :=
+  directDGZeroObject_isZero.hasZeroObject
+
 /-- The cochain shift, retained as an actual object of the bounded dg carrier. -/
 def dgShiftObject (K : ComplexCategory) (n : ℤ) : ComplexCategory :=
   (shiftFunctor ComplexCategory n).obj K
