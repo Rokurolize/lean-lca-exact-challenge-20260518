@@ -695,6 +695,30 @@ noncomputable def emptyJoinHornIsoRange (r : ℕ) (i : Fin (r + 2)) :
       (SSet.horn (0 + (r + 1)) j : SSet.{u})) hidx) ≪≫
     joinSigmaOneHornIsoRange 0 (r + 1) (∅ : Finset (Fin 1)) i
 
+lemma eqToHom_app_heq {X Y : SSet.{u}} (h : X = Y) (U : SimplexCategoryᵒᵖ)
+    (x : X.obj U) : HEq ((eqToHom h).app U x) x := by
+  cases h
+  rfl
+
+lemma normalizedEmptyJoinHornIso_hom_app_heq (r : ℕ) (i : Fin (r + 2))
+    (U : SimplexCategoryᵒᵖ) (x : (Λ[r + 1, i] : SSet.{u}).obj U) :
+    HEq ((normalizedEmptyJoinHornIso.{u} r i).hom.app U x) x := by
+  let hN : 0 + (r + 1) = r + 1 := Nat.zero_add _
+  let a : Σ n : ℕ, Fin (n + 1) := ⟨r + 1, i⟩
+  let b : Σ n : ℕ, Fin (n + 1) :=
+    ⟨0 + (r + 1), Fin.cast (congrArg (fun n => n + 1) hN.symm) i⟩
+  have hab : a = b := by
+    apply Sigma.ext hN.symm
+    apply (Fin.heq_ext_iff (congrArg (fun n => n + 1) hN.symm)).2
+    simp [a, b]
+  have h : (SSet.horn (r + 1) i : SSet.{u}) =
+      (SSet.horn (0 + (r + 1))
+        (Fin.cast (congrArg (fun n => n + 1) hN.symm) i) : SSet.{u}) := by
+    exact congrArg (fun p : Σ n : ℕ, Fin (n + 1) =>
+      (SSet.horn p.1 p.2 : SSet.{u})) hab
+  change HEq ((eqToHom h).app U x) x
+  exact eqToHom_app_heq h U x
+
 noncomputable def positiveConeHornTransportedLeftLeg
     (s : ℕ) (i : Fin (s + 3)) :
     (Λ[s + 2, i] : SSet.{u}) ⟶ simplicialJoin (Δ[0] : SSet.{u}) Λ[s + 2, i] :=
@@ -730,7 +754,7 @@ noncomputable def positiveConeHornTransportedIsPushout
   all_goals simp [positiveConeHornTransportedLeftLeg,
     positiveConeHornTransportedRightLeg, sq, Category.assoc]
 
-/- Pending the normalized empty-join face comparison.
+/- Pending the normalized empty-join horn transport comparison.
 lemma positiveConeHornTransportedLeftLeg_eq
     (s : ℕ) (i : Fin (s + 3)) :
     positiveConeHornTransportedLeftLeg.{u} s i =
@@ -751,11 +775,16 @@ lemma positiveConeHornTransportedLeftLeg_eq
   rw [← rightCone_rightInclusion_naturality]
   simp only [Category.assoc]
   rw [rightCone_rightInclusion_stdSimplex]
-  apply NatTrans.ext
-  funext U
-  apply ConcreteCategory.hom_ext
-  intro x
-  rfl
+  rw [← emptyJoinFaceIso_hom_ι]
+  apply SSet.horn.hom_ext
+  intro j hj
+  apply ULift.ext
+  apply SimplexCategory.Hom.ext
+  ext k
+  simp [emptyJoinFaceIso, joinSigmaOneFaceIso, normalizedEmptyJoinHornIso,
+    SSet.stdSimplex.isoOfRepresentableBy, SSet.stdSimplex.faceRepresentableBy,
+    Category.assoc]
+  cases s <;> rfl
 -/
 
 end LeanLCAExactChallenge.Infinity
