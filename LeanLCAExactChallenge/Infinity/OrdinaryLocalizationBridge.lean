@@ -700,33 +700,53 @@ theorem pulledRelativeFunctorProperty_iff
             (CategoryTheory.nerveEquiv.symm F))) :=
   Iff.rfl
 
+private def relativeInternalHomNerveVertexProperty
+    {L : SSet.{u}} (W : EdgeMarking L) (E : Cat.{u, u}) :
+    ((ihom L).obj (nerveFunctor.obj E)).obj (Opposite.op ⦋0⦌) → Prop :=
+  fun v ↦ InvertsMarkedEdges W (internalHomVertexMap L (nerveFunctor.obj E) v)
+
+private theorem relativeInternalHomNerveSourceSubcomplex_eq
+    {L : SSet.{u}} (W : EdgeMarking L) (E : Cat.{u, u}) :
+    fullSubcomplexOnVertices
+        (nerveFunctor.obj ((ihom (SSet.hoFunctor.obj L)).obj E))
+        (fun v ↦ PulledRelativeFunctorProperty W E
+          (CategoryTheory.nerveEquiv v)) =
+      fullSubcomplexOnVertices
+        (nerveFunctor.obj ((ihom (SSet.hoFunctor.obj L)).obj E))
+        (fun v ↦ relativeInternalHomNerveVertexProperty W E
+          ((internalHomNerveIso L E).hom.app (Opposite.op ⦋0⦌) v)) := by
+  ext U s
+  simp only [mem_fullSubcomplexOnVertices_iff]
+  constructor <;> intro h i
+  · simpa [PulledRelativeFunctorProperty, relativeInternalHomNerveVertexProperty] using h i
+  · simpa [PulledRelativeFunctorProperty, relativeInternalHomNerveVertexProperty] using h i
+
+theorem subcomplex_eqToIso_hom_comp_inclusion
+    {X : SSet.{u}} {A B : X.Subcomplex} (h : A = B) :
+    (eqToIso (congrArg SSet.Subcomplex.toSSet h)).hom ≫ B.ι = A.ι := by
+  subst h
+  rfl
+
+noncomputable def subcomplexEqToIsoInclusionIso
+    {X : SSet.{u}} {A B : X.Subcomplex} (h : A = B) :
+    (SSet.hoFunctor.map
+      ((eqToIso (congrArg SSet.Subcomplex.toSSet h)).hom ≫ B.ι)).toFunctor ≅
+      (SSet.hoFunctor.map A.ι).toFunctor :=
+  eqToIso (congrArg Cat.Hom.toFunctor (congrArg SSet.hoFunctor.map
+    (subcomplex_eqToIso_hom_comp_inclusion h)))
+
 /-- The relative mapping simplicial set into a categorical nerve is the nerve of the full
 subcategory cut out by the transported marking-inversion predicate. -/
 noncomputable def relativeInternalHomNerveIso
     {L : SSet.{u}} (W : EdgeMarking L) (E : Cat.{u, u}) :
     CategoryTheory.nerve (PulledRelativeFunctorProperty W E).FullSubcategory ≅
       (relativeInternalHom W (nerveFunctor.obj E) : SSet.{u}) := by
-  let P : ((ihom L).obj (nerveFunctor.obj E)).obj (Opposite.op ⦋0⦌) → Prop :=
-    fun v ↦ InvertsMarkedEdges W
-      (internalHomVertexMap L (nerveFunctor.obj E) v)
-  have hsub :
-      fullSubcomplexOnVertices
-        (nerveFunctor.obj ((ihom (SSet.hoFunctor.obj L)).obj E))
-        (fun v ↦ PulledRelativeFunctorProperty W E
-          (CategoryTheory.nerveEquiv v)) =
-      fullSubcomplexOnVertices
-        (nerveFunctor.obj ((ihom (SSet.hoFunctor.obj L)).obj E))
-        (fun v ↦ P ((internalHomNerveIso L E).hom.app
-          (Opposite.op ⦋0⦌) v)) := by
-    ext U s
-    simp only [mem_fullSubcomplexOnVertices_iff]
-    constructor <;> intro h i
-    · simpa [PulledRelativeFunctorProperty, P] using h i
-    · simpa [PulledRelativeFunctorProperty, P] using h i
-  have hsource := congrArg SSet.Subcomplex.toSSet hsub
+  have hsource := congrArg SSet.Subcomplex.toSSet
+    (relativeInternalHomNerveSourceSubcomplex_eq W E)
   exact nerveFullSubcategoryIsoFullSubcomplex (PulledRelativeFunctorProperty W E) ≪≫
     eqToIso hsource ≪≫
-    fullSubcomplexOnVerticesIsoOfIso (internalHomNerveIso L E) P
+    fullSubcomplexOnVerticesIsoOfIso (internalHomNerveIso L E)
+      (relativeInternalHomNerveVertexProperty W E)
 
 /-- For an arbitrary simplicial set `L`, mapping into a categorical nerve has homotopy
 category the ordinary functor category out of `ho L`. -/
