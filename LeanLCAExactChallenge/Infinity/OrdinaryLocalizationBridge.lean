@@ -808,6 +808,33 @@ theorem nerveInternalHomIso_precomp_naturality
   rw [cat_monoidalClosed_pre_eq_whiskeringLeft C D E f] at hn
   exact hn.symm
 
+set_option backward.isDefEq.respectTransparency false in
+/-- Naturality in the source of the arbitrary-source internal-Hom nerve comparison. -/
+theorem internalHomNerveIso_precomp_naturality
+    {X L : SSet.{u}} (f : X ⟶ L) (E : Cat.{u, u}) :
+    nerveFunctor.map
+        (((Functor.whiskeringLeft (SSet.hoFunctor.obj X)
+          (SSet.hoFunctor.obj L) E).obj
+            (SSet.hoFunctor.map f).toFunctor).toCatHom) ≫
+      (internalHomNerveIso X E).hom =
+    (internalHomNerveIso L E).hom ≫
+      internalHomPrecomp f (nerveFunctor.obj E) := by
+  dsimp [internalHomNerveIso]
+  change nerveFunctor.map
+        (((Functor.whiskeringLeft (SSet.hoFunctor.obj X)
+          (SSet.hoFunctor.obj L) E).obj
+            (SSet.hoFunctor.map f).toFunctor).toCatHom) ≫
+      (nerveInternalHomIso (SSet.hoFunctor.obj X) E).hom ≫
+        internalHomReflectionPre X E =
+    (nerveInternalHomIso (SSet.hoFunctor.obj L) E).hom ≫
+      internalHomReflectionPre L E ≫
+        internalHomPrecomp f (nerveFunctor.obj E)
+  rw [← Category.assoc,
+    nerveInternalHomIso_precomp_naturality
+      (SSet.hoFunctor.obj X) (SSet.hoFunctor.obj L) E
+        (SSet.hoFunctor.map f)]
+  rw [Category.assoc, internalHomReflectionPre_precomp_naturality f E]
+
 /-- In the self-enrichment of simplicial sets, postcomposition in the enriched Hom object is
 the ordinary internal-Hom map. -/
 theorem sset_eHomWhiskerLeft_eq_ihom_map
