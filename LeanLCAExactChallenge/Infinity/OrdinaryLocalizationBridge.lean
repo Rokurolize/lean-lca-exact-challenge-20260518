@@ -29,6 +29,35 @@ universe u
 
 universe v w x
 
+set_option backward.isDefEq.respectTransparency false in
+/-- An edge in a categorical nerve is an equivalence exactly when its underlying morphism is
+an isomorphism. -/
+theorem edgeIsEquivalence_nerve_iff_isIso
+    {C : Type u} [Category.{u} C] {X Y : C} (f : X ⟶ Y) :
+    EdgeIsEquivalence (CategoryTheory.nerve.edgeMk f) ↔ IsIso f := by
+  constructor
+  · intro hf
+    letI : IsIso (edgeHomotopyClass (CategoryTheory.nerve.edgeMk f)) := hf
+    let G := SSet.Truncated.HomotopyCategory.descOfTruncation
+      (𝟙 ((SSet.truncation 2).obj (CategoryTheory.nerve C)))
+    haveI : IsIso (G.map (edgeHomotopyClass (CategoryTheory.nerve.edgeMk f))) := by
+      infer_instance
+    have hedge : (CategoryTheory.nerve.edgeMk f).toTruncated.map
+        (𝟙 ((SSet.truncation 2).obj (CategoryTheory.nerve C))) =
+        (CategoryTheory.nerve.edgeMk f).toTruncated := by
+      ext
+      rfl
+    have hmap : G.map (edgeHomotopyClass (CategoryTheory.nerve.edgeMk f)) = f := by
+      dsimp [G, edgeHomotopyClass]
+      rw [SSet.Truncated.HomotopyCategory.descOfTruncation_map_homMk, hedge]
+      exact CategoryTheory.nerve.homEquiv_edgeMk f
+    change IsIso f
+    rw [← hmap]
+    infer_instance
+  · intro hf
+    letI : IsIso f := hf
+    exact edgeIsEquivalence_nerve_of_isIso f
+
 private def freeReflVertex {V : Type u} [ReflQuiver V] : Cat.FreeRefl V → V :=
   Cat.FreeRefl.induction id
 
