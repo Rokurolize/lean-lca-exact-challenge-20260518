@@ -1,0 +1,2107 @@
+import Mathlib.AlgebraicTopology.SimplicialNerve
+import Mathlib.AlgebraicTopology.SimplicialSet.Horn
+import Mathlib.Order.Extension.Well
+
+/-!
+# Path combinatorics for the locally-Kan coherent nerve theorem
+
+The mapping objects in the simplicial thickening are nerves of posets of paths.  This file
+isolates the elementary splitting operation at an intermediate vertex.  It is the set-theoretic
+operation used in the cell filtration of an inner horn: a path containing the missing vertex is
+the composite of its beforePath and afterPath there.
+-/
+
+set_option autoImplicit false
+
+namespace LeanLCAExactChallenge.Infinity.CoherentNervePathFiltration
+
+open CategoryTheory
+
+universe u
+
+namespace Path
+
+abbrev ThickPath {J : Type u} [LinearOrder J] (i j : J) :=
+  SimplicialThickening.Path i j
+
+/-- The prefix of a path at one of its vertices. -/
+def beforePath {J : Type u} [LinearOrder J] {i j k : J} (P : ThickPath i j)
+    (hk : k ∈ P.I) : ThickPath i k where
+  I := P.I ∩ Set.Iic k
+  left := ⟨P.left, P.left_le k hk⟩
+  right := ⟨hk, le_rfl⟩
+  left_le _ hl := P.left_le _ hl.1
+  le_right _ hl := hl.2
+
+/-- The suffix of a path at one of its vertices. -/
+def afterPath {J : Type u} [LinearOrder J] {i j k : J} (P : ThickPath i j)
+    (hk : k ∈ P.I) : ThickPath k j where
+  I := P.I ∩ Set.Ici k
+  left := ⟨hk, le_rfl⟩
+  right := ⟨P.right, P.le_right k hk⟩
+  left_le _ hl := hl.2
+  le_right _ hl := P.le_right _ hl.1
+
+@[simp]
+theorem mem_prefix_iff {J : Type u} [LinearOrder J] {i j k : J}
+    (P : ThickPath i j) (hk : k ∈ P.I) (l : J) :
+    l ∈ (beforePath P hk).I ↔ l ∈ P.I ∧ l ≤ k :=
+  Iff.rfl
+
+@[simp]
+theorem mem_suffix_iff {J : Type u} [LinearOrder J] {i j k : J}
+    (P : ThickPath i j) (hk : k ∈ P.I) (l : J) :
+    l ∈ (afterPath P hk).I ↔ l ∈ P.I ∧ k ≤ l :=
+  Iff.rfl
+
+/-- Concatenate two paths meeting at an intermediate vertex. -/
+def join {J : Type u} [LinearOrder J] {i j k : J}
+    (P : ThickPath i k) (Q : ThickPath k j) : ThickPath i j where
+  I := P.I ∪ Q.I
+  left := Or.inl P.left
+  right := Or.inr Q.right
+  left_le l := by
+    rintro (hl | hl)
+    · exact P.left_le l hl
+    · exact (P.left_le k P.right).trans (Q.left_le l hl)
+  le_right l := by
+    rintro (hl | hl)
+    · exact (P.le_right l hl).trans (Q.le_right k Q.left)
+    · exact Q.le_right l hl
+
+@[simp]
+theorem mem_join_iff {J : Type u} [LinearOrder J] {i j k : J}
+    (P : ThickPath i k) (Q : ThickPath k j) (l : J) :
+    l ∈ (join P Q).I ↔ l ∈ P.I ∨ l ∈ Q.I :=
+  Iff.rfl
+
+/-- Concatenation reflects inclusion.  At the meeting point, membership can move from one
+piece to the other, but both pieces contain that point, so no information is lost. -/
+theorem join_subset_iff {J : Type u} [LinearOrder J] {i j k : J}
+    (P P' : ThickPath i k) (Q Q' : ThickPath k j) :
+    (join P Q).I ⊆ (join P' Q').I ↔ P.I ⊆ P'.I ∧ Q.I ⊆ Q'.I := by
+  constructor
+  · intro h
+    constructor
+    · intro l hl
+      rcases h (Or.inl hl) with hl' | hl'
+      · exact hl'
+      · have hlk := P.le_right l hl
+        have hkl := Q'.left_le l hl'
+        exact (le_antisymm hlk hkl) ▸ P'.right
+    · intro l hl
+      rcases h (Or.inr hl) with hl' | hl'
+      · have hkl := Q.left_le l hl
+        have hlk := P'.le_right l hl'
+        exact (le_antisymm hkl hlk) ▸ Q'.left
+      · exact hl'
+  · rintro ⟨hP, hQ⟩ l (hl | hl)
+    · exact Or.inl (hP hl)
+    · exact Or.inr (hQ hl)
+
+/-- Splitting a path at a contained vertex and composing the pieces recovers the path. -/
+theorem beforePath_comp_afterPath {J : Type u} [LinearOrder J] {i j k : J}
+    (P : ThickPath i j) (hk : k ∈ P.I) :
+    join (beforePath P hk) (afterPath P hk) = P := by
+  apply SimplicialThickening.Path.ext
+  ext l
+  constructor
+  · rintro (hl | hl)
+    · exact hl.1
+    · exact hl.1
+  · intro hl
+    rcases le_total l k with hlk | hkl
+    · exact Or.inl ⟨hl, hlk⟩
+    · exact Or.inr ⟨hl, hkl⟩
+
+/-- Inclusion of paths restricts to inclusion of their prefixes. -/
+def beforePathMap {J : Type u} [LinearOrder J] {i j k : J}
+    {P Q : ThickPath i j} (f : P ⟶ Q) (hkP : k ∈ P.I) :
+    beforePath P hkP ⟶ beforePath Q (f.1.1.1 hkP) :=
+  ⟨⟨⟨fun _ hl ↦ ⟨f.1.1.1 hl.1, hl.2⟩⟩⟩⟩
+
+/-- Inclusion of paths restricts to inclusion of their suffixes. -/
+def afterPathMap {J : Type u} [LinearOrder J] {i j k : J}
+    {P Q : ThickPath i j} (f : P ⟶ Q) (hkP : k ∈ P.I) :
+    afterPath P hkP ⟶ afterPath Q (f.1.1.1 hkP) :=
+  ⟨⟨⟨fun _ hl ↦ ⟨f.1.1.1 hl.1, hl.2⟩⟩⟩⟩
+
+/-- A path is `k`-critical when it contains the intermediate vertex `k`. -/
+def Critical {J : Type u} [LinearOrder J] {i j : J} (k : J) :=
+  { P : ThickPath i j // k ∈ P.I }
+
+/-- Split a critical path into composable prefix and suffix paths. -/
+def splitCritical {J : Type u} [LinearOrder J] {i j k : J} :
+    Critical (i := i) (j := j) k →
+      ThickPath i k × ThickPath k j :=
+  fun P ↦ (beforePath P.1 P.2, afterPath P.1 P.2)
+
+/-- Compose a prefix and suffix to obtain a critical path. -/
+def joinCritical {J : Type u} [LinearOrder J] {i j k : J} :
+    ThickPath i k × ThickPath k j → Critical (i := i) (j := j) k :=
+  fun P ↦ ⟨join P.1 P.2, Or.inl P.1.right⟩
+
+theorem splitCritical_joinCritical {J : Type u} [LinearOrder J] {i j k : J}
+    (P : ThickPath i k × ThickPath k j) :
+    splitCritical (joinCritical P) = P := by
+  rcases P with ⟨P, Q⟩
+  apply Prod.ext
+  · apply SimplicialThickening.Path.ext
+    ext l
+    constructor
+    · rintro ⟨hl | hl, hlk⟩
+      · exact hl
+      · exact (le_antisymm (Q.left_le l hl) hlk) ▸ P.right
+    · intro hl
+      exact ⟨Or.inl hl, P.le_right l hl⟩
+  · apply SimplicialThickening.Path.ext
+    ext l
+    constructor
+    · rintro ⟨hl | hl, hkl⟩
+      · exact (le_antisymm hkl (P.le_right l hl)) ▸ Q.left
+      · exact hl
+    · intro hl
+      exact ⟨Or.inr hl, Q.left_le l hl⟩
+
+theorem joinCritical_splitCritical {J : Type u} [LinearOrder J] {i j k : J}
+    (P : Critical (i := i) (j := j) k) :
+    joinCritical (splitCritical P) = P := by
+  apply Subtype.ext
+  exact beforePath_comp_afterPath P.1 P.2
+
+/-- Critical paths are exactly pairs of composable paths through `k`. -/
+def criticalEquivProduct {J : Type u} [LinearOrder J] {i j k : J} :
+    Critical (i := i) (j := j) k ≃ ThickPath i k × ThickPath k j where
+  toFun := splitCritical
+  invFun := joinCritical
+  left_inv := joinCritical_splitCritical
+  right_inv := splitCritical_joinCritical
+
+end Path
+
+namespace Chain
+
+open Path
+
+/-- A simplex in the nerve of a path poset, presented as an increasing finite chain. -/
+@[ext]
+structure PathChain {J : Type u} [LinearOrder J] (r : ℕ) (i j : J) where
+  path : Fin (r + 1) → ThickPath i j
+  monotone' : ∀ {a b : Fin (r + 1)}, a ≤ b → (path a).I ⊆ (path b).I
+
+namespace PathChain
+
+variable {J : Type u} [LinearOrder J] {r s : ℕ} {i j : J}
+
+/-- Extract the increasing path chain represented by a simplex of the path-poset nerve. -/
+def ofNerveSimplex
+    (x : (CategoryTheory.nerve (ThickPath i j)).obj
+      (Opposite.op (SimplexCategory.mk r))) : PathChain r i j where
+  path := x.obj
+  monotone' := fun {_ _} hab ↦
+    (x.map (CategoryTheory.homOfLE hab)).1.1.1
+
+@[simp]
+theorem ofNerveSimplex_path
+    (x : (CategoryTheory.nerve (ThickPath i j)).obj
+      (Opposite.op (SimplexCategory.mk r))) (a : Fin (r + 1)) :
+    (ofNerveSimplex x).path a = x.obj a :=
+  rfl
+
+private def homOfSubset {P Q : ThickPath i j} (h : P.I ⊆ Q.I) : P ⟶ Q :=
+  ⟨⟨⟨h⟩⟩⟩
+
+/-- Realize an increasing path chain as a simplex of the path-poset nerve. -/
+noncomputable def toNerveSimplex (c : PathChain r i j) :
+    (CategoryTheory.nerve (ThickPath i j)).obj
+      (Opposite.op (SimplexCategory.mk r)) :=
+  CategoryTheory.ComposableArrows.mkOfObjOfMapSucc c.path
+    (fun a ↦ homOfSubset (c.monotone' (Fin.castSucc_le_succ a)))
+
+@[simp]
+theorem toNerveSimplex_obj (c : PathChain r i j) (a : Fin (r + 1)) :
+    (c.toNerveSimplex).obj a = c.path a :=
+  rfl
+
+/-- Passing from a path chain to the corresponding nerve simplex and back changes no paths. -/
+theorem ofNerveSimplex_toNerveSimplex (c : PathChain r i j) :
+    ofNerveSimplex c.toNerveSimplex = c := by
+  cases c
+  rfl
+
+/-- The chain presentation loses no information from a path-poset nerve simplex. -/
+theorem toNerveSimplex_ofNerveSimplex
+    (x : (CategoryTheory.nerve (ThickPath i j)).obj
+      (Opposite.op (SimplexCategory.mk r))) :
+    (ofNerveSimplex x).toNerveSimplex = x := by
+  apply CategoryTheory.Functor.ext (fun _ ↦ rfl)
+
+/-- Simplices of a path-poset nerve are equivalently increasing finite chains of paths. -/
+noncomputable def nerveSimplexEquivPathChain :
+    (CategoryTheory.nerve (ThickPath i j)).obj
+        (Opposite.op (SimplexCategory.mk r)) ≃ PathChain r i j where
+  toFun := ofNerveSimplex
+  invFun := toNerveSimplex
+  left_inv := toNerveSimplex_ofNerveSimplex
+  right_inv := ofNerveSimplex_toNerveSimplex
+
+/-- The least path in a nonempty path chain. -/
+def first (c : PathChain r i j) : ThickPath i j := c.path 0
+
+/-- The greatest path in a nonempty path chain. -/
+def last (c : PathChain r i j) : ThickPath i j := c.path (Fin.last r)
+
+/-- Reindex a path chain along a monotone map of finite ordinals. -/
+def reindex (c : PathChain r i j) (f : Fin (s + 1) →o Fin (r + 1)) :
+    PathChain s i j where
+  path := c.path ∘ f
+  monotone' := fun hab ↦ c.monotone' (f.monotone hab)
+
+@[simp]
+theorem reindex_path (c : PathChain r i j) (f : Fin (s + 1) →o Fin (r + 1))
+    (a : Fin (s + 1)) : (c.reindex f).path a = c.path (f a) :=
+  rfl
+
+theorem first_le (c : PathChain r i j) (a : Fin (r + 1)) :
+    c.first.I ⊆ (c.path a).I := by
+  exact c.monotone' (Fin.zero_le a)
+
+theorem le_last (c : PathChain r i j) (a : Fin (r + 1)) :
+    (c.path a).I ⊆ c.last.I := by
+  exact c.monotone' (Fin.le_last a)
+
+/-- Append a specified greatest path.  The `dite` presentation makes the last face of the
+paired cell definitionally visible. -/
+def appendTop (c : PathChain r i j) (P : ThickPath i j) (hP : c.last.I ⊆ P.I) :
+    PathChain (r + 1) i j where
+  path a := if ha : a = Fin.last (r + 1) then P else c.path (a.castPred ha)
+  monotone' := by
+    intro a b hab
+    by_cases hb : b = Fin.last (r + 1)
+    · subst b
+      simp only [dite_true]
+      by_cases ha : a = Fin.last (r + 1)
+      · subst a
+        simp
+      · simp only [dite_false, ha]
+        exact fun _ h ↦ hP (c.le_last _ h)
+    · have ha : a ≠ Fin.last (r + 1) := fun ha ↦
+        hb (le_antisymm (Fin.le_last b) (ha ▸ hab))
+      simp only [dite_false, ha, hb]
+      exact c.monotone' (Fin.castPred_le_castPred_iff.2 hab)
+
+@[simp]
+theorem appendTop_path_castSucc (c : PathChain r i j) (P : ThickPath i j)
+    (hP : c.last.I ⊆ P.I) (a : Fin (r + 1)) :
+    (c.appendTop P hP).path a.castSucc = c.path a := by
+  simp [appendTop, Fin.castSucc_ne_last]
+
+@[simp]
+theorem appendTop_path_last (c : PathChain r i j) (P : ThickPath i j)
+    (hP : c.last.I ⊆ P.I) :
+    (c.appendTop P hP).path (Fin.last (r + 1)) = P := by
+  simp [appendTop]
+
+/-- The full path between two endpoints. -/
+def fullPath (i j : J) (hij : i ≤ j) : ThickPath i j where
+  I := Set.Icc i j
+  left := ⟨le_rfl, hij⟩
+  right := ⟨hij, le_rfl⟩
+  left_le _ h := h.1
+  le_right _ h := h.2
+
+@[simp]
+theorem mem_fullPath_iff (i j l : J) (hij : i ≤ j) :
+    l ∈ (fullPath i j hij).I ↔ i ≤ l ∧ l ≤ j :=
+  Iff.rfl
+
+/-- Adjoin a bounded vertex to a path. -/
+def adjoinVertex (P : ThickPath i j) (k : J) (hik : i ≤ k) (hkj : k ≤ j) :
+    ThickPath i j where
+  I := P.I ∪ {k}
+  left := Or.inl P.left
+  right := Or.inl P.right
+  left_le l := by
+    rintro (hl | rfl)
+    · exact P.left_le l hl
+    · exact hik
+  le_right l := by
+    rintro (hl | rfl)
+    · exact P.le_right l hl
+    · exact hkj
+
+@[simp]
+theorem mem_adjoinVertex_iff (P : ThickPath i j) (k l : J)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    l ∈ (adjoinVertex P k hik hkj).I ↔ l ∈ P.I ∨ l = k := by
+  simp only [adjoinVertex, Set.mem_union, Set.mem_singleton_iff]
+
+theorem subset_adjoinVertex (P : ThickPath i j) (k : J)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    P.I ⊆ (adjoinVertex P k hik hkj).I :=
+  fun _ h ↦ Or.inl h
+
+/-- Remove a non-endpoint vertex from a path. -/
+def eraseVertex (P : ThickPath i j) (k : J) (hik : i ≠ k) (hkj : j ≠ k) :
+    ThickPath i j where
+  I := P.I \ {k}
+  left := ⟨P.left, by simpa using hik⟩
+  right := ⟨P.right, by simpa using hkj⟩
+  left_le l hl := P.left_le l hl.1
+  le_right l hl := P.le_right l hl.1
+
+@[simp]
+theorem mem_eraseVertex_iff (P : ThickPath i j) (k l : J)
+    (hik : i ≠ k) (hkj : j ≠ k) :
+    l ∈ (eraseVertex P k hik hkj).I ↔ l ∈ P.I ∧ l ≠ k := by
+  simp [eraseVertex]
+
+theorem eraseVertex_subset (P : ThickPath i j) (k : J)
+    (hik : i ≠ k) (hkj : j ≠ k) :
+    (eraseVertex P k hik hkj).I ⊆ P.I :=
+  fun _ h ↦ h.1
+
+/-- Removing and then adjoining a contained inner vertex recovers the path. -/
+theorem adjoin_eraseVertex {P : ThickPath i j} {k : J}
+    (hik : i ≠ k) (hkj : j ≠ k) (hik' : i ≤ k) (hkj' : k ≤ j)
+    (hk : k ∈ P.I) :
+    adjoinVertex (eraseVertex P k hik hkj) k hik' hkj' = P := by
+  apply SimplicialThickening.Path.ext
+  ext l
+  constructor
+  · rintro (hl | rfl)
+    · exact hl.1
+    · exact hk
+  · intro hl
+    by_cases hlk : l = k
+    · exact Or.inr hlk
+    · exact Or.inl ⟨hl, hlk⟩
+
+@[simp]
+theorem adjoinVertex_eq_self_iff (P : ThickPath i j) (k : J)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    adjoinVertex P k hik hkj = P ↔ k ∈ P.I := by
+  constructor
+  · intro h
+    rw [← h]
+    exact Or.inr rfl
+  · intro hk
+    apply SimplicialThickening.Path.ext
+    ext l
+    constructor
+    · rintro (hl | rfl)
+      · exact hl
+      · exact hk
+    · exact Or.inl
+
+/-- The part of the path-poset nerve already supplied by the `k`th inner horn.  A chain is
+known if its least member factors through `k`, or if its greatest member omits some other
+vertex of the interval. -/
+def KnownAt (c : PathChain r i j) (k : J) : Prop :=
+  k ∈ c.first.I ∨ ∃ l : J, i ≤ l ∧ l ≤ j ∧ l ≠ k ∧ l ∉ c.last.I
+
+/-- A chain is nondegenerate when distinct indices carry distinct paths.  For a monotone chain
+in a poset this is the strict-chain condition. -/
+def IsNondegenerate (c : PathChain r i j) : Prop := Function.Injective c.path
+
+/-- The number of paths in a chain which contain `k`.  This is the primary finite rank
+separating the punctured layer from the full-top and entry layers. -/
+noncomputable def kMultiplicity (c : PathChain r i j) (k : J) : ℕ :=
+  by
+    classical
+    exact ((Finset.univ : Finset (Fin (r + 1))).filter fun a ↦ k ∈ (c.path a).I).card
+
+theorem kMultiplicity_eq_zero_iff (c : PathChain r i j) (k : J) :
+    c.kMultiplicity k = 0 ↔ ∀ a, k ∉ (c.path a).I := by
+  classical
+  simp [kMultiplicity]
+
+theorem kMultiplicity_eq_zero_of_not_mem_last (c : PathChain r i j) (k : J)
+    (hk : k ∉ c.last.I) : c.kMultiplicity k = 0 := by
+  rw [c.kMultiplicity_eq_zero_iff k]
+  intro a h
+  exact hk (c.le_last a h)
+
+theorem kMultiplicity_pos_of_mem_last (c : PathChain r i j) (k : J)
+    (hk : k ∈ c.last.I) : 0 < c.kMultiplicity k := by
+  classical
+  rw [Nat.pos_iff_ne_zero]
+  intro h
+  exact (c.kMultiplicity_eq_zero_iff k).1 h (Fin.last r) hk
+
+/-- Nondegeneracy is preserved by injective simplicial operators. -/
+theorem isNondegenerate_reindex (c : PathChain r i j)
+    (f : Fin (s + 1) →o Fin (r + 1)) (hc : c.IsNondegenerate)
+    (hf : Function.Injective f) : (c.reindex f).IsNondegenerate :=
+  hc.comp hf
+
+/-- Delete a vertex of a path chain. -/
+def deleteAt (c : PathChain (r + 1) i j) (p : Fin (r + 2)) : PathChain r i j :=
+  c.reindex (Fin.succAboveOrderEmb p).toOrderHom
+
+@[simp]
+theorem deleteAt_path (c : PathChain (r + 1) i j) (p : Fin (r + 2))
+    (a : Fin (r + 1)) :
+    (c.deleteAt p).path a = c.path (p.succAbove a) :=
+  rfl
+
+theorem isNondegenerate_deleteAt (c : PathChain (r + 1) i j) (p : Fin (r + 2))
+    (hc : c.IsNondegenerate) : (c.deleteAt p).IsNondegenerate :=
+  c.isNondegenerate_reindex _ hc (Fin.succAboveOrderEmb p).injective
+
+theorem knownAt_deleteAt (c : PathChain (r + 1) i j) (p : Fin (r + 2)) (k : J)
+    (hc : c.KnownAt k) : (c.deleteAt p).KnownAt k :=
+  by
+    rcases hc with hc | ⟨l, hil, hlj, hlk, hl⟩
+    · exact Or.inl (c.first_le (p.succAbove 0) hc)
+    · refine Or.inr ⟨l, hil, hlj, hlk, ?_⟩
+      intro h
+      exact hl (c.le_last _ h)
+
+/-- Taking a face cannot increase the number of paths containing `k`. -/
+theorem kMultiplicity_deleteAt_le (c : PathChain (r + 1) i j) (p : Fin (r + 2))
+    (k : J) : (c.deleteAt p).kMultiplicity k ≤ c.kMultiplicity k := by
+  classical
+  unfold kMultiplicity
+  apply Finset.card_le_card_of_injOn (p.succAbove)
+  · intro a ha
+    simp only [Finset.mem_coe, Finset.mem_filter, Finset.mem_univ, true_and] at ha
+    change k ∈ (c.path (p.succAbove a)).I at ha
+    simpa only [Finset.mem_coe, Finset.mem_filter, Finset.mem_univ, true_and] using ha
+  · exact (Fin.succAboveOrderEmb p).injective.injOn
+
+theorem kMultiplicity_deleteAt_lt_of_mem (c : PathChain (r + 1) i j)
+    (p : Fin (r + 2)) (k : J) (hp : k ∈ (c.path p).I) :
+    (c.deleteAt p).kMultiplicity k < c.kMultiplicity k := by
+  classical
+  let s := (Finset.univ : Finset (Fin (r + 1))).filter fun a ↦
+    k ∈ ((c.deleteAt p).path a).I
+  let t := (Finset.univ : Finset (Fin (r + 2))).filter fun a ↦ k ∈ (c.path a).I
+  have hsub : s.image p.succAbove ⊆ t := by
+    intro a ha
+    simp only [Finset.mem_image] at ha
+    obtain ⟨b, hb, rfl⟩ := ha
+    have hb' : k ∈ ((c.deleteAt p).path b).I := by simpa [s] using hb
+    simpa [t] using hb'
+  have hpT : p ∈ t := by simp [t, hp]
+  have hpI : p ∉ s.image p.succAbove := by
+    simp [Fin.succAbove_ne]
+  have hss : s.image p.succAbove ⊂ t :=
+    Finset.ssubset_iff_subset_ne.2 ⟨hsub, fun h ↦ hpI (h.symm ▸ hpT)⟩
+  have hcard := Finset.card_lt_card hss
+  have hcardeq : (s.image p.succAbove).card = s.card :=
+    Finset.card_image_of_injective _ (Fin.succAboveOrderEmb p).injective
+  rw [hcardeq] at hcard
+  simpa [kMultiplicity, s, t] using hcard
+
+theorem kMultiplicity_deleteAt_eq_of_not_mem (c : PathChain (r + 1) i j)
+    (p : Fin (r + 2)) (k : J) (hp : k ∉ (c.path p).I) :
+    (c.deleteAt p).kMultiplicity k = c.kMultiplicity k := by
+  classical
+  let s := (Finset.univ : Finset (Fin (r + 1))).filter fun a ↦
+    k ∈ ((c.deleteAt p).path a).I
+  let t := (Finset.univ : Finset (Fin (r + 2))).filter fun a ↦ k ∈ (c.path a).I
+  have himage : s.image p.succAbove = t := by
+    ext a
+    constructor
+    · intro ha
+      simp only [Finset.mem_image] at ha
+      obtain ⟨b, hb, rfl⟩ := ha
+      have hb' : k ∈ ((c.deleteAt p).path b).I := by simpa [s] using hb
+      simpa [t] using hb'
+    · intro ha
+      have ha' : k ∈ (c.path a).I := by simpa [t] using ha
+      have hap : a ≠ p := fun h ↦ hp (h ▸ ha')
+      obtain ⟨b, hb⟩ := Fin.exists_succAbove_eq hap
+      subst a
+      apply Finset.mem_image.2
+      refine ⟨b, ?_, rfl⟩
+      simpa [s] using ha'
+  have hcard := congrArg Finset.card himage
+  have hcardeq : (s.image p.succAbove).card = s.card :=
+    Finset.card_image_of_injective _ (Fin.succAboveOrderEmb p).injective
+  rw [hcardeq] at hcard
+  simpa [kMultiplicity, s, t] using hcard
+
+/-- The well-founded lexicographic rank: first simplex dimension, then multiplicity. -/
+noncomputable def filtrationRank (c : PathChain r i j) (k : J) : ℕ × ℕ :=
+  (r, c.kMultiplicity k)
+
+/-- Every face has strictly smaller lexicographic rank than its source. -/
+theorem filtrationRank_deleteAt (c : PathChain (r + 1) i j) (p : Fin (r + 2))
+    (k : J) :
+    Prod.Lex (fun a b : ℕ ↦ a < b) (fun a b : ℕ ↦ a < b)
+      ((c.deleteAt p).filtrationRank k) (c.filtrationRank k) := by
+  exact Prod.Lex.left _ _ (Nat.lt_succ_self r)
+
+/-- Complete combinatorial data for one ranked inner-horn attachment. -/
+structure RankedInnerFacePair (r : ℕ) (i j k : J) where
+  lower : PathChain r i j
+  upper : PathChain (r + 1) i j
+  upperNondegenerate : upper.IsNondegenerate
+  face : Fin (r + 2)
+  face_pos : 0 < face
+  face_lt_last : face < Fin.last (r + 1)
+  lower_eq : upper.deleteAt face = lower
+  other_face_lower_rank : ∀ q : Fin (r + 2), q ≠ face →
+    Prod.Lex (fun a b : ℕ ↦ a < b) (fun a b : ℕ ↦ a < b)
+      ((upper.deleteAt q).filtrationRank k) (upper.filtrationRank k)
+
+/-- Any certified inner face pair acquires the rank condition automatically from the global
+face-rank theorem. -/
+def rankedInnerFacePairOfDelete (lower : PathChain r i j) (upper : PathChain (r + 1) i j)
+    (k : J) (hupper : upper.IsNondegenerate) (face : Fin (r + 2)) (hpos : 0 < face)
+    (hlast : face < Fin.last (r + 1)) (hdelete : upper.deleteAt face = lower) :
+    RankedInnerFacePair r i j k where
+  lower := lower
+  upper := upper
+  upperNondegenerate := hupper
+  face := face
+  face_pos := hpos
+  face_lt_last := hlast
+  lower_eq := hdelete
+  other_face_lower_rank := fun q _ ↦ upper.filtrationRank_deleteAt q k
+
+namespace RankedInnerFacePair
+
+variable {k : J} (a : RankedInnerFacePair r i j k)
+
+/-- The horn map containing every face of the upper cell except the selected lower face. -/
+noncomputable def hornMap : (SSet.horn (r + 1) a.face : SSet) ⟶
+    CategoryTheory.nerve (ThickPath i j) :=
+  (SSet.horn (r + 1) a.face).ι ≫ SSet.yonedaEquiv.symm a.upper.toNerveSimplex
+
+/-- The subcomplex generated by all nonmissing faces of the upper cell. -/
+noncomputable def hornRange : (CategoryTheory.nerve (ThickPath i j)).Subcomplex :=
+  SSet.Subcomplex.range a.hornMap
+
+end RankedInnerFacePair
+
+/-- Chain deletion is exactly the corresponding simplicial face of the path-poset nerve. -/
+theorem toNerveSimplex_deleteAt (c : PathChain (r + 1) i j) (p : Fin (r + 2)) :
+    (c.deleteAt p).toNerveSimplex =
+      (CategoryTheory.nerve (ThickPath i j)).δ p c.toNerveSimplex := by
+  apply CategoryTheory.Functor.ext (fun _ ↦ rfl)
+
+/-- Insert a path at an arbitrary position, assuming it lies between all paths below and above
+that position. -/
+def insertAt (c : PathChain r i j) (p : Fin (r + 2)) (P : ThickPath i j)
+    (hbelow : ∀ a : Fin (r + 1), p.succAbove a < p → (c.path a).I ⊆ P.I)
+    (habove : ∀ a : Fin (r + 1), p < p.succAbove a → P.I ⊆ (c.path a).I) :
+    PathChain (r + 1) i j where
+  path := Fin.insertNth p P c.path
+  monotone' := by
+    intro a b hab
+    rcases Fin.eq_self_or_eq_succAbove p a with ha | ⟨a', ha⟩
+    · subst a
+      rcases Fin.eq_self_or_eq_succAbove p b with hb | ⟨b', hb⟩
+      · subst b
+        simp
+      · subst b
+        simp only [Fin.insertNth_apply_same, Fin.insertNth_apply_succAbove]
+        exact habove b' (lt_of_le_of_ne hab (Fin.succAbove_ne p b').symm)
+    · subst a
+      rcases Fin.eq_self_or_eq_succAbove p b with hb | ⟨b', hb⟩
+      · subst b
+        simp only [Fin.insertNth_apply_same, Fin.insertNth_apply_succAbove]
+        exact hbelow a' (lt_of_le_of_ne hab (Fin.succAbove_ne p a'))
+      · subst b
+        simp only [Fin.insertNth_apply_succAbove]
+        exact c.monotone' ((Fin.succAboveOrderEmb p).le_iff_le.1 hab)
+
+@[simp]
+theorem insertAt_path_same (c : PathChain r i j) (p : Fin (r + 2)) (P : ThickPath i j)
+    (hbelow) (habove) : (c.insertAt p P hbelow habove).path p = P := by
+  simp [insertAt]
+
+@[simp]
+theorem insertAt_path_succAbove (c : PathChain r i j) (p : Fin (r + 2))
+    (P : ThickPath i j) (hbelow) (habove) (a : Fin (r + 1)) :
+    (c.insertAt p P hbelow habove).path (p.succAbove a) = c.path a := by
+  simp [insertAt]
+
+/-- Deleting the newly inserted path recovers the original chain. -/
+theorem deleteAt_insertAt (c : PathChain r i j) (p : Fin (r + 2)) (P : ThickPath i j)
+    (hbelow) (habove) : (c.insertAt p P hbelow habove).deleteAt p = c := by
+  apply PathChain.ext
+  funext a
+  simp
+
+/-- Deleting a position different from the insertion position leaves the inserted path present
+in the resulting chain. -/
+theorem exists_path_deleteAt_insertAt_eq_inserted (c : PathChain r i j)
+    (p q : Fin (r + 2)) (P : ThickPath i j) (hbelow) (habove) (hpq : p ≠ q) :
+    ∃ b : Fin (r + 1), ((c.insertAt p P hbelow habove).deleteAt q).path b = P := by
+  obtain ⟨b, hb⟩ := Fin.exists_succAbove_eq hpq
+  refine ⟨b, ?_⟩
+  change (c.insertAt p P hbelow habove).path (q.succAbove b) = P
+  rw [hb, insertAt_path_same]
+
+/-- The inserted chain is independent of the proofs of its sandwich conditions. -/
+theorem insertAt_proof_irrel (c : PathChain r i j) (p : Fin (r + 2)) (P : ThickPath i j)
+    (hbelow hbelow' : ∀ a : Fin (r + 1), p.succAbove a < p → (c.path a).I ⊆ P.I)
+    (habove habove' : ∀ a : Fin (r + 1), p < p.succAbove a → P.I ⊆ (c.path a).I) :
+    c.insertAt p P hbelow habove = c.insertAt p P hbelow' habove' :=
+  rfl
+
+/-- A finite chain is uniquely determined by one deleted face and the path at the deleted
+position. -/
+theorem eq_of_deleteAt_eq_of_path_eq (c d : PathChain (r + 1) i j) (p : Fin (r + 2))
+    (hdelete : c.deleteAt p = d.deleteAt p) (hpath : c.path p = d.path p) : c = d := by
+  apply PathChain.ext
+  funext a
+  rcases Fin.eq_self_or_eq_succAbove p a with ha | ⟨b, hb⟩
+  · exact ha ▸ hpath
+  · subst a
+    have h := congrArg (fun z : PathChain r i j ↦ z.path b) hdelete
+    exact h
+
+/-- Injectivity of the upper path tuple identifies the unique order map representing a chosen
+codimension-one face. -/
+theorem orderHom_eq_succAbove_of_path_comp_eq {A : Type*}
+    (u : Fin (r + 2) → A) (hu : Function.Injective u) (p : Fin (r + 2))
+    (f : Fin (r + 1) →o Fin (r + 2))
+    (h : ∀ a, u (f a) = u (p.succAbove a)) :
+    f = (Fin.succAboveOrderEmb p).toOrderHom := by
+  ext a
+  exact congrArg Fin.val (hu (h a))
+
+theorem range_orderHom_eq_compl_singleton_of_path_comp_eq {A : Type*}
+    (u : Fin (r + 2) → A) (hu : Function.Injective u) (p : Fin (r + 2))
+    (f : Fin (r + 1) →o Fin (r + 2))
+    (h : ∀ a, u (f a) = u (p.succAbove a)) :
+    Set.range f = {p}ᶜ := by
+  rw [orderHom_eq_succAbove_of_path_comp_eq u hu p f h]
+  exact Fin.range_succAboveOrderEmb p
+
+theorem range_union_singleton_eq_univ_of_path_comp_eq {A : Type*}
+    (u : Fin (r + 2) → A) (hu : Function.Injective u) (p : Fin (r + 2))
+    (f : Fin (r + 1) →o Fin (r + 2))
+    (h : ∀ a, u (f a) = u (p.succAbove a)) :
+    Set.range f ∪ {p} = Set.univ := by
+  rw [range_orderHom_eq_compl_singleton_of_path_comp_eq u hu p f h]
+  exact Set.compl_union_self {p}
+
+/-- A map presenting a nondegenerate path tuple as a face of another tuple is injective. -/
+theorem orderHom_injective_of_path_comp_injective {A : Type*} {m n : ℕ}
+    (lower : Fin (m + 1) → A) (hlower : Function.Injective lower)
+    (upper : Fin (n + 1) → A) (f : Fin (m + 1) →o Fin (n + 1))
+    (h : ∀ a, lower a = upper (f a)) : Function.Injective f := by
+  intro a b hab
+  apply hlower
+  rw [h a, h b, hab]
+
+theorem dimension_le_of_path_comp_injective {A : Type*} {m n : ℕ}
+    (lower : Fin (m + 1) → A) (hlower : Function.Injective lower)
+    (upper : Fin (n + 1) → A) (f : Fin (m + 1) →o Fin (n + 1))
+    (h : ∀ a, lower a = upper (f a)) : m ≤ n := by
+  have hf := orderHom_injective_of_path_comp_injective lower hlower upper f h
+  simpa using Fintype.card_le_of_injective f hf
+
+/-- Every injective monotone map of codimension one is a unique coface map. -/
+theorem orderHom_eq_succAbove_of_injective (f : Fin (r + 1) →o Fin (r + 2))
+    (hf : Function.Injective f) :
+    ∃ p : Fin (r + 2), f = (Fin.succAboveOrderEmb p).toOrderHom := by
+  let θ : SimplexCategory.mk r ⟶ SimplexCategory.mk (r + 1) :=
+    SimplexCategory.Hom.mk f
+  haveI : Mono θ := (SimplexCategory.mono_iff_injective).2 hf
+  obtain ⟨p, hp⟩ := SimplexCategory.eq_δ_of_mono θ
+  refine ⟨p, ?_⟩
+  have hp' := congrArg SimplexCategory.Hom.toOrderHom hp
+  exact hp'
+
+theorem orderHom_eq_succAbove_unique (f : Fin (r + 1) →o Fin (r + 2))
+    (hf : Function.Injective f) :
+    ∃! p : Fin (r + 2), f = (Fin.succAboveOrderEmb p).toOrderHom := by
+  obtain ⟨p, hp⟩ := orderHom_eq_succAbove_of_injective f hf
+  refine ⟨p, hp, fun q hq ↦ ?_⟩
+  apply Fin.succAbove_left_injective
+  funext a
+  have h := congrArg (fun g : Fin (r + 1) →o Fin (r + 2) ↦ g a) (hp.symm.trans hq)
+  exact h.symm
+
+/-- The distinguished lower simplex is not contained in the range of the complementary horn. -/
+theorem RankedInnerFacePair.lower_not_mem_hornRange {k : J}
+    (a : RankedInnerFacePair r i j k) :
+    a.lower.toNerveSimplex ∉ a.hornRange.obj
+      (Opposite.op (SimplexCategory.mk r)) := by
+  intro h
+  change a.lower.toNerveSimplex ∈ Set.range
+    (a.hornMap.app (Opposite.op (SimplexCategory.mk r))) at h
+  rcases h with ⟨z, hz⟩
+  let f : Fin (r + 1) →o Fin (r + 2) := SSet.stdSimplex.asOrderHom z.1
+  have hcomp : ∀ b, a.upper.path (f b) = a.upper.path (a.face.succAbove b) := by
+    intro b
+    have hz' := congrArg (fun x ↦ x.obj b) hz
+    change a.upper.path (f b) = a.lower.path b at hz'
+    have hface := congrArg (fun x : PathChain r i j ↦ x.path b) a.lower_eq.symm
+    exact hz'.trans hface
+  have hrange := range_union_singleton_eq_univ_of_path_comp_eq
+    a.upper.path a.upperNondegenerate a.face f hcomp
+  exact z.2 hrange
+
+/-- Inserting a new path not already present preserves nondegeneracy. -/
+theorem isNondegenerate_insertAt (c : PathChain r i j) (p : Fin (r + 2))
+    (P : ThickPath i j) (hbelow) (habove) (hc : c.IsNondegenerate)
+    (hnew : ∀ a, P ≠ c.path a) : (c.insertAt p P hbelow habove).IsNondegenerate := by
+  intro a b h
+  rcases Fin.eq_self_or_eq_succAbove p a with ha | ⟨a', ha⟩
+  · subst a
+    rcases Fin.eq_self_or_eq_succAbove p b with hb | ⟨b', hb⟩
+    · exact hb.symm
+    · subst b
+      simp only [insertAt_path_same, insertAt_path_succAbove] at h
+      exact (hnew b' h).elim
+  · subst a
+    rcases Fin.eq_self_or_eq_succAbove p b with hb | ⟨b', hb⟩
+    · subst b
+      simp only [insertAt_path_same, insertAt_path_succAbove] at h
+      exact (hnew a' h.symm).elim
+    · subst b
+      exact congrArg (p.succAbove) (hc (by
+        simpa only [insertAt_path_succAbove] using h))
+
+private theorem deleted_below (c : PathChain (r + 1) i j) (p : Fin (r + 2))
+    (a : Fin (r + 1)) (ha : p.succAbove a < p) :
+    ((c.deleteAt p).path a).I ⊆ (c.path p).I :=
+  c.monotone' ha.le
+
+private theorem deleted_above (c : PathChain (r + 1) i j) (p : Fin (r + 2))
+    (a : Fin (r + 1)) (ha : p < p.succAbove a) :
+    (c.path p).I ⊆ ((c.deleteAt p).path a).I :=
+  c.monotone' ha.le
+
+/-- Reinsert the path removed at `p`. -/
+def reinsertDeleted (c : PathChain (r + 1) i j) (p : Fin (r + 2)) :
+    PathChain (r + 1) i j :=
+  (c.deleteAt p).insertAt p (c.path p) (deleted_below c p) (deleted_above c p)
+
+/-- Deletion followed by reinsertion at the same position is the identity. -/
+theorem reinsertDeleted_eq (c : PathChain (r + 1) i j) (p : Fin (r + 2)) :
+    c.reinsertDeleted p = c := by
+  apply PathChain.ext
+  funext a
+  exact Fin.succAboveCases p (by simp [reinsertDeleted])
+    (fun b ↦ by simp [reinsertDeleted]) a
+
+/-- A nondegenerate chain has a strict inclusion at every adjacent pair. -/
+theorem ne_succ_of_isNondegenerate (c : PathChain (r + 1) i j)
+    (hc : c.IsNondegenerate) (a : Fin (r + 1)) :
+    c.path a.castSucc ≠ c.path a.succ := by
+  intro h
+  exact (Fin.ne_of_lt a.castSucc_lt_succ) (hc h)
+
+/-- A nondegenerate cell missing from the horn-path subcomplex. -/
+@[ext]
+structure UnknownCell (r : ℕ) (i j k : J) where
+  chain : PathChain r i j
+  nondegenerate : chain.IsNondegenerate
+  unknown : ¬ chain.KnownAt k
+
+theorem UnknownCell.first_avoids {k : J} (c : UnknownCell r i j k) :
+    k ∉ c.chain.first.I := by
+  intro h
+  exact c.unknown (Or.inl h)
+
+theorem UnknownCell.last_contains_other {k : J} (c : UnknownCell r i j k)
+    (l : J) (hil : i ≤ l) (hlj : l ≤ j) (hlk : l ≠ k) :
+    l ∈ c.chain.last.I := by
+  apply Classical.byContradiction
+  intro hl
+  exact c.unknown (Or.inr ⟨l, hil, hlj, hlk, hl⟩)
+
+/-- If the greatest path of an unknown cell contains `k`, it is the full path. -/
+theorem UnknownCell.last_eq_fullPath_of_mem {k : J} (c : UnknownCell r i j k)
+    (hk : k ∈ c.chain.last.I) :
+    c.chain.last = fullPath i j (SimplicialThickening.Path.le c.chain.last) := by
+  apply SimplicialThickening.Path.ext
+  ext l
+  constructor
+  · intro hl
+    exact ⟨c.chain.last.left_le l hl, c.chain.last.le_right l hl⟩
+  · rintro ⟨hil, hlj⟩
+    by_cases hlk : l = k
+    · exact hlk ▸ hk
+    · exact c.last_contains_other l hil hlj hlk
+
+/-- If the greatest path of an unknown cell omits `k`, adjoining `k` makes it full.  Thus
+unknown cells occur in the canonical pair obtained by toggling `k` in their greatest path. -/
+theorem UnknownCell.adjoin_last_eq_fullPath_of_not_mem {k : J}
+    (c : UnknownCell r i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    adjoinVertex c.chain.last k hik hkj = fullPath i j (hik.trans hkj) := by
+  apply SimplicialThickening.Path.ext
+  ext l
+  constructor
+  · rintro (hl | rfl)
+    · exact ⟨c.chain.last.left_le l hl, c.chain.last.le_right l hl⟩
+    · exact ⟨hik, hkj⟩
+  · rintro ⟨hil, hlj⟩
+    by_cases hlk : l = k
+    · exact Or.inr hlk
+    · exact Or.inl (c.last_contains_other l hil hlj hlk)
+
+/-- The top-path toggle is genuinely strict in the punctured case. -/
+theorem UnknownCell.last_ne_adjoin_of_not_mem {k : J} (c : UnknownCell r i j k)
+    (hk : k ∉ c.chain.last.I) (hik : i ≤ k) (hkj : k ≤ j) :
+    c.chain.last ≠ adjoinVertex c.chain.last k hik hkj := by
+  intro h
+  exact hk (h ▸ Or.inr rfl)
+
+/-- The higher-dimensional member of the canonical pair for a punctured unknown cell: append
+the full path obtained by adjoining `k`.  Its last face is the original punctured cell, while
+deleting the penultimate vertex gives the full-top partner. -/
+def UnknownCell.pairUp {k : J} (c : UnknownCell r i j k)
+    (_hk : k ∉ c.chain.last.I) (hik : i ≤ k) (hkj : k ≤ j) :
+    PathChain (r + 1) i j :=
+  c.chain.appendTop (adjoinVertex c.chain.last k hik hkj)
+    (subset_adjoinVertex c.chain.last k hik hkj)
+
+@[simp]
+theorem UnknownCell.pairUp_castSucc {k : J} (c : UnknownCell r i j k)
+    (hk : k ∉ c.chain.last.I) (hik : i ≤ k) (hkj : k ≤ j)
+    (a : Fin (r + 1)) :
+    (c.pairUp hk hik hkj).path a.castSucc = c.chain.path a := by
+  simp [UnknownCell.pairUp]
+
+@[simp]
+theorem UnknownCell.pairUp_last {k : J} (c : UnknownCell r i j k)
+    (hk : k ∉ c.chain.last.I) (hik : i ≤ k) (hkj : k ≤ j) :
+    (c.pairUp hk hik hkj).last = fullPath i j (hik.trans hkj) := by
+  change (c.pairUp hk hik hkj).path (Fin.last (r + 1)) = _
+  simp only [UnknownCell.pairUp, appendTop]
+  exact c.adjoin_last_eq_fullPath_of_not_mem hk hik hkj
+
+/-- Deleting the final vertex of the paired higher cell recovers the punctured cell. -/
+theorem UnknownCell.deleteAt_last_pairUp {k : J} (c : UnknownCell r i j k)
+    (hk : k ∉ c.chain.last.I) (hik : i ≤ k) (hkj : k ≤ j) :
+    (c.pairUp hk hik hkj).deleteAt (Fin.last (r + 1)) = c.chain := by
+  apply PathChain.ext
+  funext a
+  simp [UnknownCell.pairUp, deleteAt]
+
+private theorem puncturedTop_below {k : J} (c : UnknownCell r i j k)
+    (_hk : k ∉ c.chain.last.I) (hik : i ≤ k) (hkj : k ≤ j)
+    (a : Fin (r + 1))
+    (_ha : (Fin.last (r + 1)).succAbove a < Fin.last (r + 1)) :
+    (c.chain.path a).I ⊆ (adjoinVertex c.chain.last k hik hkj).I :=
+  (c.chain.le_last a).trans (subset_adjoinVertex c.chain.last k hik hkj)
+
+private theorem puncturedTop_above {k : J} (c : UnknownCell r i j k)
+    (_hk : k ∉ c.chain.last.I) (hik : i ≤ k) (hkj : k ≤ j)
+    (a : Fin (r + 1))
+    (ha : Fin.last (r + 1) < (Fin.last (r + 1)).succAbove a) :
+    (adjoinVertex c.chain.last k hik hkj).I ⊆ (c.chain.path a).I :=
+  (not_lt_of_ge (Fin.le_last _) ha).elim
+
+/-- The top higher chain, uniformly defined by insertion at the final position. -/
+def UnknownCell.puncturedTopHigher {k : J} (c : UnknownCell r i j k)
+    (hk : k ∉ c.chain.last.I) (hik : i ≤ k) (hkj : k ≤ j) :
+    PathChain (r + 1) i j :=
+  c.chain.insertAt (Fin.last (r + 1)) (adjoinVertex c.chain.last k hik hkj)
+    (puncturedTop_below c hk hik hkj) (puncturedTop_above c hk hik hkj)
+
+theorem UnknownCell.puncturedTopHigher_nondegenerate {k : J}
+    (c : UnknownCell r i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    (c.puncturedTopHigher hk hik hkj).IsNondegenerate := by
+  apply isNondegenerate_insertAt _ _ _ _ _ c.nondegenerate
+  intro a h
+  have hka : k ∉ (c.chain.path a).I := fun hka ↦ hk (c.chain.le_last a hka)
+  exact hka (h ▸ Or.inr rfl)
+
+theorem UnknownCell.mem_puncturedTopHigher_iff {k : J}
+    (c : UnknownCell r i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) (a : Fin (r + 2)) :
+    k ∈ ((c.puncturedTopHigher hk hik hkj).path a).I ↔ a = Fin.last (r + 1) := by
+  rcases Fin.eq_self_or_eq_succAbove (Fin.last (r + 1)) a with ha | ⟨b, hb⟩
+  · subst a
+    simp [UnknownCell.puncturedTopHigher]
+  · subst a
+    simp only [UnknownCell.puncturedTopHigher, insertAt_path_succAbove,
+      Fin.succAbove_ne]
+    rw [iff_false]
+    intro h
+    exact hk (c.chain.le_last b h)
+
+@[simp]
+theorem UnknownCell.puncturedTopHigher_last {k : J}
+    (c : UnknownCell r i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    (c.puncturedTopHigher hk hik hkj).last = fullPath i j (hik.trans hkj) := by
+  change (c.puncturedTopHigher hk hik hkj).path (Fin.last (r + 1)) = _
+  simp only [UnknownCell.puncturedTopHigher, insertAt_path_same]
+  exact c.adjoin_last_eq_fullPath_of_not_mem hk hik hkj
+
+/-- The outer last face of the top higher chain is the original punctured chain. -/
+theorem UnknownCell.deleteAt_last_puncturedTopHigher {k : J}
+    (c : UnknownCell r i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    (c.puncturedTopHigher hk hik hkj).deleteAt (Fin.last (r + 1)) = c.chain :=
+  deleteAt_insertAt _ _ _ _ _
+
+theorem UnknownCell.puncturedTopHigher_unknown {k : J}
+    (c : UnknownCell r i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    ¬ (c.puncturedTopHigher hk hik hkj).KnownAt k := by
+  intro h
+  apply c.unknown
+  rw [← c.deleteAt_last_puncturedTopHigher hk hik hkj]
+  exact (c.puncturedTopHigher hk hik hkj).knownAt_deleteAt (Fin.last (r + 1)) k h
+
+/-- The top higher simplex is itself an unknown nondegenerate cell. -/
+def UnknownCell.puncturedTopHigherCell {k : J}
+    (c : UnknownCell r i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) : UnknownCell (r + 1) i j k where
+  chain := c.puncturedTopHigher hk hik hkj
+  nondegenerate := c.puncturedTopHigher_nondegenerate hk hik hkj
+  unknown := c.puncturedTopHigher_unknown hk hik hkj
+
+/-- On actual nerve simplices, the outer last face is the earlier punctured cell. -/
+theorem UnknownCell.puncturedTopHigher_outer_face {k : J}
+    (c : UnknownCell r i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    (CategoryTheory.nerve (ThickPath i j)).δ (Fin.last (r + 1))
+        (c.puncturedTopHigher hk hik hkj).toNerveSimplex = c.chain.toNerveSimplex := by
+  rw [← toNerveSimplex_deleteAt]
+  exact congrArg toNerveSimplex (c.deleteAt_last_puncturedTopHigher hk hik hkj)
+
+/-- The penultimate position in a positive-dimensional top higher chain. -/
+def puncturedTopInnerPosition (r : ℕ) : Fin (r + 3) :=
+  Fin.castSucc (Fin.last (r + 1))
+
+theorem puncturedTopInnerPosition_inner (r : ℕ) :
+    0 < puncturedTopInnerPosition r ∧
+      puncturedTopInnerPosition r < Fin.last (r + 2) := by
+  constructor
+  · apply Fin.castSucc_pos'
+    exact Fin.last_pos
+  · exact Fin.castSucc_lt_last _
+
+/-- Every face of the top higher cell is either the outer punctured face, the distinguished
+full-top face, or lies strictly before both and is therefore recursive. -/
+theorem puncturedTop_face_trichotomy (r : ℕ) (q : Fin (r + 3)) :
+    q = Fin.last (r + 2) ∨ q = puncturedTopInnerPosition r ∨
+      q < puncturedTopInnerPosition r := by
+  by_cases hlast : q = Fin.last (r + 2)
+  · exact Or.inl hlast
+  · right
+    have hq : q < Fin.last (r + 2) := Fin.lt_last_iff_ne_last.2 hlast
+    by_cases hpen : q = puncturedTopInnerPosition r
+    · exact Or.inl hpen
+    · have hle : q ≤ puncturedTopInnerPosition r := by
+        change q.val ≤ r + 1
+        change q.val < r + 2 at hq
+        omega
+      exact Or.inr (lt_of_le_of_ne hle hpen)
+
+/-- A strictly earlier top face descends to a face index of the original punctured chain. -/
+def puncturedTopEarlierIndex (r : ℕ) (q : Fin (r + 3))
+    (hq : q < puncturedTopInnerPosition r) : Fin (r + 2) :=
+  q.castPred (Fin.ne_last_of_lt (hq.trans (puncturedTopInnerPosition_inner r).2))
+
+@[simp]
+theorem puncturedTopEarlierIndex_castSucc (r : ℕ) (q : Fin (r + 3))
+    (hq : q < puncturedTopInnerPosition r) :
+    Fin.castSucc (puncturedTopEarlierIndex r q hq) = q :=
+  Fin.castSucc_castPred _ _
+
+theorem puncturedTopEarlierIndex_lt_last (r : ℕ) (q : Fin (r + 3))
+    (hq : q < puncturedTopInnerPosition r) :
+    puncturedTopEarlierIndex r q hq < Fin.last (r + 1) := by
+  change q.val < r + 1
+  change q.val < (puncturedTopInnerPosition r).val at hq
+  exact hq
+
+/-- Deleting a strictly earlier face preserves the full top path, so these faces belong to the
+recursive full-top part of the filtration. -/
+theorem UnknownCell.puncturedTopEarlierFace_last {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) (q : Fin (r + 3))
+    (hq : q < puncturedTopInnerPosition r) :
+    ((c.puncturedTopHigher hk hik hkj).deleteAt q).last =
+      fullPath i j (hik.trans hkj) := by
+  apply SimplicialThickening.Path.ext
+  ext l
+  change l ∈ ((c.puncturedTopHigher hk hik hkj).path
+    (q.succAbove (Fin.last (r + 1)))).I ↔ _
+  rw [Fin.succAbove_ne_last_last (Fin.ne_of_lt
+    (hq.trans (puncturedTopInnerPosition_inner r).2))]
+  change l ∈ (c.puncturedTopHigher hk hik hkj).last.I ↔ _
+  rw [c.puncturedTopHigher_last hk hik hkj]
+
+/-- The full-top lower face paired with a positive-dimensional punctured cell. -/
+def UnknownCell.puncturedFullTopPartner {k : J} (c : UnknownCell (r + 1) i j k)
+    (hk : k ∉ c.chain.last.I) (hik : i ≤ k) (hkj : k ≤ j) :
+    PathChain (r + 1) i j :=
+  (c.puncturedTopHigher hk hik hkj).deleteAt (puncturedTopInnerPosition r)
+
+/-- The full-top partner is the distinguished inner face. -/
+theorem UnknownCell.puncturedFullTopPartner_face {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    (CategoryTheory.nerve (ThickPath i j)).δ (puncturedTopInnerPosition r)
+        (c.puncturedTopHigher hk hik hkj).toNerveSimplex =
+      (c.puncturedFullTopPartner hk hik hkj).toNerveSimplex := by
+  rw [← toNerveSimplex_deleteAt]
+  rfl
+
+theorem UnknownCell.puncturedFullTopPartner_first {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    (c.puncturedFullTopPartner hk hik hkj).first = c.chain.first := by
+  apply SimplicialThickening.Path.ext
+  ext l
+  change l ∈ ((c.puncturedTopHigher hk hik hkj).path
+    ((puncturedTopInnerPosition r).succAbove 0)).I ↔ l ∈ (c.chain.path 0).I
+  rw [Fin.succAbove_ne_zero_zero
+    (Fin.ne_of_gt (puncturedTopInnerPosition_inner r).1)]
+  change l ∈ ((c.puncturedTopHigher hk hik hkj).path
+    ((Fin.last (r + 2)).succAbove 0)).I ↔ l ∈ (c.chain.path 0).I
+  simp only [UnknownCell.puncturedTopHigher, insertAt_path_succAbove]
+
+theorem UnknownCell.puncturedFullTopPartner_last {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    (c.puncturedFullTopPartner hk hik hkj).last = fullPath i j (hik.trans hkj) := by
+  apply SimplicialThickening.Path.ext
+  ext l
+  change l ∈ ((c.puncturedTopHigher hk hik hkj).path
+    ((puncturedTopInnerPosition r).succAbove (Fin.last (r + 1)))).I ↔ _
+  rw [Fin.succAbove_ne_last_last
+    (Fin.ne_of_lt (puncturedTopInnerPosition_inner r).2)]
+  change l ∈ (c.puncturedTopHigher hk hik hkj).last.I ↔ _
+  rw [c.puncturedTopHigher_last hk hik hkj]
+
+theorem UnknownCell.mem_puncturedFullTopPartner_iff {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) (a : Fin (r + 2)) :
+    k ∈ ((c.puncturedFullTopPartner hk hik hkj).path a).I ↔
+      a = Fin.last (r + 1) := by
+  change k ∈ ((c.puncturedTopHigher hk hik hkj).path
+    ((puncturedTopInnerPosition r).succAbove a)).I ↔ _
+  rw [c.mem_puncturedTopHigher_iff hk hik hkj]
+  exact Fin.succAbove_eq_last_iff
+    (Fin.ne_of_lt (puncturedTopInnerPosition_inner r).2)
+
+theorem UnknownCell.puncturedFullTopPartner_unknown {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    ¬ (c.puncturedFullTopPartner hk hik hkj).KnownAt k := by
+  intro h
+  rcases h with h | ⟨l, hil, hlj, hlk, hl⟩
+  · exact c.first_avoids (c.puncturedFullTopPartner_first hk hik hkj ▸ h)
+  · rw [c.puncturedFullTopPartner_last hk hik hkj] at hl
+    exact hl ⟨hil, hlj⟩
+
+/-- The full-top partner is a genuine unknown nondegenerate cell. -/
+def UnknownCell.puncturedFullTopCell {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) : UnknownCell (r + 1) i j k where
+  chain := c.puncturedFullTopPartner hk hik hkj
+  nondegenerate := (c.puncturedTopHigher_nondegenerate hk hik hkj).comp
+    (Fin.succAboveOrderEmb (puncturedTopInnerPosition r)).injective
+  unknown := c.puncturedFullTopPartner_unknown hk hik hkj
+
+/-- In a top pair the punctured outer face has multiplicity zero. -/
+theorem UnknownCell.punctured_kMultiplicity_zero {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I) :
+    c.chain.kMultiplicity k = 0 :=
+  c.chain.kMultiplicity_eq_zero_of_not_mem_last k hk
+
+/-- The full-top missing face has positive multiplicity.  Thus the punctured outer face is
+strictly earlier in the primary multiplicity rank. -/
+theorem UnknownCell.puncturedFullTop_kMultiplicity_pos {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    0 < (c.puncturedFullTopCell hk hik hkj).chain.kMultiplicity k := by
+  apply kMultiplicity_pos_of_mem_last
+  change k ∈ (c.puncturedFullTopPartner hk hik hkj).last.I
+  rw [c.puncturedFullTopPartner_last hk hik hkj]
+  exact ⟨hik, hkj⟩
+
+/-- The punctured support face is strictly earlier than its full-top selected lower partner. -/
+theorem UnknownCell.punctured_support_rank_lt_fullTop {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    Prod.Lex (fun a b : ℕ ↦ a < b) (fun a b : ℕ ↦ a < b)
+      (c.chain.filtrationRank k)
+      ((c.puncturedFullTopCell hk hik hkj).chain.filtrationRank k) := by
+  unfold filtrationRank
+  apply Prod.Lex.right _
+  rw [c.punctured_kMultiplicity_zero hk]
+  exact c.puncturedFullTop_kMultiplicity_pos hk hik hkj
+
+/-- The punctured/full-top matching as complete ranked attachment data. -/
+noncomputable def UnknownCell.puncturedRankedInnerFacePair {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) : RankedInnerFacePair (r + 1) i j k :=
+  rankedInnerFacePairOfDelete (c.puncturedFullTopPartner hk hik hkj)
+    (c.puncturedTopHigher hk hik hkj) k
+    (c.puncturedTopHigher_nondegenerate hk hik hkj) (puncturedTopInnerPosition r)
+    (puncturedTopInnerPosition_inner r).1 (puncturedTopInnerPosition_inner r).2 rfl
+
+/-- If the least path passes through `k`, every path in the chain passes through `k`. -/
+theorem mem_of_mem_first (c : PathChain r i j) {k : J} (hk : k ∈ c.first.I)
+    (a : Fin (r + 1)) : k ∈ (c.path a).I :=
+  c.first_le a hk
+
+/-- If the greatest path omits a vertex, every path in the chain omits it. -/
+theorem not_mem_of_not_mem_last (c : PathChain r i j) {k : J} (hk : k ∉ c.last.I)
+    (a : Fin (r + 1)) : k ∉ (c.path a).I := by
+  intro h
+  exact hk (c.le_last a h)
+
+/-- The first index at which a vertex enters a finite path chain. -/
+noncomputable def entryIndex (c : PathChain r i j) (k : J) (hk : k ∈ c.last.I) :
+    Fin (r + 1) := by
+  classical
+  let p : ℕ → Prop := fun n ↦ ∃ hn : n < r + 1, k ∈ (c.path ⟨n, hn⟩).I
+  have hp : ∃ n, p n := ⟨r, by
+    let hr : r < r + 1 := by omega
+    refine ⟨hr, ?_⟩
+    have he : (⟨r, hr⟩ : Fin (r + 1)) = Fin.last r := Fin.ext rfl
+    simpa [last, he] using hk⟩
+  exact ⟨Nat.find hp, (Nat.find_spec hp).choose⟩
+
+theorem mem_entryIndex (c : PathChain r i j) (k : J) (hk : k ∈ c.last.I) :
+    k ∈ (c.path (c.entryIndex k hk)).I := by
+  classical
+  let p : ℕ → Prop := fun n ↦ ∃ hn : n < r + 1, k ∈ (c.path ⟨n, hn⟩).I
+  have hp : ∃ n, p n := ⟨r, by
+    let hr : r < r + 1 := by omega
+    refine ⟨hr, ?_⟩
+    have he : (⟨r, hr⟩ : Fin (r + 1)) = Fin.last r := Fin.ext rfl
+    simpa [last, he] using hk⟩
+  change k ∈ (c.path ⟨Nat.find hp, _⟩).I
+  exact (Nat.find_spec hp).choose_spec
+
+theorem UnknownCell.puncturedTopHigher_memLast {k : J}
+    (c : UnknownCell r i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    k ∈ (c.puncturedTopHigher hk hik hkj).last.I := by
+  change k ∈ ((c.puncturedTopHigher hk hik hkj).path (Fin.last (r + 1))).I
+  exact (c.mem_puncturedTopHigher_iff hk hik hkj _).2 rfl
+
+theorem UnknownCell.puncturedTopHigher_entryIndex_eq_last {k : J}
+    (c : UnknownCell r i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    (c.puncturedTopHigher hk hik hkj).entryIndex k
+      (c.puncturedTopHigher_memLast hk hik hkj) = Fin.last (r + 1) := by
+  apply (c.mem_puncturedTopHigher_iff hk hik hkj _).1
+  apply mem_entryIndex
+
+theorem UnknownCell.puncturedFullTopPartner_memLast {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    k ∈ (c.puncturedFullTopPartner hk hik hkj).last.I := by
+  change k ∈ ((c.puncturedFullTopPartner hk hik hkj).path (Fin.last (r + 1))).I
+  exact (c.mem_puncturedFullTopPartner_iff hk hik hkj _).2 rfl
+
+theorem UnknownCell.puncturedFullTopPartner_entryIndex_eq_last {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    (c.puncturedFullTopPartner hk hik hkj).entryIndex k
+      (c.puncturedFullTopPartner_memLast hk hik hkj) = Fin.last (r + 1) := by
+  apply (c.mem_puncturedFullTopPartner_iff hk hik hkj _).1
+  apply mem_entryIndex
+
+theorem not_mem_before_entryIndex (c : PathChain r i j) (k : J)
+    (hk : k ∈ c.last.I) (a : Fin (r + 1)) (ha : a < c.entryIndex k hk) :
+    k ∉ (c.path a).I := by
+  classical
+  intro h
+  let p : ℕ → Prop := fun n ↦ ∃ hn : n < r + 1, k ∈ (c.path ⟨n, hn⟩).I
+  have hp : ∃ n, p n := ⟨r, by
+    let hr : r < r + 1 := by omega
+    refine ⟨hr, ?_⟩
+    have he : (⟨r, hr⟩ : Fin (r + 1)) = Fin.last r := Fin.ext rfl
+    simpa [last, he] using hk⟩
+  have hpa : p a := ⟨a.isLt, h⟩
+  have hmin := Nat.find_min' hp hpa
+  have hentry : (c.entryIndex k hk).val = Nat.find hp := by
+    rfl
+  have hlt : a.val < Nat.find hp := by
+    simpa [Fin.lt_def, hentry] using ha
+  exact (Nat.not_lt_of_ge hmin) hlt
+
+/-- Characterization of the first-entry index without exposing its `Nat.find` implementation. -/
+theorem entryIndex_eq_of_mem_of_before_not_mem (c : PathChain r i j) (k : J)
+    (hk : k ∈ c.last.I) (a : Fin (r + 1)) (ha : k ∈ (c.path a).I)
+    (hbefore : ∀ b : Fin (r + 1), b < a → k ∉ (c.path b).I) :
+    c.entryIndex k hk = a := by
+  apply le_antisymm
+  · apply Fin.not_lt.1
+    intro h
+    exact c.not_mem_before_entryIndex k hk a h ha
+  · apply Fin.not_lt.1
+    intro h
+    exact hbefore _ h (c.mem_entryIndex k hk)
+
+theorem entryIndex_pos_of_not_mem_first (c : PathChain r i j) (k : J)
+    (hk : k ∈ c.last.I) (h0 : k ∉ c.first.I) : 0 < c.entryIndex k hk := by
+  apply Fin.pos_iff_ne_zero.2
+  intro h
+  apply h0
+  simpa [first, h] using c.mem_entryIndex k hk
+
+/-- The index immediately preceding the first occurrence of `k`. -/
+noncomputable def beforeEntryIndex (c : PathChain r i j) (k : J) (hk : k ∈ c.last.I)
+    (hpos : 0 < c.entryIndex k hk) : Fin (r + 1) :=
+  Fin.castSucc ((c.entryIndex k hk).pred (Fin.ne_zero_of_lt hpos))
+
+theorem beforeEntryIndex_lt (c : PathChain r i j) (k : J) (hk : k ∈ c.last.I)
+    (hpos : 0 < c.entryIndex k hk) :
+    c.beforeEntryIndex k hk hpos < c.entryIndex k hk :=
+  Fin.castSucc_pred_lt _
+
+theorem UnknownCell.puncturedTopHigher_beforeEntry_eq_oldLast {k : J}
+    (c : UnknownCell r i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j)
+    (hpos : 0 < (c.puncturedTopHigher hk hik hkj).entryIndex k
+      (c.puncturedTopHigher_memLast hk hik hkj)) :
+    (c.puncturedTopHigher hk hik hkj).beforeEntryIndex k
+      (c.puncturedTopHigher_memLast hk hik hkj) hpos =
+        Fin.castSucc (Fin.last r) := by
+  apply Fin.ext
+  simp [beforeEntryIndex, c.puncturedTopHigher_entryIndex_eq_last hk hik hkj]
+
+theorem UnknownCell.puncturedFullTop_beforeEntry_eq_penultimate {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j)
+    (hpos : 0 < (c.puncturedFullTopPartner hk hik hkj).entryIndex k
+      (c.puncturedFullTopPartner_memLast hk hik hkj)) :
+    (c.puncturedFullTopPartner hk hik hkj).beforeEntryIndex k
+      (c.puncturedFullTopPartner_memLast hk hik hkj) hpos =
+        Fin.castSucc (Fin.last r) := by
+  apply Fin.ext
+  simp [beforeEntryIndex, c.puncturedFullTopPartner_entryIndex_eq_last hk hik hkj]
+
+theorem UnknownCell.erase_puncturedTopHigher_entry_eq_oldLast {k : J}
+    (c : UnknownCell r i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) (hikne : i ≠ k) (hkjne : j ≠ k) :
+    eraseVertex ((c.puncturedTopHigher hk hik hkj).path
+      ((c.puncturedTopHigher hk hik hkj).entryIndex k
+        (c.puncturedTopHigher_memLast hk hik hkj))) k hikne hkjne = c.chain.last := by
+  rw [c.puncturedTopHigher_entryIndex_eq_last hk hik hkj]
+  simp only [UnknownCell.puncturedTopHigher, insertAt_path_same]
+  apply SimplicialThickening.Path.ext
+  ext l
+  constructor
+  · rintro ⟨hl | rfl, hlk⟩
+    · exact hl
+    · exact (hlk rfl).elim
+  · intro hl
+    exact ⟨Or.inl hl, fun hlk ↦ hk (hlk ▸ hl)⟩
+
+theorem UnknownCell.erase_puncturedFullTop_entry_eq_oldLast {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) (hikne : i ≠ k) (hkjne : j ≠ k) :
+    eraseVertex ((c.puncturedFullTopPartner hk hik hkj).path
+      ((c.puncturedFullTopPartner hk hik hkj).entryIndex k
+        (c.puncturedFullTopPartner_memLast hk hik hkj))) k hikne hkjne = c.chain.last := by
+  rw [c.puncturedFullTopPartner_entryIndex_eq_last hk hik hkj]
+  change eraseVertex (c.puncturedFullTopPartner hk hik hkj).last k hikne hkjne = _
+  rw [c.puncturedFullTopPartner_last hk hik hkj]
+  apply SimplicialThickening.Path.ext
+  ext l
+  constructor
+  · rintro ⟨⟨hil, hlj⟩, hlk⟩
+    exact c.last_contains_other l hil hlj hlk
+  · intro hl
+    exact ⟨⟨c.chain.last.left_le l hl, c.chain.last.le_right l hl⟩,
+      fun hlk ↦ hk (hlk ▸ hl)⟩
+
+theorem UnknownCell.puncturedFullTop_penultimate_path {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    (c.puncturedFullTopPartner hk hik hkj).path (Fin.castSucc (Fin.last r)) =
+      c.chain.path (Fin.castSucc (Fin.last r)) := by
+  change (c.puncturedTopHigher hk hik hkj).path
+    ((puncturedTopInnerPosition r).succAbove (Fin.castSucc (Fin.last r))) = _
+  rw [Fin.succAbove_of_castSucc_lt]
+  · rw [← Fin.succAbove_last_apply (Fin.castSucc (Fin.last r))]
+    simp only [UnknownCell.puncturedTopHigher, insertAt_path_succAbove]
+  · change r < r + 1
+    omega
+
+theorem not_mem_beforeEntryIndex (c : PathChain r i j) (k : J)
+    (hk : k ∈ c.last.I) (hpos : 0 < c.entryIndex k hk) :
+    k ∉ (c.path (c.beforeEntryIndex k hk hpos)).I :=
+  c.not_mem_before_entryIndex k hk _ (c.beforeEntryIndex_lt k hk hpos)
+
+/-- At the first `k`-transition, erasing `k` from the new path produces an intermediate path
+between the preceding path and the new path.  This is the cell inserted/deleted by the matching. -/
+theorem entry_erase_sandwich (c : PathChain r i j) (k : J)
+    (hk : k ∈ c.last.I) (hpos : 0 < c.entryIndex k hk)
+    (hik : i ≠ k) (hkj : j ≠ k) :
+    (c.path (c.beforeEntryIndex k hk hpos)).I ⊆
+        (eraseVertex (c.path (c.entryIndex k hk)) k hik hkj).I ∧
+      (eraseVertex (c.path (c.entryIndex k hk)) k hik hkj).I ⊆
+        (c.path (c.entryIndex k hk)).I := by
+  constructor
+  · intro l hl
+    refine ⟨c.monotone' (c.beforeEntryIndex_lt k hk hpos).le hl, ?_⟩
+    intro hlk
+    exact c.not_mem_beforeEntryIndex k hk hpos (hlk ▸ hl)
+  · exact eraseVertex_subset _ _ _ _
+
+/-- The entry path is recovered by adjoining `k` to the intermediate erased path. -/
+theorem adjoin_entryErase (c : PathChain r i j) (k : J)
+    (hk : k ∈ c.last.I) (hik : i ≠ k) (hkj : j ≠ k)
+    (hik' : i ≤ k) (hkj' : k ≤ j) :
+    adjoinVertex (eraseVertex (c.path (c.entryIndex k hk)) k hik hkj) k hik' hkj' =
+      c.path (c.entryIndex k hk) :=
+  adjoin_eraseVertex hik hkj hik' hkj' (c.mem_entryIndex k hk)
+
+/-- Whether the erased entry path is already the predecessor.  The matching deletes it in this
+case and inserts it otherwise. -/
+def EntryErasePresent (c : PathChain r i j) (k : J)
+    (hk : k ∈ c.last.I) (hpos : 0 < c.entryIndex k hk)
+    (hik : i ≠ k) (hkj : j ≠ k) : Prop :=
+  eraseVertex (c.path (c.entryIndex k hk)) k hik hkj =
+    c.path (c.beforeEntryIndex k hk hpos)
+
+theorem UnknownCell.puncturedTopHigher_entryErasePresent {k : J}
+    (c : UnknownCell r i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) (hikne : i ≠ k) (hkjne : j ≠ k)
+    (hpos : 0 < (c.puncturedTopHigher hk hik hkj).entryIndex k
+      (c.puncturedTopHigher_memLast hk hik hkj)) :
+    (c.puncturedTopHigher hk hik hkj).EntryErasePresent k
+      (c.puncturedTopHigher_memLast hk hik hkj) hpos hikne hkjne := by
+  unfold EntryErasePresent
+  rw [c.erase_puncturedTopHigher_entry_eq_oldLast hk hik hkj hikne hkjne,
+    c.puncturedTopHigher_beforeEntry_eq_oldLast hk hik hkj hpos]
+  rw [← Fin.succAbove_last_apply (Fin.last r)]
+  simp only [UnknownCell.puncturedTopHigher, insertAt_path_succAbove]
+  rfl
+
+theorem UnknownCell.puncturedFullTop_entryErase_notPresent {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) (hikne : i ≠ k) (hkjne : j ≠ k)
+    (hpos : 0 < (c.puncturedFullTopPartner hk hik hkj).entryIndex k
+      (c.puncturedFullTopPartner_memLast hk hik hkj)) :
+    ¬ (c.puncturedFullTopPartner hk hik hkj).EntryErasePresent k
+      (c.puncturedFullTopPartner_memLast hk hik hkj) hpos hikne hkjne := by
+  intro hp
+  unfold EntryErasePresent at hp
+  rw [c.erase_puncturedFullTop_entry_eq_oldLast hk hik hkj hikne hkjne,
+    c.puncturedFullTop_beforeEntry_eq_penultimate hk hik hkj hpos,
+    c.puncturedFullTop_penultimate_path hk hik hkj] at hp
+  have hind : Fin.last (r + 1) = Fin.castSucc (Fin.last r) :=
+    c.nondegenerate hp
+  exact (Fin.ne_of_gt (Fin.castSucc_lt_last (Fin.last r))) hind
+
+/-- The three exhaustive branches of the cell matching. -/
+inductive MatchingBranch {k : J} (c : UnknownCell r i j k)
+    (hik : i ≠ k) (hkj : j ≠ k) : Type u
+  | punctured (h : k ∉ c.chain.last.I)
+  | entryDelete (h : k ∈ c.chain.last.I)
+      (hpresent : c.chain.EntryErasePresent k h
+        (c.chain.entryIndex_pos_of_not_mem_first k h c.first_avoids) hik hkj)
+  | entryInsert (h : k ∈ c.chain.last.I)
+      (hnew : ¬ c.chain.EntryErasePresent k h
+        (c.chain.entryIndex_pos_of_not_mem_first k h c.first_avoids) hik hkj)
+
+/-- Every unknown nondegenerate chain lies in one of the operational branches used by the
+matching algorithm. -/
+noncomputable def UnknownCell.matchingBranch {k : J} (c : UnknownCell r i j k)
+    (hik : i ≠ k) (hkj : j ≠ k) : MatchingBranch c hik hkj := by
+  classical
+  by_cases hlast : k ∈ c.chain.last.I
+  · let hpos := c.chain.entryIndex_pos_of_not_mem_first k hlast c.first_avoids
+    by_cases hp : c.chain.EntryErasePresent k hlast hpos hik hkj
+    · exact .entryDelete hlast hp
+    · exact .entryInsert hlast hp
+  · exact .punctured hlast
+
+/-- The exhaustive operational roles in the filtration.  Punctured cells are support faces,
+not selected missing faces; entry index one is a known-base boundary case. -/
+inductive GlobalCellRole {k : J} (c : UnknownCell r i j k)
+    (hik : i ≠ k) (hkj : j ≠ k) : Type u
+  | puncturedSupport (h : k ∉ c.chain.last.I)
+  | entrySelectedLower (h : k ∈ c.chain.last.I)
+      (hnew : ¬ c.chain.EntryErasePresent k h
+        (c.chain.entryIndex_pos_of_not_mem_first k h c.first_avoids) hik hkj)
+  | entryKnownBase (h : k ∈ c.chain.last.I)
+      (hpresent : c.chain.EntryErasePresent k h
+        (c.chain.entryIndex_pos_of_not_mem_first k h c.first_avoids) hik hkj)
+      (hindex : c.chain.entryIndex k h = 1)
+  | entryRecursiveUpper (h : k ∈ c.chain.last.I)
+      (hpresent : c.chain.EntryErasePresent k h
+        (c.chain.entryIndex_pos_of_not_mem_first k h c.first_avoids) hik hkj)
+      (hindex : c.chain.entryIndex k h ≠ 1)
+
+/-- Every unknown cell has exactly one operational role chosen by the matching algorithm. -/
+noncomputable def UnknownCell.globalCellRole {k : J} (c : UnknownCell r i j k)
+    (hik : i ≠ k) (hkj : j ≠ k) : GlobalCellRole c hik hkj := by
+  classical
+  match c.matchingBranch hik hkj with
+  | .punctured h => exact .puncturedSupport h
+  | .entryInsert h hn => exact .entrySelectedLower h hn
+  | .entryDelete h hp =>
+      by_cases hi : c.chain.entryIndex k h = 1
+      · exact .entryKnownBase h hp hi
+      · exact .entryRecursiveUpper h hp hi
+
+/-- The full-top partner has the selected-lower role. -/
+noncomputable def UnknownCell.puncturedFullTop_selectedLowerRole {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) (hikne : i ≠ k) (hkjne : j ≠ k) :
+    GlobalCellRole (c.puncturedFullTopCell hk hik hkj) hikne hkjne := by
+  apply GlobalCellRole.entrySelectedLower
+    (c.puncturedFullTopPartner_memLast hk hik hkj)
+  apply c.puncturedFullTop_entryErase_notPresent hk hik hkj hikne hkjne
+
+/-- The associated top higher cell has the recursive-upper role. -/
+noncomputable def UnknownCell.puncturedTop_recursiveUpperRole {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) (hikne : i ≠ k) (hkjne : j ≠ k) :
+    GlobalCellRole (c.puncturedTopHigherCell hk hik hkj) hikne hkjne := by
+  apply GlobalCellRole.entryRecursiveUpper
+    (c.puncturedTopHigher_memLast hk hik hkj)
+  · apply c.puncturedTopHigher_entryErasePresent hk hik hkj hikne hkjne
+  · intro h
+    change (c.puncturedTopHigher hk hik hkj).entryIndex k _ = 1 at h
+    have he := c.puncturedTopHigher_entryIndex_eq_last hk hik hkj
+    have hv := congrArg Fin.val (h.symm.trans he)
+    simp at hv
+
+/-- Data for the reverse (`entryDelete`) branch in positive dimension. -/
+structure EntryDeleteCell (r : ℕ) (i j k : J) where
+  cell : UnknownCell (r + 1) i j k
+  memLast : k ∈ cell.chain.last.I
+  left_ne : i ≠ k
+  right_ne : j ≠ k
+  present : cell.chain.EntryErasePresent k memLast
+    (cell.chain.entryIndex_pos_of_not_mem_first k memLast cell.first_avoids)
+    left_ne right_ne
+
+namespace EntryDeleteCell
+
+variable {k : J} (c : EntryDeleteCell r i j k)
+
+noncomputable def position : Fin (r + 2) :=
+  c.cell.chain.beforeEntryIndex k c.memLast
+    (c.cell.chain.entryIndex_pos_of_not_mem_first k c.memLast c.cell.first_avoids)
+
+/-- Delete the already-present erased entry path. -/
+noncomputable def lowerChain : PathChain r i j := c.cell.chain.deleteAt c.position
+
+theorem reinsert_lowerChain : c.cell.chain.reinsertDeleted c.position = c.cell.chain :=
+  reinsertDeleted_eq _ _
+
+/-- The deleted path is precisely the erased entry path. -/
+theorem path_position_eq_entryErase :
+    c.cell.chain.path c.position =
+      eraseVertex (c.cell.chain.path (c.cell.chain.entryIndex k c.memLast)) k
+        c.left_ne c.right_ne := by
+  exact c.present.symm
+
+/-- Reinserting the erased entry path into the reconstructed lower chain recovers the upper
+chain. -/
+theorem insert_erased_lower_eq_upper :
+    c.lowerChain.insertAt c.position (c.cell.chain.path c.position)
+      (deleted_below c.cell.chain c.position) (deleted_above c.cell.chain c.position) =
+        c.cell.chain :=
+  c.reinsert_lowerChain
+
+theorem position_eq_zero_of_entryIndex_eq_one
+    (hentry : c.cell.chain.entryIndex k c.memLast = 1) : c.position = 0 := by
+  apply Fin.ext
+  simp [position, beforeEntryIndex, hentry]
+
+/-- At entry index one, deleting the erased predecessor exposes a first path containing `k`,
+so this is a known-face base case rather than another unknown lower cell. -/
+theorem lowerChain_known_of_entryIndex_eq_one
+    (hentry : c.cell.chain.entryIndex k c.memLast = 1) : c.lowerChain.KnownAt k := by
+  left
+  change k ∈ (c.cell.chain.path (c.position.succAbove 0)).I
+  rw [c.position_eq_zero_of_entryIndex_eq_one hentry, Fin.succAbove_zero_apply]
+  convert c.cell.chain.mem_entryIndex k c.memLast using 1
+  simp [hentry]
+
+/-- Above the base case, deleting the erased predecessor preserves the first and last paths. -/
+theorem lowerChain_first_last_of_one_lt_entry
+    (hentry : (1 : Fin (r + 2)) < c.cell.chain.entryIndex k c.memLast) :
+    c.lowerChain.first = c.cell.chain.first ∧
+      c.lowerChain.last = c.cell.chain.last := by
+  have hp0 : c.position ≠ 0 := by
+    intro hp
+    have hle : (1 : Fin (r + 2)) ≤ c.position := by
+      exact (Fin.le_castSucc_pred_iff (Fin.ne_zero_of_lt
+        (c.cell.chain.entryIndex_pos_of_not_mem_first k c.memLast
+          c.cell.first_avoids))).2 hentry
+    rw [hp] at hle
+    exact (not_le_of_gt (show (0 : Fin (r + 2)) < 1 from Fin.zero_lt_one)) hle
+  have hplast : c.position ≠ Fin.last (r + 1) := by
+    exact Fin.ne_of_lt ((c.cell.chain.beforeEntryIndex_lt k c.memLast _).trans_le
+      (Fin.le_last _))
+  constructor
+  · apply SimplicialThickening.Path.ext
+    ext l
+    change l ∈ (c.cell.chain.path (c.position.succAbove 0)).I ↔
+      l ∈ (c.cell.chain.path 0).I
+    rw [Fin.succAbove_ne_zero_zero hp0]
+  · apply SimplicialThickening.Path.ext
+    ext l
+    change l ∈ (c.cell.chain.path (c.position.succAbove (Fin.last r))).I ↔
+      l ∈ (c.cell.chain.path (Fin.last (r + 1))).I
+    rw [Fin.succAbove_ne_last_last hplast]
+
+/-- For entry index greater than one, the reconstructed lower chain remains outside the known
+horn subcomplex. -/
+theorem lowerChain_unknown_of_one_lt_entry
+    (hentry : (1 : Fin (r + 2)) < c.cell.chain.entryIndex k c.memLast) :
+    ¬ c.lowerChain.KnownAt k := by
+  intro h
+  obtain ⟨hfirst, hlast⟩ := c.lowerChain_first_last_of_one_lt_entry hentry
+  rcases h with hk | ⟨l, hil, hlj, hlk, hl⟩
+  · exact c.cell.first_avoids (hfirst ▸ hk)
+  · exact hl (hlast ▸ c.cell.last_contains_other l hil hlj hlk)
+
+/-- The recursive delete branch produces a genuine lower unknown cell. -/
+noncomputable def lowerCellOfOneLtEntry
+    (hentry : (1 : Fin (r + 2)) < c.cell.chain.entryIndex k c.memLast) :
+    UnknownCell r i j k where
+  chain := c.lowerChain
+  nondegenerate := c.cell.chain.isNondegenerate_deleteAt c.position c.cell.nondegenerate
+  unknown := c.lowerChain_unknown_of_one_lt_entry hentry
+
+theorem lowerCell_chain
+    (hentry : (1 : Fin (r + 2)) < c.cell.chain.entryIndex k c.memLast) :
+    (c.lowerCellOfOneLtEntry hentry).chain = c.lowerChain :=
+  rfl
+
+/-- The upper cell is recovered by reinserting the deleted erased path into the bundled lower
+cell. -/
+theorem reinsert_lowerCell_eq_upper
+    (hentry : (1 : Fin (r + 2)) < c.cell.chain.entryIndex k c.memLast) :
+    (c.lowerCellOfOneLtEntry hentry).chain.insertAt c.position
+      (c.cell.chain.path c.position) (deleted_below c.cell.chain c.position)
+      (deleted_above c.cell.chain c.position) = c.cell.chain :=
+  c.insert_erased_lower_eq_upper
+
+end EntryDeleteCell
+
+/-- The insertion position for the erased entry path is an inner vertex of the paired simplex. -/
+theorem entryInsertion_inner (c : PathChain r i j) (k : J)
+    (hk : k ∈ c.last.I) (hpos : 0 < c.entryIndex k hk) :
+    0 < Fin.castSucc (c.entryIndex k hk) ∧
+      Fin.castSucc (c.entryIndex k hk) < Fin.last (r + 1) := by
+  constructor
+  · simpa using hpos
+  · exact Fin.castSucc_lt_last _
+
+private theorem entryErase_below (c : PathChain r i j) (k : J)
+    (hk : k ∈ c.last.I) (hik : i ≠ k) (hkj : j ≠ k)
+    (a : Fin (r + 1))
+    (ha : (Fin.castSucc (c.entryIndex k hk)).succAbove a <
+      Fin.castSucc (c.entryIndex k hk)) :
+    (c.path a).I ⊆ (eraseVertex (c.path (c.entryIndex k hk)) k hik hkj).I := by
+  have hae : a < c.entryIndex k hk := by
+    exact (Fin.castSucc_lt_castSucc_iff.1
+      ((Fin.succAbove_lt_iff_castSucc_lt _ _).1 ha))
+  intro l hl
+  exact ⟨c.monotone' hae.le hl, fun hlk ↦ c.not_mem_before_entryIndex k hk a hae (hlk ▸ hl)⟩
+
+private theorem entryErase_above (c : PathChain r i j) (k : J)
+    (hk : k ∈ c.last.I) (hik : i ≠ k) (hkj : j ≠ k)
+    (a : Fin (r + 1))
+    (ha : Fin.castSucc (c.entryIndex k hk) <
+      (Fin.castSucc (c.entryIndex k hk)).succAbove a) :
+    (eraseVertex (c.path (c.entryIndex k hk)) k hik hkj).I ⊆ (c.path a).I := by
+  have hea : c.entryIndex k hk ≤ a := by
+    exact Fin.castSucc_le_castSucc_iff.1 ((Fin.lt_succAbove_iff_le_castSucc _ _).1 ha)
+  exact (eraseVertex_subset _ _ _ _).trans (c.monotone' hea)
+
+/-- Insert the erased entry path at the first `k`-transition. -/
+noncomputable def insertEntryErase (c : PathChain r i j) (k : J)
+    (hk : k ∈ c.last.I) (hik : i ≠ k) (hkj : j ≠ k) :
+    PathChain (r + 1) i j :=
+  c.insertAt (Fin.castSucc (c.entryIndex k hk))
+    (eraseVertex (c.path (c.entryIndex k hk)) k hik hkj)
+    (entryErase_below c k hk hik hkj) (entryErase_above c k hk hik hkj)
+
+/-- Deleting the distinguished inner face of the entry pair recovers the original chain. -/
+theorem deleteAt_insertEntryErase (c : PathChain r i j) (k : J)
+    (hk : k ∈ c.last.I) (hik : i ≠ k) (hkj : j ≠ k) :
+    (c.insertEntryErase k hk hik hkj).deleteAt
+      (Fin.castSucc (c.entryIndex k hk)) = c :=
+  deleteAt_insertAt _ _ _ _ _
+
+/-- If the erased entry path is not already the predecessor, then it is new to the whole chain. -/
+theorem entryErase_ne_path_of_ne_predecessor (c : PathChain r i j) (k : J)
+    (hk : k ∈ c.last.I) (hpos : 0 < c.entryIndex k hk)
+    (hik : i ≠ k) (hkj : j ≠ k)
+    (hne : ¬ c.EntryErasePresent k hk hpos hik hkj) (a : Fin (r + 1)) :
+    eraseVertex (c.path (c.entryIndex k hk)) k hik hkj ≠ c.path a := by
+  intro h
+  by_cases ha : a < c.entryIndex k hk
+  · apply hne
+    apply SimplicialThickening.Path.ext
+    ext l
+    constructor
+    · intro hl
+      have hap : a ≤ c.beforeEntryIndex k hk hpos := by
+        exact (Fin.le_castSucc_pred_iff (Fin.ne_zero_of_lt hpos)).2 ha
+      have hpa := c.monotone' hap
+      exact hpa (by rw [← h]; exact hl)
+    · intro hl
+      exact (c.entry_erase_sandwich k hk hpos hik hkj).1 hl
+  · have hea : c.entryIndex k hk ≤ a := Fin.not_lt.1 ha
+    have hka : k ∈ (c.path a).I := c.monotone' hea (c.mem_entryIndex k hk)
+    have hkErase : k ∉ (eraseVertex (c.path (c.entryIndex k hk)) k hik hkj).I := by
+      simp
+    exact hkErase (h ▸ hka)
+
+/-- In the insertion branch the entry matching produces a nondegenerate higher cell. -/
+theorem isNondegenerate_insertEntryErase (c : PathChain r i j) (k : J)
+    (hk : k ∈ c.last.I) (hpos : 0 < c.entryIndex k hk)
+    (hik : i ≠ k) (hkj : j ≠ k) (hc : c.IsNondegenerate)
+    (hne : ¬ c.EntryErasePresent k hk hpos hik hkj) :
+    (c.insertEntryErase k hk hik hkj).IsNondegenerate :=
+  isNondegenerate_insertAt _ _ _ _ _ hc
+    (c.entryErase_ne_path_of_ne_predecessor k hk hpos hik hkj hne)
+
+/-- A lower cell in the entry matching: `k` occurs eventually, and the erased entry path is not
+already present as its predecessor. -/
+structure EntryLowerCell (r : ℕ) (i j k : J) where
+  cell : UnknownCell r i j k
+  memLast : k ∈ cell.chain.last.I
+  left_ne : i ≠ k
+  right_ne : j ≠ k
+  erase_new : ¬ cell.chain.EntryErasePresent k memLast
+    (cell.chain.entryIndex_pos_of_not_mem_first k memLast cell.first_avoids)
+    left_ne right_ne
+
+/-- Construct the canonical global pair from a selected-lower role witness. -/
+def entryLowerCellOfSelectedRole {k : J} (c : UnknownCell r i j k)
+    (hik : i ≠ k) (hkj : j ≠ k) (hmem : k ∈ c.chain.last.I)
+    (hnew : ¬ c.chain.EntryErasePresent k hmem
+      (c.chain.entryIndex_pos_of_not_mem_first k hmem c.first_avoids) hik hkj) :
+    EntryLowerCell r i j k where
+  cell := c
+  memLast := hmem
+  left_ne := hik
+  right_ne := hkj
+  erase_new := hnew
+
+/-- A global pair is a selected lower cell together with its canonical upper attachment. -/
+abbrev GlobalPair (r : ℕ) (i j k : J) := EntryLowerCell r i j k
+
+namespace EntryLowerCell
+
+variable {k : J} (c : EntryLowerCell r i j k)
+
+/-- The distinguished insertion position of the matching. -/
+noncomputable def position : Fin (r + 2) :=
+  Fin.castSucc (c.cell.chain.entryIndex k c.memLast)
+
+theorem position_inner : 0 < c.position ∧ c.position < Fin.last (r + 1) :=
+  c.cell.chain.entryInsertion_inner k c.memLast
+    (c.cell.chain.entryIndex_pos_of_not_mem_first k c.memLast c.cell.first_avoids)
+
+/-- The upper cell obtained by inserting the erased entry path. -/
+noncomputable def upperChain : PathChain (r + 1) i j :=
+  c.cell.chain.insertEntryErase k c.memLast c.left_ne c.right_ne
+
+theorem upperChain_path_position :
+    c.upperChain.path c.position =
+      eraseVertex (c.cell.chain.path (c.cell.chain.entryIndex k c.memLast)) k
+        c.left_ne c.right_ne := by
+  change (c.cell.chain.insertAt (Fin.castSucc (c.cell.chain.entryIndex k c.memLast))
+    (eraseVertex (c.cell.chain.path (c.cell.chain.entryIndex k c.memLast)) k
+      c.left_ne c.right_ne)
+      (entryErase_below c.cell.chain k c.memLast c.left_ne c.right_ne)
+      (entryErase_above c.cell.chain k c.memLast c.left_ne c.right_ne)).path
+      (Fin.castSucc (c.cell.chain.entryIndex k c.memLast)) = _
+  rw [insertAt_path_same]
+
+/-- Every face of the paired upper cell except the distinguished missing face still contains
+the newly inserted erased-entry path.  This is the key same-rank separation invariant: a
+nonmissing face cannot silently discard the datum which distinguishes an upper cell from its
+selected lower partner. -/
+theorem exists_erasedEntry_path_deleteAt_of_ne (q : Fin (r + 2))
+    (hq : c.position ≠ q) :
+    ∃ b : Fin (r + 1), (c.upperChain.deleteAt q).path b =
+      eraseVertex (c.cell.chain.path (c.cell.chain.entryIndex k c.memLast)) k
+        c.left_ne c.right_ne := by
+  exact exists_path_deleteAt_insertAt_eq_inserted c.cell.chain c.position q
+    (eraseVertex (c.cell.chain.path (c.cell.chain.entryIndex k c.memLast)) k
+      c.left_ne c.right_ne)
+    (entryErase_below c.cell.chain k c.memLast c.left_ne c.right_ne)
+    (entryErase_above c.cell.chain k c.memLast c.left_ne c.right_ne) hq
+
+theorem upperChain_nondegenerate : c.upperChain.IsNondegenerate :=
+  c.cell.chain.isNondegenerate_insertEntryErase k c.memLast
+    (c.cell.chain.entryIndex_pos_of_not_mem_first k c.memLast c.cell.first_avoids)
+    c.left_ne c.right_ne c.cell.nondegenerate c.erase_new
+
+theorem delete_position_upperChain : c.upperChain.deleteAt c.position = c.cell.chain :=
+  c.cell.chain.deleteAt_insertEntryErase k c.memLast c.left_ne c.right_ne
+
+theorem upperChain_unknown : ¬ c.upperChain.KnownAt k := by
+  intro h
+  apply c.cell.unknown
+  rw [← c.delete_position_upperChain]
+  exact c.upperChain.knownAt_deleteAt c.position k h
+
+/-- The paired upper cell, with nondegeneracy and horn-unknownness certified. -/
+noncomputable def upperCell : UnknownCell (r + 1) i j k where
+  chain := c.upperChain
+  nondegenerate := c.upperChain_nondegenerate
+  unknown := c.upperChain_unknown
+
+theorem delete_position_upperCell : c.upperCell.chain.deleteAt c.position = c.cell.chain :=
+  c.delete_position_upperChain
+
+/-- On actual nerve simplices, the distinguished inner face of the upper cell is the lower cell. -/
+theorem nerve_face_upper_eq_lower :
+    (CategoryTheory.nerve (ThickPath i j)).δ c.position
+        c.upperCell.chain.toNerveSimplex = c.cell.chain.toNerveSimplex := by
+  rw [← toNerveSimplex_deleteAt]
+  exact congrArg toNerveSimplex c.delete_position_upperCell
+
+/-- The concrete data of the inner-horn cell attachment supplied by an entry pair. -/
+structure NerveInnerFacePair where
+  lower : (CategoryTheory.nerve (ThickPath i j)).obj
+    (Opposite.op (SimplexCategory.mk r))
+  upper : (CategoryTheory.nerve (ThickPath i j)).obj
+    (Opposite.op (SimplexCategory.mk (r + 1)))
+  face : Fin (r + 2)
+  face_pos : 0 < face
+  face_lt_last : face < Fin.last (r + 1)
+  face_eq : (CategoryTheory.nerve (ThickPath i j)).δ face upper = lower
+
+/-- Package the matching as an actual inner face pair in the path-poset nerve. -/
+noncomputable def nerveInnerFacePair : NerveInnerFacePair (r := r) (i := i) (j := j) where
+  lower := c.cell.chain.toNerveSimplex
+  upper := c.upperCell.chain.toNerveSimplex
+  face := c.position
+  face_pos := c.position_inner.1
+  face_lt_last := c.position_inner.2
+  face_eq := c.nerve_face_upper_eq_lower
+
+/-- The entry matching as complete ranked attachment data. -/
+noncomputable def rankedInnerFacePair : RankedInnerFacePair r i j k :=
+  rankedInnerFacePairOfDelete c.cell.chain c.upperCell.chain k c.upperCell.nondegenerate c.position
+    c.position_inner.1 c.position_inner.2 c.delete_position_upperCell
+
+end EntryLowerCell
+
+theorem EntryLowerCell.upperRank_lt_of_dimension_lt {k : J}
+    (p : EntryLowerCell r i j k) (q : EntryLowerCell s i j k) (hrs : r < s) :
+    Prod.Lex (fun a b : ℕ ↦ a < b) (fun a b : ℕ ↦ a < b)
+      (p.upperChain.filtrationRank k) (q.upperChain.filtrationRank k) := by
+  exact Prod.Lex.left _ _ (Nat.add_lt_add_right hrs 1)
+
+/-- The full-top selected lower, promoted to the uniform entry-pairing structure. -/
+noncomputable def UnknownCell.puncturedFullTopEntryLowerCell {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) (hikne : i ≠ k) (hkjne : j ≠ k) :
+    EntryLowerCell (r + 1) i j k where
+  cell := c.puncturedFullTopCell hk hik hkj
+  memLast := c.puncturedFullTopPartner_memLast hk hik hkj
+  left_ne := hikne
+  right_ne := hkjne
+  erase_new := by
+    apply c.puncturedFullTop_entryErase_notPresent hk hik hkj hikne hkjne
+
+theorem UnknownCell.puncturedFullTopEntryLowerCell_position {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) (hikne : i ≠ k) (hkjne : j ≠ k) :
+    (c.puncturedFullTopEntryLowerCell hk hik hkj hikne hkjne).position =
+      puncturedTopInnerPosition r := by
+  change Fin.castSucc ((c.puncturedFullTopPartner hk hik hkj).entryIndex k _) =
+    Fin.castSucc (Fin.last (r + 1))
+  congr 1
+  exact c.puncturedFullTopPartner_entryIndex_eq_last hk hik hkj
+
+/-- Raw upper chain built directly from the full-top partner, avoiding bundled proof fields. -/
+noncomputable def UnknownCell.puncturedFullTopRawUpper {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) (hikne : i ≠ k) (hkjne : j ≠ k) :
+    PathChain (r + 2) i j :=
+  (c.puncturedFullTopPartner hk hik hkj).insertEntryErase k
+    (c.puncturedFullTopPartner_memLast hk hik hkj) hikne hkjne
+
+theorem UnknownCell.puncturedFullTopRawUpper_eq_topHigher {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) (hikne : i ≠ k) (hkjne : j ≠ k) :
+    c.puncturedFullTopRawUpper hk hik hkj hikne hkjne =
+      c.puncturedTopHigher hk hik hkj := by
+  let p := puncturedTopInnerPosition r
+  apply eq_of_deleteAt_eq_of_path_eq _ _ p
+  · have hp : Fin.castSucc ((c.puncturedFullTopPartner hk hik hkj).entryIndex k
+        (c.puncturedFullTopPartner_memLast hk hik hkj)) = p := by
+      change Fin.castSucc ((c.puncturedFullTopPartner hk hik hkj).entryIndex k _) =
+        Fin.castSucc (Fin.last (r + 1))
+      congr 1
+      exact c.puncturedFullTopPartner_entryIndex_eq_last hk hik hkj
+    rw [← hp]
+    change ((c.puncturedFullTopPartner hk hik hkj).insertEntryErase k
+      (c.puncturedFullTopPartner_memLast hk hik hkj) hikne hkjne).deleteAt _ = _
+    rw [deleteAt_insertEntryErase]
+    rw [hp]
+    rfl
+  · have hp : Fin.castSucc ((c.puncturedFullTopPartner hk hik hkj).entryIndex k
+        (c.puncturedFullTopPartner_memLast hk hik hkj)) = p := by
+      change Fin.castSucc ((c.puncturedFullTopPartner hk hik hkj).entryIndex k _) =
+        Fin.castSucc (Fin.last (r + 1))
+      congr 1
+      exact c.puncturedFullTopPartner_entryIndex_eq_last hk hik hkj
+    rw [← hp]
+    change ((c.puncturedFullTopPartner hk hik hkj).insertEntryErase k
+      (c.puncturedFullTopPartner_memLast hk hik hkj) hikne hkjne).path _ = _
+    simp only [insertEntryErase, insertAt_path_same]
+    rw [c.erase_puncturedFullTop_entry_eq_oldLast hk hik hkj hikne hkjne]
+    rw [hp]
+    dsimp [p]
+    simp only [puncturedTopInnerPosition]
+    rw [← Fin.succAbove_last_apply (Fin.last (r + 1))]
+    simp only [UnknownCell.puncturedTopHigher, insertAt_path_succAbove]
+    rfl
+
+theorem UnknownCell.puncturedFullTop_bundledUpper_eq_raw {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) (hikne : i ≠ k) (hkjne : j ≠ k) :
+    (c.puncturedFullTopEntryLowerCell hk hik hkj hikne hkjne).upperChain =
+      c.puncturedFullTopRawUpper hk hik hkj hikne hkjne :=
+  rfl
+
+theorem UnknownCell.puncturedFullTop_bundledUpper_eq_topHigher {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) (hikne : i ≠ k) (hkjne : j ≠ k) :
+    (c.puncturedFullTopEntryLowerCell hk hik hkj hikne hkjne).upperChain =
+      c.puncturedTopHigher hk hik hkj :=
+  c.puncturedFullTop_bundledUpper_eq_raw hk hik hkj hikne hkjne |>.trans
+    (c.puncturedFullTopRawUpper_eq_topHigher hk hik hkj hikne hkjne)
+
+theorem UnknownCell.puncturedFullTop_bundledUpperCell_eq_topHigherCell {k : J}
+    (c : UnknownCell (r + 1) i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) (hikne : i ≠ k) (hkjne : j ≠ k) :
+    (c.puncturedFullTopEntryLowerCell hk hik hkj hikne hkjne).upperCell =
+      c.puncturedTopHigherCell hk hik hkj := by
+  apply UnknownCell.ext
+  exact c.puncturedFullTop_bundledUpper_eq_topHigher hk hik hkj hikne hkjne
+
+/-- All canonical selected-lower/upper pairs in all dimensions. -/
+abbrev GlobalPairIndex (i j k : J) := Σ r : ℕ, EntryLowerCell r i j k
+
+noncomputable def GlobalPairIndex.rank {i j k : J} (a : GlobalPairIndex i j k) :
+    ℕ × ℕ :=
+  a.2.upperChain.filtrationRank k
+
+/-- Rank-only relation before adding a tie-break. -/
+noncomputable def GlobalPairIndex.RankRel {i j k : J}
+    (a b : GlobalPairIndex i j k) : Prop :=
+  Prod.Lex (fun x y : ℕ ↦ x < y) (fun x y : ℕ ↦ x < y) a.rank b.rank
+
+theorem GlobalPairIndex.rankRel_wellFounded {i j k : J} :
+    WellFounded (GlobalPairIndex.RankRel (i := i) (j := j) (k := k)) := by
+  exact (Nat.lt_wfRel.wf.prod_lex Nat.lt_wfRel.wf).onFun
+
+noncomputable instance GlobalPairIndex.rankRel_isWellFounded {i j k : J} :
+    IsWellFounded (GlobalPairIndex i j k)
+      (GlobalPairIndex.RankRel (i := i) (j := j) (k := k)) :=
+  ⟨GlobalPairIndex.rankRel_wellFounded⟩
+
+/-- A well-order extending the rank relation, used to enumerate same-rank attachments. -/
+@[implicit_reducible]
+noncomputable def GlobalPairIndex.wellOrder {i j k : J} :
+    LinearOrder (GlobalPairIndex i j k) :=
+  IsWellFounded.wellOrderExtension
+    (GlobalPairIndex.RankRel (i := i) (j := j) (k := k))
+
+theorem GlobalPairIndex.rankRel_lt_wellOrder {i j k : J}
+    {a b : GlobalPairIndex i j k} (h : GlobalPairIndex.RankRel a b) :
+    @LT.lt _ (GlobalPairIndex.wellOrder (i := i) (j := j) (k := k)).toLT a b := by
+  exact Prod.Lex.left _ _ (IsWellFounded.rank_lt_of_rel h)
+
+/-- A cofinal reindexing preserves the greatest member of a chain. -/
+theorem last_reindex_of_map_last (c : PathChain r i j)
+    (f : Fin (s + 1) →o Fin (r + 1)) (hf : f (Fin.last s) = Fin.last r) :
+    (c.reindex f).last = c.last := by
+  apply SimplicialThickening.Path.ext
+  ext l
+  change l ∈ (c.path (f (Fin.last s))).I ↔ l ∈ (c.path (Fin.last r)).I
+  rw [hf]
+
+/-- An initial reindexing preserves the least member of a chain. -/
+theorem first_reindex_of_map_zero (c : PathChain r i j)
+    (f : Fin (s + 1) →o Fin (r + 1)) (hf : f 0 = 0) :
+    (c.reindex f).first = c.first := by
+  apply SimplicialThickening.Path.ext
+  ext l
+  change l ∈ (c.path (f 0)).I ↔ l ∈ (c.path 0).I
+  rw [hf]
+
+/-- A reindexing preserving both endpoints preserves the known-horn condition. -/
+theorem knownAt_reindex_of_endpoints (c : PathChain r i j) (k : J)
+    (f : Fin (s + 1) →o Fin (r + 1)) (h0 : f 0 = 0)
+    (hlast : f (Fin.last s) = Fin.last r) (h : c.KnownAt k) :
+    (c.reindex f).KnownAt k := by
+  rcases h with h | ⟨l, hil, hlj, hlk, hl⟩
+  · left
+    rw [c.first_reindex_of_map_zero f h0]
+    exact h
+  · right
+    refine ⟨l, hil, hlj, hlk, ?_⟩
+    rw [c.last_reindex_of_map_last f hlast]
+    exact hl
+
+/-- The known-horn chains form a simplicial subset: arbitrary monotone reindexing preserves
+the condition. -/
+theorem knownAt_reindex (c : PathChain r i j) (k : J)
+    (f : Fin (s + 1) →o Fin (r + 1)) (h : c.KnownAt k) :
+    (c.reindex f).KnownAt k := by
+  rcases h with h | ⟨l, hil, hlj, hlk, hl⟩
+  · left
+    exact c.first_le (f 0) h
+  · right
+    refine ⟨l, hil, hlj, hlk, ?_⟩
+    exact c.not_mem_of_not_mem_last hl (f (Fin.last s))
+
+/-- The actual simplicial subcomplex of the path-poset nerve supplied by the inner horn. -/
+def knownPathSubcomplex (i j k : J) :
+    (CategoryTheory.nerve (ThickPath i j)).Subcomplex where
+  obj U := {x | (ofNerveSimplex x).KnownAt k}
+  map {U V} f x hx := by
+    change (ofNerveSimplex ((CategoryTheory.nerve (ThickPath i j)).map f x)).KnownAt k
+    exact knownAt_reindex (c := ofNerveSimplex x) k f.unop.toOrderHom hx
+
+theorem mem_knownPathSubcomplex_iff (i j k : J) (r : ℕ)
+    (x : (CategoryTheory.nerve (ThickPath i j)).obj
+      (Opposite.op (SimplexCategory.mk r))) :
+    x ∈ (knownPathSubcomplex i j k).obj _ ↔ (ofNerveSimplex x).KnownAt k :=
+  Iff.rfl
+
+/-- Simplicial closure of a degreewise collection of path-nerve simplices, together with the
+known horn subcomplex. -/
+def generatedPathStage (i j k : J)
+    (P : ∀ r : ℕ, (CategoryTheory.nerve (ThickPath i j)).obj
+      (Opposite.op (SimplexCategory.mk r)) → Prop) :
+    (CategoryTheory.nerve (ThickPath i j)).Subcomplex :=
+  knownPathSubcomplex i j k ⊔
+    ⨆ (r : ℕ), ⨆ (x : (CategoryTheory.nerve (ThickPath i j)).obj
+      (Opposite.op (SimplexCategory.mk r))), ⨆ (_h : P r x), SSet.Subcomplex.ofSimplex x
+
+theorem knownPathSubcomplex_le_generatedPathStage (i j k : J) (P) :
+    knownPathSubcomplex i j k ≤ generatedPathStage i j k P :=
+  le_sup_left
+
+theorem ofSimplex_le_generatedPathStage (i j k : J) (P) (r : ℕ)
+    (x : (CategoryTheory.nerve (ThickPath i j)).obj
+      (Opposite.op (SimplexCategory.mk r))) (hx : P r x) :
+    SSet.Subcomplex.ofSimplex x ≤ generatedPathStage i j k P := by
+  apply le_sup_of_le_right
+  exact le_iSup_of_le r (le_iSup_of_le x (le_iSup_of_le hx (le_refl _)))
+
+/-- Enlarging the generating predicate enlarges the generated stage. -/
+theorem generatedPathStage_mono (i j k : J) {P Q}
+    (hPQ : ∀ r x, P r x → Q r x) :
+    generatedPathStage i j k P ≤ generatedPathStage i j k Q := by
+  apply sup_le
+  · exact knownPathSubcomplex_le_generatedPathStage i j k Q
+  · simp only [iSup_le_iff]
+    intro r x hx
+    exact ofSimplex_le_generatedPathStage i j k Q r x (hPQ r x hx)
+
+/-- The stage generated by simplices of rank strictly below `ρ`. -/
+noncomputable def rankGeneratedPathStage (i j k : J) (ρ : ℕ × ℕ) :
+    (CategoryTheory.nerve (ThickPath i j)).Subcomplex :=
+  generatedPathStage i j k fun _ x ↦
+    Prod.Lex (fun a b : ℕ ↦ a < b) (fun a b : ℕ ↦ a < b)
+      ((ofNerveSimplex x).filtrationRank k) ρ
+
+/-- A simplex below the rank cutoff belongs to the corresponding generated stage. -/
+theorem ofSimplex_le_rankGeneratedPathStage (i j k : J) (ρ : ℕ × ℕ) (r : ℕ)
+    (x : (CategoryTheory.nerve (ThickPath i j)).obj
+      (Opposite.op (SimplexCategory.mk r)))
+    (hx : Prod.Lex (fun a b : ℕ ↦ a < b) (fun a b : ℕ ↦ a < b)
+      ((ofNerveSimplex x).filtrationRank k) ρ) :
+    SSet.Subcomplex.ofSimplex x ≤ rankGeneratedPathStage i j k ρ :=
+  ofSimplex_le_generatedPathStage i j k _ r x hx
+
+/-- The subcomplex generated by all upper cells preceding `p` in the global enumeration. -/
+noncomputable def GlobalPairIndex.earlierStage {i j k : J} (p : GlobalPairIndex i j k) :
+    (CategoryTheory.nerve (ThickPath i j)).Subcomplex :=
+  knownPathSubcomplex i j k ⊔
+    ⨆ (q : GlobalPairIndex i j k), ⨆ (_h : @LT.lt _
+      (GlobalPairIndex.wellOrder (i := i) (j := j) (k := k)).toLT q p),
+      SSet.Subcomplex.ofSimplex q.2.upperChain.toNerveSimplex
+
+/-- Earlier pairs together with every nonmissing face of the current upper cell. -/
+noncomputable def GlobalPairIndex.previousStage {i j k : J} (p : GlobalPairIndex i j k) :
+    (CategoryTheory.nerve (ThickPath i j)).Subcomplex :=
+  p.earlierStage ⊔ p.2.rankedInnerFacePair.hornRange
+
+theorem GlobalPairIndex.known_le_previousStage {i j k : J}
+    (p : GlobalPairIndex i j k) : knownPathSubcomplex i j k ≤ p.previousStage :=
+  le_trans le_sup_left le_sup_left
+
+theorem GlobalPairIndex.hornRange_le_previousStage {i j k : J}
+    (p : GlobalPairIndex i j k) :
+    p.2.rankedInnerFacePair.hornRange ≤ p.previousStage :=
+  le_sup_right
+
+noncomputable def GlobalPairIndex.nextStage {i j k : J} (p : GlobalPairIndex i j k) :
+    (CategoryTheory.nerve (ThickPath i j)).Subcomplex :=
+  p.previousStage ⊔ SSet.Subcomplex.ofSimplex p.2.upperChain.toNerveSimplex
+
+theorem GlobalPairIndex.previousStage_le_nextStage {i j k : J}
+    (p : GlobalPairIndex i j k) : p.previousStage ≤ p.nextStage :=
+  le_sup_left
+
+/-- A selected missing lower simplex is not already in the known horn subcomplex. -/
+theorem EntryLowerCell.lower_not_mem_knownPathSubcomplex {k : J}
+    (p : EntryLowerCell r i j k) :
+    p.cell.chain.toNerveSimplex ∉ (knownPathSubcomplex i j k).obj _ := by
+  intro h
+  exact p.cell.unknown h
+
+/-- Equivalently, the subcomplex generated by the missing lower simplex is not contained in the
+known subcomplex. -/
+theorem EntryLowerCell.lower_ofSimplex_not_le_known {k : J}
+    (p : EntryLowerCell r i j k) :
+    ¬ SSet.Subcomplex.ofSimplex p.cell.chain.toNerveSimplex ≤
+      knownPathSubcomplex i j k := by
+  rw [SSet.Subcomplex.ofSimplex_le_iff]
+  exact p.lower_not_mem_knownPathSubcomplex
+
+theorem EntryLowerCell.lower_not_mem_hornRange {k : J}
+    (p : EntryLowerCell r i j k) :
+    p.cell.chain.toNerveSimplex ∉ p.rankedInnerFacePair.hornRange.obj _ :=
+  p.rankedInnerFacePair.lower_not_mem_hornRange
+
+theorem EntryLowerCell.lower_not_mem_known_sup_hornRange {k : J}
+    (p : EntryLowerCell r i j k) :
+    p.cell.chain.toNerveSimplex ∉
+      (knownPathSubcomplex i j k ⊔ p.rankedInnerFacePair.hornRange).obj _ := by
+  intro h
+  rcases h with h | h
+  · exact p.lower_not_mem_knownPathSubcomplex h
+  · exact p.lower_not_mem_hornRange h
+
+/-- A chain outside the known horn has full greatest path and its least path avoids `k`,
+expressed without choosing a decidable finite enumeration. -/
+theorem not_knownAt_iff (c : PathChain r i j) (k : J) :
+    ¬ c.KnownAt k ↔
+      k ∉ c.first.I ∧ ∀ l : J, i ≤ l → l ≤ j → l ≠ k → l ∈ c.last.I := by
+  simp only [KnownAt, not_or, not_exists, not_and]
+  constructor
+  · rintro ⟨hk, h⟩
+    refine ⟨hk, fun l hil hlj hlk ↦ ?_⟩
+    exact Classical.byContradiction fun hl ↦ h l hil hlj hlk hl
+  · rintro ⟨hk, h⟩
+    refine ⟨hk, fun l hil ↦ ?_⟩
+    refine fun hlj ↦ ?_
+    refine fun hlk ↦ ?_
+    exact fun hl ↦ hl (h l hil hlj hlk)
+
+end PathChain
+
+end Chain
+
+end LeanLCAExactChallenge.Infinity.CoherentNervePathFiltration
