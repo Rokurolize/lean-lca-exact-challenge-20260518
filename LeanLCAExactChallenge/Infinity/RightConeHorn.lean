@@ -148,6 +148,52 @@ theorem rightCone_rightInclusion_naturality
   rw [← Category.assoc, hpref]
   exact Category.assoc _ _ _
 
+/-- The range of a map out of a pushout is the union of the ranges of its two legs. -/
+lemma range_pushout_desc_eq_sup
+    {A B C D : SSet.{u}} (f : A ⟶ B) (g : A ⟶ C)
+    (h : B ⟶ D) (k : C ⟶ D) (w : f ≫ h = g ≫ k) :
+    SSet.Subcomplex.range (pushout.desc h k w) =
+      SSet.Subcomplex.range h ⊔ SSet.Subcomplex.range k := by
+  let R := SSet.Subcomplex.range h ⊔ SSet.Subcomplex.range k
+  let h' : B ⟶ (R : SSet.{u}) :=
+    SSet.Subcomplex.toRange h ≫ SSet.Subcomplex.homOfLE le_sup_left
+  let k' : C ⟶ (R : SSet.{u}) :=
+    SSet.Subcomplex.toRange k ≫ SSet.Subcomplex.homOfLE le_sup_right
+  have w' : f ≫ h' = g ≫ k' := by
+    apply (cancel_mono R.ι).mp
+    simpa [h', k', R, Category.assoc] using w
+  let q : pushout f g ⟶ (R : SSet.{u}) := pushout.desc h' k' w'
+  have hfac : q ≫ R.ι = pushout.desc h k w := by
+    apply pushout.hom_ext
+    · rw [← Category.assoc, pushout.inl_desc]
+      dsimp only [q, h']
+      rw [pushout.inl_desc, Category.assoc, SSet.Subcomplex.homOfLE_ι,
+        SSet.Subcomplex.toRange_ι]
+    · rw [← Category.assoc, pushout.inr_desc]
+      dsimp only [q, k']
+      rw [pushout.inr_desc, Category.assoc, SSet.Subcomplex.homOfLE_ι,
+        SSet.Subcomplex.toRange_ι]
+  apply le_antisymm
+  · rw [← hfac, SSet.Subcomplex.range_comp]
+    exact (SSet.Subcomplex.image_le_range _ _).trans (by simp [R])
+  · apply sup_le
+    · have heq : pushout.inl f g ≫ pushout.desc h k w = h := pushout.inl_desc _ _ _
+      calc
+        SSet.Subcomplex.range h =
+            SSet.Subcomplex.range (pushout.inl f g ≫ pushout.desc h k w) :=
+          congrArg SSet.Subcomplex.range heq.symm
+        _ = (SSet.Subcomplex.range (pushout.inl f g)).image
+            (pushout.desc h k w) := SSet.Subcomplex.range_comp _ _
+        _ ≤ _ := SSet.Subcomplex.image_le_range _ _
+    · have heq : pushout.inr f g ≫ pushout.desc h k w = k := pushout.inr_desc _ _ _
+      calc
+        SSet.Subcomplex.range k =
+            SSet.Subcomplex.range (pushout.inr f g ≫ pushout.desc h k w) :=
+          congrArg SSet.Subcomplex.range heq.symm
+        _ = (SSet.Subcomplex.range (pushout.inr f g)).image
+            (pushout.desc h k w) := SSet.Subcomplex.range_comp _ _
+        _ ≤ _ := SSet.Subcomplex.image_le_range _ _
+
 /-- The pushout-product corner obtained by coning a horn on the left and adjoining
 the full base simplex.  Under the standard-simplex join isomorphism this is the
 shifted horn inclusion. -/
