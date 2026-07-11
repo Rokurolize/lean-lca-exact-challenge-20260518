@@ -183,28 +183,6 @@ def dgMappingConePrecompositionNullhomotopy (T : ComplexCategory)
   simpa only [dgHomZModulePrecomposition, map_zero] using
     dgHomZModulePrecompositionHomotopy T (dgMappingConeTriangleHomotopy f)
 
-@[reassoc]
-theorem dgHomZModulePrecomposition_comp (T : ComplexCategory)
-    {X Y Z : ComplexCategory} (f : X ⟶ Y) (g : Y ⟶ Z) :
-    dgHomZModulePrecomposition T g ≫ dgHomZModulePrecomposition T f =
-      dgHomZModulePrecomposition T (f ≫ g) := by
-  ext n γ
-  change (CochainComplex.HomComplex.Cochain.ofHom f.hom).comp
-      ((CochainComplex.HomComplex.Cochain.ofHom g.hom).comp γ (zero_add n))
-        (zero_add n) =
-    (CochainComplex.HomComplex.Cochain.ofHom (f.hom ≫ g.hom)).comp γ (zero_add n)
-  rw [CochainComplex.HomComplex.Cochain.ofHom_comp,
-    CochainComplex.HomComplex.Cochain.comp_assoc]
-
-/-- The nullhomotopy with its source written as the composite of the two precomposition maps. -/
-def dgMappingConePrecompositionCompositeNullhomotopy (T : ComplexCategory)
-    {K L : ComplexCategory} (f : K ⟶ L) :
-    Homotopy
-      (dgHomZModulePrecomposition T (dgMappingConeInr f) ≫
-        dgHomZModulePrecomposition T f) 0 :=
-  Homotopy.ofEq (dgHomZModulePrecomposition_comp T f (dgMappingConeInr f)) |>.trans
-    (dgMappingConePrecompositionNullhomotopy T f)
-
 /-- Maps from a bounded test complex into a cone are detected by their two cone coordinates.
 This is the chain-level representability identity underlying the cocartesian cone square. -/
 theorem dgMappingConeCochain_ext_to_iff
@@ -606,53 +584,6 @@ theorem dgHomPrecompositionPathFiber_isPullback (T : ComplexCategory)
       (dgHomPrecompositionZeroEndpoints T f)
       (dgHomPrecompositionPathEndpoints T K) :=
   IsPullback.of_hasPullback _ _
-
-/-- The cone nullhomotopy as a map into the standard chain path object. -/
-def dgMappingConeHomToPathObject (T : ComplexCategory)
-    {K L : ComplexCategory} (f : K ⟶ L) :
-    dgHomZModuleCochainComplex (dgMappingConeObject f) T ⟶
-      dgHomPrecompositionPathObject T K :=
-  HomologicalComplex.pathObject.lift
-    (dgHomZModulePrecomposition T (dgMappingConeInr f) ≫
-      dgHomZModulePrecomposition T f) 0
-    (dgMappingConePrecompositionCompositeNullhomotopy T f)
-
-@[reassoc (attr := simp)]
-theorem dgMappingConeHomToPathObject_π₀ (T : ComplexCategory)
-    {K L : ComplexCategory} (f : K ⟶ L) :
-    dgMappingConeHomToPathObject T f ≫
-        HomologicalComplex.pathObject.π₀ (dgHomZModuleCochainComplex K T) =
-      dgHomZModulePrecomposition T (dgMappingConeInr f) ≫
-        dgHomZModulePrecomposition T f :=
-  HomologicalComplex.pathObject.lift_π₀ _ _ _
-
-@[reassoc (attr := simp)]
-theorem dgMappingConeHomToPathObject_π₁ (T : ComplexCategory)
-    {K L : ComplexCategory} (f : K ⟶ L) :
-    dgMappingConeHomToPathObject T f ≫
-        HomologicalComplex.pathObject.π₁ (dgHomZModuleCochainComplex K T) = 0 :=
-  HomologicalComplex.pathObject.lift_π₁ _ _ _
-
-theorem dgMappingConeHom_pathFiber_condition (T : ComplexCategory)
-    {K L : ComplexCategory} (f : K ⟶ L) :
-    dgHomZModulePrecomposition T (dgMappingConeInr f) ≫
-        dgHomPrecompositionZeroEndpoints T f =
-      dgMappingConeHomToPathObject T f ≫
-        dgHomPrecompositionPathEndpoints T K := by
-  apply Limits.prod.hom_ext
-  · simp [dgHomPrecompositionZeroEndpoints, dgHomPrecompositionPathEndpoints]
-  · simp [dgHomPrecompositionZeroEndpoints, dgHomPrecompositionPathEndpoints]
-
-/-- The canonical map from the actual maps-out cone Hom complex to the strict path-fiber
-pullback. -/
-def dgMappingConeHomToPathFiber (T : ComplexCategory)
-    {K L : ComplexCategory} (f : K ⟶ L) :
-    dgHomZModuleCochainComplex (dgMappingConeObject f) T ⟶
-      dgHomPrecompositionPathFiber T f :=
-  Limits.pullback.lift
-    (dgHomZModulePrecomposition T (dgMappingConeInr f))
-    (dgMappingConeHomToPathObject T f)
-    (dgMappingConeHom_pathFiber_condition T f)
 
 /-- Explicit two-coordinate complex for maps out of a cone. -/
 def dgMappingConeExplicitFromCoordinateCochainComplex
