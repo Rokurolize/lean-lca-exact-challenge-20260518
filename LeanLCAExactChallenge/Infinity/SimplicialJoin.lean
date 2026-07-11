@@ -3491,6 +3491,29 @@ lemma representableJoinHornMap_innerAnodyne
       (representableJoinHornMap.{u} m (n + 2) i) :=
   representableJoinHornMap_innerAnodyne_of_mono m (n + 1) i h0 hn
 
+/-- Every map from a representable joined with an inner horn to a
+quasicategory extends over the joined simplex.  This is the all-dimensional
+special-left-horn filler supplied by the join theorem. -/
+lemma exists_representableJoinHornMap_extension
+    (m n : ℕ) (i : Fin (n + 3))
+    (h0 : 0 < i) (hn : i < Fin.last (n + 2))
+    (Q : SSet.{u}) [SSet.Quasicategory Q]
+    (f : simplicialJoin (Δ[m] : SSet.{u}) Λ[n + 2, i] ⟶ Q) :
+    ∃ g : (Δ[m + (n + 2) + 1] : SSet.{u}) ⟶ Q,
+      representableJoinHornMap m (n + 2) i ≫ g = f := by
+  let t : IsTerminal (⊤_ SSet.{u}) := Limits.terminalIsTerminal
+  let sq : CommSq f (representableJoinHornMap m (n + 2) i)
+      (t.from Q) (t.from (Δ[m + (n + 2) + 1] : SSet.{u})) :=
+    ⟨t.hom_ext _ _⟩
+  have hq : SSet.InnerFibration (t.from Q) :=
+    (SSet.quasicategory_iff_of_isTerminal (t.from Q) t).mp inferInstance
+  have hlift : HasLiftingProperty (representableJoinHornMap m (n + 2) i)
+      (t.from Q) :=
+    representableJoinHornMap_innerAnodyne m n i h0 hn _ hq.mem
+  letI : HasLiftingProperty (representableJoinHornMap m (n + 2) i)
+      (t.from Q) := hlift
+  exact ⟨sq.lift, sq.fac_left⟩
+
 lemma representableJoinHornStage_adjoin_hornRange_bicartSq
     (m n r : ℕ) (i : Fin (n + 2)) (T : Finset (Fin (m + 1)))
     (hT : T.card = r + 1) :
