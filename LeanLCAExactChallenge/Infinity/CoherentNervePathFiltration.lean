@@ -299,6 +299,22 @@ noncomputable def nerveTypeProductIso (C D : Type u) [Category.{u} C] [Category.
   (CategoryTheory.nerveFunctor.mapIso (typeProductIsoChosenProduct C D)).trans
     (nerveBinaryProductIso C D)
 
+/-- A computation-friendly product comparison for nerves.  In every simplicial degree it sends
+a functor into the product category to the pair of its two projections. -/
+def nerveTypeProductIsoExplicit (C D : Type u) [Category.{u} C] [Category.{u} D] :
+    CategoryTheory.nerve (C × D) ≅ CategoryTheory.nerve C ⊗ CategoryTheory.nerve D where
+  hom :=
+    { app := fun _ ↦ ↾fun F ↦
+        ⟨F ⋙ CategoryTheory.Prod.fst C D, F ⋙ CategoryTheory.Prod.snd C D⟩
+      naturality := fun _ _ _ ↦ rfl }
+  inv :=
+    { app := fun _ ↦ ↾fun F ↦ F.1.prod' F.2
+      naturality := fun _ _ _ ↦ rfl }
+  hom_inv_id := by
+    rfl
+  inv_hom_id := by
+    rfl
+
 /-- Split an `(n+1)`-bit vector into its first `n` bits and its last bit. -/
 def finBitvectorSuccOrderIso (n : ℕ) :
     (Fin (n + 1) → Fin 2) ≃o ((Fin n → Fin 2) × Fin 2) where
@@ -612,6 +628,17 @@ noncomputable def liftedPiBitsCubeIso : (n : ℕ) →
           CategoryTheory.Limits.prod.mapIso (liftedPiBitsCubeIso n)
             stdSimplexOneIsoNerveFinTwo.symm ≪≫
           binaryProductIsoTensor _ _
+
+/-- Computation-friendly cube comparison, using the explicit pointwise nerve-product map in
+every successor step. -/
+noncomputable def liftedPiBitsCubeIsoExplicit : (n : ℕ) →
+    CategoryTheory.nerve (LiftedPiBits.{u} n) ≅ liftedIntervalCube n
+  | 0 => Iso.refl _
+  | n + 1 =>
+      liftedPiBitsNerveSuccIso n ≪≫
+        nerveTypeProductIsoExplicit (LiftedPiBits.{u} n) (ULift.{u} (Fin 2)) ≪≫
+          MonoidalCategory.tensorIso (liftedPiBitsCubeIsoExplicit n)
+            stdSimplexOneIsoNerveFinTwo.symm
 
 /-- A numbering of the internal vertices identifies the path poset with the lifted cubical
 bitvector category. -/
