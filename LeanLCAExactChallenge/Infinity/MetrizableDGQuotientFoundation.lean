@@ -443,6 +443,45 @@ def singletonContractedSummandIsoOriginal (X Y : ComplexCategory)
   summandModuleCastWordIso h (d.contract i) ≪≫
     nilSummandIsoOriginal X Y ((d.contract i).castWord h)
 
+/-- Reassociate a one-letter word summand to the binary tensor on which homogeneous
+composition is defined. -/
+def singletonSummandIsoTensor (X Y : ComplexCategory)
+    (A : CorrectedAcyclicComplexCategory) {n : ℤ}
+    (d : DegreeProfile (singleton X Y A) n) :
+    summandModule d ≅ factorModule d 0 ⊗ factorModule d 1 := by
+  change factorModule d 0 ⊗ (factorModule d 1 ⊗ 𝟙_ (ModuleCat.{0} ℤ)) ≅ _
+  exact (α_ (factorModule d 0) (factorModule d 1) (𝟙_ (ModuleCat.{0} ℤ))).symm ≪≫
+    ρ_ (factorModule d 0 ⊗ factorModule d 1)
+
+/-- The genuine contraction term for a one-letter word. -/
+def singletonContractionTensorMap (X Y : ComplexCategory)
+    (A : CorrectedAcyclicComplexCategory) {n : ℤ}
+    (d : DegreeProfile (singleton X Y A) n)
+    (i : Fin (singleton X Y A).length) :
+    Quiver.Hom (summandModule d) (summandModule (d.contract i)) := by
+  have hdeg : d.arrowDegree 0 + d.arrowDegree 1 = n + 1 := by
+    have hd := d.totalDegree
+    rw [Fin.sum_univ_succ] at hd
+    have htail : (∑ j : Fin 1, d.arrowDegree j.succ) = d.arrowDegree 1 := by
+      rw [Fin.sum_univ_succ]
+      simp
+      rfl
+    change d.arrowDegree 0 + (∑ j : Fin 1, d.arrowDegree j.succ) - 1 = n at hd
+    rw [htail] at hd
+    omega
+  have hs₀ : (singleton X Y A).arrowSource 0 = X := rfl
+  have ht₀ : (singleton X Y A).arrowTarget 0 = A.obj := rfl
+  have hs₁ : (singleton X Y A).arrowSource 1 = A.obj := rfl
+  have ht₁ : (singleton X Y A).arrowTarget 1 = Y := by
+    exact vertex_last (singleton X Y A)
+  let f : Quiver.Hom (factorModule d 0 ⊗ factorModule d 1)
+      ((dgHomZModuleCochainComplex X Y).X (n + 1)) := by
+    simp only [factorModule]
+    rw [hs₀, ht₀, hs₁, ht₁]
+    exact dgCochainCompTensor X A.obj Y hdeg
+  exact (singletonSummandIsoTensor X Y A d).hom ≫ f ≫
+    (singletonContractedSummandIsoOriginal X Y A d i).inv
+
 end DrinfeldWord
 end MetrizableBoundedComplexes
 end Infinity
