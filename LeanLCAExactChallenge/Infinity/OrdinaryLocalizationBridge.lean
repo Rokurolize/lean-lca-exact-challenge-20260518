@@ -87,6 +87,28 @@ def internalHomReflectionPre (L : SSet.{u}) (E : Cat.{u, u}) :
       (ihom L).obj (nerveFunctor.obj E) :=
   (MonoidalClosed.pre (nerveAdjunction.unit.app L)).app (nerveFunctor.obj E)
 
+/-- The Yoneda component used to test internal Homs into categorical nerves. -/
+noncomputable def internalHomToNerveYonedaEquiv
+    (Z L : SSet.{u}) (E : Cat.{u, u}) :
+    (Z ⟶ (ihom L).obj (nerveFunctor.obj E)) ≃
+      (SSet.hoFunctor.obj (L ⊗ Z) ⟶ E) :=
+  ((ihom.adjunction L).homEquiv Z (nerveFunctor.obj E)).symm.trans
+    (nerveAdjunction.homEquiv (L ⊗ Z) E).symm
+
+set_option backward.isDefEq.respectTransparency false in
+/-- Applying the reflector to its unit gives an isomorphism. -/
+theorem hoFunctor_map_reflectionUnit_isIso (L : SSet.{u}) :
+    IsIso (SSet.hoFunctor.map (nerveAdjunction.unit.app L)) := by
+  let e := nerveFunctorCompHoFunctorIso.app (SSet.hoFunctor.obj L)
+  have h : SSet.hoFunctor.map (nerveAdjunction.unit.app L) = e.inv := by
+    calc
+      _ = inv e.hom := by
+        apply IsIso.eq_inv_of_inv_hom_id
+        exact nerveAdjunction.left_triangle_components L
+      _ = e.inv := by simp
+  rw [h]
+  infer_instance
+
 /-- In a Cat-enriched ordinary category, the transported horizontal composite has the
 expected enriched-composition normal form after applying `Hom.base`. -/
 theorem catEnrichedOrdinary_base_hComp
