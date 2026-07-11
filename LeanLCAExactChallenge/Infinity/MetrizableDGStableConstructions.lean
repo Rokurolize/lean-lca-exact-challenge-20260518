@@ -1210,31 +1210,6 @@ theorem directDGMappingCone_enrichedHomFrom_isPathFiberPullback (T : ComplexCate
     (Iso.refl _) (Iso.refl _) (Iso.refl _)
   all_goals simp [directDGMappingConeHomFromPathFiberFst,
     directDGMappingConeHomFromPathFiberSnd]
-
-/-- Genuine enriched bicartesian calculus for one dg mapping-cone square: both covariant and
-contravariant mapping objects are strict pullbacks of explicit realized path-object endpoint
-diagrams. -/
-structure DirectDGMappingConeEnrichedBicartesian
-    {K L : ComplexCategory} (f : K ⟶ L) : Prop where
-  mapsOut : ∀ T : ComplexCategory,
-    IsPullback
-      (directDGMappingConePathFiberFst T f)
-      (directDGMappingConePathFiberSnd T f)
-      (dgMappingSSetRealizationFunctor.map (dgHomPrecompositionZeroEndpoints T f))
-      (dgMappingSSetRealizationFunctor.map (dgHomPrecompositionPathEndpoints T K))
-  mapsIn : ∀ T : ComplexCategory,
-    IsPullback
-      (directDGMappingConeHomFromPathFiberFst T f)
-      (directDGMappingConeHomFromPathFiberSnd T f)
-      (dgMappingSSetRealizationFunctor.map (dgHomPostcompositionZeroEndpoints T f))
-      (dgMappingSSetRealizationFunctor.map (dgHomPostcompositionPathEndpoints T f))
-
-/-- Every bounded dg mapping-cone square has the genuine enriched bicartesian calculus. -/
-theorem directDGMappingCone_enrichedBicartesian
-    {K L : ComplexCategory} (f : K ⟶ L) :
-    DirectDGMappingConeEnrichedBicartesian f where
-  mapsOut T := directDGMappingCone_enrichedHom_isPathFiberPullback T f
-  mapsIn T := directDGMappingCone_enrichedHomFrom_isPathFiberPullback T f
   · ext n x
     simp [dgMappingConeHomToPathFiber,
       dgMappingConeHomToPathObject,
