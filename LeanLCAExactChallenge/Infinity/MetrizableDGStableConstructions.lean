@@ -356,38 +356,6 @@ def dgMappingConeExplicitCoordinateSSetIso
   zModuleSimplicialForget.mapIso
     (dgMappingConeExplicitCoordinateSimplicialModuleIso T f)
 
-/-- Enriched cone representability: the actual enriched mapping simplicial set into the cone
-is the Dold--Kan realization of the verified two-coordinate fiber complex. -/
-def directDGMappingConeEnrichedHomIso
-    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) :
-    (directDGObject T ⟶[SSet] directDGMappingConeObject f) ≅
-      zModuleSimplicialForget.obj
-        (DoldKanMonoidal.zModuleDoldKanEquivalence.inverse.obj
-          (HomologicalComplex.truncLE'
-            (dgMappingConeExplicitCoordinateCochainComplex T f)
-            ComplexShape.embeddingDownNat)) :=
-  eqToIso (directDG_enrichedHom_eq T (dgMappingConeObject f)) ≪≋
-    dgMappingConeExplicitCoordinateSSetIso T f
-
-/-- The explicit enriched universal property supplied by the cone construction.  It records a
-mapping-object isomorphism for every bounded dg test object, rather than only a bijection in the
-ordinary homotopy category. -/
-structure DirectDGMappingConeEnrichedUniversalProperty
-    {K L : ComplexCategory} (f : K ⟶ L) : Type 1 where
-  mappingIso : ∀ T : ComplexCategory,
-    (directDGObject T ⟶[SSet] directDGMappingConeObject f) ≅
-      zModuleSimplicialForget.obj
-        (DoldKanMonoidal.zModuleDoldKanEquivalence.inverse.obj
-          (HomologicalComplex.truncLE'
-            (dgMappingConeExplicitCoordinateCochainComplex T f)
-            ComplexShape.embeddingDownNat))
-
-/-- Every bounded dg mapping cone satisfies the explicit enriched universal property. -/
-def directDGMappingConeEnrichedUniversalProperty
-    {K L : ComplexCategory} (f : K ⟶ L) :
-    DirectDGMappingConeEnrichedUniversalProperty f where
-  mappingIso T := directDGMappingConeEnrichedHomIso T f
-
 /-- The same cone, regarded as an object of the honest direct simplicial dg category. -/
 def directDGMappingConeObject {K L : ComplexCategory} (f : K ⟶ L) :
     DirectDGSimplicialCategory :=
