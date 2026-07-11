@@ -3549,6 +3549,19 @@ theorem mem_knownPathSubcomplex_preimage_explicit_iff_corner
   change iso.hom.app _ (iso.inv.app _ x) ∈ _ ↔ x ∈ _
   rw [Iso.inv_hom_id_app_apply]
 
+theorem knownPathSubcomplex_preimage_explicit_eq_corner
+    (i j k : J) (hik : i < k) (hkj : k < j)
+    (n : ℕ) (e : InteriorVertex i j ≃ Fin n) :
+    (knownPathSubcomplex i j k).preimage
+        (thickPathNerveCubeIsoExplicit
+          (le_trans (le_of_lt hik) (le_of_lt hkj)) n e).inv =
+      liftedIntervalCubeCorner n (coherentCornerSign k hik hkj n e) := by
+  ext U x
+  obtain ⟨U⟩ := U
+  obtain ⟨r⟩ := U
+  exact mem_knownPathSubcomplex_preimage_explicit_iff_corner
+    i j k hik hkj n e r x
+
 /-- Simplicial closure of a degreewise collection of path-nerve simplices, together with the
 known horn subcomplex. -/
 def generatedPathStage (i j k : J)
