@@ -1389,14 +1389,19 @@ noncomputable def internalHomNerveHomotopyEquivalencePrecompIso
 /-- A mapping-quasicategory localization induces, for every ordinary target category,
 an equivalence from functors out of its homotopy category to the ordinary full
 subcategory selected by marked-edge inversion. -/
-noncomputable def mappingLocalizationOrdinaryEquivalence
+noncomputable def mappingLocalizationOrdinaryExplicitEquivalence
     {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
     (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
     ((ihom (SSet.hoFunctor.obj L.obj)).obj E) ≌
-      (PulledRelativeFunctorProperty W E).FullSubcategory := by
-  exact (internalHomNerveHomotopyEquivalence L.obj E).symm |>.trans
-    (mappingLocalizationComparisonEquivalence h E) |>.trans
-      (relativeInternalHomNerveHomotopyEquivalence W E)
+      (PulledRelativeFunctorProperty W E).FullSubcategory :=
+  ((mappingLocalizationOrdinarySourceFactor E ⋙
+    mappingLocalizationOrdinaryComparisonFactor h E) ⋙
+      mappingLocalizationOrdinaryRelativeFactor W E).asEquivalence
+
+noncomputable abbrev mappingLocalizationOrdinaryEquivalence
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :=
+  mappingLocalizationOrdinaryExplicitEquivalence h E
 
 /-- Ordinary truncation of a mapping-quasicategory localization has the standard
 fixed-target universal property for the marked homotopy morphism property. -/
