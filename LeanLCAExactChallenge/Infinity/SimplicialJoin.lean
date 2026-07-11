@@ -1018,6 +1018,13 @@ lemma subcomplex_range_eq_of_precomp_iso {X Y Z : SSet.{u}}
       (SSet.Subcomplex.range_comp e f).symm
     _ = SSet.Subcomplex.range g := congrArg SSet.Subcomplex.range h
 
+lemma isColimit_range_desc_component {J : Type*} [Category J]
+    {D : J ⥤ SSet.{u}} {c : Cocone D} (hc : IsColimit c)
+    (t : Cocone D) (j : J) :
+    SSet.Subcomplex.range (c.ι.app j ≫ hc.desc t) =
+      SSet.Subcomplex.range (t.ι.app j) := by
+  exact congrArg SSet.Subcomplex.range (hc.fac t j)
+
 /-! ## The paired simplices in the representable join-horn filtration -/
 
 /-- Vertices in the first block selected by `T`. -/
