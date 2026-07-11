@@ -96,6 +96,38 @@ theorem mem_relativeInternalHom_iff_vertices_invert
             (((ihom X).obj Q).map (SimplexCategory.const ⦋0⦌ U.unop i).op s)) :=
   mem_fullSubcomplexOnVertices_iff _ _ _
 
+/-- The explicit family condition on a simplex of the mapping object from the ordinary
+nerve: at every vertex, every specified weak arrow is sent to an equivalence edge. -/
+def WeakArrowFamilyEquivalenceCondition (Q : SSet.{max u v})
+    {U : SimplexCategoryᵒᵖ}
+    (s : ((ihom (CategoryTheory.nerve C)).obj Q).obj U) : Prop :=
+  ∀ i : Fin (U.unop.len + 1), ∀ a : WeakEquivalenceArrow C R,
+    EdgeIsEquivalence
+      ((SSet.Edge.mk' (CategoryTheory.nerve.edgeMk a.hom).edge).map
+        (internalHomVertexMap (CategoryTheory.nerve C) Q
+          (((ihom (CategoryTheory.nerve C)).obj Q).map
+            (SimplexCategory.const ⦋0⦌ U.unop i).op s)))
+
+/-- The relative mapping subcomplex condition is exactly the conjunction of the
+weak-arrow-by-weak-arrow equivalence conditions in every vertex. -/
+theorem mem_relativeInternalHom_iff_weakArrowFamily
+    (Q : SSet.{max u v}) {U : SimplexCategoryᵒᵖ}
+    (s : ((ihom (CategoryTheory.nerve C)).obj Q).obj U) :
+    s ∈ ((relativeInternalHom (relativeNerveEdgeMarking R) Q :
+      ((ihom (CategoryTheory.nerve C)).obj Q).Subcomplex).obj U) ↔
+      WeakArrowFamilyEquivalenceCondition R Q s := by
+  change (∀ i : Fin (U.unop.len + 1),
+    InvertsMarkedEdges (relativeNerveEdgeMarking R)
+      (internalHomVertexMap (CategoryTheory.nerve C) Q
+        (((ihom (CategoryTheory.nerve C)).obj Q).map
+          (SimplexCategory.const ⦋0⦌ U.unop i).op s))) ↔ _
+  constructor
+  · intro h i a
+    exact h i _ ⟨a.source, a.target, a.hom, a.weak, rfl⟩
+  · intro h i e he
+    obtain ⟨X, Y, f, hf, rfl⟩ := he
+    exact h i ⟨X, Y, f, hf⟩
+
 /-- Evaluation of maps out of the coproduct of free equivalences at one weak arrow. -/
 def weakEquivalenceMappingComponent (Q : SSet.{max u v})
     (a : WeakEquivalenceArrow C R) :
