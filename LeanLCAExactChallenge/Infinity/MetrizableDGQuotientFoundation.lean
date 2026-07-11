@@ -191,6 +191,28 @@ def tensorModuleList : List (ModuleCat.{0} ℤ) → ModuleCat.{0} ℤ
   | [] => 𝟙_ (ModuleCat.{0} ℤ)
   | M :: Ms => M ⊗ tensorModuleList Ms
 
+/-- Pointwise morphisms between two lists of tensor factors. -/
+inductive TensorMapData :
+    (source target : List (ModuleCat.{0} ℤ)) → Type 1
+  | nil : TensorMapData [] []
+  | cons {M N : ModuleCat.{0} ℤ} {Ms Ns : List (ModuleCat.{0} ℤ)}
+      (f : ModuleCat.Hom M N) (fs : TensorMapData Ms Ns) :
+      TensorMapData (M :: Ms) (N :: Ns)
+
+/-- Tensor a pointwise list of module morphisms. -/
+def TensorMapData.tensorMap : {source target : List (ModuleCat.{0} ℤ)} →
+    TensorMapData source target →
+      ModuleCat.Hom (tensorModuleList source) (tensorModuleList target)
+  | [], [], .nil =>
+      (𝟙 (tensorModuleList []) :
+        ModuleCat.Hom (tensorModuleList []) (tensorModuleList []))
+  | M :: Ms, N :: Ns, @TensorMapData.cons _ _ _ _ f fs =>
+      MonoidalCategoryStruct.tensorHom
+        (C := ModuleCat.{0} ℤ)
+        (X₁ := M) (Y₁ := N)
+        (X₂ := tensorModuleList Ms) (Y₂ := tensorModuleList Ns)
+        f fs.tensorMap
+
 /-- The tensor-product module belonging to one word and one compatible degree profile. -/
 def summandModule {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) : ModuleCat.{0} ℤ :=
