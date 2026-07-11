@@ -290,4 +290,5 @@ lemma leftConeHornCornerMap_inr (n : ℕ) (i : Fin (n + 1)) :
       simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[n] := by
   apply pushout.inr_desc
 
+
 end LeanLCAExactChallenge.Infinity
