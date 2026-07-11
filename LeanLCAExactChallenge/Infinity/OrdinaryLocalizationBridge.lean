@@ -428,6 +428,34 @@ theorem pulledRelativeFunctorProperty_iff
             (CategoryTheory.nerveEquiv.symm F))) :=
   Iff.rfl
 
+/-- The relative mapping simplicial set into a categorical nerve is the nerve of the full
+subcategory cut out by the transported marking-inversion predicate. -/
+noncomputable def relativeInternalHomNerveIso
+    {L : SSet.{u}} (W : EdgeMarking L) (E : Cat.{u, u}) :
+    CategoryTheory.nerve (PulledRelativeFunctorProperty W E).FullSubcategory ≅
+      (relativeInternalHom W (nerveFunctor.obj E) : SSet.{u}) := by
+  let P : ((ihom L).obj (nerveFunctor.obj E)).obj (Opposite.op ⦋0⦌) → Prop :=
+    fun v ↦ InvertsMarkedEdges W
+      (internalHomVertexMap L (nerveFunctor.obj E) v)
+  have hsub :
+      fullSubcomplexOnVertices
+        (nerveFunctor.obj ((ihom (SSet.hoFunctor.obj L)).obj E))
+        (fun v ↦ PulledRelativeFunctorProperty W E
+          (CategoryTheory.nerveEquiv v)) =
+      fullSubcomplexOnVertices
+        (nerveFunctor.obj ((ihom (SSet.hoFunctor.obj L)).obj E))
+        (fun v ↦ P ((internalHomNerveIso L E).hom.app
+          (Opposite.op ⦋0⦌) v)) := by
+    ext U s
+    simp only [mem_fullSubcomplexOnVertices_iff]
+    constructor <;> intro h i
+    · simpa [PulledRelativeFunctorProperty, P] using h i
+    · simpa [PulledRelativeFunctorProperty, P] using h i
+  have hsource := congrArg SSet.Subcomplex.toSSet hsub
+  exact nerveFullSubcategoryIsoFullSubcomplex (PulledRelativeFunctorProperty W E) ≪≫
+    eqToIso hsource ≪≫
+    fullSubcomplexOnVerticesIsoOfIso (internalHomNerveIso L E) P
+
 /-- For an arbitrary simplicial set `L`, mapping into a categorical nerve has homotopy
 category the ordinary functor category out of `ho L`. -/
 noncomputable def internalHomNerveHomotopyEquivalence (L : SSet.{u}) (E : Cat.{u, u}) :
