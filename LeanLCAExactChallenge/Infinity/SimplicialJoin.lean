@@ -1262,6 +1262,64 @@ lemma joinSigmaOneHornRange_le_face (m n : ℕ)
         (joinSigmaOneFaceIso m n T).hom)
     (SSet.stdSimplex.face (joinSigmaOneVertices m n T)).ι
 
+lemma joinSigmaOneFaceIso_rightCoface_range (m n : ℕ)
+    (T : Finset (Fin (m + 1))) (j : Fin (n + 2)) :
+    SSet.Subcomplex.range
+        (SSet.stdSimplex.map
+            (SimplexCategory.δ (joinSigmaOneDistinguishedIndex (n + 1) T j)) ≫
+          (joinSigmaOneFaceIso m (n + 1) T).hom ≫
+          (SSet.stdSimplex.face (joinSigmaOneVertices m (n + 1) T)).ι) =
+      SSet.stdSimplex.face
+        ((joinSigmaOneVertices m (n + 1) T).erase
+          (joinShiftedVertex m (n + 1) j)) := by
+  rw [SSet.Subcomplex.range_eq_ofSimplex]
+  rw [SSet.yonedaEquiv_comp, SSet.yonedaEquiv_map]
+  symm
+  rw [SSet.stdSimplex.face_eq_ofSimplex
+    ((joinSigmaOneVertices m (n + 1) T).erase
+      (joinShiftedVertex m (n + 1) j)) (T.card + n)
+    (((joinSigmaOneVertices m (n + 1) T).erase
+      (joinShiftedVertex m (n + 1) j)).orderIsoOfFin (by
+        rw [Finset.card_erase_of_mem]
+        · rw [card_joinSigmaOneVertices]
+          omega
+        · simp [joinSigmaOneVertices, joinSecondVertices, joinShiftedVertex]))]
+  congr 1
+  apply SSet.stdSimplex.objEquiv.injective
+  apply SimplexCategory.Hom.ext
+  ext k
+  simp [joinSigmaOneFaceIso, SSet.stdSimplex.isoOfRepresentableBy,
+    SSet.stdSimplex.faceRepresentableBy]
+  let idx := joinSigmaOneDistinguishedIndex (n + 1) T j
+  let q : Fin (T.card + n + 1) ↪o Fin (m + (n + 1) + 2) :=
+    (Fin.succAboveOrderEmb idx).trans
+      ((joinSigmaOneVertices m (n + 1) T).orderEmbOfFin (by
+        rw [card_joinSigmaOneVertices]
+        omega))
+  have hq : q =
+      ((joinSigmaOneVertices m (n + 1) T).erase
+        (joinShiftedVertex m (n + 1) j)).orderEmbOfFin (by
+          rw [Finset.card_erase_of_mem]
+          · rw [card_joinSigmaOneVertices]
+            omega
+          · simp [joinSigmaOneVertices, joinSecondVertices, joinShiftedVertex]) := by
+    apply Finset.orderEmbOfFin_unique'
+    intro a
+    apply Finset.mem_erase.mpr
+    constructor
+    · intro ha
+      have hfull := joinSigmaOne_nth_second m (n + 1) T j
+      have heq : Fin.succAbove idx a = idx :=
+        ((joinSigmaOneVertices m (n + 1) T).orderEmbOfFin (by
+          rw [card_joinSigmaOneVertices]
+          omega)).injective (ha.trans hfull.symm)
+      exact Fin.succAbove_ne idx a heq
+    · exact Finset.orderEmbOfFin_mem _ (by
+        rw [card_joinSigmaOneVertices]
+        omega) _
+  have hk := congrArg (fun e ↦ e k) hq.symm
+  exact congrArg Fin.val hk
+
 /-- Join of a representable with the specified horn, as a map to the ambient
 representable join simplex. -/
 def representableJoinHornMap (m n : ℕ) (i : Fin (n + 1)) :
