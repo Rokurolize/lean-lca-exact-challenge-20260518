@@ -148,6 +148,76 @@ theorem rightCone_rightInclusion_naturality
   rw [← Category.assoc, hpref]
   exact Category.assoc _ _ _
 
+theorem rightCone_rightInclusion_stdSimplex (n : ℕ) :
+    simplicialJoinRightInclusion (Δ[0] : SSet.{u}) (Δ[n] : SSet.{u}) ≫
+        (simplicialJoinStdSimplexIsoNat 0 n).hom =
+      SSet.stdSimplex.map (standardJoinRightOperator 0 n) := by
+  let F := emptyAugmentation.{u}.obj (Δ[0] : SSet.{u})
+  let G := emptyAugmentation.{u}.obj (Δ[n] : SSet.{u})
+  let h := augmentedDayConvolution F G
+  let h' : CategoryTheory.MonoidalCategory.DayConvolution F G :=
+    standardSimplexDayConvolution.{u}
+      (SimplexCategory.mk 0) (SimplexCategory.mk n)
+  letI : Unique (F.obj (Opposite.op WithInitial.star)) :=
+    (Limits.Types.isTerminalEquivUnique _) (emptyAugmentationStarIsTerminal (Δ[0] : SSet.{u}))
+  let p : AugmentedSimplexCategoryᵒᵖ × AugmentedSimplexCategoryᵒᵖ :=
+    (Opposite.op WithInitial.star,
+    AugmentedSimplexCategory.inclusion.op.obj (Opposite.op (SimplexCategory.mk n)))
+  let y : G.obj (AugmentedSimplexCategory.inclusion.op.obj
+      (Opposite.op (SimplexCategory.mk n))) :=
+    SSet.yonedaEquiv (𝟙 (Δ[n] : SSet.{u}))
+  let input : (F ⊠ G).obj (Opposite.op WithInitial.star,
+      AugmentedSimplexCategory.inclusion.op.obj
+        (Opposite.op (SimplexCategory.mk n))) := by
+    change F.obj (Opposite.op WithInitial.star) ×
+      G.obj (AugmentedSimplexCategory.inclusion.op.obj
+        (Opposite.op (SimplexCategory.mk n)))
+    exact (default, y)
+  let chosenValue := by
+    exact ConcreteCategory.hom
+      ((@CategoryTheory.MonoidalCategory.DayConvolution.unit
+        _ _ _ _ _ _ F G h).app p) input
+  let stdValue := by
+    exact ConcreteCategory.hom
+      ((@CategoryTheory.MonoidalCategory.DayConvolution.unit
+        _ _ _ _ _ _ F G h').app p) input
+  let isoValue := ConcreteCategory.hom ((h.uniqueUpToIso h').hom.app
+    ((CategoryTheory.MonoidalCategory.tensor AugmentedSimplexCategoryᵒᵖ).obj p)) chosenValue
+  have hvUnique : isoValue = stdValue := by
+    let hu := CategoryTheory.MonoidalCategory.DayConvolution.unit_uniqueUpToIso_hom h h'
+    have hu0 := congrArg (fun τ ↦ τ.app p) hu
+    have hu1 := ConcreteCategory.congr_hom hu0 input
+    exact hu1
+  have hvStd : stdValue =
+      SSet.yonedaEquiv
+        (SSet.stdSimplex.map (standardJoinRightOperator 0 n)) := by
+    dsimp [stdValue, h', standardSimplexDayConvolution, dayConvolutionOfInputIsos,
+      input, y, F, G]
+    rw [SSet.yonedaEquiv_map]
+    apply ULift.ext
+    change ((default : ULift.{u} (WithInitial.star ⟶
+      AugmentedSimplexCategory.inclusion.obj (SimplexCategory.mk 0))).down ⊗ₘ
+        AugmentedSimplexCategory.inclusion.map (𝟙 (SimplexCategory.mk n))) = _
+    have hrhs : (SSet.stdSimplex.objEquiv.{u}.symm
+        (standardJoinRightOperator 0 n)).down = standardJoinRightOperator 0 n := rfl
+    rw [hrhs]
+    apply SimplexCategory.Hom.ext
+    ext j
+    have ht : (default : ULift.{u} (WithInitial.star ⟶
+        AugmentedSimplexCategory.inclusion.obj (SimplexCategory.mk 0))).down ⊗ₘ
+          AugmentedSimplexCategory.inclusion.map (𝟙 (SimplexCategory.mk n)) =
+        AugmentedSimplexCategory.inr' (SimplexCategory.mk 0)
+          (SimplexCategory.mk n) := by rfl
+    rw [ht, AugmentedSimplexCategory.inr'_eval]
+    rfl
+  apply SSet.yonedaEquiv.injective
+  dsimp [simplicialJoinRightInclusion, simplicialJoinStdSimplexIsoNat,
+    simplicialJoinStdSimplexIso, simplicialJoinStdSimplexIsoRaw]
+  rw [SSet.yonedaEquiv_comp]
+  change isoValue = SSet.yonedaEquiv
+    (SSet.stdSimplex.map (standardJoinRightOperator 0 n))
+  exact hvUnique.trans hvStd
+
 /-- The range of a map out of a pushout is the union of the ranges of its two legs. -/
 lemma range_pushout_desc_eq_sup
     {A B C D : SSet.{u}} (f : A ⟶ B) (g : A ⟶ C)
