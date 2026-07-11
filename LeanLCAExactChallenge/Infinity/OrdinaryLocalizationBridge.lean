@@ -1294,65 +1294,6 @@ instance mappingLocalizationOrdinaryWhiskeringLeftFunctor_isEquivalence
   rw [← mappingLocalizationFunctorsInvertingEquivalence_functor_eq h E]
   infer_instance
 
-set_option maxHeartbeats 1600000 in
-set_option backward.isDefEq.respectTransparency false in
-/-- The homotopy-category functor underlying a mapping-quasicategory localization is an
-ordinary localization at the morphisms represented by marked edges. -/
-theorem mappingQuasicategoryLocalization_hoFunctor_isLocalization
-    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
-    (h : MappingQuasicategoryLocalizationProperty W ell) :
-    (SSet.hoFunctor.map ell.hom).toFunctor.IsLocalization
-      (markedHomotopyMorphismProperty W) := by
-  let M := markedHomotopyMorphismProperty W
-  let F := (SSet.hoFunctor.map ell.hom).toFunctor
-  have hF : M.IsInvertedBy F :=
-    markedHomotopyMorphismProperty_isInvertedBy_hoFunctor_map W ell.hom h.inverts
-  let H : M.Localization ⟶ SSet.hoFunctor.obj L.obj :=
-    Localization.Construction.lift F hF
-  let qObj : M.FunctorsInverting M.Localization :=
-    ⟨M.Q, M.Q_inverts⟩
-  let KQ := mappingLocalizationFunctorsInvertingEquivalence h (Cat.of M.Localization)
-  let G : SSet.hoFunctor.obj L.obj ⟶ M.Localization := KQ.inverse.obj qObj
-  have hKQ :=
-    mappingLocalizationFunctorsInvertingEquivalence_functor_comp_inclusion
-      h (Cat.of M.Localization)
-  let eLG₀ :
-      ((KQ.functor ⋙ ObjectProperty.ι
-        (fun T : SSet.hoFunctor.obj A.obj ⟶ M.Localization ↦
-          M.IsInvertedBy T)).obj G) ≅ M.Q :=
-    (ObjectProperty.ι
-      (fun T : SSet.hoFunctor.obj A.obj ⟶ M.Localization ↦
-        M.IsInvertedBy T)).mapIso (KQ.counitIso.app qObj)
-  let eLG : F ⋙ G ≅ M.Q :=
-    (eqToIso (CategoryTheory.Functor.congr_obj hKQ G)).symm ≪≋ eLG₀
-  have hfac : M.Q ⋙ H = F := Localization.Construction.fac _ _
-  let eUnitImage : M.Q ⋙ (𝟙 M.Localization) ≅ M.Q ⋙ (H ⋙ G) :=
-    Functor.rightUnitor M.Q ≪≋ eLG.symm ≪≋
-      isoWhiskerRight (eqToIso hfac).symm G ≪≋ Functor.associator M.Q H G
-  let qPre := (Functor.whiskeringLeft M.Localization M.Localization M.Localization).obj M.Q
-  have hqPre : qPre.FullyFaithful :=
-    Localization.fullyFaithfulWhiskeringLeft M.Q M M.Localization
-  let η : 𝟙 M.Localization ≅ H ⋙ G := hqPre.preimageIso eUnitImage
-  let KD := mappingLocalizationFunctorsInvertingEquivalence h
-    (SSet.hoFunctor.obj L.obj)
-  have hKD := mappingLocalizationFunctorsInvertingEquivalence_functor_comp_inclusion
-    h (SSet.hoFunctor.obj L.obj)
-  let inclD := ObjectProperty.ι
-    (fun T : SSet.hoFunctor.obj A.obj ⟶ SSet.hoFunctor.obj L.obj ↦
-      M.IsInvertedBy T)
-  let fPre := (Functor.whiskeringLeft (SSet.hoFunctor.obj A.obj)
-    (SSet.hoFunctor.obj L.obj) (SSet.hoFunctor.obj L.obj)).obj F
-  have hfPre : fPre.FullyFaithful := by
-    rw [← hKD]
-    exact KD.fullyFaithfulFunctor.comp inclD.fullyFaithful
-  let eCounitImage : F ⋙ (G ⋙ H) ≅ F ⋙ (𝟙 (SSet.hoFunctor.obj L.obj)) :=
-    (Functor.associator F G H).symm ≪≋ isoWhiskerRight eLG H ≪≋
-      eqToIso hfac ≪≋ (Functor.rightUnitor F).symm
-  let ε : G ⋙ H ≅ 𝟙 (SSet.hoFunctor.obj L.obj) :=
-    hfPre.preimageIso eCounitImage
-  have hH : H.IsEquivalence := Functor.IsEquivalence.mk' G η ε
-  exact ⟨hF, hH⟩
-
 /-- Maps between nerves are exactly ordinary functors.  This is the fully-faithful
 starting point for comparing the mapping localization with its ordinary truncation. -/
 noncomputable def nerveFunctorCategoryEquiv (C D : Type u)
