@@ -90,6 +90,21 @@ theorem dgMappingConeDescEquiv_symm_fst (T : ComplexCategory)
         ((boundedCochainComplex MetrizableLCA.{0}).ι.map f) ≫ g :=
   rfl
 
+/-- The nullhomotopy produced by the inverse maps-out equivalence is the
+canonical homotopy-cofiber contraction, postcomposed with the given map. -/
+theorem dgMappingConeDescEquiv_symm_snd (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L)
+    (g : (dgMappingConeObject f).obj ⟶ T.obj) :
+    ((dgMappingConeDescEquiv T f).symm g).2 =
+      Homotopy.trans (Homotopy.ofEq (by
+        rw [dgMappingConeDescEquiv_symm_fst]
+        rfl))
+        (((HomologicalComplex.homotopyCofiber.inrCompHomotopy
+          ((boundedCochainComplex MetrizableLCA.{0}).ι.map f)
+          (fun j ↦ ⟨j - 1, by simp⟩)).compRight g).trans
+            (Homotopy.ofEq (by simp))) :=
+  rfl
+
 /-- The degree-zero inclusion of the target into the mapping cone, retained in the bounded
 dg carrier. -/
 def dgMappingConeInr {K L : ComplexCategory} (f : K ⟶ L) :
