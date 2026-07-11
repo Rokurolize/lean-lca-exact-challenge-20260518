@@ -328,6 +328,20 @@ def internalDifferentialFromSummand {X Y : ComplexCategory}
       (quotientGradedModule X Y (n + 1)) :=
   ∑ i, d.internalSign i • internalDifferentialLargeMap d i
 
+/-- The internal-Hom part of the Drinfeld differential on the whole coproduct carrier. -/
+def quotientInternalDifferential (X Y : ComplexCategory) (n : ℤ) :
+    Quiver.Hom (quotientGradedModule X Y n) (quotientGradedModule X Y (n + 1)) :=
+  Limits.Sigma.desc fun s : GradedSummandIndex X Y n ↦
+    internalDifferentialFromSummand s.2
+
+@[reassoc (attr := simp)]
+theorem quotientInternalDifferential_inclusion (X Y : ComplexCategory) (n : ℤ)
+    (s : GradedSummandIndex X Y n) :
+    Limits.Sigma.ι (fun t : GradedSummandIndex X Y n ↦ largeSummandModule t) s ≫
+        quotientInternalDifferential X Y n =
+      internalDifferentialFromSummand s.2 :=
+  Limits.Sigma.ι_desc _ s
+
 @[simp]
 theorem singleton_object (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory)
     (i : Fin (singleton X Y A).length) : (singleton X Y A).object i = A.obj :=
