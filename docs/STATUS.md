@@ -23,7 +23,9 @@ The genuine stable ∞-category (quasicategory) enhancement is **in progress, no
 Built so far: a coherent Dold-Kan simplicial category and its homotopy-coherent nerve, an
 ordinary-nerve equivalence-forcing quasicategory that inverts every corrected weak
 equivalence, and the full mapping-quasicategory localization specification together with
-the canonical ordinary comparison functor out of the corrected localization.
+the canonical ordinary comparison functor out of the corrected localization. The generic
+bridge from a quasicategory map having the right lifting property against every simplicial
+monomorphism to a bicategorical equivalence is also inhabited.
 
 Still missing, and required before objective 4 can be called complete:
 
@@ -43,7 +45,7 @@ Condensed from prior `NEXT_STEPS.md`:
 1. Continue the stable-∞ construction from the `LeanLCAExactChallenge/Infinity/` modules:
    prove the ∞-localization universal property, compare the ordinary-nerve carrier with the
    coherent dg carrier, prove the localized quasicategory stable, and identify its homotopy
-   category with the corrected ordinary Verdier quotient. Pinned mathlib v4.30 has no
+   category with the corrected ordinary Verdier quotient. Pinned mathlib v4.31 has no
    ready-made quasicategorical or simplicial localization API — do not present either
    current carrier as the finished derived ∞-category.
 2. If compatibility with the direct chain localization is still required, prove the
@@ -55,9 +57,8 @@ Condensed from prior `NEXT_STEPS.md`:
    chain-level calculus and ordinary finite limits/colimits remain blocked — see
    `docs/research/BLOCKER_CORRECTED_DBOUNDED_LITERAL_FIELDS.md` and do not fill the gap with
    assumptions.
-4. Any migration to a newer mathlib pin must happen in an isolated sibling worktree, must
-   update `lean-toolchain` and Lake dependencies coherently, and must not reuse `v4.30.0`
-   compiled artifacts as evidence.
+4. Any future migration to a newer mathlib pin must update `lean-toolchain` and Lake
+   dependencies coherently and must not reuse older compiled artifacts as evidence.
 5. Migrate legacy `exactAcyclic` lemmas theorem-by-theorem only when the corresponding
    corrected theorem is actually needed.
 6. Keep the legacy degreewise `boundedExactWeakEquivalence` route labeled compatibility-only.
@@ -79,7 +80,7 @@ lake env lean -j1 <path/to/File.lean>
 If `lake env` is unavailable offline, fall back to the direct `LEAN_PATH` incantation:
 
 ```bash
-export PATH="$HOME/.elan/toolchains/leanprover--lean4---v4.30.0/bin:$PATH"
+export PATH="$HOME/.elan/toolchains/leanprover--lean4---v4.31.0/bin:$PATH"
 LIBS=$(find -L .lake -path '*/build/lib/lean' -type d | sort | paste -sd: -)
 LDLIBS=$(find -L .lake -path '*/build/lib' -type d | sort | paste -sd: -)
 export LEAN_PATH="$LIBS:$PWD"

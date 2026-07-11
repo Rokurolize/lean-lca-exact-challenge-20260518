@@ -13,10 +13,9 @@ It also proves that any simplicial map with the right lifting property against e
 monomorphism has a strict section and a fiberwise contraction parametrized by the
 free-living equivalence. The resulting edge in the self-internal-hom is an equivalence.
 
-No theorem here claims that such a map is a bicategorical equivalence. That further step
-would require identifying the endpoints of the internal-hom edge with the identity and the
-section-retraction composite, converting it to an invertible Cat-enriched `2`-cell, and
-constructing the adjoint-equivalence coherence data.
+For maps between quasicategories, the equivalence edge in the self-internal-hom determines
+an invertible `2`-cell in mathlib's strict bicategory of quasicategories. Together with the
+strict section, this upgrades the deformation retraction to an adjoint equivalence.
 -/
 
 set_option autoImplicit false
@@ -369,6 +368,159 @@ theorem contractionEquivalenceEdge_isEquivalence
     (hp : (monomorphisms SSet.{u}).rlp p) :
     EdgeIsEquivalence (contractionEquivalenceEdge p hp) :=
   (edgeIsEquivalence_nerve_of_isIso equivalenceIntervalForward).map _
+
+/-- Naturality of the inverse vertex-to-unit-map equivalence. -/
+lemma unitHomEquiv_symm_natural {A B : SSet.{u}}
+    (F : A ⟶ B) (a : A _⦋0⦌) :
+    (SSet.unitHomEquiv B).symm (F.app _ a) =
+      (SSet.unitHomEquiv A).symm a ≫ F := by
+  ext U x
+  obtain ⟨⟩ := x
+  dsimp [SSet.unitHomEquiv]
+  rw [← NatTrans.naturality_apply]
+
+/-- The zero endpoint of the contraction represents the identity map. -/
+lemma contractionVertexZero_map
+    {X Y : SSet.{u}} (p : X ⟶ Y)
+    (hp : (monomorphisms SSet.{u}).rlp p) :
+    internalHomVertexMap X X
+      ((MonoidalClosed.curry (contractionOfMonoRLP p hp)).app (op ⦋0⦌)
+        (CategoryTheory.nerveEquiv.symm equivalenceIntervalZero)) = 𝟙 X := by
+  rw [internalHomVertexMap, unitHomEquiv_symm_natural]
+  simp only [MonoidalClosed.uncurry', MonoidalClosed.uncurry_natural_left,
+    MonoidalClosed.uncurry_curry]
+  let d₀ : EquivalenceEndpoints.{u} _⦋0⦌ :=
+    CategoryTheory.nerveEquiv.symm EquivalenceEndpoint.zero
+  have hpoint :
+      (SSet.unitHomEquiv (CategoryTheory.nerve EquivalenceInterval.{u})).symm
+          (CategoryTheory.nerveEquiv.symm equivalenceIntervalZero) =
+        (SSet.unitHomEquiv EquivalenceEndpoints.{u}).symm d₀ ≫
+          equivalenceEndpointsInclusion.{u} := by
+    rw [← unitHomEquiv_symm_natural equivalenceEndpointsInclusion.{u} d₀]
+    rfl
+  rw [hpoint, whiskerLeft_comp_assoc,
+    endpointsInclusion_comp_contractionOfMonoRLP]
+  ext U x
+  rfl
+
+/-- The one endpoint of the contraction represents the section-retraction composite. -/
+lemma contractionVertexOne_map
+    {X Y : SSet.{u}} (p : X ⟶ Y)
+    (hp : (monomorphisms SSet.{u}).rlp p) :
+    internalHomVertexMap X X
+      ((MonoidalClosed.curry (contractionOfMonoRLP p hp)).app (op ⦋0⦌)
+        (CategoryTheory.nerveEquiv.symm equivalenceIntervalOne)) =
+      p ≫ sectionOfMonoRLP p hp := by
+  rw [internalHomVertexMap, unitHomEquiv_symm_natural]
+  simp only [MonoidalClosed.uncurry', MonoidalClosed.uncurry_natural_left,
+    MonoidalClosed.uncurry_curry]
+  let d₁ : EquivalenceEndpoints.{u} _⦋0⦌ :=
+    CategoryTheory.nerveEquiv.symm EquivalenceEndpoint.one
+  have hpoint :
+      (SSet.unitHomEquiv (CategoryTheory.nerve EquivalenceInterval.{u})).symm
+          (CategoryTheory.nerveEquiv.symm equivalenceIntervalOne) =
+        (SSet.unitHomEquiv EquivalenceEndpoints.{u}).symm d₁ ≫
+          equivalenceEndpointsInclusion.{u} := by
+    rw [← unitHomEquiv_symm_natural equivalenceEndpointsInclusion.{u} d₁]
+    rfl
+  rw [hpoint, whiskerLeft_comp_assoc,
+    endpointsInclusion_comp_contractionOfMonoRLP]
+  ext U x
+  rfl
+
+/-- Exact identification of the zero endpoint as the vertex of the identity map. -/
+lemma contractionVertexZero
+    {X Y : SSet.{u}} (p : X ⟶ Y)
+    (hp : (monomorphisms SSet.{u}).rlp p) :
+    (MonoidalClosed.curry (contractionOfMonoRLP p hp)).app (op ⦋0⦌)
+        (CategoryTheory.nerveEquiv.symm equivalenceIntervalZero) =
+      SSet.unitHomEquiv ((ihom X).obj X) (MonoidalClosed.curry' (𝟙 X)) := by
+  apply (SSet.unitHomEquiv ((ihom X).obj X)).symm.injective
+  rw [Equiv.symm_apply_apply]
+  apply MonoidalClosed.uncurry'_injective
+  rw [MonoidalClosed.uncurry'_curry']
+  exact contractionVertexZero_map p hp
+
+/-- Exact identification of the one endpoint as the section-retraction vertex. -/
+lemma contractionVertexOne
+    {X Y : SSet.{u}} (p : X ⟶ Y)
+    (hp : (monomorphisms SSet.{u}).rlp p) :
+    (MonoidalClosed.curry (contractionOfMonoRLP p hp)).app (op ⦋0⦌)
+        (CategoryTheory.nerveEquiv.symm equivalenceIntervalOne) =
+      SSet.unitHomEquiv ((ihom X).obj X)
+        (MonoidalClosed.curry' (p ≫ sectionOfMonoRLP p hp)) := by
+  apply (SSet.unitHomEquiv ((ihom X).obj X)).symm.injective
+  rw [Equiv.symm_apply_apply]
+  apply MonoidalClosed.uncurry'_injective
+  rw [MonoidalClosed.uncurry'_curry']
+  exact contractionVertexOne_map p hp
+
+/-- The contraction edge with endpoints expressed as actual maps in the internal hom. -/
+noncomputable def monoRLPUnitEdge {X Y : SSet.{u}} (p : X ⟶ Y)
+    (hp : (monomorphisms SSet.{u}).rlp p) :
+    SSet.Edge
+      (SSet.unitHomEquiv ((ihom X).obj X) (MonoidalClosed.curry' (𝟙 X)))
+      (SSet.unitHomEquiv ((ihom X).obj X)
+        (MonoidalClosed.curry' (p ≫ sectionOfMonoRLP p hp))) :=
+  SSet.Edge.castEndpoints (contractionVertexZero p hp).symm
+    (contractionVertexOne p hp).symm (contractionEquivalenceEdge p hp)
+
+/-- The unit edge extracted from the mono right lifting property is an equivalence edge. -/
+lemma monoRLPUnitEdge_isEquivalence {X Y : SSet.{u}} (p : X ⟶ Y)
+    (hp : (monomorphisms SSet.{u}).rlp p) :
+    EdgeIsEquivalence (monoRLPUnitEdge p hp) :=
+  (contractionEquivalenceEdge_isEquivalence p hp).castEndpoints
+    (contractionVertexZero p hp).symm (contractionVertexOne p hp).symm
+
+/-- An equivalence edge in a mapping simplicial set gives an invertible QCat `2`-cell. -/
+noncomputable def twoIsoOfInternalHomEquivalenceEdge
+    {X Y : SSet.QCat.{u}} {f g : X ⟶ Y}
+    (e : SSet.Edge
+      (SSet.unitHomEquiv ((ihom X.obj).obj Y.obj) (MonoidalClosed.curry' f.hom))
+      (SSet.unitHomEquiv ((ihom X.obj).obj Y.obj) (MonoidalClosed.curry' g.hom)))
+    (he : EdgeIsEquivalence e) :
+    @Iso (X ⟶ Y) (SSet.QCat.bicategory.homCategory X Y) f g := by
+  letI : Category (X ⟶ Y) := SSet.QCat.bicategory.homCategory X Y
+  have hi : IsIso (edgeHomotopyClass e) := he
+  letI : IsIso (edgeHomotopyClass e) := hi
+  let m := edgeHomotopyClass e
+  have hm : IsIso m := inferInstance
+  letI : IsIso m := hm
+  let mi := inv m
+  exact
+    { hom := CatEnrichedOrdinary.Hom.mk m
+      inv := CatEnrichedOrdinary.Hom.mk mi
+      hom_inv_id := by
+        apply CatEnrichedOrdinary.Hom.ext
+        exact IsIso.hom_inv_id m
+      inv_hom_id := by
+        apply CatEnrichedOrdinary.Hom.ext
+        exact IsIso.inv_hom_id m }
+
+/-- A QCat map with the right lifting property against every monomorphism is an adjoint
+equivalence. -/
+noncomputable def bicategoricalEquivalenceOfMonoRLP
+    {X Y : SSet.QCat.{u}} (p : X ⟶ Y)
+    (hp : (monomorphisms SSet.{u}).rlp p.hom) :
+    Bicategory.Equivalence X Y := by
+  let s : Y ⟶ X := ObjectProperty.homMk (sectionOfMonoRLP p.hom hp)
+  have hs : s ≫ p = 𝟙 Y := by
+    apply ObjectProperty.hom_ext SSet.Quasicategory
+    exact sectionOfMonoRLP_comp p.hom hp
+  letI : Category (X ⟶ X) := SSet.QCat.bicategory.homCategory X X
+  letI : Category (Y ⟶ Y) := SSet.QCat.bicategory.homCategory Y Y
+  let unit : (𝟙 X) ≅ p ≫ s :=
+    twoIsoOfInternalHomEquivalenceEdge
+      (monoRLPUnitEdge p.hom hp) (monoRLPUnitEdge_isEquivalence p.hom hp)
+  let counit : s ≫ p ≅ 𝟙 Y := eqToIso hs
+  exact Bicategory.Equivalence.mkOfAdjointifyCounit unit counit
+
+/-- A QCat map with the mono right lifting property is a bicategorical equivalence. -/
+theorem monoRLP_isBicategoricalEquivalence
+    {X Y : SSet.QCat.{u}} (p : X ⟶ Y)
+    (hp : (monomorphisms SSet.{u}).rlp p.hom) :
+    IsBicategoricalEquivalence p := by
+  exact ⟨bicategoricalEquivalenceOfMonoRLP p hp, rfl⟩
 
 end Infinity
 end LeanLCAExactChallenge
