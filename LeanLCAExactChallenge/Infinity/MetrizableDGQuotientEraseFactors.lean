@@ -13,6 +13,17 @@ namespace Infinity
 namespace MetrizableBoundedComplexes
 namespace DrinfeldWord
 
+theorem eraseVertexSuccAbove_internal (k : ℕ) (i : Fin (k + 1)) (q : Fin k) :
+    i.succ.castSucc.succAbove q.castSucc.succ =
+      (i.succAbove q).succ.castSucc := by
+  change (i.succ).castSucc.succAbove (q.succ).castSucc = _
+  rw [Fin.castSucc_succAbove_castSucc, Fin.succ_succAbove_succ]
+
+theorem eraseVertexSuccAbove_last (k : ℕ) (i : Fin (k + 1)) :
+    i.succ.castSucc.succAbove (Fin.last (k + 1)) = Fin.last (k + 2) := by
+  apply Fin.ext
+  simp [Fin.succAbove]
+
 def erasePosition {X Y : ComplexCategory} (w : DrinfeldWord X Y)
     (i : Fin w.length) : Fin ((eraseIntermediate w i).length + 1) :=
   Fin.cast (eraseIntermediate_length w i).symm i
