@@ -130,6 +130,14 @@ structure DegreeProfile {X Y : ComplexCategory} (w : DrinfeldWord X Y) (n : ℤ)
   arrowDegree : Fin (w.length + 1) → ℤ
   totalDegree : (∑ i, arrowDegree i) - w.length = n
 
+@[ext]
+theorem DegreeProfile.ext {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    {d e : DegreeProfile w n} (h : d.arrowDegree = e.arrowDegree) : d = e := by
+  cases d
+  cases e
+  cases h
+  rfl
+
 /-- Transport a degree profile along an equality of endpoint-compatible words. -/
 def DegreeProfile.castWord {X Y : ComplexCategory} {w v : DrinfeldWord X Y}
     {n : ℤ} (h : w = v) (d : DegreeProfile w n) : DegreeProfile v n := by
@@ -310,6 +318,20 @@ def nilDegreeProfile (X Y : ComplexCategory) (n : ℤ) :
     DegreeProfile (nil X Y) n where
   arrowDegree _ := n
   totalDegree := by simp [nil]
+
+theorem nilDegreeProfile_raise (X Y : ComplexCategory) (n : ℤ)
+    (i : Fin ((nil X Y).length + 1)) :
+    (nilDegreeProfile X Y n).raise i = nilDegreeProfile X Y (n + 1) := by
+  apply DegreeProfile.ext
+  funext j
+  have hij : j = i := by
+    apply Fin.ext
+    have hi := i.isLt
+    have hj := j.isLt
+    change i.val < 1 at hi
+    change j.val < 1 at hj
+    omega
+  simp [DegreeProfile.raise, nilDegreeProfile, hij]
 
 /-- Tensor map of an internal-differential summand before inserting the Koszul sign. -/
 def internalDifferentialTensorMap {X Y : ComplexCategory}
