@@ -707,6 +707,18 @@ theorem catEnriched_hComp_eq_eComp_map
       (eComp Cat a b c).toFunctor.map (eta, theta) := by
   rfl
 
+set_option backward.isDefEq.respectTransparency false in
+/-- In the cartesian closed structure on `Cat`, internal-Hom precomposition is the
+ordinary precomposition functor. -/
+theorem cat_monoidalClosed_pre_eq_whiskeringLeft
+    (C D E : Cat.{u, u}) (f : C ⟶ D) :
+    (MonoidalClosed.pre f).app E =
+      ((Functor.whiskeringLeft C D E).obj f.toFunctor).toCatHom := by
+  apply MonoidalClosed.uncurry_injective
+  rw [MonoidalClosed.uncurry_pre]
+  apply Cat.Hom.ext
+  rfl
+
 /-- In the self-enrichment of simplicial sets, postcomposition in the enriched Hom object is
 the ordinary internal-Hom map. -/
 theorem sset_eHomWhiskerLeft_eq_ihom_map
