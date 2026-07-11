@@ -1,4 +1,5 @@
 import Mathlib.AlgebraicTopology.SimplicialNerve
+import Mathlib.AlgebraicTopology.SimplicialSet.NerveAdjunction
 import Mathlib.AlgebraicTopology.SimplicialSet.Horn
 import Mathlib.AlgebraicTopology.SimplicialSet.Nonsingular
 import Mathlib.AlgebraicTopology.SimplicialSet.SubcomplexColimits
@@ -253,6 +254,17 @@ noncomputable def setBitvectorOrderIso (α : Type u) : Set α ≃o (α → Fin 2
 noncomputable def thickPathBitvectorOrderIso {J : Type u} [LinearOrder J]
     {i j : J} (hij : i ≤ j) : ThickPath i j ≃o (InteriorVertex i j → Fin 2) :=
   (thickPathInteriorOrderIso hij).trans (setBitvectorOrderIso (InteriorVertex i j))
+
+/-- The ordinary nerve carries a categorical binary product to the pointwise product of
+simplicial sets.  Iteration is the finite-cube decomposition. -/
+noncomputable def nerveBinaryProductIso (C D : Type u) [Category.{u} C] [Category.{u} D] :
+    CategoryTheory.Iso
+      (CategoryTheory.nerveFunctor.obj
+        (CategoryTheory.Cat.of C ⨯ CategoryTheory.Cat.of D))
+      (CategoryTheory.nerveFunctor.obj (CategoryTheory.Cat.of C) ⨯
+        CategoryTheory.nerveFunctor.obj (CategoryTheory.Cat.of D)) :=
+  asIso (CategoryTheory.Limits.prodComparison CategoryTheory.nerveFunctor
+    (CategoryTheory.Cat.of C) (CategoryTheory.Cat.of D))
 
 /-- The prefix of a path at one of its vertices. -/
 def beforePath {J : Type u} [LinearOrder J] {i j k : J} (P : ThickPath i j)
