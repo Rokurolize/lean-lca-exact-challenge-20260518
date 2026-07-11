@@ -21,6 +21,24 @@ open CategoryTheory
 
 universe u
 
+open scoped Bicategory
+
+/-- Postcomposition with the forward map of a bicategorical adjoint equivalence is an
+equivalence of ordinary hom-categories. -/
+theorem bicategoricalEquivalence_postcomp_isEquivalence
+    {X Y : SSet.QCat.{u}} (e : Bicategory.Equivalence X Y) (A : SSet.QCat.{u}) :
+    (Bicategory.postcomp A e.hom).IsEquivalence := by
+  let G := Bicategory.postcomp A e.inv
+  let η :=
+    (Bicategory.rightUnitorNatIso A X).symm ≪≫
+      (Bicategory.postcomposing A X X).mapIso e.unit ≪≫
+        (Bicategory.associatorNatIsoLeft A e.hom e.inv).symm
+  let ε :=
+    Bicategory.associatorNatIsoLeft A e.inv e.hom ≪≫
+      (Bicategory.postcomposing A Y Y).mapIso e.counit ≪≫
+        Bicategory.rightUnitorNatIso A Y
+  exact Functor.IsEquivalence.mk' G η ε
+
 /-- Maps between nerves are exactly ordinary functors.  This is the fully-faithful
 starting point for comparing the mapping localization with its ordinary truncation. -/
 noncomputable def nerveFunctorCategoryEquiv (C D : Type u)
