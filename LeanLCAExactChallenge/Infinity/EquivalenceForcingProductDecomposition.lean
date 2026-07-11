@@ -286,6 +286,74 @@ theorem weakArrowEvaluationToEquivalenceEdges_π_comp_inclusion
   rw [weakArrowEvaluationToEquivalenceEdges, ← Category.assoc, Limits.Pi.lift_π]
   exact SSet.Subcomplex.lift_ι _ _
 
+/-- Product of the inclusions of the equivalence-edge subcomplexes. -/
+noncomputable def equivalenceEdgeFamilyInclusion (Q : SSet.{max u v}) :
+    (∏ᶜ fun _ : WeakEquivalenceArrow C R ↦
+      (equivalenceEdgeInternalHom Q : SSet.{max u v})) ⟶
+    (∏ᶜ fun _ : WeakEquivalenceArrow C R ↦
+      (ihom (Δ[1] : SSet.{max u v})).obj Q) :=
+  Limits.Pi.map fun _ ↦ (equivalenceEdgeInternalHom Q).ι
+
+/-- The relative internal hom is precisely the inverse image of the product of
+equivalence-edge subcomplexes under simultaneous weak-arrow evaluation. -/
+theorem weakArrowEvaluation_isPullback (Q : SSet.{max u v}) :
+    IsPullback
+      (weakArrowEvaluationToEquivalenceEdges R Q)
+      (relativeInternalHom (relativeNerveEdgeMarking R) Q).ι
+      (equivalenceEdgeFamilyInclusion R Q)
+      (weakArrowEvaluationFamily R Q) := by
+  have hcomm : weakArrowEvaluationToEquivalenceEdges R Q ≫
+        equivalenceEdgeFamilyInclusion R Q =
+      (relativeInternalHom (relativeNerveEdgeMarking R) Q).ι ≫
+        weakArrowEvaluationFamily R Q := by
+    apply Limits.Pi.hom_ext
+    intro a
+    rw [Category.assoc, equivalenceEdgeFamilyInclusion, Limits.Pi.map_π,
+      weakArrowEvaluationToEquivalenceEdges_π_comp_inclusion,
+      Category.assoc, weakArrowEvaluationFamily_π]
+  refine ⟨⟨hcomm⟩, ⟨PullbackCone.IsLimit.mk hcomm ?_ ?_ ?_ ?_⟩⟩
+  · intro s
+    exact SSet.Subcomplex.lift s.snd (by
+      rintro U _ ⟨x, rfl⟩
+      apply (mem_relativeInternalHom_iff_weakArrowFamily R Q _).2
+      intro i a
+      apply (weakEquivalenceMappingComponent_mem_equivalenceEdgeInternalHom_iff
+        R Q (s.snd.app U x) a).1
+      let y := (Limits.Pi.π (fun _ : WeakEquivalenceArrow C R ↦
+        (equivalenceEdgeInternalHom Q : SSet.{max u v})) a).app U (s.fst.app U x)
+      have hc := congrArg
+        (fun k ↦ k.app U x)
+        (congrArg (fun k ↦ k ≫ Limits.Pi.π
+          (fun _ : WeakEquivalenceArrow C R ↦
+            (ihom (Δ[1] : SSet.{max u v})).obj Q) a) s.condition)
+      have hy : y.1 = (internalHomPrecomp (weakArrowSimplex R a) Q).app U
+          (s.snd.app U x) := by
+        simp only [Category.assoc, equivalenceEdgeFamilyInclusion, Limits.Pi.map_π,
+          weakArrowEvaluationFamily_π, NatTrans.comp_app, Function.comp_apply,
+          ConcreteCategory.comp_apply] at hc
+        change y.1 = _
+        change y.1 = _ at hc
+        exact hc
+      rw [← hy]
+      exact y.2)
+  · intro s
+    apply Limits.Pi.hom_ext
+    intro a
+    apply (cancel_mono (equivalenceEdgeInternalHom Q).ι).1
+    rw [Category.assoc, Category.assoc,
+      weakArrowEvaluationToEquivalenceEdges_π_comp_inclusion,
+      SSet.Subcomplex.lift_ι_assoc, ← weakArrowEvaluationFamily_π]
+    have hc := congrArg (fun k ↦ k ≫ Limits.Pi.π
+      (fun _ : WeakEquivalenceArrow C R ↦
+        (ihom (Δ[1] : SSet.{max u v})).obj Q) a) s.condition
+    simpa only [Category.assoc, equivalenceEdgeFamilyInclusion, Limits.Pi.map_π] using hc.symm
+  · intro s
+    exact SSet.Subcomplex.lift_ι _ _
+  · intro s m _ hm
+    apply (cancel_mono
+      (relativeInternalHom (relativeNerveEdgeMarking R) Q).ι).1
+    rw [hm, SSet.Subcomplex.lift_ι]
+
 /-- On every coproduct component, restriction along the family of interval inclusions is
 exactly restriction along the single free-equivalence interval. -/
 theorem weakEquivalenceMappingComponent_restriction
