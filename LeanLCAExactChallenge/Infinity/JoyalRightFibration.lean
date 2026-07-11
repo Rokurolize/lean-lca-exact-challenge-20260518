@@ -269,4 +269,89 @@ theorem RightFibration.edgeIsEquivalence_of_map
   exact isIso_of_preinverse_chain (edgeHomotopyClass e) (edgeHomotopyClass g)
     (edgeHomotopyClass e') hge he'g
 
+/-- Lift an edge along a right fibration after fixing its target vertex. -/
+lemma RightFibration.exists_edge_lift_target
+    {X Y : SSet.{u}} (p : X ⟶ Y) [RightFibration p]
+    (x : X _⦋0⦌) {y : Y _⦋0⦌} (e : SSet.Edge y (p.app _ x)) :
+    ∃ s : X _⦋1⦌, X.δ 0 s = x ∧ p.app _ s = e.edge := by
+  let a : (Λ[1, 1] : SSet.{u}) ⟶ X := SSet.const x
+  let b : (Δ[1] : SSet.{u}) ⟶ Y := SSet.yonedaEquiv.symm e.edge
+  have hsquare : a ≫ p = (SSet.horn 1 (1 : Fin 2)).ι ≫ b := by
+    apply SSet.horn.hom_ext
+    intro j hj
+    fin_cases j
+    · have hf : (SSet.horn 1 (1 : Fin 2)).ι.app _
+          (SSet.horn.face (1 : Fin 2) (0 : Fin 2) hj) =
+          SSet.yonedaEquiv (SSet.stdSimplex.δ (0 : Fin 2)) := rfl
+      calc
+        (a ≫ p).app _ (SSet.horn.face 1 0 hj) =
+            p.app _ (a.app _ (SSet.horn.face 1 0 hj)) := rfl
+        _ = p.app _ x := by simp [a]
+        _ = Y.δ 0 e.edge := e.tgt_eq.symm
+        _ = b.app _ (SSet.yonedaEquiv (SSet.stdSimplex.δ (0 : Fin 2))) := rfl
+        _ = b.app _ ((SSet.horn 1 (1 : Fin 2)).ι.app _
+            (SSet.horn.face 1 0 hj)) := by rw [hf]
+        _ = ((SSet.horn 1 (1 : Fin 2)).ι ≫ b).app _
+            (SSet.horn.face 1 0 hj) := rfl
+    · simp at hj
+  let sq : CommSq a (SSet.horn 1 (1 : Fin 2)).ι p b := ⟨hsquare⟩
+  letI : HasLiftingProperty (SSet.horn 1 (1 : Fin 2)).ι p :=
+    RightFibration.hasLiftingProperty_edgeTarget p
+  let s : X _⦋1⦌ := SSet.yonedaEquiv sq.lift
+  have htgt : X.δ 0 s = x := by
+    let hne : (0 : Fin 2) ≠ 1 := by simp
+    have h := congrArg
+      (fun k ↦ k.app _ (SSet.horn.face (1 : Fin 2) (0 : Fin 2) hne)) sq.fac_left
+    have hf : (SSet.horn 1 (1 : Fin 2)).ι.app _
+        (SSet.horn.face (1 : Fin 2) (0 : Fin 2) hne) =
+        SSet.yonedaEquiv (SSet.stdSimplex.δ (0 : Fin 2)) := rfl
+    change sq.lift.app _ ((SSet.horn 1 (1 : Fin 2)).ι.app _
+      (SSet.horn.face 1 0 hne)) = a.app _ (SSet.horn.face 1 0 hne) at h
+    rw [hf] at h
+    calc
+      X.δ 0 s = sq.lift.app _
+          (SSet.yonedaEquiv (SSet.stdSimplex.δ (0 : Fin 2))) := by
+        exact (SSet.δ_naturality_apply sq.lift 0
+          (SSet.yonedaEquiv (𝟙 (Δ[1] : SSet.{u})))).symm
+      _ = a.app _ (SSet.horn.face 1 0 hne) := h
+      _ = x := by simp [a]
+  refine ⟨s, htgt, ?_⟩
+  have h := congrArg SSet.yonedaEquiv sq.fac_right
+  dsimp only [b] at h
+  simp only [SSet.yonedaEquiv_comp, Equiv.apply_symm_apply] at h
+  exact h
+
+/-- A target-preserving lift of a base equivalence edge, bundled with the proof that the
+lifted edge is itself an equivalence. -/
+structure RightFibration.EquivalenceTargetLift
+    {X Y : SSet.{u}} (p : X ⟶ Y) (x : X _⦋0⦌)
+    {y : Y _⦋0⦌} (e : SSet.Edge y (p.app _ x)) where
+  simplex : X _⦋1⦌
+  target : X.δ 0 simplex = x
+  map : p.app _ simplex = e.edge
+  isEquivalence : EdgeIsEquivalence (SSet.Edge.mk' simplex)
+
+/-- A right fibration lifts a base equivalence edge with a prescribed target, and the
+lifted edge is an equivalence.  This is the isofibration form used for over-slices. -/
+lemma RightFibration.nonempty_equivalenceTargetLift
+    {X Y : SSet.{u}} (p : X ⟶ Y) [RightFibration p] [SSet.Quasicategory Y]
+    (x : X _⦋0⦌) {y : Y _⦋0⦌} (e : SSet.Edge y (p.app _ x))
+    (he : EdgeIsEquivalence e) :
+    Nonempty (RightFibration.EquivalenceTargetLift p x e) := by
+  obtain ⟨s, hsTarget, hsMap⟩ := RightFibration.exists_edge_lift_target p x e
+  have hsSource : p.app _ (X.δ 1 s) = y := by
+    calc
+      p.app _ (X.δ 1 s) = Y.δ 1 (p.app _ s) :=
+        SSet.δ_naturality_apply p 1 s
+      _ = Y.δ 1 e.edge := congrArg (Y.δ 1) hsMap
+      _ = y := e.src_eq
+  subst y
+  subst x
+  have hEdgeMap : (SSet.Edge.mk' s).map p = e := by
+    apply SSet.Edge.ext
+    exact hsMap
+  have hLiftEquivalence : EdgeIsEquivalence (SSet.Edge.mk' s) :=
+    RightFibration.edgeIsEquivalence_of_map p (SSet.Edge.mk' s) (hEdgeMap ▸ he)
+  exact ⟨⟨s, rfl, hsMap, hLiftEquivalence⟩⟩
+
 end LeanLCAExactChallenge.Infinity
