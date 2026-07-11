@@ -586,4 +586,35 @@ lemma leftConeHornCornerMap_innerAnodyne
   simpa only [Category.assoc, Iso.hom_inv_id, Category.comp_id] using hc
 -/
 
+/-- The canonical range square underlying the cone-horn corner. -/
+noncomputable def leftConeHornCanonicalBicartSq (r : ℕ) (i : Fin (r + 2)) :
+    SSet.Subcomplex.BicartSq
+      (joinSigmaOneHornRange 0 (r + 1) (∅ : Finset (Fin 1)) i)
+      (representableJoinHornInitial 0 (r + 1) i)
+      (SSet.stdSimplex.face
+        (joinSigmaOneVertices 0 (r + 1) (∅ : Finset (Fin 1))))
+      (representableJoinHornInitial 0 (r + 1) i ⊔
+        SSet.stdSimplex.face
+          (joinSigmaOneVertices 0 (r + 1) (∅ : Finset (Fin 1)))) where
+  sup_eq := rfl
+  inf_eq := by
+    rw [joinSigmaOneFace_eq_ofSimplex]
+    exact initial_inf_emptyJoinCell_eq_hornRange 0 r i
+
+/- The source-normalization iso is constructed together with the transported square below.
+noncomputable def emptyJoinHornIsoRange (r : ℕ) (i : Fin (r + 2)) :
+    (Λ[r + 1, i] : SSet.{u}) ≅
+      (joinSigmaOneHornRange 0 (r + 1) (∅ : Finset (Fin 1)) i : SSet.{u}) := by
+  convert joinSigmaOneHornIsoRange 0 (r + 1) (∅ : Finset (Fin 1)) i using 1 <;>
+    simp only [Finset.card_empty, Nat.zero_add,
+      joinSigmaOneDistinguishedIndex]
+-/
+
+noncomputable def emptyJoinFaceIso (r : ℕ) :
+    (Δ[r + 1] : SSet.{u}) ≅
+      (SSet.stdSimplex.face
+        (joinSigmaOneVertices 0 (r + 1) (∅ : Finset (Fin 1))) : SSet.{u}) := by
+  simpa only [Finset.card_empty, Nat.zero_add] using
+    joinSigmaOneFaceIso.{u} 0 (r + 1) (∅ : Finset (Fin 1))
+
 end LeanLCAExactChallenge.Infinity
