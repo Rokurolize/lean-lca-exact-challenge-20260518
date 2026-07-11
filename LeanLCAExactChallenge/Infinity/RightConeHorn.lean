@@ -617,4 +617,11 @@ noncomputable def emptyJoinFaceIso (r : ℕ) :
   simpa only [Finset.card_empty, Nat.zero_add] using
     joinSigmaOneFaceIso.{u} 0 (r + 1) (∅ : Finset (Fin 1))
 
+noncomputable def positiveJoinHornIsoRange (s : ℕ) (i : Fin (s + 3)) :
+    simplicialJoin (Δ[0] : SSet.{u}) Λ[s + 2, i] ≅
+      (representableJoinHornInitial 0 (s + 2) i : SSet.{u}) := by
+  change (representableJoinHornCocone.{u} 0 i).pt ≅
+    (representableJoinHornRangeCoconePrecompose.{u} 0 s i).pt
+  exact representableJoinHornPointIso 0 s i
+
 end LeanLCAExactChallenge.Infinity
