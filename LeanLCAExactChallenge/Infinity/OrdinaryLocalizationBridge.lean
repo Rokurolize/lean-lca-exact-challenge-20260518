@@ -1194,6 +1194,22 @@ private def categoricalNerveQCat (E : Cat.{u, u}) : SSet.QCat.{u} :=
     change SSet.Quasicategory (CategoryTheory.nerve E)
     infer_instance⟩
 
+private noncomputable def mappingLocalizationAtCategoricalNerve
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    MappingQuasicategoryLocalizationAt W ell (categoricalNerveQCat E) :=
+  (h.universal (categoricalNerveQCat E)).some
+
+private noncomputable def mappingLocalizationComparisonEquivalence
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    SSet.hoFunctor.obj ((ihom L.obj).obj (nerveFunctor.obj E)) ≌
+      SSet.hoFunctor.obj (relativeInternalHom W (nerveFunctor.obj E)) := by
+  let d := mappingLocalizationAtCategoricalNerve h E
+  haveI : (SSet.hoFunctor.map d.comparison).toFunctor.IsEquivalence :=
+    IsBicategoricalEquivalence.hoFunctor_isEquivalence d.isEquivalence
+  exact (SSet.hoFunctor.map d.comparison).toFunctor.asEquivalence
+
 set_option backward.isDefEq.respectTransparency false in
 theorem internalHomNerveHomotopyEquivalence_precomp_naturality
     {X L : SSet.{u}} (f : X ⟶ L) (E : Cat.{u, u}) :
@@ -1254,11 +1270,8 @@ noncomputable def mappingLocalizationOrdinaryEquivalence
     (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
     ((ihom (SSet.hoFunctor.obj L.obj)).obj E) ≌
       (PulledRelativeFunctorProperty W E).FullSubcategory := by
-  let d := (h.universal (categoricalNerveQCat E)).some
-  haveI : (SSet.hoFunctor.map d.comparison).toFunctor.IsEquivalence :=
-    IsBicategoricalEquivalence.hoFunctor_isEquivalence d.isEquivalence
   exact (internalHomNerveHomotopyEquivalence L.obj E).symm |>.trans
-    (SSet.hoFunctor.map d.comparison).toFunctor.asEquivalence |>.trans
+    (mappingLocalizationComparisonEquivalence h E) |>.trans
       (relativeInternalHomNerveHomotopyEquivalence W E)
 
 /-- Ordinary truncation of a mapping-quasicategory localization has the standard
