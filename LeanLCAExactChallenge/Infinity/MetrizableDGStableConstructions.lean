@@ -12,6 +12,7 @@ object of the ordinary derived category.
 set_option autoImplicit false
 set_option backward.defeqAttrib.useBackward true
 set_option backward.isDefEq.respectTransparency false
+set_option maxHeartbeats 800000
 
 noncomputable section
 
@@ -270,6 +271,56 @@ theorem dgMappingConeCochainComponentIso_hom_fst
   simp [dgMappingConeCochainComponentIso, CochainComplex.mappingCone.fst,
     HomologicalComplex.homotopyCofiber.fstX, Category.assoc]
   rfl
+
+/-- The explicit two-coordinate cochain complex for maps into a cone.  Its differential is
+transported through the verified coordinate linear equivalence; the matrix formula is the
+preceding theorem `dgMappingConeCochainAddEquiv_symm_delta`. -/
+def dgMappingConeExplicitCoordinateCochainComplex
+    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) :
+    CochainComplex (ModuleCat.{0} ℤ) ℤ where
+  X n := ModuleCat.of ℤ
+    (CochainComplex.HomComplex.Cochain T.obj K.obj (n + 1) ×
+      CochainComplex.HomComplex.Cochain T.obj L.obj n)
+  d n m := (dgMappingConeCochainLinearEquiv T f n).toModuleIso.inv ≫
+    (dgHomZModuleCochainComplex T (dgMappingConeObject f)).d n m ≫
+      (dgMappingConeCochainLinearEquiv T f m).toModuleIso.hom
+  shape n m h := by
+    rw [(dgHomZModuleCochainComplex T (dgMappingConeObject f)).shape n m h]
+    simp
+  d_comp_d' n m k hnm hmk := by
+    apply ModuleCat.hom_ext
+    apply LinearMap.ext
+    intro x
+    change (dgMappingConeCochainLinearEquiv T f k)
+      ((dgHomZModuleCochainComplex T (dgMappingConeObject f)).d m k
+        ((dgHomZModuleCochainComplex T (dgMappingConeObject f)).d n m
+          ((dgMappingConeCochainLinearEquiv T f n).symm x))) = 0
+    have hx := ConcreteCategory.congr_hom
+      ((dgHomZModuleCochainComplex T (dgMappingConeObject f)).d_comp_d n m k)
+      ((dgMappingConeCochainLinearEquiv T f n).symm x)
+    simp only [ConcreteCategory.comp_apply, Zero.zero_apply] at hx
+    rw [hx]
+    exact map_zero _
+
+/-- The actual untruncated Hom cochain complex into `Cone(f)` is isomorphic to the explicit
+two-coordinate complex. -/
+def dgMappingConeExplicitCoordinateCochainIso
+    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) :
+    dgHomZModuleCochainComplex T (dgMappingConeObject f) ≅
+      dgMappingConeExplicitCoordinateCochainComplex T f :=
+  HomologicalComplex.Hom.isoOfComponents
+    (fun n ↦ (dgMappingConeCochainLinearEquiv T f n).toModuleIso) (by
+      intro n m _
+      apply ModuleCat.hom_ext
+      apply LinearMap.ext
+      intro x
+      change (dgMappingConeCochainLinearEquiv T f m)
+          ((dgMappingConeCochainLinearEquiv T f n).symm
+            (dgMappingConeCochainLinearEquiv T f n x) |> fun y ↦
+              (dgHomZModuleCochainComplex T (dgMappingConeObject f)).d n m y) =
+        dgMappingConeCochainLinearEquiv T f m
+          ((dgHomZModuleCochainComplex T (dgMappingConeObject f)).d n m x)
+      rw [Equiv.symm_apply_apply])
 
 /-- The same cone, regarded as an object of the honest direct simplicial dg category. -/
 def directDGMappingConeObject {K L : ComplexCategory} (f : K ⟶ L) :
