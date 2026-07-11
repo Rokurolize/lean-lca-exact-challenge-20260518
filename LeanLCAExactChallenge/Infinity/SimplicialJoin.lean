@@ -2349,6 +2349,25 @@ lemma joinSigmaOne_leftErasedFace_le_stage_inf
     simp [joinSigmaOneVertices, joinFirstVertices] at hx ⊢
     aesop
 
+lemma joinSigmaOne_rightErasedFace_le_initial
+    (m n : ℕ) (i j : Fin (n + 2)) (hji : j ≠ i)
+    (T : Finset (Fin (m + 1))) :
+    SSet.stdSimplex.face.{u}
+        ((joinSigmaOneVertices m (n + 1) T).erase
+          (joinShiftedVertex m (n + 1) j)) ≤
+      representableJoinHornInitial m (n + 1) i := by
+  rw [representableJoinHornInitial_eq_iSup_shiftedRightFaces]
+  refine le_trans ((SSet.stdSimplex.face_le_face_iff _ _).mpr ?_)
+    (le_iSup (fun k : ({i}ᶜ : Set (Fin (n + 2))) ↦
+      SSet.stdSimplex.face
+        ({(⟨m + 1 + k.1.val, by omega⟩ : Fin (m + (n + 1) + 2))}ᶜ))
+      ⟨j, by simpa only [Set.mem_compl_iff, Set.mem_singleton_iff]⟩)
+  intro x hx
+  simp only [Finset.mem_compl, Finset.mem_singleton]
+  intro h
+  exact (Finset.mem_erase.mp hx).1 (by
+    simpa [joinShiftedVertex] using h)
+
 lemma joinSigmaOne_rightErasedFace_le_stage_inf
     (m n r : ℕ) (i j : Fin (n + 2)) (hji : j ≠ i)
     (T : Finset (Fin (m + 1))) :
@@ -2358,19 +2377,8 @@ lemma joinSigmaOne_rightErasedFace_le_stage_inf
       representableJoinHornStage m (n + 1) i r ⊓
         SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex m (n + 1) T) := by
   apply le_inf
-  · apply le_trans ?_ (show representableJoinHornInitial m (n + 1) i ≤
-        representableJoinHornStage m (n + 1) i r by exact le_sup_left)
-    rw [representableJoinHornInitial_eq_iSup_shiftedRightFaces]
-    refine le_trans ((SSet.stdSimplex.face_le_face_iff _ _).mpr ?_)
-      (le_iSup (fun k : ({i}ᶜ : Set (Fin (n + 2))) ↦
-        SSet.stdSimplex.face
-          ({(⟨m + 1 + k.1.val, by omega⟩ : Fin (m + (n + 1) + 2))}ᶜ))
-        ⟨j, by simpa only [Set.mem_compl_iff, Set.mem_singleton_iff]⟩)
-    intro x hx
-    simp only [Finset.mem_compl, Finset.mem_singleton]
-    intro h
-    exact (Finset.mem_erase.mp hx).1 (by
-      simpa [joinShiftedVertex] using h)
+  · exact (joinSigmaOne_rightErasedFace_le_initial m n i j hji T).trans
+      le_sup_left
   · rw [← joinSigmaOneFace_eq_ofSimplex]
     apply (SSet.stdSimplex.face_le_face_iff _ _).mpr
     intro x hx
@@ -2409,6 +2417,63 @@ lemma joinSigmaOneHornRange_le_stage_inf
         joinSigmaOne_nth_second m (n + 1) T j
     rw [hv]
     exact joinSigmaOne_rightErasedFace_le_stage_inf m n r i j hji T
+
+lemma emptyJoinSigmaOneHornRange_le_initial
+    (m n : ℕ) (i : Fin (n + 2)) :
+    joinSigmaOneHornRange m (n + 1) ∅ i ≤
+      representableJoinHornInitial m (n + 1) i := by
+  rw [joinSigmaOneHornRange_eq_iSup_erasedFaces]
+  apply iSup_le
+  rintro ⟨k, hk⟩
+  have hcard : (∅ : Finset (Fin (m + 1))).card ≤ k.val := by simp
+  obtain ⟨j, hkj⟩ := joinSigmaOne_index_eq_right_of_card_le
+    (m := m) (n := n + 1) (∅ : Finset (Fin (m + 1))) k hcard
+  subst k
+  have hji : j ≠ i := by
+    intro h
+    subst j
+    exact hk rfl
+  have hv : joinSigmaOne m (n + 1) (∅ : Finset (Fin (m + 1)))
+      (joinSigmaOneDistinguishedIndex (n + 1) ∅ j) =
+      joinShiftedVertex m (n + 1) j := by
+    simpa [joinSigmaOneDistinguishedIndex] using
+      joinSigmaOne_nth_second m (n + 1)
+        (∅ : Finset (Fin (m + 1))) j
+  rw [hv]
+  exact joinSigmaOne_rightErasedFace_le_initial m n i j hji ∅
+
+lemma initial_inf_emptyJoinCell_eq_hornRange
+    (m n : ℕ) (i : Fin (n + 2)) :
+    representableJoinHornInitial m (n + 1) i ⊓
+        SSet.Subcomplex.ofSimplex
+          (joinSigmaOneSimplex m (n + 1) (∅ : Finset (Fin (m + 1)))) =
+      joinSigmaOneHornRange m (n + 1) ∅ i := by
+  apply le_antisymm
+  · rw [← joinSigmaOneFace_eq_ofSimplex]
+    exact representableJoinHornInitial_inf_joinSigmaOneFace_le_hornRange
+      m n i ∅
+  · apply le_inf
+    · exact emptyJoinSigmaOneHornRange_le_initial m n i
+    · exact joinSigmaOneHornRange_le_face m (n + 1) ∅ i
+
+lemma representableJoinHornStage_zero_eq
+    (m n : ℕ) (i : Fin (n + 2)) :
+    representableJoinHornStage m (n + 1) i 0 =
+      representableJoinHornInitial m (n + 1) i ⊔
+        SSet.Subcomplex.ofSimplex
+          (joinSigmaOneSimplex m (n + 1) (∅ : Finset (Fin (m + 1)))) := by
+  rw [representableJoinHornStage]
+  congr 1
+  apply le_antisymm
+  · apply iSup_le
+    intro T
+    apply iSup_le
+    intro hT
+    have : T = ∅ := Finset.card_eq_zero.mp (Nat.eq_zero_of_le_zero hT)
+    subst T
+    exact le_rfl
+  · exact le_iSup_of_le (∅ : Finset (Fin (m + 1)))
+      (le_iSup_of_le (by simp) le_rfl)
 
 lemma representableJoinHornStage_inf_joinSigmaOne_eq_hornRange
     (m n r : ℕ) (i : Fin (n + 2)) (T : Finset (Fin (m + 1)))
@@ -2632,6 +2697,68 @@ lemma representableJoinHornStage_succ_innerAnodyne
     (adjoinJoinCellsAtCard_eq_nextStage m n r i)
     (le_adjoinJoinCellList m n
       (representableJoinHornStage m (n + 1) i r) (joinCellsAtCard m r)) hlist
+
+lemma representableJoinHornInitial_to_stage_zero_innerAnodyne
+    (m n : ℕ) (i : Fin (n + 2))
+    (h0 : 0 < i) (hn : i < Fin.last (n + 1)) :
+    SSet.innerAnodyneExtensions
+      (SSet.Subcomplex.homOfLE
+        (representableJoinHornStage_zero_le m (n + 1) i)) := by
+  let cell := SSet.Subcomplex.ofSimplex
+    (joinSigmaOneSimplex m (n + 1) (∅ : Finset (Fin (m + 1))))
+  let sq : SSet.Subcomplex.BicartSq
+      (joinSigmaOneHornRange m (n + 1) ∅ i)
+      (representableJoinHornInitial m (n + 1) i) cell
+      (representableJoinHornInitial m (n + 1) i ⊔ cell) := {
+    sup_eq := rfl
+    inf_eq := initial_inf_emptyJoinCell_eq_hornRange m n i }
+  have hf : SSet.innerAnodyneExtensions
+      (SSet.Subcomplex.homOfLE sq.le₁₃) := by
+    exact joinSigmaOneHornRangeToOfSimplex_innerAnodyne
+      m (n + 1) ∅ i h0 hn
+  have hpush : SSet.innerAnodyneExtensions
+      (SSet.Subcomplex.homOfLE sq.le₂₄) := by
+    rw [SSet.innerAnodyneExtensions_eq_llp_rlp] at hf ⊢
+    intro E B p hp
+    letI : HasLiftingProperty (SSet.Subcomplex.homOfLE sq.le₁₃) p :=
+      hf p hp
+    exact sq.isPushout.hasLiftingProperty p
+  exact innerAnodyne_homOfLE_transport_target
+    (representableJoinHornStage_zero_eq m n i).symm sq.le₂₄ hpush
+
+lemma representableJoinHornInitial_to_stage_innerAnodyne
+    (m n r : ℕ) (i : Fin (n + 2))
+    (h0 : 0 < i) (hn : i < Fin.last (n + 1)) :
+    SSet.innerAnodyneExtensions
+      (SSet.Subcomplex.homOfLE (le_trans
+        (representableJoinHornStage_zero_le m (n + 1) i)
+        (representableJoinHornStage_monotone m (n + 1) i
+          (Nat.zero_le r)))) := by
+  induction r with
+  | zero =>
+      simpa only using
+        representableJoinHornInitial_to_stage_zero_innerAnodyne
+          m n i h0 hn
+  | succ r ih =>
+      have hs := representableJoinHornStage_succ_innerAnodyne
+        m n r i h0 hn
+      have hc := SSet.innerAnodyneExtensions.comp_mem _ _ ih hs
+      rw [SSet.Subcomplex.homOfLE_comp] at hc
+      exact hc
+
+lemma representableJoinHornInitial_to_top_innerAnodyne
+    (m n : ℕ) (i : Fin (n + 2))
+    (h0 : 0 < i) (hn : i < Fin.last (n + 1)) :
+    SSet.innerAnodyneExtensions
+      (SSet.Subcomplex.homOfLE
+        (show representableJoinHornInitial m (n + 1) i ≤ ⊤ from le_top)) := by
+  have hstage := representableJoinHornInitial_to_stage_innerAnodyne
+    m n (m + 1) i h0 hn
+  exact innerAnodyne_homOfLE_transport_target
+    (representableJoinHornStage_eq_top m (n + 1) i)
+    (le_trans (representableJoinHornStage_zero_le m (n + 1) i)
+      (representableJoinHornStage_monotone m (n + 1) i
+        (Nat.zero_le (m + 1)))) hstage
 
 lemma representableJoinHornStage_adjoin_hornRange_bicartSq
     (m n r : ℕ) (i : Fin (n + 2)) (T : Finset (Fin (m + 1)))
