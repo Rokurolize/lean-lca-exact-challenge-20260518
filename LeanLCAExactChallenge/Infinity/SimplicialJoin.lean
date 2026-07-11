@@ -2760,6 +2760,19 @@ lemma representableJoinHornInitial_to_top_innerAnodyne
       (representableJoinHornStage_monotone m (n + 1) i
         (Nat.zero_le (m + 1)))) hstage
 
+lemma representableJoinHornInitial_ι_innerAnodyne
+    (m n : ℕ) (i : Fin (n + 2))
+    (h0 : 0 < i) (hn : i < Fin.last (n + 1)) :
+    SSet.innerAnodyneExtensions
+      (representableJoinHornInitial.{u} m (n + 1) i).ι := by
+  have htop := representableJoinHornInitial_to_top_innerAnodyne
+    m n i h0 hn
+  have hcomp := SSet.innerAnodyneExtensions.comp_mem _ _ htop
+    (SSet.innerAnodyneExtensions.of_isIso
+      (SSet.Subcomplex.topIso (Δ[m + (n + 1) + 1] : SSet.{u})).hom)
+  rw [SSet.Subcomplex.topIso_hom, SSet.Subcomplex.homOfLE_ι] at hcomp
+  exact hcomp
+
 lemma representableJoinHornStage_adjoin_hornRange_bicartSq
     (m n r : ℕ) (i : Fin (n + 2)) (T : Finset (Fin (m + 1)))
     (hT : T.card = r + 1) :
