@@ -268,6 +268,18 @@ degrees. -/
 def quotientGradedModule (X Y : ComplexCategory) (n : ℤ) : ModuleCat.{1} ℤ :=
   ∐ fun s : GradedSummandIndex X Y n ↦ largeSummandModule s
 
+/-- One internal-differential term, included into the degree-`n+1` coproduct carrier.  The
+Koszul coefficient is deliberately kept separate from this unsigned structural map. -/
+def internalDifferentialLargeMap {X Y : ComplexCategory}
+    {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
+    (i : Fin (w.length + 1)) :
+    Quiver.Hom (largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+      (quotientGradedModule X Y (n + 1)) :=
+  (ModuleCat.uliftFunctor.{1} ℤ).map (internalDifferentialTensorMap d i) ≫
+    Limits.Sigma.ι
+      (fun s : GradedSummandIndex X Y (n + 1) ↦ largeSummandModule s)
+      ⟨w, d.raise i⟩
+
 @[simp]
 theorem singleton_object (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory)
     (i : Fin (singleton X Y A).length) : (singleton X Y A).object i = A.obj :=
