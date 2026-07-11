@@ -2420,6 +2420,219 @@ lemma representableJoinHornStage_inf_joinSigmaOne_eq_hornRange
     (representableJoinHornStage_inf_joinSigmaOne_le_hornRange m n r i T hT)
     (joinSigmaOneHornRange_le_stage_inf m n r i T hT)
 
+/-- Adjoin a finite list of upper join cells.  The tail is attached first;
+this orientation makes the induction step a single pushout attachment. -/
+def adjoinJoinCellList (m n : ℕ)
+    (A : (Δ[m + (n + 1) + 1] : SSet.{u}).Subcomplex) :
+    List (Finset (Fin (m + 1))) →
+      (Δ[m + (n + 1) + 1] : SSet.{u}).Subcomplex
+  | [] => A
+  | T :: ts => adjoinJoinCellList m n A ts ⊔
+      SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex m (n + 1) T)
+
+lemma le_adjoinJoinCellList (m n : ℕ)
+    (A : (Δ[m + (n + 1) + 1] : SSet.{u}).Subcomplex)
+    (ts : List (Finset (Fin (m + 1)))) :
+    A ≤ adjoinJoinCellList m n A ts := by
+  induction ts with
+  | nil => exact le_rfl
+  | cons T ts ih => exact ih.trans le_sup_left
+
+lemma adjoinJoinCellList_inf_newCell_eq_hornRange
+    (m n r : ℕ) (i : Fin (n + 2)) (T : Finset (Fin (m + 1)))
+    (ts : List (Finset (Fin (m + 1))))
+    (hT : T.card = r + 1) (hcards : ∀ U ∈ ts, U.card = r + 1)
+    (hnot : T ∉ ts) :
+    adjoinJoinCellList m n (representableJoinHornStage m (n + 1) i r) ts ⊓
+        SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex m (n + 1) T) =
+      joinSigmaOneHornRange m (n + 1) T i := by
+  induction ts with
+  | nil =>
+      exact representableJoinHornStage_inf_joinSigmaOne_eq_hornRange
+        m n r i T hT
+  | cons U ts ih =>
+      have hUT : U ≠ T := by
+        intro h
+        apply hnot
+        simp [h]
+      have hU : U.card = r + 1 := hcards U (by simp)
+      have ih' := ih (fun V hV => hcards V (by simp [hV])) (by
+        intro h
+        exact hnot (by simp [h]))
+      apply le_antisymm
+      · rw [adjoinJoinCellList]
+        intro V x hx
+        rcases hx.1 with hxTail | hxU
+        · have hxInf : x ∈
+              (adjoinJoinCellList m n
+                  (representableJoinHornStage m (n + 1) i r) ts ⊓
+                SSet.Subcomplex.ofSimplex
+                  (joinSigmaOneSimplex m (n + 1) T)).obj V :=
+              ⟨hxTail, hx.2⟩
+          rw [ih'] at hxInf
+          exact hxInf
+        · exact joinSigmaOneOfSimplex_inf_sameCardOfSimplex_le_hornRange
+            m n r i T U hT hU hUT V ⟨hxU, hx.2⟩
+      · apply le_inf
+        · exact (joinSigmaOneHornRange_le_stage_inf m n r i T hT).trans
+            (inf_le_left.trans (le_adjoinJoinCellList m n
+              (representableJoinHornStage m (n + 1) i r) (U :: ts)))
+        · exact (joinSigmaOneHornRange_le_stage_inf m n r i T hT).trans
+            inf_le_right
+
+lemma adjoinJoinCellList_cons_innerAnodyne
+    (m n r : ℕ) (i : Fin (n + 2)) (T : Finset (Fin (m + 1)))
+    (ts : List (Finset (Fin (m + 1))))
+    (hT : T.card = r + 1) (hcards : ∀ U ∈ ts, U.card = r + 1)
+    (hnot : T ∉ ts) (h0 : 0 < i) (hn : i < Fin.last (n + 1)) :
+    SSet.innerAnodyneExtensions
+      (SSet.Subcomplex.homOfLE (le_sup_left :
+        adjoinJoinCellList m n
+            (representableJoinHornStage m (n + 1) i r) ts ≤
+          adjoinJoinCellList m n
+            (representableJoinHornStage m (n + 1) i r) (T :: ts))) := by
+  let sq : SSet.Subcomplex.BicartSq
+      (joinSigmaOneHornRange m (n + 1) T i)
+      (adjoinJoinCellList m n
+        (representableJoinHornStage m (n + 1) i r) ts)
+      (SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex m (n + 1) T))
+      (adjoinJoinCellList m n
+        (representableJoinHornStage m (n + 1) i r) (T :: ts)) := {
+    sup_eq := rfl
+    inf_eq := adjoinJoinCellList_inf_newCell_eq_hornRange
+      m n r i T ts hT hcards hnot }
+  have hf : SSet.innerAnodyneExtensions
+      (SSet.Subcomplex.homOfLE sq.le₁₃) := by
+    exact joinSigmaOneHornRangeToOfSimplex_innerAnodyne
+      m (n + 1) T i h0 hn
+  rw [SSet.innerAnodyneExtensions_eq_llp_rlp] at hf ⊢
+  intro E B p hp
+  letI : HasLiftingProperty (SSet.Subcomplex.homOfLE sq.le₁₃) p :=
+    hf p hp
+  exact sq.isPushout.hasLiftingProperty p
+
+lemma adjoinJoinCellList_innerAnodyne
+    (m n r : ℕ) (i : Fin (n + 2))
+    (ts : List (Finset (Fin (m + 1)))) (hnd : ts.Nodup)
+    (hcards : ∀ T ∈ ts, T.card = r + 1)
+    (h0 : 0 < i) (hn : i < Fin.last (n + 1)) :
+    SSet.innerAnodyneExtensions
+      (SSet.Subcomplex.homOfLE (le_adjoinJoinCellList m n
+        (representableJoinHornStage m (n + 1) i r) ts)) := by
+  induction ts with
+  | nil =>
+      simpa only [adjoinJoinCellList, SSet.Subcomplex.homOfLE_refl] using
+        SSet.innerAnodyneExtensions.id_mem
+          (representableJoinHornStage m (n + 1) i r : SSet)
+  | cons T ts ih =>
+      have hndTail : ts.Nodup := hnd.tail
+      have hcardsTail : ∀ U ∈ ts, U.card = r + 1 := by
+        intro U hU
+        exact hcards U (by simp [hU])
+      have hTail := ih hndTail hcardsTail
+      have hStep := adjoinJoinCellList_cons_innerAnodyne
+        m n r i T ts (hcards T (by simp)) hcardsTail
+          (List.nodup_cons.mp hnd).1 h0 hn
+      have hComp := SSet.innerAnodyneExtensions.comp_mem _ _ hTail hStep
+      rw [SSet.Subcomplex.homOfLE_comp] at hComp
+      change SSet.innerAnodyneExtensions
+        (SSet.Subcomplex.homOfLE
+          ((le_adjoinJoinCellList m n
+            (representableJoinHornStage m (n + 1) i r) ts).trans le_sup_left))
+      exact hComp
+
+/-- The duplicate-free list of all first-block subsets of cardinality `r+1`. -/
+def joinCellsAtCard (m r : ℕ) : List (Finset (Fin (m + 1))) :=
+  (Finset.univ.filter (fun T : Finset (Fin (m + 1)) ↦ T.card = r + 1)).toList
+
+@[simp] lemma mem_joinCellsAtCard_iff (m r : ℕ)
+    (T : Finset (Fin (m + 1))) :
+    T ∈ joinCellsAtCard m r ↔ T.card = r + 1 := by
+  simp [joinCellsAtCard]
+
+lemma joinCellsAtCard_nodup (m r : ℕ) : (joinCellsAtCard m r).Nodup := by
+  exact Finset.nodup_toList _
+
+lemma joinCell_le_adjoinJoinCellList_of_mem
+    (m n : ℕ) (A : (Δ[m + (n + 1) + 1] : SSet.{u}).Subcomplex)
+    (T : Finset (Fin (m + 1))) (ts : List (Finset (Fin (m + 1))))
+    (hT : T ∈ ts) :
+    SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex m (n + 1) T) ≤
+      adjoinJoinCellList m n A ts := by
+  induction ts with
+  | nil => simp at hT
+  | cons U ts ih =>
+      simp only [List.mem_cons] at hT
+      rcases hT with rfl | hT
+      · exact le_sup_right
+      · exact (ih hT).trans le_sup_left
+
+lemma adjoinJoinCellList_le_nextStage
+    (m n r : ℕ) (i : Fin (n + 2))
+    (ts : List (Finset (Fin (m + 1))))
+    (hcards : ∀ T ∈ ts, T.card = r + 1) :
+    adjoinJoinCellList m n (representableJoinHornStage m (n + 1) i r) ts ≤
+      representableJoinHornStage m (n + 1) i (r + 1) := by
+  induction ts with
+  | nil => exact representableJoinHornStage_monotone m (n + 1) i (by omega)
+  | cons T ts ih =>
+      apply sup_le (ih (fun U hU => hcards U (by simp [hU])))
+      apply joinSigmaOne_of_card_le_stage
+      have hT := hcards T (by simp)
+      omega
+
+lemma adjoinJoinCellsAtCard_le_nextStage
+    (m n r : ℕ) (i : Fin (n + 2)) :
+    adjoinJoinCellList m n (representableJoinHornStage m (n + 1) i r)
+        (joinCellsAtCard m r) ≤
+      representableJoinHornStage m (n + 1) i (r + 1) :=
+  adjoinJoinCellList_le_nextStage m n r i (joinCellsAtCard m r)
+    (fun T hT => (mem_joinCellsAtCard_iff m r T).1 hT)
+
+lemma nextStage_le_adjoinJoinCellsAtCard
+    (m n r : ℕ) (i : Fin (n + 2)) :
+    representableJoinHornStage m (n + 1) i (r + 1) ≤
+      adjoinJoinCellList m n (representableJoinHornStage m (n + 1) i r)
+        (joinCellsAtCard m r) := by
+  rw [representableJoinHornStage]
+  apply sup_le
+  · exact le_trans le_sup_left (le_adjoinJoinCellList m n
+      (representableJoinHornStage m (n + 1) i r) (joinCellsAtCard m r))
+  · apply iSup_le
+    intro T
+    apply iSup_le
+    intro hcard
+    by_cases hle : T.card ≤ r
+    · exact (joinSigmaOne_of_card_le_stage m (n + 1) i r T hle).trans
+        (le_adjoinJoinCellList m n
+          (representableJoinHornStage m (n + 1) i r) (joinCellsAtCard m r))
+    · have heq : T.card = r + 1 := by omega
+      exact joinCell_le_adjoinJoinCellList_of_mem m n
+        (representableJoinHornStage m (n + 1) i r) T
+        (joinCellsAtCard m r) ((mem_joinCellsAtCard_iff m r T).2 heq)
+
+lemma adjoinJoinCellsAtCard_eq_nextStage
+    (m n r : ℕ) (i : Fin (n + 2)) :
+    adjoinJoinCellList m n (representableJoinHornStage m (n + 1) i r)
+        (joinCellsAtCard m r) =
+      representableJoinHornStage m (n + 1) i (r + 1) :=
+  le_antisymm (adjoinJoinCellsAtCard_le_nextStage m n r i)
+    (nextStage_le_adjoinJoinCellsAtCard m n r i)
+
+lemma representableJoinHornStage_succ_innerAnodyne
+    (m n r : ℕ) (i : Fin (n + 2))
+    (h0 : 0 < i) (hn : i < Fin.last (n + 1)) :
+    SSet.innerAnodyneExtensions
+      (SSet.Subcomplex.homOfLE
+        (representableJoinHornStage_monotone m (n + 1) i (by omega : r ≤ r + 1))) := by
+  have hlist := adjoinJoinCellList_innerAnodyne m n r i
+    (joinCellsAtCard m r) (joinCellsAtCard_nodup m r)
+    (fun T hT => (mem_joinCellsAtCard_iff m r T).1 hT) h0 hn
+  exact innerAnodyne_homOfLE_transport_target
+    (adjoinJoinCellsAtCard_eq_nextStage m n r i)
+    (le_adjoinJoinCellList m n
+      (representableJoinHornStage m (n + 1) i r) (joinCellsAtCard m r)) hlist
+
 lemma representableJoinHornStage_adjoin_hornRange_bicartSq
     (m n r : ℕ) (i : Fin (n + 2)) (T : Finset (Fin (m + 1)))
     (hT : T.card = r + 1) :
