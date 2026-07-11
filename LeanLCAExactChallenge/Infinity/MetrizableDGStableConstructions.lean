@@ -294,6 +294,225 @@ def directDGMappingConeEnrichedHomIso
   (eqToIso (directDG_enrichedHom_eq T (dgMappingConeObject f))).trans
     (dgMappingConeExplicitCoordinateSSetIso T f)
 
+/-- Precomposition by `f` on untruncated dg Hom cochain complexes. -/
+def dgHomZModulePrecomposition (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    dgHomZModuleCochainComplex L T ⟶ dgHomZModuleCochainComplex K T where
+  f n := ModuleCat.ofHom
+    { toFun := fun γ ↦ (CochainComplex.HomComplex.Cochain.ofHom f.hom).comp γ (zero_add n)
+      map_add' := fun γ γ' ↦
+        CochainComplex.HomComplex.Cochain.comp_add _ γ γ' (zero_add n)
+      map_smul' := fun r γ ↦
+        CochainComplex.HomComplex.Cochain.comp_smul _ r γ (zero_add n) }
+  comm' n m _ := by
+    apply ModuleCat.hom_ext
+    apply LinearMap.ext
+    intro γ
+    simp [dgHomZModuleCochainComplex,
+      CochainComplex.HomComplex.δ_ofHom_comp]
+
+/-- The standard chain-level path object of the target of precomposition. -/
+abbrev dgHomPrecompositionPathObject (T K : ComplexCategory) :
+    CochainComplex (ModuleCat.{0} ℤ) ℤ :=
+  HomologicalComplex.pathObject (dgHomZModuleCochainComplex K T)
+
+/-- The endpoint map from the chain path object. -/
+def dgHomPrecompositionPathEndpoints (T K : ComplexCategory) :
+    dgHomPrecompositionPathObject T K ⟶
+      (dgHomZModuleCochainComplex K T ⨯ dgHomZModuleCochainComplex K T) :=
+  Limits.prod.lift
+    (HomologicalComplex.pathObject.π₀ (dgHomZModuleCochainComplex K T))
+    (HomologicalComplex.pathObject.π₁ (dgHomZModuleCochainComplex K T))
+
+/-- Precomposition paired with the zero endpoint. -/
+def dgHomPrecompositionZeroEndpoints (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    dgHomZModuleCochainComplex L T ⟶
+      (dgHomZModuleCochainComplex K T ⨯ dgHomZModuleCochainComplex K T) :=
+  Limits.prod.lift (dgHomZModulePrecomposition T f) 0
+
+/-- The strict categorical path-object model of the homotopy fiber of precomposition. -/
+abbrev dgHomPrecompositionPathFiber (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    CochainComplex (ModuleCat.{0} ℤ) ℤ :=
+  Limits.pullback (dgHomPrecompositionZeroEndpoints T f)
+    (dgHomPrecompositionPathEndpoints T K)
+
+/-- By construction, the path-fiber square is a strict categorical pullback. -/
+theorem dgHomPrecompositionPathFiber_isPullback (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    IsPullback
+      (Limits.pullback.fst (dgHomPrecompositionZeroEndpoints T f)
+        (dgHomPrecompositionPathEndpoints T K))
+      (Limits.pullback.snd (dgHomPrecompositionZeroEndpoints T f)
+        (dgHomPrecompositionPathEndpoints T K))
+      (dgHomPrecompositionZeroEndpoints T f)
+      (dgHomPrecompositionPathEndpoints T K) :=
+  IsPullback.of_hasPullback _ _
+
+/-- The cone triangle carries its genuine chain homotopy from the composite to zero. -/
+def dgMappingConeTriangleHomotopy {K L : ComplexCategory} (f : K ⟶ L) :
+    Homotopy
+      ((boundedCochainComplex MetrizableLCA.{0}).ι.map
+        (f ≫ dgMappingConeInr f)) 0 :=
+  (CochainComplex.HomComplex.Cochain.equivHomotopy _ _).symm
+    ⟨dgMappingConeInl f, by
+      rw [dgMappingConeInl_delta]
+      simp⟩
+
+/-- A degree `-1` cochain induces the sign-corrected operation on contravariant dg Hom
+complexes. -/
+def dgHomPrecompositionHomotopyCochain (T : ComplexCategory)
+    {X Y : ComplexCategory}
+    (z : CochainComplex.HomComplex.Cochain
+      (underlyingComplex X) (underlyingComplex Y) (-1)) :
+    CochainComplex.HomComplex.Cochain
+      (dgHomZModuleCochainComplex Y T) (dgHomZModuleCochainComplex X T) (-1) :=
+  CochainComplex.HomComplex.Cochain.mk (fun p q hpq ↦ ModuleCat.ofHom
+    { toFun := fun γ ↦ p.negOnePow • z.comp γ (by omega)
+      map_add' := by intro γ γ'; rw [CochainComplex.HomComplex.Cochain.comp_add, smul_add]
+      map_smul' := by
+        intro r γ
+        simp only [RingHom.id_apply]
+        rw [CochainComplex.HomComplex.Cochain.comp_smul, smul_comm] })
+
+theorem dgHomPrecompositionHomotopyCochain_delta
+    (T : ComplexCategory) {X Y : ComplexCategory}
+    (g₀ g₁ : X ⟶ Y)
+    (z : CochainComplex.HomComplex.Cochain
+      (underlyingComplex X) (underlyingComplex Y) (-1))
+    (hz : CochainComplex.HomComplex.δ (-1) 0 z =
+      CochainComplex.HomComplex.Cochain.ofHom g₀.hom -
+        CochainComplex.HomComplex.Cochain.ofHom g₁.hom) :
+    CochainComplex.HomComplex.δ (-1) 0
+        (dgHomPrecompositionHomotopyCochain T z) =
+      CochainComplex.HomComplex.Cochain.ofHom (dgHomZModulePrecomposition T g₀) -
+        CochainComplex.HomComplex.Cochain.ofHom (dgHomZModulePrecomposition T g₁) := by
+  ext p
+  rename_i γ
+  change _ = _
+  rw [CochainComplex.HomComplex.δ_neg_one_cochain]
+  simp only [CochainComplex.HomComplex.Cochain.ofHom_v]
+  rw [Homotopy.nullHomotopicMap'_f
+    (show (ComplexShape.up ℤ).Rel (p - 1) p by simp)
+    (show (ComplexShape.up ℤ).Rel p (p + 1) by simp)]
+  simp only [dgHomPrecompositionHomotopyCochain,
+    CochainComplex.HomComplex.Cochain.mk_v,
+    CochainComplex.HomComplex.Cochain.sub_v,
+    dgHomZModuleCochainComplex, dgHomZModulePrecomposition,
+    ModuleCat.hom_comp, ModuleCat.hom_add, ModuleCat.hom_ofHom,
+    LinearMap.add_apply, LinearMap.coe_comp, Function.comp_apply,
+    ConcreteCategory.comp_apply]
+  simp only [CochainComplex.HomComplex.δ_hom_apply]
+  dsimp only [LinearMap.coe_mk, AddHom.coe_mk]
+  rw [CochainComplex.HomComplex.δ_units_smul]
+  have hz' := CochainComplex.HomComplex.Cochain.congr_v hz p p (add_zero p)
+  simp only [CochainComplex.HomComplex.Cochain.sub_v,
+    CochainComplex.HomComplex.Cochain.ofHom_v] at hz'
+  rw [CochainComplex.HomComplex.δ_comp z γ (by omega) 0 (p + 1) p
+    (by omega) (neg_add_cancel 1) rfl]
+  rw [hz]
+  simp only [hz', Int.negOnePow_succ, Units.neg_smul,
+    CochainComplex.HomComplex.Cochain.ofHom_v,
+    CochainComplex.HomComplex.Cochain.sub_v,
+    CochainComplex.HomComplex.Cochain.sub_comp,
+    dgHomZModulePrecomposition, ModuleCat.hom_sub, ModuleCat.hom_ofHom,
+    LinearMap.sub_apply, smul_add, smul_smul, Int.units_mul_self, one_smul]
+  abel
+
+/-- Chain homotopies act contravariantly on dg Hom cochain complexes. -/
+def dgHomZModulePrecompositionHomotopy (T : ComplexCategory)
+    {X Y : ComplexCategory} {g₀ g₁ : X ⟶ Y}
+    (h : Homotopy g₀.hom g₁.hom) :
+    Homotopy (dgHomZModulePrecomposition T g₀)
+      (dgHomZModulePrecomposition T g₁) :=
+  (CochainComplex.HomComplex.Cochain.equivHomotopy _ _).symm
+    ⟨dgHomPrecompositionHomotopyCochain T
+        (CochainComplex.HomComplex.Cochain.ofHomotopy h), by
+      rw [dgHomPrecompositionHomotopyCochain_delta T g₀ g₁ _
+        (CochainComplex.HomComplex.δ_ofHomotopy h)]
+      abel⟩
+
+/-- The cone triangle nullhomotopy induces the homotopy required by the maps-out path
+fiber. -/
+def dgMappingConePrecompositionNullhomotopy (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    Homotopy (dgHomZModulePrecomposition T (f ≫ dgMappingConeInr f)) 0 := by
+  convert dgHomZModulePrecompositionHomotopy T
+    (dgMappingConeTriangleHomotopy f) using 1 <;>
+      ext n γ <;> simp [dgHomZModulePrecomposition] <;> rfl
+
+@[reassoc]
+theorem dgHomZModulePrecomposition_comp (T : ComplexCategory)
+    {X Y Z : ComplexCategory} (f : X ⟶ Y) (g : Y ⟶ Z) :
+    dgHomZModulePrecomposition T g ≫ dgHomZModulePrecomposition T f =
+      dgHomZModulePrecomposition T (f ≫ g) := by
+  ext n γ
+  change (CochainComplex.HomComplex.Cochain.ofHom f.hom).comp
+      ((CochainComplex.HomComplex.Cochain.ofHom g.hom).comp γ (zero_add n))
+        (zero_add n) =
+    (CochainComplex.HomComplex.Cochain.ofHom (f.hom ≫ g.hom)).comp γ (zero_add n)
+  rw [CochainComplex.HomComplex.Cochain.ofHom_comp]
+  rw [CochainComplex.HomComplex.Cochain.comp_assoc]
+  omega
+
+/-- The cone nullhomotopy with its source written as a composite of precomposition maps. -/
+def dgMappingConePrecompositionCompositeNullhomotopy (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    Homotopy
+      (dgHomZModulePrecomposition T (dgMappingConeInr f) ≫
+        dgHomZModulePrecomposition T f) 0 :=
+  (Homotopy.ofEq (dgHomZModulePrecomposition_comp T f (dgMappingConeInr f))).trans
+    (dgMappingConePrecompositionNullhomotopy T f)
+
+/-- The cone nullhomotopy as a map into the standard chain path object. -/
+def dgMappingConeHomToPathObject (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    dgHomZModuleCochainComplex (dgMappingConeObject f) T ⟶
+      dgHomPrecompositionPathObject T K :=
+  HomologicalComplex.pathObject.lift
+    (dgHomZModulePrecomposition T (dgMappingConeInr f) ≫
+      dgHomZModulePrecomposition T f) 0
+    (dgMappingConePrecompositionCompositeNullhomotopy T f)
+
+@[reassoc (attr := simp)]
+theorem dgMappingConeHomToPathObject_π₀ (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    dgMappingConeHomToPathObject T f ≫
+        HomologicalComplex.pathObject.π₀ (dgHomZModuleCochainComplex K T) =
+      dgHomZModulePrecomposition T (dgMappingConeInr f) ≫
+        dgHomZModulePrecomposition T f :=
+  HomologicalComplex.pathObject.lift_π₀ _ _ _
+
+@[reassoc (attr := simp)]
+theorem dgMappingConeHomToPathObject_π₁ (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    dgMappingConeHomToPathObject T f ≫
+        HomologicalComplex.pathObject.π₁ (dgHomZModuleCochainComplex K T) = 0 :=
+  HomologicalComplex.pathObject.lift_π₁ _ _ _
+
+/-- Endpoint commutativity needed for the canonical map to the strict pullback. -/
+theorem dgMappingConeHom_pathFiber_condition (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    dgHomZModulePrecomposition T (dgMappingConeInr f) ≫
+        dgHomPrecompositionZeroEndpoints T f =
+      dgMappingConeHomToPathObject T f ≫
+        dgHomPrecompositionPathEndpoints T K := by
+  apply Limits.prod.hom_ext
+  · simp [dgHomPrecompositionZeroEndpoints, dgHomPrecompositionPathEndpoints]
+  · simp [dgHomPrecompositionZeroEndpoints, dgHomPrecompositionPathEndpoints]
+
+/-- The canonical map from the actual cone Hom complex to the strict path-object
+pullback. -/
+def dgMappingConeHomToPathFiber (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    dgHomZModuleCochainComplex (dgMappingConeObject f) T ⟶
+      dgHomPrecompositionPathFiber T f :=
+  Limits.pullback.lift
+    (dgHomZModulePrecomposition T (dgMappingConeInr f))
+    (dgMappingConeHomToPathObject T f)
+    (dgMappingConeHom_pathFiber_condition T f)
+
 /-- Differential compatibility of the cone decomposition.  In coordinates the cone Hom
 differential is the standard upper-triangular matrix: the shifted-source differential carries
 the minus sign, while the target coordinate receives postcomposition by `f`. -/
