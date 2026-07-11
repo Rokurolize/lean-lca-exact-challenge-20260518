@@ -534,14 +534,40 @@ edges.  `HEq` records the endpoint transports inherent in the path-quotient
 presentation of the homotopy category. -/
 def markedHomotopyMorphismProperty {L : SSet.{u}} (W : EdgeMarking L) :
     MorphismProperty (SSet.hoFunctor.obj L) :=
-  fun _ _ f ↦ ∃ (x y : L _⦋0⦌) (e : SSet.Edge x y),
-    W.marked e.edge ∧ HEq f (edgeHomotopyClass e)
+  fun _ _ f ↦ ∃ a : L _⦋1⦌,
+    W.marked a ∧ Arrow.mk f = Arrow.mk (edgeHomotopyClass (SSet.Edge.mk' a))
 
 theorem markedHomotopyMorphismProperty_edge_mem
-    {L : SSet.{u}} (W : EdgeMarking L) {x y : L _⦋0⦌}
-    (e : SSet.Edge x y) (he : W.marked e.edge) :
-    markedHomotopyMorphismProperty W (edgeHomotopyClass e) :=
-  ⟨x, y, e, he, HEq.rfl⟩
+    {L : SSet.{u}} (W : EdgeMarking L) (a : L _⦋1⦌) (ha : W.marked a) :
+    markedHomotopyMorphismProperty W
+      (edgeHomotopyClass (SSet.Edge.mk' a)) :=
+  ⟨a, ha, rfl⟩
+
+/-- The transported relative-functor predicate is exactly inversion of the morphism
+property on the homotopy category represented by marked edges. -/
+theorem pulledRelativeFunctorProperty_iff_isInvertedBy
+    {L : SSet.{u}} (W : EdgeMarking L) (E : Cat.{u, u})
+    (F : (ihom (SSet.hoFunctor.obj L)).obj E) :
+    PulledRelativeFunctorProperty W E F ↔
+      (markedHomotopyMorphismProperty W).IsInvertedBy F := by
+  change InvertsMarkedEdges W
+    (internalHomVertexMap L (nerveFunctor.obj E)
+      ((internalHomNerveIso L E).hom.app (Opposite.op ⦋0⦌)
+        (CategoryTheory.nerveEquiv.symm F))) ↔ _
+  rw [internalHomNerveIso_vertex_map]
+  constructor
+  · intro h X Y f hf
+    obtain ⟨a, ha, hf⟩ := hf
+    have hi := (edgeIsEquivalence_reflectionUnit_nerveFunctor_iff E F a).mp (h a ha)
+    have hf' := congrArg F.mapArrow.obj hf
+    change IsIso (Arrow.mk (F.map f)).hom
+    rw [show Arrow.mk (F.map f) =
+      Arrow.mk (F.map (edgeHomotopyClass (SSet.Edge.mk' a))) by
+        exact hf']
+    exact hi
+  · intro h a ha
+    apply (edgeIsEquivalence_reflectionUnit_nerveFunctor_iff E F a).mpr
+    exact h _ (markedHomotopyMorphismProperty_edge_mem W a ha)
 
 /-- A simplicial isomorphism restricts to the full subcomplexes cut out by a vertex
 predicate and its pullback. -/
