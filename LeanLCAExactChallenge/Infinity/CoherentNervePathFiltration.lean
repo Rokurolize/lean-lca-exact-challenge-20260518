@@ -2355,6 +2355,38 @@ theorem Extended2GlobalPairIndex.rankedKanFacePair_global {i j k : J}
     (Extended2GlobalPairIndex.rankedKanFacePair hik hkj (.inr (.inr p))).1 = p.1 :=
   rfl
 
+noncomputable def Extended2GlobalPairIndex.rank {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) (p : Extended2GlobalPairIndex i j k) : ℕ × ℕ :=
+  (p.rankedKanFacePair hik hkj).2.upper.filtrationRank k
+
+noncomputable def Extended2GlobalPairIndex.RankRel {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j)
+    (a b : Extended2GlobalPairIndex i j k) : Prop :=
+  Prod.Lex (fun x y : ℕ ↦ x < y) (fun x y : ℕ ↦ x < y)
+    (a.rank hik hkj) (b.rank hik hkj)
+
+theorem Extended2GlobalPairIndex.rankRel_wellFounded {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    WellFounded (Extended2GlobalPairIndex.RankRel hik hkj) :=
+  (Nat.lt_wfRel.wf.prod_lex Nat.lt_wfRel.wf).onFun
+
+noncomputable instance Extended2GlobalPairIndex.rankRel_isWellFounded {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    IsWellFounded (Extended2GlobalPairIndex i j k)
+      (Extended2GlobalPairIndex.RankRel hik hkj) :=
+  ⟨Extended2GlobalPairIndex.rankRel_wellFounded hik hkj⟩
+
+@[implicit_reducible]
+noncomputable def Extended2GlobalPairIndex.wellOrder {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) : LinearOrder (Extended2GlobalPairIndex i j k) :=
+  IsWellFounded.wellOrderExtension (Extended2GlobalPairIndex.RankRel hik hkj)
+
+theorem Extended2GlobalPairIndex.rankRel_lt_wellOrder {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) {a b : Extended2GlobalPairIndex i j k}
+    (h : Extended2GlobalPairIndex.RankRel hik hkj a b) :
+    @LT.lt _ (Extended2GlobalPairIndex.wellOrder hik hkj).toLT a b :=
+  Prod.Lex.left _ _ (IsWellFounded.rank_lt_of_rel h)
+
 /-- The ranked Kan horn belonging to either kind of extended global pair. -/
 noncomputable def ExtendedGlobalPairIndex.rankedKanFacePair {i j k : J}
     (hik : i ≤ k) (hkj : k ≤ j) (p : ExtendedGlobalPairIndex i j k) :
@@ -2571,6 +2603,35 @@ theorem ExtendedGlobalPairIndex.hornRange_le_previousStage {i j k : J}
 
 theorem ExtendedGlobalPairIndex.previousStage_le_nextStage {i j k : J}
     (hik : i ≤ k) (hkj : k ≤ j) (p : ExtendedGlobalPairIndex i j k) :
+    p.previousStage hik hkj ≤ p.nextStage hik hkj :=
+  le_sup_left
+
+noncomputable def Extended2GlobalPairIndex.earlierStage {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) (p : Extended2GlobalPairIndex i j k) :
+    (CategoryTheory.nerve (ThickPath i j)).Subcomplex :=
+  knownPathSubcomplex i j k ⊔
+    ⨆ (q : Extended2GlobalPairIndex i j k), ⨆ (_h : @LT.lt _
+      (Extended2GlobalPairIndex.wellOrder hik hkj).toLT q p),
+      SSet.Subcomplex.ofSimplex (q.rankedKanFacePair hik hkj).2.upper.toNerveSimplex
+
+noncomputable def Extended2GlobalPairIndex.previousStage {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) (p : Extended2GlobalPairIndex i j k) :
+    (CategoryTheory.nerve (ThickPath i j)).Subcomplex :=
+  p.earlierStage hik hkj ⊔ (p.rankedKanFacePair hik hkj).2.hornRange
+
+noncomputable def Extended2GlobalPairIndex.nextStage {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) (p : Extended2GlobalPairIndex i j k) :
+    (CategoryTheory.nerve (ThickPath i j)).Subcomplex :=
+  p.previousStage hik hkj ⊔
+    SSet.Subcomplex.ofSimplex (p.rankedKanFacePair hik hkj).2.upper.toNerveSimplex
+
+theorem Extended2GlobalPairIndex.hornRange_le_previousStage {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) (p : Extended2GlobalPairIndex i j k) :
+    (p.rankedKanFacePair hik hkj).2.hornRange ≤ p.previousStage hik hkj :=
+  le_sup_right
+
+theorem Extended2GlobalPairIndex.previousStage_le_nextStage {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) (p : Extended2GlobalPairIndex i j k) :
     p.previousStage hik hkj ≤ p.nextStage hik hkj :=
   le_sup_left
 
