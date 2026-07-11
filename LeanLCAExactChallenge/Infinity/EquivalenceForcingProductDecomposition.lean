@@ -123,6 +123,22 @@ theorem weakEquivalenceMappingComponent_restriction_to_equivalenceEdges
     equivalenceIntervalRestrictionToEquivalenceEdges_comp_inclusion] using
       (weakEquivalenceMappingComponent_restriction R Q a).symm
 
+/-- Under the two coproduct-to-product comparisons, restriction along the family of free
+equivalence inclusions is the product of the single-interval restriction maps. -/
+theorem weakIntervalsMappingRestriction_productComparison
+    (Q : SSet.{max u v}) :
+    (internalHomCoproductIsoProduct (weakEquivalenceFamily R) Q).hom ≫
+        Limits.Pi.map (fun _ : WeakEquivalenceArrow C R ↦
+          internalHomPrecomp equivalenceIntervalInclusion Q) =
+      internalHomPrecomp (weakIntervalsToEquivalences R) Q ≫
+        (internalHomCoproductIsoProduct (weakIntervalFamily R) Q).hom := by
+  apply Limits.Pi.hom_ext
+  intro a
+  simp only [Limits.Pi.map_π, Category.assoc,
+    internalHomCoproductIsoProduct_hom_π_assoc,
+    internalHomCoproductIsoProduct_hom_π]
+  exact (weakEquivalenceMappingComponent_restriction R Q a).symm
+
 /-- The presentation mapping object, identified with the standard pullback of the two family
 restriction maps. -/
 noncomputable def equivalenceForcingPresentationMappingPullbackIso
