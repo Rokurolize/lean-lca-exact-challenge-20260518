@@ -1727,6 +1727,71 @@ noncomputable def representableJoinHornIsColimit (m : ℕ) {n : ℕ}
       (augmentedRepresentableJoinHornIsColimit.{u} m i hn))
     (Functor.mapCoconeMapCocone _)
 
+lemma representableJoinHornCocone_right_comp (m n : ℕ)
+    (i : Fin (n + 2)) (j : ({i}ᶜ : Set (Fin (n + 2)))) :
+    (representableJoinHornCocone.{u} m i).ι.app
+          (.right j) ≫ representableJoinHornMap m (n + 1) i =
+      ordinaryJoinTransportedRightLeg.{u} m n j.1 := by
+  rw [representableJoinHornMap, ordinaryJoinTransportedRightLeg]
+  rw [← Category.assoc]
+  change (_ ≫ _) ≫ (simplicialJoinStdSimplexIsoNat m (n + 1)).hom =
+    (_ ≫ _) ≫ (simplicialJoinStdSimplexIsoNat m (n + 1)).hom
+  apply (cancel_mono (simplicialJoinStdSimplexIsoNat m (n + 1)).hom).mpr
+  have hji : j.1 ≠ i := by
+    simpa only [Set.mem_compl_iff, Set.mem_singleton_iff] using j.2
+  let e := SSet.stdSimplex.faceSingletonComplIso.{u} j.1
+  let h : ((Δ[m] : SSet.{u}), (Δ[n] : SSet.{u})) ⟶
+      ((Δ[m] : SSet.{u}), (SSet.stdSimplex.face {j.1}ᶜ : SSet.{u})) :=
+    (𝟙 _, e.hom)
+  letI : IsIso h := by
+    apply IsIso.mk
+    refine ⟨(𝟙 _, e.inv), ?_, ?_⟩ <;> ext <;> simp [h, e]
+  letI := augmentedDayConvolution
+    (emptyAugmentation.{u}.obj (Δ[m] : SSet.{u}))
+    (emptyAugmentation.{u}.obj (SSet.stdSimplex.face {j.1}ᶜ : SSet.{u}))
+  letI := augmentedDayConvolution
+    (emptyAugmentation.{u}.obj (Δ[m] : SSet.{u}))
+    (emptyAugmentation.{u}.obj (Λ[n + 1, i] : SSet.{u}))
+  letI := augmentedDayConvolution
+    (emptyAugmentation.{u}.obj (Δ[m] : SSet.{u}))
+    (emptyAugmentation.{u}.obj (Δ[n] : SSet.{u}))
+  letI := augmentedDayConvolution
+    (emptyAugmentation.{u}.obj (Δ[m] : SSet.{u}))
+    (emptyAugmentation.{u}.obj (Δ[n + 1] : SSet.{u}))
+  have hface :
+      (((SSet.horn.multicoequalizerDiagram i).multicofork.toLinearOrder.map
+          SSet.Subcomplex.toSSetFunctor).ι.app (.right j)) =
+        SSet.horn.faceι i j.1 hji := by
+    rfl
+  simp only [representableJoinHornCocone, augmentedRepresentableJoinHornCocone,
+    singletonAugmentationHornCocone, Functor.mapCocone_ι_app]
+  rw [hface]
+  rw [← SSet.horn.faceSingletonComplIso_inv_ι i j.1 hji]
+  unfold ordinaryJoinFaceIso
+  change _ = inv (ordinaryJoinBifunctor.{u}.map h) ≫ _
+  rw [← ordinaryJoinBifunctor.map_inv]
+  have hinv : inv h = (𝟙 _, e.inv) := by
+    rw [← cancel_mono h]
+    ext <;> simp [h, e]
+  rw [hinv]
+  simp only [ordinaryJoinBifunctor, simplicialJoinMap]
+  change Functor.whiskerLeft AugmentedSimplexCategory.inclusion.op
+        (CategoryTheory.MonoidalCategory.DayConvolution.map
+          (𝟙 (emptyAugmentation.{u}.obj (Δ[m] : SSet.{u})))
+          (emptyAugmentation.{u}.map
+            ((SSet.stdSimplex.faceSingletonComplIso j.1).inv ≫
+              SSet.horn.ι i j.1 hji))) ≫ _ = _
+  rw [emptyAugmentation.map_comp]
+  change Functor.whiskerLeft AugmentedSimplexCategory.inclusion.op (_ ≫ _) =
+    Functor.whiskerLeft AugmentedSimplexCategory.inclusion.op (_ ≫ _)
+  congr 1
+  rw [dayConvolutionMap_comp, dayConvolutionMap_comp]
+  simp only [emptyAugmentation.map_id, Category.id_comp]
+  rw [← emptyAugmentation.map_comp, ← emptyAugmentation.map_comp]
+  rw [Category.assoc, SSet.horn.ι_ι]
+  rw [← emptyAugmentation.map_comp]
+  rfl
+
 /-- The initial representable join-horn subcomplex is the union of the ranges
 of the convolved codimension-one face pieces. -/
 lemma representableJoinHornInitial_eq_iSup_multicoforkRanges
