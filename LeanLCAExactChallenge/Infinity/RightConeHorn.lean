@@ -865,6 +865,25 @@ noncomputable def positiveCanonicalConeHornCornerMap
         (joinSigmaOneVertices 0 (s + 2) (∅ : Finset (Fin 1)))).ι ≫
     (simplicialJoinStdSimplexIsoNat 0 (s + 2)).inv
 
+lemma positiveCanonicalConeHorn_le₂₄_ι (s : ℕ) (i : Fin (s + 3)) :
+    SSet.Subcomplex.homOfLE
+          (leftConeHornCanonicalBicartSq (s + 1) i).le₂₄ ≫
+        (representableJoinHornInitial 0 (s + 2) i ⊔
+          SSet.stdSimplex.face
+            (joinSigmaOneVertices 0 (s + 2) (∅ : Finset (Fin 1)))).ι =
+      (representableJoinHornInitial 0 (s + 2) i).ι :=
+  SSet.Subcomplex.homOfLE_ι _
+
+lemma positiveCanonicalConeHorn_le₃₂_ι (s : ℕ) (i : Fin (s + 3)) :
+    SSet.Subcomplex.homOfLE
+          (leftConeHornCanonicalBicartSq (s + 1) i).le₃₄ ≫
+        (representableJoinHornInitial 0 (s + 2) i ⊔
+          SSet.stdSimplex.face
+            (joinSigmaOneVertices 0 (s + 2) (∅ : Finset (Fin 1)))).ι =
+      (SSet.stdSimplex.face
+        (joinSigmaOneVertices 0 (s + 2) (∅ : Finset (Fin 1)))).ι :=
+  SSet.Subcomplex.homOfLE_ι _
+
 lemma positiveCanonicalConeHornCornerMap_innerAnodyne
     (s : ℕ) (i : Fin (s + 3)) (hi : i < Fin.last (s + 2)) :
     SSet.innerAnodyneExtensions
