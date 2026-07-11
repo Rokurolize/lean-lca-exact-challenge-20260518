@@ -1581,6 +1581,24 @@ noncomputable def mappingLocalizationFunctorsInvertingForwardPrecompIso
       (pulledRelativeFunctorPropertyExplicitCompInclusionIso W E) ≪≫
     (mappingLocalizationOrdinaryExplicitForwardPrecompIso h E)
 
+theorem mappingLocalizationHomotopyFunctor_inverts
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) :
+    (markedHomotopyMorphismProperty W).IsInvertedBy
+      (SSet.hoFunctor.map ell.hom).toFunctor := by
+  intro X Y f hf
+  obtain ⟨a, ha, hfa⟩ := hf
+  have he := h.inverts a ha
+  letI : IsIso (edgeHomotopyClass ((SSet.Edge.mk' a).map ell.hom)) := he
+  have hmap := congrArg
+    ((SSet.hoFunctor.map ell.hom).toFunctor.mapArrow.obj) hfa
+  change IsIso (Arrow.mk ((SSet.hoFunctor.map ell.hom).toFunctor.map f)).hom
+  rw [show Arrow.mk ((SSet.hoFunctor.map ell.hom).toFunctor.map f) =
+      Arrow.mk ((SSet.hoFunctor.map ell.hom).toFunctor.map
+        (edgeHomotopyClass (SSet.Edge.mk' a))) by exact hmap]
+  change IsIso (edgeHomotopyClass ((SSet.Edge.mk' a).map ell.hom))
+  infer_instance
+
 /-- Maps between nerves are exactly ordinary functors.  This is the fully-faithful
 starting point for comparing the mapping localization with its ordinary truncation. -/
 noncomputable def nerveFunctorCategoryEquiv (C D : Type u)
