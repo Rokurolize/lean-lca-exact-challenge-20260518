@@ -2153,6 +2153,44 @@ lemma joinSigmaOneFace_inf_smallerFace_le_hornRange
   simp [joinSigmaOneVertices, joinFirstVertices] at hx ⊢
   aesop
 
+lemma representableJoinHornStage_inf_joinSigmaOne_le_hornRange
+    (m n r : ℕ) (i : Fin (n + 2)) (T : Finset (Fin (m + 1)))
+    (hT : T.card = r + 1) :
+    representableJoinHornStage m (n + 1) i r ⊓
+        SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex m (n + 1) T) ≤
+      joinSigmaOneHornRange m (n + 1) T i := by
+  rw [← joinSigmaOneFace_eq_ofSimplex]
+  rw [representableJoinHornStage]
+  have hdis : (representableJoinHornInitial m (n + 1) i ⊔
+        ⨆ (U : Finset (Fin (m + 1))), ⨆ (_ : U.card ≤ r),
+          SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex m (n + 1) U)) ⊓
+        SSet.stdSimplex.face (joinSigmaOneVertices m (n + 1) T) =
+      (representableJoinHornInitial m (n + 1) i ⊓
+        SSet.stdSimplex.face (joinSigmaOneVertices m (n + 1) T)) ⊔
+      ((⨆ (U : Finset (Fin (m + 1))), ⨆ (_ : U.card ≤ r),
+          SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex m (n + 1) U)) ⊓
+        SSet.stdSimplex.face (joinSigmaOneVertices m (n + 1) T)) := by
+    ext V x
+    change (_ ∨ _) ∧ _ ↔ (_ ∧ _) ∨ (_ ∧ _)
+    tauto
+  rw [hdis]
+  apply sup_le
+  · exact representableJoinHornInitial_inf_joinSigmaOneFace_le_hornRange m n i T
+  · rw [subcomplex_iSup_inf_eq]
+    apply iSup_le
+    intro U
+    intro V x hx
+    have hxU' := hx.1
+    have hxT := hx.2
+    simp only [Subfunctor.iSup_obj, Set.mem_iUnion] at hxU'
+    obtain ⟨hU, hxU⟩ := hxU'
+    have hxUface : x ∈ (SSet.stdSimplex.face
+        (joinSigmaOneVertices m (n + 1) U)).obj V := by
+      rw [joinSigmaOneFace_eq_ofSimplex]
+      exact hxU
+    exact joinSigmaOneFace_inf_smallerFace_le_hornRange
+      m n r i T U hT hU V ⟨hxUface, hxT⟩
+
 /-- The ordinary simplicial slice underlying the augmented Day internal hom. -/
 def simplicialSlice (X Q : SSet.{u}) : SSet.{u} :=
   forgetAugmentation.{u}.obj
