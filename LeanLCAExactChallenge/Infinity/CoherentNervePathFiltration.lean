@@ -1260,6 +1260,31 @@ theorem coherentCornerSign_of_ne (k : J) (hik : i < k) (hkj : k < j)
     exact (ha (congrArg Subtype.val h)).elim
   · rfl
 
+/-- A simplex of the one-dimensional standard simplex lies in a one-dimensional horn exactly
+when it is constantly the selected endpoint. -/
+theorem mem_horn_one_iff_constant {d : ℕ} (s : (Δ[1] : SSet.{u}).obj (Opposite.op ⦋d⦌))
+    (k : Fin 2) : s ∈ (SSet.horn 1 k).obj _ ↔ ∀ a, s a = k := by
+  rw [SSet.mem_horn_iff_notMem_range]
+  constructor
+  · rintro ⟨j, hjk, hj⟩ a
+    by_contra hsk
+    apply hj
+    refine ⟨a, ?_⟩
+    apply Fin.ext
+    have hs := (s a).isLt
+    have hj' := j.isLt
+    have hk' := k.isLt
+    simp only [Fin.ext_iff] at hjk hsk ⊢
+    omega
+  · intro h
+    fin_cases k
+    · refine ⟨1, by simp, ?_⟩
+      rintro ⟨a, ha⟩
+      exact Fin.zero_ne_one ((h a).symm.trans ha)
+    · refine ⟨0, by simp, ?_⟩
+      rintro ⟨a, ha⟩
+      exact Fin.zero_ne_one (ha.symm.trans (h a))
+
 /-- A chain is nondegenerate when distinct indices carry distinct paths.  For a monotone chain
 in a poset this is the strict-chain condition. -/
 def IsNondegenerate (c : PathChain r i j) : Prop := Function.Injective c.path
