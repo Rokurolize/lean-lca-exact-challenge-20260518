@@ -406,4 +406,14 @@ lemma range_leftConeHornCornerStdMap_eq_shiftedHorn
       simpa only [Nat.zero_add, Nat.succ_eq_add_one, Nat.add_assoc,
         Nat.add_comm, Nat.add_left_comm] using
         representableJoinHornInitial_sup_baseFace_eq_shiftedHorn (u := u) r i
+
+lemma emptyJoinCell_zero_eq_baseFace (r : ℕ) :
+    SSet.Subcomplex.ofSimplex
+        (joinSigmaOneSimplex.{u} 0 (r + 1) (∅ : Finset (Fin 1))) =
+      SSet.stdSimplex.face ({(0 : Fin (0 + (r + 1) + 2))}ᶜ) := by
+  rw [← joinSigmaOneFace_eq_ofSimplex]
+  congr 1
+  ext x
+  simp [joinSigmaOneVertices, joinFirstVertices, joinSecondVertices]
+
 end LeanLCAExactChallenge.Infinity
