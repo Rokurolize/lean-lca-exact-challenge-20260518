@@ -1221,7 +1221,8 @@ private noncomputable def mappingLocalizationOrdinaryComparisonFactor
     (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
     SSet.hoFunctor.obj ((ihom L.obj).obj (nerveFunctor.obj E)) ⥤
       SSet.hoFunctor.obj (relativeInternalHom W (nerveFunctor.obj E)) :=
-  (mappingLocalizationComparisonEquivalence h E).functor
+  (SSet.hoFunctor.map
+    (mappingLocalizationAtCategoricalNerve h E).comparison).toFunctor
 
 private noncomputable def mappingLocalizationOrdinaryRelativeFactor
     {A : SSet.QCat.{u}} (W : EdgeMarking A.obj) (E : Cat.{u, u}) :
@@ -1240,7 +1241,8 @@ private instance mappingLocalizationOrdinaryComparisonFactor_isEquivalence
     (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
     (mappingLocalizationOrdinaryComparisonFactor h E).IsEquivalence := by
   dsimp only [mappingLocalizationOrdinaryComparisonFactor]
-  infer_instance
+  exact IsBicategoricalEquivalence.hoFunctor_isEquivalence
+    (mappingLocalizationAtCategoricalNerve h E).isEquivalence
 
 private instance mappingLocalizationOrdinaryRelativeFactor_isEquivalence
     {A : SSet.QCat.{u}} (W : EdgeMarking A.obj) (E : Cat.{u, u}) :
@@ -1333,6 +1335,29 @@ private noncomputable def mappingLocalizationOrdinaryRelativeStageExplicitIso
   mappingLocalizationOrdinaryRelativeStageAssociator₁ h E ≪≫
     mappingLocalizationOrdinaryRelativeStageWhisker h E ≪≫
       mappingLocalizationOrdinaryRelativeStageAssociator₂ h E
+
+private theorem mappingLocalizationOrdinaryComparison_comp_inclusion
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    mappingLocalizationOrdinaryComparisonFactor h E ⋙
+        (SSet.hoFunctor.map
+          (relativeInternalHom W (nerveFunctor.obj E)).ι).toFunctor =
+      homotopyPrecomp ell.hom (nerveFunctor.obj E) := by
+  have hd := congrArg SSet.hoFunctor.map
+    (mappingLocalizationAtCategoricalNerve h E).comparison_comp_inclusion
+  convert congrArg Cat.Hom.toFunctor hd using 2 <;>
+    simp [mappingLocalizationOrdinaryComparisonFactor,
+      categoricalNerveQCat, homotopyPrecomp, SSet.hoFunctor.map_comp,
+      Cat.Hom.comp_toFunctor] <;> rfl
+
+private noncomputable def mappingLocalizationOrdinaryComparisonCompInclusionIso
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    mappingLocalizationOrdinaryComparisonFactor h E ⋙
+        (SSet.hoFunctor.map
+          (relativeInternalHom W (nerveFunctor.obj E)).ι).toFunctor ≅
+      homotopyPrecomp ell.hom (nerveFunctor.obj E) :=
+  eqToIso (mappingLocalizationOrdinaryComparison_comp_inclusion h E)
 
 set_option backward.isDefEq.respectTransparency false in
 theorem internalHomNerveHomotopyEquivalence_precomp_naturality
