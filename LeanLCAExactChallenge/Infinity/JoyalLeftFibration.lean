@@ -40,6 +40,38 @@ lemma LeftFibration.hasLiftingProperty
     HasLiftingProperty (SSet.horn n i).ι p :=
   LeftFibration.mem _ (horn_ι_mem_leftHornInclusions hn)
 
+lemma innerHornInclusions_le_leftHornInclusions :
+    SSet.innerHornInclusions.{u} ≤ leftHornInclusions.{u} := by
+  intro A B f hf
+  cases hf with
+  | intro i _h0 hn => exact horn_ι_mem_leftHornInclusions hn
+
+lemma leftFibrations_le_innerFibrations :
+    leftFibrations.{u} ≤ SSet.innerFibrations.{u} :=
+  antitone_rlp innerHornInclusions_le_leftHornInclusions
+
+instance {X Y : SSet.{u}} (p : X ⟶ Y) [LeftFibration p] :
+    SSet.InnerFibration p :=
+  ⟨leftFibrations_le_innerFibrations _ LeftFibration.mem⟩
+
+instance leftFibration_comp
+    {X Y Z : SSet.{u}} (p : X ⟶ Y) (q : Y ⟶ Z)
+    [LeftFibration p] [LeftFibration q] : LeftFibration (p ≫ q) :=
+  ⟨leftFibrations.comp_mem p q LeftFibration.mem LeftFibration.mem⟩
+
+instance leftFibration_pullback_snd
+    {X Y Z : SSet.{u}} (p : X ⟶ Z) (q : Y ⟶ Z) [LeftFibration p] :
+    LeftFibration (Limits.pullback.snd p q) := by
+  refine ⟨?_⟩
+  exact leftFibrations.pullback_snd _ _ LeftFibration.mem
+
+/-- The total space of a left fibration over a quasicategory is a
+quasicategory. -/
+theorem quasicategory_of_leftFibration
+    {X Y : SSet.{u}} (p : X ⟶ Y) [LeftFibration p] [SSet.Quasicategory Y] :
+    SSet.Quasicategory X :=
+  SSet.quasicategory_of_innerFibration p
+
 /-- Reversal of a right fibration is a left fibration. -/
 noncomputable instance leftFibration_op_of_rightFibration
     {X Y : SSet.{u}} (p : X ⟶ Y) [RightFibration p] :
