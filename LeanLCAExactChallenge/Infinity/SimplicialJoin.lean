@@ -1239,6 +1239,17 @@ noncomputable def simplicialSetIsoRangeOfMono {X Y : SSet.{u}}
     exact ⟨x, rfl⟩
   exact asIso tr
 
+lemma toRange_naturality_of_comp {A B X : SSet.{u}}
+    (u : A ⟶ B) (g : B ⟶ X) :
+    u ≫ SSet.Subcomplex.toRange g =
+      SSet.Subcomplex.toRange (u ≫ g) ≫
+        SSet.Subcomplex.homOfLE (by
+          rw [SSet.Subcomplex.range_comp]
+          exact SSet.Subcomplex.image_le_range _ _) := by
+  apply (cancel_mono (SSet.Subcomplex.range g).ι).mp
+  simp only [Category.assoc, SSet.Subcomplex.toRange_ι,
+    SSet.Subcomplex.homOfLE_ι]
+
 lemma isColimit_range_desc_component {J : Type*} [Category J]
     {D : J ⥤ SSet.{u}} {c : Cocone D} (hc : IsColimit c)
     (t : Cocone D) (j : J) :
