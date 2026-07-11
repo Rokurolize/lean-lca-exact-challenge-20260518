@@ -4,6 +4,7 @@ import Mathlib.AlgebraicTopology.SimplicialSet.NerveAdjunction
 import Mathlib.CategoryTheory.Monoidal.Closed.Enrichment
 import Mathlib.CategoryTheory.Monoidal.Closed.Functor
 import Mathlib.CategoryTheory.Monoidal.Closed.Ideal
+import Mathlib.CategoryTheory.Monoidal.Cartesian.Basic
 
 /-!
 # Ordinary localization bridge
@@ -108,6 +109,15 @@ theorem hoFunctor_map_reflectionUnit_isIso (L : SSet.{u}) :
       _ = e.inv := by simp
   rw [h]
   infer_instance
+
+/-- The reflector sends the reflection unit tensored with any object to an isomorphism. -/
+theorem hoFunctor_map_reflectionUnit_whiskerRight_isIso (L Z : SSet.{u}) :
+    IsIso (SSet.hoFunctor.map (nerveAdjunction.unit.app L ▷ Z)) := by
+  letI : IsIso (SSet.hoFunctor.map (nerveAdjunction.unit.app L)) :=
+    hoFunctor_map_reflectionUnit_isIso L
+  apply IsIso.of_isIso_fac_right
+    (CartesianMonoidalCategory.prodComparison_natural_whiskerRight SSet.hoFunctor
+      (B := Z) (nerveAdjunction.unit.app L))
 
 /-- In a Cat-enriched ordinary category, the transported horizontal composite has the
 expected enriched-composition normal form after applying `Hom.base`. -/
