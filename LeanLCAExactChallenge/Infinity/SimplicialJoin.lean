@@ -1419,6 +1419,61 @@ lemma joinSigmaOneHornRange_eq_iSup_erasedFaces (m n : ℕ)
   rw [← stdSimplex_range_map_delta k.1, ← SSet.Subcomplex.range_comp]
   exact joinSigmaOneFaceIso_coface_range m n T k.1
 
+lemma joinSigmaOne_leftFace_le_hornRange (m n : ℕ)
+    (T : Finset (Fin (m + 1))) (i : Fin (n + 2))
+    (t : Fin (m + 1)) (ht : t ∈ T) :
+    SSet.stdSimplex.face (joinSigmaOneVertices m (n + 1) (T.erase t)) ≤
+      joinSigmaOneHornRange m (n + 1) T i := by
+  rw [joinSigmaOneHornRange_eq_iSup_erasedFaces]
+  let k₀ := joinSigmaOneFirstIndex (n + 1) T t ht
+  have hk : k₀ ≠ joinSigmaOneDistinguishedIndex (n + 1) T i := by
+    intro h
+    have := congrArg Fin.val h
+    simp [k₀, joinSigmaOneFirstIndex, joinSigmaOneDistinguishedIndex] at this
+    omega
+  refine le_iSup_of_le (⟨k₀, by simpa⟩ :
+    ({joinSigmaOneDistinguishedIndex (n + 1) T i}ᶜ :
+      Set (Fin (T.card + n + 2)))) ?_
+  rw [joinSigmaOne_nth_first]
+  apply (SSet.stdSimplex.face_le_face_iff _ _).mpr
+  intro x hx
+  have hdis := disjoint_joinFirstVertices_joinSecondVertices m (n + 1) T
+  have htfirst : Fin.castLE (by omega) t ∈ joinFirstVertices m (n + 1) T := by
+    simp [joinFirstVertices, ht]
+  have htnotsecond : Fin.castLE (by omega) t ∉ joinSecondVertices m (n + 1) :=
+    Finset.disjoint_left.mp hdis htfirst
+  simp [joinSigmaOneVertices, joinFirstVertices] at *
+  aesop
+
+lemma joinSigmaOne_rightFace_le_hornRange (m n : ℕ)
+    (T : Finset (Fin (m + 1))) (i j : Fin (n + 2)) (hji : j ≠ i) :
+    SSet.stdSimplex.face
+        ((joinSigmaOneVertices m (n + 1) T).erase
+          (joinShiftedVertex m (n + 1) j)) ≤
+      joinSigmaOneHornRange m (n + 1) T i := by
+  rw [joinSigmaOneHornRange_eq_iSup_erasedFaces]
+  let k₀ := joinSigmaOneDistinguishedIndex (n + 1) T j
+  have hk : k₀ ≠ joinSigmaOneDistinguishedIndex (n + 1) T i := by
+    intro h
+    apply hji
+    apply Fin.ext
+    have := congrArg Fin.val h
+    simp [k₀, joinSigmaOneDistinguishedIndex] at this
+    omega
+  refine le_iSup_of_le (⟨k₀, by simpa⟩ :
+    ({joinSigmaOneDistinguishedIndex (n + 1) T i}ᶜ :
+      Set (Fin (T.card + n + 2)))) ?_
+  change SSet.stdSimplex.face
+      ((joinSigmaOneVertices m (n + 1) T).erase
+        (joinShiftedVertex m (n + 1) j)) ≤
+    SSet.stdSimplex.face
+      ((joinSigmaOneVertices m (n + 1) T).erase
+        (joinSigmaOne m (n + 1) T k₀))
+  have hv : joinSigmaOne m (n + 1) T k₀ = joinShiftedVertex m (n + 1) j := by
+    simpa [k₀, joinSigmaOneDistinguishedIndex] using
+      joinSigmaOne_nth_second m (n + 1) T j
+  rw [hv]
+
 /-- Join of a representable with the specified horn, as a map to the ambient
 representable join simplex. -/
 def representableJoinHornMap (m n : ℕ) (i : Fin (n + 1)) :
