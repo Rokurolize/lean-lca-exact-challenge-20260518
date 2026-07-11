@@ -128,6 +128,64 @@ noncomputable def qcatUnitHomEquivalence (X : SSet.QCat.{u}) :
     (Cat.equivOfIso (SSet.hoFunctor.mapIso
       (MonoidalClosed.unitIsoSelf (C := SSet.{u}) (X := X.obj))))
 
+
+/-- Transporting enrichment carries enriched postcomposition to the image of the original
+postcomposition. -/
+theorem transportEnrichment_eHomWhiskerLeft
+    {V : Type v} [Category V] [MonoidalCategory V]
+    {W : Type w} [Category W] [MonoidalCategory W]
+    (F : V ⥤ W) [F.LaxMonoidal]
+    (C : Type u) [Category C] [EnrichedOrdinaryCategory V C]
+    (e : ∀ v : V, (𝟙_ V ⟶ v) ≃ (𝟙_ W ⟶ F.obj v))
+    (h : ∀ v : V, ∀ f : 𝟙_ V ⟶ v,
+      e v f = Functor.LaxMonoidal.ε F ≫ F.map f)
+    (X : C) {Y Y' : C} (g : Y ⟶ Y') :
+    @eHomWhiskerLeft W _ _ (TransportEnrichment F C) _
+      (TransportEnrichment.enrichedOrdinaryCategory (F := F) C e h)
+      (show TransportEnrichment F C from X) Y Y' g =
+      F.map (@eHomWhiskerLeft V _ _ C _ _ X Y Y' g) := by
+  letI : EnrichedOrdinaryCategory W (TransportEnrichment F C) :=
+    TransportEnrichment.enrichedOrdinaryCategory (F := F) C e h
+  dsimp [eHomWhiskerLeft]
+  rw [TransportEnrichment.eComp_eq]
+  dsimp +instances [TransportEnrichment.enrichedOrdinaryCategory]
+  rw [show (@eHomEquiv W _ _ (TransportEnrichment F C) _ _
+      (show TransportEnrichment F C from Y)
+      (show TransportEnrichment F C from Y') g) =
+      Functor.LaxMonoidal.ε F ≫ F.map ((eHomEquiv V) g) by
+    exact h _ _]
+  change (ρ_ (F.obj (X ⟶[V] Y))).inv ≫
+      F.obj (X ⟶[V] Y) ◁
+        (Functor.LaxMonoidal.ε F ≫ F.map ((eHomEquiv V) g)) ≫
+      Functor.LaxMonoidal.μ F (X ⟶[V] Y) (Y ⟶[V] Y') ≫
+        F.map (eComp V X Y Y') =
+      F.map ((ρ_ (X ⟶[V] Y)).inv ≫
+        (X ⟶[V] Y) ◁ (eHomEquiv V) g ≫ eComp V X Y Y')
+  rw [F.map_comp, F.map_comp]
+  rw [MonoidalCategory.whiskerLeft_comp_assoc]
+  rw [← id_tensorHom]
+  rw [← id_tensorHom]
+  rw [← F.map_id]
+  rw [Functor.LaxMonoidal.μ_natural_assoc]
+  rw [tensorHom_def_assoc, whiskerRight_id_assoc, Iso.inv_hom_id_assoc]
+  rw [Functor.LaxMonoidal.right_unitality_inv_assoc]
+  simp
+
+set_option backward.isDefEq.respectTransparency false in
+/-- In the Cat-enrichment of quasicategories, postcomposition is the homotopy-category
+image of the internal-Hom postcomposition map. -/
+theorem qcat_eHomWhiskerLeft_eq_hoFunctor_map_ihom
+    (A : SSet.QCat.{u}) {X Y : SSet.QCat.{u}} (f : X ⟶ Y) :
+    @eHomWhiskerLeft Cat _ _ SSet.QCat _ _ A X Y f =
+      SSet.hoFunctor.map ((ihom A.obj).map f.hom) := by
+  rw [transportEnrichment_eHomWhiskerLeft
+    (F := SSet.hoFunctor) SSet.QCat
+    (SSet.hoFunctor.unitHomEquiv · |>.trans <| Functor.equivCatHom _ _)
+    (congrArg (Functor.toCatHom) <| SSet.hoFunctor.unitHomEquiv_eq · ·)]
+  change SSet.hoFunctor.map
+      (@eHomWhiskerLeft SSet _ _ SSet _ _ A.obj X.obj Y.obj f.hom) = _
+  rfl
+
 /-- Maps between nerves are exactly ordinary functors.  This is the fully-faithful
 starting point for comparing the mapping localization with its ordinary truncation. -/
 noncomputable def nerveFunctorCategoryEquiv (C D : Type u)
