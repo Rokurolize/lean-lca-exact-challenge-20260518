@@ -23,10 +23,68 @@ namespace Infinity
 
 open CategoryTheory
 open CategoryTheory.MonoidalCategory
+open SimplexCategory.Truncated SimplicialObject.Truncated
 
 universe u
 
 universe v w x
+
+private def freeReflVertex {V : Type u} [ReflQuiver V] : Cat.FreeRefl V → V :=
+  Cat.FreeRefl.induction id
+
+@[simp]
+private theorem freeReflVertex_mk {V : Type u} [ReflQuiver V] (x : V) :
+    freeReflVertex (Cat.FreeRefl.mk x) = x := rfl
+
+private theorem freeReflPath_compress
+    {V : SSet.Truncated.{u} 2} [V.Quasicategory₂]
+    {A B : Cat.FreeRefl (SSet.OneTruncation₂ V)} (p : A ⟶ B) :
+    ∀ (x : SSet.OneTruncation₂ V), A = Cat.FreeRefl.mk x →
+      ∀ (y : SSet.OneTruncation₂ V), B = Cat.FreeRefl.mk y →
+        ∃ e : SSet.Truncated.Edge x y,
+          HEq ((SSet.Truncated.HomotopyCategory.quotientFunctor V).map p)
+            (SSet.Truncated.HomotopyCategory.homMk e) := by
+  induction p using Cat.FreeRefl.hom_induction with
+  | id a =>
+      intro x hx y hy
+      have hax : a = x := congrArg freeReflVertex hx
+      have hay : a = y := congrArg freeReflVertex hy
+      subst x
+      subst y
+      refine ⟨SSet.Truncated.Edge.id a, ?_⟩
+      exact HEq.trans (heq_of_eq (congrArg
+        (SSet.Truncated.HomotopyCategory.quotientFunctor V).map
+        (Cat.FreeRefl.homMk_id a))) (HEq.trans
+          (heq_of_eq ((SSet.Truncated.HomotopyCategory.quotientFunctor V).map_id _))
+          (heq_of_eq (SSet.Truncated.HomotopyCategory.homMk_id a).symm))
+  | comp_homMk p g hp =>
+      intro x hx z hz
+      have hax : _ = x := congrArg freeReflVertex hx
+      have hcz : _ = z := congrArg freeReflVertex hz
+      subst x
+      subst z
+      obtain ⟨e, he⟩ := hp _ rfl _ rfl
+      refine ⟨e.comp g, ?_⟩
+      rw [Functor.map_comp]
+      rw [eq_of_heq he]
+      exact heq_of_eq (SSet.Truncated.HomotopyCategory.homMk_comp_homMk
+        (SSet.Truncated.Edge.compStruct e g))
+
+/-- Every morphism between vertex objects in the actual path-quotient homotopy category of a
+2-truncated quasicategory has a single-edge representative. -/
+theorem homotopyCategory_homMk_surjective_of_quasicategory
+    {V : SSet.Truncated.{u} 2} [V.Quasicategory₂]
+    {x y : SSet.OneTruncation₂ V} :
+    Function.Surjective
+      (SSet.Truncated.HomotopyCategory.homMk : SSet.Truncated.Edge x y →
+        (SSet.Truncated.HomotopyCategory.mk x ⟶
+          SSet.Truncated.HomotopyCategory.mk y)) := by
+  intro f
+  obtain ⟨p, hp⟩ :=
+    (SSet.Truncated.HomotopyCategory.quotientFunctor V).map_surjective f
+  obtain ⟨e, he⟩ := freeReflPath_compress p x rfl y rfl
+  refine ⟨e, ?_⟩
+  exact (eq_of_heq he).symm.trans hp
 
 private instance nerveFunctor_exponentialIdeal : ExponentialIdeal nerveFunctor.{u, u} := by
   letI : Limits.PreservesLimitsOfShape (Discrete Limits.WalkingPair)
