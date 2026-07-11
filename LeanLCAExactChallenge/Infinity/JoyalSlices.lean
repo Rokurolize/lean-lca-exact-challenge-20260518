@@ -352,6 +352,31 @@ theorem underSliceLiftingCornerTop_inr
         (SSet.horn n i).ι ≫ underSliceLiftingCornerTop Q z sq = b := by
   apply pushout.inr_desc
 
+/-- The cone pushout-product corner used to extend an under-slice lifting
+square. -/
+noncomputable def underSliceHornCornerMap (n : ℕ) (i : Fin (n + 1)) :
+    pushout (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[n, i])
+        (SSet.horn n i).ι ⟶ simplicialJoin (Δ[0] : SSet.{u}) Δ[n] :=
+  pushout.desc
+    (simplicialJoinMap (𝟙 (Δ[0] : SSet.{u})) (SSet.horn n i).ι)
+    (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[n]) (by
+      simpa using (pointJoinRightInclusion_naturality
+        (SSet.horn n i).ι).symm)
+
+@[reassoc (attr := simp)]
+theorem underSliceHornCornerMap_inl (n : ℕ) (i : Fin (n + 1)) :
+    pushout.inl (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[n, i])
+        (SSet.horn n i).ι ≫ underSliceHornCornerMap n i =
+      simplicialJoinMap (𝟙 (Δ[0] : SSet.{u})) (SSet.horn n i).ι := by
+  apply pushout.inl_desc
+
+@[reassoc (attr := simp)]
+theorem underSliceHornCornerMap_inr (n : ℕ) (i : Fin (n + 1)) :
+    pushout.inr (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[n, i])
+        (SSet.horn n i).ι ≫ underSliceHornCornerMap n i =
+      simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[n] := by
+  apply pushout.inr_desc
+
 /-- The representable over-slice, obtained by reversing an under-slice. -/
 abbrev overSlice (Q : SSet.{u}) (z : Q _⦋0⦌) : SSet.{u} :=
   (underSlice Q.op z).op
