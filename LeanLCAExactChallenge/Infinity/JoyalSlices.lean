@@ -35,4 +35,14 @@ def underSliceProjection (Q : SSet.{u}) (z : Q _⟦0⟦) :
   simplicialJoinRightInclusion (Δ[0] : SSet.{u}) (underSlice Q z) ≫
     forgetAugmentation.{u}.map (underSliceUniversalCone Q z).1
 
+/-- The representable over-slice, obtained by reversing an under-slice. -/
+abbrev overSlice (Q : SSet.{u}) (z : Q _⟦0⟦) : SSet.{u} :=
+  (underSlice Q.op z).op
+
+/-- Forget the fixed final vertex of an over-slice simplex. -/
+def overSliceProjection (Q : SSet.{u}) (z : Q _⟦0⟦) :
+    overSlice Q z ⟶ Q :=
+  SSet.opFunctor.map (underSliceProjection Q.op z) ≫
+    (SSet.opFunctorCompOpFunctorIso.app Q).hom
+
 end LeanLCAExactChallenge.Infinity
