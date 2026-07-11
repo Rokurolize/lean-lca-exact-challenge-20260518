@@ -1485,6 +1485,21 @@ noncomputable def ordinaryJoinFaceIso (m n : ℕ) (j : Fin (n + 2)) :
     refine ⟨(𝟙 _, e.inv), ?_, ?_⟩ <;> ext <;> simp [h, e]
   exact asIso (ordinaryJoinBifunctor.{u}.map h)
 
+/-- A right face of a representable join, transported from the standard
+right coface through the functorial face isomorphism. -/
+noncomputable def ordinaryJoinTransportedRightLeg
+    (m n : ℕ) (j : Fin (n + 2)) :
+    ordinaryJoinBifunctor.{u}.obj
+          ((Δ[m] : SSet.{u}), (SSet.stdSimplex.face {j}ᶜ : SSet.{u})) ⟶
+      (Δ[m + (n + 1) + 1] : SSet.{u}) :=
+  (ordinaryJoinFaceIso.{u} m n j).inv ≫
+    ordinaryJoinBifunctor.{u}.map
+      ((𝟙 (Δ[m] : SSet.{u}),
+        SSet.stdSimplex.map (SimplexCategory.δ j)) :
+        ((Δ[m] : SSet.{u}), (Δ[n] : SSet.{u})) ⟶
+          ((Δ[m] : SSet.{u}), (Δ[n + 1] : SSet.{u}))) ≫
+    (simplicialJoinStdSimplexIsoNat m (n + 1)).hom
+
 theorem dayInternalHomMap_comp
     {F G G' G'' H H' H'' : AugmentedSSet.{u}}
     (ℓ : CategoryTheory.MonoidalCategory.DayConvolutionInternalHom F G H)
