@@ -794,37 +794,6 @@ def dgMappingConeHomPathFiberIso (T : ComplexCategory)
   inv := dgHomPrecompositionPathFiberToConeHom T f
   hom_inv_id := dgMappingConeHom_pathFiber_roundtrip T f
   inv_hom_id := dgHomPrecompositionPathFiber_coneHom_roundtrip T f
-
-/-- Realization functor used for direct dg mapping objects: nonpositive truncation, Dold--Kan,
-then degreewise forgetting to simplicial sets. -/
-abbrev dgMappingSSetRealizationFunctor :
-    CochainComplex (ModuleCat.{0} ℤ) ℤ ⟶ SSet.{0} :=
-  ComplexShape.embeddingDownNat.truncLE'Functor (ModuleCat.{0} ℤ) ⋙
-    DoldKanMonoidal.zModuleDoldKanEquivalence.inverse ⋙
-      zModuleSimplicialForget
-
-/-- The chain-level cone/path-fiber isomorphism realizes to an isomorphism of mapping
-simplicial sets. -/
-def dgMappingConePathFiberSSetIso (T : ComplexCategory)
-    {K L : ComplexCategory} (f : K ⟶ L) :
-    dgMappingDirectZModuleSSet (dgMappingConeObject f) T ≅
-      dgMappingSSetRealizationFunctor.obj (dgHomPrecompositionPathFiber T f) :=
-  dgMappingSSetRealizationFunctor.mapIso (dgMappingConeHomPathFiberIso T f)
-
-/-- The realized path-fiber endpoint square remains a strict categorical pullback of
-simplicial sets. -/
-theorem dgHomPrecompositionPathFiberSSet_isPullback (T : ComplexCategory)
-    {K L : ComplexCategory} (f : K ⟶ L) :
-    IsPullback
-      (dgMappingSSetRealizationFunctor.map
-        (Limits.pullback.fst (dgHomPrecompositionZeroEndpoints T f)
-          (dgHomPrecompositionPathEndpoints T K)))
-      (dgMappingSSetRealizationFunctor.map
-        (Limits.pullback.snd (dgHomPrecompositionZeroEndpoints T f)
-          (dgHomPrecompositionPathEndpoints T K)))
-      (dgMappingSSetRealizationFunctor.map (dgHomPrecompositionZeroEndpoints T f))
-      (dgMappingSSetRealizationFunctor.map (dgHomPrecompositionPathEndpoints T K)) :=
-  (dgHomPrecompositionPathFiber_isPullback T f).map dgMappingSSetRealizationFunctor
   · ext n x
     simp [dgMappingConeHomToPathFiber,
       dgMappingConeHomToPathObject,
