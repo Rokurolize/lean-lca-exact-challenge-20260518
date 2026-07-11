@@ -1500,6 +1500,15 @@ noncomputable def ordinaryJoinTransportedRightLeg
           ((Δ[m] : SSet.{u}), (Δ[n + 1] : SSet.{u}))) ≫
     (simplicialJoinStdSimplexIsoNat m (n + 1)).hom
 
+lemma ordinaryJoinTransportedRightLeg_range
+    (m n : ℕ) (j : Fin (n + 2)) :
+    SSet.Subcomplex.range (ordinaryJoinTransportedRightLeg.{u} m n j) =
+      SSet.stdSimplex.face
+        ({(⟨m + 1 + j.val, by omega⟩ : Fin (m + n + 3))}ᶜ) := by
+  rw [ordinaryJoinTransportedRightLeg, SSet.Subcomplex.range_comp,
+    SSet.Subcomplex.range_eq_top, SSet.Subcomplex.image_top]
+  exact representableJoin_rightCoface_range.{u} m n j
+
 theorem dayInternalHomMap_comp
     {F G G' G'' H H' H'' : AugmentedSSet.{u}}
     (ℓ : CategoryTheory.MonoidalCategory.DayConvolutionInternalHom F G H)
