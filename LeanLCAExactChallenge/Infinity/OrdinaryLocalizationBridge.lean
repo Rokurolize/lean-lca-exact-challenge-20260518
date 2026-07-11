@@ -690,6 +690,32 @@ noncomputable def fullSubcomplexOnVerticesIsoOfIso {X Y : SSet.{u}} (e : X ≅ Y
     apply Subtype.ext
     exact e.inv_hom_id_app_apply U s.val
 
+/-- Restricting a simplicial isomorphism to vertex-full subcomplexes commutes with
+the ambient inclusions. -/
+theorem fullSubcomplexOnVerticesIsoOfIso_hom_comp_inclusion
+    {X Y : SSet.{u}} (e : X ≅ Y)
+    (P : Y.obj (Opposite.op ⦋0⦌) → Prop) :
+    (fullSubcomplexOnVerticesIsoOfIso e P).hom ≫
+        (fullSubcomplexOnVertices Y P).ι =
+      (fullSubcomplexOnVertices X
+        (fun v ↦ P (e.hom.app (Opposite.op ⦋0⦌) v))).ι ≫ e.hom := by
+  ext U s
+  rfl
+
+/-- Homotopy-category natural-isomorphism form of compatibility between restricted
+simplicial isomorphisms and ambient inclusions. -/
+noncomputable def fullSubcomplexOnVerticesIsoOfIsoInclusionIso
+    {X Y : SSet.{u}} (e : X ≅ Y)
+    (P : Y.obj (Opposite.op ⦋0⦌) → Prop) :
+    (SSet.hoFunctor.map
+      ((fullSubcomplexOnVerticesIsoOfIso e P).hom ≫
+        (fullSubcomplexOnVertices Y P).ι)).toFunctor ≅
+      (SSet.hoFunctor.map
+        ((fullSubcomplexOnVertices X
+          (fun v ↦ P (e.hom.app (Opposite.op ⦋0⦌) v))).ι ≫ e.hom)).toFunctor :=
+  eqToIso (congrArg Cat.Hom.toFunctor (congrArg SSet.hoFunctor.map
+    (fullSubcomplexOnVerticesIsoOfIso_hom_comp_inclusion e P)))
+
 theorem pulledRelativeFunctorProperty_iff
     {L : SSet.{u}} (W : EdgeMarking L) (E : Cat.{u, u})
     (F : (ihom (SSet.hoFunctor.obj L)).obj E) :
