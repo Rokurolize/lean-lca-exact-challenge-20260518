@@ -708,6 +708,27 @@ theorem IsBicategoricalEquivalence.hoFunctor_isEquivalence
   exact CategoryTheory.Functor.isEquivalence_of_comp_left
     (qcatUnitHomEquivalence X).functor (SSet.hoFunctor.map e.hom.hom).toFunctor
 
+/-- Regard a categorical nerve as a quasicategory target. -/
+private def categoricalNerveQCat (E : Cat.{u, u}) : SSet.QCat.{u} :=
+  ⟨nerveFunctor.obj E, by
+    change SSet.Quasicategory (CategoryTheory.nerve E)
+    infer_instance⟩
+
+/-- A mapping-quasicategory localization induces, for every ordinary target category,
+an equivalence from functors out of its homotopy category to the ordinary full
+subcategory selected by marked-edge inversion. -/
+noncomputable def mappingLocalizationOrdinaryEquivalence
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    ((ihom (SSet.hoFunctor.obj L.obj)).obj E) ≌
+      (PulledRelativeFunctorProperty W E).FullSubcategory := by
+  let d := (h.universal (categoricalNerveQCat E)).some
+  haveI : (SSet.hoFunctor.map d.comparison).toFunctor.IsEquivalence :=
+    IsBicategoricalEquivalence.hoFunctor_isEquivalence d.isEquivalence
+  exact (internalHomNerveHomotopyEquivalence L.obj E).symm |>.trans
+    (SSet.hoFunctor.map d.comparison).toFunctor.asEquivalence |>.trans
+      (relativeInternalHomNerveHomotopyEquivalence W E)
+
 /-- Maps between nerves are exactly ordinary functors.  This is the fully-faithful
 starting point for comparing the mapping localization with its ordinary truncation. -/
 noncomputable def nerveFunctorCategoryEquiv (C D : Type u)
