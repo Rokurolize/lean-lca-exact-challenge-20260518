@@ -1377,6 +1377,38 @@ theorem mem_horn_one_iff_constant {d : ℕ} (s : (Δ[1] : SSet.{u}).obj (Opposit
       rintro ⟨a, ha⟩
       exact Fin.zero_ne_one (ha.symm.trans (h a))
 
+theorem pathCoordinate_mem_oneHorn_iff_first
+    (c : PathChain r i j) (hij : i ≤ j) (n : ℕ)
+    (e : InteriorVertex i j ≃ Fin n) (q : Fin n) :
+    (CategoryTheory.nerveMap (liftedPiBitsEval n q)).app
+        (Opposite.op (SimplexCategory.mk r))
+        ((CategoryTheory.nerveMap
+          (thickPathToLiftedPiBitsFunctor hij n e)).app _ c.toNerveSimplex) ∈
+      ((SSet.horn 1 (1 : Fin 2)).preimage stdSimplexOneIsoNerveFinTwo.inv).obj _ ↔
+    (thickPathBitvectorOrderIso hij c.first) (e.symm q) = 1 := by
+  change stdSimplexOneIsoNerveFinTwo.inv.app _ _ ∈
+      (SSet.horn 1 (1 : Fin 2)).obj _ ↔ _
+  rw [mem_horn_one_iff_constant]
+  change (∀ a : Fin (r + 1),
+    (thickPathBitvectorOrderIso hij (c.path a)) (e.symm q) = 1) ↔ _
+  exact bitvector_all_one_iff_first c hij (e.symm q)
+
+theorem pathCoordinate_mem_zeroHorn_iff_last
+    (c : PathChain r i j) (hij : i ≤ j) (n : ℕ)
+    (e : InteriorVertex i j ≃ Fin n) (q : Fin n) :
+    (CategoryTheory.nerveMap (liftedPiBitsEval n q)).app
+        (Opposite.op (SimplexCategory.mk r))
+        ((CategoryTheory.nerveMap
+          (thickPathToLiftedPiBitsFunctor hij n e)).app _ c.toNerveSimplex) ∈
+      ((SSet.horn 1 (0 : Fin 2)).preimage stdSimplexOneIsoNerveFinTwo.inv).obj _ ↔
+    (thickPathBitvectorOrderIso hij c.last) (e.symm q) = 0 := by
+  change stdSimplexOneIsoNerveFinTwo.inv.app _ _ ∈
+      (SSet.horn 1 (0 : Fin 2)).obj _ ↔ _
+  rw [mem_horn_one_iff_constant]
+  change (∀ a : Fin (r + 1),
+    (thickPathBitvectorOrderIso hij (c.path a)) (e.symm q) = 0) ↔ _
+  exact bitvector_all_zero_iff_last c hij (e.symm q)
+
 /-- A chain is nondegenerate when distinct indices carry distinct paths.  For a monotone chain
 in a poset this is the strict-chain condition. -/
 def IsNondegenerate (c : PathChain r i j) : Prop := Function.Injective c.path
