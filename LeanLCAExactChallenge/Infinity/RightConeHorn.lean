@@ -16,7 +16,7 @@ universe u
 
 namespace LeanLCAExactChallenge.Infinity
 
-open CategoryTheory Simplicial
+open CategoryTheory CategoryTheory.Limits Simplicial
 open scoped CategoryTheory.MonoidalCategory.DayConvolution MonoidalCategory.ExternalProduct
   MonoidalCategory Simplicial Prod
 
@@ -94,5 +94,83 @@ lemma rightCone_shiftedIndex_isInner {n : ℕ} (i : Fin (n + 2)) (hi : 0 < i) :
   · exact hi
   · simp only [Fin.lt_def, Fin.val_castLE, Fin.val_last]
     omega
+
+private theorem rightCone_rightInclusion_naturality
+    (X : SSet.{u}) {Y Y' : SSet.{u}} (g : Y ⟶ Y') :
+    g ≫ simplicialJoinRightInclusion X Y' =
+      simplicialJoinRightInclusion X Y ≫ simplicialJoinMap (𝟙 X) g := by
+  apply NatTrans.ext
+  funext U
+  let F := emptyAugmentation.{u}.obj X
+  let G := emptyAugmentation.{u}.obj Y
+  let G' := emptyAugmentation.{u}.obj Y'
+  letI := augmentedDayConvolution F G
+  letI := augmentedDayConvolution F G'
+  letI : Unique (F.obj (Opposite.op WithInitial.star)) :=
+    (Limits.Types.isTerminalEquivUnique _) (emptyAugmentationStarIsTerminal X)
+  let s : G.obj (AugmentedSimplexCategory.inclusion.op.obj U) ⟶
+      (F ⊠ G).obj (Opposite.op WithInitial.star,
+        AugmentedSimplexCategory.inclusion.op.obj U) :=
+    ConcreteCategory.ofHom (TypeCat.Fun.mk (fun y ↦ (default, y)))
+  let s' : G'.obj (AugmentedSimplexCategory.inclusion.op.obj U) ⟶
+      (F ⊠ G').obj (Opposite.op WithInitial.star,
+        AugmentedSimplexCategory.inclusion.op.obj U) :=
+    ConcreteCategory.ofHom (TypeCat.Fun.mk (fun y ↦ (default, y)))
+  change (emptyAugmentation.map g).app
+      (AugmentedSimplexCategory.inclusion.op.obj U) ≫ s' ≫
+      (CategoryTheory.MonoidalCategory.DayConvolution.unit F G').app
+        (Opposite.op WithInitial.star, AugmentedSimplexCategory.inclusion.op.obj U) =
+    s ≫ (CategoryTheory.MonoidalCategory.DayConvolution.unit F G).app
+        (Opposite.op WithInitial.star, AugmentedSimplexCategory.inclusion.op.obj U) ≫
+      (CategoryTheory.MonoidalCategory.DayConvolution.map
+        (emptyAugmentation.map (𝟙 X)) (emptyAugmentation.map g)).app _
+  rw [emptyAugmentation.map_id]
+  change _ = s ≫
+    (CategoryTheory.MonoidalCategory.DayConvolution.unit F G).app
+      (Opposite.op WithInitial.star, AugmentedSimplexCategory.inclusion.op.obj U) ≫
+    (CategoryTheory.MonoidalCategory.DayConvolution.map
+      (𝟙 F) (emptyAugmentation.map g)).app
+        (Opposite.op WithInitial.star ⊗ AugmentedSimplexCategory.inclusion.op.obj U)
+  have hmap := CategoryTheory.MonoidalCategory.DayConvolution.unit_app_map_app
+    (F := F) (G := G) (F' := F) (G' := G')
+    (𝟙 F) (emptyAugmentation.map g)
+    (Opposite.op WithInitial.star) (AugmentedSimplexCategory.inclusion.op.obj U)
+  rw [hmap]
+  have hpref : (emptyAugmentation.map g).app
+        (AugmentedSimplexCategory.inclusion.op.obj U) ≫ s' =
+      s ≫ (NatTrans.app (𝟙 F) (Opposite.op WithInitial.star) ⊗ₘ
+        (emptyAugmentation.map g).app
+          (AugmentedSimplexCategory.inclusion.op.obj U)) := by
+    apply ConcreteCategory.hom_ext
+    intro y
+    rfl
+  rw [← Category.assoc, hpref]
+  exact Category.assoc _ _ _
+
+/-- The pushout-product corner obtained by coning a horn on the left and adjoining
+the full base simplex.  Under the standard-simplex join isomorphism this is the
+shifted horn inclusion. -/
+noncomputable def leftConeHornCornerMap (n : ℕ) (i : Fin (n + 1)) :
+    pushout (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[n, i])
+        (SSet.horn n i).ι ⟶ simplicialJoin (Δ[0] : SSet.{u}) Δ[n] :=
+  pushout.desc
+    (simplicialJoinMap (𝟙 (Δ[0] : SSet.{u})) (SSet.horn n i).ι)
+    (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[n]) (by
+      simpa using (rightCone_rightInclusion_naturality
+        (Δ[0] : SSet.{u}) (SSet.horn n i).ι).symm)
+
+@[reassoc (attr := simp)]
+lemma leftConeHornCornerMap_inl (n : ℕ) (i : Fin (n + 1)) :
+    pushout.inl (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[n, i])
+        (SSet.horn n i).ι ≫ leftConeHornCornerMap n i =
+      simplicialJoinMap (𝟙 (Δ[0] : SSet.{u})) (SSet.horn n i).ι := by
+  apply pushout.inl_desc
+
+@[reassoc (attr := simp)]
+lemma leftConeHornCornerMap_inr (n : ℕ) (i : Fin (n + 1)) :
+    pushout.inr (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[n, i])
+        (SSet.horn n i).ι ≫ leftConeHornCornerMap n i =
+      simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[n] := by
+  apply pushout.inr_desc
 
 end LeanLCAExactChallenge.Infinity
