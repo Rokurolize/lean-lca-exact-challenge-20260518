@@ -614,8 +614,44 @@ noncomputable def emptyJoinFaceIso (r : ℕ) :
     (Δ[r + 1] : SSet.{u}) ≅
       (SSet.stdSimplex.face
         (joinSigmaOneVertices 0 (r + 1) (∅ : Finset (Fin 1))) : SSet.{u}) := by
-  simpa only [Finset.card_empty, Nat.zero_add] using
-    joinSigmaOneFaceIso.{u} 0 (r + 1) (∅ : Finset (Fin 1))
+  exact SSet.stdSimplex.isoOfRepresentableBy
+    (SSet.stdSimplex.faceRepresentableBy
+      (joinSigmaOneVertices 0 (r + 1) (∅ : Finset (Fin 1))) (r + 1)
+      ((joinSigmaOneVertices 0 (r + 1) (∅ : Finset (Fin 1))).orderIsoOfFin (by
+        rw [card_joinSigmaOneVertices]
+        simp)))
+
+lemma emptyJoinFaceIso_hom_ι (r : ℕ) :
+    (emptyJoinFaceIso.{u} r).hom ≫
+        (SSet.stdSimplex.face
+          (joinSigmaOneVertices 0 (r + 1) (∅ : Finset (Fin 1)))).ι =
+      SSet.stdSimplex.map (standardJoinRightOperator 0 (r + 1)) := by
+  apply SSet.yonedaEquiv.injective
+  rw [SSet.yonedaEquiv_comp, SSet.yonedaEquiv_map]
+  apply ULift.ext
+  apply SimplexCategory.Hom.ext
+  ext j
+  simp [emptyJoinFaceIso, joinSigmaOneFaceIso, SSet.stdSimplex.isoOfRepresentableBy,
+    SSet.stdSimplex.faceRepresentableBy, joinSigmaOneVertices,
+    joinFirstVertices, joinSecondVertices, standardJoinRightOperator]
+  let e : Fin (r + 2) ↪o Fin (0 + (r + 1) + 2) :=
+    { toFun := fun (k : Fin (r + 2)) => ⟨1 + k.val, by omega⟩
+      inj' := by
+        intro a b h
+        apply Fin.ext
+        simpa using congrArg Fin.val h
+      map_rel_iff' := by
+        intro a b
+        change (1 + a.val ≤ 1 + b.val) ↔ a.val ≤ b.val
+        omega }
+  have he : e =
+      (joinSigmaOneVertices 0 (r + 1) (∅ : Finset (Fin 1))).orderEmbOfFin (by
+        rw [card_joinSigmaOneVertices]
+        simp) := by
+    apply Finset.orderEmbOfFin_unique'
+    intro a
+    simp [joinSigmaOneVertices, joinFirstVertices, joinSecondVertices, e]
+  exact congrArg Fin.val (congrArg (fun f ↦ f j) he.symm)
 
 noncomputable def positiveJoinHornIsoRange (s : ℕ) (i : Fin (s + 3)) :
     simplicialJoin (Δ[0] : SSet.{u}) Λ[s + 2, i] ≅
@@ -693,5 +729,33 @@ noncomputable def positiveConeHornTransportedIsPushout
     (emptyJoinFaceIso (s + 1)) (Iso.refl _) ?_ ?_ ?_ ?_
   all_goals simp [positiveConeHornTransportedLeftLeg,
     positiveConeHornTransportedRightLeg, sq, Category.assoc]
+
+/- Pending the normalized empty-join face comparison.
+lemma positiveConeHornTransportedLeftLeg_eq
+    (s : ℕ) (i : Fin (s + 3)) :
+    positiveConeHornTransportedLeftLeg.{u} s i =
+      simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[s + 2, i] := by
+  apply (cancel_mono (positiveJoinHornIsoRange.{u} s i).hom).mp
+  simp [positiveConeHornTransportedLeftLeg, Category.assoc]
+  apply (cancel_mono (representableJoinHornInitial 0 (s + 2) i).ι).mp
+  simp [emptyJoinHornIsoRange, positiveJoinHornIsoRange,
+    representableJoinHornPointIso_hom, joinSigmaOneHornIsoRange,
+    joinSigmaOneHornRange, joinSigmaOneHornMap, normalizedEmptyJoinHornIso,
+    Category.assoc]
+  change _ = simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[s + 2, i] ≫
+    (SSet.Subcomplex.toRange (representableJoinHornMap 0 (s + 2) i) ≫
+      (SSet.Subcomplex.range (representableJoinHornMap 0 (s + 2) i)).ι)
+  rw [SSet.Subcomplex.toRange_ι]
+  rw [representableJoinHornMap]
+  simp only [← Category.assoc]
+  rw [← rightCone_rightInclusion_naturality]
+  simp only [Category.assoc]
+  rw [rightCone_rightInclusion_stdSimplex]
+  apply NatTrans.ext
+  funext U
+  apply ConcreteCategory.hom_ext
+  intro x
+  rfl
+-/
 
 end LeanLCAExactChallenge.Infinity
