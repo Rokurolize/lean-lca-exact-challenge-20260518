@@ -377,6 +377,91 @@ theorem underSliceHornCornerMap_inr (n : ℕ) (i : Fin (n + 1)) :
       simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[n] := by
   apply pushout.inr_desc
 
+/-- An extension of the cone corner associated to a lifting square determines
+an actual lift in the under-slice. -/
+theorem underSliceLiftOfCornerExtension
+    (Q : SSet.{u}) (z : Q _⦋0⦌) {n : ℕ} {i : Fin (n + 1)}
+    {f : (Λ[n, i] : SSet.{u}) ⟶ underSlice Q z} {b : Δ[n] ⟶ Q}
+    (sq : CommSq f (SSet.horn n i).ι (underSliceProjection Q z) b)
+    (g : simplicialJoin (Δ[0] : SSet.{u}) Δ[n] ⟶ Q)
+    (hg : underSliceLiftingCornerTop Q z sq =
+      underSliceHornCornerMap n i ≫ g) : sq.HasLift := by
+  let F := emptyAugmentation.{u}.obj (Δ[0] : SSet.{u})
+  let G := emptyAugmentation.{u}.obj Q
+  let a := emptyAugmentation.{u}.map (SSet.yonedaEquiv.symm z)
+  let φ := (relativeDaySliceOverMapFixedBaseEquiv F G
+    (Λ[n, i] : SSet.{u}) a) f
+  let τ := augmentedJoinMapOfUnderlying (Δ[0] : SSet.{u}) Δ[n] Q g
+  have hleft : simplicialJoinMap (𝟙 (Δ[0] : SSet.{u}))
+      (SSet.horn n i).ι ≫ g = forgetAugmentation.map φ.1 := by
+    calc
+      _ = pushout.inl
+          (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[n, i])
+          (SSet.horn n i).ι ≫ underSliceHornCornerMap n i ≫ g :=
+        (underSliceHornCornerMap_inl_assoc n i g).symm
+      _ = pushout.inl
+          (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[n, i])
+          (SSet.horn n i).ι ≫ underSliceLiftingCornerTop Q z sq := by rw [hg]
+      _ = _ := underSliceLiftingCornerTop_inl Q z sq
+  letI := augmentedDayConvolution F (emptyAugmentation.obj Δ[n])
+  letI := augmentedDayConvolution F (emptyAugmentation.obj (Λ[n, i] : SSet.{u}))
+  have hτ : (augmentedDayTensorLeft F).map
+        (emptyAugmentation.map (SSet.horn n i).ι) ≫ τ = φ.1 := by
+    apply augmentedMapToEmptyAugmentation_ext
+    rw [Functor.map_comp]
+    change forgetAugmentation.map ((augmentedDayTensorLeft F).map
+      (emptyAugmentation.map (SSet.horn n i).ι)) ≫
+        forgetAugmentation.map
+          (augmentedJoinMapOfUnderlying (Δ[0] : SSet.{u}) Δ[n] Q g) = _
+    have hforgetτ := forgetAugmentation_augmentedJoinMapOfUnderlying
+      (Δ[0] : SSet.{u}) Δ[n] Q g
+    have hT : forgetAugmentation.map ((augmentedDayTensorLeft F).map
+        (emptyAugmentation.map (SSet.horn n i).ι)) =
+        simplicialJoinMap (𝟙 (Δ[0] : SSet.{u})) (SSet.horn n i).ι := by
+      unfold F simplicialJoinMap augmentedDayTensorLeft
+      rw [emptyAugmentation.map_id]
+      rfl
+    exact (congrArg (fun k ↦ forgetAugmentation.map
+      ((augmentedDayTensorLeft F).map
+        (emptyAugmentation.map (SSet.horn n i).ι)) ≫ k) hforgetτ).trans
+      ((congrArg (fun k ↦ k ≫ g) hT).trans hleft)
+  let Φ := fixedBaseDayConvolutionMapOfRestriction F G a
+    (SSet.horn n i).ι φ τ hτ
+  let l := (relativeDaySliceOverMapFixedBaseEquiv F G Δ[n] a).symm Φ
+  apply CommSq.HasLift.mk'
+  refine { l := l, fac_left := ?_, fac_right := ?_ }
+  · apply (relativeDaySliceOverMapFixedBaseEquiv F G
+      (Λ[n, i] : SSet.{u}) a).injective
+    apply Subtype.ext
+    have hpre := relativeDaySliceOverMapFixedBaseEquiv_precomp_fst
+      F G a (SSet.horn n i).ι l
+    have hl : (relativeDaySliceOverMapFixedBaseEquiv F G Δ[n] a) l = Φ := by
+      exact Equiv.apply_symm_apply _ Φ
+    have hm := congrArg (fun k ↦ (augmentedDayTensorLeft F).map
+      (emptyAugmentation.map (SSet.horn n i).ι) ≫ k.1) hl
+    have hΦ : (augmentedDayTensorLeft F).map
+        (emptyAugmentation.map (SSet.horn n i).ι) ≫ Φ.1 = φ.1 := by
+      dsimp only [Φ, fixedBaseDayConvolutionMapOfRestriction]
+      exact hτ
+    exact hpre.trans (hm.trans hΦ)
+  · rw [underSliceProjection_comp_eq_fixedBaseCone]
+    have hl : (relativeDaySliceOverMapFixedBaseEquiv F G Δ[n] a) l = Φ := by
+      exact Equiv.apply_symm_apply _ Φ
+    rw [hl]
+    have hright : simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[n] ≫ g = b := by
+      calc
+        _ = pushout.inr
+            (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[n, i])
+            (SSet.horn n i).ι ≫ underSliceHornCornerMap n i ≫ g :=
+          (underSliceHornCornerMap_inr_assoc n i g).symm
+        _ = pushout.inr
+            (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[n, i])
+            (SSet.horn n i).ι ≫ underSliceLiftingCornerTop Q z sq := by rw [hg]
+        _ = b := underSliceLiftingCornerTop_inr Q z sq
+    dsimp only [Φ, fixedBaseDayConvolutionMapOfRestriction]
+    rw [forgetAugmentation_augmentedJoinMapOfUnderlying]
+    exact hright
+
 /-- The representable over-slice, obtained by reversing an under-slice. -/
 abbrev overSlice (Q : SSet.{u}) (z : Q _⦋0⦌) : SSet.{u} :=
   (underSlice Q.op z).op
