@@ -1404,6 +1404,21 @@ lemma joinSigmaOneFaceIso_rightCoface_range (m n : ℕ)
   have hk := congrArg (fun e ↦ e k) hq.symm
   exact congrArg Fin.val hk
 
+lemma joinSigmaOneHornRange_eq_iSup_erasedFaces (m n : ℕ)
+    (T : Finset (Fin (m + 1))) (i : Fin (n + 2)) :
+    joinSigmaOneHornRange m (n + 1) T i =
+      ⨆ (k : ({joinSigmaOneDistinguishedIndex (n + 1) T i}ᶜ :
+          Set (Fin (T.card + n + 2)))),
+        SSet.stdSimplex.face
+          ((joinSigmaOneVertices m (n + 1) T).erase
+            (joinSigmaOne m (n + 1) T k.1)) := by
+  rw [joinSigmaOneHornRange_eq_image, SSet.horn_eq_iSup,
+    SSet.Subcomplex.image_iSup]
+  congr 1
+  funext k
+  rw [← stdSimplex_range_map_delta k.1, ← SSet.Subcomplex.range_comp]
+  exact joinSigmaOneFaceIso_coface_range m n T k.1
+
 /-- Join of a representable with the specified horn, as a map to the ambient
 representable join simplex. -/
 def representableJoinHornMap (m n : ℕ) (i : Fin (n + 1)) :
