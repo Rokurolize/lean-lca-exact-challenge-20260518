@@ -719,6 +719,34 @@ theorem cat_monoidalClosed_pre_eq_whiskeringLeft
   apply Cat.Hom.ext
   rfl
 
+set_option backward.isDefEq.respectTransparency false in
+/-- Under the nerve-Yoneda presentation, ordinary precomposition agrees with
+precomposition by the corresponding nerve map. -/
+theorem internalHomToNerveYonedaEquiv_nerve_precomp
+    (C D E : Cat.{u, u}) (f : C ⟶ D) (Z : SSet.{u})
+    (g : Z ⟶ nerveFunctor.obj ((ihom D).obj E)) :
+    internalHomToNerveYonedaEquiv Z (nerveFunctor.obj C) E
+      (g ≫ nerveFunctor.map
+        (((Functor.whiskeringLeft C D E).obj f.toFunctor).toCatHom) ≫
+          (nerveInternalHomIso C E).hom) =
+      SSet.hoFunctor.map (nerveFunctor.map f ▷ Z) ≫
+        internalHomToNerveYonedaEquiv Z (nerveFunctor.obj D) E
+          (g ≫ (nerveInternalHomIso D E).hom) := by
+  dsimp [internalHomToNerveYonedaEquiv, nerveInternalHomIso]
+  rw [MonoidalClosed.homEquiv_symm_apply_eq]
+  rw [MonoidalClosed.homEquiv_symm_apply_eq]
+  have hn := congrArg (fun q => q.natTrans.app E)
+    (CategoryTheory.expComparison_whiskerLeft nerveFunctor f)
+  dsimp [TwoSquare.whiskerBottom, TwoSquare.whiskerTop] at hn
+  simp only [Functor.whiskerLeft_app, Functor.whiskerRight_app] at hn
+  rw [cat_monoidalClosed_pre_eq_whiskeringLeft C D E f] at hn
+  rw [← hn]
+  rw [← Category.assoc]
+  rw [MonoidalClosed.uncurry_pre_app]
+  exact nerveAdjunction.homEquiv_naturality_left_symm
+    (nerveFunctor.map f ▷ Z) (MonoidalClosed.uncurry
+      (g ≫ (expComparison nerveFunctor D).natTrans.app E))
+
 /-- In the self-enrichment of simplicial sets, postcomposition in the enriched Hom object is
 the ordinary internal-Hom map. -/
 theorem sset_eHomWhiskerLeft_eq_ihom_map
