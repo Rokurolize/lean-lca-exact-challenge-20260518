@@ -464,6 +464,18 @@ noncomputable def internalHomNerveHomotopyEquivalence (L : SSet.{u}) (E : Cat.{u
   exact Cat.equivOfIso ((SSet.hoFunctor.mapIso (internalHomNerveIso L E)).symm ≪≫
     nerveFunctorCompHoFunctorIso.app ((ihom (SSet.hoFunctor.obj L)).obj E))
 
+/-- The homotopy category of the relative mapping simplicial set into a categorical
+nerve is the full subcategory of ordinary functors satisfying the transported
+marked-edge inversion predicate. -/
+noncomputable def relativeInternalHomNerveHomotopyEquivalence
+    {L : SSet.{u}} (W : EdgeMarking L) (E : Cat.{u, u}) :
+    SSet.hoFunctor.obj (relativeInternalHom W (nerveFunctor.obj E)) ≌
+      (PulledRelativeFunctorProperty W E).FullSubcategory := by
+  exact Cat.equivOfIso
+    ((SSet.hoFunctor.mapIso (relativeInternalHomNerveIso W E)).symm ≪≫
+      nerveFunctorCompHoFunctorIso.app
+        (Cat.of (PulledRelativeFunctorProperty W E).FullSubcategory))
+
 /-- In a Cat-enriched ordinary category, the transported horizontal composite has the
 expected enriched-composition normal form after applying `Hom.base`. -/
 theorem catEnrichedOrdinary_base_hComp
