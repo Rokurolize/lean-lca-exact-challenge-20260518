@@ -1006,6 +1006,18 @@ lemma representableJoin_rightCoface_range (m n : ℕ) (j : Fin (n + 2)) :
   rw [SSet.Subcomplex.range_comp, SSet.Subcomplex.range_eq_top,
     SSet.Subcomplex.image_top, stdSimplex_range_map_delta]
 
+lemma subcomplex_range_eq_of_precomp_iso {X Y Z : SSet.{u}}
+    (e : X ⟶ Y) [IsIso e] (f : Y ⟶ Z) (g : X ⟶ Z) (h : e ≫ f = g) :
+    SSet.Subcomplex.range f = SSet.Subcomplex.range g := by
+  calc
+    SSet.Subcomplex.range f = (⊤ : Y.Subcomplex).image f := by
+      rw [SSet.Subcomplex.image_top]
+    _ = (SSet.Subcomplex.range e).image f := by
+      rw [SSet.Subcomplex.range_eq_top]
+    _ = SSet.Subcomplex.range (e ≫ f) :=
+      (SSet.Subcomplex.range_comp e f).symm
+    _ = SSet.Subcomplex.range g := congrArg SSet.Subcomplex.range h
+
 /-! ## The paired simplices in the representable join-horn filtration -/
 
 /-- Vertices in the first block selected by `T`. -/
@@ -1624,7 +1636,6 @@ lemma representableJoinHornInitial_eq_iSup_multicoforkRanges
   exact SSet.range_eq_iSup_of_isColimit
     (representableJoinHornIsColimit.{u} m i hn)
     (representableJoinHornMap m n i)
-
 
 /-- The ordinary simplicial slice underlying the augmented Day internal hom. -/
 def simplicialSlice (X Q : SSet.{u}) : SSet.{u} :=
