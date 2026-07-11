@@ -2191,6 +2191,35 @@ theorem UnknownCell.puncturedFullTop_bundledUpperCell_eq_topHigherCell {k : J}
 /-- All canonical selected-lower/upper pairs in all dimensions. -/
 abbrev GlobalPairIndex (i j k : J) := Σ r : ℕ, EntryLowerCell r i j k
 
+/-- The degree-zero punctured vertices omitted by the positive-dimensional entry pairing. -/
+abbrev DegreeZeroPuncturedIndex (i j k : J) :=
+  {c : UnknownCell 0 i j k // k ∉ c.chain.last.I}
+
+/-- The complete first approximation to the Kan-cell index: outer degree-zero base cells,
+followed by the existing selected-entry cells. -/
+abbrev ExtendedGlobalPairIndex (i j k : J) :=
+  DegreeZeroPuncturedIndex i j k ⊕ GlobalPairIndex i j k
+
+/-- The ranked Kan horn belonging to either kind of extended global pair. -/
+noncomputable def ExtendedGlobalPairIndex.rankedKanFacePair {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) (p : ExtendedGlobalPairIndex i j k) :
+    Σ r : ℕ, RankedKanFacePair r i j k :=
+  match p with
+  | .inl c => ⟨0, c.1.degreeZeroPuncturedRankedKanFacePair c.2 hik hkj⟩
+  | .inr p => ⟨p.1, p.2.rankedInnerFacePair.toRankedKanFacePair⟩
+
+@[simp]
+theorem ExtendedGlobalPairIndex.rankedKanFacePair_inl {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) (c : DegreeZeroPuncturedIndex i j k) :
+    ((ExtendedGlobalPairIndex.rankedKanFacePair hik hkj (.inl c)).2).lower = c.1.chain :=
+  rfl
+
+@[simp]
+theorem ExtendedGlobalPairIndex.rankedKanFacePair_inr {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) (p : GlobalPairIndex i j k) :
+    (ExtendedGlobalPairIndex.rankedKanFacePair hik hkj (.inr p)).1 = p.1 :=
+  rfl
+
 noncomputable def GlobalPairIndex.rank {i j k : J} (a : GlobalPairIndex i j k) :
     ℕ × ℕ :=
   a.2.upperChain.filtrationRank k
