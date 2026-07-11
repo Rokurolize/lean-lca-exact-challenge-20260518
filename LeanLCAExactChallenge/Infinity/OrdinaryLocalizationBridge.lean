@@ -307,6 +307,28 @@ noncomputable def nerveFullSubcategoryIsoFullSubcomplex
     exact congrArg id (composableArrowsToFullSubcategory_forget P s.val
       (fun i ↦ s.property i))
 
+/-- The nerve/full-subcomplex presentation commutes with the ambient inclusion. -/
+theorem nerveFullSubcategoryIsoFullSubcomplex_hom_comp_inclusion
+    {C : Type u} [Category.{u} C] (P : ObjectProperty C) :
+    (nerveFullSubcategoryIsoFullSubcomplex P).hom ≫
+        (fullSubcomplexOnVertices (CategoryTheory.nerve C)
+          (fun v ↦ P (CategoryTheory.nerveEquiv v))).ι =
+      nerveFunctor.map P.ι.toCatHom := by
+  ext U F
+  rfl
+
+/-- Natural-isomorphism form of compatibility between the categorical nerve of a full
+subcategory and forgetting its object predicate. -/
+noncomputable def nerveFullSubcategoryIsoFullSubcomplexInclusionIso
+    {C : Type u} [Category.{u} C] (P : ObjectProperty C) :
+    (SSet.hoFunctor.map
+      ((nerveFullSubcategoryIsoFullSubcomplex P).hom ≫
+        (fullSubcomplexOnVertices (CategoryTheory.nerve C)
+          (fun v ↦ P (CategoryTheory.nerveEquiv v))).ι)).toFunctor ≅
+      (SSet.hoFunctor.map (nerveFunctor.map P.ι.toCatHom)).toFunctor :=
+  eqToIso (congrArg Cat.Hom.toFunctor (congrArg SSet.hoFunctor.map
+    (nerveFullSubcategoryIsoFullSubcomplex_hom_comp_inclusion P)))
+
 /-- The reflection unit exhibits an internal Hom into a nerve as the nerve of its homotopy
 category. -/
 noncomputable def internalHomNerveReflectionIso (L : SSet.{u}) (E : Cat.{u, u}) :
