@@ -632,6 +632,54 @@ def rankedKanFacePairOfDelete (lower : PathChain r i j) (upper : PathChain (r + 
   lower_eq := hdelete
   other_face_lower_rank := fun q _ ↦ upper.filtrationRank_deleteAt q k
 
+namespace RankedKanFacePair
+
+variable {k : J} (a : RankedKanFacePair r i j k)
+
+/-- Classifying map of the upper simplex of a Kan-face pair. -/
+noncomputable def upperMap : Δ[r + 1] ⟶ CategoryTheory.nerve (ThickPath i j) :=
+  SSet.yonedaEquiv.symm a.upper.toNerveSimplex
+
+/-- The horn map containing all faces except the selected face. -/
+noncomputable def hornMap : (SSet.horn (r + 1) a.face : SSet) ⟶
+    CategoryTheory.nerve (ThickPath i j) :=
+  (SSet.horn (r + 1) a.face).ι ≫ a.upperMap
+
+/-- The actual range of the attaching horn. -/
+noncomputable def hornRange : (CategoryTheory.nerve (ThickPath i j)).Subcomplex :=
+  SSet.Subcomplex.range a.hornMap
+
+noncomputable instance mono_upperMap : Mono a.upperMap := by
+  rw [NatTrans.mono_iff_mono_app]
+  intro U
+  rw [mono_iff_injective]
+  intro x y hxy
+  apply SSet.stdSimplex.objEquiv.injective
+  apply SimplexCategory.Hom.ext
+  apply OrderHom.ext
+  funext q
+  apply a.upperNondegenerate
+  have hxy' :
+      (SSet.yonedaEquiv.symm a.upper.toNerveSimplex).app U
+          (SSet.stdSimplex.objEquiv.symm (SSet.stdSimplex.objEquiv x)) =
+        (SSet.yonedaEquiv.symm a.upper.toNerveSimplex).app U
+          (SSet.stdSimplex.objEquiv.symm (SSet.stdSimplex.objEquiv y)) := by
+    simpa [upperMap] using hxy
+  rw [SSet.yonedaEquiv_symm_app_objEquiv_symm,
+    SSet.yonedaEquiv_symm_app_objEquiv_symm] at hxy'
+  exact congrArg (fun z ↦ (PathChain.ofNerveSimplex z).path q) hxy'
+
+noncomputable instance mono_hornMap : Mono a.hornMap := by
+  dsimp [hornMap]
+  infer_instance
+
+theorem range_upperMap : SSet.Subcomplex.range a.upperMap =
+    SSet.Subcomplex.ofSimplex a.upper.toNerveSimplex := by
+  rw [SSet.Subcomplex.range_eq_ofSimplex]
+  simp [upperMap]
+
+end RankedKanFacePair
+
 /-- Any certified inner face pair acquires the rank condition automatically from the global
 face-rank theorem. -/
 def rankedInnerFacePairOfDelete (lower : PathChain r i j) (upper : PathChain (r + 1) i j)
