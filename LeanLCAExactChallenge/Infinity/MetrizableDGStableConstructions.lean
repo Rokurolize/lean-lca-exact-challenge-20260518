@@ -9,6 +9,8 @@ object of the ordinary derived category.
 -/
 
 set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -100,7 +102,6 @@ theorem dgMappingConeInl_delta {K L : ComplexCategory} (f : K ⟶ L) :
     ((boundedCochainComplex MetrizableLCA.{0}).ι.map f) using 1 <;>
       first | rfl | simp only [Functor.map_comp,
         boundedInclusion_map_dgMappingConeInr]
-  case e'_3 => exact HEq.rfl
 
 /-- Maps from a bounded test complex into a cone are detected by their two cone coordinates.
 This is the chain-level representability identity underlying the cocartesian cone square. -/
@@ -174,6 +175,27 @@ def dgMappingConeCochainAddEquiv
     apply Prod.ext
     · exact CochainComplex.HomComplex.Cochain.add_comp _ _ _ rfl
     · exact CochainComplex.HomComplex.Cochain.add_comp _ _ _ (add_zero n)
+
+/-- Differential compatibility of the cone decomposition.  In coordinates the cone Hom
+differential is the standard upper-triangular matrix: the shifted-source differential carries
+the minus sign, while the target coordinate receives postcomposition by `f`. -/
+theorem dgMappingConeCochainAddEquiv_symm_delta
+    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) (n : ℤ)
+    (a : CochainComplex.HomComplex.Cochain T.obj K.obj (n + 1))
+    (b : CochainComplex.HomComplex.Cochain T.obj L.obj n) :
+    CochainComplex.HomComplex.δ n (n + 1)
+        ((dgMappingConeCochainAddEquiv T f n).symm (a, b)) =
+      -(CochainComplex.HomComplex.δ (n + 1) (n + 2) a).comp
+          (CochainComplex.mappingCone.inl
+            ((boundedCochainComplex MetrizableLCA.{0}).ι.map f)) (by omega) +
+        (CochainComplex.HomComplex.δ n (n + 1) b +
+            a.comp (CochainComplex.HomComplex.Cochain.ofHom
+              f.hom) (add_zero (n + 1))).comp
+          (CochainComplex.HomComplex.Cochain.ofHom
+            (CochainComplex.mappingCone.inr
+              ((boundedCochainComplex MetrizableLCA.{0}).ι.map f))) (add_zero (n + 1)) := by
+  exact CochainComplex.mappingCone.δ_liftCochain
+    ((boundedCochainComplex MetrizableLCA.{0}).ι.map f) a b rfl (n + 2) (by omega)
 
 /-- The same cone, regarded as an object of the honest direct simplicial dg category. -/
 def directDGMappingConeObject {K L : ComplexCategory} (f : K ⟶ L) :
