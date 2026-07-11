@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.Infinity.EquivalenceForcing
+import LeanLCAExactChallenge.Infinity.EquivalenceForcingProductDecomposition
 import LeanLCAExactChallenge.Infinity.InnerAnodyneMapping
 import LeanLCAExactChallenge.Infinity.MetrizableRelative
 
@@ -302,6 +303,28 @@ theorem metrizableEquivalenceForcingMappingLocalizationProperty_of_presentationM
   metrizableEquivalenceForcingMappingLocalizationProperty_of_presentationComparisons
     (fun Q =>
       metrizableEquivalenceForcingPresentationComparisonIsEquivalence_of_monoRLP Q (h Q))
+
+/-- The single free-equivalence interval lifting theorem supplies the mono-RLP for the
+complete metrizable equivalence-forcing presentation.  The weak-arrow index introduces no
+additional hypothesis because every component is the same interval restriction map. -/
+theorem metrizableEquivalenceForcingPresentationComparisonHasMonoRLP_of_interval
+    (Q : SSet.QCat.{1})
+    (h : (CategoryTheory.MorphismProperty.monomorphisms SSet.{1}).rlp
+      (equivalenceIntervalRestrictionToEquivalenceEdges Q.obj)) :
+    MetrizableEquivalenceForcingPresentationComparisonHasMonoRLP Q := by
+  exact relativeCategory.equivalenceForcingPresentationMappingComparison_mem_monomorphisms_rlp
+    Q (fun _ ↦ h)
+
+/-- Targetwise lifting for the one free-equivalence interval therefore proves the complete
+mapping-quasicategory localization property for generated corrected weak equivalences. -/
+theorem metrizableEquivalenceForcingMappingLocalizationProperty_of_intervalMonoRLP
+    (h : ∀ Q : SSet.QCat.{1},
+      (CategoryTheory.MorphismProperty.monomorphisms SSet.{1}).rlp
+        (equivalenceIntervalRestrictionToEquivalenceEdges Q.obj)) :
+    MetrizableEquivalenceForcingMappingLocalizationProperty :=
+  metrizableEquivalenceForcingMappingLocalizationProperty_of_presentationMonoRLP
+    (fun Q ↦
+      metrizableEquivalenceForcingPresentationComparisonHasMonoRLP_of_interval Q (h Q))
 
 /-- The equivalence-forcing map sends every generated weak equivalence to an equivalence. -/
 theorem metrizableEquivalenceForcingMap_generated

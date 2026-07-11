@@ -240,6 +240,7 @@ theorem weakArrowEvaluationFamily_π (Q : SSet.{max u v})
   exact Limits.Pi.lift_π _ _
 
 set_option maxHeartbeats 800000 in
+-- Elaborating the full-subcomplex membership equivalence unfolds two internal homs.
 theorem weakArrowEvaluationComponent_mem
     (Q : SSet.{max u v}) (a : WeakEquivalenceArrow C R)
     {U : SimplexCategoryᵒᵖ}
