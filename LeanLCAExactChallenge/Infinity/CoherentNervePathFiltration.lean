@@ -599,6 +599,39 @@ structure RankedInnerFacePair (r : ℕ) (i j k : J) where
     Prod.Lex (fun a b : ℕ ↦ a < b) (fun a b : ℕ ↦ a < b)
       ((upper.deleteAt q).filtrationRank k) (upper.filtrationRank k)
 
+/-- Ranked horn-attachment data in a Kan mapping object.  Unlike
+`RankedInnerFacePair`, the missing face may be an outer face. -/
+structure RankedKanFacePair (r : ℕ) (i j k : J) where
+  lower : PathChain r i j
+  upper : PathChain (r + 1) i j
+  upperNondegenerate : upper.IsNondegenerate
+  face : Fin (r + 2)
+  lower_eq : upper.deleteAt face = lower
+  other_face_lower_rank : ∀ q : Fin (r + 2), q ≠ face →
+    Prod.Lex (fun a b : ℕ ↦ a < b) (fun a b : ℕ ↦ a < b)
+      ((upper.deleteAt q).filtrationRank k) (upper.filtrationRank k)
+
+/-- Forget that the missing face of an inner pair is inner. -/
+def RankedInnerFacePair.toRankedKanFacePair {k : J}
+    (a : RankedInnerFacePair r i j k) : RankedKanFacePair r i j k where
+  lower := a.lower
+  upper := a.upper
+  upperNondegenerate := a.upperNondegenerate
+  face := a.face
+  lower_eq := a.lower_eq
+  other_face_lower_rank := a.other_face_lower_rank
+
+/-- Package any deletion of a nondegenerate upper chain as ranked Kan horn data. -/
+def rankedKanFacePairOfDelete (lower : PathChain r i j) (upper : PathChain (r + 1) i j)
+    (k : J) (hupper : upper.IsNondegenerate) (face : Fin (r + 2))
+    (hdelete : upper.deleteAt face = lower) : RankedKanFacePair r i j k where
+  lower := lower
+  upper := upper
+  upperNondegenerate := hupper
+  face := face
+  lower_eq := hdelete
+  other_face_lower_rank := fun q _ ↦ upper.filtrationRank_deleteAt q k
+
 /-- Any certified inner face pair acquires the rank condition automatically from the global
 face-rank theorem. -/
 def rankedInnerFacePairOfDelete (lower : PathChain r i j) (upper : PathChain (r + 1) i j)
@@ -1017,6 +1050,37 @@ theorem UnknownCell.puncturedTopHigher_outer_face {k : J}
         (c.puncturedTopHigher hk hik hkj).toNerveSimplex = c.chain.toNerveSimplex := by
   rw [← toNerveSimplex_deleteAt]
   exact congrArg toNerveSimplex (c.deleteAt_last_puncturedTopHigher hk hik hkj)
+
+/-- The missing degree-zero punctured vertex is attached by the outer last horn of the edge
+from that punctured path to the full path. -/
+def UnknownCell.degreeZeroPuncturedRankedKanFacePair {k : J}
+    (c : UnknownCell 0 i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) : RankedKanFacePair 0 i j k :=
+  rankedKanFacePairOfDelete c.chain (c.puncturedTopHigher hk hik hkj) k
+    (c.puncturedTopHigher_nondegenerate hk hik hkj) (Fin.last 1)
+    (c.deleteAt_last_puncturedTopHigher hk hik hkj)
+
+@[simp]
+theorem UnknownCell.degreeZeroPuncturedRankedKanFacePair_lower {k : J}
+    (c : UnknownCell 0 i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    (c.degreeZeroPuncturedRankedKanFacePair hk hik hkj).lower = c.chain :=
+  rfl
+
+@[simp]
+theorem UnknownCell.degreeZeroPuncturedRankedKanFacePair_upper {k : J}
+    (c : UnknownCell 0 i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    (c.degreeZeroPuncturedRankedKanFacePair hk hik hkj).upper =
+      c.puncturedTopHigher hk hik hkj :=
+  rfl
+
+@[simp]
+theorem UnknownCell.degreeZeroPuncturedRankedKanFacePair_face {k : J}
+    (c : UnknownCell 0 i j k) (hk : k ∉ c.chain.last.I)
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    (c.degreeZeroPuncturedRankedKanFacePair hk hik hkj).face = Fin.last 1 :=
+  rfl
 
 /-- The penultimate position in a positive-dimensional top higher chain. -/
 def puncturedTopInnerPosition (r : ℕ) : Fin (r + 3) :=
