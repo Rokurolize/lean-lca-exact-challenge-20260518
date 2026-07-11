@@ -505,13 +505,15 @@ lemma ordinalSumCutDecomposition_fac {U A B : SimplexCategory}
     AugmentedSimplexCategory.tensorHom
       (ordinalSumCutLeftAugmented q) (ordinalSumCutRightAugmented q)) = q
   ext j
-  generalize hc : ordinalSumCut q = c
+  let c := ordinalSumCut q
+  have hc : ordinalSumCut q = c := rfl
   cases c with
   | zero =>
       simp [ordinalSumCutDecomposition, ordinalSumCutLeftAugmented,
         ordinalSumCutRightAugmented, hc]
   | succ c =>
-      generalize hr : U.len + 1 - (c + 1) = r
+      let r := U.len + 1 - (c + 1)
+      have hr : U.len + 1 - (c + 1) = r := rfl
       cases r with
       | zero =>
           simp [ordinalSumCutDecomposition, ordinalSumCutLeftAugmented,
@@ -519,6 +521,35 @@ lemma ordinalSumCutDecomposition_fac {U A B : SimplexCategory}
       | succ r =>
           simp [ordinalSumCutDecomposition, ordinalSumCutLeftAugmented,
             ordinalSumCutRightAugmented, hc, hr]
+
+/-- An ordinary two-summand object of the pointwise Day-convolution index. -/
+def tensorCostructuredOf {U A B : SimplexCategory}
+    (q : U ⟶ AugmentedSimplexCategory.tensorObjOf A B) :
+    CostructuredArrow
+      (CategoryTheory.MonoidalCategory.tensor AugmentedSimplexCategoryᵒᵖ)
+      (Opposite.op (WithInitial.of U)) :=
+  CostructuredArrow.mk (Y :=
+    (Opposite.op (WithInitial.of A), Opposite.op (WithInitial.of B))) q.op
+
+/-- The canonical cut-normal object in the component of `q`. -/
+def tensorCostructuredCutNormal {U A B : SimplexCategory}
+    (q : U ⟶ AugmentedSimplexCategory.tensorObjOf A B) :
+    CostructuredArrow
+      (CategoryTheory.MonoidalCategory.tensor AugmentedSimplexCategoryᵒᵖ)
+      (Opposite.op (WithInitial.of U)) :=
+  CostructuredArrow.mk (Y :=
+    (Opposite.op (augmentedSimplexOfCard (ordinalSumCut q)),
+      Opposite.op (augmentedSimplexOfCard (U.len + 1 - ordinalSumCut q))))
+    (ordinalSumCutDecomposition q).op
+
+/-- Every ordinary two-summand Day-index object maps to its cut-normal form. -/
+def tensorCostructuredToCutNormal {U A B : SimplexCategory}
+    (q : U ⟶ AugmentedSimplexCategory.tensorObjOf A B) :
+    tensorCostructuredOf q ⟶ tensorCostructuredCutNormal q :=
+  CostructuredArrow.homMk
+    ((ordinalSumCutLeftAugmented q).op, (ordinalSumCutRightAugmented q).op) (by
+      apply Quiver.Hom.unop_inj
+      simpa using (ordinalSumCutDecomposition_fac q).symm)
 
 /-- The distinguished object in the pointwise Kan-extension category computing
 Day convolution in augmented degree `-1`. -/
@@ -2145,6 +2176,19 @@ def augmentedDayTensorLeft (F : AugmentedSSet.{u}) :
     letI := augmentedDayConvolution F K'
     letI := augmentedDayConvolution F K''
     exact (dayConvolutionMap_comp (𝟙 F) (𝟙 F) f g).symm
+
+/-- If the left map is the identity, a join map is the restriction of the
+map of the single fixed left-convolution functor.  This form keeps all
+intermediate Day-convolution instances coherent across long composites. -/
+lemma simplicialJoinMap_id_eq_augmentedDayTensorLeft_map
+    {Y Y' : SSet.{u}} (X : SSet.{u}) (f : Y ⟶ Y') :
+    simplicialJoinMap (𝟙 X) f =
+      forgetAugmentation.{u}.map
+        ((augmentedDayTensorLeft (emptyAugmentation.{u}.obj X)).map
+          (emptyAugmentation.{u}.map f)) := by
+  unfold simplicialJoinMap augmentedDayTensorLeft
+  rw [emptyAugmentation.map_id]
+  rfl
 
 set_option backward.isDefEq.respectTransparency false in
 /-- The chosen Day internal hom, functorial in its target. -/
