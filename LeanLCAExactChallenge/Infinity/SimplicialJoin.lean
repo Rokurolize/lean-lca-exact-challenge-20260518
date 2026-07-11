@@ -495,6 +495,31 @@ def ordinalSumCutRightAugmented {U A B : SimplexCategory}
           have hc := ordinalSumCut_le q
           omega))
 
+lemma ordinalSumCutDecomposition_fac {U A B : SimplexCategory}
+    (q : U ⟶ AugmentedSimplexCategory.tensorObjOf A B) :
+    ordinalSumCutDecomposition q ≫
+        AugmentedSimplexCategory.tensorHom
+          (ordinalSumCutLeftAugmented q) (ordinalSumCutRightAugmented q) =
+      AugmentedSimplexCategory.inclusion.map q := by
+  change WithInitial.down (ordinalSumCutDecomposition q ≫
+    AugmentedSimplexCategory.tensorHom
+      (ordinalSumCutLeftAugmented q) (ordinalSumCutRightAugmented q)) = q
+  ext j
+  generalize hc : ordinalSumCut q = c
+  cases c with
+  | zero =>
+      simp [ordinalSumCutDecomposition, ordinalSumCutLeftAugmented,
+        ordinalSumCutRightAugmented, hc]
+  | succ c =>
+      generalize hr : U.len + 1 - (c + 1) = r
+      cases r with
+      | zero =>
+          simp [ordinalSumCutDecomposition, ordinalSumCutLeftAugmented,
+            ordinalSumCutRightAugmented, hc, hr]
+      | succ r =>
+          simp [ordinalSumCutDecomposition, ordinalSumCutLeftAugmented,
+            ordinalSumCutRightAugmented, hc, hr]
+
 /-- The distinguished object in the pointwise Kan-extension category computing
 Day convolution in augmented degree `-1`. -/
 def tensorCostructuredStar :
