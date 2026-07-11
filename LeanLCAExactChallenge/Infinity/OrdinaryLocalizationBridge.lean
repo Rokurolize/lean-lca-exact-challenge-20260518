@@ -1359,6 +1359,43 @@ private noncomputable def mappingLocalizationOrdinaryComparisonCompInclusionIso
       homotopyPrecomp ell.hom (nerveFunctor.obj E) :=
   eqToIso (mappingLocalizationOrdinaryComparison_comp_inclusion h E)
 
+private noncomputable def mappingLocalizationOrdinaryComparisonStageIso
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    ((mappingLocalizationOrdinarySourceFactor E ⋙
+        mappingLocalizationOrdinaryComparisonFactor h E) ⋙
+      (SSet.hoFunctor.map
+        (relativeInternalHom W (nerveFunctor.obj E)).ι).toFunctor) ⋙
+          (internalHomNerveHomotopyEquivalence A.obj E).functor ≅
+    (mappingLocalizationOrdinarySourceFactor E ⋙
+      homotopyPrecomp ell.hom (nerveFunctor.obj E)) ⋙
+        (internalHomNerveHomotopyEquivalence A.obj E).functor :=
+  Functor.associator
+      (mappingLocalizationOrdinarySourceFactor E ⋙
+        mappingLocalizationOrdinaryComparisonFactor h E)
+      (SSet.hoFunctor.map
+        (relativeInternalHom W (nerveFunctor.obj E)).ι).toFunctor
+      (internalHomNerveHomotopyEquivalence A.obj E).functor ≪≫
+    Functor.associator
+      (mappingLocalizationOrdinarySourceFactor E)
+      (mappingLocalizationOrdinaryComparisonFactor h E)
+      ((SSet.hoFunctor.map
+        (relativeInternalHom W (nerveFunctor.obj E)).ι).toFunctor ⋙
+          (internalHomNerveHomotopyEquivalence A.obj E).functor) ≪≫
+    Functor.isoWhiskerLeft (mappingLocalizationOrdinarySourceFactor E)
+      ((Functor.associator
+        (mappingLocalizationOrdinaryComparisonFactor h E)
+        (SSet.hoFunctor.map
+          (relativeInternalHom W (nerveFunctor.obj E)).ι).toFunctor
+        (internalHomNerveHomotopyEquivalence A.obj E).functor).symm ≪≫
+        Functor.isoWhiskerRight
+          (mappingLocalizationOrdinaryComparisonCompInclusionIso h E)
+          (internalHomNerveHomotopyEquivalence A.obj E).functor) ≪≫
+    (Functor.associator
+      (mappingLocalizationOrdinarySourceFactor E)
+      (homotopyPrecomp ell.hom (nerveFunctor.obj E))
+      (internalHomNerveHomotopyEquivalence A.obj E).functor).symm
+
 set_option backward.isDefEq.respectTransparency false in
 theorem internalHomNerveHomotopyEquivalence_precomp_naturality
     {X L : SSet.{u}} (f : X ⟶ L) (E : Cat.{u, u}) :
@@ -1410,6 +1447,49 @@ noncomputable def internalHomNerveHomotopyEquivalencePrecompIso
       homotopyPrecomp f (nerveFunctor.obj E) ⋙
         (internalHomNerveHomotopyEquivalence X E).functor :=
   eqToIso (internalHomNerveHomotopyEquivalence_precomp_naturality f E)
+
+private noncomputable def mappingLocalizationOrdinarySourceCounitStageIso
+    {A L : SSet.QCat.{u}} {ell : A ⟶ L} (E : Cat.{u, u}) :
+    (mappingLocalizationOrdinarySourceFactor E ⋙
+      homotopyPrecomp ell.hom (nerveFunctor.obj E)) ⋙
+        (internalHomNerveHomotopyEquivalence A.obj E).functor ≅
+    (Functor.whiskeringLeft
+      (SSet.hoFunctor.obj A.obj) (SSet.hoFunctor.obj L.obj) E).obj
+        (SSet.hoFunctor.map ell.hom).toFunctor :=
+  Functor.associator
+      (mappingLocalizationOrdinarySourceFactor E)
+      (homotopyPrecomp ell.hom (nerveFunctor.obj E))
+      (internalHomNerveHomotopyEquivalence A.obj E).functor ≪≫
+    Functor.isoWhiskerLeft (mappingLocalizationOrdinarySourceFactor E)
+      (internalHomNerveHomotopyEquivalencePrecompIso ell.hom E).symm ≪≫
+    (Functor.associator
+      (mappingLocalizationOrdinarySourceFactor E)
+      (internalHomNerveHomotopyEquivalence L.obj E).functor
+      ((Functor.whiskeringLeft
+        (SSet.hoFunctor.obj A.obj) (SSet.hoFunctor.obj L.obj) E).obj
+          (SSet.hoFunctor.map ell.hom).toFunctor)).symm ≪≫
+    Functor.isoWhiskerRight
+      (internalHomNerveHomotopyEquivalence L.obj E).counitIso
+      ((Functor.whiskeringLeft
+        (SSet.hoFunctor.obj A.obj) (SSet.hoFunctor.obj L.obj) E).obj
+          (SSet.hoFunctor.map ell.hom).toFunctor) ≪≫
+    Functor.leftUnitor _
+
+/-- The explicit forward equivalence is compatible, up to natural isomorphism,
+with precomposition by the localization map. -/
+noncomputable def mappingLocalizationOrdinaryExplicitForwardPrecompIso
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    (((mappingLocalizationOrdinarySourceFactor E ⋙
+        mappingLocalizationOrdinaryComparisonFactor h E) ⋙
+      mappingLocalizationOrdinaryRelativeFactor W E) ⋙
+        ObjectProperty.ι (PulledRelativeFunctorProperty W E)) ≅
+      (Functor.whiskeringLeft
+        (SSet.hoFunctor.obj A.obj) (SSet.hoFunctor.obj L.obj) E).obj
+          (SSet.hoFunctor.map ell.hom).toFunctor :=
+  mappingLocalizationOrdinaryRelativeStageExplicitIso h E ≪≫
+    mappingLocalizationOrdinaryComparisonStageIso h E ≪≫
+      mappingLocalizationOrdinarySourceCounitStageIso E
 
 /-- A mapping-quasicategory localization induces, for every ordinary target category,
 an equivalence from functors out of its homotopy category to the ordinary full
