@@ -416,4 +416,25 @@ lemma emptyJoinCell_zero_eq_baseFace (r : ℕ) :
   ext x
   simp [joinSigmaOneVertices, joinFirstVertices, joinSecondVertices]
 
+lemma range_horn_comp_rightConeBase_eq_emptyHornRange
+    (r : ℕ) (i : Fin (r + 2)) :
+    SSet.Subcomplex.range
+        ((SSet.horn (r + 1) i).ι ≫
+          simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[r + 1] ≫
+          (simplicialJoinStdSimplexIsoNat 0 (r + 1)).hom) =
+      joinSigmaOneHornRange 0 (r + 1) (∅ : Finset (Fin 1)) i := by
+  rw [← Category.assoc, rightCone_rightInclusion_stdSimplex]
+  rw [SSet.Subcomplex.range_comp, SSet.horn_eq_iSup,
+    SSet.Subcomplex.image_iSup]
+  rw [joinSigmaOneHornRange_eq_iSup_erasedFaces]
+  congr 1
+  funext j
+  rw [← stdSimplex_range_map_delta j.1, ← SSet.Subcomplex.range_comp]
+  congr 1
+  apply SimplexCategory.Hom.ext
+  ext k
+  simp [standardJoinRightOperator, SimplexCategory.δ,
+    joinSigmaOne, joinSigmaOneVertices, joinFirstVertices,
+    joinSecondVertices, joinSigmaOneDistinguishedIndex]
+
 end LeanLCAExactChallenge.Infinity
