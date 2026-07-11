@@ -654,34 +654,6 @@ def dgMappingConeHomToPathFiber (T : ComplexCategory)
     (dgMappingConeHomToPathObject T f)
     (dgMappingConeHom_pathFiber_condition T f)
 
-/-- The path coordinate of the strict pullback supplies a homotopy from its first projection
-followed by precomposition to zero. -/
-def dgHomPrecompositionPathFiberHomotopy (T : ComplexCategory)
-    {K L : ComplexCategory} (f : K ⟶ L) :
-    Homotopy
-      (Limits.pullback.fst (dgHomPrecompositionZeroEndpoints T f)
-          (dgHomPrecompositionPathEndpoints T K) ≫
-        dgHomZModulePrecomposition T f) 0 := by
-  let R := dgHomPrecompositionPathFiber T f
-  let a : R ⟶ dgHomZModuleCochainComplex L T := Limits.pullback.fst _ _
-  let p : R ⟶ dgHomPrecompositionPathObject T K := Limits.pullback.snd _ _
-  have hcondition := Limits.pullback.condition
-    (dgHomPrecompositionZeroEndpoints T f) (dgHomPrecompositionPathEndpoints T K)
-  have h₀ : a ≫ dgHomZModulePrecomposition T f =
-      p ≫ HomologicalComplex.pathObject.π₀ (dgHomZModuleCochainComplex K T) := by
-    simpa [a, p, dgHomPrecompositionZeroEndpoints, dgHomPrecompositionPathEndpoints,
-      Category.assoc] using congrArg
-        (fun q ↦ q ≫ Limits.prod.fst) hcondition
-  have h₁ : p ≫ HomologicalComplex.pathObject.π₁
-      (dgHomZModuleCochainComplex K T) = 0 := by
-    simpa [a, p, dgHomPrecompositionZeroEndpoints, dgHomPrecompositionPathEndpoints,
-      Category.assoc] using congrArg
-        (fun q ↦ q ≫ Limits.prod.snd) hcondition.symm
-  exact (Homotopy.ofEq h₀).trans
-    ((HomologicalComplex.pathObject.homotopy₀₁
-      (dgHomZModuleCochainComplex K T) (fun i ↦ ⟨i + 1, rfl⟩)).compLeft p) |>.trans
-        (Homotopy.ofEq h₁)
-
 /-- Explicit two-coordinate complex for maps out of a cone. -/
 def dgMappingConeExplicitFromCoordinateCochainComplex
     (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) :
