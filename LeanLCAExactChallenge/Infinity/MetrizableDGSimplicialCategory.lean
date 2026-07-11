@@ -3,6 +3,7 @@ import LeanLCAExactChallenge.Infinity.InnerAnodyneMapping
 import LeanLCAExactChallenge.Infinity.InnerFibrantReplacement
 import LeanLCAExactChallenge.Infinity.MetrizableDGMappingZModuleAssociativity
 import LeanLCAExactChallenge.Infinity.MetrizableDGMappingZModuleUnits
+import LeanLCAExactChallenge.Infinity.SimplicialAdditiveKan
 import Mathlib.Algebra.Category.ModuleCat.Adjunctions
 import Mathlib.AlgebraicTopology.SimplicialNerve
 import Mathlib.CategoryTheory.Enriched.Opposite
@@ -134,12 +135,35 @@ abbrev dgMappingDirectZModuleSSet (K L : ComplexCategory) : SSet.{0} :=
   zModuleSimplicialForget.obj
     (dgMappingDirectZModuleSimplicialModule K L)
 
+/-- Forget a simplicial integer module only as far as its additive group structure. -/
+abbrev dgMappingDirectAddCommGrpSimplicialObject (K L : ComplexCategory) :
+    SimplicialObject (AddCommGrpCat.{0}) :=
+  ((SimplicialObject.whiskering (ModuleCat.{0} ℤ) (AddCommGrpCat.{0})).obj
+    (forget₂ (ModuleCat.{0} ℤ) (AddCommGrpCat.{0}))).obj
+      (dgMappingDirectZModuleSimplicialModule K L)
+
+/-- Every direct Dold--Kan mapping simplicial set is a Kan complex. -/
+noncomputable instance dgMappingDirectZModuleSSet_kanComplex (K L : ComplexCategory) :
+    SSet.KanComplex (dgMappingDirectZModuleSSet K L) := by
+  change SSet.KanComplex
+    (additiveUnderlyingSSet (dgMappingDirectAddCommGrpSimplicialObject K L))
+  infer_instance
+
 /-- The enriched Hom is definitionally the direct Dold--Kan mapping simplicial set. -/
 theorem directDG_enrichedHom_eq (K L : ComplexCategory) :
     (ForgetEnrichment.to SSet (directDGObject K) ⟶[SSet]
       ForgetEnrichment.to SSet (directDGObject L)) =
         dgMappingDirectZModuleSSet K L :=
   rfl
+
+/-- The direct dg simplicial category is locally Kan. -/
+noncomputable instance directDG_enrichedHom_kanComplex
+    (K L : DirectDGSimplicialCategory) :
+    SSet.KanComplex (K ⟶[SSet] L) := by
+  change SSet.KanComplex (dgMappingDirectZModuleSSet
+    (show DirectDGSimplicialModuleCategory from K.unop).unop
+    (show DirectDGSimplicialModuleCategory from L.unop).unop)
+  infer_instance
 
 /-- The homotopy coherent nerve of the direct dg simplicial category. -/
 def directDGHomotopyCoherentNerve : SSet.{1} :=

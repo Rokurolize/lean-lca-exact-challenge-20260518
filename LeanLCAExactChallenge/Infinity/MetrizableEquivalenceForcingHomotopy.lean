@@ -52,6 +52,25 @@ def metrizableCorrectedDerivedToEquivalenceForcingHomotopy_fac :
       metrizableEquivalenceForcingHomotopyFunctor_inverts f hf)
     (DboundedWithCycles.localization MetrizableLCA.{0})
 
+/-- Once the homotopy functor is identified as the ordinary localization, the
+named comparison functor is an equivalence by uniqueness of localization. -/
+theorem metrizableCorrectedDerivedToEquivalenceForcingHomotopy_isEquivalence_of_isLocalization
+    (h : metrizableEquivalenceForcingHomotopyFunctor.IsLocalization
+      CorrectedWeakEquivalence) :
+    metrizableCorrectedDerivedToEquivalenceForcingHomotopy.IsEquivalence := by
+  letI : metrizableEquivalenceForcingHomotopyFunctor.IsLocalization
+      CorrectedWeakEquivalence := h
+  let e := Localization.uniq
+    (DboundedWithCycles.localization MetrizableLCA.{0})
+    metrizableEquivalenceForcingHomotopyFunctor CorrectedWeakEquivalence
+  let comparisonIso := Localization.isoUniqFunctor
+    (DboundedWithCycles.localization MetrizableLCA.{0})
+    metrizableEquivalenceForcingHomotopyFunctor CorrectedWeakEquivalence
+    metrizableCorrectedDerivedToEquivalenceForcingHomotopy
+    metrizableCorrectedDerivedToEquivalenceForcingHomotopy_fac
+  haveI : e.functor.IsEquivalence := by infer_instance
+  exact Functor.isEquivalence_of_iso comparisonIso.symm
+
 end MetrizableBoundedComplexes
 end Infinity
 end LeanLCAExactChallenge

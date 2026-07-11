@@ -167,7 +167,9 @@ private lemma unitHomEquiv_symm_natural {A B : SSet.{u}}
   dsimp [SSet.unitHomEquiv]
   rw [← NatTrans.naturality_apply]
 
-private lemma internalHomVertexMap_precomp {X L Q : SSet.{u}}
+/-- A vertex of an internal hom obtained by precomposition represents the
+corresponding composite simplicial map. -/
+lemma internalHomVertexMap_precomp {X L Q : SSet.{u}}
     (ell : X ⟶ L) (v : ((ihom L).obj Q) _⦋0⦌) :
     internalHomVertexMap X Q ((internalHomPrecomp ell Q).app _ v) =
       ell ≫ internalHomVertexMap L Q v := by
