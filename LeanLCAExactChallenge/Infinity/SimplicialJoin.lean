@@ -464,6 +464,37 @@ def ordinalSumCutDecomposition {U A B : SimplexCategory}
         (augmentedSimplexOfCard (U.len + 1 - ordinalSumCut q)) :=
   eqToHom (ordinalSumCut_tensorObj_eq q).symm
 
+/-- The left projection from the canonical cut block to the original left
+ordinal, including the empty-block case. -/
+def ordinalSumCutLeftAugmented {U A B : SimplexCategory}
+    (q : U ⟶ AugmentedSimplexCategory.tensorObjOf A B) :
+    augmentedSimplexOfCard (ordinalSumCut q) ⟶ WithInitial.of A :=
+  match hc : ordinalSumCut q with
+  | 0 => WithInitial.starInitial.to _
+  | c + 1 => AugmentedSimplexCategory.inclusion.map
+      (eqToHom (by
+          apply SimplexCategory.ext
+          simp only [SimplexCategory.len_mk]
+          omega) ≫
+        ordinalSumCutLeft q (by omega))
+
+/-- The right projection from the canonical cut block to the original right
+ordinal, including the empty-block case. -/
+def ordinalSumCutRightAugmented {U A B : SimplexCategory}
+    (q : U ⟶ AugmentedSimplexCategory.tensorObjOf A B) :
+    augmentedSimplexOfCard (U.len + 1 - ordinalSumCut q) ⟶ WithInitial.of B :=
+  match hr : U.len + 1 - ordinalSumCut q with
+  | 0 => WithInitial.starInitial.to _
+  | r + 1 => AugmentedSimplexCategory.inclusion.map
+      (eqToHom (by
+          apply SimplexCategory.ext
+          have hc := ordinalSumCut_le q
+          simp only [SimplexCategory.len_mk]
+          omega) ≫
+        ordinalSumCutRight q (by
+          have hc := ordinalSumCut_le q
+          omega))
+
 /-- The distinguished object in the pointwise Kan-extension category computing
 Day convolution in augmented degree `-1`. -/
 def tensorCostructuredStar :
