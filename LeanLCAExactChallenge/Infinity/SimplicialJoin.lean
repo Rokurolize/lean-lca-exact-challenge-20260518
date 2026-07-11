@@ -989,6 +989,23 @@ theorem simplicialJoinStdSimplexIsoNat_naturality_rightCoface
   rcases x with ⟨x⟩
   rfl
 
+lemma stdSimplex_range_map_delta {n : ℕ} (j : Fin (n + 2)) :
+    SSet.Subcomplex.range (SSet.stdSimplex.map (SimplexCategory.δ j) :
+      (Δ[n] : SSet.{u}) ⟶ Δ[n + 1]) = SSet.stdSimplex.face {j}ᶜ := by
+  rw [SSet.Subcomplex.range_eq_ofSimplex, SSet.stdSimplex.yonedaEquiv_map,
+    ← SSet.stdSimplex.face_singleton_compl]
+
+lemma representableJoin_rightCoface_range (m n : ℕ) (j : Fin (n + 2)) :
+    SSet.Subcomplex.range
+        (simplicialJoinMap (𝟙 (Δ[m] : SSet.{u}))
+            (SSet.stdSimplex.map (SimplexCategory.δ j)) ≫
+          (simplicialJoinStdSimplexIsoNat m (n + 1)).hom) =
+      SSet.stdSimplex.face
+        ({(⟨m + 1 + j.val, by omega⟩ : Fin (m + n + 3))}ᶜ) := by
+  rw [simplicialJoinStdSimplexIsoNat_naturality_rightCoface]
+  rw [SSet.Subcomplex.range_comp, SSet.Subcomplex.range_eq_top,
+    SSet.Subcomplex.image_top, stdSimplex_range_map_delta]
+
 /-! ## The paired simplices in the representable join-horn filtration -/
 
 /-- Vertices in the first block selected by `T`. -/
