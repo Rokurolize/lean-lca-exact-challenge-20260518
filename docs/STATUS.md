@@ -25,12 +25,20 @@ ordinary-nerve equivalence-forcing quasicategory that inverts every corrected we
 equivalence, and the full mapping-quasicategory localization specification together with
 the canonical ordinary comparison functor out of the corrected localization. The generic
 bridge from a quasicategory map having the right lifting property against every simplicial
-monomorphism to a bicategorical equivalence is also inhabited.
+monomorphism to a bicategorical equivalence is also inhabited. Mathlib v4.31's cartesian
+pushout-product theorem is now integrated: functor simplicial sets are unconditionally
+quasicategories, and mapping out of an inner-fibrant replacement is proved to be a
+bicategorical equivalence. For the equivalence-forcing candidate, the final mapping
+comparison is factored through the free-equivalence pushout presentation; its mapping object
+is identified as the expected pullback, and a verified sufficient route to the full localization
+property is the still-uninhabited mono-RLP of the presentation comparison at every target
+quasicategory.
 
 Still missing, and required before objective 4 can be called complete:
 
 - Inhabitation of the ∞-localization universal property (a concrete candidate satisfying
-  the full mapping-quasicategory specification).
+  the full mapping-quasicategory specification). For the current candidate, a verified
+  sufficient next target is the presentation-comparison mono-RLP described above.
 - Comparison of the ordinary-nerve carrier with the coherent dg carrier.
 - The stability proof for the localized quasicategory.
 - Proof that the ordinary comparison functor is an equivalence.

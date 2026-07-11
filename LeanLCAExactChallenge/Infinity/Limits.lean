@@ -7,9 +7,8 @@ import Mathlib.CategoryTheory.Monoidal.Closed.Cartesian
 # Infinity-categorical limits and pointedness
 
 Limits and colimits in a quasicategory are expressed here by bicategorical adjoints to the
-constant-diagram map.  In mathlib v4.30 the internal hom into a quasicategory has not yet
-been proved to be a quasicategory, so that proof is an explicit argument rather than a
-hidden assumption.
+constant-diagram map. The quasicategory proof remains an explicit argument in this API so
+the chosen mapping object is visible, although mathlib v4.31 now supplies it canonically.
 -/
 
 set_option autoImplicit false

@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.Infinity.EquivalenceForcing
+import LeanLCAExactChallenge.Infinity.InnerAnodyneMapping
 import LeanLCAExactChallenge.Infinity.MetrizableRelative
 
 /-!
@@ -127,7 +128,44 @@ theorem metrizableEquivalenceForcingMappingComparison_comp_inclusion
       internalHomPrecomp metrizableEquivalenceForcingMap Q.obj :=
   internalHomPrecompToRelative_comp_inclusion _ _ _ _
 
-/-- The single targetwise equivalence assertion left after the v4.30 closure hypothesis. -/
+/-- The canonical comparison bundled using mathlib v4.31's unconditional mapping
+quasicategories. -/
+def metrizableEquivalenceForcingMappingComparisonQCat (Q : SSet.QCat.{1}) :
+    internalHomQCat metrizableEquivalenceForcingQCat.obj Q.obj
+        (@quasicategory_ihom metrizableEquivalenceForcingQCat.obj Q.obj Q.property) ⟶
+      relativeInternalHomQCat
+        (relativeNerveEdgeMarking relativeCategory) Q.obj
+        (@relativeInternalHom_quasicategory_of_quasicategory
+          (CategoryTheory.nerve ComplexCategory) Q.obj Q.property
+          (relativeNerveEdgeMarking relativeCategory)) :=
+  ObjectProperty.homMk (metrizableEquivalenceForcingMappingComparison Q)
+
+/-- The genuine targetwise assertion remaining after v4.31 discharged internal-Hom closure. -/
+def MetrizableEquivalenceForcingCanonicalComparisonIsEquivalenceUnconditional
+    (Q : SSet.QCat.{1}) : Prop :=
+  IsBicategoricalEquivalence
+    (metrizableEquivalenceForcingMappingComparisonQCat Q)
+
+/-- Equivalence of all unconditional canonical comparisons gives the full mapping
+localization property. -/
+theorem metrizableEquivalenceForcingMappingLocalizationProperty_of_unconditionalComparisons
+    (hEquiv : ∀ Q : SSet.QCat.{1},
+      MetrizableEquivalenceForcingCanonicalComparisonIsEquivalenceUnconditional Q) :
+    MetrizableEquivalenceForcingMappingLocalizationProperty :=
+  metrizableEquivalenceForcingMappingLocalizationProperty_of_universal
+    (fun Q => ⟨MappingQuasicategoryLocalizationAt.ofCanonicalUnconditional
+      (relativeNerveEdgeMarking relativeCategory)
+      metrizableEquivalenceForcingQCatMap Q
+      metrizableEquivalenceForcingMap_invertsMarkedEdges (by
+        simpa only [
+          MetrizableEquivalenceForcingCanonicalComparisonIsEquivalenceUnconditional,
+          metrizableEquivalenceForcingMappingComparisonQCat,
+          metrizableEquivalenceForcingMappingComparison,
+          metrizableEquivalenceForcingQCatMap,
+          ObjectProperty.homMk_hom] using hEquiv Q)⟩)
+
+/-- The legacy targetwise equivalence assertion parameterized by the v4.30 closure
+hypothesis. -/
 def MetrizableEquivalenceForcingCanonicalComparisonIsEquivalence
     (hprod : InnerHornPushoutProductIsInnerAnodyne.{1})
     (Q : SSet.QCat.{1}) : Prop :=
@@ -162,6 +200,108 @@ theorem metrizableToEquivalenceForcingQCat_innerAnodyne :
     SSet.innerAnodyneExtensions
       (relativeCategory.toEquivalenceForcingQCat) :=
   relativeCategory.toEquivalenceForcingQCat_innerAnodyne
+
+/-- The targetwise presentation comparison before inner-fibrant replacement. -/
+def metrizableEquivalenceForcingPresentationMappingComparison
+    (Q : SSet.QCat.{1}) :
+    (ihom metrizableEquivalenceForcingPresentation).obj Q.obj ⟶
+      (relativeInternalHom (relativeNerveEdgeMarking relativeCategory) Q.obj : SSet.{1}) :=
+  relativeCategory.equivalenceForcingPresentationMappingComparison Q
+
+/-- The presentation comparison bundled as a map of canonical mapping quasicategories. -/
+def metrizableEquivalenceForcingPresentationMappingComparisonQCat
+    (Q : SSet.QCat.{1}) :
+    internalHomQCat metrizableEquivalenceForcingPresentation Q.obj
+        (@quasicategory_ihom metrizableEquivalenceForcingPresentation Q.obj Q.property) ⟶
+      relativeInternalHomQCat
+        (relativeNerveEdgeMarking relativeCategory) Q.obj
+        (@relativeInternalHom_quasicategory_of_quasicategory
+          (CategoryTheory.nerve ComplexCategory) Q.obj Q.property
+          (relativeNerveEdgeMarking relativeCategory)) :=
+  ObjectProperty.homMk
+    (metrizableEquivalenceForcingPresentationMappingComparison Q)
+
+/-- The irreducible presentation-level universal-property assertion at one target. -/
+def MetrizableEquivalenceForcingPresentationComparisonIsEquivalence
+    (Q : SSet.QCat.{1}) : Prop :=
+  IsBicategoricalEquivalence
+    (metrizableEquivalenceForcingPresentationMappingComparisonQCat Q)
+
+/-- A concrete lifting criterion strong enough for the presentation comparison to be an
+equivalence. -/
+def MetrizableEquivalenceForcingPresentationComparisonHasMonoRLP
+    (Q : SSet.QCat.{1}) : Prop :=
+  (CategoryTheory.MorphismProperty.monomorphisms SSet.{1}).rlp
+    (metrizableEquivalenceForcingPresentationMappingComparison Q)
+
+/-- The mono-RLP criterion promotes the presentation comparison to a QCat equivalence. -/
+theorem metrizableEquivalenceForcingPresentationComparisonIsEquivalence_of_monoRLP
+    (Q : SSet.QCat.{1})
+    (h : MetrizableEquivalenceForcingPresentationComparisonHasMonoRLP Q) :
+    MetrizableEquivalenceForcingPresentationComparisonIsEquivalence Q := by
+  exact monoRLP_isBicategoricalEquivalence
+    (metrizableEquivalenceForcingPresentationMappingComparisonQCat Q) h
+
+/-- Precomposition from the inner-fibrant replacement to the free-equivalence presentation. -/
+def metrizableToEquivalenceForcingQCatPrecompQCat (Q : SSet.QCat.{1}) :
+    internalHomQCat metrizableEquivalenceForcingQCat.obj Q.obj
+        (@quasicategory_ihom metrizableEquivalenceForcingQCat.obj Q.obj Q.property) ⟶
+      internalHomQCat metrizableEquivalenceForcingPresentation Q.obj
+        (@quasicategory_ihom metrizableEquivalenceForcingPresentation Q.obj Q.property) :=
+  ObjectProperty.homMk
+    (internalHomPrecomp relativeCategory.toEquivalenceForcingQCat Q.obj)
+
+/-- The inner-fibrant replacement stage is a targetwise equivalence of mapping
+quasicategories. -/
+theorem metrizableToEquivalenceForcingQCatPrecomp_isBicategoricalEquivalence
+    (Q : SSet.QCat.{1}) :
+    IsBicategoricalEquivalence
+      (metrizableToEquivalenceForcingQCatPrecompQCat Q) := by
+  exact toInnerFibrantReplacement_precomp_isBicategoricalEquivalence
+    metrizableEquivalenceForcingPresentation Q
+
+/-- The final canonical comparison is the presentation comparison after replacement
+precomposition. -/
+@[reassoc]
+theorem metrizableToEquivalenceForcingQCatPrecomp_comp_presentationComparison
+    (Q : SSet.QCat.{1}) :
+    metrizableToEquivalenceForcingQCatPrecompQCat Q ≫
+        metrizableEquivalenceForcingPresentationMappingComparisonQCat Q =
+      metrizableEquivalenceForcingMappingComparisonQCat Q := by
+  apply ObjectProperty.hom_ext SSet.Quasicategory
+  exact relativeCategory.toEquivalenceForcingQCat_precomp_comp_presentationMappingComparison Q
+
+/-- A presentation-level mapping equivalence implies the final canonical comparison
+equivalence. -/
+theorem
+    metrizableEquivalenceForcingCanonicalComparisonIsEquivalenceUnconditional_of_presentation
+    (Q : SSet.QCat.{1})
+    (h : MetrizableEquivalenceForcingPresentationComparisonIsEquivalence Q) :
+    MetrizableEquivalenceForcingCanonicalComparisonIsEquivalenceUnconditional Q := by
+  change IsBicategoricalEquivalence
+    (metrizableEquivalenceForcingMappingComparisonQCat Q)
+  rw [← metrizableToEquivalenceForcingQCatPrecomp_comp_presentationComparison]
+  exact (metrizableToEquivalenceForcingQCatPrecomp_isBicategoricalEquivalence Q).comp h
+
+/-- Presentation-level comparison equivalences therefore imply the full mapping-quasicategory
+localization property. -/
+theorem metrizableEquivalenceForcingMappingLocalizationProperty_of_presentationComparisons
+    (h : ∀ Q : SSet.QCat.{1},
+      MetrizableEquivalenceForcingPresentationComparisonIsEquivalence Q) :
+    MetrizableEquivalenceForcingMappingLocalizationProperty :=
+  metrizableEquivalenceForcingMappingLocalizationProperty_of_unconditionalComparisons
+    (fun Q =>
+      metrizableEquivalenceForcingCanonicalComparisonIsEquivalenceUnconditional_of_presentation
+        Q (h Q))
+
+/-- It therefore suffices to prove the mono-RLP criterion for every target quasicategory. -/
+theorem metrizableEquivalenceForcingMappingLocalizationProperty_of_presentationMonoRLP
+    (h : ∀ Q : SSet.QCat.{1},
+      MetrizableEquivalenceForcingPresentationComparisonHasMonoRLP Q) :
+    MetrizableEquivalenceForcingMappingLocalizationProperty :=
+  metrizableEquivalenceForcingMappingLocalizationProperty_of_presentationComparisons
+    (fun Q =>
+      metrizableEquivalenceForcingPresentationComparisonIsEquivalence_of_monoRLP Q (h Q))
 
 /-- The equivalence-forcing map sends every generated weak equivalence to an equivalence. -/
 theorem metrizableEquivalenceForcingMap_generated

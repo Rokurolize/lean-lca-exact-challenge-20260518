@@ -128,7 +128,7 @@ theorem relativeInternalHom_quasicategory {X : SSet.{u}} (W : EdgeMarking X)
     SSet.Quasicategory (relativeInternalHom W Q : SSet.{u}) :=
   fullSubcomplexOnVertices_quasicategory _ _
 
-/-- The explicit v4.30 pushout-product hypothesis supplies both mapping-object closures. -/
+/-- The legacy explicit pushout-product hypothesis supplies both mapping-object closures. -/
 theorem relativeInternalHom_quasicategory_of_innerHornPushoutProduct
     (hprod : InnerHornPushoutProductIsInnerAnodyne.{u})
     {X Q : SSet.{u}} [SSet.Quasicategory Q] (W : EdgeMarking X) :
@@ -137,10 +137,26 @@ theorem relativeInternalHom_quasicategory_of_innerHornPushoutProduct
     quasicategory_ihom_of_innerHornPushoutProduct hprod
   exact relativeInternalHom_quasicategory W Q
 
+/-- In mathlib v4.31, relative mapping objects into a quasicategory are unconditionally
+quasicategories. -/
+theorem relativeInternalHom_quasicategory_of_quasicategory
+    {X Q : SSet.{u}} [SSet.Quasicategory Q] (W : EdgeMarking X) :
+    SSet.Quasicategory (relativeInternalHom W Q : SSet.{u}) := by
+  letI : SSet.Quasicategory ((ihom X).obj Q) := quasicategory_ihom
+  exact relativeInternalHom_quasicategory W Q
+
 /-- Precomposition on simplicial internal homs. -/
 def internalHomPrecomp {X L : SSet.{u}} (ell : X ⟶ L) (Q : SSet.{u}) :
     (ihom L).obj Q ⟶ (ihom X).obj Q :=
   (MonoidalClosed.pre ell).app Q
+
+/-- Precomposition respects composition of simplicial maps. -/
+@[reassoc (attr := simp)]
+theorem internalHomPrecomp_comp {X Y L : SSet.{u}}
+    (f : X ⟶ Y) (g : Y ⟶ L) (Q : SSet.{u}) :
+    internalHomPrecomp g Q ≫ internalHomPrecomp f Q =
+      internalHomPrecomp (f ≫ g) Q := by
+  simp [internalHomPrecomp]
 
 private lemma unitHomEquiv_symm_natural {A B : SSet.{u}}
     (F : A ⟶ B) (a : A _⦋0⦌) :
@@ -255,9 +271,9 @@ def relativeInternalHomQCat {X : SSet.{u}} (W : EdgeMarking X) (Q : SSet.{u})
 /--
 Data expressing the full mapping-quasicategory comparison at one target.
 
-The source field is explicit because the pinned library does not supply internal-Hom closure.
-The target field is retained explicitly in the standalone specification, although it follows
-from the source by `relativeInternalHom_quasicategory`.
+The source and target fields remain explicit so the standalone specification records the exact
+quasicategory structures used by its comparison. Mathlib v4.31 supplies canonical inhabitants
+for both fields.
 -/
 structure MappingQuasicategoryLocalizationAt
     {A L : SSet.QCat.{u}} (W : EdgeMarking A.obj) (ell : A ⟶ L)
@@ -300,6 +316,24 @@ def ofCanonical {A L : SSet.QCat.{u}}
   comparison_comp_inclusion :=
     internalHomPrecompToRelative_comp_inclusion W ell.hom Q.obj hEll
   isEquivalence := isEquivalence
+
+/-- Build the canonical mapping data using mathlib v4.31's unconditional internal-Hom closure. -/
+def ofCanonicalUnconditional {A L : SSet.QCat.{u}}
+    (W : EdgeMarking A.obj) (ell : A ⟶ L) (Q : SSet.QCat.{u})
+    (hEll : InvertsMarkedEdges W ell.hom)
+    (isEquivalence :
+      IsBicategoricalEquivalence
+        (ObjectProperty.homMk
+          (internalHomPrecompToRelative W ell.hom Q.obj hEll) :
+            internalHomQCat L.obj Q.obj
+                (@quasicategory_ihom L.obj Q.obj Q.property) ⟶
+              relativeInternalHomQCat W Q.obj
+                (@relativeInternalHom_quasicategory_of_quasicategory
+                  A.obj Q.obj Q.property W))) :
+    MappingQuasicategoryLocalizationAt W ell Q := by
+  letI : SSet.Quasicategory Q.obj := Q.property
+  exact ofCanonical W ell Q hEll
+    (@quasicategory_ihom L.obj Q.obj Q.property) isEquivalence
 
 /-- Build the canonical mapping data assuming inner-horn pushout-product closure. -/
 def ofCanonicalOfInnerHornPushoutProduct {A L : SSet.QCat.{u}}

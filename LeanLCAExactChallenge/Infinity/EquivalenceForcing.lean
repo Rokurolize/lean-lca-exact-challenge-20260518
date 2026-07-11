@@ -4,6 +4,7 @@ import LeanLCAExactChallenge.Infinity.Relative
 import Mathlib.AlgebraicTopology.SimplicialSet.StdSimplex
 import Mathlib.CategoryTheory.Limits.Shapes.Products
 import Mathlib.CategoryTheory.Limits.Shapes.Pullback.HasPullback
+import Mathlib.CategoryTheory.Monoidal.Closed.Braided
 
 /-!
 # A concrete ordinary-nerve equivalence-forcing presentation
@@ -203,6 +204,34 @@ theorem equivalenceIntervalInclusion_comp_equivalenceCopy
     _ = (i ≫ f) ≫ l := (Category.assoc _ _ _).symm
     _ = _ := congrArg (fun t => t ≫ l) hif
 
+/-- Every selected weak arrow already has a coherent free-equivalence extension in the
+pushout presentation, before inner-fibrant replacement. -/
+def toEquivalenceForcingPresentation_weakEquivalenceExtension
+    (a : WeakEquivalenceArrow C R) :
+    EquivalenceIntervalExtension
+      ((CategoryTheory.nerve.edgeMk a.hom).map
+        (toEquivalenceForcingPresentation R)) where
+  map := equivalenceCopy R a
+  restrict := by
+    calc
+      equivalenceIntervalInclusion.{max u v} ≫ equivalenceCopy R a =
+          weakArrowSimplex R a ≫ toEquivalenceForcingPresentation R :=
+        equivalenceIntervalInclusion_comp_equivalenceCopy R a
+      _ = SSet.yonedaEquiv.symm
+          ((CategoryTheory.nerve.edgeMk a.hom).map
+            (toEquivalenceForcingPresentation R)).edge := by
+        apply SSet.yonedaEquiv.injective
+        simp only [weakArrowSimplex, SSet.yonedaEquiv_comp,
+          Equiv.apply_symm_apply, SSet.Edge.map_edge]
+
+/-- Every selected weak arrow is an equivalence already in the pushout presentation. -/
+theorem toEquivalenceForcingPresentation_weakEquivalence
+    (a : WeakEquivalenceArrow C R) :
+    EdgeIsEquivalence
+      ((CategoryTheory.nerve.edgeMk a.hom).map
+        (toEquivalenceForcingPresentation R)) :=
+  (toEquivalenceForcingPresentation_weakEquivalenceExtension R a).edgeIsEquivalence
+
 /-- A chosen quasicategory carrier for the equivalence-forcing presentation. -/
 def equivalenceForcingQCat : SSet.QCat.{max u v} :=
   innerFibrantReplacementQCat (equivalenceForcingPresentation R)
@@ -256,37 +285,34 @@ theorem equivalenceForcingMap_weakEquivalence
         (equivalenceForcingMap R)) :=
   (equivalenceForcingMap_weakEquivalenceExtension R a).edgeIsEquivalence
 
-/-- The equivalence-forcing map inverts the complete marking on the ordinary nerve. -/
-theorem equivalenceForcingMap_invertsMarkedEdges :
-    InvertsMarkedEdges (relativeNerveEdgeMarking R)
-      (equivalenceForcingMap R) := by
+/-- It is enough to check the specified weak arrows in order to invert the complete nerve
+marking. -/
+theorem invertsMarkedEdges_of_weakEquivalence
+    {Q : SSet.{max u v}}
+    (F : CategoryTheory.nerve C ⟶ Q)
+    (hF : ∀ a : WeakEquivalenceArrow C R,
+      EdgeIsEquivalence ((CategoryTheory.nerve.edgeMk a.hom).map F)) :
+    InvertsMarkedEdges (relativeNerveEdgeMarking R) F := by
   intro e he
   obtain ⟨X, Y, f, hf, rfl⟩ := he
   let a : WeakEquivalenceArrow C R :=
     { source := X, target := Y, hom := f, weak := hf }
-  let eo := (SSet.Edge.mk' (CategoryTheory.nerve.edgeMk f).edge).map
-    (equivalenceForcingMap R)
-  let ea := (CategoryTheory.nerve.edgeMk f).map
-    (equivalenceForcingMap R)
-  have hea : EdgeIsEquivalence ea :=
-    equivalenceForcingMap_weakEquivalence R a
+  let eo := (SSet.Edge.mk' (CategoryTheory.nerve.edgeMk f).edge).map F
+  let ea := (CategoryTheory.nerve.edgeMk f).map F
+  have hea : EdgeIsEquivalence ea := hF a
   have hsrc :
-      (equivalenceForcingMap R).app (op ⦋0⦌)
+      F.app (op ⦋0⦌)
           ((CategoryTheory.nerve C).δ 1
             (CategoryTheory.nerve.edgeMk f).edge) =
-        (equivalenceForcingMap R).app (op ⦋0⦌)
-          (CategoryTheory.nerveEquiv.symm X) := by
-    exact congrArg
-      (fun x => (equivalenceForcingMap R).app (op ⦋0⦌) x)
+        F.app (op ⦋0⦌) (CategoryTheory.nerveEquiv.symm X) := by
+    exact congrArg (fun x => F.app (op ⦋0⦌) x)
       (CategoryTheory.nerve.edgeMk f).src_eq
   have htgt :
-      (equivalenceForcingMap R).app (op ⦋0⦌)
+      F.app (op ⦋0⦌)
           ((CategoryTheory.nerve C).δ 0
             (CategoryTheory.nerve.edgeMk f).edge) =
-        (equivalenceForcingMap R).app (op ⦋0⦌)
-          (CategoryTheory.nerveEquiv.symm Y) := by
-    exact congrArg
-      (fun x => (equivalenceForcingMap R).app (op ⦋0⦌) x)
+        F.app (op ⦋0⦌) (CategoryTheory.nerveEquiv.symm Y) := by
+    exact congrArg (fun x => F.app (op ⦋0⦌) x)
       (CategoryTheory.nerve.edgeMk f).tgt_eq
   let ea' := SSet.Edge.castEndpoints hsrc htgt ea
   have hea' : EdgeIsEquivalence ea' := hea.castEndpoints hsrc htgt
@@ -294,9 +320,78 @@ theorem equivalenceForcingMap_invertsMarkedEdges :
     apply SSet.Edge.ext
     simp only [eo, ea', ea, SSet.Edge.castEndpoints_edge,
       SSet.Edge.map_edge, SSet.Edge.mk'_edge]
-  rw [show (SSet.Edge.mk' (CategoryTheory.nerve.edgeMk f).edge).map
-    (equivalenceForcingMap R) = eo from rfl, hedge]
+  rw [show (SSet.Edge.mk' (CategoryTheory.nerve.edgeMk f).edge).map F = eo from rfl,
+    hedge]
   exact hea'
+
+/-- The map into the pushout presentation inverts the complete weak-equivalence marking. -/
+theorem toEquivalenceForcingPresentation_invertsMarkedEdges :
+    InvertsMarkedEdges (relativeNerveEdgeMarking R)
+      (toEquivalenceForcingPresentation R) :=
+  invertsMarkedEdges_of_weakEquivalence R
+    (toEquivalenceForcingPresentation R)
+    (toEquivalenceForcingPresentation_weakEquivalence R)
+
+/-- The presentation-level comparison from maps out of the free-equivalence pushout to maps
+of the relative nerve that invert every marked edge. -/
+def equivalenceForcingPresentationMappingComparison
+    (Q : SSet.QCat.{max u v}) :
+    (ihom (equivalenceForcingPresentation R)).obj Q.obj ⟶
+      (relativeInternalHom (relativeNerveEdgeMarking R) Q.obj : SSet.{max u v}) :=
+  internalHomPrecompToRelative
+    (relativeNerveEdgeMarking R)
+    (toEquivalenceForcingPresentation R) Q.obj
+    (toEquivalenceForcingPresentation_invertsMarkedEdges R)
+
+/-- The presentation comparison includes to ordinary internal-Hom precomposition. -/
+@[reassoc (attr := simp)]
+theorem equivalenceForcingPresentationMappingComparison_comp_inclusion
+    (Q : SSet.QCat.{max u v}) :
+    equivalenceForcingPresentationMappingComparison R Q ≫
+        (relativeInternalHom (relativeNerveEdgeMarking R) Q.obj).ι =
+      internalHomPrecomp (toEquivalenceForcingPresentation R) Q.obj :=
+  internalHomPrecompToRelative_comp_inclusion _ _ _ _
+
+/-- Mapping out of the free-equivalence pushout is the pullback of the two restriction maps on
+simplicial internal Homs. -/
+theorem equivalenceForcingPresentationMapping_isPullback
+    (Q : SSet.{max u v}) :
+    IsPullback
+      (internalHomPrecomp
+        (pushout.inr (weakIntervalsToNerve R) (weakIntervalsToEquivalences R)) Q)
+      (internalHomPrecomp (toEquivalenceForcingPresentation R) Q)
+      (internalHomPrecomp (weakIntervalsToEquivalences R) Q)
+      (internalHomPrecomp (weakIntervalsToNerve R) Q) := by
+  have h := (IsPushout.of_hasPushout
+    (weakIntervalsToNerve R) (weakIntervalsToEquivalences R)).op
+  have hm := h.map (MonoidalClosed.internalHom.flip.obj Q)
+  simpa [internalHomPrecomp, MonoidalClosed.internalHom, Functor.flip,
+    toEquivalenceForcingPresentation] using hm
+
+/-- The equivalence-forcing map inverts the complete marking on the ordinary nerve. -/
+theorem equivalenceForcingMap_invertsMarkedEdges :
+    InvertsMarkedEdges (relativeNerveEdgeMarking R)
+      (equivalenceForcingMap R) :=
+  invertsMarkedEdges_of_weakEquivalence R (equivalenceForcingMap R)
+    (equivalenceForcingMap_weakEquivalence R)
+
+/-- The final equivalence-forcing comparison factors through precomposition along the chosen
+inner-fibrant replacement. -/
+@[reassoc]
+theorem toEquivalenceForcingQCat_precomp_comp_presentationMappingComparison
+    (Q : SSet.QCat.{max u v}) :
+    internalHomPrecomp (toEquivalenceForcingQCat R) Q.obj ≫
+        equivalenceForcingPresentationMappingComparison R Q =
+      internalHomPrecompToRelative
+        (relativeNerveEdgeMarking R) (equivalenceForcingMap R) Q.obj
+        (equivalenceForcingMap_invertsMarkedEdges R) := by
+  apply (cancel_mono
+    (relativeInternalHom (relativeNerveEdgeMarking R) Q.obj).ι).1
+  rw [Category.assoc,
+    equivalenceForcingPresentationMappingComparison_comp_inclusion,
+    internalHomPrecompToRelative_comp_inclusion,
+    internalHomPrecomp_comp]
+  rfl
 
 end RelativeCategoryData
 

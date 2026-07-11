@@ -1,4 +1,7 @@
 import LeanLCAExactChallenge.Infinity.EquivalenceIntervalExtension
+import LeanLCAExactChallenge.Infinity.FunctorQuasicategory
+import LeanLCAExactChallenge.Infinity.InnerFibrantReplacement
+import Mathlib.AlgebraicTopology.SimplicialSet.AnodyneExtensions.Inner.PushoutProduct
 import Mathlib.CategoryTheory.LiftingProperties.PushoutProduct
 
 /-!
@@ -41,8 +44,9 @@ lemma exists_extension_of_innerAnodyne
     ∃ g : B ⟶ Q, i ≫ g = f := by
   let t : IsTerminal (⊤_ SSet.{u}) := Limits.terminalIsTerminal
   let sq : CommSq f i (t.from Q) (t.from B) := ⟨t.hom_ext _ _⟩
-  have hlift : HasLiftingProperty i (t.from Q) :=
-    hi _ (SSet.Quasicategory.from_innerFibrations Q t)
+  have hq : SSet.InnerFibration (t.from Q) :=
+    (SSet.quasicategory_iff_of_isTerminal (t.from Q) t).mp inferInstance
+  have hlift : HasLiftingProperty i (t.from Q) := hi _ hq.mem
   letI : HasLiftingProperty i (t.from Q) := hlift
   exact ⟨sq.lift, sq.fac_left⟩
 
@@ -52,11 +56,28 @@ def InnerAnodyneCartesianPushoutProduct : Prop :=
     SSet.innerAnodyneExtensions i → Mono j →
       SSet.innerAnodyneExtensions (Arrow.mk i □ Arrow.mk j).hom
 
+/-- Mathlib v4.31 supplies cartesian pushout-product closure for inner anodyne maps. -/
+theorem innerAnodyneCartesianPushoutProduct :
+    InnerAnodyneCartesianPushoutProduct.{u} := by
+  intro A B K L i j hi hj
+  letI : Mono j := hj
+  let sq := Functor.PushoutObjObj.ofHasPushout
+    (curriedTensor SSet.{u}) i j
+  change SSet.innerAnodyneExtensions sq.ι
+  exact SSet.innerAnodyneExtensions_pushoutObjObjι' sq hi
+
 /-- The generating pushout-product statement that remains combinatorial. -/
 def InnerHornMonoPushoutProductIsInnerAnodyne : Prop :=
   ∀ {n : ℕ} {k : Fin (n + 1)}, 0 < k → k < Fin.last n →
     ∀ ⦃K L : SSet.{u}⦄ (j : K ⟶ L), Mono j →
       SSet.innerAnodyneExtensions (Arrow.mk Λ[n, k].ι □ Arrow.mk j).hom
+
+/-- The inner-horn/monomorphism compatibility statement is unconditionally inhabited. -/
+theorem innerHornMonoPushoutProductIsInnerAnodyne :
+    InnerHornMonoPushoutProductIsInnerAnodyne.{u} := by
+  intro n k h0 hn K L j hj
+  exact innerAnodyneCartesianPushoutProduct Λ[n, k].ι j
+    (SSet.innerAnodyneExtensions.horn_ι h0 hn) hj
 
 /-- The arbitrary-mono hypothesis supplies the initial-map case used for functor objects. -/
 lemma innerHornPushoutProduct_of_innerHornMono
@@ -85,8 +106,10 @@ lemma hasLiftingProperty_pre_of_innerAnodyne_pushoutProduct
     HasLiftingProperty j ((MonoidalClosed.pre i).app Q) := by
   rw [← Arrow.PushoutProduct.hasLiftingProperty_mk_isTerminal_iff
     (Limits.terminalIsTerminal : IsTerminal (⊤_ SSet.{u}))]
-  exact hbox _
-    (SSet.Quasicategory.from_innerFibrations Q Limits.terminalIsTerminal)
+  have hq : SSet.InnerFibration (terminalIsTerminal.from Q) :=
+    (SSet.quasicategory_iff_of_isTerminal
+      (terminalIsTerminal.from Q) terminalIsTerminal).mp inferInstance
+  exact hbox _ hq.mem
 
 /-- Under cartesian pushout-product closure, precomposition has the RLP against every mono. -/
 lemma pre_mem_monomorphisms_rlp
@@ -97,6 +120,13 @@ lemma pre_mem_monomorphisms_rlp
   intro K L j hj
   exact hasLiftingProperty_pre_of_innerAnodyne_pushoutProduct
     (hcart i j hi ((monomorphisms.iff j).1 hj))
+
+/-- Precomposition along any inner anodyne map has the RLP against every monomorphism. -/
+lemma pre_innerAnodyne_mem_monomorphisms_rlp
+    {A B Q : SSet.{u}} {i : A ⟶ B} [SSet.Quasicategory Q]
+    (hi : SSet.innerAnodyneExtensions i) :
+    (monomorphisms SSet.{u}).rlp ((MonoidalClosed.pre i).app Q) :=
+  pre_mem_monomorphisms_rlp innerAnodyneCartesianPushoutProduct hi
 
 /-- The generating inner-horn case makes precomposition mono-injective. -/
 lemma pre_mem_monomorphisms_rlp_of_innerHornMono
@@ -521,6 +551,36 @@ theorem monoRLP_isBicategoricalEquivalence
     (hp : (monomorphisms SSet.{u}).rlp p.hom) :
     IsBicategoricalEquivalence p := by
   exact ⟨bicategoricalEquivalenceOfMonoRLP p hp, rfl⟩
+
+/-- Precomposition along an inner anodyne map is a bicategorical equivalence of functor
+quasicategories. -/
+theorem pre_innerAnodyne_isBicategoricalEquivalence
+    {A B : SSet.{u}} (i : A ⟶ B) (Q : SSet.QCat.{u})
+    (hi : SSet.innerAnodyneExtensions i) :
+    IsBicategoricalEquivalence
+      (ObjectProperty.homMk ((MonoidalClosed.pre i).app Q.obj) :
+        internalHomQCat B Q.obj
+            (@quasicategory_ihom B Q.obj Q.property) ⟶
+          internalHomQCat A Q.obj
+            (@quasicategory_ihom A Q.obj Q.property)) := by
+  letI : SSet.Quasicategory Q.obj := Q.property
+  apply monoRLP_isBicategoricalEquivalence
+  exact pre_innerAnodyne_mem_monomorphisms_rlp hi
+
+/-- Mapping out of the chosen inner-fibrant replacement is equivalent to mapping out of the
+original simplicial set. -/
+theorem toInnerFibrantReplacement_precomp_isBicategoricalEquivalence
+    (X : SSet.{u}) (Q : SSet.QCat.{u}) :
+    IsBicategoricalEquivalence
+      (ObjectProperty.homMk
+        ((MonoidalClosed.pre (toInnerFibrantReplacement X)).app Q.obj) :
+          internalHomQCat (innerFibrantReplacement X) Q.obj
+              (@quasicategory_ihom (innerFibrantReplacement X) Q.obj Q.property) ⟶
+            internalHomQCat X Q.obj
+              (@quasicategory_ihom X Q.obj Q.property)) :=
+  pre_innerAnodyne_isBicategoricalEquivalence
+    (toInnerFibrantReplacement X) Q
+    (toInnerFibrantReplacement_innerAnodyne X)
 
 end Infinity
 end LeanLCAExactChallenge

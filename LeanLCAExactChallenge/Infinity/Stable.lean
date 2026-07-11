@@ -9,8 +9,9 @@ This file formulates cartesian and cocartesian squares by Kan extension in the s
 bicategory of quasicategories.  A stable structure is pointed, finitely bicomplete, and has
 the same cartesian and cocartesian squares.
 
-The internal-hom and Kan-extension fields remain explicit because mathlib v4.30 does not
-derive them from finite infinity-(co)completeness.
+The internal-Hom fields remain explicit to record the chosen mapping objects, although mathlib
+v4.31 supplies their quasicategory structures. The Kan-extension fields are still genuine data
+not derived from finite infinity-(co)completeness.
 -/
 
 set_option autoImplicit false

@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.Infinity.AlexanderWhitneyAssociativity
+import LeanLCAExactChallenge.Infinity.InnerAnodyneMapping
 import LeanLCAExactChallenge.Infinity.InnerFibrantReplacement
 import LeanLCAExactChallenge.Infinity.MetrizableDGMappingZModuleAssociativity
 import LeanLCAExactChallenge.Infinity.MetrizableDGMappingZModuleUnits
@@ -161,6 +162,22 @@ theorem directDGQCat_obj :
     directDGQCat.obj =
       innerFibrantReplacement directDGHomotopyCoherentNerve :=
   rfl
+
+/-- Precomposition from the chosen dg quasicategory replacement to its coherent nerve. -/
+def directDGNerveToQCatPrecompQCat (Q : SSet.QCat.{1}) :
+    internalHomQCat directDGQCat.obj Q.obj
+        (@quasicategory_ihom directDGQCat.obj Q.obj Q.property) ⟶
+      internalHomQCat directDGHomotopyCoherentNerve Q.obj
+        (@quasicategory_ihom directDGHomotopyCoherentNerve Q.obj Q.property) :=
+  ObjectProperty.homMk (internalHomPrecomp directDGNerveToQCat Q.obj)
+
+/-- Inner-fibrant replacement does not change the quasicategory of maps out of the coherent dg
+nerve. -/
+theorem directDGNerveToQCatPrecomp_isBicategoricalEquivalence
+    (Q : SSet.QCat.{1}) :
+    IsBicategoricalEquivalence (directDGNerveToQCatPrecompQCat Q) := by
+  exact toInnerFibrantReplacement_precomp_isBicategoricalEquivalence
+    directDGHomotopyCoherentNerve Q
 
 end MetrizableBoundedComplexes
 end Infinity
