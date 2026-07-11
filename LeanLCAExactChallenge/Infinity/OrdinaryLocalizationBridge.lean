@@ -23,7 +23,7 @@ namespace Infinity
 
 open CategoryTheory
 open CategoryTheory.MonoidalCategory
-open SimplexCategory.Truncated SimplicialObject.Truncated
+open Simplicial
 
 universe u
 
@@ -124,6 +124,37 @@ noncomputable def nerveInternalHomHomotopyEquivalence (C E : Cat.{u, u}) :
 theorem internalHomNerve_mem_essImage (L : SSet.{u}) (E : Cat.{u, u}) :
     nerveFunctor.{u, u}.essImage ((ihom L).obj (nerveFunctor.obj E)) :=
   ExponentialIdeal.exp_closed (nerveFunctor.obj_mem_essImage E) L
+
+set_option backward.isDefEq.respectTransparency false in
+/-- The nerve of a full subcategory maps to the full simplicial subcomplex on its objects. -/
+def nerveFullSubcategoryToFullSubcomplex
+    {C : Type u} [Category.{u} C] (P : ObjectProperty C) :
+    CategoryTheory.nerve P.FullSubcategory ⟶
+      (fullSubcomplexOnVertices (CategoryTheory.nerve C)
+        (fun v ↦ P (CategoryTheory.nerveEquiv v)) : SSet.{u}) := by
+  apply SSet.Subcomplex.lift
+    (nerveFunctor.map (ObjectProperty.ι P).toCatHom)
+  rintro U _ ⟨s, rfl⟩
+  rw [mem_fullSubcomplexOnVertices_iff]
+  intro i
+  let v := (CategoryTheory.nerve P.FullSubcategory).map
+    (SimplexCategory.const ⦋0⦌ U.unop i).op s
+  have hv := (CategoryTheory.nerveEquiv v).property
+  rw [show CategoryTheory.nerveEquiv
+      ((CategoryTheory.nerve C).map
+        (SimplexCategory.const ⦋0⦌ U.unop i).op
+          ((nerveFunctor.map (ObjectProperty.ι P).toCatHom).app U s)) =
+      (CategoryTheory.nerveEquiv v).obj by
+    rfl]
+  exact hv
+
+@[simp]
+theorem nerveFullSubcategoryToFullSubcomplex_app_val
+    {C : Type u} [Category.{u} C] (P : ObjectProperty C)
+    (U : SimplexCategoryᵒᵖ) (s : (CategoryTheory.nerve P.FullSubcategory).obj U) :
+    ((nerveFullSubcategoryToFullSubcomplex P).app U s).val =
+      (nerveFunctor.map (ObjectProperty.ι P).toCatHom).app U s :=
+  rfl
 
 /-- The reflection unit exhibits an internal Hom into a nerve as the nerve of its homotopy
 category. -/
