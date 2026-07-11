@@ -66,7 +66,7 @@ def append {X Y Z : ComplexCategory} (w : DrinfeldWord X Y) (v : DrinfeldWord Y 
 terms in the Drinfeld differential. -/
 def eraseIntermediate {X Y : ComplexCategory} :
     (w : DrinfeldWord X Y) → Fin w.length → DrinfeldWord X Y
-  | ⟨0, intermediate⟩, i => Fin.elim0 i
+  | ⟨0, _⟩, i => Fin.elim0 i
   | ⟨k + 1, intermediate⟩, i =>
       { length := k
         intermediate := fun j ↦ intermediate (i.succAbove j) }
