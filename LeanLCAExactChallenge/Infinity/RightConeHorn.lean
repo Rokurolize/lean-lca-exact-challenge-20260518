@@ -218,6 +218,34 @@ theorem rightCone_rightInclusion_stdSimplex (n : ℕ) :
     (SSet.stdSimplex.map (standardJoinRightOperator 0 n))
   exact hvUnique.trans hvStd
 
+lemma range_rightConeBaseLeg (n : ℕ) :
+    SSet.Subcomplex.range
+      (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) (Δ[n] : SSet.{u}) ≫
+        (simplicialJoinStdSimplexIsoNat 0 n).hom) =
+      SSet.stdSimplex.face ({(0 : Fin (0 + n + 2))}ᶜ) := by
+  rw [rightCone_rightInclusion_stdSimplex]
+  let e : (Δ[0 + n] : SSet.{u}) ≅ Δ[n] :=
+    SSet.stdSimplex.mapIso (eqToIso (congrArg SimplexCategory.mk (Nat.zero_add n)))
+  have he : e.hom ≫ SSet.stdSimplex.map (standardJoinRightOperator 0 n) =
+      SSet.stdSimplex.map (SimplexCategory.δ (0 : Fin (0 + n + 2))) := by
+    dsimp [e]
+    change SSet.stdSimplex.map
+        (eqToHom (congrArg SimplexCategory.mk (Nat.zero_add n))) ≫
+          SSet.stdSimplex.map (standardJoinRightOperator 0 n) = _
+    rw [← Functor.map_comp]
+    congr 1
+    apply SimplexCategory.Hom.ext
+    simp only [SimplexCategory.comp_toOrderHom,
+      SimplexCategory.eqToHom_toOrderHom]
+    ext j
+    simp only [OrderHom.comp_coe, OrderEmbedding.toOrderHom_coe,
+      OrderIso.coe_toOrderEmbedding]
+    dsimp [e, standardJoinRightOperator, SimplexCategory.δ]
+    change 1 + j.val = (Fin.succAboveOrderEmb 0 j).val
+    simp [Nat.add_comm]
+  rw [subcomplex_range_eq_of_precomp_iso e.hom _ _ he,
+    stdSimplex_range_map_delta]
+
 /-- The range of a map out of a pushout is the union of the ranges of its two legs. -/
 lemma range_pushout_desc_eq_sup
     {A B C D : SSet.{u}} (f : A ⟶ B) (g : A ⟶ C)
@@ -289,6 +317,4 @@ lemma leftConeHornCornerMap_inr (n : ℕ) (i : Fin (n + 1)) :
         (SSet.horn n i).ι ≫ leftConeHornCornerMap n i =
       simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[n] := by
   apply pushout.inr_desc
-
-
 end LeanLCAExactChallenge.Infinity
