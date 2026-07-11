@@ -322,6 +322,40 @@ def dgMappingConeExplicitCoordinateCochainIso
           ((dgHomZModuleCochainComplex T (dgMappingConeObject f)).d n m x)
       rw [Equiv.symm_apply_apply])
 
+/-- The cone Hom isomorphism survives the nonpositive truncation used by the direct dg
+mapping object. -/
+def dgMappingConeExplicitCoordinateChainIso
+    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) :
+    dgMappingDirectZModuleChainComplex T (dgMappingConeObject f) ≅
+      HomologicalComplex.truncLE' (dgMappingConeExplicitCoordinateCochainComplex T f)
+        ComplexShape.embeddingDownNat :=
+  (ComplexShape.embeddingDownNat.truncLE'Functor (ModuleCat.{0} ℤ)).mapIso
+    (dgMappingConeExplicitCoordinateCochainIso T f)
+
+/-- Transport the truncated cone Hom isomorphism through the Dold--Kan inverse. -/
+def dgMappingConeExplicitCoordinateSimplicialModuleIso
+    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) :
+    dgMappingDirectZModuleSimplicialModule T (dgMappingConeObject f) ≅
+      DoldKanMonoidal.zModuleDoldKanEquivalence.inverse.obj
+        (HomologicalComplex.truncLE'
+          (dgMappingConeExplicitCoordinateCochainComplex T f)
+          ComplexShape.embeddingDownNat) :=
+  DoldKanMonoidal.zModuleDoldKanEquivalence.inverse.mapIso
+    (dgMappingConeExplicitCoordinateChainIso T f)
+
+/-- After forgetting module structure degreewise, maps into the dg cone are still isomorphic
+to the Dold--Kan realization of the explicit coordinate complex. -/
+def dgMappingConeExplicitCoordinateSSetIso
+    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) :
+    dgMappingDirectZModuleSSet T (dgMappingConeObject f) ≅
+      zModuleSimplicialForget.obj
+        (DoldKanMonoidal.zModuleDoldKanEquivalence.inverse.obj
+          (HomologicalComplex.truncLE'
+            (dgMappingConeExplicitCoordinateCochainComplex T f)
+            ComplexShape.embeddingDownNat)) :=
+  zModuleSimplicialForget.mapIso
+    (dgMappingConeExplicitCoordinateSimplicialModuleIso T f)
+
 /-- The same cone, regarded as an object of the honest direct simplicial dg category. -/
 def directDGMappingConeObject {K L : ComplexCategory} (f : K ⟶ L) :
     DirectDGSimplicialCategory :=
