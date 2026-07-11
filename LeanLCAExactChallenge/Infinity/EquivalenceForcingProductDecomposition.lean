@@ -141,6 +141,15 @@ def weakIntervalMappingComponent (Q : SSet.{max u v})
     (ihom (∐ weakIntervalFamily R)).obj Q ⟶ (ihom (Δ[1] : SSet.{max u v})).obj Q :=
   internalHomPrecomp (Sigma.ι (weakIntervalFamily R) a) Q
 
+theorem weakArrowSimplex_comp_edge
+    (Q : SSet.{max u v}) (a : WeakEquivalenceArrow C R)
+    (F : CategoryTheory.nerve C ⟶ Q) :
+    SSet.yonedaEquiv (weakArrowSimplex R a ≫ F) =
+      ((SSet.Edge.mk' (CategoryTheory.nerve.edgeMk a.hom).edge).map F).edge := by
+  change F.app _ (SSet.yonedaEquiv (weakArrowSimplex R a)) = _
+  simp only [weakArrowSimplex, Equiv.apply_symm_apply, SSet.Edge.map_edge,
+    SSet.Edge.mk'_edge]
+
 /-- On every coproduct component, restriction along the family of interval inclusions is
 exactly restriction along the single free-equivalence interval. -/
 theorem weakEquivalenceMappingComponent_restriction
