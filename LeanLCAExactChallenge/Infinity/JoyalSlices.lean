@@ -17,6 +17,24 @@ open CategoryTheory CategoryTheory.Limits Opposite Simplicial
 open scoped CategoryTheory.MonoidalCategory.DayConvolution
   MonoidalCategory.ExternalProduct MonoidalCategory Prod
 
+/-- A simplicial map into an empty augmentation has a unique augmented lift:
+the missing augmented-degree component lands in a terminal type. -/
+noncomputable def augmentedMapOfUnderlyingToEmptyAugmentation
+    (K Q : SSet.{u}) (ψ : K ⟶ Q) :
+    emptyAugmentation.{u}.obj K ⟶ emptyAugmentation.{u}.obj Q :=
+  augmentedMapOfFixedUnderlying K (emptyAugmentation.obj Q)
+    (emptyAugmentationStarPoint Q) ψ (by
+      apply NatTrans.ext
+      funext U
+      apply (emptyAugmentationStarIsTerminal Q).hom_ext)
+
+@[simp]
+theorem forgetAugmentation_augmentedMapOfUnderlyingToEmptyAugmentation
+    (K Q : SSet.{u}) (ψ : K ⟶ Q) :
+    forgetAugmentation.{u}.map
+      (augmentedMapOfUnderlyingToEmptyAugmentation K Q ψ) = ψ := by
+  apply forgetAugmentation_augmentedMapOfFixedUnderlying
+
 set_option backward.isDefEq.respectTransparency false in
 set_option maxHeartbeats 200000 in
 /-- The fixed-base Day transpose is natural under precomposition of the simplicial
