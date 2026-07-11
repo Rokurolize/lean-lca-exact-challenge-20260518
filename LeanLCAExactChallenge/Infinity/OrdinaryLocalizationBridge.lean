@@ -33,6 +33,11 @@ private instance nerveFunctor_exponentialIdeal : ExponentialIdeal nerveFunctor.{
     infer_instance
   apply exponentialIdeal_of_preservesBinaryProducts
 
+/-- Internal Homs into categorical nerves are again categorical nerves up to isomorphism. -/
+theorem internalHomNerve_mem_essImage (L : SSet.{u}) (E : Cat.{u, u}) :
+    nerveFunctor.{u, u}.essImage ((ihom L).obj (nerveFunctor.obj E)) :=
+  ExponentialIdeal.exp_closed (nerveFunctor.obj_mem_essImage E) L
+
 /-- In a Cat-enriched ordinary category, the transported horizontal composite has the
 expected enriched-composition normal form after applying `Hom.base`. -/
 theorem catEnrichedOrdinary_base_hComp
