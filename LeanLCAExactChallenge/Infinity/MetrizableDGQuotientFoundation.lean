@@ -482,6 +482,22 @@ def singletonContractionTensorMap (X Y : ComplexCategory)
   exact (singletonSummandIsoTensor X Y A d).hom ≫ f ≫
     (singletonContractedSummandIsoOriginal X Y A d i).inv
 
+/-- The signed singleton contraction included into the degree-`n+1` quotient carrier. -/
+def singletonContractionLargeMap (X Y : ComplexCategory)
+    (A : CorrectedAcyclicComplexCategory) {n : ℤ}
+    (d : DegreeProfile (singleton X Y A) n)
+    (i : Fin (singleton X Y A).length) :
+    Quiver.Hom
+      (largeSummandModule
+        (⟨singleton X Y A, d⟩ : GradedSummandIndex X Y n))
+      (quotientGradedModule X Y (n + 1)) :=
+  d.contractionSign i •
+    ((ModuleCat.uliftFunctor.{1} ℤ).map
+        (singletonContractionTensorMap X Y A d i) ≫
+      Limits.Sigma.ι
+        (fun s : GradedSummandIndex X Y (n + 1) ↦ largeSummandModule s)
+        ⟨eraseIntermediate (singleton X Y A) i, d.contract i⟩)
+
 end DrinfeldWord
 end MetrizableBoundedComplexes
 end Infinity
