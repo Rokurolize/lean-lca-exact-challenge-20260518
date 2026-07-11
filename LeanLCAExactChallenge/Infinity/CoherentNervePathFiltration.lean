@@ -50,6 +50,169 @@ namespace Path
 abbrev ThickPath {J : Type u} [LinearOrder J] (i j : J) :=
   SimplicialThickening.Path i j
 
+/-- Strictly internal vertices of an ordered interval. -/
+abbrev InteriorVertex {J : Type u} [LinearOrder J] (i j : J) := Set.Ioo i j
+
+instance thickPathLE {J : Type u} [LinearOrder J] (i j : J) : LE (ThickPath i j) :=
+  ⟨fun P Q ↦ P.I ⊆ Q.I⟩
+
+instance thickPathPartialOrder {J : Type u} [LinearOrder J] (i j : J) :
+    PartialOrder (ThickPath i j) where
+  le_refl _ := Set.Subset.rfl
+  le_trans _ _ _ := Set.Subset.trans
+  le_antisymm P Q hPQ hQP := by
+    apply SimplicialThickening.Path.ext
+    ext x
+    exact ⟨fun hx ↦ hPQ hx, fun hx ↦ hQP hx⟩
+
+instance thickPathHomSubsingleton {J : Type u} [LinearOrder J] {i j : J}
+    (P Q : ThickPath i j) : Subsingleton (P ⟶ Q) := by
+  constructor
+  intro f g
+  cases f
+  cases g
+  congr 1
+  exact Subsingleton.elim _ _
+
+/-- A path is exactly a choice of internal vertices, once its two compulsory endpoints are
+removed.  This is the Boolean-lattice model underlying the cubical proof of the coherent-nerve
+horn theorem. -/
+def thickPathInteriorOrderIso {J : Type u} [LinearOrder J] {i j : J} (hij : i ≤ j) :
+    ThickPath i j ≃o Set (InteriorVertex i j) where
+  toFun P := {x | x.1 ∈ P.I}
+  invFun S :=
+    { I := {x | x = i ∨ x = j ∨ ∃ h : i < x ∧ x < j, (⟨x, h⟩ : InteriorVertex i j) ∈ S}
+      left := Or.inl rfl
+      right := Or.inr (Or.inl rfl)
+      left_le := by
+        rintro x (rfl | rfl | ⟨h, _⟩)
+        · exact le_rfl
+        · exact hij
+        · exact h.1.le
+      le_right := by
+        rintro x (rfl | rfl | ⟨h, _⟩)
+        · exact hij
+        · exact le_rfl
+        · exact h.2.le }
+  left_inv P := by
+    apply SimplicialThickening.Path.ext
+    ext x
+    constructor
+    · rintro (rfl | rfl | ⟨h, hx⟩)
+      · exact P.left
+      · exact P.right
+      · exact hx
+    · intro hx
+      by_cases hxi : x = i
+      · exact Or.inl hxi
+      by_cases hxj : x = j
+      · exact Or.inr (Or.inl hxj)
+      · exact Or.inr (Or.inr ⟨⟨lt_of_le_of_ne (P.left_le x hx) (Ne.symm hxi),
+            lt_of_le_of_ne (P.le_right x hx) hxj⟩, hx⟩)
+  right_inv S := by
+    ext x
+    change (x.1 = i ∨ x.1 = j ∨ ∃ h : i < x.1 ∧ x.1 < j,
+      (⟨x.1, h⟩ : InteriorVertex i j) ∈ S) ↔ x ∈ S
+    constructor
+    · rintro (h | h | ⟨h, hx⟩)
+      · exact (ne_of_gt x.2.1 h).elim
+      · exact (ne_of_lt x.2.2 h).elim
+      · convert hx
+    · intro hx
+      exact Or.inr (Or.inr ⟨x.2, hx⟩)
+  map_rel_iff' := by
+    intro P Q
+    change (∀ x : InteriorVertex i j, x.1 ∈ P.I → x.1 ∈ Q.I) ↔ P.I ⊆ Q.I
+    constructor
+    · intro h x hx
+      by_cases hxi : x = i
+      · exact hxi ▸ Q.left
+      by_cases hxj : x = j
+      · exact hxj ▸ Q.right
+      exact h ⟨x, lt_of_le_of_ne (P.left_le x hx) (Ne.symm hxi),
+        lt_of_le_of_ne (P.le_right x hx) hxj⟩ hx
+    · exact fun h x hx ↦ h hx
+
+/-- Forward functor from paths to the Boolean lattice of internal vertices. -/
+def thickPathInteriorFunctor {J : Type u} [LinearOrder J] {i j : J} (hij : i ≤ j) :
+    CategoryTheory.Functor (ThickPath i j) (Set (InteriorVertex i j)) where
+  obj := thickPathInteriorOrderIso hij
+  map {P Q} f := homOfLE (fun x hx ↦ f.1.1.1 hx)
+  map_id _ := rfl
+  map_comp _ _ := rfl
+
+/-- Inverse functor adjoining the two compulsory endpoints to a Boolean vertex set. -/
+def interiorThickPathFunctor {J : Type u} [LinearOrder J] {i j : J} (hij : i ≤ j) :
+    CategoryTheory.Functor (Set (InteriorVertex i j)) (ThickPath i j) where
+  obj := (thickPathInteriorOrderIso hij).symm
+  map {S T} f := ⟨⟨⟨by
+    intro x hx
+    rcases hx with h | h | ⟨h, hx⟩
+    · exact Or.inl h
+    · exact Or.inr (Or.inl h)
+    · exact Or.inr (Or.inr ⟨h, leOfHom f hx⟩)⟩⟩⟩
+  map_id _ := rfl
+  map_comp _ _ := rfl
+
+/-- Categorical path/Boolean-lattice equivalence, compatible with the category used by the
+simplicial thickening. -/
+noncomputable def thickPathInteriorEquivalence {J : Type u} [LinearOrder J]
+    {i j : J} (hij : i ≤ j) : ThickPath i j ≌ Set (InteriorVertex i j) :=
+  CategoryTheory.Equivalence.mk
+    (thickPathInteriorFunctor hij) (interiorThickPathFunctor hij)
+    (NatIso.ofComponents (fun P ↦ eqToIso
+      ((thickPathInteriorOrderIso hij).left_inv P).symm))
+    (NatIso.ofComponents (fun S ↦ eqToIso
+      ((thickPathInteriorOrderIso hij).right_inv S)))
+
+theorem thickPathInteriorFunctor_comp {J : Type u} [LinearOrder J]
+    {i j : J} (hij : i ≤ j) :
+    thickPathInteriorFunctor hij ⋙ interiorThickPathFunctor hij =
+      CategoryTheory.Functor.id (ThickPath i j) := by
+  exact CategoryTheory.Functor.ext
+    (h_obj := fun P ↦ (thickPathInteriorOrderIso hij).left_inv P)
+    (h_map := fun _ _ _ ↦ Subsingleton.elim _ _)
+
+theorem interiorThickPathFunctor_comp {J : Type u} [LinearOrder J]
+    {i j : J} (hij : i ≤ j) :
+    interiorThickPathFunctor hij ⋙ thickPathInteriorFunctor hij =
+      CategoryTheory.Functor.id (Set (InteriorVertex i j)) := by
+  exact CategoryTheory.Functor.ext
+    (h_obj := fun S ↦ (thickPathInteriorOrderIso hij).right_inv S)
+    (h_map := fun _ _ _ ↦ Subsingleton.elim _ _)
+
+/-- The nerve of the path category is the nerve of its Boolean lattice of internal vertices. -/
+noncomputable def thickPathNerveBooleanIso {J : Type u} [LinearOrder J]
+    {i j : J} (hij : i ≤ j) :
+    CategoryTheory.nerve (ThickPath i j) ≅
+      CategoryTheory.nerve (Set (InteriorVertex i j)) where
+  hom := CategoryTheory.nerveMap (thickPathInteriorFunctor hij)
+  inv := CategoryTheory.nerveMap (interiorThickPathFunctor hij)
+  hom_inv_id := by
+    change CategoryTheory.nerveFunctor.map
+        (thickPathInteriorFunctor hij).toCatHom ≫
+      CategoryTheory.nerveFunctor.map
+        (interiorThickPathFunctor hij).toCatHom = _
+    rw [← CategoryTheory.Functor.map_comp]
+    have hc : (thickPathInteriorFunctor hij).toCatHom ≫
+        (interiorThickPathFunctor hij).toCatHom = 𝟙 _ := by
+      apply CategoryTheory.Cat.Hom.ext
+      exact thickPathInteriorFunctor_comp hij
+    rw [hc, CategoryTheory.Functor.map_id]
+    rfl
+  inv_hom_id := by
+    change CategoryTheory.nerveFunctor.map
+        (interiorThickPathFunctor hij).toCatHom ≫
+      CategoryTheory.nerveFunctor.map
+        (thickPathInteriorFunctor hij).toCatHom = _
+    rw [← CategoryTheory.Functor.map_comp]
+    have hc : (interiorThickPathFunctor hij).toCatHom ≫
+        (thickPathInteriorFunctor hij).toCatHom = 𝟙 _ := by
+      apply CategoryTheory.Cat.Hom.ext
+      exact interiorThickPathFunctor_comp hij
+    rw [hc, CategoryTheory.Functor.map_id]
+    rfl
+
 /-- The prefix of a path at one of its vertices. -/
 def beforePath {J : Type u} [LinearOrder J] {i j k : J} (P : ThickPath i j)
     (hk : k ∈ P.I) : ThickPath i k where
