@@ -350,6 +350,14 @@ theorem eq_nil_of_length_eq_zero {X Y : ComplexCategory} (w : DrinfeldWord X Y)
       funext i
       exact Fin.elim0 i
 
+@[simp]
+theorem eraseIntermediate_singleton (X Y : ComplexCategory)
+    (A : CorrectedAcyclicComplexCategory)
+    (i : Fin (singleton X Y A).length) :
+    eraseIntermediate (singleton X Y A) i = nil X Y := by
+  apply eq_nil_of_length_eq_zero
+  rfl
+
 end DrinfeldWord
 end MetrizableBoundedComplexes
 end Infinity
