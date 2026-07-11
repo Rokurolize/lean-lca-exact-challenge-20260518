@@ -1508,6 +1508,41 @@ noncomputable abbrev mappingLocalizationOrdinaryEquivalence
     (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :=
   mappingLocalizationOrdinaryExplicitEquivalence h E
 
+private noncomputable def pulledRelativeFunctorPropertyExplicitEquivalence
+    {A : SSet.QCat.{u}} (W : EdgeMarking A.obj) (E : Cat.{u, u}) :
+    (PulledRelativeFunctorProperty W E).FullSubcategory ≌
+      (markedHomotopyMorphismProperty W).FunctorsInverting E where
+  functor := ObjectProperty.ιOfLE (fun F hF ↦
+    (pulledRelativeFunctorProperty_iff_isInvertedBy W E F).mp hF)
+  inverse := ObjectProperty.ιOfLE (fun F hF ↦
+    (pulledRelativeFunctorProperty_iff_isInvertedBy W E F).mpr hF)
+  unitIso := NatIso.ofComponents
+    (fun _ ↦ ObjectProperty.isoMk
+      (P := PulledRelativeFunctorProperty W E) (Iso.refl _)) (fun f ↦ by
+      apply ObjectProperty.hom_ext
+      change f.hom ≫ 𝟙 _ = 𝟙 _ ≫ f.hom
+      simp)
+  counitIso := NatIso.ofComponents
+    (fun _ ↦ ObjectProperty.isoMk
+      (P := fun F ↦ (markedHomotopyMorphismProperty W).IsInvertedBy F)
+      (Iso.refl _)) (fun f ↦ by
+      apply ObjectProperty.hom_ext
+      change f.hom ≫ 𝟙 _ = 𝟙 _ ≫ f.hom
+      simp)
+  functor_unitIso_comp X := by
+    apply ObjectProperty.hom_ext
+    change 𝟙 _ ≫ 𝟙 _ = 𝟙 _
+    simp
+
+private noncomputable def pulledRelativeFunctorPropertyExplicitCompInclusionIso
+    {A : SSet.QCat.{u}} (W : EdgeMarking A.obj) (E : Cat.{u, u}) :
+    (pulledRelativeFunctorPropertyExplicitEquivalence W E).functor ⋙
+        ObjectProperty.ι
+          (fun F ↦ (markedHomotopyMorphismProperty W).IsInvertedBy F) ≅
+      ObjectProperty.ι (PulledRelativeFunctorProperty W E) :=
+  ObjectProperty.ιOfLECompιIso (fun F hF ↦
+    (pulledRelativeFunctorProperty_iff_isInvertedBy W E F).mp hF)
+
 /-- Ordinary truncation of a mapping-quasicategory localization has the standard
 fixed-target universal property for the marked homotopy morphism property. -/
 noncomputable def mappingLocalizationFunctorsInvertingEquivalence
@@ -1515,8 +1550,36 @@ noncomputable def mappingLocalizationFunctorsInvertingEquivalence
     (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
     ((ihom (SSet.hoFunctor.obj L.obj)).obj E) ≌
       (markedHomotopyMorphismProperty W).FunctorsInverting E :=
-  (mappingLocalizationOrdinaryEquivalence h E).trans
-    (pulledRelativeFunctorPropertyEquivalence W E)
+  (mappingLocalizationOrdinaryExplicitEquivalence h E).trans
+    (pulledRelativeFunctorPropertyExplicitEquivalence W E)
+
+/-- The explicit equivalence with marking-inverting functors has forward functor
+compatible with ordinary precomposition by the localization map. -/
+noncomputable def mappingLocalizationFunctorsInvertingForwardPrecompIso
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    ((((mappingLocalizationOrdinarySourceFactor E ⋙
+        mappingLocalizationOrdinaryComparisonFactor h E) ⋙
+      mappingLocalizationOrdinaryRelativeFactor W E) ⋙
+        (pulledRelativeFunctorPropertyExplicitEquivalence W E).functor) ⋙
+      ObjectProperty.ι
+        (fun F ↦ (markedHomotopyMorphismProperty W).IsInvertedBy F)) ≅
+    (Functor.whiskeringLeft
+      (SSet.hoFunctor.obj A.obj) (SSet.hoFunctor.obj L.obj) E).obj
+        (SSet.hoFunctor.map ell.hom).toFunctor :=
+  Functor.associator
+      ((mappingLocalizationOrdinarySourceFactor E ⋙
+          mappingLocalizationOrdinaryComparisonFactor h E) ⋙
+        mappingLocalizationOrdinaryRelativeFactor W E)
+      (pulledRelativeFunctorPropertyExplicitEquivalence W E).functor
+      (ObjectProperty.ι
+        (fun F ↦ (markedHomotopyMorphismProperty W).IsInvertedBy F)) ≪≫
+    Functor.isoWhiskerLeft
+      ((mappingLocalizationOrdinarySourceFactor E ⋙
+          mappingLocalizationOrdinaryComparisonFactor h E) ⋙
+        mappingLocalizationOrdinaryRelativeFactor W E)
+      (pulledRelativeFunctorPropertyExplicitCompInclusionIso W E) ≪≫
+    (mappingLocalizationOrdinaryExplicitForwardPrecompIso h E)
 
 /-- Maps between nerves are exactly ordinary functors.  This is the fully-faithful
 starting point for comparing the mapping localization with its ordinary truncation. -/
