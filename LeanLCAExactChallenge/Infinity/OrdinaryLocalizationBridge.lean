@@ -140,6 +140,60 @@ noncomputable def nerveInternalHomIso (C E : Cat.{u, u}) :
   exact @asIso SSet _ _ _
     ((expComparison nerveFunctor.{u, u} C).natTrans.app E) hApp
 
+set_option maxHeartbeats 800000 in
+set_option backward.isDefEq.respectTransparency false in
+/-- A functor regarded as a vertex through the nerve exponential comparison uncurries
+to its ordinary nerve map. -/
+theorem nerveInternalHomIso_vertex_map (C E : Cat.{u, u}) (F : C ⥤ E) :
+    internalHomVertexMap (nerveFunctor.obj C) (nerveFunctor.obj E)
+      ((nerveInternalHomIso C E).hom.app (Opposite.op ⦋0⦌)
+        (CategoryTheory.nerveEquiv.symm F)) = nerveFunctor.map F.toCatHom := by
+  change MonoidalClosed.uncurry'
+    ((SSet.unitHomEquiv (nerveFunctor.obj ((ihom C).obj E))).symm
+      (CategoryTheory.nerveEquiv.symm F) ≫
+        (expComparison nerveFunctor C).natTrans.app E) = _
+  dsimp [MonoidalClosed.uncurry']
+  rw [MonoidalClosed.uncurry_natural_left]
+  have hh := CategoryTheory.uncurry_expComparison (F := nerveFunctor) C E
+  erw [hh]
+  ext U s
+  let t : (nerveFunctor.obj (C ⊗ (ihom C).obj E)).obj U :=
+    Functor.prod' s ((Functor.const _).obj F)
+  have ht : (CartesianMonoidalCategory.prodComparison nerveFunctor C ((ihom C).obj E)).app U t =
+      (s, (SSet.unitHomEquiv (nerveFunctor.obj ((ihom C).obj E))).symm
+        (CategoryTheory.nerveEquiv.symm F) |>.app U PUnit.unit) := by
+    change (s, _) = (s, _)
+    congr 1
+  have hinv : inv ((CartesianMonoidalCategory.prodComparison nerveFunctor C ((ihom C).obj E)).app U)
+      (s, (SSet.unitHomEquiv (nerveFunctor.obj ((ihom C).obj E))).symm
+        (CategoryTheory.nerveEquiv.symm F) |>.app U PUnit.unit) = t := by
+    apply (ConcreteCategory.bijective_of_isIso
+      ((CartesianMonoidalCategory.prodComparison nerveFunctor C ((ihom C).obj E)).app U)).1
+    rw [ht]
+    simp
+  have hinv' := hinv
+  simp [SSet.unitHomEquiv, CategoryTheory.nerveEquiv] at hinv'
+  simp [SSet.unitHomEquiv, CategoryTheory.nerveEquiv]
+  have hpair :
+      (ConcreteCategory.hom
+        ((nerveFunctor.obj C).obj U ◁
+          (↾fun _ ↦ (nerveFunctor.obj ((ihom C).obj E)).map
+            ((Opposite.unop U).const ⦋0⦌ 0).op
+              (ComposableArrows.mk₀ F)))) (s, PUnit.unit) =
+        (s, (nerveFunctor.obj ((ihom C).obj E)).map
+          ((Opposite.unop U).const ⦋0⦌ 0).op
+            (ComposableArrows.mk₀ F)) := by
+    rfl
+  erw [hpair]
+  rw [hinv']
+  apply ComposableArrows.ext
+  · intro i hi
+    dsimp [t, CategoryTheory.nerveMap]
+    change (CategoryTheory.evaluationUncurried C E).map (Prod.mkHom _ (𝟙 F)) = _
+    simp
+  · intro i
+    rfl
+
 /-- On homotopy categories, the internal Hom between two nerves is the categorical
 functor category. -/
 noncomputable def nerveInternalHomHomotopyEquivalence (C E : Cat.{u, u}) :
