@@ -569,6 +569,21 @@ theorem pulledRelativeFunctorProperty_iff_isInvertedBy
     apply (edgeIsEquivalence_reflectionUnit_nerveFunctor_iff E F a).mpr
     exact h _ (markedHomotopyMorphismProperty_edge_mem W a ha)
 
+/-- The full subcategory selected by relative mapping vertices is the standard
+category of functors inverting the marked homotopy morphism property. -/
+noncomputable def pulledRelativeFunctorPropertyEquivalence
+    {L : SSet.{u}} (W : EdgeMarking L) (E : Cat.{u, u}) :
+    (PulledRelativeFunctorProperty W E).FullSubcategory ≌
+      (markedHomotopyMorphismProperty W).FunctorsInverting E := by
+  have h : PulledRelativeFunctorProperty W E =
+      fun F ↦ (markedHomotopyMorphismProperty W).IsInvertedBy F := by
+    funext F
+    exact propext (pulledRelativeFunctorProperty_iff_isInvertedBy W E F)
+  rw [h]
+  change (markedHomotopyMorphismProperty W).FunctorsInverting E ≌
+    (markedHomotopyMorphismProperty W).FunctorsInverting E
+  exact CategoryTheory.Equivalence.refl
+
 /-- A simplicial isomorphism restricts to the full subcomplexes cut out by a vertex
 predicate and its pullback. -/
 noncomputable def fullSubcomplexOnVerticesIsoOfIso {X Y : SSet.{u}} (e : X ≅ Y)
