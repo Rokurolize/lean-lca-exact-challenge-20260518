@@ -88,8 +88,7 @@ noncomputable def qcatUnitHomEquivalence (X : SSet.QCat.{u}) :
     (qcatTensorUnit ⟶ X) ≌ SSet.hoFunctor.obj X.obj :=
   (qcatHomToEnrichedHom qcatTensorUnit X).asEquivalence |>.trans
     (Cat.equivOfIso (SSet.hoFunctor.mapIso
-      (MonoidalClosed.unitIsoSelf (C := SSet.{u}) (X := X.obj)))
-    )
+      (MonoidalClosed.unitIsoSelf (C := SSet.{u}) (X := X.obj))))
 
 /-- Maps between nerves are exactly ordinary functors.  This is the fully-faithful
 starting point for comparing the mapping localization with its ordinary truncation. -/
