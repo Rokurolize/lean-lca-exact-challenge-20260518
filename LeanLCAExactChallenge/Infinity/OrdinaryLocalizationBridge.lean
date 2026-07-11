@@ -230,16 +230,22 @@ theorem internalHomReflectionPre_isIso (L : SSet.{u}) (E : Cat.{u, u}) :
   isIso_of_yoneda_map_bijective (internalHomReflectionPre L E)
     (internalHomReflectionPre_yoneda_bijective L E)
 
+/-- The internal Hom from an arbitrary simplicial set into a categorical nerve is itself the
+nerve of the ordinary functor category out of the reflected category. -/
+noncomputable def internalHomNerveIso (L : SSet.{u}) (E : Cat.{u, u}) :
+    nerveFunctor.obj ((ihom (SSet.hoFunctor.obj L)).obj E) ≅
+      (ihom L).obj (nerveFunctor.obj E) := by
+  let hPre : IsIso (internalHomReflectionPre L E) :=
+    internalHomReflectionPre_isIso L E
+  exact nerveInternalHomIso (SSet.hoFunctor.obj L) E ≪≫
+    @asIso SSet _ _ _ (internalHomReflectionPre L E) hPre
+
 /-- For an arbitrary simplicial set `L`, mapping into a categorical nerve has homotopy
 category the ordinary functor category out of `ho L`. -/
 noncomputable def internalHomNerveHomotopyEquivalence (L : SSet.{u}) (E : Cat.{u, u}) :
     SSet.hoFunctor.obj ((ihom L).obj (nerveFunctor.obj E)) ≌
       (ihom (SSet.hoFunctor.obj L)).obj E := by
-  let hPre : IsIso (internalHomReflectionPre L E) :=
-    internalHomReflectionPre_isIso L E
-  let preIso := @asIso SSet _ _ _ (internalHomReflectionPre L E) hPre
-  let totalIso := nerveInternalHomIso (SSet.hoFunctor.obj L) E ≪≫ preIso
-  exact Cat.equivOfIso ((SSet.hoFunctor.mapIso totalIso).symm ≪≫
+  exact Cat.equivOfIso ((SSet.hoFunctor.mapIso (internalHomNerveIso L E)).symm ≪≫
     nerveFunctorCompHoFunctorIso.app ((ihom (SSet.hoFunctor.obj L)).obj E))
 
 /-- In a Cat-enriched ordinary category, the transported horizontal composite has the
