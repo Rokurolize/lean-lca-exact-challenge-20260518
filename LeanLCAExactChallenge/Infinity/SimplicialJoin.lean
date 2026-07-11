@@ -1470,6 +1470,21 @@ lemma ordinaryJoinBifunctor_map_isIso {X X' Y Y' : SSet.{u}}
   change IsIso (ordinaryJoinBifunctor.{u}.map fg)
   infer_instance
 
+/-- Joining on the left carries the standard face isomorphism to an
+isomorphism of ordinary joins. -/
+noncomputable def ordinaryJoinFaceIso (m n : ℕ) (j : Fin (n + 2)) :
+    ordinaryJoinBifunctor.{u}.obj ((Δ[m] : SSet.{u}), Δ[n]) ≅
+      ordinaryJoinBifunctor.{u}.obj
+        ((Δ[m] : SSet.{u}), (SSet.stdSimplex.face {j}ᶜ : SSet.{u})) := by
+  let e := SSet.stdSimplex.faceSingletonComplIso.{u} j
+  let h : ((Δ[m] : SSet.{u}), (Δ[n] : SSet.{u})) ⟶
+      ((Δ[m] : SSet.{u}), (SSet.stdSimplex.face {j}ᶜ : SSet.{u})) :=
+    (𝟙 _, e.hom)
+  letI : IsIso h := by
+    apply IsIso.mk
+    refine ⟨(𝟙 _, e.inv), ?_, ?_⟩ <;> ext <;> simp [h, e]
+  exact asIso (ordinaryJoinBifunctor.{u}.map h)
+
 theorem dayInternalHomMap_comp
     {F G G' G'' H H' H'' : AugmentedSSet.{u}}
     (ℓ : CategoryTheory.MonoidalCategory.DayConvolutionInternalHom F G H)
