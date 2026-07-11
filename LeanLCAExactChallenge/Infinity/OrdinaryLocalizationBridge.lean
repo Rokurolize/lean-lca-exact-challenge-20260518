@@ -156,6 +156,35 @@ theorem nerveFullSubcategoryToFullSubcomplex_app_val
       (nerveFunctor.map (ObjectProperty.ι P).toCatHom).app U s :=
   rfl
 
+/-- Package a composable-arrow simplex objectwise in a full subcategory. -/
+def composableArrowsToFullSubcategory
+    {C : Type u} [Category.{u} C] (P : ObjectProperty C) {n : ℕ}
+    (F : ComposableArrows C n) (hF : ∀ i, P (F.obj i)) :
+    ComposableArrows P.FullSubcategory n where
+  obj i := ⟨F.obj i, hF i⟩
+  map f := ObjectProperty.homMk (F.map f)
+  map_id i := by ext; exact F.map_id i
+  map_comp f g := by ext; exact F.map_comp f g
+
+@[simp]
+theorem composableArrowsToFullSubcategory_obj_val
+    {C : Type u} [Category.{u} C] (P : ObjectProperty C) {n : ℕ}
+    (F : ComposableArrows C n) (hF : ∀ i, P (F.obj i)) (i : Fin (n + 1)) :
+    ((composableArrowsToFullSubcategory P F hF).obj i).obj = F.obj i :=
+  rfl
+
+/-- Forgetting the packaged chain recovers the original composable-arrow simplex. -/
+theorem composableArrowsToFullSubcategory_forget
+    {C : Type u} [Category.{u} C] (P : ObjectProperty C) {n : ℕ}
+    (F : ComposableArrows C n) (hF : ∀ i, P (F.obj i)) :
+    composableArrowsToFullSubcategory P F hF ⋙ ObjectProperty.ι P = F := by
+  let hobj : ∀ i, (composableArrowsToFullSubcategory P F hF ⋙
+      ObjectProperty.ι P).obj i = F.obj i := fun _ ↦ rfl
+  refine CategoryTheory.Functor.ext hobj ?_
+  intro i j f
+  dsimp [composableArrowsToFullSubcategory]
+  exact (conj_eqToHom_iff_heq _ _ (hobj i) (hobj j)).2 HEq.rfl
+
 /-- The reflection unit exhibits an internal Hom into a nerve as the nerve of its homotopy
 category. -/
 noncomputable def internalHomNerveReflectionIso (L : SSet.{u}) (E : Cat.{u, u}) :
