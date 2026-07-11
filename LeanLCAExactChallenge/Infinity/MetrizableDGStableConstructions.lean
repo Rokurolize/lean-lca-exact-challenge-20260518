@@ -12,7 +12,7 @@ object of the ordinary derived category.
 set_option autoImplicit false
 set_option backward.defeqAttrib.useBackward true
 set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 8000000
+set_option maxHeartbeats 800000
 
 noncomputable section
 
@@ -66,11 +66,6 @@ def dgMappingConeObject {K L : ComplexCategory} (f : K ⟶ L) : ComplexCategory 
     boundedCochainComplex_mappingCone MetrizableLCA.{0}
       ((boundedCochainComplex MetrizableLCA.{0}).ι.map f) K.property L.property⟩
 
-/-- The same cone, regarded as an object of the honest direct simplicial dg category. -/
-abbrev directDGMappingConeObject {K L : ComplexCategory} (f : K ⟶ L) :
-    DirectDGSimplicialCategory :=
-  directDGObject (dgMappingConeObject f)
-
 @[simp]
 theorem dgMappingConeObject_obj {K L : ComplexCategory} (f : K ⟶ L) :
     (dgMappingConeObject f).obj =
@@ -119,6 +114,96 @@ def dgMappingConeTriangleHomotopy {K L : ComplexCategory} (f : K ⟶ L) :
     ⟨dgMappingConeInl f, by
       rw [dgMappingConeInl_delta]
       simp⟩
+
+/-- A degree `-1` cochain induces the sign-corrected degree `-1` operation on contravariant
+dg Hom complexes. -/
+def dgHomPrecompositionHomotopyCochain (T : ComplexCategory)
+    {X Y : ComplexCategory}
+    (z : CochainComplex.HomComplex.Cochain X.obj Y.obj (-1)) :
+    CochainComplex.HomComplex.Cochain
+      (dgHomZModuleCochainComplex Y T) (dgHomZModuleCochainComplex X T) (-1) where
+  v p q hpq := ModuleCat.ofHom
+    { toFun := fun γ ↦ p.negOnePow • z.comp γ (by omega)
+      map_add' := by
+        intro γ γ'
+        rw [CochainComplex.HomComplex.Cochain.comp_add, smul_add]
+      map_smul' := by
+        intro r γ
+        rw [CochainComplex.HomComplex.Cochain.comp_smul, smul_comm,
+          smul_assoc] }
+
+theorem dgHomPrecompositionHomotopyCochain_delta
+    (T : ComplexCategory) {X Y : ComplexCategory}
+    (g₀ g₁ : X ⟶ Y)
+    (z : CochainComplex.HomComplex.Cochain X.obj Y.obj (-1))
+    (hz : CochainComplex.HomComplex.δ (-1) 0 z =
+      CochainComplex.HomComplex.Cochain.ofHom g₀.hom -
+        CochainComplex.HomComplex.Cochain.ofHom g₁.hom) :
+    CochainComplex.HomComplex.δ (-1) 0
+        (dgHomPrecompositionHomotopyCochain T z) =
+      CochainComplex.HomComplex.Cochain.ofHom (dgHomZModulePrecomposition T g₀) -
+        CochainComplex.HomComplex.Cochain.ofHom (dgHomZModulePrecomposition T g₁) := by
+  ext p
+  apply ModuleCat.hom_ext
+  apply LinearMap.ext
+  intro γ
+  change _ = _
+  simp only [CochainComplex.HomComplex.δ_zero_cochain_v,
+    dgHomPrecompositionHomotopyCochain,
+    CochainComplex.HomComplex.Cochain.ofHom_v,
+    CochainComplex.HomComplex.Cochain.sub_v,
+    dgHomZModuleCochainComplex, dgHomZModulePrecomposition,
+    ConcreteCategory.comp_apply]
+  have hz' := CochainComplex.HomComplex.Cochain.congr_v hz p p (add_zero p)
+  simp only [CochainComplex.HomComplex.Cochain.sub_v,
+    CochainComplex.HomComplex.Cochain.ofHom_v] at hz'
+  rw [CochainComplex.HomComplex.δ_comp z γ (by omega) 0 (p + 1) p
+    (by omega) (neg_add_cancel 1) rfl]
+  simp only [hz', Int.negOnePow_neg, Int.negOnePow_one, Units.neg_smul,
+    one_smul, smul_add, smul_smul]
+  abel
+
+/-- Chain homotopies act contravariantly on the dg Hom cochain complexes. -/
+def dgHomZModulePrecompositionHomotopy (T : ComplexCategory)
+    {X Y : ComplexCategory} {g₀ g₁ : X ⟶ Y}
+    (h : Homotopy g₀.hom g₁.hom) :
+    Homotopy (dgHomZModulePrecomposition T g₀)
+      (dgHomZModulePrecomposition T g₁) :=
+  (CochainComplex.HomComplex.Cochain.equivHomotopy _ _).symm
+    ⟨dgHomPrecompositionHomotopyCochain T
+        (CochainComplex.HomComplex.Cochain.ofHomotopy h), by
+      apply dgHomPrecompositionHomotopyCochain_delta
+      exact CochainComplex.HomComplex.Cochain.δ_ofHomotopy h⟩
+
+/-- The cone triangle nullhomotopy induces the homotopy required by the maps-out path fiber. -/
+def dgMappingConePrecompositionNullhomotopy (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    Homotopy
+      (dgHomZModulePrecomposition T (f ≫ dgMappingConeInr f)) 0 := by
+  simpa only [dgHomZModulePrecomposition, map_zero] using
+    dgHomZModulePrecompositionHomotopy T (dgMappingConeTriangleHomotopy f)
+
+@[reassoc]
+theorem dgHomZModulePrecomposition_comp (T : ComplexCategory)
+    {X Y Z : ComplexCategory} (f : X ⟶ Y) (g : Y ⟶ Z) :
+    dgHomZModulePrecomposition T g ≫ dgHomZModulePrecomposition T f =
+      dgHomZModulePrecomposition T (f ≫ g) := by
+  ext n γ
+  change (CochainComplex.HomComplex.Cochain.ofHom f.hom).comp
+      ((CochainComplex.HomComplex.Cochain.ofHom g.hom).comp γ (zero_add n))
+        (zero_add n) =
+    (CochainComplex.HomComplex.Cochain.ofHom (f.hom ≫ g.hom)).comp γ (zero_add n)
+  rw [CochainComplex.HomComplex.Cochain.ofHom_comp,
+    CochainComplex.HomComplex.Cochain.comp_assoc]
+
+/-- The nullhomotopy with its source written as the composite of the two precomposition maps. -/
+def dgMappingConePrecompositionCompositeNullhomotopy (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    Homotopy
+      (dgHomZModulePrecomposition T (dgMappingConeInr f) ≫
+        dgHomZModulePrecomposition T f) 0 :=
+  Homotopy.ofEq (dgHomZModulePrecomposition_comp T f (dgMappingConeInr f)) |>.trans
+    (dgMappingConePrecompositionNullhomotopy T f)
 
 /-- Maps from a bounded test complex into a cone are detected by their two cone coordinates.
 This is the chain-level representability identity underlying the cocartesian cone square. -/
@@ -303,10 +388,19 @@ def dgMappingConeExplicitCoordinateCochainComplex
     rw [(dgHomZModuleCochainComplex T (dgMappingConeObject f)).shape n m h]
     simp
   d_comp_d' n m k hnm hmk := by
-    simp only [Category.assoc, Iso.hom_inv_id_assoc]
-    rw [← Category.assoc]
-    rw [(dgHomZModuleCochainComplex T (dgMappingConeObject f)).d_comp_d n m k]
-    simp
+    apply ModuleCat.hom_ext
+    apply LinearMap.ext
+    intro x
+    change (dgMappingConeCochainLinearEquiv T f k)
+      ((dgHomZModuleCochainComplex T (dgMappingConeObject f)).d m k
+        ((dgHomZModuleCochainComplex T (dgMappingConeObject f)).d n m
+          ((dgMappingConeCochainLinearEquiv T f n).symm x))) = 0
+    have hx := ConcreteCategory.congr_hom
+      ((dgHomZModuleCochainComplex T (dgMappingConeObject f)).d_comp_d n m k)
+      ((dgMappingConeCochainLinearEquiv T f n).symm x)
+    simp only [ConcreteCategory.comp_apply, Zero.zero_apply] at hx
+    rw [hx]
+    exact map_zero _
 
 /-- The actual untruncated Hom cochain complex into `Cone(f)` is isomorphic to the explicit
 two-coordinate complex. -/
@@ -317,8 +411,16 @@ def dgMappingConeExplicitCoordinateCochainIso
   HomologicalComplex.Hom.isoOfComponents
     (fun n ↦ (dgMappingConeCochainLinearEquiv T f n).toModuleIso) (by
       intro n m _
-      dsimp [dgMappingConeExplicitCoordinateCochainComplex]
-      simp only [Iso.hom_inv_id_assoc])
+      apply ModuleCat.hom_ext
+      apply LinearMap.ext
+      intro x
+      change (dgMappingConeCochainLinearEquiv T f m)
+          ((dgMappingConeCochainLinearEquiv T f n).symm
+            (dgMappingConeCochainLinearEquiv T f n x) |> fun y ↦
+              (dgHomZModuleCochainComplex T (dgMappingConeObject f)).d n m y) =
+        dgMappingConeCochainLinearEquiv T f m
+          ((dgHomZModuleCochainComplex T (dgMappingConeObject f)).d n m x)
+      rw [Equiv.symm_apply_apply])
 
 /-- The cone Hom isomorphism survives the nonpositive truncation used by the direct dg
 mapping object. -/
@@ -465,96 +567,6 @@ def dgHomZModulePrecomposition (T : ComplexCategory)
     intro γ
     simp [dgHomZModuleCochainComplex,
       CochainComplex.HomComplex.δ_ofHom_comp]
-
-/-- A degree `-1` cochain induces the sign-corrected degree `-1` operation on contravariant
-dg Hom complexes. -/
-def dgHomPrecompositionHomotopyCochain (T : ComplexCategory)
-    {X Y : ComplexCategory}
-    (z : CochainComplex.HomComplex.Cochain X.obj Y.obj (-1)) :
-    CochainComplex.HomComplex.Cochain
-      (dgHomZModuleCochainComplex Y T) (dgHomZModuleCochainComplex X T) (-1) where
-  v p q hpq := ModuleCat.ofHom
-    { toFun := fun γ ↦ p.negOnePow • z.comp γ (by omega)
-      map_add' := by
-        intro γ γ'
-        rw [CochainComplex.HomComplex.Cochain.comp_add, smul_add]
-      map_smul' := by
-        intro r γ
-        rw [CochainComplex.HomComplex.Cochain.comp_smul, smul_comm,
-          smul_assoc] }
-
-theorem dgHomPrecompositionHomotopyCochain_delta
-    (T : ComplexCategory) {X Y : ComplexCategory}
-    (g₀ g₁ : X ⟶ Y)
-    (z : CochainComplex.HomComplex.Cochain X.obj Y.obj (-1))
-    (hz : CochainComplex.HomComplex.δ (-1) 0 z =
-      CochainComplex.HomComplex.Cochain.ofHom g₀.hom -
-        CochainComplex.HomComplex.Cochain.ofHom g₁.hom) :
-    CochainComplex.HomComplex.δ (-1) 0
-        (dgHomPrecompositionHomotopyCochain T z) =
-      CochainComplex.HomComplex.Cochain.ofHom (dgHomZModulePrecomposition T g₀) -
-        CochainComplex.HomComplex.Cochain.ofHom (dgHomZModulePrecomposition T g₁) := by
-  ext p
-  apply ModuleCat.hom_ext
-  apply LinearMap.ext
-  intro γ
-  change _ = _
-  simp only [CochainComplex.HomComplex.δ_zero_cochain_v,
-    dgHomPrecompositionHomotopyCochain,
-    CochainComplex.HomComplex.Cochain.ofHom_v,
-    CochainComplex.HomComplex.Cochain.sub_v,
-    dgHomZModuleCochainComplex, dgHomZModulePrecomposition,
-    ConcreteCategory.comp_apply]
-  have hz' := CochainComplex.HomComplex.Cochain.congr_v hz p p (add_zero p)
-  simp only [CochainComplex.HomComplex.Cochain.sub_v,
-    CochainComplex.HomComplex.Cochain.ofHom_v] at hz'
-  rw [CochainComplex.HomComplex.δ_comp z γ (by omega) 0 (p + 1) p
-    (by omega) (neg_add_cancel 1) rfl]
-  simp only [hz', Int.negOnePow_neg, Int.negOnePow_one, Units.neg_smul,
-    one_smul, smul_add, smul_smul]
-  abel
-
-/-- Chain homotopies act contravariantly on the dg Hom cochain complexes. -/
-def dgHomZModulePrecompositionHomotopy (T : ComplexCategory)
-    {X Y : ComplexCategory} {g₀ g₁ : X ⟶ Y}
-    (h : Homotopy g₀.hom g₁.hom) :
-    Homotopy (dgHomZModulePrecomposition T g₀)
-      (dgHomZModulePrecomposition T g₁) :=
-  (CochainComplex.HomComplex.Cochain.equivHomotopy _ _).symm
-    ⟨dgHomPrecompositionHomotopyCochain T
-        (CochainComplex.HomComplex.Cochain.ofHomotopy h), by
-      apply dgHomPrecompositionHomotopyCochain_delta
-      exact CochainComplex.HomComplex.Cochain.δ_ofHomotopy h⟩
-
-/-- The cone triangle nullhomotopy induces the homotopy required by the maps-out path fiber. -/
-def dgMappingConePrecompositionNullhomotopy (T : ComplexCategory)
-    {K L : ComplexCategory} (f : K ⟶ L) :
-    Homotopy
-      (dgHomZModulePrecomposition T (f ≫ dgMappingConeInr f)) 0 := by
-  simpa only [dgHomZModulePrecomposition, map_zero] using
-    dgHomZModulePrecompositionHomotopy T (dgMappingConeTriangleHomotopy f)
-
-@[reassoc]
-theorem dgHomZModulePrecomposition_comp (T : ComplexCategory)
-    {X Y Z : ComplexCategory} (f : X ⟶ Y) (g : Y ⟶ Z) :
-    dgHomZModulePrecomposition T g ≫ dgHomZModulePrecomposition T f =
-      dgHomZModulePrecomposition T (f ≫ g) := by
-  ext n γ
-  change (CochainComplex.HomComplex.Cochain.ofHom f.hom).comp
-      ((CochainComplex.HomComplex.Cochain.ofHom g.hom).comp γ (zero_add n))
-        (zero_add n) =
-    (CochainComplex.HomComplex.Cochain.ofHom (f.hom ≫ g.hom)).comp γ (zero_add n)
-  rw [CochainComplex.HomComplex.Cochain.ofHom_comp,
-    CochainComplex.HomComplex.Cochain.comp_assoc]
-
-/-- The nullhomotopy with its source written as the composite of the two precomposition maps. -/
-def dgMappingConePrecompositionCompositeNullhomotopy (T : ComplexCategory)
-    {K L : ComplexCategory} (f : K ⟶ L) :
-    Homotopy
-      (dgHomZModulePrecomposition T (dgMappingConeInr f) ≫
-        dgHomZModulePrecomposition T f) 0 :=
-  Homotopy.ofEq (dgHomZModulePrecomposition_comp T f (dgMappingConeInr f)) |>.trans
-    (dgMappingConePrecompositionNullhomotopy T f)
 
 /-- The standard chain-level path object of the target of precomposition. -/
 abbrev dgHomPrecompositionPathObject (T K : ComplexCategory) :
@@ -1313,6 +1325,11 @@ def directDGMappingConeEnrichedHomFromIso
             ComplexShape.embeddingDownNat)) :=
   eqToIso (directDG_enrichedHom_eq (dgMappingConeObject f) T) ≪≋
     dgMappingConeExplicitFromCoordinateSSetIso T f
+
+/-- The same cone, regarded as an object of the honest direct simplicial dg category. -/
+def directDGMappingConeObject {K L : ComplexCategory} (f : K ⟶ L) :
+    DirectDGSimplicialCategory :=
+  directDGObject (dgMappingConeObject f)
 
 /-- Regard a bounded chain map as an ordinary morphism in the direct simplicial dg category,
 using the explicitly verified enriched-vertex equivalence. -/
