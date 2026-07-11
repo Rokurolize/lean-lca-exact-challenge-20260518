@@ -130,6 +130,12 @@ structure DegreeProfile {X Y : ComplexCategory} (w : DrinfeldWord X Y) (n : ℤ)
   arrowDegree : Fin (w.length + 1) → ℤ
   totalDegree : (∑ i, arrowDegree i) - w.length = n
 
+/-- Transport a degree profile along an equality of endpoint-compatible words. -/
+def DegreeProfile.castWord {X Y : ComplexCategory} {w v : DrinfeldWord X Y}
+    {n : ℤ} (h : w = v) (d : DegreeProfile w n) : DegreeProfile v n := by
+  subst h
+  exact d
+
 /-- Degree profile of an internal-differential term: one ordinary Hom degree is raised by
 one, so the total quotient degree is raised by one. -/
 def DegreeProfile.raise {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
@@ -272,6 +278,14 @@ def AdjacentMergeData.tensorMap : {source target : List (ModuleCat.{0} ℤ)} →
 def summandModule {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) : ModuleCat.{0} ℤ :=
   tensorModuleList (List.ofFn (factorModule d))
+
+/-- Transport of a word gives the corresponding canonical identification of tensor
+summands. -/
+def summandModuleCastWordIso {X Y : ComplexCategory} {w v : DrinfeldWord X Y}
+    {n : ℤ} (h : w = v) (d : DegreeProfile w n) :
+    summandModule d ≅ summandModule (d.castWord h) := by
+  subst h
+  exact Iso.refl _
 
 /-- The length-zero word summand is canonically the original homogeneous Hom module. -/
 def nilSummandIsoOriginal (X Y : ComplexCategory) {n : ℤ}
