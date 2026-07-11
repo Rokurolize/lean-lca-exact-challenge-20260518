@@ -520,6 +520,32 @@ def singletonContractionLargeMap (X Y : ComplexCategory)
         (fun s : GradedSummandIndex X Y (n + 1) ↦ largeSummandModule s)
         ⟨eraseIntermediate (singleton X Y A) i, d.contract i⟩)
 
+/-- The degree-zero identity cochain. -/
+def identityCochain (K : ComplexCategory) :
+    (dgHomZModuleCochainComplex K K).X 0 :=
+  CochainComplex.HomComplex.Cochain.ofHom (𝟙 K.obj)
+
+/-- The degree profile of the formal contracting generator through one acyclic object. -/
+def singletonContractingDegreeProfile (A : CorrectedAcyclicComplexCategory) :
+    DegreeProfile (singleton A.obj A.obj A) (-1) where
+  arrowDegree _ := 0
+  totalDegree := by simp [singleton]
+
+/-- The formal degree-`-1` contracting element before universe lift and coproduct inclusion. -/
+def singletonContractingElement (A : CorrectedAcyclicComplexCategory) :
+    summandModule (singletonContractingDegreeProfile A) :=
+  (singletonSummandIsoTensor A.obj A.obj A
+    (singletonContractingDegreeProfile A)).inv
+      (identityCochain A.obj ⊗ₜ[ℤ] identityCochain A.obj)
+
+/-- The formal contracting element as an element of the full quotient carrier. -/
+def quotientContractingElement (A : CorrectedAcyclicComplexCategory) :
+    quotientGradedModule A.obj A.obj (-1) :=
+  Limits.Sigma.ι
+      (fun s : GradedSummandIndex A.obj A.obj (-1) ↦ largeSummandModule s)
+      ⟨singleton A.obj A.obj A, singletonContractingDegreeProfile A⟩
+    (ULift.up (singletonContractingElement A))
+
 end DrinfeldWord
 end MetrizableBoundedComplexes
 end Infinity
