@@ -1280,6 +1280,29 @@ lemma joinSigmaOne_nth_first (m n : ℕ) (T : Finset (Fin (m + 1)))
       ((T.orderIsoOfFin rfl).apply_symm_apply ⟨t, ht⟩)
   · exact ((T.orderIsoOfFin rfl).symm ⟨t, ht⟩).isLt
 
+lemma joinSigmaOne_index_eq_first_of_lt_card {m n : ℕ}
+    (T : Finset (Fin (m + 1))) (k : Fin (T.card + n + 1))
+    (hk : k.val < T.card) :
+    ∃ (t : Fin (m + 1)) (ht : t ∈ T),
+      k = joinSigmaOneFirstIndex n T t ht := by
+  let a : Fin T.card := ⟨k.val, hk⟩
+  let ta : T := T.orderIsoOfFin rfl a
+  refine ⟨ta.1, ta.2, ?_⟩
+  apply Fin.ext
+  change k.val = ((T.orderIsoOfFin rfl).symm ta).val
+  rw [show (T.orderIsoOfFin rfl).symm ta = a by
+    exact (T.orderIsoOfFin rfl).symm_apply_apply a]
+
+lemma joinSigmaOne_index_eq_right_of_card_le {m n : ℕ}
+    (T : Finset (Fin (m + 1))) (k : Fin (T.card + n + 1))
+    (hk : T.card ≤ k.val) :
+    ∃ j : Fin (n + 1), k = joinSigmaOneDistinguishedIndex n T j := by
+  let j : Fin (n + 1) := ⟨k.val - T.card, by omega⟩
+  refine ⟨j, ?_⟩
+  apply Fin.ext
+  simp [j, joinSigmaOneDistinguishedIndex]
+  omega
+
 lemma joinSigmaOneFaceIso_coface_range (m n : ℕ)
     (T : Finset (Fin (m + 1))) (k₀ : Fin (T.card + n + 2)) :
     SSet.Subcomplex.range
