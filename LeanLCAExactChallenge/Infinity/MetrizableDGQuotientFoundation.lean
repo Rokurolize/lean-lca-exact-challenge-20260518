@@ -111,6 +111,19 @@ structure DegreeProfile {X Y : ComplexCategory} (w : DrinfeldWord X Y) (n : ℤ)
   arrowDegree : Fin (w.length + 1) → ℤ
   totalDegree : (∑ i, arrowDegree i) - w.length = n
 
+/-- Degree profile of an internal-differential term: one ordinary Hom degree is raised by
+one, so the total quotient degree is raised by one. -/
+def DegreeProfile.raise {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin (w.length + 1)) : DegreeProfile w (n + 1) where
+  arrowDegree j := d.arrowDegree j + if j = i then 1 else 0
+  totalDegree := by
+    rw [Finset.sum_add_distrib]
+    have hi : (∑ j : Fin (w.length + 1), if j = i then (1 : ℤ) else 0) = 1 := by
+      simp
+    rw [hi]
+    have hd := d.totalDegree
+    omega
+
 /-- The ordinary Hom-cochain module attached to one arrow of a degree-profiled word. -/
 def factorModule {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) (i : Fin (w.length + 1)) : ModuleCat.{0} ℤ :=
