@@ -15,6 +15,7 @@ namespace LeanLCAExactChallenge.Infinity
 
 open CategoryTheory Opposite Simplicial
 open scoped CategoryTheory.MonoidalCategory.DayConvolution
+  MonoidalCategory.ExternalProduct MonoidalCategory Prod
 
 set_option backward.isDefEq.respectTransparency false in
 set_option maxHeartbeats 200000 in
@@ -97,6 +98,105 @@ def underSliceProjection (Q : SSet.{u}) (z : Q _⦋0⦌) :
     underSlice Q z ⟶ Q :=
   simplicialJoinRightInclusion (Δ[0] : SSet.{u}) (underSlice Q z) ≫
     forgetAugmentation.{u}.map (underSliceUniversalCone Q z).1
+
+private theorem pointJoinRightInclusion_naturality
+    {Y Y' : SSet.{u}} (g : Y ⟶ Y') :
+    g ≫ simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Y' =
+      simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Y ≫
+        simplicialJoinMap (𝟙 (Δ[0] : SSet.{u})) g := by
+  apply NatTrans.ext
+  funext U
+  let F := emptyAugmentation.{u}.obj (Δ[0] : SSet.{u})
+  let G := emptyAugmentation.{u}.obj Y
+  let G' := emptyAugmentation.{u}.obj Y'
+  letI := augmentedDayConvolution F G
+  letI := augmentedDayConvolution F G'
+  letI : Unique (F.obj (Opposite.op WithInitial.star)) :=
+    (Limits.Types.isTerminalEquivUnique _)
+      (emptyAugmentationStarIsTerminal (Δ[0] : SSet.{u}))
+  let s : G.obj (AugmentedSimplexCategory.inclusion.op.obj U) ⟶
+      (F ⊠ G).obj (Opposite.op WithInitial.star,
+        AugmentedSimplexCategory.inclusion.op.obj U) :=
+    ConcreteCategory.ofHom (TypeCat.Fun.mk (fun y ↦ (default, y)))
+  let s' : G'.obj (AugmentedSimplexCategory.inclusion.op.obj U) ⟶
+      (F ⊠ G').obj (Opposite.op WithInitial.star,
+        AugmentedSimplexCategory.inclusion.op.obj U) :=
+    ConcreteCategory.ofHom (TypeCat.Fun.mk (fun y ↦ (default, y)))
+  change (emptyAugmentation.map g).app
+      (AugmentedSimplexCategory.inclusion.op.obj U) ≫ s' ≫
+      (CategoryTheory.MonoidalCategory.DayConvolution.unit F G').app
+        (Opposite.op WithInitial.star, AugmentedSimplexCategory.inclusion.op.obj U) =
+    s ≫ (CategoryTheory.MonoidalCategory.DayConvolution.unit F G).app
+        (Opposite.op WithInitial.star, AugmentedSimplexCategory.inclusion.op.obj U) ≫
+      (CategoryTheory.MonoidalCategory.DayConvolution.map
+        (emptyAugmentation.map (𝟙 (Δ[0] : SSet.{u})))
+        (emptyAugmentation.map g)).app _
+  rw [emptyAugmentation.map_id]
+  change _ = s ≫
+    (CategoryTheory.MonoidalCategory.DayConvolution.unit F G).app
+      (Opposite.op WithInitial.star, AugmentedSimplexCategory.inclusion.op.obj U) ≫
+    (CategoryTheory.MonoidalCategory.DayConvolution.map
+      (𝟙 F) (emptyAugmentation.map g)).app
+        (Opposite.op WithInitial.star ⊗ AugmentedSimplexCategory.inclusion.op.obj U)
+  rw [CategoryTheory.MonoidalCategory.DayConvolution.unit_app_map_app]
+  have hpref : (emptyAugmentation.map g).app
+        (AugmentedSimplexCategory.inclusion.op.obj U) ≫ s' =
+      s ≫ (NatTrans.app (𝟙 F) (Opposite.op WithInitial.star) ⊗ₘ
+        (emptyAugmentation.map g).app
+          (AugmentedSimplexCategory.inclusion.op.obj U)) := by
+    apply ConcreteCategory.hom_ext
+    intro y
+    rfl
+  rw [← Category.assoc, hpref]
+  exact Category.assoc _ _ _
+
+/-- Restricting the fixed-base transpose of a slice simplex to its right factor
+is composition with the under-slice projection. -/
+theorem underSliceProjection_comp_eq_fixedBaseCone
+    (Q : SSet.{u}) (z : Q _⦋0⦌) (K : SSet.{u})
+    (f : K ⟶ underSlice Q z) :
+    f ≫ underSliceProjection Q z =
+      simplicialJoinRightInclusion (Δ[0] : SSet.{u}) K ≫
+        forgetAugmentation.{u}.map
+          ((relativeDaySliceOverMapFixedBaseEquiv
+            (emptyAugmentation.{u}.obj (Δ[0] : SSet.{u}))
+            (emptyAugmentation.{u}.obj Q) K
+            (emptyAugmentation.{u}.map (SSet.yonedaEquiv.symm z))) f).1 := by
+  let F := emptyAugmentation.{u}.obj (Δ[0] : SSet.{u})
+  let G := emptyAugmentation.{u}.obj Q
+  let a := emptyAugmentation.{u}.map (SSet.yonedaEquiv.symm z)
+  have ht := relativeDaySliceOverMapFixedBaseEquiv_precomp_fst
+    F G a f (𝟙 (underSlice Q z))
+  simp only [Category.comp_id] at ht
+  dsimp only [F, G, a] at ht ⊢
+  unfold underSliceProjection underSliceUniversalCone
+  rw [ht]
+  rw [← Category.assoc, pointJoinRightInclusion_naturality, Category.assoc]
+  let T := (augmentedDayTensorLeft
+    (emptyAugmentation.obj (Δ[0] : SSet.{u}))).map (emptyAugmentation.map f)
+  let V := ((relativeDaySliceOverMapFixedBaseEquiv
+      (emptyAugmentation.obj (Δ[0] : SSet.{u})) (emptyAugmentation.obj Q)
+      (underSlice Q z) (emptyAugmentation.map (SSet.yonedaEquiv.symm z)))
+        (𝟙 (underSlice Q z))).1
+  have hc := (forgetAugmentation.{u}).map_comp T V
+  have hT : forgetAugmentation.map T =
+      simplicialJoinMap (𝟙 (Δ[0] : SSet.{u})) f := by
+    unfold T simplicialJoinMap augmentedDayTensorLeft
+    rw [emptyAugmentation.map_id]
+    rfl
+  change _ = simplicialJoinRightInclusion (Δ[0] : SSet.{u}) K ≫
+    forgetAugmentation.map (T ≫ V)
+  calc
+    _ = simplicialJoinRightInclusion (Δ[0] : SSet.{u}) K ≫
+        (simplicialJoinMap (𝟙 (Δ[0] : SSet.{u})) f ≫
+          forgetAugmentation.map V) := Category.assoc _ _ _
+    _ = simplicialJoinRightInclusion (Δ[0] : SSet.{u}) K ≫
+        (forgetAugmentation.map T ≫ forgetAugmentation.map V) :=
+      congrArg (fun k ↦ simplicialJoinRightInclusion
+        (Δ[0] : SSet.{u}) K ≫ k)
+        (congrArg (fun k ↦ k ≫ forgetAugmentation.map V) hT.symm)
+    _ = _ := congrArg (fun k ↦ simplicialJoinRightInclusion
+      (Δ[0] : SSet.{u}) K ≫ k) hc.symm
 
 /-- The representable over-slice, obtained by reversing an under-slice. -/
 abbrev overSlice (Q : SSet.{u}) (z : Q _⦋0⦌) : SSet.{u} :=
