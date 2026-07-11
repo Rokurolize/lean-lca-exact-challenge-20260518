@@ -21,8 +21,6 @@ open CategoryTheory
 
 universe u
 
-open scoped Bicategory
-
 /-- Postcomposition with the forward map of a bicategorical adjoint equivalence is an
 equivalence of ordinary hom-categories. -/
 theorem bicategoricalEquivalence_postcomp_isEquivalence
