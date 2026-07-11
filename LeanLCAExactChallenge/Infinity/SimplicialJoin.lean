@@ -2264,6 +2264,35 @@ lemma joinSigmaOneFace_inf_smallerFace_le_hornRange
   simp [joinSigmaOneVertices, joinFirstVertices] at hx ⊢
   aesop
 
+lemma joinSigmaOneFace_inf_sameCardFace_le_hornRange
+    (m n r : ℕ) (i : Fin (n + 2)) (T U : Finset (Fin (m + 1)))
+    (hT : T.card = r + 1) (hU : U.card = r + 1) (hne : U ≠ T) :
+    SSet.stdSimplex.face.{u} (joinSigmaOneVertices m (n + 1) U) ⊓
+        SSet.stdSimplex.face (joinSigmaOneVertices m (n + 1) T) ≤
+      joinSigmaOneHornRange m (n + 1) T i := by
+  have hnsub : ¬ T ⊆ U := by
+    intro hsub
+    have hEq : T = U := Finset.eq_of_subset_of_card_le hsub (by
+      rw [hT, hU])
+    exact hne hEq.symm
+  obtain ⟨t, htT, htU⟩ := Finset.not_subset.mp hnsub
+  rw [SSet.stdSimplex.face_inter_face]
+  apply (joinSigmaOne_leftFace_le_hornRange m n T i t htT).trans'
+  apply (SSet.stdSimplex.face_le_face_iff _ _).mpr
+  intro x hx
+  simp [joinSigmaOneVertices, joinFirstVertices] at hx ⊢
+  aesop
+
+lemma joinSigmaOneOfSimplex_inf_sameCardOfSimplex_le_hornRange
+    (m n r : ℕ) (i : Fin (n + 2)) (T U : Finset (Fin (m + 1)))
+    (hT : T.card = r + 1) (hU : U.card = r + 1) (hne : U ≠ T) :
+    SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex m (n + 1) U) ⊓
+        SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex m (n + 1) T) ≤
+      joinSigmaOneHornRange m (n + 1) T i := by
+  rw [← joinSigmaOneFace_eq_ofSimplex, ← joinSigmaOneFace_eq_ofSimplex]
+  exact joinSigmaOneFace_inf_sameCardFace_le_hornRange
+    m n r i T U hT hU hne
+
 lemma representableJoinHornStage_inf_joinSigmaOne_le_hornRange
     (m n r : ℕ) (i : Fin (n + 2)) (T : Finset (Fin (m + 1)))
     (hT : T.card = r + 1) :
