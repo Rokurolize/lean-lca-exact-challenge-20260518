@@ -75,6 +75,39 @@ def object {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i : Fin w.length) :
     ComplexCategory :=
   (w.intermediate i).obj
 
+/-- The ordered vertices of a word, including its source and target endpoints. -/
+def vertex {X Y : ComplexCategory} (w : DrinfeldWord X Y) :
+    Fin (w.length + 2) → ComplexCategory :=
+  Fin.cases X (Fin.lastCases Y w.object)
+
+/-- Source vertex of the `i`-th ordinary Hom factor in a word summand. -/
+def arrowSource {X Y : ComplexCategory} (w : DrinfeldWord X Y)
+    (i : Fin (w.length + 1)) : ComplexCategory :=
+  w.vertex i.castSucc
+
+/-- Target vertex of the `i`-th ordinary Hom factor in a word summand. -/
+def arrowTarget {X Y : ComplexCategory} (w : DrinfeldWord X Y)
+    (i : Fin (w.length + 1)) : ComplexCategory :=
+  w.vertex i.succ
+
+@[simp]
+theorem vertex_zero {X Y : ComplexCategory} (w : DrinfeldWord X Y) :
+    w.vertex 0 = X :=
+  rfl
+
+@[simp]
+theorem vertex_last {X Y : ComplexCategory} (w : DrinfeldWord X Y) :
+    w.vertex (Fin.last (w.length + 1)) = Y := by
+  change Fin.lastCases Y w.object (Fin.last w.length) = Y
+  simp
+
+/-- Degree choices for the tensor factors of a Drinfeld word summand.  Each inserted
+contracting generator has cohomological degree `-1`, hence the total quotient degree is the
+sum of the ordinary Hom degrees minus the word length. -/
+structure DegreeProfile {X Y : ComplexCategory} (w : DrinfeldWord X Y) (n : ℤ) where
+  arrowDegree : Fin (w.length + 1) → ℤ
+  totalDegree : (∑ i, arrowDegree i) - w.length = n
+
 @[simp]
 theorem singleton_object (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory)
     (i : Fin (singleton X Y A).length) : (singleton X Y A).object i = A.obj :=
