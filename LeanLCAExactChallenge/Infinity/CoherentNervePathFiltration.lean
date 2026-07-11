@@ -262,6 +262,32 @@ theorem reindex_path (c : PathChain r i j) (f : Fin (s + 1) →o Fin (r + 1))
     (a : Fin (s + 1)) : (c.reindex f).path a = c.path (f a) :=
   rfl
 
+/-- Simplicial operators on the nerve are exactly monotone reindexings of path chains. -/
+theorem ofNerveSimplex_map_toNerveSimplex (c : PathChain r i j)
+    (f : SimplexCategory.mk s ⟶ SimplexCategory.mk r) :
+    ofNerveSimplex ((CategoryTheory.nerve (ThickPath i j)).map f.op c.toNerveSimplex) =
+      c.reindex f.toOrderHom := by
+  apply PathChain.ext
+  funext a
+  rfl
+
+theorem mem_ofSimplex_toNerveSimplex_iff (c : PathChain r i j) (d : PathChain s i j) :
+    d.toNerveSimplex ∈ (SSet.Subcomplex.ofSimplex c.toNerveSimplex).obj _ ↔
+      ∃ f : SimplexCategory.mk s ⟶ SimplexCategory.mk r,
+        d = c.reindex f.toOrderHom := by
+  rw [SSet.Subcomplex.mem_ofSimplex_obj_iff]
+  constructor
+  · rintro ⟨f, hf⟩
+    refine ⟨f, ?_⟩
+    have h := congrArg ofNerveSimplex hf
+    simpa only [ofNerveSimplex_map_toNerveSimplex,
+      ofNerveSimplex_toNerveSimplex] using h.symm
+  · rintro ⟨f, rfl⟩
+    refine ⟨f, ?_⟩
+    rw [← toNerveSimplex_ofNerveSimplex
+      ((CategoryTheory.nerve (ThickPath i j)).map f.op c.toNerveSimplex)]
+    rw [ofNerveSimplex_map_toNerveSimplex]
+
 theorem first_le (c : PathChain r i j) (a : Fin (r + 1)) :
     c.first.I ⊆ (c.path a).I := by
   exact c.monotone' (Fin.zero_le a)
@@ -1774,6 +1800,25 @@ theorem upperChain_entryErasePresent
   rw [c.upperChain_entryIndex, c.upperChain_beforeEntryIndex hpos,
     c.upperChain_path_entrySucc, c.upperChain_path_position]
 
+/-- An upper cell, whose erased entry is present, cannot itself be a selected lower cell. -/
+theorem upperChain_ne_selectedLower (p : EntryLowerCell (r + 1) i j k) :
+    c.upperChain ≠ p.cell.chain := by
+  intro hEq
+  have hpos : 0 < c.upperChain.entryIndex k c.upperChain_memLast := by
+    rw [c.upperChain_entryIndex]
+    exact Fin.succ_pos _
+  have hex : ∃ (hk : k ∈ c.upperChain.last.I)
+      (hp : 0 < c.upperChain.entryIndex k hk),
+      c.upperChain.EntryErasePresent k hk hp c.left_ne c.right_ne :=
+    ⟨c.upperChain_memLast, hpos, c.upperChain_entryErasePresent hpos⟩
+  have hex' : ∃ (hk : k ∈ p.cell.chain.last.I)
+      (hp : 0 < p.cell.chain.entryIndex k hk),
+      p.cell.chain.EntryErasePresent k hk hp p.left_ne p.right_ne := by
+    simpa only [hEq] using hex
+  obtain ⟨hk, hp, hpresent⟩ := hex'
+  apply p.erase_new
+  convert hpresent using 1
+
 /-- Every face of the paired upper cell except the distinguished missing face still contains
 the newly inserted erased-entry path.  This is the key same-rank separation invariant: a
 nonmissing face cannot silently discard the datum which distinguishes an upper cell from its
@@ -1891,6 +1936,14 @@ theorem upperChain_nondegenerate : c.upperChain.IsNondegenerate :=
 
 theorem delete_position_upperChain : c.upperChain.deleteAt c.position = c.cell.chain :=
   c.cell.chain.deleteAt_insertEntryErase k c.memLast c.left_ne c.right_ne
+
+/-- Inserting the `k`-free erased path does not change `k`-multiplicity. -/
+theorem cell_kMultiplicity_eq_upperChain :
+    c.cell.chain.kMultiplicity k = c.upperChain.kMultiplicity k := by
+  rw [← c.delete_position_upperChain]
+  apply kMultiplicity_deleteAt_eq_of_not_mem
+  rw [c.upperChain_path_position]
+  simp
 
 theorem upperChain_unknown : ¬ c.upperChain.KnownAt k := by
   intro h
