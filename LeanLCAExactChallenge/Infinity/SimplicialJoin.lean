@@ -14,6 +14,7 @@ import Mathlib.CategoryTheory.Monoidal.Closed.Types
 import Mathlib.CategoryTheory.Limits.Presheaf
 import Mathlib.CategoryTheory.Limits.Types.End
 import Mathlib.Data.Finset.Sort
+import Mathlib.Data.Fin.Tuple.Sort
 
 /-!
 # The join of simplicial sets
@@ -288,6 +289,141 @@ simplicial set. -/
 def forgetSingletonAugmentationIso :
     singletonAugmentation.{u} ⋙ forgetAugmentation.{u} ≅ 𝟭 SSet.{u} :=
   Iso.refl _
+
+/-- The number of source vertices which a simplex of an ordinal sum sends to
+the left summand.  Monotonicity makes these vertices an initial segment. -/
+def ordinalSumCut {U A B : SimplexCategory}
+    (q : U ⟶ AugmentedSimplexCategory.tensorObjOf A B) : ℕ :=
+  (Finset.univ.filter (fun j : Fin (U.len + 1) ↦
+    (q.toOrderHom j).val < A.len + 1)).card
+
+lemma ordinalSumCut_le {U A B : SimplexCategory}
+    (q : U ⟶ AugmentedSimplexCategory.tensorObjOf A B) :
+    ordinalSumCut q ≤ U.len + 1 := by
+  simpa [ordinalSumCut] using Finset.card_filter_le
+    (Finset.univ : Finset (Fin (U.len + 1)))
+    (fun j : Fin (U.len + 1) ↦ (q.toOrderHom j).val < A.len + 1)
+
+/-- A vertex lies before the cut exactly when its image lies in the left
+summand. -/
+lemma lt_ordinalSumCut_iff {U A B : SimplexCategory}
+    (q : U ⟶ AugmentedSimplexCategory.tensorObjOf A B) (j : Fin (U.len + 1)) :
+    j.val < ordinalSumCut q ↔ (q.toOrderHom j).val < A.len + 1 := by
+  exact Tuple.lt_card_lt_iff_apply_lt_of_monotone q.toOrderHom.monotone
+
+/-- Tensor maps preserve the left/right summand of every vertex. -/
+lemma tensorHomOf_apply_lt_iff
+    {A B A' B' : SimplexCategory} (f : A ⟶ A') (g : B ⟶ B')
+    (j : Fin (A.len + B.len + 2)) :
+    ((AugmentedSimplexCategory.tensorHomOf f g).toOrderHom j).val < A'.len + 1 ↔
+      j.val < A.len + 1 := by
+  let k : Fin ((A.len + 1) + (B.len + 1)) :=
+    j.cast (Nat.succ_add A.len (B.len + 1)).symm
+  have hj : j = k.cast (Nat.succ_add A.len (B.len + 1)) := rfl
+  rw [hj]
+  cases k using Fin.addCases with
+  | left k =>
+      simp [AugmentedSimplexCategory.tensorHomOf, AugmentedSimplexCategory.tensorObjOf]
+      omega
+  | right k =>
+      simp [AugmentedSimplexCategory.tensorHomOf, AugmentedSimplexCategory.tensorObjOf]
+      omega
+
+/-- Consequently the cut is invariant under morphisms induced by ordinal-sum
+maps.  This is the component invariant in the pointwise Day-convolution
+indexing category. -/
+lemma ordinalSumCut_comp_tensorHomOf
+    {U A B A' B' : SimplexCategory}
+    (q : U ⟶ AugmentedSimplexCategory.tensorObjOf A B)
+    (f : A ⟶ A') (g : B ⟶ B') :
+    ordinalSumCut (q ≫ AugmentedSimplexCategory.tensorHomOf f g) = ordinalSumCut q := by
+  unfold ordinalSumCut
+  congr 1
+  ext j
+  simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+  change
+    ((AugmentedSimplexCategory.tensorHomOf f g).toOrderHom (q.toOrderHom j)).val <
+        A'.len + 1 ↔
+      (q.toOrderHom j).val < A.len + 1
+  exact tensorHomOf_apply_lt_iff f g (q.toOrderHom j)
+
+/-- Restriction of an ordinal-sum simplex to its nonempty left block. -/
+def ordinalSumCutLeft {U A B : SimplexCategory}
+    (q : U ⟶ AugmentedSimplexCategory.tensorObjOf A B)
+    (hc : 0 < ordinalSumCut q) :
+    SimplexCategory.mk (ordinalSumCut q - 1) ⟶ A :=
+  SimplexCategory.mkHom
+    { toFun := fun j ↦ by
+        have hj : j.val < ordinalSumCut q := by
+          have hj' := j.isLt
+          change j.val < ordinalSumCut q - 1 + 1 at hj'
+          omega
+        have hjU : j.val < U.len + 1 := lt_of_lt_of_le hj (ordinalSumCut_le q)
+        exact ⟨(q.toOrderHom ⟨j.val, hjU⟩).val, by
+          rw [← lt_ordinalSumCut_iff q ⟨j.val, hjU⟩]
+          exact hj⟩
+      monotone' := by
+        intro j k hjk
+        exact q.toOrderHom.monotone hjk }
+
+/-- Restriction of an ordinal-sum simplex to its nonempty right block. -/
+def ordinalSumCutRight {U A B : SimplexCategory}
+    (q : U ⟶ AugmentedSimplexCategory.tensorObjOf A B)
+    (hc : ordinalSumCut q < U.len + 1) :
+    SimplexCategory.mk (U.len - ordinalSumCut q) ⟶ B :=
+  SimplexCategory.mkHom
+    { toFun := fun j ↦ by
+        have hj := j.isLt
+        change j.val < U.len - ordinalSumCut q + 1 at hj
+        exact ⟨(q.toOrderHom
+            ⟨ordinalSumCut q + j.val, by omega⟩).val - (A.len + 1), by
+          have hq := (q.toOrderHom
+            ⟨ordinalSumCut q + j.val, by omega⟩).isLt
+          have hq' :
+              (q.toOrderHom ⟨ordinalSumCut q + j.val, by omega⟩).val <
+                A.len + B.len + 2 := by
+            simpa [AugmentedSimplexCategory.tensorObjOf] using hq
+          omega⟩
+      monotone' := by
+        intro j k hjk
+        have hj := j.isLt
+        have hk := k.isLt
+        change j.val < U.len - ordinalSumCut q + 1 at hj
+        change k.val < U.len - ordinalSumCut q + 1 at hk
+        have hjk' : j.val ≤ k.val := hjk
+        have hq := q.toOrderHom.monotone
+          (show (⟨ordinalSumCut q + j.val, by omega⟩ : Fin (U.len + 1)) ≤
+            ⟨ordinalSumCut q + k.val, by omega⟩ from Nat.add_le_add_left hjk' _)
+        exact Nat.sub_le_sub_right hq (A.len + 1) }
+
+lemma ordinalSumCutLeft_apply {U A B : SimplexCategory}
+    (q : U ⟶ AugmentedSimplexCategory.tensorObjOf A B)
+    (hc : 0 < ordinalSumCut q)
+    (j : Fin ((SimplexCategory.mk (ordinalSumCut q - 1)).len + 1)) :
+    (ordinalSumCutLeft q hc).toOrderHom j =
+      ⟨(q.toOrderHom ⟨j.val, by
+        have hj := j.isLt
+        change j.val < ordinalSumCut q - 1 + 1 at hj
+        exact lt_of_lt_of_le (by omega) (ordinalSumCut_le q)⟩).val, by
+        have hj : j.val < ordinalSumCut q := by
+          have hj' := j.isLt
+          change j.val < ordinalSumCut q - 1 + 1 at hj'
+          omega
+        rw [← lt_ordinalSumCut_iff q ⟨j.val, lt_of_lt_of_le hj (ordinalSumCut_le q)⟩]
+        exact hj⟩ := by
+  apply Fin.ext
+  rfl
+
+lemma ordinalSumCutRight_apply {U A B : SimplexCategory}
+    (q : U ⟶ AugmentedSimplexCategory.tensorObjOf A B)
+    (hc : ordinalSumCut q < U.len + 1)
+    (j : Fin ((SimplexCategory.mk (U.len - ordinalSumCut q)).len + 1)) :
+    ((ordinalSumCutRight q hc).toOrderHom j).val =
+      (q.toOrderHom ⟨ordinalSumCut q + j.val, by
+        have hj := j.isLt
+        change j.val < U.len - ordinalSumCut q + 1 at hj
+        omega⟩).val - (A.len + 1) := by
+  rfl
 
 /-- The distinguished object in the pointwise Kan-extension category computing
 Day convolution in augmented degree `-1`. -/
@@ -1822,6 +1958,28 @@ noncomputable def ordinaryJoinTransportedRightLeg
         ((Δ[m] : SSet.{u}), (Δ[n] : SSet.{u})) ⟶
           ((Δ[m] : SSet.{u}), (Δ[n + 1] : SSet.{u}))) ≫
     (simplicialJoinStdSimplexIsoNat m (n + 1)).hom
+
+instance ordinaryJoinTransportedRightLeg_mono
+    (m n : ℕ) (j : Fin (n + 2)) :
+    Mono (ordinaryJoinTransportedRightLeg.{u} m n j) := by
+  let q := ordinaryJoinBifunctor.{u}.map
+      ((𝟙 (Δ[m] : SSet.{u}),
+        SSet.stdSimplex.map (SimplexCategory.δ j)) :
+        ((Δ[m] : SSet.{u}), (Δ[n] : SSet.{u})) ⟶
+          ((Δ[m] : SSet.{u}), (Δ[n + 1] : SSet.{u}))) ≫
+      (simplicialJoinStdSimplexIsoNat m (n + 1)).hom
+  haveI : Mono q := by
+    dsimp [q, ordinaryJoinBifunctor]
+    rw [simplicialJoinStdSimplexIsoNat_naturality_rightCoface]
+    haveI : Mono (SSet.stdSimplex.map
+        (SimplexCategory.δ
+          (⟨m + 1 + j.val, by omega⟩ : Fin (m + n + 3)))) := by
+      change Mono (SSet.stdSimplex.δ
+        (⟨m + 1 + j.val, by omega⟩ : Fin (m + n + 3)))
+      infer_instance
+    infer_instance
+  unfold ordinaryJoinTransportedRightLeg
+  infer_instance
 
 lemma ordinaryJoinTransportedRightLeg_range
     (m n : ℕ) (j : Fin (n + 2)) :
