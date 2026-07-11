@@ -348,6 +348,22 @@ noncomputable def internalHomToNerveYonedaEquiv
     (nerveAdjunction.homEquiv (L ⊗ Z) E).symm
 
 set_option backward.isDefEq.respectTransparency false in
+/-- The nerve-Yoneda presentation carries arbitrary internal-Hom precomposition
+to precomposition by the corresponding tensor map. -/
+theorem internalHomToNerveYonedaEquiv_precomp
+    (X L Z : SSet.{u}) (E : Cat.{u, u}) (f : X ⟶ L)
+    (g : Z ⟶ (ihom L).obj (nerveFunctor.obj E)) :
+    internalHomToNerveYonedaEquiv Z X E
+      (g ≫ internalHomPrecomp f (nerveFunctor.obj E)) =
+      SSet.hoFunctor.map (f ▷ Z) ≫
+        internalHomToNerveYonedaEquiv Z L E g := by
+  dsimp [internalHomToNerveYonedaEquiv, internalHomPrecomp]
+  rw [MonoidalClosed.homEquiv_symm_apply_eq, MonoidalClosed.uncurry_pre_app]
+  rw [MonoidalClosed.homEquiv_symm_apply_eq]
+  exact nerveAdjunction.homEquiv_naturality_left_symm
+    (f ▷ Z) (MonoidalClosed.uncurry g)
+
+set_option backward.isDefEq.respectTransparency false in
 /-- Applying the reflector to its unit gives an isomorphism. -/
 theorem hoFunctor_map_reflectionUnit_isIso (L : SSet.{u}) :
     IsIso (SSet.hoFunctor.map (nerveAdjunction.unit.app L)) := by
