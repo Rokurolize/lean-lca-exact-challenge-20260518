@@ -2826,6 +2826,68 @@ noncomputable def representableJoinHornDiagramIso
         hnat.trans (Category.comp_id _)
       exact congrArg (fun q ↦ q ≫ representableJoinHornMap m (n + 2) i) hleg)
 
+noncomputable def representableJoinHornRangeCocone
+    (m n : ℕ) (i : Fin (n + 3)) :=
+  (representableJoinHornRangeMulticoequalizerDiagram.{u} m (n + 1) i).multicofork.toLinearOrder.map
+    SSet.Subcomplex.toSSetFunctor
+
+noncomputable def representableJoinHornRangeCoconePrecompose
+    (m n : ℕ) (i : Fin (n + 3)) :
+    Cocone (representableJoinHornSourceDiagram.{u} m i) :=
+  (Cocone.precompose (representableJoinHornDiagramIso m n i).hom).obj
+    (representableJoinHornRangeCocone m n i)
+
+noncomputable def representableJoinHornRangeCoconePrecomposeIsColimit
+    (m n : ℕ) (i : Fin (n + 3)) :
+    IsColimit (representableJoinHornRangeCoconePrecompose.{u} m n i) :=
+  (IsColimit.precomposeHomEquiv (representableJoinHornDiagramIso m n i)
+      (representableJoinHornRangeCocone m n i)).symm
+    (representableJoinHornRangeIsColimit.{u} m (n + 1) i)
+
+noncomputable def representableJoinHornPointIso
+    (m n : ℕ) (i : Fin (n + 3)) :
+    (representableJoinHornCocone.{u} m i).pt ≅
+      (representableJoinHornRangeCoconePrecompose.{u} m n i).pt :=
+  (representableJoinHornIsColimit.{u} m i (by omega)).coconePointUniqueUpToIso
+    (representableJoinHornRangeCoconePrecomposeIsColimit m n i)
+
+set_option backward.isDefEq.respectTransparency false in
+lemma representableJoinHornPointIso_hom
+    (m n : ℕ) (i : Fin (n + 3)) :
+    (representableJoinHornPointIso.{u} m n i).hom =
+      SSet.Subcomplex.toRange (representableJoinHornMap m (n + 2) i) := by
+  apply (representableJoinHornIsColimit.{u} m i (by omega)).hom_ext
+  intro j
+  rw [IsColimit.comp_coconePointUniqueUpToIso_hom]
+  rcases j with a | j
+  · dsimp [representableJoinHornRangeCoconePrecompose,
+      representableJoinHornRangeCocone, representableJoinHornDiagramIso,
+      representableJoinHornDiagramComponentIso, representableJoinHornRangeDiagram,
+      representableJoinHornSourceDiagram]
+    simp only [Iso.trans_hom, Category.assoc]
+    dsimp [simplicialSetIsoRangeOfMono]
+    apply (cancel_mono (representableJoinHornInitial m (n + 2) i).ι).mp
+    simp only [Category.assoc, SSet.Subcomplex.toRange_ι, SSet.Subcomplex.homOfLE_ι]
+  · dsimp [representableJoinHornRangeCoconePrecompose,
+      representableJoinHornRangeCocone, representableJoinHornDiagramIso,
+      representableJoinHornDiagramComponentIso, representableJoinHornRangeDiagram,
+      representableJoinHornSourceDiagram]
+    simp only [Category.assoc]
+    dsimp [simplicialSetIsoRangeOfMono]
+    apply (cancel_mono (representableJoinHornInitial m (n + 2) i).ι).mp
+    simp only [Category.assoc, SSet.Subcomplex.toRange_ι, SSet.Subcomplex.homOfLE_ι]
+
+noncomputable instance representableJoinHornMap_mono
+    (m n : ℕ) (i : Fin (n + 3)) :
+    Mono (representableJoinHornMap.{u} m (n + 2) i) := by
+  letI : IsIso
+      (SSet.Subcomplex.toRange (representableJoinHornMap.{u} m (n + 2) i)) := by
+    rw [← representableJoinHornPointIso_hom m n i]
+    infer_instance
+  rw [← SSet.Subcomplex.toRange_ι
+    (f := representableJoinHornMap.{u} m (n + 2) i)]
+  infer_instance
+
 lemma representableJoinHornInitial_eq_iSup_shiftedRightFaces
     (m n : ℕ) (i : Fin (n + 2)) :
     representableJoinHornInitial m (n + 1) i =
@@ -3421,6 +3483,13 @@ lemma representableJoinHornMap_innerAnodyne_of_mono
         (representableJoinHornMap.{u} m (n + 1) i)).ι) at hcomp
   rw [SSet.Subcomplex.toRange_ι] at hcomp
   exact hcomp
+
+lemma representableJoinHornMap_innerAnodyne
+    (m n : ℕ) (i : Fin (n + 3))
+    (h0 : 0 < i) (hn : i < Fin.last (n + 2)) :
+    SSet.innerAnodyneExtensions
+      (representableJoinHornMap.{u} m (n + 2) i) :=
+  representableJoinHornMap_innerAnodyne_of_mono m (n + 1) i h0 hn
 
 lemma representableJoinHornStage_adjoin_hornRange_bicartSq
     (m n r : ℕ) (i : Fin (n + 2)) (T : Finset (Fin (m + 1)))
