@@ -678,6 +678,26 @@ theorem range_upperMap : SSet.Subcomplex.range a.upperMap =
   rw [SSet.Subcomplex.range_eq_ofSimplex]
   simp [upperMap]
 
+theorem hornRange_eq_horn_image : a.hornRange =
+    (SSet.horn (r + 1) a.face).image a.upperMap := by
+  rw [SSet.Subcomplex.image_eq_range]
+  rfl
+
+/-- A stage whose inverse image in the upper simplex is contained in the attaching horn
+meets the generated upper simplex in exactly the horn range. -/
+theorem inf_upperRange_eq_hornRange
+    (A : (CategoryTheory.nerve (ThickPath i j)).Subcomplex)
+    (hA : A.preimage a.upperMap ≤ SSet.horn (r + 1) a.face)
+    (hhorn : a.hornRange ≤ A) :
+    A ⊓ SSet.Subcomplex.ofSimplex a.upper.toNerveSimplex = a.hornRange := by
+  apply le_antisymm
+  · rw [← a.range_upperMap, ← SSet.Subcomplex.image_preimage_eq_inf_range,
+      a.hornRange_eq_horn_image]
+    exact SSet.Subcomplex.image_monotone a.upperMap hA
+  · apply le_inf hhorn
+    rw [a.hornRange_eq_horn_image, ← a.range_upperMap]
+    exact SSet.Subcomplex.image_le_range (SSet.horn (r + 1) a.face) a.upperMap
+
 end RankedKanFacePair
 
 /-- Any certified inner face pair acquires the rank condition automatically from the global
