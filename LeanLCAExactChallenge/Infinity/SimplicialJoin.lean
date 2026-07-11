@@ -2278,6 +2278,15 @@ def augmentedDayAdjunction (F : AugmentedSSet.{u}) :
           (augmentedDayInternalHomStructure F G')]
         simp only [Category.assoc] }
 
+/-- Naturality of the augmented Day tensor-hom transpose under
+precomposition in the right tensor variable. -/
+lemma augmentedDayHomEquiv_precomp
+    (F K K' G : AugmentedSSet.{u}) (f : K' ⟶ K)
+    (φ : (augmentedDayTensorLeft F).obj K ⟶ G) :
+    augmentedDayHomEquiv F K' G ((augmentedDayTensorLeft F).map f ≫ φ) =
+      f ≫ augmentedDayHomEquiv F K G φ :=
+  (augmentedDayAdjunction F).homEquiv_naturality_left f φ
+
 noncomputable instance augmentedDayTensorLeft_preservesColimits
     (F : AugmentedSSet.{u}) : PreservesColimits (augmentedDayTensorLeft F) :=
   (augmentedDayAdjunction F).leftAdjoint_preservesColimits
