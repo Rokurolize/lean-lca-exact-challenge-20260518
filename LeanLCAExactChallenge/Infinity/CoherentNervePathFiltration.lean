@@ -3529,6 +3529,26 @@ theorem mem_knownPathSubcomplex_iff (i j k : J) (r : ℕ)
     x ∈ (knownPathSubcomplex i j k).obj _ ↔ (ofNerveSimplex x).KnownAt k :=
   Iff.rfl
 
+theorem mem_knownPathSubcomplex_preimage_explicit_iff_corner
+    (i j k : J) (hik : i < k) (hkj : k < j)
+    (n : ℕ) (e : InteriorVertex i j ≃ Fin n) (r : ℕ)
+    (x : (liftedIntervalCube n).obj (Opposite.op (SimplexCategory.mk r))) :
+    x ∈ ((knownPathSubcomplex i j k).preimage
+        (thickPathNerveCubeIsoExplicit
+          (le_trans (le_of_lt hik) (le_of_lt hkj)) n e).inv).obj _ ↔
+      x ∈ (liftedIntervalCubeCorner n
+        (coherentCornerSign k hik hkj n e)).obj _ := by
+  let iso := thickPathNerveCubeIsoExplicit
+    (le_trans (le_of_lt hik) (le_of_lt hkj)) n e
+  let c := ofNerveSimplex (iso.inv.app _ x)
+  change c.KnownAt k ↔ _
+  rw [← thickPathCube_mem_corner_iff_knownAt c k hik hkj n e]
+  have hc : c.toNerveSimplex = iso.inv.app _ x :=
+    toNerveSimplex_ofNerveSimplex _
+  rw [hc]
+  change iso.hom.app _ (iso.inv.app _ x) ∈ _ ↔ x ∈ _
+  rw [Iso.inv_hom_id_app_apply]
+
 /-- Simplicial closure of a degreewise collection of path-nerve simplices, together with the
 known horn subcomplex. -/
 def generatedPathStage (i j k : J)
