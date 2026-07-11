@@ -225,6 +225,28 @@ def dgMappingConeExplicitCoordinateCochainComplex
       (dgMappingConeCochainLinearEquiv T f m).toModuleIso
       (dgMappingConeCochainLinearEquiv T f k).toModuleIso
 
+private theorem transportedCochainDifferential_comm
+    (C : CochainComplex (ModuleCat.{0} ℤ) ℤ) (n m : ℤ)
+    {Xn Xm : ModuleCat.{0} ℤ}
+    (en : C.X n ≅ Xn) (em : C.X m ≅ Xm) :
+    en.hom ≫ (en.inv ≫ C.d n m ≫ em.hom) = C.d n m ≫ em.hom := by
+  simp only [← Category.assoc, Iso.hom_inv_id, Category.id_comp]
+
+/-- The actual untruncated dg Hom complex into `Cone(f)` is isomorphic to its explicit
+two-coordinate model. -/
+def dgMappingConeExplicitCoordinateCochainIso
+    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) :
+    dgHomZModuleCochainComplex T (dgMappingConeObject f) ≅
+      dgMappingConeExplicitCoordinateCochainComplex T f :=
+  HomologicalComplex.Hom.isoOfComponents
+    (fun n ↦ (dgMappingConeCochainLinearEquiv T f n).toModuleIso) (by
+      intro n m _
+      dsimp [dgMappingConeExplicitCoordinateCochainComplex]
+      exact transportedCochainDifferential_comm
+        (dgHomZModuleCochainComplex T (dgMappingConeObject f)) n m
+        (dgMappingConeCochainLinearEquiv T f n).toModuleIso
+        (dgMappingConeCochainLinearEquiv T f m).toModuleIso)
+
 /-- Differential compatibility of the cone decomposition.  In coordinates the cone Hom
 differential is the standard upper-triangular matrix: the shifted-source differential carries
 the minus sign, while the target coordinate receives postcomposition by `f`. -/
