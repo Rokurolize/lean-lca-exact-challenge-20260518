@@ -473,6 +473,52 @@ theorem reflectionUnit_nerveFunctor_hoFunctor_counit
     exact congrArg Cat.Hom.toFunctor (nerveAdjunction.left_triangle_components L)]
   exact Functor.id_comp F
 
+set_option backward.isDefEq.respectTransparency false in
+/-- Mapping a raw edge through the reflection unit and the nerve of an ordinary
+functor is an equivalence exactly when that functor inverts its homotopy class. -/
+theorem edgeIsEquivalence_reflectionUnit_nerveFunctor_iff
+    {L : SSet.{u}} (E : Cat.{u, u}) (F : SSet.hoFunctor.obj L ⥤ E)
+    (a : L _⦋1⦌) :
+    EdgeIsEquivalence ((SSet.Edge.mk' a).map
+      (nerveAdjunction.unit.app L ≫ nerveFunctor.map F.toCatHom)) ↔
+      IsIso (F.map (edgeHomotopyClass (SSet.Edge.mk' a))) := by
+  change IsIso (SSet.Truncated.HomotopyCategory.homMk
+    (((SSet.Edge.mk' a).map
+      (nerveAdjunction.unit.app L ≫ nerveFunctor.map F.toCatHom)).toTruncated)) ↔ _
+  simp only [SSet.Edge.map]
+  change IsIso (SSet.Truncated.HomotopyCategory.homMk
+    ((SSet.Edge.mk' a).toTruncated.map
+      ((SSet.truncation 2).map
+        (nerveAdjunction.unit.app L ≫ nerveFunctor.map F.toCatHom)))) ↔ _
+  rw [← SSet.Truncated.mapHomotopyCategory_homMk]
+  change IsIso ((SSet.hoFunctor.map
+    (nerveAdjunction.unit.app L ≫ nerveFunctor.map F.toCatHom)).toFunctor.map
+      (edgeHomotopyClass (SSet.Edge.mk' a))) ↔ _
+  let G := (SSet.hoFunctor.map
+    (nerveAdjunction.unit.app L ≫ nerveFunctor.map F.toCatHom)).toFunctor
+  let K := (nerveFunctorCompHoFunctorIso.app E).hom.toFunctor
+  have hGK : G ⋙ K = F := reflectionUnit_nerveFunctor_hoFunctor_counit L E F
+  haveI : K.IsEquivalence := by
+    let q := Cat.equivOfIso (nerveFunctorCompHoFunctorIso.app E)
+    change q.functor.IsEquivalence
+    infer_instance
+  let m := edgeHomotopyClass (SSet.Edge.mk' a)
+  have hi := NatIso.isIso_map_iff (eqToIso hGK) m
+  constructor
+  · intro h
+    letI : IsIso (G.map m) := h
+    apply hi.mp
+    change IsIso (K.map (G.map m))
+    infer_instance
+  · intro h
+    have hc : IsIso ((G ⋙ K).map m) := hi.mpr h
+    letI : IsIso ((G ⋙ K).map m) := hc
+    haveI : IsIso (K.map (G.map m)) := by
+      change IsIso ((G ⋙ K).map m)
+      infer_instance
+    change IsIso (G.map m)
+    apply isIso_of_reflects_iso (G.map m) K
+
 /-- The marking-inverting vertex predicate transported to the ordinary functor category by
 the internal-Hom nerve isomorphism. -/
 noncomputable def PulledRelativeFunctorProperty
