@@ -186,6 +186,21 @@ def factorModule {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
   (dgHomZModuleCochainComplex (w.arrowSource i) (w.arrowTarget i)).X
     (d.arrowDegree i)
 
+/-- The pointwise factor map contributing the internal differential at the chosen arrow;
+all other tensor factors are identities. -/
+def factorDifferential {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i j : Fin (w.length + 1)) :
+    Quiver.Hom (factorModule d j) (factorModule (d.raise i) j) := by
+  by_cases h : j = i
+  · subst j
+    simpa [factorModule, DegreeProfile.raise] using
+      (dgHomZModuleCochainComplex (w.arrowSource i) (w.arrowTarget i)).d
+        (d.arrowDegree i) (d.arrowDegree i + 1)
+  · have hdeg : (d.raise i).arrowDegree j = d.arrowDegree j := by
+      simp [DegreeProfile.raise, h]
+    rw [factorModule, factorModule, hdeg]
+    exact 𝟙 _
+
 /-- Right-associated tensor product of a finite list of integer modules. -/
 def tensorModuleList : List (ModuleCat.{0} ℤ) → ModuleCat.{0} ℤ
   | [] => 𝟙_ (ModuleCat.{0} ℤ)
@@ -196,13 +211,13 @@ inductive TensorMapData :
     (source target : List (ModuleCat.{0} ℤ)) → Type 1
   | nil : TensorMapData [] []
   | cons {M N : ModuleCat.{0} ℤ} {Ms Ns : List (ModuleCat.{0} ℤ)}
-      (f : ModuleCat.Hom M N) (fs : TensorMapData Ms Ns) :
+      (f : Quiver.Hom M N) (fs : TensorMapData Ms Ns) :
       TensorMapData (M :: Ms) (N :: Ns)
 
 /-- Assemble pointwise maps indexed by a finite ordinal into tensor-map data. -/
 def TensorMapData.ofFn : {k : ℕ} →
     (M N : Fin k → ModuleCat.{0} ℤ) →
-    ((i : Fin k) → ModuleCat.Hom (M i) (N i)) →
+    ((i : Fin k) → Quiver.Hom (M i) (N i)) →
     TensorMapData (List.ofFn M) (List.ofFn N)
   | 0, _, _, _ => .nil
   | k + 1, M, N, f => by
@@ -214,10 +229,10 @@ def TensorMapData.ofFn : {k : ℕ} →
 /-- Tensor a pointwise list of module morphisms. -/
 def TensorMapData.tensorMap : {source target : List (ModuleCat.{0} ℤ)} →
     TensorMapData source target →
-      ModuleCat.Hom (tensorModuleList source) (tensorModuleList target)
+      Quiver.Hom (tensorModuleList source) (tensorModuleList target)
   | [], [], .nil =>
       (𝟙 (tensorModuleList []) :
-        ModuleCat.Hom (tensorModuleList []) (tensorModuleList []))
+        Quiver.Hom (tensorModuleList []) (tensorModuleList []))
   | M :: Ms, N :: Ns, @TensorMapData.cons _ _ _ _ f fs =>
       MonoidalCategoryStruct.tensorHom
         (C := ModuleCat.{0} ℤ)
@@ -229,6 +244,14 @@ def TensorMapData.tensorMap : {source target : List (ModuleCat.{0} ℤ)} →
 def summandModule {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) : ModuleCat.{0} ℤ :=
   tensorModuleList (List.ofFn (factorModule d))
+
+/-- Tensor map of an internal-differential summand before inserting the Koszul sign. -/
+def internalDifferentialTensorMap {X Y : ComplexCategory}
+    {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
+    (i : Fin (w.length + 1)) :
+    Quiver.Hom (summandModule d) (summandModule (d.raise i)) :=
+  (TensorMapData.ofFn (factorModule d) (factorModule (d.raise i))
+    (factorDifferential d i)).tensorMap
 
 /-- Index of a homogeneous summand of the corrected Drinfeld quotient. -/
 abbrev GradedSummandIndex (X Y : ComplexCategory) (n : ℤ) :=
