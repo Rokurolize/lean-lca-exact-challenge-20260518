@@ -105,16 +105,6 @@ theorem dgMappingConeInl_delta {K L : ComplexCategory} (f : K ⟶ L) :
       first | rfl | simp only [Functor.map_comp,
         boundedInclusion_map_dgMappingConeInr]
 
-/-- The cone triangle carries its genuine chain homotopy from the composite to zero. -/
-def dgMappingConeTriangleHomotopy {K L : ComplexCategory} (f : K ⟶ L) :
-    Homotopy
-      ((boundedCochainComplex MetrizableLCA.{0}).ι.map
-        (f ≫ dgMappingConeInr f)) 0 :=
-  (CochainComplex.HomComplex.Cochain.equivHomotopy _ _).symm
-    ⟨dgMappingConeInl f, by
-      rw [dgMappingConeInl_delta]
-      simp⟩
-
 /-- Maps from a bounded test complex into a cone are detected by their two cone coordinates.
 This is the chain-level representability identity underlying the cocartesian cone square. -/
 theorem dgMappingConeCochain_ext_to_iff
