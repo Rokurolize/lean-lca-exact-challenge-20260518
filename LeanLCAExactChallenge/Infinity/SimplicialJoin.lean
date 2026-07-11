@@ -1262,6 +1262,90 @@ lemma joinSigmaOneHornRange_le_face (m n : ℕ)
         (joinSigmaOneFaceIso m n T).hom)
     (SSet.stdSimplex.face (joinSigmaOneVertices m n T)).ι
 
+def joinSigmaOneFirstIndex {m : ℕ} (n : ℕ) (T : Finset (Fin (m + 1)))
+    (t : Fin (m + 1)) (ht : t ∈ T) : Fin (T.card + n + 1) :=
+  Fin.castLE (by omega) ((T.orderIsoOfFin rfl).symm ⟨t, ht⟩)
+
+lemma joinSigmaOne_nth_first (m n : ℕ) (T : Finset (Fin (m + 1)))
+    (t : Fin (m + 1)) (ht : t ∈ T) :
+    joinSigmaOne m n T (joinSigmaOneFirstIndex n T t ht) =
+      Fin.castLE (by omega) t := by
+  rw [joinSigmaOne_eq_explicitJoinSigmaOne]
+  apply Fin.ext
+  change (explicitJoinSigmaOneFun m n T (joinSigmaOneFirstIndex n T t ht)).val = t.val
+  simp only [explicitJoinSigmaOneFun, joinSigmaOneFirstIndex, Fin.val_castLE]
+  rw [dif_pos]
+  · change ↑((T.orderIsoOfFin rfl) ((T.orderIsoOfFin rfl).symm ⟨t, ht⟩)) = t.val
+    simpa using congrArg Subtype.val
+      ((T.orderIsoOfFin rfl).apply_symm_apply ⟨t, ht⟩)
+  · exact ((T.orderIsoOfFin rfl).symm ⟨t, ht⟩).isLt
+
+lemma joinSigmaOneFaceIso_coface_range (m n : ℕ)
+    (T : Finset (Fin (m + 1))) (k₀ : Fin (T.card + n + 2)) :
+    SSet.Subcomplex.range
+        (SSet.stdSimplex.map (SimplexCategory.δ k₀) ≫
+          (joinSigmaOneFaceIso m (n + 1) T).hom ≫
+          (SSet.stdSimplex.face (joinSigmaOneVertices m (n + 1) T)).ι) =
+      SSet.stdSimplex.face
+        ((joinSigmaOneVertices m (n + 1) T).erase
+          (joinSigmaOne m (n + 1) T k₀)) := by
+  rw [SSet.Subcomplex.range_eq_ofSimplex]
+  rw [SSet.yonedaEquiv_comp, SSet.yonedaEquiv_map]
+  symm
+  rw [SSet.stdSimplex.face_eq_ofSimplex
+    ((joinSigmaOneVertices m (n + 1) T).erase
+      (joinSigmaOne m (n + 1) T k₀)) (T.card + n)
+    (((joinSigmaOneVertices m (n + 1) T).erase
+      (joinSigmaOne m (n + 1) T k₀)).orderIsoOfFin (by
+        rw [Finset.card_erase_of_mem]
+        · rw [card_joinSigmaOneVertices]
+          omega
+        · exact Finset.orderEmbOfFin_mem _ _ _))]
+  congr 1
+  apply SSet.stdSimplex.objEquiv.injective
+  apply SimplexCategory.Hom.ext
+  ext k
+  simp [joinSigmaOneFaceIso, SSet.stdSimplex.isoOfRepresentableBy,
+    SSet.stdSimplex.faceRepresentableBy]
+  let q : Fin (T.card + n + 1) ↪o Fin (m + (n + 1) + 2) :=
+    (Fin.succAboveOrderEmb k₀).trans (joinSigmaOne m (n + 1) T)
+  have hq : q =
+      ((joinSigmaOneVertices m (n + 1) T).erase
+        (joinSigmaOne m (n + 1) T k₀)).orderEmbOfFin (by
+          rw [Finset.card_erase_of_mem]
+          · rw [card_joinSigmaOneVertices]
+            omega
+          · exact Finset.orderEmbOfFin_mem _ _ _) := by
+    apply Finset.orderEmbOfFin_unique'
+    intro a
+    apply Finset.mem_erase.mpr
+    constructor
+    · intro ha
+      exact Fin.succAbove_ne k₀ a ((joinSigmaOne m (n + 1) T).injective ha)
+    · exact Finset.orderEmbOfFin_mem _ (by
+        rw [card_joinSigmaOneVertices]
+        omega) _
+  exact congrArg Fin.val (congrArg (fun e ↦ e k) hq.symm)
+
+lemma joinSigmaOneFaceIso_leftCoface_range (m n : ℕ)
+    (T : Finset (Fin (m + 1))) (t : Fin (m + 1)) (ht : t ∈ T) :
+    SSet.Subcomplex.range
+        (SSet.stdSimplex.map
+            (SimplexCategory.δ (joinSigmaOneFirstIndex (n + 1) T t ht)) ≫
+          (joinSigmaOneFaceIso m (n + 1) T).hom ≫
+          (SSet.stdSimplex.face (joinSigmaOneVertices m (n + 1) T)).ι) =
+      SSet.stdSimplex.face (joinSigmaOneVertices m (n + 1) (T.erase t)) := by
+  rw [joinSigmaOneFaceIso_coface_range, joinSigmaOne_nth_first]
+  congr 1
+  ext x
+  have hdis := disjoint_joinFirstVertices_joinSecondVertices m (n + 1) T
+  have htfirst : Fin.castLE (by omega) t ∈ joinFirstVertices m (n + 1) T := by
+    simp [joinFirstVertices, ht]
+  have htnotsecond : Fin.castLE (by omega) t ∉ joinSecondVertices m (n + 1) :=
+    Finset.disjoint_left.mp hdis htfirst
+  simp [joinSigmaOneVertices, joinFirstVertices] at *
+  aesop
+
 lemma joinSigmaOneFaceIso_rightCoface_range (m n : ℕ)
     (T : Finset (Fin (m + 1))) (j : Fin (n + 2)) :
     SSet.Subcomplex.range
