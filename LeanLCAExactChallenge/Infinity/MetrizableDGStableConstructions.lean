@@ -96,6 +96,48 @@ theorem dgMappingConeInl_delta {K L : ComplexCategory} (f : K ⟶ L) :
         boundedInclusion_map_dgMappingConeInr]
   case e'_3 => exact HEq.rfl
 
+/-- Maps from a bounded test complex into a cone are detected by their two cone coordinates.
+This is the chain-level representability identity underlying the cocartesian cone square. -/
+theorem dgMappingConeCochain_ext_to_iff
+    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L)
+    (i j : ℤ) (hij : i + 1 = j)
+    {a b : CochainComplex.HomComplex.Cochain T.obj
+      (CochainComplex.mappingCone
+        ((boundedCochainComplex MetrizableLCA.{0}).ι.map f)) i} :
+    a = b ↔
+      a.comp (CochainComplex.mappingCone.fst
+          ((boundedCochainComplex MetrizableLCA.{0}).ι.map f)).1 hij =
+        b.comp (CochainComplex.mappingCone.fst
+          ((boundedCochainComplex MetrizableLCA.{0}).ι.map f)).1 hij ∧
+      a.comp (CochainComplex.mappingCone.snd
+          ((boundedCochainComplex MetrizableLCA.{0}).ι.map f)) (add_zero i) =
+        b.comp (CochainComplex.mappingCone.snd
+          ((boundedCochainComplex MetrizableLCA.{0}).ι.map f)) (add_zero i) :=
+  CochainComplex.mappingCone.ext_cochain_to_iff
+    ((boundedCochainComplex MetrizableLCA.{0}).ι.map f) i j hij
+
+/-- Maps out of a cone are detected by restriction to its shifted-source and target
+coordinates.  This is the dual chain-level identity underlying the cartesian cone square. -/
+theorem dgMappingConeCochain_ext_from_iff
+    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L)
+    (i j : ℤ) (hij : i + 1 = j)
+    {a b : CochainComplex.HomComplex.Cochain
+      (CochainComplex.mappingCone
+        ((boundedCochainComplex MetrizableLCA.{0}).ι.map f)) T.obj j} :
+    a = b ↔
+      (CochainComplex.mappingCone.inl
+          ((boundedCochainComplex MetrizableLCA.{0}).ι.map f)).comp a (show _ = i by omega) =
+        (CochainComplex.mappingCone.inl
+          ((boundedCochainComplex MetrizableLCA.{0}).ι.map f)).comp b (by omega) ∧
+      (CochainComplex.HomComplex.Cochain.ofHom
+          (CochainComplex.mappingCone.inr
+            ((boundedCochainComplex MetrizableLCA.{0}).ι.map f))).comp a (zero_add j) =
+        (CochainComplex.HomComplex.Cochain.ofHom
+          (CochainComplex.mappingCone.inr
+            ((boundedCochainComplex MetrizableLCA.{0}).ι.map f))).comp b (zero_add j) :=
+  CochainComplex.mappingCone.ext_cochain_from_iff
+    ((boundedCochainComplex MetrizableLCA.{0}).ι.map f) i j hij
+
 /-- The same cone, regarded as an object of the honest direct simplicial dg category. -/
 def directDGMappingConeObject {K L : ComplexCategory} (f : K ⟶ L) :
     DirectDGSimplicialCategory :=
