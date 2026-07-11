@@ -35,6 +35,18 @@ theorem forgetAugmentation_augmentedMapOfUnderlyingToEmptyAugmentation
       (augmentedMapOfUnderlyingToEmptyAugmentation K Q ψ) = ψ := by
   apply forgetAugmentation_augmentedMapOfFixedUnderlying
 
+/-- Maps into an empty augmentation are determined by their ordinary
+simplicial components. -/
+theorem augmentedMapToEmptyAugmentation_ext
+    {A : AugmentedSSet.{u}} {Q : SSet.{u}}
+    {f g : A ⟶ emptyAugmentation.{u}.obj Q}
+    (h : forgetAugmentation.{u}.map f = forgetAugmentation.{u}.map g) : f = g := by
+  let E := AugmentedSimplexCategory.equivAugmentedSimplicialObject (C := Type u)
+  apply E.functor.map_injective
+  apply CommaMorphism.ext
+  · exact h
+  · apply (emptyAugmentationStarIsTerminal Q).hom_ext
+
 /-- The ordinary restriction of the singleton-augmentation comparison, with
 both endpoints displayed as the join carrier.  Keeping this transport explicit
 avoids relying on semireducible carrier equalities. -/
