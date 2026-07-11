@@ -2288,6 +2288,73 @@ followed by the existing selected-entry cells. -/
 abbrev ExtendedGlobalPairIndex (i j k : J) :=
   DegreeZeroPuncturedIndex i j k ⊕ GlobalPairIndex i j k
 
+/-- The outer-horn attachments whose missing lower face is already in the known subcomplex.
+These are indispensable for exhaustion: an unknown upper cell may have entry index one and
+an erased predecessor as its first path. -/
+abbrev EntryKnownBaseIndex (i j k : J) :=
+  Σ r : ℕ, {c : EntryDeleteCell r i j k //
+    c.cell.chain.entryIndex k c.memLast = 1}
+
+/-- The complete Kan-cell enumeration.  Besides degree-zero punctured and selected-entry
+pairs it includes the outer base attachments whose missing face is known. -/
+abbrev CompleteGlobalPairIndex (i j k : J) :=
+  EntryKnownBaseIndex i j k ⊕ ExtendedGlobalPairIndex i j k
+
+/-- Complete index in role order: punctured vertices, known-base uppers, selected-entry pairs. -/
+abbrev Extended2GlobalPairIndex (i j k : J) :=
+  DegreeZeroPuncturedIndex i j k ⊕ (EntryKnownBaseIndex i j k ⊕ GlobalPairIndex i j k)
+
+/-- Ranked outer-horn data for an entry-known-base cell. -/
+noncomputable def EntryKnownBaseIndex.rankedKanFacePair {i j k : J}
+    (p : EntryKnownBaseIndex i j k) : RankedKanFacePair p.1 i j k :=
+  rankedKanFacePairOfDelete p.2.1.lowerChain p.2.1.cell.chain k
+    p.2.1.cell.nondegenerate p.2.1.position rfl
+
+@[simp]
+theorem EntryKnownBaseIndex.rankedKanFacePair_lower {i j k : J}
+    (p : EntryKnownBaseIndex i j k) :
+    p.rankedKanFacePair.lower = p.2.1.lowerChain :=
+  rfl
+
+@[simp]
+theorem EntryKnownBaseIndex.rankedKanFacePair_upper {i j k : J}
+    (p : EntryKnownBaseIndex i j k) :
+    p.rankedKanFacePair.upper = p.2.1.cell.chain :=
+  rfl
+
+theorem EntryKnownBaseIndex.lower_known {i j k : J}
+    (p : EntryKnownBaseIndex i j k) : p.rankedKanFacePair.lower.KnownAt k := by
+  change p.2.1.lowerChain.KnownAt k
+  exact p.2.1.lowerChain_known_of_entryIndex_eq_one p.2.2
+
+/-- The ranked Kan pair belonging to a complete role index. -/
+noncomputable def Extended2GlobalPairIndex.rankedKanFacePair {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) (p : Extended2GlobalPairIndex i j k) :
+    Σ r : ℕ, RankedKanFacePair r i j k :=
+  match p with
+  | .inl c => ⟨0, c.1.degreeZeroPuncturedRankedKanFacePair c.2 hik hkj⟩
+  | .inr (.inl p) => ⟨p.1, p.rankedKanFacePair⟩
+  | .inr (.inr p) => ⟨p.1, p.2.rankedInnerFacePair.toRankedKanFacePair⟩
+
+@[simp]
+theorem Extended2GlobalPairIndex.rankedKanFacePair_inl {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) (c : DegreeZeroPuncturedIndex i j k) :
+    ((Extended2GlobalPairIndex.rankedKanFacePair hik hkj (.inl c)).2).lower = c.1.chain :=
+  rfl
+
+@[simp]
+theorem Extended2GlobalPairIndex.rankedKanFacePair_knownBase {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) (p : EntryKnownBaseIndex i j k) :
+    ((Extended2GlobalPairIndex.rankedKanFacePair hik hkj (.inr (.inl p))).2).upper =
+      p.2.1.cell.chain :=
+  rfl
+
+@[simp]
+theorem Extended2GlobalPairIndex.rankedKanFacePair_global {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) (p : GlobalPairIndex i j k) :
+    (Extended2GlobalPairIndex.rankedKanFacePair hik hkj (.inr (.inr p))).1 = p.1 :=
+  rfl
+
 /-- The ranked Kan horn belonging to either kind of extended global pair. -/
 noncomputable def ExtendedGlobalPairIndex.rankedKanFacePair {i j k : J}
     (hik : i ≤ k) (hkj : k ≤ j) (p : ExtendedGlobalPairIndex i j k) :
