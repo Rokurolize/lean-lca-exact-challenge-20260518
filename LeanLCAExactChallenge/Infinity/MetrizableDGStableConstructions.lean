@@ -247,6 +247,53 @@ def dgMappingConeExplicitCoordinateCochainIso
         (dgMappingConeCochainLinearEquiv T f n).toModuleIso
         (dgMappingConeCochainLinearEquiv T f m).toModuleIso)
 
+/-- The cone Hom isomorphism survives the nonpositive truncation used by the direct dg
+mapping object. -/
+def dgMappingConeExplicitCoordinateChainIso
+    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) :
+    dgMappingDirectZModuleChainComplex T (dgMappingConeObject f) ≅
+      HomologicalComplex.truncLE' (dgMappingConeExplicitCoordinateCochainComplex T f)
+        ComplexShape.embeddingDownNat :=
+  (ComplexShape.embeddingDownNat.truncLE'Functor (ModuleCat.{0} ℤ)).mapIso
+    (dgMappingConeExplicitCoordinateCochainIso T f)
+
+/-- Transport the truncated cone Hom isomorphism through the Dold--Kan inverse. -/
+def dgMappingConeExplicitCoordinateSimplicialModuleIso
+    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) :
+    dgMappingDirectZModuleSimplicialModule T (dgMappingConeObject f) ≅
+      DoldKanMonoidal.zModuleDoldKanEquivalence.inverse.obj
+        (HomologicalComplex.truncLE'
+          (dgMappingConeExplicitCoordinateCochainComplex T f)
+          ComplexShape.embeddingDownNat) :=
+  DoldKanMonoidal.zModuleDoldKanEquivalence.inverse.mapIso
+    (dgMappingConeExplicitCoordinateChainIso T f)
+
+/-- Forgetting the module structure degreewise preserves the transported cone Hom
+isomorphism. -/
+def dgMappingConeExplicitCoordinateSSetIso
+    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) :
+    dgMappingDirectZModuleSSet T (dgMappingConeObject f) ≅
+      zModuleSimplicialForget.obj
+        (DoldKanMonoidal.zModuleDoldKanEquivalence.inverse.obj
+          (HomologicalComplex.truncLE'
+            (dgMappingConeExplicitCoordinateCochainComplex T f)
+            ComplexShape.embeddingDownNat)) :=
+  zModuleSimplicialForget.mapIso
+    (dgMappingConeExplicitCoordinateSimplicialModuleIso T f)
+
+/-- The actual enriched Hom simplicial set into the cone is the Dold--Kan realization of the
+explicit coordinate complex. -/
+def directDGMappingConeEnrichedHomIso
+    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) :
+    (directDGObject T ⟶[SSet] directDGObject (dgMappingConeObject f)) ≅
+      zModuleSimplicialForget.obj
+        (DoldKanMonoidal.zModuleDoldKanEquivalence.inverse.obj
+          (HomologicalComplex.truncLE'
+            (dgMappingConeExplicitCoordinateCochainComplex T f)
+            ComplexShape.embeddingDownNat)) :=
+  (eqToIso (directDG_enrichedHom_eq T (dgMappingConeObject f))).trans
+    (dgMappingConeExplicitCoordinateSSetIso T f)
+
 /-- Differential compatibility of the cone decomposition.  In coordinates the cone Hom
 differential is the standard upper-triangular matrix: the shifted-source differential carries
 the minus sign, while the target coordinate receives postcomposition by `f`. -/
