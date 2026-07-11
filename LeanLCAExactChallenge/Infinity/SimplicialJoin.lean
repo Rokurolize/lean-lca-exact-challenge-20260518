@@ -2773,6 +2773,24 @@ lemma representableJoinHornInitial_ι_innerAnodyne
   rw [SSet.Subcomplex.topIso_hom, SSet.Subcomplex.homOfLE_ι] at hcomp
   exact hcomp
 
+lemma representableJoinHornMap_innerAnodyne_of_mono
+    (m n : ℕ) (i : Fin (n + 2))
+    (h0 : 0 < i) (hn : i < Fin.last (n + 1))
+    [Mono (representableJoinHornMap.{u} m (n + 1) i)] :
+    SSet.innerAnodyneExtensions
+      (representableJoinHornMap.{u} m (n + 1) i) := by
+  have hRange := representableJoinHornInitial_ι_innerAnodyne
+    m n i h0 hn
+  have hToRange := SSet.innerAnodyneExtensions.of_isIso
+    (SSet.Subcomplex.toRange (representableJoinHornMap.{u} m (n + 1) i))
+  have hcomp := SSet.innerAnodyneExtensions.comp_mem _ _ hToRange hRange
+  change SSet.innerAnodyneExtensions
+    (SSet.Subcomplex.toRange (representableJoinHornMap.{u} m (n + 1) i) ≫
+      (SSet.Subcomplex.range
+        (representableJoinHornMap.{u} m (n + 1) i)).ι) at hcomp
+  rw [SSet.Subcomplex.toRange_ι] at hcomp
+  exact hcomp
+
 lemma representableJoinHornStage_adjoin_hornRange_bicartSq
     (m n r : ℕ) (i : Fin (n + 2)) (T : Finset (Fin (m + 1)))
     (hT : T.card = r + 1) :
