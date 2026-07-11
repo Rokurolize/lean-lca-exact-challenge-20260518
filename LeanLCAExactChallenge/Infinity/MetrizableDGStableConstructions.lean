@@ -388,6 +388,51 @@ def directDGMappingConeEnrichedUniversalProperty
     DirectDGMappingConeEnrichedUniversalProperty f where
   mappingIso T := directDGMappingConeEnrichedHomIso T f
 
+/-- Degreewise additive decomposition of maps out of a cone.  This is the dual coordinate
+carrier needed for the cartesian half of the stable cone-square calculation. -/
+def dgMappingConeCochainFromAddEquiv
+    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) (n : ℤ) :
+    CochainComplex.HomComplex.Cochain
+        (CochainComplex.mappingCone
+          ((boundedCochainComplex MetrizableLCA.{0}).ι.map f)) T.obj n ≃+
+      (CochainComplex.HomComplex.Cochain K.obj T.obj (n - 1) ×
+        CochainComplex.HomComplex.Cochain L.obj T.obj n) where
+  toFun γ :=
+    ((CochainComplex.mappingCone.inl
+        ((boundedCochainComplex MetrizableLCA.{0}).ι.map f)).comp γ (by omega),
+      (CochainComplex.HomComplex.Cochain.ofHom
+        (CochainComplex.mappingCone.inr
+          ((boundedCochainComplex MetrizableLCA.{0}).ι.map f))).comp γ (zero_add n))
+  invFun γ := CochainComplex.mappingCone.descCochain
+    ((boundedCochainComplex MetrizableLCA.{0}).ι.map f) γ.1 γ.2 (by omega)
+  left_inv γ := by
+    rw [dgMappingConeCochain_ext_from_iff T f (n - 1) n (by omega)]
+    exact ⟨CochainComplex.mappingCone.inl_descCochain _ _ _ _,
+      CochainComplex.mappingCone.inr_descCochain _ _ _ _⟩
+  right_inv γ := by
+    exact Prod.ext
+      (CochainComplex.mappingCone.inl_descCochain _ _ _ _)
+      (CochainComplex.mappingCone.inr_descCochain _ _ _ _)
+  map_add' γ γ' := by
+    apply Prod.ext
+    · exact CochainComplex.HomComplex.Cochain.comp_add _ _ _ (by omega)
+    · exact CochainComplex.HomComplex.Cochain.comp_add _ _ _ (zero_add n)
+
+/-- The maps-out coordinate equivalence is integer-linear. -/
+def dgMappingConeCochainFromLinearEquiv
+    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) (n : ℤ) :
+    CochainComplex.HomComplex.Cochain
+        (CochainComplex.mappingCone
+          ((boundedCochainComplex MetrizableLCA.{0}).ι.map f)) T.obj n ≃ₗ[ℤ]
+      (CochainComplex.HomComplex.Cochain K.obj T.obj (n - 1) ×
+        CochainComplex.HomComplex.Cochain L.obj T.obj n) :=
+  { dgMappingConeCochainFromAddEquiv T f n with
+    map_smul' := by
+      intro r γ
+      apply Prod.ext
+      · exact CochainComplex.HomComplex.Cochain.comp_smul _ r γ (by omega)
+      · exact CochainComplex.HomComplex.Cochain.comp_smul _ r γ (zero_add n) }
+
 /-- The same cone, regarded as an object of the honest direct simplicial dg category. -/
 def directDGMappingConeObject {K L : ComplexCategory} (f : K ⟶ L) :
     DirectDGSimplicialCategory :=
