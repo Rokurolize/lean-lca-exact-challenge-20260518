@@ -805,6 +805,50 @@ noncomputable def thickPathNerveCubeIso {J : Type u} [LinearOrder J]
       CategoryTheory.nerve (ThickPath i j) ≅ CategoryTheory.nerve (LiftedPiBits.{u} n)).trans
     (liftedPiBitsCubeIso n)
 
+/-- The computation-friendly path-cube comparison, obtained by composing the explicit
+bitvector presentation directly with the recursive explicit cube comparison. -/
+noncomputable def thickPathNerveCubeIsoExplicit {J : Type u} [LinearOrder J]
+    {i j : J} (hij : i ≤ j) (n : ℕ) (e : InteriorVertex i j ≃ Fin n) :
+    CategoryTheory.nerve (ThickPath i j) ≅ liftedIntervalCube n :=
+  ({ hom := CategoryTheory.nerveMap (thickPathToLiftedPiBitsFunctor hij n e)
+     inv := CategoryTheory.nerveMap (liftedPiBitsToThickPathFunctor hij n e)
+     hom_inv_id := by
+       change CategoryTheory.nerveFunctor.map
+           (thickPathToLiftedPiBitsFunctor hij n e).toCatHom ≫
+         CategoryTheory.nerveFunctor.map
+           (liftedPiBitsToThickPathFunctor hij n e).toCatHom = _
+       rw [← CategoryTheory.Functor.map_comp]
+       have hf : thickPathToLiftedPiBitsFunctor hij n e ⋙
+           liftedPiBitsToThickPathFunctor hij n e = CategoryTheory.Functor.id _ :=
+         CategoryTheory.Functor.ext
+         (h_obj := fun P ↦ (thickPathLiftedPiBitsEquiv hij n e).left_inv P)
+         (h_map := fun _ _ _ ↦ Subsingleton.elim _ _)
+       have hc : (thickPathToLiftedPiBitsFunctor hij n e).toCatHom ≫
+           (liftedPiBitsToThickPathFunctor hij n e).toCatHom = 𝟙 _ := by
+         apply CategoryTheory.Cat.Hom.ext
+         exact hf
+       rw [hc, CategoryTheory.Functor.map_id]
+       rfl
+     inv_hom_id := by
+       change CategoryTheory.nerveFunctor.map
+           (liftedPiBitsToThickPathFunctor hij n e).toCatHom ≫
+         CategoryTheory.nerveFunctor.map
+           (thickPathToLiftedPiBitsFunctor hij n e).toCatHom = _
+       rw [← CategoryTheory.Functor.map_comp]
+       have hf : liftedPiBitsToThickPathFunctor hij n e ⋙
+           thickPathToLiftedPiBitsFunctor hij n e = CategoryTheory.Functor.id _ :=
+         CategoryTheory.Functor.ext
+         (h_obj := fun b ↦ (thickPathLiftedPiBitsEquiv hij n e).right_inv b)
+         (h_map := fun _ _ _ ↦ Subsingleton.elim _ _)
+       have hc : (liftedPiBitsToThickPathFunctor hij n e).toCatHom ≫
+           (thickPathToLiftedPiBitsFunctor hij n e).toCatHom = 𝟙 _ := by
+         apply CategoryTheory.Cat.Hom.ext
+         exact hf
+       rw [hc, CategoryTheory.Functor.map_id]
+       rfl } :
+      CategoryTheory.nerve (ThickPath i j) ≅ CategoryTheory.nerve (LiftedPiBits.{u} n)).trans
+    (liftedPiBitsCubeIsoExplicit n)
+
 /-- The prefix of a path at one of its vertices. -/
 def beforePath {J : Type u} [LinearOrder J] {i j k : J} (P : ThickPath i j)
     (hk : k ∈ P.I) : ThickPath i k where
