@@ -1294,6 +1294,43 @@ theorem knownAt_iff_bitvector_corner (c : PathChain r i j) (k : J)
       refine ⟨x.1, le_of_lt x.2.1, le_of_lt x.2.2, hxk, ?_⟩
       simpa using hx
 
+/-- A monotone path chain is constantly `1` in one Boolean coordinate exactly when its
+least path is `1` in that coordinate. -/
+theorem bitvector_all_one_iff_first (c : PathChain r i j) (hij : i ≤ j)
+    (x : InteriorVertex i j) :
+    (∀ a, (thickPathBitvectorOrderIso hij (c.path a)) x = 1) ↔
+      (thickPathBitvectorOrderIso hij c.first) x = 1 := by
+  constructor
+  · intro h
+    exact h 0
+  · intro h a
+    have hx : x.1 ∈ c.first.I := by
+      simpa [thickPathBitvectorOrderIso, OrderIso.trans_apply,
+        setBitvectorOrderIso, thickPathInteriorOrderIso] using h
+    have hsub : c.first.I ⊆ (c.path a).I := c.monotone' (Fin.zero_le a)
+    simpa [thickPathBitvectorOrderIso, OrderIso.trans_apply,
+      setBitvectorOrderIso, thickPathInteriorOrderIso] using hsub hx
+
+/-- A monotone path chain is constantly `0` in one Boolean coordinate exactly when its
+greatest path is `0` in that coordinate. -/
+theorem bitvector_all_zero_iff_last (c : PathChain r i j) (hij : i ≤ j)
+    (x : InteriorVertex i j) :
+    (∀ a, (thickPathBitvectorOrderIso hij (c.path a)) x = 0) ↔
+      (thickPathBitvectorOrderIso hij c.last) x = 0 := by
+  constructor
+  · intro h
+    exact h (Fin.last r)
+  · intro h a
+    have hx : x.1 ∉ c.last.I := by
+      simpa [thickPathBitvectorOrderIso, OrderIso.trans_apply,
+        setBitvectorOrderIso, thickPathInteriorOrderIso] using h
+    have hsub : (c.path a).I ⊆ c.last.I := c.monotone' (Fin.le_last a)
+    by_contra ha
+    have : x.1 ∈ (c.path a).I := by
+      simpa [thickPathBitvectorOrderIso, OrderIso.trans_apply,
+        setBitvectorOrderIso, thickPathInteriorOrderIso] using ha
+    exact hx (hsub this)
+
 /-- Endpoint signs for the cubical corner supplied by the `k`th coherent horn: the coordinate
 of `k` is fixed at `1`, while every other internal coordinate is fixed at `0`. -/
 noncomputable def coherentCornerSign (k : J) (hik : i < k) (hkj : k < j)
