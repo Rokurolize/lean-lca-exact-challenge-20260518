@@ -18,6 +18,7 @@ namespace LeanLCAExactChallenge
 namespace Infinity
 
 open CategoryTheory
+open CategoryTheory.MonoidalCategory
 
 universe u
 
@@ -66,6 +67,29 @@ instance qcatHomToEnrichedHom_essSurj (X Y : SSet.QCat.{u}) :
 
 instance qcatHomToEnrichedHom_isEquivalence (X Y : SSet.QCat.{u}) :
     (qcatHomToEnrichedHom X Y).IsEquivalence where
+
+private instance qcatTensorUnit_quasicategory :
+    SSet.Quasicategory (𝟙_ SSet.{u}) := by
+  apply SSet.quasicategory_of_hasLiftingProperty _
+    (SemiCartesianMonoidalCategory.isTerminalTensorUnit (C := SSet.{u}))
+  intro n i h₀ hₙ
+  have heq : (SemiCartesianMonoidalCategory.isTerminalTensorUnit
+      (C := SSet.{u})).from (𝟙_ SSet) = 𝟙 (𝟙_ SSet) :=
+    (SemiCartesianMonoidalCategory.isTerminalTensorUnit (C := SSet.{u})).hom_ext _ _
+  rw [heq]
+  infer_instance
+
+private def qcatTensorUnit : SSet.QCat.{u} :=
+  ⟨𝟙_ SSet, qcatTensorUnit_quasicategory⟩
+
+/-- The strict-bicategory Hom from the tensor unit is explicitly equivalent to the
+homotopy category of a quasicategory. -/
+noncomputable def qcatUnitHomEquivalence (X : SSet.QCat.{u}) :
+    (qcatTensorUnit ⟶ X) ≌ SSet.hoFunctor.obj X.obj :=
+  (qcatHomToEnrichedHom qcatTensorUnit X).asEquivalence |>.trans
+    (Cat.equivOfIso (SSet.hoFunctor.mapIso
+      (MonoidalClosed.unitIsoSelf (C := SSet.{u}) (X := X.obj)))
+    )
 
 /-- Maps between nerves are exactly ordinary functors.  This is the fully-faithful
 starting point for comparing the mapping localization with its ordinary truncation. -/
