@@ -43,6 +43,20 @@ lemma RightFibration.hasLiftingProperty
     HasLiftingProperty (SSet.horn n i).ι p :=
   RightFibration.mem _ (horn_ι_mem_rightHornInclusions h0)
 
+/-- A right fibration lifts an edge once its target vertex has been lifted. -/
+lemma RightFibration.hasLiftingProperty_edgeTarget
+    {X Y : SSet.{u}} (p : X ⟶ Y) [RightFibration p] :
+    HasLiftingProperty
+      (SSet.horn 1 (1 : Fin 2)).ι p :=
+  RightFibration.hasLiftingProperty p (by simp)
+
+/-- The outer `2`-horn used to lift a chosen preinverse triangle. -/
+lemma RightFibration.hasLiftingProperty_preinverseTriangle
+    {X Y : SSet.{u}} (p : X ⟶ Y) [RightFibration p] :
+    HasLiftingProperty
+      (SSet.horn 2 (2 : Fin 3)).ι p :=
+  RightFibration.hasLiftingProperty p (by simp)
+
 lemma innerHornInclusions_le_rightHornInclusions :
     SSet.innerHornInclusions.{u} ≤ rightHornInclusions.{u} := by
   intro A B f hf
