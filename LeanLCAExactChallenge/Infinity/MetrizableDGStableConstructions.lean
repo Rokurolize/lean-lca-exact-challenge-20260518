@@ -144,6 +144,37 @@ theorem dgMappingConeCochain_ext_from_iff
   CochainComplex.mappingCone.ext_cochain_from_iff
     ((boundedCochainComplex MetrizableLCA.{0}).ι.map f) i j hij
 
+/-- Degreewise additive decomposition of maps into a cone into its shifted-source and target
+coordinates.  Unlike mere extensionality, this is the actual representability isomorphism on
+the graded Hom carrier. -/
+def dgMappingConeCochainAddEquiv
+    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) (n : ℤ) :
+    CochainComplex.HomComplex.Cochain T.obj
+        (CochainComplex.mappingCone
+          ((boundedCochainComplex MetrizableLCA.{0}).ι.map f)) n ≃+
+      (CochainComplex.HomComplex.Cochain T.obj K.obj (n + 1) ×
+        CochainComplex.HomComplex.Cochain T.obj L.obj n) where
+  toFun γ :=
+    (γ.comp (CochainComplex.mappingCone.fst
+        ((boundedCochainComplex MetrizableLCA.{0}).ι.map f)).1 rfl,
+      γ.comp (CochainComplex.mappingCone.snd
+        ((boundedCochainComplex MetrizableLCA.{0}).ι.map f)) (add_zero n))
+  invFun γ :=
+    CochainComplex.mappingCone.liftCochain
+      ((boundedCochainComplex MetrizableLCA.{0}).ι.map f) γ.1 γ.2 rfl
+  left_inv γ := by
+    rw [dgMappingConeCochain_ext_to_iff T f n (n + 1) rfl]
+    exact ⟨CochainComplex.mappingCone.liftCochain_fst _ _ _ _,
+      CochainComplex.mappingCone.liftCochain_snd _ _ _ _⟩
+  right_inv γ := by
+    exact Prod.ext
+      (CochainComplex.mappingCone.liftCochain_fst _ _ _ _)
+      (CochainComplex.mappingCone.liftCochain_snd _ _ _ _)
+  map_add' γ γ' := by
+    apply Prod.ext
+    · exact CochainComplex.HomComplex.Cochain.add_comp _ _ _ rfl
+    · exact CochainComplex.HomComplex.Cochain.add_comp _ _ _ (add_zero n)
+
 /-- The same cone, regarded as an object of the honest direct simplicial dg category. -/
 def directDGMappingConeObject {K L : ComplexCategory} (f : K ⟶ L) :
     DirectDGSimplicialCategory :=
