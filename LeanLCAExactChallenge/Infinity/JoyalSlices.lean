@@ -76,6 +76,49 @@ theorem forgetAugmentation_augmentedJoinMapOfUnderlying
     (convolutionSingletonUnderlyingIso X K).hom ≫ ψ = ψ
   rw [← Category.assoc, Iso.inv_hom_id, Category.id_comp]
 
+/-- A convolution map is fixed over `a` when its restriction along a nonempty
+right-variable map agrees with an already fixed-base convolution map. -/
+noncomputable def fixedBaseDayConvolutionMapOfRestriction
+    (F G : AugmentedSSet.{u}) (a : F ⟶ G) {K K' : SSet.{u}}
+    (j : K' ⟶ K) (φ : FixedBaseDayConvolutionMapOver F G K' a)
+    (τ : letI := augmentedDayConvolution F (emptyAugmentation.{u}.obj K)
+      CategoryTheory.MonoidalCategory.DayConvolution.convolution F
+          (emptyAugmentation.{u}.obj K) ⟶ G)
+    (hτ : letI := augmentedDayConvolution F (emptyAugmentation.{u}.obj K')
+      (augmentedDayTensorLeft F).map (emptyAugmentation.{u}.map j) ≫ τ = φ.1) :
+    FixedBaseDayConvolutionMapOver F G K a := by
+  letI := augmentedDayConvolution F (emptyAugmentation.{u}.obj K)
+  letI := augmentedDayConvolution F (emptyAugmentation.{u}.obj K')
+  refine ⟨τ, ?_⟩
+  have hpre := augmentedDayHomEquiv_precomp F
+    (emptyAugmentation.obj K) (emptyAugmentation.obj K') G
+    (emptyAugmentation.map j) τ
+  have hrestrict := congrArg
+    (fun k ↦ augmentedDayHomEquiv F (emptyAugmentation.obj K') G k) hτ
+  have htrans : augmentedDayHomEquiv F (emptyAugmentation.obj K') G φ.1 =
+      emptyAugmentation.map j ≫
+        augmentedDayHomEquiv F (emptyAugmentation.obj K) G τ :=
+    hrestrict.symm.trans hpre
+  have heval := congrArg (fun t ↦ t.app (Opposite.op WithInitial.star)
+    (emptyAugmentationStarPoint K')) htrans
+  have hp : (emptyAugmentation.map j).app (Opposite.op WithInitial.star)
+      (emptyAugmentationStarPoint K') = emptyAugmentationStarPoint K := by
+    let fx : (emptyAugmentation.obj K).obj (Opposite.op WithInitial.star) ⟶
+        (emptyAugmentation.obj K).obj (Opposite.op WithInitial.star) :=
+      ConcreteCategory.ofHom (TypeCat.Fun.mk (fun _ ↦
+        (emptyAugmentation.map j).app (Opposite.op WithInitial.star)
+          (emptyAugmentationStarPoint K')))
+    let ft : (emptyAugmentation.obj K).obj (Opposite.op WithInitial.star) ⟶
+        (emptyAugmentation.obj K).obj (Opposite.op WithInitial.star) :=
+      ConcreteCategory.ofHom
+        (TypeCat.Fun.mk (fun _ ↦ emptyAugmentationStarPoint K))
+    exact ConcreteCategory.congr_hom
+      ((emptyAugmentationStarIsTerminal K).hom_ext fx ft)
+        (emptyAugmentationStarPoint K)
+  change _ = _ at heval
+  rw [NatTrans.comp_app, ConcreteCategory.comp_apply, hp] at heval
+  exact heval.symm.trans φ.2
+
 set_option backward.isDefEq.respectTransparency false in
 set_option maxHeartbeats 200000 in
 /-- The fixed-base Day transpose is natural under precomposition of the simplicial
