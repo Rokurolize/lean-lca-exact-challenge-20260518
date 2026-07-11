@@ -3939,5 +3939,54 @@ noncomputable instance emptyAugmentation_full : emptyAugmentation.{u}.Full :=
 noncomputable instance emptyAugmentation_faithful : emptyAugmentation.{u}.Faithful :=
   emptyAugmentationFullyFaithful.{u}.faithful
 
+
+noncomputable instance relativeDaySliceOverMap_stdSimplex_quasicategory (m : ℕ) (Q : SSet.{u}) [SSet.Quasicategory Q]
+    (a : emptyAugmentation.{u}.obj (Δ[m] : SSet.{u}) ⟶ emptyAugmentation.{u}.obj Q) :
+    SSet.Quasicategory (relativeDaySliceOverMap
+      (emptyAugmentation.{u}.obj (Δ[m] : SSet.{u})) (emptyAugmentation.{u}.obj Q) a) where
+  hornFilling' n i σ₀ h0 hn := by
+    let F := emptyAugmentation.{u}.obj (Δ[m] : SSet.{u})
+    let G := emptyAugmentation.{u}.obj Q
+    let φ := relativeDaySliceOverMapFixedBaseEquiv F G (Λ[n + 2, i] : SSet.{u}) a σ₀
+    let f : simplicialJoin (Δ[m] : SSet.{u}) Λ[n + 2, i] ⟶ Q :=
+      forgetAugmentation.{u}.map φ.1
+    obtain ⟨g, hg⟩ := exists_representableJoinHornMap_extension m n i h0 hn Q f
+    let ψ : (augmentedDayTensorLeft F).obj (emptyAugmentation.{u}.obj (Δ[n + 2] : SSet.{u})) ⟶ G :=
+      (convolutionSingletonAugmentationIso (Δ[m] : SSet.{u}) (Δ[n + 2] : SSet.{u})).inv ≫
+        emptyAugmentation.{u}.map ((simplicialJoinStdSimplexIsoNat m (n + 2)).hom ≫ g)
+    have hpre : (augmentedDayTensorLeft F).map
+          (emptyAugmentation.{u}.map (SSet.horn (n + 2) i).ι) ≫ ψ = φ.1 := by
+      apply forgetAugmentation.{u}.map_injective
+      dsimp [ψ, f, F]
+      simp only [Functor.map_comp, Category.assoc]
+      rw [simplicialJoinMap_id_eq_augmentedDayTensorLeft_map]
+      change simplicialJoinMap (𝟙 (Δ[m] : SSet.{u})) (SSet.horn (n + 2) i).ι ≫
+          (simplicialJoinStdSimplexIsoNat m (n + 2)).hom ≫ g = _
+      simpa [representableJoinHornMap] using hg
+    have hbase : ((augmentedDayHomEquiv F (emptyAugmentation.{u}.obj (Δ[n + 2] : SSet.{u})) G ψ).app
+        (Opposite.op WithInitial.star)) (emptyAugmentationStarPoint (Δ[n + 2] : SSet.{u})) =
+        dayInternalHomStarOfMap a := by
+      have ht := congrArg (fun τ => augmentedDayHomEquiv F
+        (emptyAugmentation.{u}.obj Λ[n + 2, i]) G τ) hpre
+      rw [augmentedDayHomEquiv_precomp] at ht
+      have hp := congrArg (fun τ => τ.app (Opposite.op WithInitial.star)
+        (emptyAugmentationStarPoint (Λ[n + 2, i] : SSet.{u}))) ht
+      have heq : (emptyAugmentation.{u}.map (SSet.horn (n + 2) i).ι).app
+          (Opposite.op WithInitial.star) (emptyAugmentationStarPoint (Λ[n + 2, i] : SSet.{u})) =
+          emptyAugmentationStarPoint (Δ[n + 2] : SSet.{u}) := by
+        exact (Limits.Types.isTerminalEquivUnique _
+          (emptyAugmentationStarIsTerminal (Δ[n + 2] : SSet.{u}))).uniq _
+      rw [NatTrans.comp_app, types_comp_apply, heq] at hp
+      exact hp.trans φ.2
+    let φ' : FixedBaseDayConvolutionMapOver F G (Δ[n + 2] : SSet.{u}) a := ⟨ψ, hbase⟩
+    let σ := (relativeDaySliceOverMapFixedBaseEquiv F G (Δ[n + 2] : SSet.{u}) a).symm φ'
+    refine ⟨σ, ?_⟩
+    apply (relativeDaySliceOverMapFixedBaseEquiv F G (Λ[n + 2, i] : SSet.{u}) a).injective
+    apply Subtype.ext
+    dsimp [σ, φ']
+    rw [Equiv.apply_symm_apply]
+    exact hpre.symm
+
+
 end Infinity
 end LeanLCAExactChallenge
