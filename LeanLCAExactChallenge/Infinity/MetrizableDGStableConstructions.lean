@@ -257,6 +257,20 @@ def dgMappingConeCochainComponentIso (T : ComplexCategory)
       (HomologicalComplex.homotopyCofiber.XIsoBiprod
         (dgHomZModulePostcomposition T f) n (n + 1) rfl).symm)
 
+@[reassoc]
+theorem dgMappingConeCochainComponentIso_hom_fst
+    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) (n : ℤ) :
+    (dgMappingConeCochainComponentIso T f n).hom ≫
+        (CochainComplex.mappingCone.fst (dgHomZModulePostcomposition T f)).1.v
+          n (n + 1) rfl =
+      (dgMappingConeCochainLinearEquiv T f n).toModuleIso.hom ≫
+        ModuleCat.ofHom (LinearMap.fst ℤ
+          (CochainComplex.HomComplex.Cochain T.obj K.obj (n + 1))
+          (CochainComplex.HomComplex.Cochain T.obj L.obj n)) := by
+  simp [dgMappingConeCochainComponentIso, CochainComplex.mappingCone.fst,
+    HomologicalComplex.homotopyCofiber.fstX, Category.assoc]
+  rfl
+
 /-- The same cone, regarded as an object of the honest direct simplicial dg category. -/
 def directDGMappingConeObject {K L : ComplexCategory} (f : K ⟶ L) :
     DirectDGSimplicialCategory :=
