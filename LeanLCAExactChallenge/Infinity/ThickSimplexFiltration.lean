@@ -684,6 +684,24 @@ instance alternatingSimplexToSubcomplex_one_isIso :
     IsIso (alternatingSimplexToSubcomplex 1) :=
   isIso_of_mono_of_epi _
 
+/-- The first nonempty alternating stage is the directed `1`-simplex. -/
+noncomputable def alternatingEquivalenceFirstStageIso :
+    (Δ[1] : SSet.{u}) ≅ (alternatingEquivalenceSubcomplex 1 : SSet.{u}) :=
+  asIso (alternatingSimplexToSubcomplex 1)
+
+@[reassoc]
+theorem alternatingEquivalenceFirstStageIso_hom_comp_inclusion :
+    alternatingEquivalenceFirstStageIso.{u}.hom ≫
+        alternatingEquivalenceFiltrationInclusion =
+      equivalenceIntervalInclusion.{u} := by
+  change alternatingSimplexToSubcomplex 1 ≫
+      (alternatingEquivalenceSubcomplex 1).ι = equivalenceIntervalInclusion
+  rw [alternatingSimplexToSubcomplex_ι]
+  apply SSet.yonedaEquiv.injective
+  rw [equivalenceIntervalInclusion, Equiv.apply_symm_apply,
+    alternatingEquivalenceSimplexMap, Equiv.apply_symm_apply,
+    alternatingEquivalenceSimplex_one]
+
 /-- Stagewise lifting along the alternating filtration. -/
 def AlternatingFiltrationRLP (Q : SSet.{u}) : Prop :=
   ∀ n : ℕ, HasLiftingProperty
