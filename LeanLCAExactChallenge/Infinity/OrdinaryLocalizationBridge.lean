@@ -22,6 +22,33 @@ open CategoryTheory.MonoidalCategory
 
 universe u
 
+universe v w
+
+/-- In a Cat-enriched ordinary category, the transported horizontal composite has the
+expected enriched-composition normal form after applying `Hom.base`. -/
+theorem catEnrichedOrdinary_base_hComp
+    {C : Type u} [Category.{v} C] [EnrichedOrdinaryCategory Cat.{w, u} C]
+    {a b c : CategoryTheory.CatEnrichedOrdinary C}
+    {f f' : a ⟶ b} {g g' : b ⟶ c} (eta : f ⟶ f') (theta : g ⟶ g') :
+    CategoryTheory.CatEnrichedOrdinary.Hom.base
+        (CategoryTheory.CatEnrichedOrdinary.hComp eta theta) =
+      eqToHom (CategoryTheory.CatEnrichedOrdinary.homEquiv_comp f g) ≫
+        CategoryTheory.CatEnriched.hComp
+          (CategoryTheory.CatEnrichedOrdinary.Hom.base eta)
+          (CategoryTheory.CatEnrichedOrdinary.Hom.base theta) ≫
+        eqToHom (CategoryTheory.CatEnrichedOrdinary.homEquiv_comp f' g').symm := by
+  rfl
+
+/-- Horizontal composition in the underlying Cat-enriched category is literally the map of
+the enriched composition functor. -/
+theorem catEnriched_hComp_eq_eComp_map
+    {C : Type u} [Category.{v} C] [EnrichedCategory Cat.{w, u} C]
+    {a b c : CategoryTheory.CatEnriched C}
+    {f f' : a ⟶ b} {g g' : b ⟶ c} (eta : f ⟶ f') (theta : g ⟶ g') :
+    CategoryTheory.CatEnriched.hComp eta theta =
+      (eComp Cat a b c).toFunctor.map (eta, theta) := by
+  rfl
+
 /-- Postcomposition with the forward map of a bicategorical adjoint equivalence is an
 equivalence of ordinary hom-categories. -/
 theorem bicategoricalEquivalence_postcomp_isEquivalence
