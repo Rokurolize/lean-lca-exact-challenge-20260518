@@ -368,6 +368,26 @@ noncomputable def internalHomNerveIso (L : SSet.{u}) (E : Cat.{u, u}) :
   exact nerveInternalHomIso (SSet.hoFunctor.obj L) E ≪≫
     @asIso SSet _ _ _ (internalHomReflectionPre L E) hPre
 
+/-- The marking-inverting vertex predicate transported to the ordinary functor category by
+the internal-Hom nerve isomorphism. -/
+noncomputable def PulledRelativeFunctorProperty
+    {L : SSet.{u}} (W : EdgeMarking L) (E : Cat.{u, u}) :
+    ObjectProperty ((ihom (SSet.hoFunctor.obj L)).obj E) :=
+  fun F ↦ InvertsMarkedEdges W
+    (internalHomVertexMap L (nerveFunctor.obj E)
+      ((internalHomNerveIso L E).hom.app (Opposite.op ⦋0⦌)
+        (CategoryTheory.nerveEquiv.symm F)))
+
+theorem pulledRelativeFunctorProperty_iff
+    {L : SSet.{u}} (W : EdgeMarking L) (E : Cat.{u, u})
+    (F : (ihom (SSet.hoFunctor.obj L)).obj E) :
+    PulledRelativeFunctorProperty W E F ↔
+      InvertsMarkedEdges W
+        (internalHomVertexMap L (nerveFunctor.obj E)
+          ((internalHomNerveIso L E).hom.app (Opposite.op ⦋0⦌)
+            (CategoryTheory.nerveEquiv.symm F))) :=
+  Iff.rfl
+
 /-- For an arbitrary simplicial set `L`, mapping into a categorical nerve has homotopy
 category the ordinary functor category out of `ho L`. -/
 noncomputable def internalHomNerveHomotopyEquivalence (L : SSet.{u}) (E : Cat.{u, u}) :
