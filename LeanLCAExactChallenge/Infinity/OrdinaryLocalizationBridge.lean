@@ -1599,6 +1599,69 @@ theorem mappingLocalizationHomotopyFunctor_inverts
   change IsIso (edgeHomotopyClass ((SSet.Edge.mk' a).map ell.hom))
   infer_instance
 
+private abbrev mappingLocalizationOrdinaryMorphismProperty
+    {A : SSet.QCat.{u}} (W : EdgeMarking A.obj) :=
+  markedHomotopyMorphismProperty W
+
+private noncomputable def mappingLocalizationOrdinaryLift
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) :
+    (mappingLocalizationOrdinaryMorphismProperty W).Localization ⥤
+      SSet.hoFunctor.obj L.obj :=
+  Localization.Construction.lift (SSet.hoFunctor.map ell.hom).toFunctor
+    (mappingLocalizationHomotopyFunctor_inverts h)
+
+private noncomputable def mappingLocalizationOrdinaryCandidateInverse
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) :
+    SSet.hoFunctor.obj L.obj ⥤
+      (mappingLocalizationOrdinaryMorphismProperty W).Localization :=
+  (mappingLocalizationFunctorsInvertingEquivalence h
+    (Cat.of (mappingLocalizationOrdinaryMorphismProperty W).Localization)).inverse.obj
+      ⟨(mappingLocalizationOrdinaryMorphismProperty W).Q,
+        (mappingLocalizationOrdinaryMorphismProperty W).Q_inverts⟩
+
+private noncomputable def mappingLocalizationOrdinaryCandidateInverseCompIso
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) :
+    (SSet.hoFunctor.map ell.hom).toFunctor ⋙
+        mappingLocalizationOrdinaryCandidateInverse h ≅
+      (mappingLocalizationOrdinaryMorphismProperty W).Q :=
+  (mappingLocalizationFunctorsInvertingForwardPrecompIso h
+    (Cat.of (mappingLocalizationOrdinaryMorphismProperty W).Localization)).symm.app
+      (mappingLocalizationOrdinaryCandidateInverse h) ≪≫
+    (ObjectProperty.ι
+      (fun F ↦ (mappingLocalizationOrdinaryMorphismProperty W).IsInvertedBy F)).mapIso
+        ((mappingLocalizationFunctorsInvertingEquivalence h
+          (Cat.of (mappingLocalizationOrdinaryMorphismProperty W).Localization)).counitIso.app
+            ⟨(mappingLocalizationOrdinaryMorphismProperty W).Q,
+              (mappingLocalizationOrdinaryMorphismProperty W).Q_inverts⟩)
+
+private noncomputable def mappingLocalizationOrdinaryLiftUnitIso
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) :
+    𝟭 (mappingLocalizationOrdinaryMorphismProperty W).Localization ≅
+      mappingLocalizationOrdinaryLift h ⋙
+        mappingLocalizationOrdinaryCandidateInverse h := by
+  let W₀ := mappingLocalizationOrdinaryMorphismProperty W
+  let H := mappingLocalizationOrdinaryLift h
+  let G := mappingLocalizationOrdinaryCandidateInverse h
+  let K := (Localization.Construction.whiskeringLeftEquivalence W₀
+    W₀.Localization).functor ⋙
+      ObjectProperty.ι (fun F ↦ W₀.IsInvertedBy F)
+  have hK : K.FullyFaithful :=
+    (Localization.Construction.whiskeringLeftEquivalence W₀
+      W₀.Localization).fullyFaithfulFunctor.comp
+        (ObjectProperty.fullyFaithfulι (fun F ↦ W₀.IsInvertedBy F))
+  apply hK.preimageIso
+  exact Functor.rightUnitor W₀.Q ≪≫
+    (mappingLocalizationOrdinaryCandidateInverseCompIso h).symm ≪≫
+    Functor.isoWhiskerRight
+      (eqToIso (Localization.Construction.fac
+        (SSet.hoFunctor.map ell.hom).toFunctor
+        (mappingLocalizationHomotopyFunctor_inverts h))).symm G ≪≫
+    Functor.associator W₀.Q H G
+
 /-- Maps between nerves are exactly ordinary functors.  This is the fully-faithful
 starting point for comparing the mapping localization with its ordinary truncation. -/
 noncomputable def nerveFunctorCategoryEquiv (C D : Type u)
