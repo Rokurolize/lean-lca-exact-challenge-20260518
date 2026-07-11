@@ -377,6 +377,24 @@ theorem underSliceHornCornerMap_inr (n : ℕ) (i : Fin (n + 1)) :
       simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[n] := by
   apply pushout.inr_desc
 
+/-- The two pushout legs characterize the cone horn corner map. -/
+theorem underSliceHornCornerMap_eq_of_fac
+    (n : ℕ) (i : Fin (n + 1))
+    (c : pushout (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[n, i])
+        (SSet.horn n i).ι ⟶ simplicialJoin (Δ[0] : SSet.{u}) Δ[n])
+    (hinl : pushout.inl
+        (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[n, i])
+          (SSet.horn n i).ι ≫ c =
+        simplicialJoinMap (𝟙 (Δ[0] : SSet.{u})) (SSet.horn n i).ι)
+    (hinr : pushout.inr
+        (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[n, i])
+          (SSet.horn n i).ι ≫ c =
+        simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[n]) :
+    underSliceHornCornerMap n i = c := by
+  apply pushout.hom_ext
+  · rw [underSliceHornCornerMap_inl, hinl]
+  · rw [underSliceHornCornerMap_inr, hinr]
+
 /-- An extension of the cone corner associated to a lifting square determines
 an actual lift in the under-slice. -/
 theorem underSliceLiftOfCornerExtension
