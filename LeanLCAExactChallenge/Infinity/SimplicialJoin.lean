@@ -1804,6 +1804,84 @@ lemma representableJoinHornInitial_eq_iSup_multicoforkRanges
     (representableJoinHornIsColimit.{u} m i hn)
     (representableJoinHornMap m n i)
 
+lemma representableJoinHornCocone_right_comp_range (m n : ℕ)
+    (i : Fin (n + 2)) (j : ({i}ᶜ : Set (Fin (n + 2)))) :
+    SSet.Subcomplex.range
+        ((representableJoinHornCocone.{u} m i).ι.app (.right j) ≫
+          representableJoinHornMap m (n + 1) i) =
+      SSet.stdSimplex.face
+        ({(⟨m + 1 + j.1.val, by omega⟩ : Fin (m + (n + 1) + 2))}ᶜ) := by
+  rw [representableJoinHornCocone_right_comp]
+  exact ordinaryJoinTransportedRightLeg_range m n j.1
+
+lemma representableJoinHornInitial_eq_iSup_rightRanges
+    (m n : ℕ) (i : Fin (n + 2)) :
+    representableJoinHornInitial m (n + 1) i =
+      ⨆ (j : ({i}ᶜ : Set (Fin (n + 2)))), SSet.Subcomplex.range
+        ((representableJoinHornCocone.{u} m i).ι.app (.right j) ≫
+          representableJoinHornMap m (n + 1) i) := by
+  rw [representableJoinHornInitial_eq_iSup_multicoforkRanges m (n + 1) i (by omega)]
+  apply le_antisymm
+  · apply iSup_le
+    rintro (a | j)
+    · refine le_iSup_of_le
+        ((Limits.MultispanShape.ofLinearOrder
+          ({i}ᶜ : Set (Fin (n + 2)))).fst a) ?_
+      let f := Limits.WalkingMultispan.Hom.fst
+        (J := Limits.MultispanShape.ofLinearOrder ({i}ᶜ : Set (Fin (n + 2)))) a
+      have hnat := (representableJoinHornCocone.{u} m i).ι.naturality f
+      have hleg :
+          ((((((SSet.horn.multicoequalizerDiagram i).multispanIndex.toLinearOrder.map
+                SSet.Subcomplex.toSSetFunctor).multispan ⋙ singletonAugmentation.{u}) ⋙
+              augmentedDayTensorLeft (emptyAugmentation.{u}.obj (Δ[m] : SSet.{u}))) ⋙
+            forgetAugmentation.{u}).map f) ≫
+            (representableJoinHornCocone.{u} m i).ι.app
+              (.right ((Limits.MultispanShape.ofLinearOrder
+                ({i}ᶜ : Set (Fin (n + 2)))).fst a)) =
+          (representableJoinHornCocone.{u} m i).ι.app (.left a) := by
+        exact hnat.trans (Category.comp_id _)
+      rw [← hleg]
+      calc
+        SSet.Subcomplex.range
+            (((((((SSet.horn.multicoequalizerDiagram i).multispanIndex.toLinearOrder.map
+                    SSet.Subcomplex.toSSetFunctor).multispan ⋙ singletonAugmentation.{u}) ⋙
+                  augmentedDayTensorLeft (emptyAugmentation.{u}.obj (Δ[m] : SSet.{u}))) ⋙
+                forgetAugmentation.{u}).map f ≫
+              (representableJoinHornCocone.{u} m i).ι.app (.right
+                ((Limits.MultispanShape.ofLinearOrder
+                  ({i}ᶜ : Set (Fin (n + 2)))).fst a))) ≫
+            representableJoinHornMap m (n + 1) i) =
+          SSet.Subcomplex.range
+            (((((((SSet.horn.multicoequalizerDiagram i).multispanIndex.toLinearOrder.map
+                    SSet.Subcomplex.toSSetFunctor).multispan ⋙ singletonAugmentation.{u}) ⋙
+                  augmentedDayTensorLeft (emptyAugmentation.{u}.obj (Δ[m] : SSet.{u}))) ⋙
+                forgetAugmentation.{u}).map f) ≫
+              ((representableJoinHornCocone.{u} m i).ι.app (.right
+                  ((Limits.MultispanShape.ofLinearOrder
+                    ({i}ᶜ : Set (Fin (n + 2)))).fst a)) ≫
+                representableJoinHornMap m (n + 1) i)) := by rw [Category.assoc]
+        _ ≤ _ := by
+          rw [SSet.Subcomplex.range_comp]
+          apply SSet.Subcomplex.image_le_range
+    · exact le_iSup (fun k ↦ SSet.Subcomplex.range
+        ((representableJoinHornCocone.{u} m i).ι.app (.right k) ≫
+          representableJoinHornMap m (n + 1) i)) j
+  · apply iSup_le
+    intro j
+    exact le_iSup (fun k ↦ SSet.Subcomplex.range
+      ((representableJoinHornCocone.{u} m i).ι.app k ≫
+        representableJoinHornMap m (n + 1) i)) (.right j)
+
+lemma representableJoinHornInitial_eq_iSup_shiftedRightFaces
+    (m n : ℕ) (i : Fin (n + 2)) :
+    representableJoinHornInitial m (n + 1) i =
+      ⨆ (j : ({i}ᶜ : Set (Fin (n + 2)))), SSet.stdSimplex.face
+        ({(⟨m + 1 + j.1.val, by omega⟩ : Fin (m + (n + 1) + 2))}ᶜ) := by
+  rw [representableJoinHornInitial_eq_iSup_rightRanges]
+  congr 1
+  funext j
+  exact representableJoinHornCocone_right_comp_range m n i j
+
 /-- The ordinary simplicial slice underlying the augmented Day internal hom. -/
 def simplicialSlice (X Q : SSet.{u}) : SSet.{u} :=
   forgetAugmentation.{u}.obj
