@@ -451,6 +451,62 @@ theorem dgMappingConeCochainFromAddEquiv_symm_delta
   exact CochainComplex.mappingCone.δ_descCochain
     ((boundedCochainComplex MetrizableLCA.{0}).ι.map f) a b (by omega) (n + 1) rfl
 
+/-- Precomposition by `f` on untruncated dg Hom cochain complexes. -/
+def dgHomZModulePrecomposition (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    dgHomZModuleCochainComplex L T ⟶ dgHomZModuleCochainComplex K T where
+  f n := ModuleCat.ofHom
+    { toFun := fun γ ↦ (CochainComplex.HomComplex.Cochain.ofHom f.hom).comp γ (zero_add n)
+      map_add' := fun γ γ' ↦
+        CochainComplex.HomComplex.Cochain.comp_add _ γ γ' (zero_add n)
+      map_smul' := fun r γ ↦
+        CochainComplex.HomComplex.Cochain.comp_smul _ r γ (zero_add n) }
+  comm' n m _ := by
+    apply ModuleCat.hom_ext
+    apply LinearMap.ext
+    intro γ
+    simp [dgHomZModuleCochainComplex,
+      CochainComplex.HomComplex.δ_ofHom_comp]
+
+/-- The standard chain-level path object of the target of precomposition. -/
+abbrev dgHomPrecompositionPathObject (T K : ComplexCategory) :
+    CochainComplex (ModuleCat.{0} ℤ) ℤ :=
+  HomologicalComplex.pathObject (dgHomZModuleCochainComplex K T)
+
+/-- The endpoint map from the chain path object. -/
+def dgHomPrecompositionPathEndpoints (T K : ComplexCategory) :
+    dgHomPrecompositionPathObject T K ⟶
+      (dgHomZModuleCochainComplex K T ⨯ dgHomZModuleCochainComplex K T) :=
+  Limits.prod.lift
+    (HomologicalComplex.pathObject.π₀ (dgHomZModuleCochainComplex K T))
+    (HomologicalComplex.pathObject.π₁ (dgHomZModuleCochainComplex K T))
+
+/-- Precomposition paired with the zero endpoint. -/
+def dgHomPrecompositionZeroEndpoints (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    dgHomZModuleCochainComplex L T ⟶
+      (dgHomZModuleCochainComplex K T ⨯ dgHomZModuleCochainComplex K T) :=
+  Limits.prod.lift (dgHomZModulePrecomposition T f) 0
+
+/-- The strict categorical path-object model of the homotopy fiber of precomposition. -/
+abbrev dgHomPrecompositionPathFiber (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    CochainComplex (ModuleCat.{0} ℤ) ℤ :=
+  Limits.pullback (dgHomPrecompositionZeroEndpoints T f)
+    (dgHomPrecompositionPathEndpoints T K)
+
+/-- By construction, the path-fiber square is a strict categorical pullback. -/
+theorem dgHomPrecompositionPathFiber_isPullback (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    IsPullback
+      (Limits.pullback.fst (dgHomPrecompositionZeroEndpoints T f)
+        (dgHomPrecompositionPathEndpoints T K))
+      (Limits.pullback.snd (dgHomPrecompositionZeroEndpoints T f)
+        (dgHomPrecompositionPathEndpoints T K))
+      (dgHomPrecompositionZeroEndpoints T f)
+      (dgHomPrecompositionPathEndpoints T K) :=
+  IsPullback.of_hasPullback _ _
+
 /-- Explicit two-coordinate complex for maps out of a cone. -/
 def dgMappingConeExplicitFromCoordinateCochainComplex
     (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) :
