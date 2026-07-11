@@ -2135,6 +2135,24 @@ lemma representableJoinHornInitial_inf_joinSigmaOneFace_le_hornRange
       exact joinSigmaOne_rightFace_le_hornRange m n T i j.1 (by
         simpa only [Set.mem_compl_iff, Set.mem_singleton_iff] using j.2)
 
+lemma joinSigmaOneFace_inf_smallerFace_le_hornRange
+    (m n r : ℕ) (i : Fin (n + 2)) (T U : Finset (Fin (m + 1)))
+    (hT : T.card = r + 1) (hU : U.card ≤ r) :
+    SSet.stdSimplex.face.{u} (joinSigmaOneVertices m (n + 1) U) ⊓
+        SSet.stdSimplex.face (joinSigmaOneVertices m (n + 1) T) ≤
+      joinSigmaOneHornRange m (n + 1) T i := by
+  have hnsub : ¬ T ⊆ U := by
+    intro h
+    have := Finset.card_le_card h
+    omega
+  obtain ⟨t, htT, htU⟩ := Finset.not_subset.mp hnsub
+  rw [SSet.stdSimplex.face_inter_face]
+  apply (joinSigmaOne_leftFace_le_hornRange m n T i t htT).trans'
+  apply (SSet.stdSimplex.face_le_face_iff _ _).mpr
+  intro x hx
+  simp [joinSigmaOneVertices, joinFirstVertices] at hx ⊢
+  aesop
+
 /-- The ordinary simplicial slice underlying the augmented Day internal hom. -/
 def simplicialSlice (X Q : SSet.{u}) : SSet.{u} :=
   forgetAugmentation.{u}.obj
