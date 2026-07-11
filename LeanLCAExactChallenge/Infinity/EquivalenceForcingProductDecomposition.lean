@@ -26,11 +26,11 @@ open CategoryTheory.MorphismProperty
 
 /-- The right lifting property against all monomorphisms is stable under arbitrary products
 of maps. -/
-theorem piMap_mem_monomorphisms_rlp {J : Type*} {A B : J → SSet.{max u v}}
+theorem piMap_mem_monomorphisms_rlp {J : Type*} {A B : J → SSet.{w}}
     [CategoryTheory.Limits.HasProduct A] [CategoryTheory.Limits.HasProduct B]
     (f : (j : J) → A j ⟶ B j)
-    (hf : ∀ j, (monomorphisms SSet.{max u v}).rlp (f j)) :
-    (monomorphisms SSet.{max u v}).rlp (CategoryTheory.Limits.Pi.map f) := by
+    (hf : ∀ j, (monomorphisms SSet.{w}).rlp (f j)) :
+    (monomorphisms SSet.{w}).rlp (CategoryTheory.Limits.Pi.map f) := by
   intro K L i hi
   letI (j : J) : CategoryTheory.HasLiftingProperty i (f j) := hf j i hi
   infer_instance
@@ -329,9 +329,8 @@ theorem weakArrowEvaluation_isPullback (Q : SSet.{max u v}) :
       have hy : y.1 = (internalHomPrecomp (weakArrowSimplex R a) Q).app U
           (s.snd.app U x) := by
         simp only [Category.assoc, equivalenceEdgeFamilyInclusion, Limits.Pi.map_π,
-          weakArrowEvaluationFamily_π, NatTrans.comp_app, Function.comp_apply,
+          weakArrowEvaluationFamily_π, NatTrans.comp_app,
           ConcreteCategory.comp_apply] at hc
-        change y.1 = _
         change y.1 = _ at hc
         exact hc
       rw [← hy]
@@ -397,6 +396,36 @@ theorem weakIntervalsMappingRestriction_productComparison
     internalHomCoproductIsoProduct_hom_π]
   exact (weakEquivalenceMappingComponent_restriction R Q a).symm
 
+theorem weakIntervalsToNerveMapping_productComparison
+    (Q : SSet.{max u v}) :
+    internalHomPrecomp (weakIntervalsToNerve R) Q ≫
+        (internalHomCoproductIsoProduct (weakIntervalFamily R) Q).hom =
+      weakArrowEvaluationFamily R Q := by
+  apply Limits.Pi.hom_ext
+  intro a
+  rw [Category.assoc, internalHomCoproductIsoProduct_hom_π,
+    internalHomPrecomp_comp, weakArrowEvaluationFamily_π]
+  congr 1
+  exact Sigma.ι_desc (fun a ↦ weakArrowSimplex R a) a
+
+/-- Restriction from a product of free-equivalence mapping objects to the product of
+equivalence-edge mapping objects. -/
+noncomputable def equivalenceIntervalFamilyRestriction (Q : SSet.{max u v}) :
+    (∏ᶜ fun _ : WeakEquivalenceArrow C R ↦
+      (ihom (CategoryTheory.nerve EquivalenceInterval.{max u v})).obj Q) ⟶
+    (∏ᶜ fun _ : WeakEquivalenceArrow C R ↦
+      (equivalenceEdgeInternalHom Q : SSet.{max u v})) :=
+  Limits.Pi.map fun _ ↦ equivalenceIntervalRestrictionToEquivalenceEdges Q
+
+theorem equivalenceIntervalFamilyRestriction_comp_inclusion
+    (Q : SSet.{max u v}) :
+    equivalenceIntervalFamilyRestriction R Q ≫ equivalenceEdgeFamilyInclusion R Q =
+      Limits.Pi.map (fun _ : WeakEquivalenceArrow C R ↦
+        internalHomPrecomp equivalenceIntervalInclusion Q) := by
+  apply Limits.Pi.hom_ext
+  intro a
+  simp [equivalenceIntervalFamilyRestriction, equivalenceEdgeFamilyInclusion]
+
 /-- The presentation mapping object, identified with the standard pullback of the two family
 restriction maps. -/
 noncomputable def equivalenceForcingPresentationMappingPullbackIso
@@ -432,6 +461,83 @@ theorem equivalenceForcingPresentationMappingPullbackIso_hom_snd_eq_comparison
         (relativeInternalHom (relativeNerveEdgeMarking R) Q.obj).ι := by
   rw [equivalenceForcingPresentationMappingPullbackIso_hom_snd,
     equivalenceForcingPresentationMappingComparison_comp_inclusion]
+
+noncomputable def equivalenceForcingPresentationToEquivalenceFamily
+    (Q : SSet.{max u v}) :
+    (ihom (equivalenceForcingPresentation R)).obj Q ⟶
+      ∏ᶜ fun _ : WeakEquivalenceArrow C R ↦
+        (ihom (CategoryTheory.nerve EquivalenceInterval.{max u v})).obj Q :=
+  internalHomPrecomp
+      (pushout.inr (weakIntervalsToNerve R) (weakIntervalsToEquivalences R)) Q ≫
+    (internalHomCoproductIsoProduct (weakEquivalenceFamily R) Q).hom
+
+theorem equivalenceForcingPresentationMappingComparison_isPullback
+    (Q : SSet.QCat.{max u v}) :
+    IsPullback
+      (equivalenceForcingPresentationToEquivalenceFamily R Q.obj)
+      (equivalenceForcingPresentationMappingComparison R Q)
+      (equivalenceIntervalFamilyRestriction R Q.obj)
+      (weakArrowEvaluationToEquivalenceEdges R Q.obj) := by
+  have hiso : IsPullback
+      (internalHomCoproductIsoProduct (weakEquivalenceFamily R) Q.obj).hom
+      (internalHomPrecomp (weakIntervalsToEquivalences R) Q.obj)
+      (Limits.Pi.map (fun _ : WeakEquivalenceArrow C R ↦
+        internalHomPrecomp equivalenceIntervalInclusion Q.obj))
+      (internalHomCoproductIsoProduct (weakIntervalFamily R) Q.obj).hom :=
+    IsPullback.of_horiz_isIso
+      ⟨weakIntervalsMappingRestriction_productComparison R Q.obj⟩
+  have hraw := (equivalenceForcingPresentationMapping_isPullback R Q.obj).paste_horiz hiso
+  have hcomposite : IsPullback
+      (equivalenceForcingPresentationToEquivalenceFamily R Q.obj)
+      (equivalenceForcingPresentationMappingComparison R Q ≫
+        (relativeInternalHom (relativeNerveEdgeMarking R) Q.obj).ι)
+      (equivalenceIntervalFamilyRestriction R Q.obj ≫
+        equivalenceEdgeFamilyInclusion R Q.obj)
+      (weakArrowEvaluationFamily R Q.obj) := by
+    simpa only [equivalenceForcingPresentationToEquivalenceFamily,
+      equivalenceForcingPresentationMappingComparison_comp_inclusion,
+      equivalenceIntervalFamilyRestriction_comp_inclusion,
+      weakIntervalsToNerveMapping_productComparison] using hraw
+  have hdesired : equivalenceForcingPresentationToEquivalenceFamily R Q.obj ≫
+        equivalenceIntervalFamilyRestriction R Q.obj =
+      equivalenceForcingPresentationMappingComparison R Q ≫
+        weakArrowEvaluationToEquivalenceEdges R Q.obj := by
+    apply Limits.Pi.hom_ext
+    intro a
+    apply (cancel_mono (equivalenceEdgeInternalHom Q.obj).ι).1
+    have hc := congrArg (fun k ↦ k ≫ Limits.Pi.π
+      (fun _ : WeakEquivalenceArrow C R ↦
+        (ihom (Δ[1] : SSet.{max u v})).obj Q.obj) a) hcomposite.w
+    simp only [Category.assoc, weakArrowEvaluationFamily_π] at hc
+    simpa only [Category.assoc, equivalenceEdgeFamilyInclusion, Limits.Pi.map_π,
+      weakArrowEvaluationToEquivalenceEdges_π_comp_inclusion] using hc
+  exact hcomposite.of_bot hdesired (weakArrowEvaluation_isPullback R Q.obj)
+
+/-- Componentwise free-equivalence extension implies the required mono-RLP for the complete
+equivalence-forcing presentation comparison. -/
+theorem equivalenceForcingPresentationMappingComparison_mem_monomorphisms_rlp
+    (Q : SSet.QCat.{max u v})
+    (h : ∀ _ : WeakEquivalenceArrow C R,
+      (monomorphisms SSet.{max u v}).rlp
+        (equivalenceIntervalRestrictionToEquivalenceEdges Q.obj :
+          (ihom (CategoryTheory.nerve EquivalenceInterval.{max u v})).obj Q.obj ⟶
+            (equivalenceEdgeInternalHom Q.obj : SSet.{max u v}))) :
+    (monomorphisms SSet.{max u v}).rlp
+      (equivalenceForcingPresentationMappingComparison R Q) := by
+  have hpi : (monomorphisms SSet.{max u v}).rlp
+      (equivalenceIntervalFamilyRestriction R Q.obj) := by
+    exact piMap_mem_monomorphisms_rlp
+      (A := fun _ : WeakEquivalenceArrow C R ↦
+        (ihom (CategoryTheory.nerve EquivalenceInterval.{max u v})).obj Q.obj)
+      (B := fun _ : WeakEquivalenceArrow C R ↦
+        (equivalenceEdgeInternalHom Q.obj : SSet.{max u v}))
+      (fun _ : WeakEquivalenceArrow C R ↦
+        (equivalenceIntervalRestrictionToEquivalenceEdges Q.obj :
+          (ihom (CategoryTheory.nerve EquivalenceInterval.{max u v})).obj Q.obj ⟶
+            (equivalenceEdgeInternalHom Q.obj : SSet.{max u v}))) h
+  intro K L j hj
+  letI : HasLiftingProperty j (equivalenceIntervalFamilyRestriction R Q.obj) := hpi j hj
+  exact (equivalenceForcingPresentationMappingComparison_isPullback R Q).hasLiftingProperty j
 
 end RelativeCategoryData
 end Infinity
