@@ -350,6 +350,11 @@ def largeSummandModule {X Y : ComplexCategory} {n : ℤ}
     (s : GradedSummandIndex X Y n) : ModuleCat.{1} ℤ :=
   (ModuleCat.uliftFunctor.{1} ℤ).obj (summandModule s.2)
 
+@[simp]
+theorem uliftFunctor_map_up {M N : ModuleCat.{0} ℤ} (f : M ⟶ N) (x : M) :
+    ((ModuleCat.uliftFunctor.{1} ℤ).map f) (ULift.up x) = ULift.up (f x) :=
+  rfl
+
 /-- The homogeneous carrier of the corrected Drinfeld quotient Hom complex.  This is the
 actual coproduct over all acyclic words and all compatible allocations of ordinary Hom
 degrees. -/
@@ -573,6 +578,52 @@ theorem singletonContractionTensorMap_contractingElement
   change (CochainComplex.HomComplex.Cochain.ofHom (𝟙 A.obj.obj)).comp
       (CochainComplex.HomComplex.Cochain.ofHom (𝟙 A.obj.obj)) (by omega) = _
   simp [identityCochain]
+
+theorem singletonContractionLargeMap_contractingElement
+    (A : CorrectedAcyclicComplexCategory)
+    (i : Fin (singleton A.obj A.obj A).length) :
+    (singletonContractionLargeMap A.obj A.obj A
+        (singletonContractingDegreeProfile A) i).hom
+        (ULift.up (singletonContractingElement A)) =
+      (Limits.Sigma.ι
+        (fun s : GradedSummandIndex A.obj A.obj (-1 + 1) ↦ largeSummandModule s)
+        ⟨eraseIntermediate (singleton A.obj A.obj A) i,
+          (singletonContractingDegreeProfile A).contract i⟩).hom
+        (ULift.up
+          ((singletonContractedSummandIsoOriginal A.obj A.obj A
+            (singletonContractingDegreeProfile A) i).inv (identityCochain A.obj))) := by
+  have hx : ((ModuleCat.uliftFunctor.{1} ℤ).map
+        (singletonContractionTensorMap A.obj A.obj A
+          (singletonContractingDegreeProfile A) i)).hom
+        (ULift.up (singletonContractingElement A)) =
+      ULift.up ((singletonContractedSummandIsoOriginal A.obj A.obj A
+        (singletonContractingDegreeProfile A) i).inv (identityCochain A.obj)) := by
+    rw [uliftFunctor_map_up]
+    apply ULift.ext
+    let e := singletonContractedSummandIsoOriginal A.obj A.obj A
+      (singletonContractingDegreeProfile A) i
+    exact calc
+      _ = e.inv (e.hom (singletonContractionTensorMap A.obj A.obj A
+          (singletonContractingDegreeProfile A) i
+          (singletonContractingElement A))) := (e.hom_inv_id_apply _).symm
+      _ = e.inv (identityCochain A.obj) := congrArg e.inv
+        (singletonContractionTensorMap_contractingElement A i)
+  unfold singletonContractionLargeMap
+  rw [singletonContractingDegreeProfile_contractionSign]
+  simp only [one_smul]
+  change (Limits.Sigma.ι
+      (fun s : GradedSummandIndex A.obj A.obj (-1 + 1) ↦ largeSummandModule s)
+      ⟨eraseIntermediate (singleton A.obj A.obj A) i,
+        (singletonContractingDegreeProfile A).contract i⟩).hom
+      (((ModuleCat.uliftFunctor.{1} ℤ).map
+        (singletonContractionTensorMap A.obj A.obj A
+          (singletonContractingDegreeProfile A) i)).hom
+        (ULift.up (singletonContractingElement A))) = _
+  exact congrArg
+    (fun z ↦ (Limits.Sigma.ι
+      (fun s : GradedSummandIndex A.obj A.obj (-1 + 1) ↦ largeSummandModule s)
+      ⟨eraseIntermediate (singleton A.obj A.obj A) i,
+        (singletonContractingDegreeProfile A).contract i⟩).hom z) hx
 
 
 end DrinfeldWord
