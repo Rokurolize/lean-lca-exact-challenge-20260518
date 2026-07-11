@@ -531,6 +531,19 @@ def singletonContractingDegreeProfile (A : CorrectedAcyclicComplexCategory) :
   arrowDegree _ := 0
   totalDegree := by simp [singleton]
 
+@[simp]
+theorem singletonContractingDegreeProfile_contractionSign
+    (A : CorrectedAcyclicComplexCategory)
+    (i : Fin (singleton A.obj A.obj A).length) :
+    (singletonContractingDegreeProfile A).contractionSign i = 1 := by
+  change Fin 1 at i
+  have hi : i = (0 : Fin 1) := by
+    apply Fin.ext
+    have h := i.isLt
+    omega
+  rw [hi]
+  simp [DegreeProfile.contractionSign, singletonContractingDegreeProfile]
+
 /-- The formal degree-`-1` contracting element before universe lift and coproduct inclusion. -/
 def singletonContractingElement (A : CorrectedAcyclicComplexCategory) :
     summandModule (singletonContractingDegreeProfile A) :=
@@ -560,6 +573,7 @@ theorem singletonContractionTensorMap_contractingElement
   change (CochainComplex.HomComplex.Cochain.ofHom (𝟙 A.obj.obj)).comp
       (CochainComplex.HomComplex.Cochain.ofHom (𝟙 A.obj.obj)) (by omega) = _
   simp [identityCochain]
+
 
 end DrinfeldWord
 end MetrizableBoundedComplexes
