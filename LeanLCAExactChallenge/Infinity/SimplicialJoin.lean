@@ -2380,6 +2380,24 @@ lemma representableJoinHornCocone_right_comp_range (m n : ℕ)
   rw [representableJoinHornCocone_right_comp]
   exact ordinaryJoinTransportedRightLeg_range m n j.1
 
+lemma representableJoinHornCocone_right_comp_ranges_inf
+    (m n : ℕ) (i : Fin (n + 2))
+    (j k : ({i}ᶜ : Set (Fin (n + 2)))) :
+    SSet.Subcomplex.range
+          ((representableJoinHornCocone.{u} m i).ι.app (.right j) ≫
+            representableJoinHornMap m (n + 1) i) ⊓
+        SSet.Subcomplex.range
+          ((representableJoinHornCocone.{u} m i).ι.app (.right k) ≫
+            representableJoinHornMap m (n + 1) i) =
+      SSet.stdSimplex.face
+        ({(⟨m + 1 + j.1.val, by omega⟩ : Fin (m + n + 3)),
+          (⟨m + 1 + k.1.val, by omega⟩ : Fin (m + n + 3))}ᶜ) := by
+  rw [representableJoinHornCocone_right_comp_range,
+    representableJoinHornCocone_right_comp_range]
+  rw [← ordinaryJoinTransportedRightLeg_range m n j.1,
+    ← ordinaryJoinTransportedRightLeg_range m n k.1]
+  exact ordinaryJoinTransportedRightLeg_ranges_inf m n j.1 k.1
+
 lemma representableJoinHornInitial_eq_iSup_rightRanges
     (m n : ℕ) (i : Fin (n + 2)) :
     representableJoinHornInitial m (n + 1) i =
@@ -2437,6 +2455,33 @@ lemma representableJoinHornInitial_eq_iSup_rightRanges
     exact le_iSup (fun k ↦ SSet.Subcomplex.range
       ((representableJoinHornCocone.{u} m i).ι.app k ≫
         representableJoinHornMap m (n + 1) i)) (.right j)
+
+/-- The range of the representable join-horn map is the multicoequalizer of
+the ranges of its right-face legs along their pairwise intersections. -/
+noncomputable def representableJoinHornRangeMulticoequalizerDiagram
+    (m n : ℕ) (i : Fin (n + 2)) :
+    SSet.Subcomplex.MulticoequalizerDiagram
+      (representableJoinHornInitial.{u} m (n + 1) i)
+      (fun j : ({i}ᶜ : Set (Fin (n + 2))) ↦ SSet.Subcomplex.range
+        ((representableJoinHornCocone.{u} m i).ι.app (.right j) ≫
+          representableJoinHornMap m (n + 1) i))
+      (fun j k ↦ SSet.Subcomplex.range
+          ((representableJoinHornCocone.{u} m i).ι.app (.right j) ≫
+            representableJoinHornMap m (n + 1) i) ⊓
+        SSet.Subcomplex.range
+          ((representableJoinHornCocone.{u} m i).ι.app (.right k) ≫
+            representableJoinHornMap m (n + 1) i)) where
+  iSup_eq := (representableJoinHornInitial_eq_iSup_rightRanges m n i).symm
+  eq_inf _ _ := rfl
+
+/-- The canonical multicoequalizer cocone of the right-face ranges and their
+pairwise intersections is colimiting. -/
+noncomputable def representableJoinHornRangeIsColimit
+    (m n : ℕ) (i : Fin (n + 2)) :
+    IsColimit
+      ((representableJoinHornRangeMulticoequalizerDiagram.{u} m n i).multicofork.toLinearOrder.map
+        SSet.Subcomplex.toSSetFunctor) :=
+  (representableJoinHornRangeMulticoequalizerDiagram.{u} m n i).isColimit'
 
 lemma representableJoinHornInitial_eq_iSup_shiftedRightFaces
     (m n : ℕ) (i : Fin (n + 2)) :
