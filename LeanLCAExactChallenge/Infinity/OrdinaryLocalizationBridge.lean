@@ -37,6 +37,36 @@ theorem bicategoricalEquivalence_postcomp_isEquivalence
         Bicategory.rightUnitorNatIso A Y
   exact Functor.IsEquivalence.mk' G η ε
 
+local instance qcatHomCategory (X Y : SSet.QCat.{u}) : Category (X ⟶ Y) :=
+  SSet.QCat.bicategory.homCategory X Y
+
+/-- The category of strict-bicategory `1`-morphisms is obtained from the enriched
+hom-category by transport along the ordinary/enriched Hom equivalence. -/
+def qcatHomToEnrichedHom (X Y : SSet.QCat.{u}) :
+    (X ⟶ Y) ⥤
+      ((CategoryTheory.CatEnrichedOrdinary.toBase X) ⟶
+        (CategoryTheory.CatEnrichedOrdinary.toBase Y)) where
+  obj := CategoryTheory.CatEnrichedOrdinary.homEquiv
+  map := CategoryTheory.CatEnrichedOrdinary.Hom.base
+
+instance qcatHomToEnrichedHom_faithful (X Y : SSet.QCat.{u}) :
+    (qcatHomToEnrichedHom X Y).Faithful where
+  map_injective h := CategoryTheory.CatEnrichedOrdinary.Hom.ext _ _ h
+
+instance qcatHomToEnrichedHom_full (X Y : SSet.QCat.{u}) :
+    (qcatHomToEnrichedHom X Y).Full where
+  map_surjective f := ⟨CategoryTheory.CatEnrichedOrdinary.Hom.mk f, rfl⟩
+
+instance qcatHomToEnrichedHom_essSurj (X Y : SSet.QCat.{u}) :
+    (qcatHomToEnrichedHom X Y).EssSurj where
+  mem_essImage Z := by
+    refine ⟨CategoryTheory.CatEnrichedOrdinary.homEquiv.symm Z, ?_⟩
+    exact ⟨eqToIso (Equiv.apply_symm_apply
+      CategoryTheory.CatEnrichedOrdinary.homEquiv Z)⟩
+
+instance qcatHomToEnrichedHom_isEquivalence (X Y : SSet.QCat.{u}) :
+    (qcatHomToEnrichedHom X Y).IsEquivalence where
+
 /-- Maps between nerves are exactly ordinary functors.  This is the fully-faithful
 starting point for comparing the mapping localization with its ordinary truncation. -/
 noncomputable def nerveFunctorCategoryEquiv (C D : Type u)
