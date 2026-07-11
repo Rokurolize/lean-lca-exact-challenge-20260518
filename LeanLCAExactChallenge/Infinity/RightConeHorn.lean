@@ -659,4 +659,39 @@ noncomputable def emptyJoinHornIsoRange (r : ℕ) (i : Fin (r + 2)) :
       (SSet.horn (0 + (r + 1)) j : SSet.{u})) hidx) ≪≫
     joinSigmaOneHornIsoRange 0 (r + 1) (∅ : Finset (Fin 1)) i
 
+noncomputable def positiveConeHornTransportedLeftLeg
+    (s : ℕ) (i : Fin (s + 3)) :
+    (Λ[s + 2, i] : SSet.{u}) ⟶ simplicialJoin (Δ[0] : SSet.{u}) Λ[s + 2, i] :=
+  (emptyJoinHornIsoRange (s + 1) i).hom ≫
+    SSet.Subcomplex.homOfLE
+      (leftConeHornCanonicalBicartSq (s + 1) i).le₁₂ ≫
+    (positiveJoinHornIsoRange s i).inv
+
+noncomputable def positiveConeHornTransportedRightLeg
+    (s : ℕ) (i : Fin (s + 3)) :
+    (Λ[s + 2, i] : SSet.{u}) ⟶ Δ[s + 2] :=
+  (emptyJoinHornIsoRange (s + 1) i).hom ≫
+    SSet.Subcomplex.homOfLE
+      (leftConeHornCanonicalBicartSq (s + 1) i).le₁₃ ≫
+    (emptyJoinFaceIso (s + 1)).inv
+
+noncomputable def positiveConeHornTransportedIsPushout
+    (s : ℕ) (i : Fin (s + 3)) :
+    let sq := leftConeHornCanonicalBicartSq.{u} (s + 1) i
+    IsPushout
+      (positiveConeHornTransportedLeftLeg s i)
+      (positiveConeHornTransportedRightLeg s i)
+      ((positiveJoinHornIsoRange s i).hom ≫
+        SSet.Subcomplex.homOfLE sq.le₂₄)
+      ((emptyJoinFaceIso (s + 1)).hom ≫
+        SSet.Subcomplex.homOfLE sq.le₃₄) := by
+  dsimp only
+  let sq := leftConeHornCanonicalBicartSq.{u} (s + 1) i
+  refine sq.isPushout.of_iso'
+    (emptyJoinHornIsoRange (s + 1) i)
+    (positiveJoinHornIsoRange s i)
+    (emptyJoinFaceIso (s + 1)) (Iso.refl _) ?_ ?_ ?_ ?_
+  all_goals simp [positiveConeHornTransportedLeftLeg,
+    positiveConeHornTransportedRightLeg, sq, Category.assoc]
+
 end LeanLCAExactChallenge.Infinity
