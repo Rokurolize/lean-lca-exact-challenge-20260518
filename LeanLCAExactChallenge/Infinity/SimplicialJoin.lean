@@ -2725,6 +2725,107 @@ noncomputable def representableJoinHornRangeIsColimit
         SSet.Subcomplex.toSSetFunctor) :=
   (representableJoinHornRangeMulticoequalizerDiagram.{u} m n i).isColimit'
 
+abbrev representableJoinHornSourceDiagram (m : ℕ) {n : ℕ} (i : Fin (n + 1)) :=
+  (((((SSet.horn.multicoequalizerDiagram i).multispanIndex.toLinearOrder.map
+      SSet.Subcomplex.toSSetFunctor).multispan ⋙ singletonAugmentation.{u}) ⋙
+    augmentedDayTensorLeft (emptyAugmentation.{u}.obj (Δ[m] : SSet.{u}))) ⋙
+    forgetAugmentation.{u})
+
+abbrev representableJoinHornRangeDiagram (m n : ℕ) (i : Fin (n + 2)) :=
+  (((representableJoinHornRangeMulticoequalizerDiagram.{u} m n i).multispanIndex.toLinearOrder.map
+    SSet.Subcomplex.toSSetFunctor).multispan)
+
+noncomputable def representableJoinHornDiagramComponentIso
+    (m n : ℕ) (i : Fin (n + 3))
+    (j : Limits.WalkingMultispan
+      (Limits.MultispanShape.ofLinearOrder ({i}ᶜ : Set (Fin (n + 3))))) :
+    (representableJoinHornSourceDiagram.{u} m i).obj j ≅
+      (representableJoinHornRangeDiagram.{u} m (n + 1) i).obj j := by
+  rcases j with a | j
+  · let f := (representableJoinHornCocone.{u} m i).ι.app (.left a) ≫
+      representableJoinHornMap m (n + 2) i
+    letI : Mono f := representableJoinHornCocone_left_comp_mono m n i a
+    exact simplicialSetIsoRangeOfMono f ≪≫
+      SSet.Subcomplex.toSSetFunctor.mapIso
+        (eqToIso (representableJoinHornCocone_left_comp_range_eq_inf m n i a))
+  · let f := (representableJoinHornCocone.{u} m i).ι.app (.right j) ≫
+      representableJoinHornMap m (n + 2) i
+    letI : Mono f := by
+      dsimp [f]
+      rw [representableJoinHornCocone_right_comp]
+      exact ordinaryJoinTransportedRightLeg_mono m (n + 1) j.1
+    exact simplicialSetIsoRangeOfMono f
+
+set_option maxHeartbeats 2000000 in
+set_option backward.isDefEq.respectTransparency false in
+noncomputable def representableJoinHornDiagramIso
+    (m n : ℕ) (i : Fin (n + 3)) :
+    representableJoinHornSourceDiagram.{u} m i ≅
+      representableJoinHornRangeDiagram.{u} m (n + 1) i :=
+  Limits.WalkingMultispan.functorExt
+    (fun a ↦ representableJoinHornDiagramComponentIso m n i (.left a))
+    (fun j ↦ representableJoinHornDiagramComponentIso m n i (.right j))
+    (by
+      intro a
+      dsimp [representableJoinHornDiagramComponentIso,
+        representableJoinHornSourceDiagram, representableJoinHornRangeDiagram]
+      simp only [Iso.trans_hom]
+      dsimp [simplicialSetIsoRangeOfMono]
+      apply (cancel_mono (SSet.Subcomplex.range
+        ((representableJoinHornCocone.{u} m i).ι.app
+            (.right ((Limits.MultispanShape.ofLinearOrder
+              ({i}ᶜ : Set (Fin (n + 3)))).fst a)) ≫
+          representableJoinHornMap m (n + 2) i)).ι).mp
+      simp only [Category.assoc, SSet.Subcomplex.toRange_ι]
+      change ((representableJoinHornSourceDiagram.{u} m i).map
+          (Limits.WalkingMultispan.Hom.fst a) ≫
+          (representableJoinHornCocone.{u} m i).ι.app
+            (.right ((Limits.MultispanShape.ofLinearOrder
+              ({i}ᶜ : Set (Fin (n + 3)))).fst a))) ≫
+            representableJoinHornMap m (n + 2) i =
+        (representableJoinHornCocone.{u} m i).ι.app (.left a) ≫
+          representableJoinHornMap m (n + 2) i
+      have hnat := (representableJoinHornCocone.{u} m i).ι.naturality
+        (Limits.WalkingMultispan.Hom.fst a)
+      have hleg : (representableJoinHornSourceDiagram.{u} m i).map
+            (Limits.WalkingMultispan.Hom.fst a) ≫
+          (representableJoinHornCocone.{u} m i).ι.app
+            (.right ((Limits.MultispanShape.ofLinearOrder
+              ({i}ᶜ : Set (Fin (n + 3)))).fst a)) =
+          (representableJoinHornCocone.{u} m i).ι.app (.left a) :=
+        hnat.trans (Category.comp_id _)
+      exact congrArg (fun q ↦ q ≫ representableJoinHornMap m (n + 2) i) hleg)
+    (by
+      intro a
+      dsimp [representableJoinHornDiagramComponentIso,
+        representableJoinHornSourceDiagram, representableJoinHornRangeDiagram]
+      simp only [Iso.trans_hom]
+      dsimp [simplicialSetIsoRangeOfMono]
+      apply (cancel_mono (SSet.Subcomplex.range
+        ((representableJoinHornCocone.{u} m i).ι.app
+            (.right ((Limits.MultispanShape.ofLinearOrder
+              ({i}ᶜ : Set (Fin (n + 3)))).snd a)) ≫
+          representableJoinHornMap m (n + 2) i)).ι).mp
+      simp only [Category.assoc, SSet.Subcomplex.toRange_ι]
+      change ((representableJoinHornSourceDiagram.{u} m i).map
+          (Limits.WalkingMultispan.Hom.snd a) ≫
+          (representableJoinHornCocone.{u} m i).ι.app
+            (.right ((Limits.MultispanShape.ofLinearOrder
+              ({i}ᶜ : Set (Fin (n + 3)))).snd a))) ≫
+            representableJoinHornMap m (n + 2) i =
+        (representableJoinHornCocone.{u} m i).ι.app (.left a) ≫
+          representableJoinHornMap m (n + 2) i
+      have hnat := (representableJoinHornCocone.{u} m i).ι.naturality
+        (Limits.WalkingMultispan.Hom.snd a)
+      have hleg : (representableJoinHornSourceDiagram.{u} m i).map
+            (Limits.WalkingMultispan.Hom.snd a) ≫
+          (representableJoinHornCocone.{u} m i).ι.app
+            (.right ((Limits.MultispanShape.ofLinearOrder
+              ({i}ᶜ : Set (Fin (n + 3)))).snd a)) =
+          (representableJoinHornCocone.{u} m i).ι.app (.left a) :=
+        hnat.trans (Category.comp_id _)
+      exact congrArg (fun q ↦ q ≫ representableJoinHornMap m (n + 2) i) hleg)
+
 lemma representableJoinHornInitial_eq_iSup_shiftedRightFaces
     (m n : ℕ) (i : Fin (n + 2)) :
     representableJoinHornInitial m (n + 1) i =
