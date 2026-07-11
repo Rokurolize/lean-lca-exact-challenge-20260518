@@ -1237,6 +1237,28 @@ def joinSigmaOneHornRange (m n : ℕ) (T : Finset (Fin (m + 1)))
     (Δ[m + n + 1] : SSet.{u}).Subcomplex :=
   SSet.Subcomplex.range (joinSigmaOneHornMap m n T i)
 
+noncomputable def joinSigmaOneHornIsoRange (m n : ℕ)
+    (T : Finset (Fin (m + 1))) (i : Fin (n + 1)) :
+    (Λ[T.card + n, joinSigmaOneDistinguishedIndex n T i] : SSet.{u}) ≅
+      (joinSigmaOneHornRange m n T i : SSet.{u}) := by
+  letI : Mono (joinSigmaOneHornMap m n T i) := by
+    dsimp [joinSigmaOneHornMap]
+    infer_instance
+  let tr : (Λ[T.card + n, joinSigmaOneDistinguishedIndex n T i] : SSet.{u}) ⟶
+      (joinSigmaOneHornRange m n T i : SSet.{u}) :=
+    SSet.Subcomplex.toRange (joinSigmaOneHornMap m n T i)
+  letI : Mono tr :=
+    mono_of_mono_fac (SSet.Subcomplex.toRange_ι (joinSigmaOneHornMap m n T i))
+  letI : Epi tr := by
+    rw [NatTrans.epi_iff_epi_app]
+    intro U
+    rw [epi_iff_surjective]
+    rintro ⟨y, ⟨x, rfl⟩⟩
+    exact ⟨x, rfl⟩
+  letI : IsIso tr :=
+    isIso_of_mono_of_epi _
+  exact asIso tr
+
 lemma joinSigmaOneHornRange_eq_image (m n : ℕ)
     (T : Finset (Fin (m + 1))) (i : Fin (n + 1)) :
     joinSigmaOneHornRange m n T i =
