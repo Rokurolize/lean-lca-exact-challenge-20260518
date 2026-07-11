@@ -787,4 +787,61 @@ lemma positiveConeHornTransportedLeftLeg_eq
   cases s <;> rfl
 -/
 
+noncomputable def positiveCanonicalConeHornCornerMap
+    (s : ℕ) (i : Fin (s + 3)) :
+    ((representableJoinHornInitial 0 (s + 2) i ⊔
+      SSet.stdSimplex.face
+        (joinSigmaOneVertices 0 (s + 2) (∅ : Finset (Fin 1))) :
+        (Δ[0 + (s + 2) + 1] : SSet.{u}).Subcomplex) : SSet.{u}) ⟶
+      simplicialJoin (Δ[0] : SSet.{u}) Δ[s + 2] :=
+  (representableJoinHornInitial 0 (s + 2) i ⊔
+      SSet.stdSimplex.face
+        (joinSigmaOneVertices 0 (s + 2) (∅ : Finset (Fin 1)))).ι ≫
+    (simplicialJoinStdSimplexIsoNat 0 (s + 2)).inv
+
+lemma positiveCanonicalConeHornCornerMap_innerAnodyne
+    (s : ℕ) (i : Fin (s + 3)) (hi : i < Fin.last (s + 2)) :
+    SSet.innerAnodyneExtensions
+      (positiveCanonicalConeHornCornerMap.{u} s i) := by
+  let D := representableJoinHornInitial 0 (s + 2) i ⊔
+    SSet.stdSimplex.face
+      (joinSigmaOneVertices 0 (s + 2) (∅ : Finset (Fin 1)))
+  have hface : SSet.stdSimplex.face
+      (joinSigmaOneVertices 0 (s + 2) (∅ : Finset (Fin 1))) =
+      SSet.stdSimplex.face ({(0 : Fin (0 + (s + 2) + 2))}ᶜ) := by
+    congr 1
+    ext j
+    simp [joinSigmaOneVertices, joinFirstVertices, joinSecondVertices]
+    constructor
+    · rintro ⟨a, rfl⟩
+      intro h
+      have hv := congrArg Fin.val h
+      simp at hv
+    · intro hj
+      have hjv : j.val ≠ 0 := by
+        intro h
+        apply hj
+        apply Fin.ext
+        simpa using h
+      use ⟨j.val - 1, by have := j.isLt; omega⟩
+      apply Fin.ext
+      simp only [Fin.val_mk]
+      omega
+  have hD : D = SSet.horn (0 + (s + 2) + 1)
+      (⟨i.val + 1, by omega⟩ : Fin (0 + (s + 2) + 2)) := by
+    dsimp [D]
+    rw [hface]
+    exact representableJoinHornInitial_sup_baseFace_eq_shiftedHorn (s + 1) i
+  have hι : SSet.innerAnodyneExtensions D.ι := by
+    rw [hD]
+    exact SSet.innerAnodyneExtensions.horn_ι (by
+      simpa only [Fin.lt_iff_val_lt_val, Fin.val_zero, Fin.val_mk] using
+        Nat.zero_lt_succ i.val) (by
+      apply Fin.mk_lt_mk.mpr
+      have hi' := Fin.mk_lt_mk.mp hi
+      omega)
+  have he := SSet.innerAnodyneExtensions.of_isIso
+    (simplicialJoinStdSimplexIsoNat 0 (s + 2)).inv
+  exact SSet.innerAnodyneExtensions.comp_mem _ _ hι he
+
 end LeanLCAExactChallenge.Infinity
