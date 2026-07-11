@@ -628,6 +628,23 @@ noncomputable def pulledRelativeFunctorPropertyEquivalence
     (markedHomotopyMorphismProperty W).FunctorsInverting E
   exact CategoryTheory.Equivalence.refl
 
+set_option backward.isDefEq.respectTransparency false in
+/-- The predicate-transport equivalence commutes with the two full-subcategory
+inclusions. -/
+theorem pulledRelativeFunctorPropertyEquivalence_comp_inclusion
+    {L : SSet.{u}} (W : EdgeMarking L) (E : Cat.{u, u}) :
+    (pulledRelativeFunctorPropertyEquivalence W E).functor ⋙
+        ObjectProperty.ι
+          (fun F : (ihom (SSet.hoFunctor.obj L)).obj E ↦
+            (markedHomotopyMorphismProperty W).IsInvertedBy F) =
+      ObjectProperty.ι (PulledRelativeFunctorProperty W E) := by
+  let h : PulledRelativeFunctorProperty W E =
+      fun F ↦ (markedHomotopyMorphismProperty W).IsInvertedBy F := by
+    funext F
+    exact propext (pulledRelativeFunctorProperty_iff_isInvertedBy W E F)
+  subst h
+  rfl
+
 /-- A simplicial isomorphism restricts to the full subcomplexes cut out by a vertex
 predicate and its pullback. -/
 noncomputable def fullSubcomplexOnVerticesIsoOfIso {X Y : SSet.{u}} (e : X ≅ Y)
@@ -1048,6 +1065,97 @@ private def categoricalNerveQCat (E : Cat.{u, u}) : SSet.QCat.{u} :=
     change SSet.Quasicategory (CategoryTheory.nerve E)
     infer_instance⟩
 
+set_option backward.isDefEq.respectTransparency false in
+/-- The homotopy-category presentation of maps into a categorical nerve is natural under
+precomposition in the source. -/
+theorem internalHomNerveHomotopyEquivalence_precomp_naturality
+    {X L : SSet.{u}} (f : X ⟶ L) (E : Cat.{u, u}) :
+    (internalHomNerveHomotopyEquivalence L E).functor ⋙
+        (Functor.whiskeringLeft (SSet.hoFunctor.obj X)
+          (SSet.hoFunctor.obj L) E).obj (SSet.hoFunctor.map f).toFunctor =
+      homotopyPrecomp f (nerveFunctor.obj E) ⋙
+        (internalHomNerveHomotopyEquivalence X E).functor := by
+  have hsset :
+      (internalHomNerveIso L E).inv ≫
+          nerveFunctor.map
+            (((Functor.whiskeringLeft (SSet.hoFunctor.obj X)
+              (SSet.hoFunctor.obj L) E).obj
+                (SSet.hoFunctor.map f).toFunctor).toCatHom) =
+        internalHomPrecomp f (nerveFunctor.obj E) ≫
+          (internalHomNerveIso X E).inv := by
+    apply (cancel_mono (internalHomNerveIso X E).hom).1
+    simp only [Category.assoc, Iso.inv_hom_id, Category.comp_id]
+    rw [internalHomNerveIso_precomp_naturality f E]
+    simp only [← Category.assoc, Iso.inv_hom_id, Category.id_comp]
+  have hho := congrArg SSet.hoFunctor.map hsset
+  simp only [SSet.hoFunctor.map_comp] at hho
+  let P : (ihom (SSet.hoFunctor.obj L)).obj E ⟶
+      (ihom (SSet.hoFunctor.obj X)).obj E :=
+    ((Functor.whiskeringLeft (SSet.hoFunctor.obj X)
+      (SSet.hoFunctor.obj L) E).obj
+        (SSet.hoFunctor.map f).toFunctor).toCatHom
+  have hcounit := nerveFunctorCompHoFunctorIso.hom.naturality P
+  simp only [Functor.comp_map, Functor.id_map] at hcounit
+  have hcat :
+      ((SSet.hoFunctor.map (internalHomNerveIso L E).inv) ≫
+          nerveFunctorCompHoFunctorIso.hom.app
+            ((ihom (SSet.hoFunctor.obj L)).obj E)) ≫ P =
+        SSet.hoFunctor.map (internalHomPrecomp f (nerveFunctor.obj E)) ≫
+          ((SSet.hoFunctor.map (internalHomNerveIso X E).inv) ≫
+            nerveFunctorCompHoFunctorIso.hom.app
+              ((ihom (SSet.hoFunctor.obj X)).obj E)) := by
+    rw [Category.assoc, ← hcounit]
+    rw [← Category.assoc, hho, Category.assoc]
+  exact congrArg Cat.Hom.toFunctor hcat
+
+set_option maxHeartbeats 1200000 in
+set_option backward.isDefEq.respectTransparency false in
+/-- The relative categorical-nerve presentation is compatible with forgetting the
+full-subcategory condition. -/
+theorem relativeInternalHomNerveHomotopyEquivalence_comp_inclusion
+    {L : SSet.{u}} (W : EdgeMarking L) (E : Cat.{u, u}) :
+    (relativeInternalHomNerveHomotopyEquivalence W E).functor ⋙
+        ObjectProperty.ι (PulledRelativeFunctorProperty W E) =
+      (SSet.hoFunctor.map (relativeInternalHom W (nerveFunctor.obj E)).ι).toFunctor ⋙
+        (internalHomNerveHomotopyEquivalence L E).functor := by
+  have hhom :
+      (relativeInternalHomNerveIso W E).hom ≫
+          (relativeInternalHom W (nerveFunctor.obj E)).ι =
+        nerveFunctor.map
+            (ObjectProperty.ι (PulledRelativeFunctorProperty W E)).toCatHom ≫
+          (internalHomNerveIso L E).hom := by
+    ext U F
+    rfl
+  have hinv :
+      (relativeInternalHomNerveIso W E).inv ≫
+          nerveFunctor.map
+            (ObjectProperty.ι (PulledRelativeFunctorProperty W E)).toCatHom =
+        (relativeInternalHom W (nerveFunctor.obj E)).ι ≫
+          (internalHomNerveIso L E).inv := by
+    apply (cancel_mono (internalHomNerveIso L E).hom).1
+    simp only [Category.assoc, Iso.inv_hom_id, Category.comp_id]
+    rw [← hhom]
+    simp only [← Category.assoc, Iso.inv_hom_id, Category.id_comp]
+  have hho := congrArg SSet.hoFunctor.map hinv
+  simp only [SSet.hoFunctor.map_comp] at hho
+  let I : (PulledRelativeFunctorProperty W E).FullSubcategory ⟶
+      (ihom (SSet.hoFunctor.obj L)).obj E :=
+    (ObjectProperty.ι (PulledRelativeFunctorProperty W E)).toCatHom
+  have hcounit := nerveFunctorCompHoFunctorIso.hom.naturality I
+  simp only [Functor.comp_map, Functor.id_map] at hcounit
+  have hcat :
+      ((SSet.hoFunctor.map (relativeInternalHomNerveIso W E).inv) ≫
+          nerveFunctorCompHoFunctorIso.hom.app
+            (Cat.of (PulledRelativeFunctorProperty W E).FullSubcategory)) ≫ I =
+        SSet.hoFunctor.map
+            (relativeInternalHom W (nerveFunctor.obj E)).ι ≫
+          ((SSet.hoFunctor.map (internalHomNerveIso L E).inv) ≫
+            nerveFunctorCompHoFunctorIso.hom.app
+              ((ihom (SSet.hoFunctor.obj L)).obj E)) := by
+    rw [Category.assoc, ← hcounit]
+    rw [← Category.assoc, hho, Category.assoc]
+  exact congrArg Cat.Hom.toFunctor hcat
+
 /-- A mapping-quasicategory localization induces, for every ordinary target category,
 an equivalence from functors out of its homotopy category to the ordinary full
 subcategory selected by marked-edge inversion. -/
@@ -1063,6 +1171,40 @@ noncomputable def mappingLocalizationOrdinaryEquivalence
     (SSet.hoFunctor.map d.comparison).toFunctor.asEquivalence |>.trans
       (relativeInternalHomNerveHomotopyEquivalence W E)
 
+set_option maxHeartbeats 1200000 in
+set_option backward.isDefEq.respectTransparency false in
+/-- The forward functor of the ordinary equivalence induced by a mapping localization is
+literally ordinary precomposition after forgetting the full-subcategory condition. -/
+theorem mappingLocalizationOrdinaryEquivalence_functor_comp_inclusion
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    (mappingLocalizationOrdinaryEquivalence h E).functor ⋙
+        ObjectProperty.ι (PulledRelativeFunctorProperty W E) =
+      (Functor.whiskeringLeft (SSet.hoFunctor.obj A.obj)
+        (SSet.hoFunctor.obj L.obj) E).obj
+          (SSet.hoFunctor.map ell.hom).toFunctor := by
+  let d := (h.universal (categoricalNerveQCat E)).some
+  have hd := d.comparison_comp_inclusion
+  have hho := congrArg SSet.hoFunctor.map hd
+  simp only [SSet.hoFunctor.map_comp] at hho
+  have hrel := relativeInternalHomNerveHomotopyEquivalence_comp_inclusion W E
+  have hpre := internalHomNerveHomotopyEquivalence_precomp_naturality ell.hom E
+  change ((internalHomNerveHomotopyEquivalence L.obj E).inverse ⋙
+      (SSet.hoFunctor.map d.comparison).toFunctor ⋙
+        (relativeInternalHomNerveHomotopyEquivalence W E).functor) ⋙
+          ObjectProperty.ι (PulledRelativeFunctorProperty W E) = _
+  rw [CategoryTheory.Functor.assoc,
+    relativeInternalHomNerveHomotopyEquivalence_comp_inclusion W E]
+  rw [← CategoryTheory.Functor.assoc,
+    ← CategoryTheory.Functor.assoc]
+  rw [show (SSet.hoFunctor.map d.comparison).toFunctor ⋙
+      (SSet.hoFunctor.map (relativeInternalHom W (nerveFunctor.obj E)).ι).toFunctor =
+        homotopyPrecomp ell.hom (nerveFunctor.obj E) by
+    exact congrArg Cat.Hom.toFunctor hho]
+  rw [CategoryTheory.Functor.assoc, ← hpre]
+  rw [← CategoryTheory.Functor.assoc]
+  simp
+
 /-- Ordinary truncation of a mapping-quasicategory localization has the standard
 fixed-target universal property for the marked homotopy morphism property. -/
 noncomputable def mappingLocalizationFunctorsInvertingEquivalence
@@ -1072,6 +1214,26 @@ noncomputable def mappingLocalizationFunctorsInvertingEquivalence
       (markedHomotopyMorphismProperty W).FunctorsInverting E :=
   (mappingLocalizationOrdinaryEquivalence h E).trans
     (pulledRelativeFunctorPropertyEquivalence W E)
+
+set_option maxHeartbeats 800000 in
+set_option backward.isDefEq.respectTransparency false in
+/-- The fixed-target equivalence furnished by a mapping localization has exactly the
+standard precomposition functor after inclusion into the ambient functor category. -/
+theorem mappingLocalizationFunctorsInvertingEquivalence_functor_comp_inclusion
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    (mappingLocalizationFunctorsInvertingEquivalence h E).functor ⋙
+        ObjectProperty.ι
+          (fun F : (SSet.hoFunctor.obj A.obj ⟶ E) ↦
+            (markedHomotopyMorphismProperty W).IsInvertedBy F) =
+      (Functor.whiskeringLeft (SSet.hoFunctor.obj A.obj)
+        (SSet.hoFunctor.obj L.obj) E).obj
+          (SSet.hoFunctor.map ell.hom).toFunctor := by
+  change ((mappingLocalizationOrdinaryEquivalence h E).functor ⋙
+      (pulledRelativeFunctorPropertyEquivalence W E).functor) ⋙ _ = _
+  rw [CategoryTheory.Functor.assoc,
+    pulledRelativeFunctorPropertyEquivalence_comp_inclusion W E]
+  exact mappingLocalizationOrdinaryEquivalence_functor_comp_inclusion h E
 
 /-- Maps between nerves are exactly ordinary functors.  This is the fully-faithful
 starting point for comparing the mapping localization with its ordinary truncation. -/
