@@ -199,6 +199,18 @@ inductive TensorMapData :
       (f : ModuleCat.Hom M N) (fs : TensorMapData Ms Ns) :
       TensorMapData (M :: Ms) (N :: Ns)
 
+/-- Assemble pointwise maps indexed by a finite ordinal into tensor-map data. -/
+def TensorMapData.ofFn : {k : ℕ} →
+    (M N : Fin k → ModuleCat.{0} ℤ) →
+    ((i : Fin k) → ModuleCat.Hom (M i) (N i)) →
+    TensorMapData (List.ofFn M) (List.ofFn N)
+  | 0, _, _, _ => .nil
+  | k + 1, M, N, f => by
+      rw [List.ofFn_succ, List.ofFn_succ]
+      exact .cons (f 0) (TensorMapData.ofFn
+        (fun i : Fin k ↦ M i.succ) (fun i : Fin k ↦ N i.succ)
+        (fun i ↦ f i.succ))
+
 /-- Tensor a pointwise list of module morphisms. -/
 def TensorMapData.tensorMap : {source target : List (ModuleCat.{0} ℤ)} →
     TensorMapData source target →
