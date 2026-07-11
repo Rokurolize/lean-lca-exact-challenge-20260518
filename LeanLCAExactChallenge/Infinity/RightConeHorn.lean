@@ -394,4 +394,16 @@ lemma representableJoinHornInitial_sup_baseFace_eq_shiftedHorn
           apply Fin.ext
           simp only [Fin.val_succ, Fin.val_mk]
           simpa using congrArg Fin.val hki⟩
+
+lemma range_leftConeHornCornerStdMap_eq_shiftedHorn
+    (n : ℕ) (i : Fin (n + 1)) (hi : i < Fin.last n) :
+    SSet.Subcomplex.range (leftConeHornCornerStdMap.{u} n i) =
+      SSet.horn (n + 1) i.succ := by
+  cases n with
+  | zero => omega
+  | succ r =>
+      rw [range_leftConeHornCornerStdMap_eq_sup]
+      simpa only [Nat.zero_add, Nat.succ_eq_add_one, Nat.add_assoc,
+        Nat.add_comm, Nat.add_left_comm] using
+        representableJoinHornInitial_sup_baseFace_eq_shiftedHorn (u := u) r i
 end LeanLCAExactChallenge.Infinity
