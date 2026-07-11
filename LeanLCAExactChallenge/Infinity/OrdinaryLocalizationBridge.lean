@@ -763,6 +763,23 @@ theorem internalHomToNerveYonedaEquiv_nerve_precomp
     (nerveFunctor.map f ▷ Z) (MonoidalClosed.uncurry
       (g ≫ (expComparison nerveFunctor D).natTrans.app E))
 
+set_option backward.isDefEq.respectTransparency false in
+/-- Naturality in the source of the categorical-nerve internal-Hom comparison. -/
+theorem nerveInternalHomIso_precomp_naturality
+    (C D E : Cat.{u, u}) (f : C ⟶ D) :
+    nerveFunctor.map
+        (((Functor.whiskeringLeft C D E).obj f.toFunctor).toCatHom) ≫
+      (nerveInternalHomIso C E).hom =
+      (nerveInternalHomIso D E).hom ≫
+        internalHomPrecomp (nerveFunctor.map f) (nerveFunctor.obj E) := by
+  dsimp [nerveInternalHomIso, internalHomPrecomp]
+  have hn := congrArg (fun q => q.natTrans.app E)
+    (CategoryTheory.expComparison_whiskerLeft nerveFunctor f)
+  dsimp [TwoSquare.whiskerBottom, TwoSquare.whiskerTop] at hn
+  simp only [Functor.whiskerLeft_app, Functor.whiskerRight_app] at hn
+  rw [cat_monoidalClosed_pre_eq_whiskeringLeft C D E f] at hn
+  exact hn.symm
+
 /-- In the self-enrichment of simplicial sets, postcomposition in the enriched Hom object is
 the ordinary internal-Hom map. -/
 theorem sset_eHomWhiskerLeft_eq_ihom_map
