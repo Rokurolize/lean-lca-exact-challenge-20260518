@@ -413,6 +413,98 @@ noncomputable def stdSimplexOneIsoNerveFinTwo :
     (Δ[1] : SSet.{u}) ≅ CategoryTheory.nerve (ULift.{u} (Fin 2)) :=
   SSet.stdSimplex.isoNerve 1
 
+/-- Universe-lifted pointwise bitvectors, so their nerve and every interval factor live in the
+same simplicial-set universe. -/
+@[ext]
+structure LiftedPiBits (n : ℕ) : Type u where
+  val : Fin n → ULift.{u} (Fin 2)
+
+instance (n : ℕ) : CategoryTheory.Category (LiftedPiBits.{u} n) where
+  Hom a b := ∀ i, a.val i ⟶ b.val i
+  id _ _ := 𝟙 _
+  comp f g i := f i ≫ g i
+  assoc _ _ _ := rfl
+
+instance (n : ℕ) (a b : LiftedPiBits.{u} n) : Subsingleton (a ⟶ b) :=
+  Pi.instSubsingleton
+
+instance (n : ℕ) (a b : LiftedPiBits.{u} n × ULift.{u} (Fin 2)) :
+    Subsingleton (a ⟶ b) := by
+  constructor
+  intro f g
+  ext
+  · exact Subsingleton.elim _ _
+  · exact Subsingleton.elim _ _
+
+/-- Split the final lifted cubical coordinate. -/
+def liftedPiBitsSuccEquiv (n : ℕ) :
+    LiftedPiBits.{u} (n + 1) ≃ (LiftedPiBits.{u} n × ULift.{u} (Fin 2)) where
+  toFun b := (⟨⟨fun i ↦ b.val i.castSucc⟩, b.val (Fin.last n)⟩)
+  invFun b := ⟨Fin.lastCases b.2 b.1.val⟩
+  left_inv b := by
+    ext i
+    refine Fin.lastCases ?_ (fun q ↦ ?_) i <;> simp
+  right_inv b := by
+    ext i
+    · simp
+    · simp
+
+/-- Forward functor for the lifted final-coordinate split. -/
+def liftedPiBitsSuccFunctor (n : ℕ) : CategoryTheory.Functor
+    (LiftedPiBits.{u} (n + 1)) (LiftedPiBits.{u} n × ULift.{u} (Fin 2)) where
+  obj := liftedPiBitsSuccEquiv n
+  map f := ⟨fun i ↦ f i.castSucc, f (Fin.last n)⟩
+  map_id _ := rfl
+  map_comp _ _ := rfl
+
+/-- Inverse functor for the lifted final-coordinate split. -/
+def liftedPiBitsSuccInverse (n : ℕ) : CategoryTheory.Functor
+    (LiftedPiBits.{u} n × ULift.{u} (Fin 2)) (LiftedPiBits.{u} (n + 1)) where
+  obj := (liftedPiBitsSuccEquiv n).symm
+  map f i := by
+    refine Fin.lastCases ?_ (fun q ↦ ?_) i
+    · simpa [liftedPiBitsSuccEquiv] using f.2
+    · simpa [liftedPiBitsSuccEquiv] using f.1 q
+  map_id _ := rfl
+  map_comp _ _ := rfl
+
+/-- The lifted bitvector nerve splits off its last interval coordinate. -/
+noncomputable def liftedPiBitsNerveSuccIso (n : ℕ) :
+    CategoryTheory.nerve (LiftedPiBits.{u} (n + 1)) ≅
+      CategoryTheory.nerve (LiftedPiBits.{u} n × ULift.{u} (Fin 2)) where
+  hom := CategoryTheory.nerveMap (liftedPiBitsSuccFunctor n)
+  inv := CategoryTheory.nerveMap (liftedPiBitsSuccInverse n)
+  hom_inv_id := by
+    change CategoryTheory.nerveFunctor.map (liftedPiBitsSuccFunctor n).toCatHom ≫
+      CategoryTheory.nerveFunctor.map (liftedPiBitsSuccInverse n).toCatHom = _
+    rw [← CategoryTheory.Functor.map_comp]
+    have hf : liftedPiBitsSuccFunctor n ⋙ liftedPiBitsSuccInverse n =
+        CategoryTheory.Functor.id (LiftedPiBits.{u} (n + 1)) := by
+      exact CategoryTheory.Functor.ext
+        (h_obj := fun b ↦ (liftedPiBitsSuccEquiv n).left_inv b)
+        (h_map := fun _ _ _ ↦ Subsingleton.elim _ _)
+    have hc : (liftedPiBitsSuccFunctor n).toCatHom ≫
+        (liftedPiBitsSuccInverse n).toCatHom = 𝟙 _ := by
+      apply CategoryTheory.Cat.Hom.ext
+      exact hf
+    rw [hc, CategoryTheory.Functor.map_id]
+    rfl
+  inv_hom_id := by
+    change CategoryTheory.nerveFunctor.map (liftedPiBitsSuccInverse n).toCatHom ≫
+      CategoryTheory.nerveFunctor.map (liftedPiBitsSuccFunctor n).toCatHom = _
+    rw [← CategoryTheory.Functor.map_comp]
+    have hf : liftedPiBitsSuccInverse n ⋙ liftedPiBitsSuccFunctor n =
+        CategoryTheory.Functor.id (LiftedPiBits.{u} n × ULift.{u} (Fin 2)) := by
+      exact CategoryTheory.Functor.ext
+        (h_obj := fun b ↦ (liftedPiBitsSuccEquiv n).right_inv b)
+        (h_map := fun _ _ _ ↦ Subsingleton.elim _ _)
+    have hc : (liftedPiBitsSuccInverse n).toCatHom ≫
+        (liftedPiBitsSuccFunctor n).toCatHom = 𝟙 _ := by
+      apply CategoryTheory.Cat.Hom.ext
+      exact hf
+    rw [hc, CategoryTheory.Functor.map_id]
+    rfl
+
 /-- The prefix of a path at one of its vertices. -/
 def beforePath {J : Type u} [LinearOrder J] {i j k : J} (P : ThickPath i j)
     (hk : k ∈ P.I) : ThickPath i k where
