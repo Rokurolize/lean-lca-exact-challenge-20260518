@@ -433,53 +433,6 @@ def dgMappingConeCochainFromLinearEquiv
       · exact CochainComplex.HomComplex.Cochain.comp_smul _ r γ (by omega)
       · exact CochainComplex.HomComplex.Cochain.comp_smul _ r γ (zero_add n) }
 
-/-- Explicit two-coordinate complex for maps out of a cone. -/
-def dgMappingConeExplicitFromCoordinateCochainComplex
-    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) :
-    CochainComplex (ModuleCat.{0} ℤ) ℤ where
-  X n := ModuleCat.of ℤ
-    (CochainComplex.HomComplex.Cochain K.obj T.obj (n - 1) ×
-      CochainComplex.HomComplex.Cochain L.obj T.obj n)
-  d n m := (dgMappingConeCochainFromLinearEquiv T f n).toModuleIso.inv ≫
-    (dgHomZModuleCochainComplex (dgMappingConeObject f) T).d n m ≫
-      (dgMappingConeCochainFromLinearEquiv T f m).toModuleIso.hom
-  shape n m h := by
-    rw [(dgHomZModuleCochainComplex (dgMappingConeObject f) T).shape n m h]
-    simp
-  d_comp_d' n m k _ _ := by
-    apply ModuleCat.hom_ext
-    apply LinearMap.ext
-    intro x
-    change (dgMappingConeCochainFromLinearEquiv T f k)
-      ((dgHomZModuleCochainComplex (dgMappingConeObject f) T).d m k
-        ((dgHomZModuleCochainComplex (dgMappingConeObject f) T).d n m
-          ((dgMappingConeCochainFromLinearEquiv T f n).symm x))) = 0
-    have hx := ConcreteCategory.congr_hom
-      ((dgHomZModuleCochainComplex (dgMappingConeObject f) T).d_comp_d n m k)
-      ((dgMappingConeCochainFromLinearEquiv T f n).symm x)
-    simp only [ConcreteCategory.comp_apply, Zero.zero_apply] at hx
-    rw [hx]
-    exact map_zero _
-
-/-- Actual maps out of the dg cone form the explicit dual coordinate cochain complex. -/
-def dgMappingConeExplicitFromCoordinateCochainIso
-    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) :
-    dgHomZModuleCochainComplex (dgMappingConeObject f) T ≅
-      dgMappingConeExplicitFromCoordinateCochainComplex T f :=
-  HomologicalComplex.Hom.isoOfComponents
-    (fun n ↦ (dgMappingConeCochainFromLinearEquiv T f n).toModuleIso) (by
-      intro n m _
-      apply ModuleCat.hom_ext
-      apply LinearMap.ext
-      intro x
-      change (dgMappingConeCochainFromLinearEquiv T f m)
-          ((dgMappingConeCochainFromLinearEquiv T f n).symm
-            (dgMappingConeCochainFromLinearEquiv T f n x) |> fun y ↦
-              (dgHomZModuleCochainComplex (dgMappingConeObject f) T).d n m y) =
-        dgMappingConeCochainFromLinearEquiv T f m
-          ((dgHomZModuleCochainComplex (dgMappingConeObject f) T).d n m x)
-      rw [Equiv.symm_apply_apply])
-
 /-- The same cone, regarded as an object of the honest direct simplicial dg category. -/
 def directDGMappingConeObject {K L : ComplexCategory} (f : K ⟶ L) :
     DirectDGSimplicialCategory :=
