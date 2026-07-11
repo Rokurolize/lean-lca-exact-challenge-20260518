@@ -754,6 +754,55 @@ noncomputable def positiveConeHornTransportedIsPushout
   all_goals simp [positiveConeHornTransportedLeftLeg,
     positiveConeHornTransportedRightLeg, sq, Category.assoc]
 
+lemma positiveConeHornTransported_w (s : ℕ) (i : Fin (s + 3)) :
+    positiveConeHornTransportedLeftLeg.{u} s i ≫
+        ((positiveJoinHornIsoRange s i).hom ≫
+          SSet.Subcomplex.homOfLE
+            (leftConeHornCanonicalBicartSq (s + 1) i).le₂₄) =
+      positiveConeHornTransportedRightLeg s i ≫
+        ((emptyJoinFaceIso (s + 1)).hom ≫
+          SSet.Subcomplex.homOfLE
+            (leftConeHornCanonicalBicartSq (s + 1) i).le₃₄) :=
+  (positiveConeHornTransportedIsPushout.{u} s i).w
+
+noncomputable def positiveConeHornTransportedDesc
+    (s : ℕ) (i : Fin (s + 3)) {Q : SSet.{u}}
+    (u : simplicialJoin (Δ[0] : SSet.{u}) Λ[s + 2, i] ⟶ Q)
+    (v : Δ[s + 2] ⟶ Q)
+    (h : positiveConeHornTransportedLeftLeg s i ≫ u =
+      positiveConeHornTransportedRightLeg s i ≫ v) :
+    ((representableJoinHornInitial 0 (s + 2) i ⊔
+      SSet.stdSimplex.face
+        (joinSigmaOneVertices 0 (s + 2) (∅ : Finset (Fin 1))) :
+        (Δ[0 + (s + 2) + 1] : SSet.{u}).Subcomplex) : SSet.{u}) ⟶ Q :=
+  (positiveConeHornTransportedIsPushout s i).desc u v h
+
+@[reassoc]
+lemma positiveConeHornTransported_inl_desc
+    (s : ℕ) (i : Fin (s + 3)) {Q : SSet.{u}}
+    (u : simplicialJoin (Δ[0] : SSet.{u}) Λ[s + 2, i] ⟶ Q)
+    (v : Δ[s + 2] ⟶ Q)
+    (h : positiveConeHornTransportedLeftLeg s i ≫ u =
+      positiveConeHornTransportedRightLeg s i ≫ v) :
+    ((positiveJoinHornIsoRange s i).hom ≫
+        SSet.Subcomplex.homOfLE
+          (leftConeHornCanonicalBicartSq (s + 1) i).le₂₄) ≫
+      positiveConeHornTransportedDesc s i u v h = u :=
+  (positiveConeHornTransportedIsPushout s i).inl_desc _ _ _
+
+@[reassoc]
+lemma positiveConeHornTransported_inr_desc
+    (s : ℕ) (i : Fin (s + 3)) {Q : SSet.{u}}
+    (u : simplicialJoin (Δ[0] : SSet.{u}) Λ[s + 2, i] ⟶ Q)
+    (v : Δ[s + 2] ⟶ Q)
+    (h : positiveConeHornTransportedLeftLeg s i ≫ u =
+      positiveConeHornTransportedRightLeg s i ≫ v) :
+    ((emptyJoinFaceIso (s + 1)).hom ≫
+        SSet.Subcomplex.homOfLE
+          (leftConeHornCanonicalBicartSq (s + 1) i).le₃₄) ≫
+      positiveConeHornTransportedDesc s i u v h = v :=
+  (positiveConeHornTransportedIsPushout s i).inr_desc _ _ _
+
 /- Pending the normalized empty-join horn transport comparison.
 lemma positiveConeHornTransportedLeftLeg_eq
     (s : ℕ) (i : Fin (s + 3)) :
