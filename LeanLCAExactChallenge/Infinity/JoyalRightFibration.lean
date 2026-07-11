@@ -18,6 +18,21 @@ namespace LeanLCAExactChallenge.Infinity
 
 open CategoryTheory CategoryTheory.Limits CategoryTheory.MorphismProperty Simplicial
 
+/-- Two successive preinverses give a genuine inverse.  The second candidate
+need not be strictly equal to the original arrow. -/
+lemma isIso_of_preinverse_chain
+    {C : Type u} [Category C] {x y : C}
+    (e : x ⟶ y) (g : y ⟶ x) (e' : x ⟶ y)
+    (hge : g ≫ e = 𝟙 y) (he'g : e' ≫ g = 𝟙 x) : IsIso e := by
+  have hee' : e = e' := by
+    calc
+      e = 𝟙 x ≫ e := (Category.id_comp e).symm
+      _ = (e' ≫ g) ≫ e := by rw [he'g]
+      _ = e' ≫ (g ≫ e) := Category.assoc _ _ _
+      _ = e' ≫ 𝟙 y := by rw [hge]
+      _ = e' := Category.comp_id e'
+  exact ⟨⟨g, hee' ▸ he'g, hge⟩⟩
+
 /-- Positive-index horn inclusions, including the last horn. -/
 inductive rightHornInclusions : MorphismProperty SSet.{u} where
   | intro {n : ℕ} (i : Fin (n + 2)) (h0 : 0 < i) :
