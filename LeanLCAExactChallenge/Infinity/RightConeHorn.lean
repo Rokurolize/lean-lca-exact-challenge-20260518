@@ -884,6 +884,59 @@ lemma positiveCanonicalConeHorn_le₃₂_ι (s : ℕ) (i : Fin (s + 3)) :
         (joinSigmaOneVertices 0 (s + 2) (∅ : Finset (Fin 1)))).ι :=
   SSet.Subcomplex.homOfLE_ι _
 
+noncomputable def positiveCanonicalConeHornApex
+    (s : ℕ) (i : Fin (s + 3)) : SSet.{u} :=
+  (representableJoinHornInitial 0 (s + 2) i ⊔
+    SSet.stdSimplex.face
+      (joinSigmaOneVertices 0 (s + 2) (∅ : Finset (Fin 1))) :
+    (Δ[0 + (s + 2) + 1] : SSet.{u}).Subcomplex)
+
+noncomputable def positiveCanonicalConeHornApex.ι
+    (s : ℕ) (i : Fin (s + 3)) :
+    positiveCanonicalConeHornApex.{u} s i ⟶ Δ[0 + (s + 2) + 1] :=
+  (representableJoinHornInitial 0 (s + 2) i ⊔
+    SSet.stdSimplex.face
+      (joinSigmaOneVertices 0 (s + 2) (∅ : Finset (Fin 1)))).ι
+
+lemma positiveCanonicalConeHorn_le₂₄_apex_ι
+    (s : ℕ) (i : Fin (s + 3)) :
+    SSet.Subcomplex.homOfLE
+        (leftConeHornCanonicalBicartSq (s + 1) i).le₂₄ ≫
+      positiveCanonicalConeHornApex.ι s i =
+        (representableJoinHornInitial 0 (s + 2) i).ι := by
+  unfold positiveCanonicalConeHornApex.ι
+  exact SSet.Subcomplex.homOfLE_ι _
+
+noncomputable def positiveCanonicalConeHornLeftComposite
+    (s : ℕ) (i : Fin (s + 3)) :
+    simplicialJoin (Δ[0] : SSet.{u}) Λ[s + 2, i] ⟶
+      positiveCanonicalConeHornApex s i :=
+  (positiveJoinHornIsoRange s i).hom ≫
+    SSet.Subcomplex.homOfLE
+      (leftConeHornCanonicalBicartSq (s + 1) i).le₂₄
+
+set_option maxHeartbeats 800000 in
+lemma positiveJoinHornIsoRange_hom_initial_ι
+    (s : ℕ) (i : Fin (s + 3)) :
+    (positiveJoinHornIsoRange.{u} s i).hom ≫
+        (representableJoinHornInitial 0 (s + 2) i).ι =
+      representableJoinHornMap 0 (s + 2) i := by
+  change (representableJoinHornPointIso 0 s i).hom ≫
+    (representableJoinHornInitial 0 (s + 2) i).ι = _
+  rw [representableJoinHornPointIso_hom]
+  unfold representableJoinHornInitial
+  exact SSet.Subcomplex.toRange_ι _
+
+lemma positiveCanonicalConeHorn_pointIso_to_ambient
+    (s : ℕ) (i : Fin (s + 3)) :
+    positiveCanonicalConeHornLeftComposite.{u} s i ≫
+        positiveCanonicalConeHornApex.ι s i =
+      representableJoinHornMap 0 (s + 2) i := by
+  unfold positiveCanonicalConeHornLeftComposite
+  have hle := positiveCanonicalConeHorn_le₂₄_apex_ι s i
+  have hp := positiveJoinHornIsoRange_hom_initial_ι s i
+  exact (congrArg (fun k ↦ (positiveJoinHornIsoRange s i).hom ≫ k) hle).trans hp
+
 lemma positiveCanonicalConeHornCornerMap_right
     (s : ℕ) (i : Fin (s + 3)) :
     (emptyJoinFaceIso (s + 1)).hom ≫
