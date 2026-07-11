@@ -546,6 +546,21 @@ def quotientContractingElement (A : CorrectedAcyclicComplexCategory) :
       ⟨singleton A.obj A.obj A, singletonContractingDegreeProfile A⟩
     (ULift.up (singletonContractingElement A))
 
+/-- Contracting the formal one-letter generator gives the identity cochain. -/
+theorem singletonContractionTensorMap_contractingElement
+    (A : CorrectedAcyclicComplexCategory)
+    (i : Fin (singleton A.obj A.obj A).length) :
+    (singletonContractedSummandIsoOriginal A.obj A.obj A
+        (singletonContractingDegreeProfile A) i).hom
+      (singletonContractionTensorMap A.obj A.obj A
+        (singletonContractingDegreeProfile A) i
+        (singletonContractingElement A)) = identityCochain A.obj := by
+  unfold singletonContractionTensorMap singletonContractingElement
+  simp only [ConcreteCategory.comp_apply, Iso.inv_hom_id_apply]
+  change (CochainComplex.HomComplex.Cochain.ofHom (𝟙 A.obj.obj)).comp
+      (CochainComplex.HomComplex.Cochain.ofHom (𝟙 A.obj.obj)) (by omega) = _
+  simp [identityCochain]
+
 end DrinfeldWord
 end MetrizableBoundedComplexes
 end Infinity
