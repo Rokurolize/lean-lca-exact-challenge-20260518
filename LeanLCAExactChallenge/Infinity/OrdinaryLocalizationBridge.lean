@@ -378,6 +378,46 @@ noncomputable def PulledRelativeFunctorProperty
       ((internalHomNerveIso L E).hom.app (Opposite.op ⦋0⦌)
         (CategoryTheory.nerveEquiv.symm F)))
 
+/-- A simplicial isomorphism restricts to the full subcomplexes cut out by a vertex
+predicate and its pullback. -/
+noncomputable def fullSubcomplexOnVerticesIsoOfIso {X Y : SSet.{u}} (e : X ≅ Y)
+    (P : Y.obj (Opposite.op ⦋0⦌) → Prop) :
+    (fullSubcomplexOnVertices X (fun v ↦ P (e.hom.app (Opposite.op ⦋0⦌) v)) : SSet.{u}) ≅
+      (fullSubcomplexOnVertices Y P : SSet.{u}) where
+  hom := SSet.Subcomplex.lift
+    ((fullSubcomplexOnVertices X
+      (fun v ↦ P (e.hom.app (Opposite.op ⦋0⦌) v))).ι ≫ e.hom) (by
+    rintro U _ ⟨s, rfl⟩
+    rw [mem_fullSubcomplexOnVertices_iff]
+    intro i
+    have h := s.property i
+    change P (Y.map (SimplexCategory.const ⦋0⦌ U.unop i).op
+      (e.hom.app U s.val))
+    rw [← NatTrans.naturality_apply e.hom
+      (SimplexCategory.const ⦋0⦌ U.unop i).op s.val]
+    exact h)
+  inv := SSet.Subcomplex.lift
+    ((fullSubcomplexOnVertices Y P).ι ≫ e.inv) (by
+    rintro U _ ⟨s, rfl⟩
+    rw [mem_fullSubcomplexOnVertices_iff]
+    intro i
+    have h := s.property i
+    change P (e.hom.app (Opposite.op ⦋0⦌)
+      (X.map (SimplexCategory.const ⦋0⦌ U.unop i).op
+        (e.inv.app U s.val)))
+    rw [← NatTrans.naturality_apply e.inv
+      (SimplexCategory.const ⦋0⦌ U.unop i).op s.val]
+    rw [Iso.inv_hom_id_app_apply]
+    exact h)
+  hom_inv_id := by
+    ext U s
+    apply Subtype.ext
+    exact e.hom_inv_id_app_apply U s.val
+  inv_hom_id := by
+    ext U s
+    apply Subtype.ext
+    exact e.inv_hom_id_app_apply U s.val
+
 theorem pulledRelativeFunctorProperty_iff
     {L : SSet.{u}} (W : EdgeMarking L) (E : Cat.{u, u})
     (F : (ihom (SSet.hoFunctor.obj L)).obj E) :
