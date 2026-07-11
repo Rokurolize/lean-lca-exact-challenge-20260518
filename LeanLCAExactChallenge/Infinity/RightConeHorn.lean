@@ -765,6 +765,23 @@ lemma positiveConeHornTransported_w (s : ℕ) (i : Fin (s + 3)) :
             (leftConeHornCanonicalBicartSq (s + 1) i).le₃₄) :=
   (positiveConeHornTransportedIsPushout.{u} s i).w
 
+lemma positiveConeHornTransported_compat_of_original
+    (s : ℕ) (i : Fin (s + 3)) {Q : SSet.{u}}
+    (f : (representableJoinHornInitial 0 (s + 2) i : SSet.{u}) ⟶ Q)
+    (g : (SSet.stdSimplex.face
+      (joinSigmaOneVertices 0 (s + 2) (∅ : Finset (Fin 1))) : SSet.{u}) ⟶ Q)
+    (h : SSet.Subcomplex.homOfLE
+          (leftConeHornCanonicalBicartSq (s + 1) i).le₁₂ ≫ f =
+      SSet.Subcomplex.homOfLE
+          (leftConeHornCanonicalBicartSq (s + 1) i).le₁₃ ≫ g) :
+    positiveConeHornTransportedLeftLeg s i ≫
+        (positiveJoinHornIsoRange s i).hom ≫ f =
+      positiveConeHornTransportedRightLeg s i ≫
+        (emptyJoinFaceIso (s + 1)).hom ≫ g := by
+  simp [positiveConeHornTransportedLeftLeg,
+    positiveConeHornTransportedRightLeg, Category.assoc]
+  exact h
+
 noncomputable def positiveConeHornTransportedDesc
     (s : ℕ) (i : Fin (s + 3)) {Q : SSet.{u}}
     (u : simplicialJoin (Δ[0] : SSet.{u}) Λ[s + 2, i] ⟶ Q)
