@@ -240,6 +240,34 @@ def TensorMapData.tensorMap : {source target : List (ModuleCat.{0} ℤ)} →
         (X₂ := tensorModuleList Ms) (Y₂ := tensorModuleList Ns)
         f fs.tensorMap
 
+/-- Data for replacing two adjacent tensor factors by one factor. -/
+inductive AdjacentMergeData :
+    (source target : List (ModuleCat.{0} ℤ)) → Type 1
+  | head {M N P : ModuleCat.{0} ℤ} {Ms : List (ModuleCat.{0} ℤ)}
+      (f : Quiver.Hom (M ⊗ N) P) :
+      AdjacentMergeData (M :: N :: Ms) (P :: Ms)
+  | tail {M : ModuleCat.{0} ℤ} {Ms Ns : List (ModuleCat.{0} ℤ)}
+      (f : AdjacentMergeData Ms Ns) :
+      AdjacentMergeData (M :: Ms) (M :: Ns)
+
+/-- Tensor morphism induced by an adjacent merge. -/
+def AdjacentMergeData.tensorMap : {source target : List (ModuleCat.{0} ℤ)} →
+    AdjacentMergeData source target →
+      Quiver.Hom (tensorModuleList source) (tensorModuleList target)
+  | _, _, @AdjacentMergeData.head M N P Ms f =>
+      (α_ M N (tensorModuleList Ms)).inv ≫
+        MonoidalCategoryStruct.tensorHom
+          (C := ModuleCat.{0} ℤ)
+          (X₁ := M ⊗ N) (Y₁ := P)
+          (X₂ := tensorModuleList Ms) (Y₂ := tensorModuleList Ms)
+          f (𝟙 _)
+  | _, _, @AdjacentMergeData.tail M Ms Ns f =>
+      MonoidalCategoryStruct.tensorHom
+        (C := ModuleCat.{0} ℤ)
+        (X₁ := M) (Y₁ := M)
+        (X₂ := tensorModuleList Ms) (Y₂ := tensorModuleList Ns)
+        (𝟙 _) f.tensorMap
+
 /-- The tensor-product module belonging to one word and one compatible degree profile. -/
 def summandModule {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) : ModuleCat.{0} ℤ :=
