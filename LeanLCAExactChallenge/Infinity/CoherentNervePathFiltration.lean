@@ -1,5 +1,6 @@
 import Mathlib.AlgebraicTopology.SimplicialNerve
 import Mathlib.AlgebraicTopology.SimplicialSet.Horn
+import Mathlib.AlgebraicTopology.SimplicialSet.Nonsingular
 import Mathlib.Order.Extension.Well
 
 /-!
@@ -15,9 +16,22 @@ set_option autoImplicit false
 
 namespace LeanLCAExactChallenge.Infinity.CoherentNervePathFiltration
 
-open CategoryTheory
+open CategoryTheory Simplicial
 
 universe u
+
+namespace SSet.Subcomplex
+
+theorem image_preimage_eq_inf_range {X Y : SSet.{u}} (B : Y.Subcomplex) (f : X ⟶ Y) :
+    (B.preimage f).image f = B ⊓ SSet.Subcomplex.range f := by
+  ext n y
+  constructor
+  · rintro ⟨x, hx, rfl⟩
+    exact ⟨hx, ⟨x, rfl⟩⟩
+  · rintro ⟨hy, x, rfl⟩
+    exact ⟨x, hy, rfl⟩
+
+end SSet.Subcomplex
 
 namespace Path
 
@@ -2387,6 +2401,69 @@ theorem GlobalPairIndex.upper_not_mem_previousStage {k : J}
   have hface := p.previousStage.map (SimplexCategory.δ p.2.position).op hu
   rw [← p.2.nerve_face_upper_eq_lower]
   exact hface
+
+noncomputable def GlobalPairIndex.upperMap {k : J} (p : GlobalPairIndex i j k) :
+    Δ[p.1 + 1] ⟶ CategoryTheory.nerve (ThickPath i j) :=
+  SSet.yonedaEquiv.symm p.2.upperChain.toNerveSimplex
+
+theorem GlobalPairIndex.range_upperMap {k : J} (p : GlobalPairIndex i j k) :
+    SSet.Subcomplex.range p.upperMap =
+      SSet.Subcomplex.ofSimplex p.2.upperChain.toNerveSimplex := by
+  rw [SSet.Subcomplex.range_eq_ofSimplex]
+  simp [upperMap]
+
+theorem GlobalPairIndex.missingFace_image_upperMap {k : J}
+    (p : GlobalPairIndex i j k) :
+    (SSet.stdSimplex.face {p.2.position}ᶜ).image p.upperMap =
+      SSet.Subcomplex.ofSimplex p.2.cell.chain.toNerveSimplex := by
+  rw [← SSet.stdSimplex.range_δ, ← SSet.Subcomplex.range_comp,
+    SSet.Subcomplex.range_eq_ofSimplex]
+  rw [SSet.yonedaEquiv_comp]
+  change SSet.Subcomplex.ofSimplex
+    ((CategoryTheory.nerve (ThickPath i j)).δ p.2.position
+      p.2.upperChain.toNerveSimplex) = _
+  have h := p.2.nerve_face_upper_eq_lower
+  change (CategoryTheory.nerve (ThickPath i j)).δ p.2.position
+    p.2.upperChain.toNerveSimplex = p.2.cell.chain.toNerveSimplex at h
+  exact congrArg SSet.Subcomplex.ofSimplex h
+
+/-- Pulling the previous stage back to the standard upper simplex lands in the attaching horn. -/
+theorem GlobalPairIndex.previousStage_preimage_upperMap_le_horn {k : J}
+    (p : GlobalPairIndex i j k) :
+    p.previousStage.preimage p.upperMap ≤ SSet.horn (p.1 + 1) p.2.position := by
+  rw [SSet.subcomplex_le_horn_iff]
+  intro hface
+  have himage : (SSet.stdSimplex.face {p.2.position}ᶜ).image p.upperMap ≤
+      p.previousStage :=
+    (SSet.Subcomplex.image_le_iff (f := p.upperMap)
+      (A := SSet.stdSimplex.face {p.2.position}ᶜ) p.previousStage).2 hface
+  rw [p.missingFace_image_upperMap] at himage
+  exact p.lower_not_mem_previousStage
+    ((SSet.Subcomplex.ofSimplex_le_iff _ _).1 himage)
+
+theorem GlobalPairIndex.hornRange_eq_horn_image_upperMap {k : J}
+    (p : GlobalPairIndex i j k) :
+    p.2.rankedInnerFacePair.hornRange =
+      (SSet.horn (p.1 + 1) p.2.position).image p.upperMap := by
+  rw [SSet.Subcomplex.image_eq_range]
+  rfl
+
+/-- The overlap of the previous stage with the newly generated simplex is exactly the horn
+along which it is attached. -/
+theorem GlobalPairIndex.previousStage_inf_upper_ofSimplex_eq_hornRange {k : J}
+    (p : GlobalPairIndex i j k) :
+    p.previousStage ⊓ SSet.Subcomplex.ofSimplex p.2.upperChain.toNerveSimplex =
+      p.2.rankedInnerFacePair.hornRange := by
+  apply le_antisymm
+  · rw [← p.range_upperMap,
+      ← SSet.Subcomplex.image_preimage_eq_inf_range]
+    rw [p.hornRange_eq_horn_image_upperMap]
+    exact SSet.Subcomplex.image_monotone p.upperMap
+      p.previousStage_preimage_upperMap_le_horn
+  · apply le_inf p.hornRange_le_previousStage
+    rw [p.hornRange_eq_horn_image_upperMap,
+      ← p.range_upperMap]
+    exact SSet.Subcomplex.image_le_range (SSet.horn (p.1 + 1) p.2.position) p.upperMap
 
 /-- A chain outside the known horn has full greatest path and its least path avoids `k`,
 expressed without choosing a decidable finite enumeration. -/
