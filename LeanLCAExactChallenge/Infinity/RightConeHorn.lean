@@ -644,4 +644,19 @@ noncomputable def normalizedEmptyJoinHornIso (r : ℕ) (i : Fin (r + 2)) :
       (SSet.horn p.1 p.2 : SSet.{u})) hab
   exact eqToIso h
 
+noncomputable def emptyJoinHornIsoRange (r : ℕ) (i : Fin (r + 2)) :
+    (Λ[r + 1, i] : SSet.{u}) ≅
+      (joinSigmaOneHornRange 0 (r + 1) (∅ : Finset (Fin 1)) i : SSet.{u}) := by
+  let iRaw := Fin.cast
+    (congrArg (fun n => n + 1) (Nat.zero_add (r + 1)).symm) i
+  let iJoin := joinSigmaOneDistinguishedIndex (r + 1)
+    (∅ : Finset (Fin 1)) i
+  have hidx : iRaw = iJoin := by
+    apply Fin.ext
+    simp [iRaw, iJoin, joinSigmaOneDistinguishedIndex]
+  exact normalizedEmptyJoinHornIso r i ≪≫
+    eqToIso (congrArg (fun j =>
+      (SSet.horn (0 + (r + 1)) j : SSet.{u})) hidx) ≪≫
+    joinSigmaOneHornIsoRange 0 (r + 1) (∅ : Finset (Fin 1)) i
+
 end LeanLCAExactChallenge.Infinity
