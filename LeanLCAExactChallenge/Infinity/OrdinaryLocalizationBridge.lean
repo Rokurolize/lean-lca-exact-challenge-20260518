@@ -328,6 +328,34 @@ def internalHomReflectionPre (L : SSet.{u}) (E : Cat.{u, u}) :
       (ihom L).obj (nerveFunctor.obj E) :=
   (MonoidalClosed.pre (nerveAdjunction.unit.app L)).app (nerveFunctor.obj E)
 
+set_option backward.isDefEq.respectTransparency false in
+/-- Reflection-unit precomposition is natural in the source simplicial set. -/
+theorem internalHomReflectionPre_precomp_naturality
+    {X L : SSet.{u}} (f : X ⟶ L) (E : Cat.{u, u}) :
+    internalHomPrecomp
+        (nerveFunctor.map (SSet.hoFunctor.map f)) (nerveFunctor.obj E) ≫
+      internalHomReflectionPre X E =
+    internalHomReflectionPre L E ≫
+      internalHomPrecomp f (nerveFunctor.obj E) := by
+  dsimp [internalHomPrecomp, internalHomReflectionPre]
+  have h₁ := congrArg (fun q ↦ q.app (nerveFunctor.obj E))
+    (MonoidalClosed.pre_map (nerveAdjunction.unit.app X)
+      (nerveFunctor.map (SSet.hoFunctor.map f)))
+  have h₂ := congrArg (fun q ↦ q.app (nerveFunctor.obj E))
+    (MonoidalClosed.pre_map f (nerveAdjunction.unit.app L))
+  have hu : f ≫ nerveAdjunction.unit.app L =
+      nerveAdjunction.unit.app X ≫
+        nerveFunctor.map (SSet.hoFunctor.map f) := by
+    simpa only [Functor.id_obj, Functor.id_map, Functor.comp_obj,
+      Functor.comp_map] using nerveAdjunction.unit.naturality f
+  calc
+    _ = (MonoidalClosed.pre (nerveAdjunction.unit.app X ≫
+        nerveFunctor.map (SSet.hoFunctor.map f))).app (nerveFunctor.obj E) := by
+      simpa only [NatTrans.comp_app] using h₁.symm
+    _ = (MonoidalClosed.pre (f ≫ nerveAdjunction.unit.app L)).app
+        (nerveFunctor.obj E) := by rw [hu]
+    _ = _ := by simpa only [NatTrans.comp_app] using h₂
+
 /-- Extracting a vertex after reflection-unit precomposition is ordinary
 precomposition of the extracted simplicial map. -/
 theorem internalHomVertexMap_reflectionPre (L : SSet.{u}) (E : Cat.{u, u})
