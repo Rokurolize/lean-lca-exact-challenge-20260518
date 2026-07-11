@@ -587,6 +587,24 @@ theorem markedHomotopyMorphismProperty_edge_mem
       (edgeHomotopyClass (SSet.Edge.mk' a)) :=
   ⟨a, ha, rfl⟩
 
+/-- A simplicial map inverting the marked edges induces an ordinary functor inverting
+their represented homotopy-category morphisms. -/
+theorem markedHomotopyMorphismProperty_isInvertedBy_hoFunctor_map
+    {X Y : SSet.{u}} (W : EdgeMarking X) (f : X ⟶ Y)
+    (hf : InvertsMarkedEdges W f) :
+    (markedHomotopyMorphismProperty W).IsInvertedBy
+      (SSet.hoFunctor.map f).toFunctor := by
+  intro A B g hg
+  obtain ⟨a, ha, hg⟩ := hg
+  have hi := hf a ha
+  have hg' := congrArg (SSet.hoFunctor.map f).toFunctor.mapArrow.obj hg
+  change IsIso ((SSet.hoFunctor.map f).toFunctor.map g)
+  rw [show Arrow.mk ((SSet.hoFunctor.map f).toFunctor.map g) =
+    Arrow.mk ((SSet.hoFunctor.map f).toFunctor.map
+      (edgeHomotopyClass (SSet.Edge.mk' a))) by exact hg']
+  change IsIso (edgeHomotopyClass ((SSet.Edge.mk' a).map f))
+  exact hi
+
 /-- The transported relative-functor predicate is exactly inversion of the morphism
 property on the homotopy category represented by marked edges. -/
 theorem pulledRelativeFunctorProperty_iff_isInvertedBy
@@ -1234,6 +1252,47 @@ theorem mappingLocalizationFunctorsInvertingEquivalence_functor_comp_inclusion
   rw [CategoryTheory.Functor.assoc,
     pulledRelativeFunctorPropertyEquivalence_comp_inclusion W E]
   exact mappingLocalizationOrdinaryEquivalence_functor_comp_inclusion h E
+
+/-- The standard precomposition functor, bundled with the marked-morphism inversion
+evidence supplied by a mapping localization. -/
+def mappingLocalizationOrdinaryWhiskeringLeftFunctor
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    ((ihom (SSet.hoFunctor.obj L.obj)).obj E) ⟶
+      (markedHomotopyMorphismProperty W).FunctorsInverting E :=
+  ObjectProperty.lift _
+    ((Functor.whiskeringLeft (SSet.hoFunctor.obj A.obj)
+      (SSet.hoFunctor.obj L.obj) E).obj
+        (SSet.hoFunctor.map ell.hom).toFunctor)
+    (MorphismProperty.IsInvertedBy.of_comp
+      (markedHomotopyMorphismProperty W)
+      (SSet.hoFunctor.map ell.hom).toFunctor
+      (markedHomotopyMorphismProperty_isInvertedBy_hoFunctor_map W ell.hom h.inverts))
+
+set_option maxHeartbeats 800000 in
+set_option backward.isDefEq.respectTransparency false in
+/-- The fixed-target equivalence has the standard bundled precomposition functor as its
+forward functor. -/
+theorem mappingLocalizationFunctorsInvertingEquivalence_functor_eq
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    (mappingLocalizationFunctorsInvertingEquivalence h E).functor =
+      mappingLocalizationOrdinaryWhiskeringLeftFunctor h E := by
+  apply CategoryTheory.Functor.ext
+  · intro F
+    apply MorphismProperty.FunctorsInverting.ext
+    rfl
+  intro F G α
+  apply InducedCategory.Hom.ext
+  have heq := mappingLocalizationFunctorsInvertingEquivalence_functor_comp_inclusion h E
+  exact CategoryTheory.Functor.congr_hom heq α
+
+instance mappingLocalizationOrdinaryWhiskeringLeftFunctor_isEquivalence
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    (mappingLocalizationOrdinaryWhiskeringLeftFunctor h E).IsEquivalence := by
+  rw [← mappingLocalizationFunctorsInvertingEquivalence_functor_eq h E]
+  infer_instance
 
 /-- Maps between nerves are exactly ordinary functors.  This is the fully-faithful
 starting point for comparing the mapping localization with its ordinary truncation. -/
