@@ -15,7 +15,7 @@ set_option autoImplicit false
 
 noncomputable section
 
-universe u v
+universe u v w
 
 namespace LeanLCAExactChallenge
 namespace Infinity
@@ -149,6 +149,142 @@ theorem weakArrowSimplex_comp_edge
   change F.app _ (SSet.yonedaEquiv (weakArrowSimplex R a)) = _
   simp only [weakArrowSimplex, Equiv.apply_symm_apply, SSet.Edge.map_edge,
     SSet.Edge.mk'_edge]
+
+private theorem edgeIsEquivalence_iff_of_edge_eq {X : SSet.{w}}
+    {x₀ x₁ y₀ y₁ : X _⦋0⦌} (e : SSet.Edge x₀ x₁) (f : SSet.Edge y₀ y₁)
+    (h : e.edge = f.edge) : EdgeIsEquivalence e ↔ EdgeIsEquivalence f := by
+  constructor
+  · intro he
+    let e' := SSet.Edge.castEndpoints
+      (f.src_eq.symm.trans (h ▸ e.src_eq)) (f.tgt_eq.symm.trans (h ▸ e.tgt_eq)) e
+    have he' : EdgeIsEquivalence e' := he.castEndpoints
+      (f.src_eq.symm.trans (h ▸ e.src_eq)) (f.tgt_eq.symm.trans (h ▸ e.tgt_eq))
+    have hef : e' = f := by
+      apply SSet.Edge.ext
+      simp only [e', SSet.Edge.castEndpoints_edge, h]
+    simpa only [hef] using he'
+  · intro hf
+    let f' := SSet.Edge.castEndpoints
+      (e.src_eq.symm.trans (h.symm ▸ f.src_eq))
+      (e.tgt_eq.symm.trans (h.symm ▸ f.tgt_eq)) f
+    have hf' : EdgeIsEquivalence f' := hf.castEndpoints
+      (e.src_eq.symm.trans (h.symm ▸ f.src_eq))
+      (e.tgt_eq.symm.trans (h.symm ▸ f.tgt_eq))
+    have hfe : f' = e := by
+      apply SSet.Edge.ext
+      simp only [f', SSet.Edge.castEndpoints_edge, h]
+    simpa only [hfe] using hf'
+
+/-- Evaluation at a weak-arrow component commutes with taking a vertex of an internal-hom
+simplex. -/
+theorem weakEquivalenceMappingComponent_vertexMap
+    (Q : SSet.{max u v}) {U : SimplexCategoryᵒᵖ}
+    (s : ((ihom (CategoryTheory.nerve C)).obj Q).obj U)
+    (i : Fin (U.unop.len + 1)) (a : WeakEquivalenceArrow C R) :
+    internalHomVertexMap (Δ[1] : SSet.{max u v}) Q
+        (((ihom (Δ[1] : SSet.{max u v})).obj Q).map
+          (SimplexCategory.const ⦋0⦌ U.unop i).op
+          ((internalHomPrecomp (weakArrowSimplex R a) Q).app U s)) =
+      weakArrowSimplex R a ≫
+        internalHomVertexMap (CategoryTheory.nerve C) Q
+          (((ihom (CategoryTheory.nerve C)).obj Q).map
+            (SimplexCategory.const ⦋0⦌ U.unop i).op s) := by
+  rw [← NatTrans.naturality_apply (internalHomPrecomp (weakArrowSimplex R a) Q)
+    (SimplexCategory.const ⦋0⦌ U.unop i).op s]
+  exact internalHomVertexMap_precomp (weakArrowSimplex R a) _
+
+/-- A componentwise evaluation simplex lies in the equivalence-edge internal hom exactly
+when the corresponding weak arrow satisfies the family condition at every vertex. -/
+theorem weakEquivalenceMappingComponent_mem_equivalenceEdgeInternalHom_iff
+    (Q : SSet.{max u v}) {U : SimplexCategoryᵒᵖ}
+    (s : ((ihom (CategoryTheory.nerve C)).obj Q).obj U)
+    (a : WeakEquivalenceArrow C R) :
+    (internalHomPrecomp (weakArrowSimplex R a) Q).app U s ∈
+        (equivalenceEdgeInternalHom Q).obj U ↔
+      ∀ i : Fin (U.unop.len + 1),
+        EdgeIsEquivalence
+          ((SSet.Edge.mk' (CategoryTheory.nerve.edgeMk a.hom).edge).map
+            (internalHomVertexMap (CategoryTheory.nerve C) Q
+              (((ihom (CategoryTheory.nerve C)).obj Q).map
+                (SimplexCategory.const ⦋0⦌ U.unop i).op s))) := by
+  change (∀ i : Fin (U.unop.len + 1), EdgeIsEquivalence
+    (SSet.Edge.mk' (SSet.yonedaEquiv
+      (internalHomVertexMap (Δ[1] : SSet.{max u v}) Q
+        (((ihom (Δ[1] : SSet.{max u v})).obj Q).map
+          (SimplexCategory.const ⦋0⦌ U.unop i).op
+          ((internalHomPrecomp (weakArrowSimplex R a) Q).app U s)))))) ↔ _
+  apply forall_congr'
+  intro i
+  rw [weakEquivalenceMappingComponent_vertexMap R Q s i a]
+  change EdgeIsEquivalence
+    (SSet.Edge.mk' (SSet.yonedaEquiv
+      (weakArrowSimplex R a ≫ _))) ↔ _
+  rw [weakArrowSimplex_comp_edge R Q a]
+  apply edgeIsEquivalence_iff_of_edge_eq (X := Q)
+  simp only [SSet.Edge.mk'_edge]
+
+/-- Simultaneous restriction of a map out of the ordinary nerve to every specified weak
+arrow. -/
+noncomputable def weakArrowEvaluationFamily (Q : SSet.{max u v}) :
+    (ihom (CategoryTheory.nerve C)).obj Q ⟶
+      ∏ᶜ fun _ : WeakEquivalenceArrow C R ↦ (ihom (Δ[1] : SSet.{max u v})).obj Q :=
+  Limits.Pi.lift fun a ↦ internalHomPrecomp (weakArrowSimplex R a) Q
+
+@[reassoc]
+theorem weakArrowEvaluationFamily_π (Q : SSet.{max u v})
+    (a : WeakEquivalenceArrow C R) :
+    weakArrowEvaluationFamily R Q ≫
+        Limits.Pi.π (fun _ : WeakEquivalenceArrow C R ↦
+          (ihom (Δ[1] : SSet.{max u v})).obj Q) a =
+      internalHomPrecomp (weakArrowSimplex R a) Q := by
+  exact Limits.Pi.lift_π _ _
+
+set_option maxHeartbeats 800000 in
+theorem weakArrowEvaluationComponent_mem
+    (Q : SSet.{max u v}) (a : WeakEquivalenceArrow C R)
+    {U : SimplexCategoryᵒᵖ}
+    (s : (relativeInternalHom (relativeNerveEdgeMarking R) Q : SSet.{max u v}).obj U) :
+    (((relativeInternalHom (relativeNerveEdgeMarking R) Q).ι ≫
+      internalHomPrecomp (weakArrowSimplex R a) Q).app U s) ∈
+        (equivalenceEdgeInternalHom Q).obj U := by
+  obtain ⟨s, hs⟩ := s
+  have hfamily : WeakArrowFamilyEquivalenceCondition R Q s :=
+    (mem_relativeInternalHom_iff_weakArrowFamily R Q s).1 hs
+  apply (weakEquivalenceMappingComponent_mem_equivalenceEdgeInternalHom_iff R Q s a).2
+  intro i
+  exact hfamily i a
+
+/-- Evaluation at one weak arrow, retaining the proof that the evaluated edge is an
+equivalence. -/
+noncomputable def weakArrowEvaluationComponentToEquivalenceEdges
+    (Q : SSet.{max u v}) (a : WeakEquivalenceArrow C R) :
+    (relativeInternalHom (relativeNerveEdgeMarking R) Q : SSet.{max u v}) ⟶
+      (equivalenceEdgeInternalHom Q : SSet.{max u v}) :=
+  SSet.Subcomplex.lift
+    ((relativeInternalHom (relativeNerveEdgeMarking R) Q).ι ≫
+      internalHomPrecomp (weakArrowSimplex R a) Q) (by
+        rintro U _ ⟨s, rfl⟩
+        exact weakArrowEvaluationComponent_mem R Q a s)
+
+/-- Simultaneous weak-arrow evaluation, retaining the proof that every evaluated edge is an
+equivalence. -/
+noncomputable def weakArrowEvaluationToEquivalenceEdges (Q : SSet.{max u v}) :
+    (relativeInternalHom (relativeNerveEdgeMarking R) Q : SSet.{max u v}) ⟶
+      ∏ᶜ fun _ : WeakEquivalenceArrow C R ↦
+        (equivalenceEdgeInternalHom Q : SSet.{max u v}) :=
+  Limits.Pi.lift fun a ↦ weakArrowEvaluationComponentToEquivalenceEdges R Q a
+
+@[reassoc]
+theorem weakArrowEvaluationToEquivalenceEdges_π_comp_inclusion
+    (Q : SSet.{max u v}) (a : WeakEquivalenceArrow C R) :
+    weakArrowEvaluationToEquivalenceEdges R Q ≫
+        Limits.Pi.π (fun _ : WeakEquivalenceArrow C R ↦
+          (equivalenceEdgeInternalHom Q : SSet.{max u v})) a ≫
+        (equivalenceEdgeInternalHom Q).ι =
+      (relativeInternalHom (relativeNerveEdgeMarking R) Q).ι ≫
+        internalHomPrecomp (weakArrowSimplex R a) Q := by
+  rw [weakArrowEvaluationToEquivalenceEdges, ← Category.assoc, Limits.Pi.lift_π]
+  exact SSet.Subcomplex.lift_ι _ _
 
 /-- On every coproduct component, restriction along the family of interval inclusions is
 exactly restriction along the single free-equivalence interval. -/
