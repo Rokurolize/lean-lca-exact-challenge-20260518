@@ -2220,6 +2220,40 @@ theorem ExtendedGlobalPairIndex.rankedKanFacePair_inr {i j k : J}
     (ExtendedGlobalPairIndex.rankedKanFacePair hik hkj (.inr p)).1 = p.1 :=
   rfl
 
+/-- Dependency rank of an extended Kan-cell attachment. -/
+noncomputable def ExtendedGlobalPairIndex.rank {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) (p : ExtendedGlobalPairIndex i j k) : ℕ × ℕ :=
+  (p.rankedKanFacePair hik hkj).2.upper.filtrationRank k
+
+/-- Rank dependency before a deterministic well-order tie-break. -/
+noncomputable def ExtendedGlobalPairIndex.RankRel {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) (a b : ExtendedGlobalPairIndex i j k) : Prop :=
+  Prod.Lex (fun x y : ℕ ↦ x < y) (fun x y : ℕ ↦ x < y)
+    (a.rank hik hkj) (b.rank hik hkj)
+
+theorem ExtendedGlobalPairIndex.rankRel_wellFounded {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    WellFounded (ExtendedGlobalPairIndex.RankRel hik hkj) :=
+  (Nat.lt_wfRel.wf.prod_lex Nat.lt_wfRel.wf).onFun
+
+noncomputable instance ExtendedGlobalPairIndex.rankRel_isWellFounded {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) :
+    IsWellFounded (ExtendedGlobalPairIndex i j k)
+      (ExtendedGlobalPairIndex.RankRel hik hkj) :=
+  ⟨ExtendedGlobalPairIndex.rankRel_wellFounded hik hkj⟩
+
+/-- A well-order extending the dependency rank on all outer and inner mapping-space cells. -/
+@[implicit_reducible]
+noncomputable def ExtendedGlobalPairIndex.wellOrder {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) : LinearOrder (ExtendedGlobalPairIndex i j k) :=
+  IsWellFounded.wellOrderExtension (ExtendedGlobalPairIndex.RankRel hik hkj)
+
+theorem ExtendedGlobalPairIndex.rankRel_lt_wellOrder {i j k : J}
+    (hik : i ≤ k) (hkj : k ≤ j) {a b : ExtendedGlobalPairIndex i j k}
+    (h : ExtendedGlobalPairIndex.RankRel hik hkj a b) :
+    @LT.lt _ (ExtendedGlobalPairIndex.wellOrder hik hkj).toLT a b :=
+  Prod.Lex.left _ _ (IsWellFounded.rank_lt_of_rel h)
+
 noncomputable def GlobalPairIndex.rank {i j k : J} (a : GlobalPairIndex i j k) :
     ℕ × ℕ :=
   a.2.upperChain.filtrationRank k
