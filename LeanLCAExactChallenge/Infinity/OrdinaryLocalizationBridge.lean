@@ -935,6 +935,16 @@ noncomputable def mappingLocalizationOrdinaryEquivalence
     (SSet.hoFunctor.map d.comparison).toFunctor.asEquivalence |>.trans
       (relativeInternalHomNerveHomotopyEquivalence W E)
 
+/-- Ordinary truncation of a mapping-quasicategory localization has the standard
+fixed-target universal property for the marked homotopy morphism property. -/
+noncomputable def mappingLocalizationFunctorsInvertingEquivalence
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    ((ihom (SSet.hoFunctor.obj L.obj)).obj E) ≌
+      (markedHomotopyMorphismProperty W).FunctorsInverting E :=
+  (mappingLocalizationOrdinaryEquivalence h E).trans
+    (pulledRelativeFunctorPropertyEquivalence W E)
+
 /-- Maps between nerves are exactly ordinary functors.  This is the fully-faithful
 starting point for comparing the mapping localization with its ordinary truncation. -/
 noncomputable def nerveFunctorCategoryEquiv (C D : Type u)
