@@ -2232,6 +2232,32 @@ lemma joinSigmaOne_leftErasedFace_le_stage_inf
     simp [joinSigmaOneVertices, joinFirstVertices] at hx ⊢
     aesop
 
+lemma joinSigmaOne_rightErasedFace_le_stage_inf
+    (m n r : ℕ) (i j : Fin (n + 2)) (hji : j ≠ i)
+    (T : Finset (Fin (m + 1))) :
+    SSet.stdSimplex.face.{u}
+        ((joinSigmaOneVertices m (n + 1) T).erase
+          (joinShiftedVertex m (n + 1) j)) ≤
+      representableJoinHornStage m (n + 1) i r ⊓
+        SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex m (n + 1) T) := by
+  apply le_inf
+  · apply le_trans ?_ (show representableJoinHornInitial m (n + 1) i ≤
+        representableJoinHornStage m (n + 1) i r by exact le_sup_left)
+    rw [representableJoinHornInitial_eq_iSup_shiftedRightFaces]
+    apply le_trans ((SSet.stdSimplex.face_le_face_iff _ _).mpr (fun x hx ↦ by
+      simp only [Finset.mem_compl, Finset.mem_singleton]
+      intro h
+      exact (Finset.mem_erase.mp hx).2 (by
+        simpa [joinShiftedVertex] using h)))
+    exact le_iSup (fun k : ({i}ᶜ : Set (Fin (n + 2))) ↦
+      SSet.stdSimplex.face
+        ({(⟨m + 1 + k.1.val, by omega⟩ : Fin (m + (n + 1) + 2))}ᶜ))
+      ⟨j, by simpa only [Set.mem_compl_iff, Set.mem_singleton_iff]⟩
+  · rw [← joinSigmaOneFace_eq_ofSimplex]
+    apply (SSet.stdSimplex.face_le_face_iff _ _).mpr
+    intro x hx
+    exact Finset.mem_of_mem_erase hx
+
 /-- The ordinary simplicial slice underlying the augmented Day internal hom. -/
 def simplicialSlice (X Q : SSet.{u}) : SSet.{u} :=
   forgetAugmentation.{u}.obj
