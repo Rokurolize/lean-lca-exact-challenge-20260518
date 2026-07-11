@@ -81,6 +81,15 @@ noncomputable def dgMappingConeDescEquiv (T : ComplexCategory)
     (φ := (boundedCochainComplex MetrizableLCA.{0}).ι.map f) T.obj
     (fun j ↦ ⟨j - 1, by simp⟩)
 
+@[simp]
+theorem dgMappingConeDescEquiv_symm_fst (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L)
+    (g : (dgMappingConeObject f).obj ⟶ T.obj) :
+    ((dgMappingConeDescEquiv T f).symm g).1 =
+      CochainComplex.mappingCone.inr
+        ((boundedCochainComplex MetrizableLCA.{0}).ι.map f) ≫ g :=
+  rfl
+
 /-- The degree-zero inclusion of the target into the mapping cone, retained in the bounded
 dg carrier. -/
 def dgMappingConeInr {K L : ComplexCategory} (f : K ⟶ L) :
