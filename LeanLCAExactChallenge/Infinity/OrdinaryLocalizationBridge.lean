@@ -38,6 +38,21 @@ theorem internalHomNerve_mem_essImage (L : SSet.{u}) (E : Cat.{u, u}) :
     nerveFunctor.{u, u}.essImage ((ihom L).obj (nerveFunctor.obj E)) :=
   ExponentialIdeal.exp_closed (nerveFunctor.obj_mem_essImage E) L
 
+/-- The reflection unit exhibits an internal Hom into a nerve as the nerve of its homotopy
+category. -/
+noncomputable def internalHomNerveReflectionIso (L : SSet.{u}) (E : Cat.{u, u}) :
+    nerveFunctor.obj (SSet.hoFunctor.obj
+      ((ihom L).obj (nerveFunctor.obj E))) ≅
+      (ihom L).obj (nerveFunctor.obj E) := by
+  haveI := Functor.essImage.unit_isIso (internalHomNerve_mem_essImage L E)
+  letI : IsIso (nerveAdjunction.unit.app
+      ((ihom L).obj (nerveFunctor.obj E))) := by
+    change IsIso ((reflectorAdjunction nerveFunctor).unit.app
+      ((ihom L).obj (nerveFunctor.obj E)))
+    infer_instance
+  exact (asIso (nerveAdjunction.unit.app
+    ((ihom L).obj (nerveFunctor.obj E)))).symm
+
 /-- In a Cat-enriched ordinary category, the transported horizontal composite has the
 expected enriched-composition normal form after applying `Hom.base`. -/
 theorem catEnrichedOrdinary_base_hComp
