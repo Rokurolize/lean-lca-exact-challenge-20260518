@@ -82,4 +82,38 @@ instance rightFibration_pullback_snd
   refine ⟨?_⟩
   exact rightFibrations.pullback_snd _ _ RightFibration.mem
 
+/-- Map-level relative lifting of a right outer `2`-horn. -/
+lemma RightFibration.liftHorn₂₂
+    {X Y : SSet.{u}} (p : X ⟶ Y) [RightFibration p]
+    (f₀₂ f₁₂ : (Δ[1] : SSet.{u}) ⟶ X)
+    (hcompat : SSet.stdSimplex.δ 0 ≫ f₀₂ = SSet.stdSimplex.δ 0 ≫ f₁₂)
+    (b : (Δ[2] : SSet.{u}) ⟶ Y)
+    (hb₀₂ : f₀₂ ≫ p = SSet.stdSimplex.δ 1 ≫ b)
+    (hb₁₂ : f₁₂ ≫ p = SSet.stdSimplex.δ 0 ≫ b) :
+    ∃ σ : (Δ[2] : SSet.{u}) ⟶ X,
+      SSet.stdSimplex.δ 1 ≫ σ = f₀₂ ∧
+      SSet.stdSimplex.δ 0 ≫ σ = f₁₂ ∧ σ ≫ p = b := by
+  let h : (Λ[2, 2] : SSet.{u}) ⟶ X :=
+    SSet.horn₂₂.isPushout.desc f₀₂ f₁₂ hcompat
+  have hsquare : h ≫ p = (SSet.horn 2 (2 : Fin 3)).ι ≫ b := by
+    apply SSet.horn₂₂.isPushout.hom_ext
+    · rw [← Category.assoc, SSet.horn₂₂.isPushout.inl_desc, hb₀₂]
+      rfl
+    · rw [← Category.assoc, SSet.horn₂₂.isPushout.inr_desc, hb₁₂]
+      rfl
+  let sq : CommSq h (SSet.horn 2 (2 : Fin 3)).ι p b := ⟨hsquare⟩
+  letI : HasLiftingProperty (SSet.horn 2 (2 : Fin 3)).ι p :=
+    RightFibration.hasLiftingProperty_preinverseTriangle p
+  refine ⟨sq.lift, ?_, ?_, sq.fac_right⟩
+  · calc
+      SSet.stdSimplex.δ 1 ≫ sq.lift =
+          SSet.horn₂₂.ι₀₂ ≫ (SSet.horn 2 (2 : Fin 3)).ι ≫ sq.lift := rfl
+      _ = SSet.horn₂₂.ι₀₂ ≫ h := by rw [sq.fac_left]
+      _ = f₀₂ := SSet.horn₂₂.isPushout.inl_desc _ _ _
+  · calc
+      SSet.stdSimplex.δ 0 ≫ sq.lift =
+          SSet.horn₂₂.ι₁₂ ≫ (SSet.horn 2 (2 : Fin 3)).ι ≫ sq.lift := rfl
+      _ = SSet.horn₂₂.ι₁₂ ≫ h := by rw [sq.fac_left]
+      _ = f₁₂ := SSet.horn₂₂.isPushout.inr_desc _ _ _
+
 end LeanLCAExactChallenge.Infinity
