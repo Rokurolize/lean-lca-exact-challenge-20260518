@@ -633,51 +633,49 @@ def simplicialJoinRightInclusion (X Y : SSet.{u}) : Y ⟶ simplicialJoin X Y := 
   let F := emptyAugmentation.{u}.obj X
   let G := emptyAugmentation.{u}.obj Y
   letI := augmentedDayConvolution F G
-  let uF : Unique (F.obj (Opposite.op WithInitial.star)) :=
+  letI : Unique (F.obj (Opposite.op WithInitial.star)) :=
     (Limits.Types.isTerminalEquivUnique _) (emptyAugmentationStarIsTerminal X)
   refine
-    { app := fun U y ↦
-        (CategoryTheory.MonoidalCategory.DayConvolution.unit F G).app
-          (Opposite.op WithInitial.star,
-            AugmentedSimplexCategory.inclusion.op.obj U) (default, y)
+    { app := fun U ↦ by
+        change G.obj (AugmentedSimplexCategory.inclusion.op.obj U) ⟶
+          (CategoryTheory.MonoidalCategory.DayConvolution.convolution F G).obj
+            (AugmentedSimplexCategory.inclusion.op.obj U)
+        exact ConcreteCategory.ofHom (TypeCat.Fun.mk (fun y ↦
+          let y' : G.obj (AugmentedSimplexCategory.inclusion.op.obj U) := y
+          let input : (F ⊠ G).obj (Opposite.op WithInitial.star,
+              AugmentedSimplexCategory.inclusion.op.obj U) := by
+            change F.obj (Opposite.op WithInitial.star) ×
+              G.obj (AugmentedSimplexCategory.inclusion.op.obj U)
+            exact (default, y')
+          (CategoryTheory.MonoidalCategory.DayConvolution.unit F G).app
+            (Opposite.op WithInitial.star,
+              AugmentedSimplexCategory.inclusion.op.obj U) input))
       naturality := ?_ }
   intro U V f
   apply ConcreteCategory.hom_ext
   intro y
-  have h := congrFun ((CategoryTheory.MonoidalCategory.DayConvolution.unit F G).naturality
-    ((𝟙 (Opposite.op WithInitial.star),
-      AugmentedSimplexCategory.inclusion.op.map f))) (default, y)
-  exact h
-
-@[reassoc]
-theorem simplicialJoinRightInclusion_naturality
-    {X X' Y Y' : SSet.{u}} (f : X ⟶ X') (g : Y ⟶ Y') :
-    simplicialJoinRightInclusion X Y ≫ simplicialJoinMap f g =
-      g ≫ simplicialJoinRightInclusion X' Y' := by
-  apply NatTrans.ext
-  funext U
-  apply ConcreteCategory.hom_ext
-  intro y
-  let F := emptyAugmentation.{u}.obj X
-  let G := emptyAugmentation.{u}.obj Y
-  let F' := emptyAugmentation.{u}.obj X'
-  let G' := emptyAugmentation.{u}.obj Y'
-  letI := augmentedDayConvolution F G
-  letI := augmentedDayConvolution F' G'
-  change (CategoryTheory.MonoidalCategory.DayConvolution.unit F G).app
-      (Opposite.op WithInitial.star, AugmentedSimplexCategory.inclusion.op.obj U)
-        (default, y) |> (CategoryTheory.MonoidalCategory.DayConvolution.map
-          (emptyAugmentation.map f) (emptyAugmentation.map g)).app _ = _
-  have h := congrFun (CategoryTheory.MonoidalCategory.DayConvolution.unit_app_map_app
-    (emptyAugmentation.map f) (emptyAugmentation.map g)
-    (Opposite.op WithInitial.star) (AugmentedSimplexCategory.inclusion.op.obj U))
-      (default, y)
-  simpa [F, G, F', G'] using h
+  let fg : (Opposite.op WithInitial.star,
+      AugmentedSimplexCategory.inclusion.op.obj U) ⟶
+      (Opposite.op WithInitial.star,
+        AugmentedSimplexCategory.inclusion.op.obj V) :=
+    𝟙 (Opposite.op (WithInitial.star : AugmentedSimplexCategory)) ×ₘ
+      AugmentedSimplexCategory.inclusion.op.map f
+  have h := (CategoryTheory.MonoidalCategory.DayConvolution.unit F G).naturality fg
+  let input : (F ⊠ G).obj (Opposite.op WithInitial.star,
+      AugmentedSimplexCategory.inclusion.op.obj U) := by
+    change F.obj (Opposite.op WithInitial.star) ×
+      G.obj (AugmentedSimplexCategory.inclusion.op.obj U)
+    exact (default, y)
+  exact ConcreteCategory.congr_hom h input
 
 /-- The ordinal embedding of the right block in a representable join. -/
 def standardJoinRightOperator (m n : ℕ) :=
   SimplexCategory.mkHom
-    (Fin.natAddOrderEmb (m + 1) : Fin (n + 1) →o Fin (m + n + 2))
+    ({ toFun := fun i : Fin (n + 1) ↦ ⟨m + 1 + i.val, by omega⟩
+       monotone' := by
+        intro i j hij
+        simpa only [Fin.le_def] using Nat.add_le_add_left hij (m + 1) } :
+      Fin (n + 1) →o Fin (m + n + 2))
 
 /-- Extending a standard simplex to augmented degree is the augmented
 representable at the same finite ordinal. -/
@@ -1223,14 +1221,6 @@ def simplicialJoinStdSimplexIso (m n : SimplexCategory) :
 def simplicialJoinStdSimplexIsoNat (m n : ℕ) :
     simplicialJoin (Δ[m] : SSet.{u}) Δ[n] ≅ Δ[m + n + 1] :=
   simplicialJoinStdSimplexIso.{u} (SimplexCategory.mk m) (SimplexCategory.mk n)
-
-/-- On standard simplices, the right-factor inclusion is the shifted ordinal embedding. -/
-theorem simplicialJoinRightInclusion_stdSimplex (m n : ℕ) :
-    simplicialJoinRightInclusion (Δ[m] : SSet.{u}) (Δ[n] : SSet.{u}) ≫
-      (simplicialJoinStdSimplexIsoNat m n).hom =
-    SSet.stdSimplex.map (standardJoinRightOperator m n) := by
-  apply SSet.yonedaEquiv.injective
-  rfl
 
 theorem simplicialJoinStdSimplexIsoNat_naturality_rightCoface
     (m n : ℕ) (j : Fin (n + 2)) :
@@ -2920,6 +2910,7 @@ noncomputable def representableJoinHornPointIso
     (representableJoinHornRangeCoconePrecomposeIsColimit m n i)
 
 set_option backward.isDefEq.respectTransparency false in
+set_option maxHeartbeats 800000 in
 lemma representableJoinHornPointIso_hom
     (m n : ℕ) (i : Fin (n + 3)) :
     (representableJoinHornPointIso.{u} m n i).hom =
@@ -2933,18 +2924,16 @@ lemma representableJoinHornPointIso_hom
       representableJoinHornRangeCocone, representableJoinHornDiagramIso,
       representableJoinHornDiagramComponentIso, representableJoinHornRangeDiagram,
       representableJoinHornSourceDiagram]
-    simp only [Iso.trans_hom, Category.assoc]
     dsimp [simplicialSetIsoRangeOfMono]
     apply (cancel_mono (representableJoinHornInitial m (n + 2) i).ι).mp
-    simp only [Category.assoc, SSet.Subcomplex.toRange_ι, SSet.Subcomplex.homOfLE_ι]
+    rfl
   · dsimp [representableJoinHornRangeCoconePrecompose,
       representableJoinHornRangeCocone, representableJoinHornDiagramIso,
       representableJoinHornDiagramComponentIso, representableJoinHornRangeDiagram,
       representableJoinHornSourceDiagram]
-    simp only [Category.assoc]
     dsimp [simplicialSetIsoRangeOfMono]
     apply (cancel_mono (representableJoinHornInitial m (n + 2) i).ι).mp
-    simp only [Category.assoc, SSet.Subcomplex.toRange_ι, SSet.Subcomplex.homOfLE_ι]
+    rfl
 
 noncomputable instance representableJoinHornMap_mono
     (m n : ℕ) (i : Fin (n + 3)) :
@@ -3997,54 +3986,6 @@ noncomputable instance emptyAugmentation_full : emptyAugmentation.{u}.Full :=
 
 noncomputable instance emptyAugmentation_faithful : emptyAugmentation.{u}.Faithful :=
   emptyAugmentationFullyFaithful.{u}.faithful
-
-
-noncomputable instance relativeDaySliceOverMap_stdSimplex_quasicategory (m : ℕ) (Q : SSet.{u}) [SSet.Quasicategory Q]
-    (a : emptyAugmentation.{u}.obj (Δ[m] : SSet.{u}) ⟶ emptyAugmentation.{u}.obj Q) :
-    SSet.Quasicategory (relativeDaySliceOverMap
-      (emptyAugmentation.{u}.obj (Δ[m] : SSet.{u})) (emptyAugmentation.{u}.obj Q) a) where
-  hornFilling' n i σ₀ h0 hn := by
-    let F := emptyAugmentation.{u}.obj (Δ[m] : SSet.{u})
-    let G := emptyAugmentation.{u}.obj Q
-    let φ := relativeDaySliceOverMapFixedBaseEquiv F G (Λ[n + 2, i] : SSet.{u}) a σ₀
-    let f : simplicialJoin (Δ[m] : SSet.{u}) Λ[n + 2, i] ⟶ Q :=
-      forgetAugmentation.{u}.map φ.1
-    obtain ⟨g, hg⟩ := exists_representableJoinHornMap_extension m n i h0 hn Q f
-    let ψ : (augmentedDayTensorLeft F).obj (emptyAugmentation.{u}.obj (Δ[n + 2] : SSet.{u})) ⟶ G :=
-      (convolutionSingletonAugmentationIso (Δ[m] : SSet.{u}) (Δ[n + 2] : SSet.{u})).inv ≫
-        emptyAugmentation.{u}.map ((simplicialJoinStdSimplexIsoNat m (n + 2)).hom ≫ g)
-    have hpre : (augmentedDayTensorLeft F).map
-          (emptyAugmentation.{u}.map (SSet.horn (n + 2) i).ι) ≫ ψ = φ.1 := by
-      apply forgetAugmentation.{u}.map_injective
-      dsimp [ψ, f, F]
-      simp only [Functor.map_comp, Category.assoc]
-      rw [simplicialJoinMap_id_eq_augmentedDayTensorLeft_map]
-      change simplicialJoinMap (𝟙 (Δ[m] : SSet.{u})) (SSet.horn (n + 2) i).ι ≫
-          (simplicialJoinStdSimplexIsoNat m (n + 2)).hom ≫ g = _
-      simpa [representableJoinHornMap] using hg
-    have hbase : ((augmentedDayHomEquiv F (emptyAugmentation.{u}.obj (Δ[n + 2] : SSet.{u})) G ψ).app
-        (Opposite.op WithInitial.star)) (emptyAugmentationStarPoint (Δ[n + 2] : SSet.{u})) =
-        dayInternalHomStarOfMap a := by
-      have ht := congrArg (fun τ => augmentedDayHomEquiv F
-        (emptyAugmentation.{u}.obj Λ[n + 2, i]) G τ) hpre
-      rw [augmentedDayHomEquiv_precomp] at ht
-      have hp := congrArg (fun τ => τ.app (Opposite.op WithInitial.star)
-        (emptyAugmentationStarPoint (Λ[n + 2, i] : SSet.{u}))) ht
-      have heq : (emptyAugmentation.{u}.map (SSet.horn (n + 2) i).ι).app
-          (Opposite.op WithInitial.star) (emptyAugmentationStarPoint (Λ[n + 2, i] : SSet.{u})) =
-          emptyAugmentationStarPoint (Δ[n + 2] : SSet.{u}) := by
-        exact (Limits.Types.isTerminalEquivUnique _
-          (emptyAugmentationStarIsTerminal (Δ[n + 2] : SSet.{u}))).uniq _
-      rw [NatTrans.comp_app, types_comp_apply, heq] at hp
-      exact hp.trans φ.2
-    let φ' : FixedBaseDayConvolutionMapOver F G (Δ[n + 2] : SSet.{u}) a := ⟨ψ, hbase⟩
-    let σ := (relativeDaySliceOverMapFixedBaseEquiv F G (Δ[n + 2] : SSet.{u}) a).symm φ'
-    refine ⟨σ, ?_⟩
-    apply (relativeDaySliceOverMapFixedBaseEquiv F G (Λ[n + 2, i] : SSet.{u}) a).injective
-    apply Subtype.ext
-    dsimp [σ, φ']
-    rw [Equiv.apply_symm_apply]
-    exact hpre.symm
 
 
 end Infinity
