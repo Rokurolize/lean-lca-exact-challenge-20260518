@@ -2594,6 +2594,27 @@ lemma representableJoinHornCocone_left_comp_mono
   change Mono (tr ≫ (SSet.Subcomplex.range f).ι)
   infer_instance
 
+lemma representableJoinHornCocone_left_comp_range_eq_inf
+    (m n : ℕ) (i : Fin (n + 3))
+    (a : (Limits.MultispanShape.ofLinearOrder
+      ({i}ᶜ : Set (Fin (n + 3)))).L) :
+    SSet.Subcomplex.range
+        ((representableJoinHornCocone.{u} m i).ι.app (.left a) ≫
+          representableJoinHornMap m (n + 2) i) =
+      SSet.Subcomplex.range
+          ((representableJoinHornCocone.{u} m i).ι.app
+              (.right ((Limits.MultispanShape.ofLinearOrder
+                ({i}ᶜ : Set (Fin (n + 3)))).fst a)) ≫
+            representableJoinHornMap m (n + 2) i) ⊓
+        SSet.Subcomplex.range
+          ((representableJoinHornCocone.{u} m i).ι.app
+              (.right ((Limits.MultispanShape.ofLinearOrder
+                ({i}ᶜ : Set (Fin (n + 3)))).snd a)) ≫
+            representableJoinHornMap m (n + 2) i) := by
+  rw [representableJoinHornCocone_left_comp_range,
+    representableJoinHornCocone_right_comp_ranges_inf]
+  rfl
+
 lemma representableJoinHornInitial_eq_iSup_rightRanges
     (m n : ℕ) (i : Fin (n + 2)) :
     representableJoinHornInitial m (n + 1) i =
