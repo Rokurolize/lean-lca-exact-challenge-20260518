@@ -763,6 +763,46 @@ def dgHomPrecompositionPathFiberToConeHom (T : ComplexCategory)
   f n := dgHomPrecompositionPathFiberToConeHomDegree T f n
   comm' n m h := dgHomPrecompositionPathFiberToConeHomDegree_comm T f n m h
 
+theorem dgMappingConeHom_pathFiber_roundtrip (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    dgMappingConeHomToPathFiber T f ≫
+        dgHomPrecompositionPathFiberToConeHom T f = 𝟙 _ := by
+  ext n γ
+  apply (dgMappingConeCochainFromLinearEquiv T f n).injective
+  apply Prod.ext
+  · simp [dgMappingConeHomToPathFiber,
+      dgHomPrecompositionPathFiberToConeHom,
+      dgHomPrecompositionPathFiberToConeHomDegree]
+
+theorem dgHomPrecompositionPathFiber_coneHom_roundtrip (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    dgHomPrecompositionPathFiberToConeHom T f ≫
+        dgMappingConeHomToPathFiber T f = 𝟙 _ := by
+  apply Limits.pullback.hom_ext
+  · ext n x
+    simp [dgMappingConeHomToPathFiber,
+      dgHomPrecompositionPathFiberToConeHom,
+      dgHomPrecompositionPathFiberToConeHomDegree]
+
+/-- Maps out of the dg cone are exactly the strict path-object pullback modeling the homotopy
+fiber of precomposition. -/
+def dgMappingConeHomPathFiberIso (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    dgHomZModuleCochainComplex (dgMappingConeObject f) T ≅
+      dgHomPrecompositionPathFiber T f where
+  hom := dgMappingConeHomToPathFiber T f
+  inv := dgHomPrecompositionPathFiberToConeHom T f
+  hom_inv_id := dgMappingConeHom_pathFiber_roundtrip T f
+  inv_hom_id := dgHomPrecompositionPathFiber_coneHom_roundtrip T f
+  · ext n x
+    simp [dgMappingConeHomToPathFiber,
+      dgMappingConeHomToPathObject,
+      dgHomPrecompositionPathFiberToConeHom,
+      dgHomPrecompositionPathFiberToConeHomDegree]
+  · simp [dgMappingConeHomToPathFiber,
+      dgHomPrecompositionPathFiberToConeHom,
+      dgHomPrecompositionPathFiberToConeHomDegree]
+
 /-- Explicit two-coordinate complex for maps out of a cone. -/
 def dgMappingConeExplicitFromCoordinateCochainComplex
     (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) :
