@@ -3,6 +3,7 @@ import Mathlib.AlgebraicTopology.SimplicialSet.NerveAdjunction
 import Mathlib.AlgebraicTopology.SimplicialSet.Horn
 import Mathlib.AlgebraicTopology.SimplicialSet.Nonsingular
 import Mathlib.AlgebraicTopology.SimplicialSet.SubcomplexColimits
+import Mathlib.AlgebraicTopology.SimplicialSet.AnodyneExtensions.PushoutProduct
 import Mathlib.Order.Extension.Well
 
 /-!
@@ -18,7 +19,7 @@ set_option autoImplicit false
 
 namespace LeanLCAExactChallenge.Infinity.CoherentNervePathFiltration
 
-open CategoryTheory Simplicial
+open CategoryTheory Simplicial MonoidalCategory
 
 universe u
 
@@ -266,6 +267,38 @@ noncomputable def nerveBinaryProductIso (C D : Type u) [Category.{u} C] [Categor
   asIso (CategoryTheory.Limits.prodComparison CategoryTheory.nerveFunctor
     (CategoryTheory.Cat.of C) (CategoryTheory.Cat.of D))
 
+/-- The type-theoretic product category is a limiting binary fan in `Cat`.  We keep this
+explicit because the chosen product object of `Cat` is not definitionally the type product. -/
+noncomputable def typeProductFan (C D : Type u) [Category.{u} C] [Category.{u} D] :
+    CategoryTheory.Limits.BinaryFan (CategoryTheory.Cat.of C) (CategoryTheory.Cat.of D) :=
+  CategoryTheory.Limits.BinaryFan.mk (CategoryTheory.Prod.fst C D).toCatHom
+    (CategoryTheory.Prod.snd C D).toCatHom
+
+noncomputable def typeProductFanIsLimit (C D : Type u) [Category.{u} C] [Category.{u} D] :
+    CategoryTheory.Limits.IsLimit (typeProductFan C D) :=
+  CategoryTheory.Limits.BinaryFan.IsLimit.mk _
+    (fun f g ↦ (f.toFunctor.prod' g.toFunctor).toCatHom)
+    (fun _ _ ↦ by apply CategoryTheory.Cat.Hom.ext; rfl)
+    (fun _ _ ↦ by apply CategoryTheory.Cat.Hom.ext; rfl)
+    (fun f g m h₁ h₂ ↦ by
+      apply CategoryTheory.Cat.Hom.ext
+      change m.toFunctor = f.toFunctor.prod' g.toFunctor
+      rw [← CategoryTheory.Cat.Hom.ext_iff.mp h₁, ← CategoryTheory.Cat.Hom.ext_iff.mp h₂]
+      rfl)
+
+/-- Comparison between the concrete type-product category and the chosen product in `Cat`. -/
+noncomputable def typeProductIsoChosenProduct (C D : Type u) [Category.{u} C]
+    [Category.{u} D] :
+    CategoryTheory.Cat.of (C × D) ≅ CategoryTheory.Cat.of C ⨯ CategoryTheory.Cat.of D :=
+  CategoryTheory.Limits.IsLimit.conePointUniqueUpToIso (typeProductFanIsLimit C D)
+    (CategoryTheory.Limits.limit.isLimit _)
+
+/-- The nerve of the concrete product category is the pointwise product of nerves. -/
+noncomputable def nerveTypeProductIso (C D : Type u) [Category.{u} C] [Category.{u} D] :
+    CategoryTheory.nerve (C × D) ≅ CategoryTheory.nerve C ⨯ CategoryTheory.nerve D :=
+  (CategoryTheory.nerveFunctor.mapIso (typeProductIsoChosenProduct C D)).trans
+    (nerveBinaryProductIso C D)
+
 /-- Split an `(n+1)`-bit vector into its first `n` bits and its last bit. -/
 def finBitvectorSuccOrderIso (n : ℕ) :
     (Fin (n + 1) → Fin 2) ≃o ((Fin n → Fin 2) × Fin 2) where
@@ -489,6 +522,7 @@ noncomputable def liftedPiBitsNerveSuccIso (n : ℕ) :
       exact hf
     rw [hc, CategoryTheory.Functor.map_id]
     rfl
+
   inv_hom_id := by
     change CategoryTheory.nerveFunctor.map (liftedPiBitsSuccInverse n).toCatHom ≫
       CategoryTheory.nerveFunctor.map (liftedPiBitsSuccFunctor n).toCatHom = _
@@ -504,6 +538,140 @@ noncomputable def liftedPiBitsNerveSuccIso (n : ℕ) :
       exact hf
     rw [hc, CategoryTheory.Functor.map_id]
     rfl
+
+/-- The recursively parenthesized `n`-cube, with the harmless zero-dimensional factor kept as
+the nerve of the empty bitvector category. -/
+noncomputable def liftedIntervalCube : ℕ → SSet.{u}
+  | 0 => CategoryTheory.nerve (LiftedPiBits.{u} 0)
+  | n + 1 => liftedIntervalCube n ⊗ (Δ[1] : SSet.{u})
+
+noncomputable def binaryProductIsoTensor (X Y : SSet.{u}) : X ⨯ Y ≅ X ⊗ Y :=
+  ((CartesianMonoidalCategory.tensorProductIsBinaryProduct X Y).conePointUniqueUpToIso
+    (CategoryTheory.Limits.prodIsProd X Y)).symm
+
+/-- Cubical boundary, recursively expressed by the union-product (hence by a
+pushout-product of inclusions). -/
+noncomputable def liftedIntervalCubeBoundary : (n : ℕ) → (liftedIntervalCube n).Subcomplex
+  | 0 => ⊥
+  | n + 1 => (liftedIntervalCubeBoundary n).unionProd ∂Δ[1]
+
+/-- The cubical horn omitting one of the two final-coordinate faces.  It contains the entire
+boundary in the preceding coordinates and the selected endpoint in the final coordinate. -/
+noncomputable def liftedIntervalCubeLastHorn (n : ℕ) (k : Fin 2) :
+    (liftedIntervalCube (n + 1)).Subcomplex :=
+  (liftedIntervalCubeBoundary n).unionProd (SSet.horn 1 k)
+
+/-- A cubical horn inclusion is the pushout-product of a monomorphism with a one-dimensional
+horn inclusion, and is therefore an anodyne extension. -/
+theorem liftedIntervalCubeLastHorn_anodyne (n : ℕ) (k : Fin 2) :
+    SSet.anodyneExtensions (liftedIntervalCubeLastHorn n k).ι :=
+  SSet.anodyneExtensions_unionProd_ι (liftedIntervalCubeBoundary n) (SSet.horn 1 k)
+    (SSet.anodyneExtensions.horn_ι k)
+
+/-- Consequently every map having the Kan horn RLP has the required cubical-horn lift. -/
+theorem liftedIntervalCubeLastHorn_hasLiftingProperty {E B : SSet.{u}} (p : E ⟶ B)
+    (hp : SSet.modelCategoryQuillen.J.rlp p) (n : ℕ) (k : Fin 2) :
+    HasLiftingProperty (liftedIntervalCubeLastHorn n k).ι p := by
+  have h := liftedIntervalCubeLastHorn_anodyne n k
+  rw [SSet.anodyneExtensions_eq_llp_rlp] at h
+  exact h p hp
+
+/-- The nerve of lifted bitvectors is recursively a product of walking intervals. -/
+noncomputable def liftedPiBitsCubeIso : (n : ℕ) →
+    CategoryTheory.nerve (LiftedPiBits.{u} n) ≅ liftedIntervalCube n
+  | 0 => Iso.refl _
+  | n + 1 =>
+      (liftedPiBitsNerveSuccIso n).trans <|
+        (nerveTypeProductIso (LiftedPiBits.{u} n) (ULift.{u} (Fin 2))).trans <|
+          CategoryTheory.Limits.prod.mapIso (liftedPiBitsCubeIso n)
+            stdSimplexOneIsoNerveFinTwo.symm ≪≫
+          binaryProductIsoTensor _ _
+
+/-- A numbering of the internal vertices identifies the path poset with the lifted cubical
+bitvector category. -/
+noncomputable def thickPathLiftedPiBitsEquiv {J : Type u} [LinearOrder J]
+    {i j : J} (hij : i ≤ j) (n : ℕ) (e : InteriorVertex i j ≃ Fin n) :
+    ThickPath i j ≃ LiftedPiBits.{u} n where
+  toFun P := ⟨fun a ↦ ULift.up ((thickPathBitvectorOrderIso hij P) (e.symm a))⟩
+  invFun b := (thickPathBitvectorOrderIso hij).symm (fun x ↦ (b.val (e x)).down)
+  left_inv P := by
+    apply (thickPathBitvectorOrderIso hij).injective
+    funext x
+    simp
+  right_inv b := by
+    ext a
+    simp
+
+/-- Forward categorical presentation of the numbered cubical path poset. -/
+noncomputable def thickPathToLiftedPiBitsFunctor {J : Type u} [LinearOrder J]
+    {i j : J} (hij : i ≤ j) (n : ℕ) (e : InteriorVertex i j ≃ Fin n) :
+    CategoryTheory.Functor (ThickPath i j) (LiftedPiBits.{u} n) where
+  obj := thickPathLiftedPiBitsEquiv hij n e
+  map {P Q} f a := by
+    apply homOfLE
+    change ((thickPathBitvectorOrderIso hij P) (e.symm a)) ≤
+      ((thickPathBitvectorOrderIso hij Q) (e.symm a))
+    exact ((thickPathBitvectorOrderIso hij).le_iff_le.mpr (fun _ hx ↦ f.1.1.1 hx))
+      (e.symm a)
+  map_id _ := Subsingleton.elim _ _
+  map_comp _ _ := Subsingleton.elim _ _
+
+/-- Inverse categorical presentation of the numbered cubical path poset. -/
+noncomputable def liftedPiBitsToThickPathFunctor {J : Type u} [LinearOrder J]
+    {i j : J} (hij : i ≤ j) (n : ℕ) (e : InteriorVertex i j ≃ Fin n) :
+    CategoryTheory.Functor (LiftedPiBits.{u} n) (ThickPath i j) where
+  obj := (thickPathLiftedPiBitsEquiv hij n e).symm
+  map {P Q} f := by
+    refine ⟨⟨⟨?_⟩⟩⟩
+    apply (thickPathBitvectorOrderIso hij).le_iff_le.mp
+    intro x
+    simpa [thickPathLiftedPiBitsEquiv] using leOfHom (f (e x))
+  map_id _ := Subsingleton.elim _ _
+  map_comp _ _ := Subsingleton.elim _ _
+
+/-- The path mapping nerve is the cube indexed by any chosen enumeration of its internal
+vertices. -/
+noncomputable def thickPathNerveCubeIso {J : Type u} [LinearOrder J]
+    {i j : J} (hij : i ≤ j) (n : ℕ) (e : InteriorVertex i j ≃ Fin n) :
+    CategoryTheory.nerve (ThickPath i j) ≅ liftedIntervalCube n :=
+  ({ hom := CategoryTheory.nerveMap (thickPathToLiftedPiBitsFunctor hij n e)
+     inv := CategoryTheory.nerveMap (liftedPiBitsToThickPathFunctor hij n e)
+     hom_inv_id := by
+       change CategoryTheory.nerveFunctor.map
+           (thickPathToLiftedPiBitsFunctor hij n e).toCatHom ≫
+         CategoryTheory.nerveFunctor.map
+           (liftedPiBitsToThickPathFunctor hij n e).toCatHom = _
+       rw [← CategoryTheory.Functor.map_comp]
+       have hf : thickPathToLiftedPiBitsFunctor hij n e ⋙
+           liftedPiBitsToThickPathFunctor hij n e = CategoryTheory.Functor.id _ :=
+         CategoryTheory.Functor.ext
+         (h_obj := fun P ↦ (thickPathLiftedPiBitsEquiv hij n e).left_inv P)
+         (h_map := fun _ _ _ ↦ Subsingleton.elim _ _)
+       have hc : (thickPathToLiftedPiBitsFunctor hij n e).toCatHom ≫
+           (liftedPiBitsToThickPathFunctor hij n e).toCatHom = 𝟙 _ := by
+         apply CategoryTheory.Cat.Hom.ext
+         exact hf
+       rw [hc, CategoryTheory.Functor.map_id]
+       rfl
+     inv_hom_id := by
+       change CategoryTheory.nerveFunctor.map
+           (liftedPiBitsToThickPathFunctor hij n e).toCatHom ≫
+         CategoryTheory.nerveFunctor.map
+           (thickPathToLiftedPiBitsFunctor hij n e).toCatHom = _
+       rw [← CategoryTheory.Functor.map_comp]
+       have hf : liftedPiBitsToThickPathFunctor hij n e ⋙
+           thickPathToLiftedPiBitsFunctor hij n e = CategoryTheory.Functor.id _ :=
+         CategoryTheory.Functor.ext
+         (h_obj := fun b ↦ (thickPathLiftedPiBitsEquiv hij n e).right_inv b)
+         (h_map := fun _ _ _ ↦ Subsingleton.elim _ _)
+       have hc : (liftedPiBitsToThickPathFunctor hij n e).toCatHom ≫
+           (thickPathToLiftedPiBitsFunctor hij n e).toCatHom = 𝟙 _ := by
+         apply CategoryTheory.Cat.Hom.ext
+         exact hf
+       rw [hc, CategoryTheory.Functor.map_id]
+       rfl } :
+      CategoryTheory.nerve (ThickPath i j) ≅ CategoryTheory.nerve (LiftedPiBits.{u} n)).trans
+    (liftedPiBitsCubeIso n)
 
 /-- The prefix of a path at one of its vertices. -/
 def beforePath {J : Type u} [LinearOrder J] {i j k : J} (P : ThickPath i j)
