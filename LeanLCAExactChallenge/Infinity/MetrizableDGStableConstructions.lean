@@ -176,6 +176,22 @@ def dgMappingConeCochainAddEquiv
     · exact CochainComplex.HomComplex.Cochain.add_comp _ _ _ rfl
     · exact CochainComplex.HomComplex.Cochain.add_comp _ _ _ (add_zero n)
 
+/-- The cone-coordinate equivalence is integer-linear, hence is an isomorphism of the
+homogeneous modules used by the direct dg enrichment. -/
+def dgMappingConeCochainLinearEquiv
+    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) (n : ℤ) :
+    CochainComplex.HomComplex.Cochain T.obj
+        (CochainComplex.mappingCone
+          ((boundedCochainComplex MetrizableLCA.{0}).ι.map f)) n ≃ₗ[ℤ]
+      (CochainComplex.HomComplex.Cochain T.obj K.obj (n + 1) ×
+        CochainComplex.HomComplex.Cochain T.obj L.obj n) :=
+  { dgMappingConeCochainAddEquiv T f n with
+    map_smul' := by
+      intro r γ
+      apply Prod.ext
+      · exact CochainComplex.HomComplex.Cochain.smul_comp r γ _ rfl
+      · exact CochainComplex.HomComplex.Cochain.smul_comp r γ _ (add_zero n) }
+
 /-- Differential compatibility of the cone decomposition.  In coordinates the cone Hom
 differential is the standard upper-triangular matrix: the shifted-source differential carries
 the minus sign, while the target coordinate receives postcomposition by `f`. -/
