@@ -872,6 +872,63 @@ theorem simplicialJoinStdSimplexIsoRaw_naturality_rightCoface
   simpa using simplicialJoinStdSimplexIsoRaw_naturality.{u}
     (𝟙 (SimplexCategory.mk m)) (SimplexCategory.δ j)
 
+lemma augmentedInclusion_tensor_rightCoface (m n : ℕ) (j : Fin (n + 2)) :
+    AugmentedSimplexCategory.inclusion.map (𝟙 (SimplexCategory.mk m)) ⊗ₘ
+        AugmentedSimplexCategory.inclusion.map (SimplexCategory.δ j) =
+      AugmentedSimplexCategory.inclusion.map
+        (SimplexCategory.δ
+          (⟨m + 1 + j.val, by omega⟩ : Fin (m + n + 3))) := by
+  change AugmentedSimplexCategory.tensorHomOf (𝟙 (SimplexCategory.mk m))
+      (SimplexCategory.δ j) = _
+  apply SimplexCategory.Hom.ext
+  ext k
+  change Fin (m + n + 2) at k
+  by_cases hk : k.val < m + 1
+  · have hkm : k.val ≤ m := by omega
+    have hlt : k.castSucc <
+        (⟨m + 1 + j.val, by omega⟩ : Fin (m + n + 3)) := by
+      apply Fin.mk_lt_mk.mpr
+      omega
+    simp [AugmentedSimplexCategory.tensorHomOf, SimplexCategory.δ,
+      Fin.addCases, Fin.succAbove, hkm, hlt]
+  · let b : Fin (n + 1) := ⟨k.val - (m + 1), by omega⟩
+    have hkm : ¬ k.val ≤ m := by omega
+    have hbval : b.castSucc.val = k.val - (m + 1) := rfl
+    have hkval : k.castSucc.val = k.val := rfl
+    have hcastval : (Fin.cast (by omega) k :
+        Fin ((m + 1) + (n + 1))).val = k.val := rfl
+    let kc : Fin ((n + 1) + (m + 1)) := Fin.cast (by omega) k
+    have hkc : kc.val = k.val := rfl
+    have hkcast : m + 1 ≤ kc.val := by
+      simpa [kc] using (Nat.le_of_not_gt hk)
+    have hsubFin :
+        (Fin.subNat (m + 1) kc hkcast : Fin (n + 1)) = b := by
+      apply Fin.ext
+      change kc.val - (m + 1) = k.val - (m + 1)
+      rw [hkc]
+    dsimp [kc] at hsubFin
+    by_cases hb : b.castSucc < j
+    · have hb' : k.val - (m + 1) < j.val := by
+        exact Fin.mk_lt_mk.mp hb
+      have hlt : k.castSucc <
+          (⟨m + 1 + j.val, by omega⟩ : Fin (m + n + 3)) := by
+        apply Fin.mk_lt_mk.mpr
+        omega
+      simp [AugmentedSimplexCategory.tensorHomOf, SimplexCategory.δ,
+        Fin.addCases, Fin.succAbove, hkm, hsubFin, hb, hlt]
+      simp only [Fin.val_cast, Fin.val_mk, Fin.val_castSucc] at *
+      omega
+    · have hb' : ¬ k.val - (m + 1) < j.val := by
+        simpa [b, Fin.lt_def] using hb
+      have hlt : ¬ k.castSucc <
+          (⟨m + 1 + j.val, by omega⟩ : Fin (m + n + 3)) := by
+        simp only [Fin.lt_def]
+        omega
+      simp [AugmentedSimplexCategory.tensorHomOf, SimplexCategory.δ,
+        Fin.addCases, Fin.succAbove, hkm, hsubFin, hb, hlt]
+      simp only [Fin.val_cast, Fin.val_mk, Fin.val_castSucc] at *
+      omega
+
 /-- Restriction of an augmented representable at an ordinary simplex is the
 ordinary standard simplex. -/
 def forgetAugmentationULiftYonedaInclusionIso (n : SimplexCategory) :
