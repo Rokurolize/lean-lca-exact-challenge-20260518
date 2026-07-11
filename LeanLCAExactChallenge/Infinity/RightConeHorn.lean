@@ -95,7 +95,8 @@ lemma rightCone_shiftedIndex_isInner {n : ℕ} (i : Fin (n + 2)) (hi : 0 < i) :
   · simp only [Fin.lt_def, Fin.val_castLE, Fin.val_last]
     omega
 
-private theorem rightCone_rightInclusion_naturality
+/-- Naturality of the right-factor inclusion, exposed for slice-projection arguments. -/
+theorem rightCone_rightInclusion_naturality
     (X : SSet.{u}) {Y Y' : SSet.{u}} (g : Y ⟶ Y') :
     g ≫ simplicialJoinRightInclusion X Y' =
       simplicialJoinRightInclusion X Y ≫ simplicialJoinMap (𝟙 X) g := by
