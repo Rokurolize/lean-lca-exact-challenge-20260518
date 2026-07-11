@@ -185,6 +185,28 @@ theorem composableArrowsToFullSubcategory_forget
   dsimp [composableArrowsToFullSubcategory]
   exact (conj_eqToHom_iff_heq _ _ (hobj i) (hobj j)).2 HEq.rfl
 
+/-- The degreewise inverse to `nerveFullSubcategoryToFullSubcomplex`. -/
+def fullSubcomplexToNerveFullSubcategoryApp
+    {C : Type u} [Category.{u} C] (P : ObjectProperty C)
+    (U : SimplexCategoryᵒᵖ)
+    (s : (fullSubcomplexOnVertices (CategoryTheory.nerve C)
+      (fun v ↦ P (CategoryTheory.nerveEquiv v)) : SSet.{u}).obj U) :
+    (CategoryTheory.nerve P.FullSubcategory).obj U :=
+  composableArrowsToFullSubcategory P s.val (fun i ↦ by
+    exact s.property i)
+
+/-- The full vertex subcomplex of a categorical nerve maps back to the nerve of the full
+subcategory. -/
+def fullSubcomplexToNerveFullSubcategory
+    {C : Type u} [Category.{u} C] (P : ObjectProperty C) :
+    (fullSubcomplexOnVertices (CategoryTheory.nerve C)
+      (fun v ↦ P (CategoryTheory.nerveEquiv v)) : SSet.{u}) ⟶
+      CategoryTheory.nerve P.FullSubcategory where
+  app U := TypeCat.ofHom (fullSubcomplexToNerveFullSubcategoryApp P U)
+  naturality {X Y} f := by
+    ext s i
+    rfl
+
 /-- The reflection unit exhibits an internal Hom into a nerve as the nerve of its homotopy
 category. -/
 noncomputable def internalHomNerveReflectionIso (L : SSet.{u}) (E : Cat.{u, u}) :
