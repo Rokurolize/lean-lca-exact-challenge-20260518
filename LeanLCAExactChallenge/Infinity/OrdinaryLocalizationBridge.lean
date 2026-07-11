@@ -2,6 +2,7 @@ import LeanLCAExactChallenge.Infinity.EquivalenceIntervalExtension
 import LeanLCAExactChallenge.Infinity.MetrizableEquivalenceForcingHomotopy
 import Mathlib.AlgebraicTopology.SimplicialSet.NerveAdjunction
 import Mathlib.CategoryTheory.Monoidal.Closed.Enrichment
+import Mathlib.CategoryTheory.Monoidal.Closed.Functor
 import Mathlib.CategoryTheory.Monoidal.Closed.Ideal
 
 /-!
@@ -32,6 +33,24 @@ private instance nerveFunctor_exponentialIdeal : ExponentialIdeal nerveFunctor.{
     change Limits.PreservesLimitsOfShape (Discrete Limits.WalkingPair) SSet.hoFunctor.{u}
     infer_instance
   apply exponentialIdeal_of_preservesBinaryProducts
+
+private instance nerveFunctor_monoidalClosedFunctor :
+    MonoidalClosedFunctor nerveFunctor.{u, u} := by
+  exact cartesianClosedFunctorOfLeftAdjointPreservesBinaryProducts
+    (F := nerveFunctor.{u, u}) (L := SSet.hoFunctor.{u}) nerveAdjunction
+
+/-- The nerve preserves categorical internal Homs. -/
+noncomputable def nerveInternalHomIso (C E : Cat.{u, u}) :
+    nerveFunctor.obj ((ihom C).obj E) ≅
+      (ihom (nerveFunctor.obj C)).obj (nerveFunctor.obj E) := by
+  letI : MonoidalClosedFunctor nerveFunctor.{u, u} :=
+    nerveFunctor_monoidalClosedFunctor
+  letI : IsIso (expComparison nerveFunctor.{u, u} C).natTrans :=
+    MonoidalClosedFunctor.comparison_iso C
+  let hApp : IsIso ((expComparison nerveFunctor.{u, u} C).natTrans.app E) :=
+    NatIso.isIso_app_of_isIso (expComparison nerveFunctor.{u, u} C).natTrans E
+  exact @asIso SSet _ _ _
+    ((expComparison nerveFunctor.{u, u} C).natTrans.app E) hApp
 
 /-- Internal Homs into categorical nerves are again categorical nerves up to isomorphism. -/
 theorem internalHomNerve_mem_essImage (L : SSet.{u}) (E : Cat.{u, u}) :
