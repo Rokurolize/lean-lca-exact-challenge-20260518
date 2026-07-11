@@ -433,24 +433,6 @@ def dgMappingConeCochainFromLinearEquiv
       · exact CochainComplex.HomComplex.Cochain.comp_smul _ r γ (by omega)
       · exact CochainComplex.HomComplex.Cochain.comp_smul _ r γ (zero_add n) }
 
-/-- Differential compatibility of the maps-out coordinates. -/
-theorem dgMappingConeCochainFromAddEquiv_symm_delta
-    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) (n : ℤ)
-    (a : CochainComplex.HomComplex.Cochain K.obj T.obj (n - 1))
-    (b : CochainComplex.HomComplex.Cochain L.obj T.obj n) :
-    CochainComplex.HomComplex.δ n (n + 1)
-        ((dgMappingConeCochainFromAddEquiv T f n).symm (a, b)) =
-      (CochainComplex.mappingCone.fst
-          ((boundedCochainComplex MetrizableLCA.{0}).ι.map f)).1.comp
-        (CochainComplex.HomComplex.δ (n - 1) n a +
-          (n + 1).negOnePow •
-            (CochainComplex.HomComplex.Cochain.ofHom f.hom).comp b (zero_add n)) (by omega) +
-      (CochainComplex.mappingCone.snd
-          ((boundedCochainComplex MetrizableLCA.{0}).ι.map f)).comp
-        (CochainComplex.HomComplex.δ n (n + 1) b) (zero_add (n + 1)) := by
-  exact CochainComplex.mappingCone.δ_descCochain
-    ((boundedCochainComplex MetrizableLCA.{0}).ι.map f) a b (by omega) (n + 1) rfl
-
 /-- Explicit two-coordinate complex for maps out of a cone. -/
 def dgMappingConeExplicitFromCoordinateCochainComplex
     (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) :
