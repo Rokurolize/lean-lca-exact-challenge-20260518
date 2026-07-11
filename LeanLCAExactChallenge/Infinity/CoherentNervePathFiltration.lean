@@ -3910,4 +3910,48 @@ end PathChain
 
 end Chain
 
+open CategoryTheory.SimplicialCategory CategoryTheory.EnrichedCategory
+
+/-- Global coherent-simplex data, separated out as an interface for the distance induction used
+to extend coherent inner horns.  A later partial variant replaces each full mapping object by its
+already constructed latching subcomplex. -/
+structure PartialCoherentSimplexMap (C : Type u) [Category.{u} C]
+    [CategoryTheory.SimplicialCategory C] (J : Type u) [LinearOrder J] where
+  obj : CategoryTheory.SimplicialThickening J → C
+  map : ∀ i j : CategoryTheory.SimplicialThickening J,
+    CategoryTheory.nerve (i ⟶ j) ⟶ (obj i ⟶[SSet] obj j)
+  map_id : ∀ i,
+    CategoryTheory.eId SSet i ≫ map i i = CategoryTheory.eId SSet (obj i)
+  map_comp : ∀ i j k,
+    CategoryTheory.eComp SSet i j k ≫ map i k =
+      (map i j ⊗ₘ map j k) ≫
+        CategoryTheory.eComp SSet (obj i) (obj j) (obj k)
+
+/-- The global interface is exactly an enriched functor once every latching map has been
+extended. -/
+def partialCoherentSimplexMapEquiv (C : Type u) [Category.{u} C]
+    [CategoryTheory.SimplicialCategory C] (J : Type u) [LinearOrder J] :
+    PartialCoherentSimplexMap C J ≃
+      CategoryTheory.EnrichedFunctor SSet (CategoryTheory.SimplicialThickening J) C where
+  toFun F :=
+    { obj := F.obj
+      map := F.map
+      map_id := F.map_id
+      map_comp := F.map_comp }
+  invFun F :=
+    { obj := F.obj
+      map := F.map
+      map_id := F.map_id
+      map_comp := F.map_comp }
+  left_inv F := by cases F; rfl
+  right_inv F := by cases F; rfl
+
+/-- In the simplex dimensions used by `SimplicialNerve`, global coherent-simplex data are
+literally its simplices. -/
+def partialCoherentSimplexMapEquivSimplicialNerveObj (C : Type u) [Category.{u} C]
+    [CategoryTheory.SimplicialCategory C] (n : SimplexCategoryᵒᵖ) :
+    PartialCoherentSimplexMap C (ULift (Fin (n.unop.len + 1))) ≃
+      (CategoryTheory.SimplicialNerve C).obj n :=
+  partialCoherentSimplexMapEquiv C _
+
 end LeanLCAExactChallenge.Infinity.CoherentNervePathFiltration
