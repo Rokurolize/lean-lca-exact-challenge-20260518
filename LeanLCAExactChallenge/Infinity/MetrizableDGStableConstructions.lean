@@ -682,6 +682,87 @@ def dgHomPrecompositionPathFiberHomotopy (T : ComplexCategory)
       (dgHomZModuleCochainComplex K T) (fun i ↦ ⟨i + 1, rfl⟩)).compLeft p) |>.trans
         (Homotopy.ofEq h₁)
 
+/-- Degreewise candidate for the inverse from the strict path fiber to maps out of the cone. -/
+def dgHomPrecompositionPathFiberToConeHomDegree (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) (n : ℤ) :
+    (dgHomPrecompositionPathFiber T f).X n ⟶
+      (dgHomZModuleCochainComplex (dgMappingConeObject f) T).X n :=
+  let a := Limits.pullback.fst (dgHomPrecompositionZeroEndpoints T f)
+    (dgHomPrecompositionPathEndpoints T K)
+  let z := CochainComplex.HomComplex.Cochain.ofHomotopy
+    (dgHomPrecompositionPathFiberHomotopy T f)
+  ModuleCat.ofHom
+      { toFun := fun x ↦ (z.v n (n - 1) (by omega) x, a.f n x)
+        map_add' := by
+          intro x y
+          simp
+        map_smul' := by
+          intro r x
+          simp } ≫
+    (dgMappingConeCochainFromLinearEquiv T f n).toModuleIso.inv
+
+@[reassoc]
+theorem dgHomPrecompositionPathFiberToConeHomDegree_coordinate (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) (n : ℤ) :
+    dgHomPrecompositionPathFiberToConeHomDegree T f n ≫
+        (dgMappingConeCochainFromLinearEquiv T f n).toModuleIso.hom =
+      ModuleCat.ofHom
+        { toFun := fun x ↦
+            ((CochainComplex.HomComplex.Cochain.ofHomotopy
+              (dgHomPrecompositionPathFiberHomotopy T f)).v n (n - 1) (by omega) x,
+              (Limits.pullback.fst (dgHomPrecompositionZeroEndpoints T f)
+                (dgHomPrecompositionPathEndpoints T K)).f n x)
+          map_add' := by intros; simp
+          map_smul' := by intros; simp } := by
+  simp [dgHomPrecompositionPathFiberToConeHomDegree, Category.assoc]
+
+theorem dgHomPrecompositionPathFiberToConeHomDegree_comm (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) (n m : ℤ)
+    (hnm : (ComplexShape.up ℤ).Rel n m) :
+    dgHomPrecompositionPathFiberToConeHomDegree T f n ≫
+        (dgHomZModuleCochainComplex (dgMappingConeObject f) T).d n m =
+      (dgHomPrecompositionPathFiber T f).d n m ≫
+        dgHomPrecompositionPathFiberToConeHomDegree T f m := by
+  change n + 1 = m at hnm
+  subst m
+  apply ModuleCat.hom_ext
+  apply LinearMap.ext
+  intro x
+  let a := Limits.pullback.fst (dgHomPrecompositionZeroEndpoints T f)
+    (dgHomPrecompositionPathEndpoints T K)
+  let z := CochainComplex.HomComplex.Cochain.ofHomotopy
+    (dgHomPrecompositionPathFiberHomotopy T f)
+  change CochainComplex.HomComplex.δ n (n + 1)
+      ((dgMappingConeCochainFromAddEquiv T f n).symm
+        (z.v n (n - 1) (by omega) x, a.f n x)) =
+    (dgMappingConeCochainFromAddEquiv T f (n + 1)).symm
+      (z.v (n + 1) n (by omega)
+          ((dgHomPrecompositionPathFiber T f).d n (n + 1) x),
+        a.f (n + 1) ((dgHomPrecompositionPathFiber T f).d n (n + 1) x))
+  apply (dgMappingConeCochainFromAddEquiv T f (n + 1)).injective
+  rw [dgMappingConeCochainFromAddEquiv_symm_delta]
+  apply Prod.ext
+  · change _ = z.v (n + 1) n (by omega)
+      ((dgHomPrecompositionPathFiber T f).d n (n + 1) x)
+    have hz := CochainComplex.HomComplex.Cochain.congr_v
+      (CochainComplex.HomComplex.Cochain.δ_ofHomotopy
+        (dgHomPrecompositionPathFiberHomotopy T f)) n n (add_zero n)
+    have ha := ConcreteCategory.congr_hom (a.comm n (n + 1) (by omega)) x
+    simp only [ConcreteCategory.comp_apply] at ha
+    simp [dgMappingConeCochainFromAddEquiv, z, a, hz, ha]
+  · change CochainComplex.HomComplex.δ n (n + 1) (a.f n x) =
+      a.f (n + 1) ((dgHomPrecompositionPathFiber T f).d n (n + 1) x)
+    exact ConcreteCategory.congr_hom (a.comm n (n + 1) (by omega)) x |>.symm
+
+/-- The chain map from the strict path-fiber pullback back to the actual maps-out cone Hom
+complex. -/
+def dgHomPrecompositionPathFiberToConeHom (T : ComplexCategory)
+    {K L : ComplexCategory} (f : K ⟶ L) :
+    dgHomPrecompositionPathFiber T f ⟶
+      dgHomZModuleCochainComplex (dgMappingConeObject f) T where
+  f n := dgHomPrecompositionPathFiberToConeHomDegree T f n
+  comm' n m h := dgHomPrecompositionPathFiberToConeHomDegree_comm T f n m h
+
 /-- Explicit two-coordinate complex for maps out of a cone. -/
 def dgMappingConeExplicitFromCoordinateCochainComplex
     (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) :
