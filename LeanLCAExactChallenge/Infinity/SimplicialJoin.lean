@@ -1325,6 +1325,31 @@ lemma joinSigmaOneHornRangeToFace_innerAnodyne
     (joinSigmaOneDistinguishedIndex_pos T i h0)
     (joinSigmaOneDistinguishedIndex_lt_last T i hn)
 
+private lemma innerAnodyne_homOfLE_transport_target
+    {X : SSet.{u}} {A B C : X.Subcomplex} (e : B = C) (h : A ≤ B)
+    (hh : SSet.innerAnodyneExtensions (SSet.Subcomplex.homOfLE h)) :
+    SSet.innerAnodyneExtensions (SSet.Subcomplex.homOfLE (e ▸ h)) := by
+  subst C
+  exact hh
+
+lemma joinSigmaOneHornRangeToOfSimplex_innerAnodyne
+    (m n : ℕ) (T : Finset (Fin (m + 1))) (i : Fin (n + 1))
+    (h0 : 0 < i) (hn : i < Fin.last n) :
+    SSet.innerAnodyneExtensions
+      (SSet.Subcomplex.homOfLE
+        (joinSigmaOneHornRange_le_face.{u} m n T i)) := by
+  let F := SSet.stdSimplex.face.{u} (joinSigmaOneVertices m n T)
+  let G := SSet.Subcomplex.ofSimplex (joinSigmaOneSimplex.{u} m n T)
+  have hFG : F = G := joinSigmaOneFace_eq_ofSimplex.{u} m n T
+  have hF : joinSigmaOneHornRange m n T i ≤ F := by
+    dsimp [F]
+    rw [joinSigmaOneFace_eq_ofSimplex]
+    exact joinSigmaOneHornRange_le_face.{u} m n T i
+  have hh : SSet.innerAnodyneExtensions
+      (SSet.Subcomplex.homOfLE hF) := by
+    exact joinSigmaOneHornRangeToFace_innerAnodyne m n T i h0 hn
+  exact innerAnodyne_homOfLE_transport_target hFG hF hh
+
 def joinSigmaOneFirstIndex {m : ℕ} (n : ℕ) (T : Finset (Fin (m + 1)))
     (t : Fin (m + 1)) (ht : t ∈ T) : Fin (T.card + n + 1) :=
   Fin.castLE (by omega) ((T.orderIsoOfFin rfl).symm ⟨t, ht⟩)
@@ -2392,6 +2417,28 @@ lemma representableJoinHornStage_adjoin_hornRange_isPushout
       (SSet.Subcomplex.homOfLE
         (representableJoinHornStage_adjoin_hornRange_bicartSq m n r i T hT).le₃₄) :=
   (representableJoinHornStage_adjoin_hornRange_bicartSq m n r i T hT).isPushout
+
+lemma representableJoinHornStage_adjoin_innerAnodyne
+    (m n r : ℕ) (i : Fin (n + 2)) (T : Finset (Fin (m + 1)))
+    (hT : T.card = r + 1) (h0 : 0 < i) (hn : i < Fin.last (n + 1)) :
+    SSet.innerAnodyneExtensions
+      (SSet.Subcomplex.homOfLE
+        (representableJoinHornStage_adjoin_hornRange_bicartSq
+          m n r i T hT).le₂₄) := by
+  have hf : SSet.innerAnodyneExtensions
+      (SSet.Subcomplex.homOfLE
+        (representableJoinHornStage_adjoin_hornRange_bicartSq
+          m n r i T hT).le₁₃) := by
+    exact joinSigmaOneHornRangeToOfSimplex_innerAnodyne
+      m (n + 1) T i h0 hn
+  rw [SSet.innerAnodyneExtensions_eq_llp_rlp] at hf ⊢
+  intro E B p hp
+  letI : HasLiftingProperty
+      (SSet.Subcomplex.homOfLE
+        (representableJoinHornStage_adjoin_hornRange_bicartSq
+          m n r i T hT).le₁₃) p := hf p hp
+  exact (representableJoinHornStage_adjoin_hornRange_isPushout
+    m n r i T hT).hasLiftingProperty p
 
 /-- The ordinary simplicial slice underlying the augmented Day internal hom. -/
 def simplicialSlice (X Q : SSet.{u}) : SSet.{u} :=
