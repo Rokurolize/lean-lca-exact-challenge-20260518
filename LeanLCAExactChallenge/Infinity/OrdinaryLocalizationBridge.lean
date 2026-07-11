@@ -1264,6 +1264,76 @@ instance mappingLocalizationOrdinaryForwardFunctor_isEquivalence
   dsimp only [mappingLocalizationOrdinaryForwardFunctor]
   infer_instance
 
+private noncomputable def mappingLocalizationOrdinaryRelativeStageAssociator₁
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    ((mappingLocalizationOrdinarySourceFactor E ⋙
+        mappingLocalizationOrdinaryComparisonFactor h E) ⋙
+      mappingLocalizationOrdinaryRelativeFactor W E) ⋙
+        ObjectProperty.ι (PulledRelativeFunctorProperty W E) ≅
+      (mappingLocalizationOrdinarySourceFactor E ⋙
+          mappingLocalizationOrdinaryComparisonFactor h E) ⋙
+        (mappingLocalizationOrdinaryRelativeFactor W E ⋙
+          ObjectProperty.ι (PulledRelativeFunctorProperty W E)) :=
+  Functor.associator
+    (mappingLocalizationOrdinarySourceFactor E ⋙
+      mappingLocalizationOrdinaryComparisonFactor h E)
+    (mappingLocalizationOrdinaryRelativeFactor W E)
+    (ObjectProperty.ι (PulledRelativeFunctorProperty W E))
+
+private noncomputable def mappingLocalizationOrdinaryRelativeStageWhisker
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    (mappingLocalizationOrdinarySourceFactor E ⋙
+        mappingLocalizationOrdinaryComparisonFactor h E) ⋙
+      (mappingLocalizationOrdinaryRelativeFactor W E ⋙
+        ObjectProperty.ι (PulledRelativeFunctorProperty W E)) ≅
+    (mappingLocalizationOrdinarySourceFactor E ⋙
+        mappingLocalizationOrdinaryComparisonFactor h E) ⋙
+      ((SSet.hoFunctor.map
+        (relativeInternalHom W (nerveFunctor.obj E)).ι).toFunctor ⋙
+          (internalHomNerveHomotopyEquivalence A.obj E).functor) :=
+  Functor.isoWhiskerLeft
+    (mappingLocalizationOrdinarySourceFactor E ⋙
+      mappingLocalizationOrdinaryComparisonFactor h E)
+    (relativeInternalHomNerveHomotopyEquivalenceCompInclusionIso W E)
+
+private noncomputable def mappingLocalizationOrdinaryRelativeStageAssociator₂
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    (mappingLocalizationOrdinarySourceFactor E ⋙
+        mappingLocalizationOrdinaryComparisonFactor h E) ⋙
+      ((SSet.hoFunctor.map
+        (relativeInternalHom W (nerveFunctor.obj E)).ι).toFunctor ⋙
+          (internalHomNerveHomotopyEquivalence A.obj E).functor) ≅
+    ((mappingLocalizationOrdinarySourceFactor E ⋙
+        mappingLocalizationOrdinaryComparisonFactor h E) ⋙
+      (SSet.hoFunctor.map
+        (relativeInternalHom W (nerveFunctor.obj E)).ι).toFunctor) ⋙
+          (internalHomNerveHomotopyEquivalence A.obj E).functor :=
+  (Functor.associator
+    (mappingLocalizationOrdinarySourceFactor E ⋙
+      mappingLocalizationOrdinaryComparisonFactor h E)
+    (SSet.hoFunctor.map
+      (relativeInternalHom W (nerveFunctor.obj E)).ι).toFunctor
+    (internalHomNerveHomotopyEquivalence A.obj E).functor).symm
+
+private noncomputable def mappingLocalizationOrdinaryRelativeStageExplicitIso
+    {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}
+    (h : MappingQuasicategoryLocalizationProperty W ell) (E : Cat.{u, u}) :
+    ((mappingLocalizationOrdinarySourceFactor E ⋙
+        mappingLocalizationOrdinaryComparisonFactor h E) ⋙
+      mappingLocalizationOrdinaryRelativeFactor W E) ⋙
+        ObjectProperty.ι (PulledRelativeFunctorProperty W E) ≅
+    ((mappingLocalizationOrdinarySourceFactor E ⋙
+        mappingLocalizationOrdinaryComparisonFactor h E) ⋙
+      (SSet.hoFunctor.map
+        (relativeInternalHom W (nerveFunctor.obj E)).ι).toFunctor) ⋙
+          (internalHomNerveHomotopyEquivalence A.obj E).functor :=
+  mappingLocalizationOrdinaryRelativeStageAssociator₁ h E ≪≫
+    mappingLocalizationOrdinaryRelativeStageWhisker h E ≪≫
+      mappingLocalizationOrdinaryRelativeStageAssociator₂ h E
+
 set_option backward.isDefEq.respectTransparency false in
 theorem internalHomNerveHomotopyEquivalence_precomp_naturality
     {X L : SSet.{u}} (f : X ⟶ L) (E : Cat.{u, u}) :
