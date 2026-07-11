@@ -192,6 +192,39 @@ def dgMappingConeCochainLinearEquiv
       · exact CochainComplex.HomComplex.Cochain.smul_comp r γ _ rfl
       · exact CochainComplex.HomComplex.Cochain.smul_comp r γ _ (add_zero n) }
 
+private theorem transportedCochainDifferential_sq
+    (C : CochainComplex (ModuleCat.{0} ℤ) ℤ) (n m k : ℤ)
+    {Xn Xm Xk : ModuleCat.{0} ℤ}
+    (en : C.X n ≅ Xn) (em : C.X m ≅ Xm) (ek : C.X k ≅ Xk) :
+    (en.inv ≫ C.d n m ≫ em.hom) ≫ (em.inv ≫ C.d m k ≫ ek.hom) = 0 := by
+  simp only [Category.assoc]
+  rw [← Category.assoc em.hom em.inv]
+  rw [Iso.hom_inv_id]
+  simp only [Category.id_comp]
+  rw [C.d_comp_d_assoc]
+  simp
+
+/-- The coordinate model for maps into a cone.  Its differential is transported from the
+actual dg Hom complex through the degreewise linear equivalences above. -/
+def dgMappingConeExplicitCoordinateCochainComplex
+    (T : ComplexCategory) {K L : ComplexCategory} (f : K ⟶ L) :
+    CochainComplex (ModuleCat.{0} ℤ) ℤ where
+  X n := ModuleCat.of ℤ
+    (CochainComplex.HomComplex.Cochain T.obj K.obj (n + 1) ×
+      CochainComplex.HomComplex.Cochain T.obj L.obj n)
+  d n m := (dgMappingConeCochainLinearEquiv T f n).toModuleIso.inv ≫
+    (dgHomZModuleCochainComplex T (dgMappingConeObject f)).d n m ≫
+      (dgMappingConeCochainLinearEquiv T f m).toModuleIso.hom
+  shape n m h := by
+    rw [(dgHomZModuleCochainComplex T (dgMappingConeObject f)).shape n m h]
+    simp
+  d_comp_d' n m k hnm hmk := by
+    exact transportedCochainDifferential_sq
+      (dgHomZModuleCochainComplex T (dgMappingConeObject f)) n m k
+      (dgMappingConeCochainLinearEquiv T f n).toModuleIso
+      (dgMappingConeCochainLinearEquiv T f m).toModuleIso
+      (dgMappingConeCochainLinearEquiv T f k).toModuleIso
+
 /-- Differential compatibility of the cone decomposition.  In coordinates the cone Hom
 differential is the standard upper-triangular matrix: the shifted-source differential carries
 the minus sign, while the target coordinate receives postcomposition by `f`. -/
