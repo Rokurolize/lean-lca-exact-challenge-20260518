@@ -1409,6 +1409,49 @@ theorem pathCoordinate_mem_zeroHorn_iff_last
     (thickPathBitvectorOrderIso hij (c.path a)) (e.symm q) = 0) ↔ _
   exact bitvector_all_zero_iff_last c hij (e.symm q)
 
+/-- Under the explicit cubical path comparison, the coherent-horn latching condition is
+exactly the corresponding cubical corner. -/
+theorem thickPathCube_mem_corner_iff_knownAt
+    (c : PathChain r i j) (k : J) (hik : i < k) (hkj : k < j)
+    (n : ℕ) (e : InteriorVertex i j ≃ Fin n) :
+    (thickPathNerveCubeIsoExplicit (le_trans (le_of_lt hik) (le_of_lt hkj)) n e).hom.app
+        (Opposite.op (SimplexCategory.mk r)) c.toNerveSimplex ∈
+      (liftedIntervalCubeCorner n (coherentCornerSign k hik hkj n e)).obj _ ↔
+    c.KnownAt k := by
+  let hij := le_trans (le_of_lt hik) (le_of_lt hkj)
+  rw [show (thickPathNerveCubeIsoExplicit hij n e).hom.app
+      (Opposite.op (SimplexCategory.mk r)) c.toNerveSimplex =
+      (liftedPiBitsCubeIsoExplicit n).hom.app _
+        ((CategoryTheory.nerveMap
+          (thickPathToLiftedPiBitsFunctor hij n e)).app _ c.toNerveSimplex) from rfl]
+  rw [mem_liftedIntervalCubeCorner_explicit_iff]
+  rw [knownAt_iff_bitvector_corner c k hik hkj]
+  constructor
+  · rintro ⟨q, hq⟩
+    by_cases hqk : (e.symm q).1 = k
+    · have heq : e.symm q = ⟨k, hik, hkj⟩ := Subtype.ext hqk
+      left
+      rw [show coherentCornerSign k hik hkj n e q = 1 by
+        simp [coherentCornerSign, heq]] at hq
+      rw [pathCoordinate_mem_oneHorn_iff_first c hij n e q] at hq
+      simpa [heq] using hq
+    · right
+      refine ⟨e.symm q, hqk, ?_⟩
+      rw [coherentCornerSign_of_ne k hik hkj n e q hqk] at hq
+      exact (pathCoordinate_mem_zeroHorn_iff_last c hij n e q).1 hq
+  · rintro (hk | ⟨x, hxk, hx⟩)
+    · let q := e ⟨k, hik, hkj⟩
+      refine ⟨q, ?_⟩
+      rw [show coherentCornerSign k hik hkj n e q = 1 by
+        simp [q, coherentCornerSign]]
+      rw [pathCoordinate_mem_oneHorn_iff_first c hij n e q]
+      simpa [q] using hk
+    · let q := e x
+      refine ⟨q, ?_⟩
+      rw [coherentCornerSign_of_ne k hik hkj n e q (by simpa [q])]
+      rw [pathCoordinate_mem_zeroHorn_iff_last c hij n e q]
+      simpa [q] using hx
+
 /-- A chain is nondegenerate when distinct indices carry distinct paths.  For a monotone chain
 in a poset this is the strict-chain condition. -/
 def IsNondegenerate (c : PathChain r i j) : Prop := Function.Injective c.path
