@@ -1718,6 +1718,62 @@ theorem upperChain_path_position :
       (Fin.castSucc (c.cell.chain.entryIndex k c.memLast)) = _
   rw [insertAt_path_same]
 
+/-- The old first `k`-path is immediately after the inserted erased path. -/
+theorem upperChain_path_entrySucc :
+    c.upperChain.path (c.cell.chain.entryIndex k c.memLast).succ =
+      c.cell.chain.path (c.cell.chain.entryIndex k c.memLast) := by
+  change (c.cell.chain.insertAt c.position
+    (eraseVertex (c.cell.chain.path (c.cell.chain.entryIndex k c.memLast)) k
+      c.left_ne c.right_ne)
+      (entryErase_below c.cell.chain k c.memLast c.left_ne c.right_ne)
+      (entryErase_above c.cell.chain k c.memLast c.left_ne c.right_ne)).path
+      (c.cell.chain.entryIndex k c.memLast).succ = _
+  rw [← Fin.succAbove_castSucc_self]
+  exact insertAt_path_succAbove _ _ _ _ _ _
+
+theorem upperChain_memLast : k ∈ c.upperChain.last.I := by
+  exact c.upperChain.monotone'
+    (Fin.le_last (c.cell.chain.entryIndex k c.memLast).succ)
+    (c.upperChain_path_entrySucc ▸ c.cell.chain.mem_entryIndex k c.memLast)
+
+/-- In the paired upper chain, the first occurrence of `k` is shifted one place to the right. -/
+theorem upperChain_entryIndex :
+    c.upperChain.entryIndex k c.upperChain_memLast =
+      (c.cell.chain.entryIndex k c.memLast).succ := by
+  apply c.upperChain.entryIndex_eq_of_mem_of_before_not_mem k c.upperChain_memLast
+  · rw [c.upperChain_path_entrySucc]
+    exact c.cell.chain.mem_entryIndex k c.memLast
+  · intro b hb
+    obtain rfl | ⟨a, rfl⟩ := Fin.eq_self_or_eq_succAbove c.position b
+    · rw [c.upperChain_path_position]
+      simp
+    · change k ∉ ((c.cell.chain.insertAt c.position
+        (eraseVertex (c.cell.chain.path (c.cell.chain.entryIndex k c.memLast)) k
+          c.left_ne c.right_ne)
+        (entryErase_below c.cell.chain k c.memLast c.left_ne c.right_ne)
+        (entryErase_above c.cell.chain k c.memLast c.left_ne c.right_ne)).path
+          (c.position.succAbove a)).I
+      rw [insertAt_path_succAbove]
+      apply c.cell.chain.not_mem_before_entryIndex k c.memLast a
+      change c.position.succAbove a < (c.cell.chain.entryIndex k c.memLast).succ at hb
+      rw [← Fin.succAbove_castSucc_self] at hb
+      exact Fin.succAbove_lt_succAbove_iff.1 hb
+
+theorem upperChain_beforeEntryIndex
+    (hpos : 0 < c.upperChain.entryIndex k c.upperChain_memLast) :
+    c.upperChain.beforeEntryIndex k c.upperChain_memLast hpos = c.position := by
+  apply Fin.ext
+  simp [beforeEntryIndex, c.upperChain_entryIndex, position]
+
+/-- The paired upper cell has the recursive-upper adjacency witness: its erased first
+`k`-path is exactly the immediately preceding inserted path. -/
+theorem upperChain_entryErasePresent
+    (hpos : 0 < c.upperChain.entryIndex k c.upperChain_memLast) :
+    c.upperChain.EntryErasePresent k c.upperChain_memLast hpos c.left_ne c.right_ne := by
+  unfold EntryErasePresent
+  rw [c.upperChain_entryIndex, c.upperChain_beforeEntryIndex hpos,
+    c.upperChain_path_entrySucc, c.upperChain_path_position]
+
 /-- Every face of the paired upper cell except the distinguished missing face still contains
 the newly inserted erased-entry path.  This is the key same-rank separation invariant: a
 nonmissing face cannot silently discard the datum which distinguishes an upper cell from its
@@ -1732,6 +1788,101 @@ theorem exists_erasedEntry_path_deleteAt_of_ne (q : Fin (r + 2))
       c.left_ne c.right_ne)
     (entryErase_below c.cell.chain k c.memLast c.left_ne c.right_ne)
     (entryErase_above c.cell.chain k c.memLast c.left_ne c.right_ne) hq
+
+/-- Deleting a `k`-free nonmissing path preserves the erased-entry adjacency, not merely the
+presence of the erased path. -/
+theorem deleteAt_entryErasePresent_of_not_mem (q : Fin (r + 2))
+    (hqpos : c.position ≠ q) (hqk : k ∉ (c.upperChain.path q).I) :
+    ∃ (hk : k ∈ (c.upperChain.deleteAt q).last.I)
+      (hpos : 0 < (c.upperChain.deleteAt q).entryIndex k hk),
+      (c.upperChain.deleteAt q).EntryErasePresent k hk hpos c.left_ne c.right_ne := by
+  have hqentry : (c.cell.chain.entryIndex k c.memLast).succ ≠ q := by
+    intro h
+    apply hqk
+    rw [← h, c.upperChain_path_entrySucc]
+    exact c.cell.chain.mem_entryIndex k c.memLast
+  obtain ⟨e, he⟩ := Fin.exists_succAbove_eq hqentry
+  obtain ⟨b, hb⟩ := Fin.exists_succAbove_eq hqpos
+  have hq_lt_entry : q < (c.cell.chain.entryIndex k c.memLast).succ := by
+    apply lt_of_not_ge
+    intro h
+    exact hqk (c.upperChain.monotone' h
+      (c.upperChain_path_entrySucc ▸ c.cell.chain.mem_entryIndex k c.memLast))
+  have hq_lt_pos : q < c.position := by
+    have hv : q.val < (c.cell.chain.entryIndex k c.memLast).val + 1 := hq_lt_entry
+    have hne : q.val ≠ (c.cell.chain.entryIndex k c.memLast).val := by
+      intro h
+      apply hqpos
+      apply Fin.ext
+      simpa [position] using h.symm
+    change q.val < (c.cell.chain.entryIndex k c.memLast).val
+    omega
+  let hkFace : k ∈ (c.upperChain.deleteAt q).last.I := by
+    exact (c.upperChain.deleteAt q).monotone' (Fin.le_last e) (by
+      rw [deleteAt_path, he, c.upperChain_path_entrySucc]
+      exact c.cell.chain.mem_entryIndex k c.memLast)
+  have hentry : (c.upperChain.deleteAt q).entryIndex k hkFace = e := by
+    apply (c.upperChain.deleteAt q).entryIndex_eq_of_mem_of_before_not_mem k hkFace
+    · rw [deleteAt_path, he, c.upperChain_path_entrySucc]
+      exact c.cell.chain.mem_entryIndex k c.memLast
+    · intro a ha hka
+      apply c.upperChain.not_mem_before_entryIndex k c.upperChain_memLast
+        (q.succAbove a)
+      · rw [c.upperChain_entryIndex, ← he]
+        exact Fin.succAbove_lt_succAbove_iff.2 ha
+      · exact hka
+  have hepos : 0 < e := by
+    have hqe : q ≤ e.castSucc :=
+      (Fin.lt_succAbove_iff_le_castSucc q e).1 (he ▸ hq_lt_entry)
+    have he' := he
+    rw [Fin.succAbove_of_le_castSucc _ _ hqe] at he'
+    have heq : e = c.cell.chain.entryIndex k c.memLast := by
+      exact Fin.succ_injective _ he'
+    rw [heq]
+    exact c.cell.chain.entryIndex_pos_of_not_mem_first k c.memLast c.cell.first_avoids
+  refine ⟨hkFace, hentry ▸ hepos, ?_⟩
+  unfold EntryErasePresent
+  simp only [hentry]
+  have hbefore : (c.upperChain.deleteAt q).beforeEntryIndex k hkFace (hentry ▸ hepos) = b := by
+    apply Fin.ext
+    change ((c.upperChain.deleteAt q).entryIndex k hkFace).val - 1 = b.val
+    rw [hentry]
+    have hbv := congrArg Fin.val hb
+    have hev := congrArg Fin.val he
+    have hqb : q ≤ b.castSucc :=
+      (Fin.lt_succAbove_iff_le_castSucc q b).1 (hb ▸ hq_lt_pos)
+    have hqe : q ≤ e.castSucc :=
+      (Fin.lt_succAbove_iff_le_castSucc q e).1 (he ▸ hq_lt_entry)
+    rw [Fin.succAbove_of_le_castSucc _ _ hqb] at hb
+    rw [Fin.succAbove_of_le_castSucc _ _ hqe] at he
+    have hbv := congrArg Fin.val hb
+    have hev := congrArg Fin.val he
+    simp [position] at hbv hev
+    omega
+  rw [hbefore, deleteAt_path, he, c.upperChain_path_entrySucc]
+  rw [deleteAt_path, hb, c.upperChain_path_position]
+
+/-- A `k`-free same-dimensional nonmissing face of an upper cell cannot be any selected lower
+cell: the face has `EntryErasePresent`, while selected lowers require its negation. -/
+theorem deleteAt_ne_selectedLower_of_not_mem (p : EntryLowerCell r i j k)
+    (q : Fin (r + 2)) (hqpos : c.position ≠ q)
+    (hqk : k ∉ (c.upperChain.path q).I) :
+    c.upperChain.deleteAt q ≠ p.cell.chain := by
+  intro hEq
+  obtain ⟨hk, hpos, hpresent⟩ :=
+    c.deleteAt_entryErasePresent_of_not_mem q hqpos hqk
+  have hex : ∃ (hk : k ∈ (c.upperChain.deleteAt q).last.I)
+      (hpos : 0 < (c.upperChain.deleteAt q).entryIndex k hk),
+      (c.upperChain.deleteAt q).EntryErasePresent k hk hpos c.left_ne c.right_ne :=
+    ⟨hk, hpos, hpresent⟩
+  have hex' : ∃ (hk : k ∈ p.cell.chain.last.I)
+      (hpos : 0 < p.cell.chain.entryIndex k hk),
+      p.cell.chain.EntryErasePresent k hk hpos p.left_ne p.right_ne := by
+    simpa only [hEq]
+      using hex
+  obtain ⟨hk', hpos', hpresent'⟩ := hex'
+  apply p.erase_new
+  convert hpresent' using 1
 
 theorem upperChain_nondegenerate : c.upperChain.IsNondegenerate :=
   c.cell.chain.isNondegenerate_insertEntryErase k c.memLast
