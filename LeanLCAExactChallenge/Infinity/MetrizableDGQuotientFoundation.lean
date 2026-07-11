@@ -357,6 +357,16 @@ def DegreeProfile.internalSign {X Y : ComplexCategory}
     (i : Fin (w.length + 1)) : ℤ :=
   if Even (d.prefixTotal i) then 1 else -1
 
+/-- Koszul sign of the contraction at the `i`-th degree-`-1` symbol.  The symbol occurs
+after the `i`-th arrow factor and after exactly `i` earlier contracting symbols. -/
+def DegreeProfile.contractionSign {X Y : ComplexCategory}
+    {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
+    (i : Fin w.length) : ℤ :=
+  if Even
+      ((∑ j ∈ Finset.univ.filter
+          (fun j : Fin (w.length + 1) ↦ j.val ≤ i.val), d.arrowDegree j) - i.val)
+    then 1 else -1
+
 /-- Sum of all signed internal-differential terms leaving one homogeneous word summand. -/
 def internalDifferentialFromSummand {X Y : ComplexCategory}
     {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n) :
