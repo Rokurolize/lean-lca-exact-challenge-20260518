@@ -13,7 +13,7 @@ universe u
 
 namespace LeanLCAExactChallenge.Infinity
 
-open CategoryTheory Opposite Simplicial
+open CategoryTheory CategoryTheory.Limits Opposite Simplicial
 open scoped CategoryTheory.MonoidalCategory.DayConvolution
   MonoidalCategory.ExternalProduct MonoidalCategory Prod
 
@@ -197,6 +197,46 @@ theorem underSliceProjection_comp_eq_fixedBaseCone
         (congrArg (fun k ↦ k ≫ forgetAugmentation.map V) hT.symm)
     _ = _ := congrArg (fun k ↦ simplicialJoinRightInclusion
       (Δ[0] : SSet.{u}) K ≫ k) hc.symm
+
+/-- A lifting square against a horn in an under-slice glues its fixed-base horn
+cone to the prescribed base simplex along the right factor. -/
+noncomputable def underSliceLiftingCornerTop
+    (Q : SSet.{u}) (z : Q _⦋0⦌) {n : ℕ} {i : Fin (n + 1)}
+    {f : (Λ[n, i] : SSet.{u}) ⟶ underSlice Q z} {b : Δ[n] ⟶ Q}
+    (sq : CommSq f (SSet.horn n i).ι (underSliceProjection Q z) b) :
+    pushout (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[n, i])
+        (SSet.horn n i).ι ⟶ Q :=
+  pushout.desc
+    (forgetAugmentation.{u}.map
+      ((relativeDaySliceOverMapFixedBaseEquiv
+        (emptyAugmentation.{u}.obj (Δ[0] : SSet.{u}))
+        (emptyAugmentation.{u}.obj Q) (Λ[n, i] : SSet.{u})
+        (emptyAugmentation.{u}.map (SSet.yonedaEquiv.symm z))) f).1)
+    b (by
+      exact (underSliceProjection_comp_eq_fixedBaseCone Q z _ f).symm.trans sq.w)
+
+@[reassoc (attr := simp)]
+theorem underSliceLiftingCornerTop_inl
+    (Q : SSet.{u}) (z : Q _⦋0⦌) {n : ℕ} {i : Fin (n + 1)}
+    {f : (Λ[n, i] : SSet.{u}) ⟶ underSlice Q z} {b : Δ[n] ⟶ Q}
+    (sq : CommSq f (SSet.horn n i).ι (underSliceProjection Q z) b) :
+    pushout.inl (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[n, i])
+        (SSet.horn n i).ι ≫ underSliceLiftingCornerTop Q z sq =
+      forgetAugmentation.{u}.map
+        ((relativeDaySliceOverMapFixedBaseEquiv
+          (emptyAugmentation.{u}.obj (Δ[0] : SSet.{u}))
+          (emptyAugmentation.{u}.obj Q) (Λ[n, i] : SSet.{u})
+          (emptyAugmentation.{u}.map (SSet.yonedaEquiv.symm z))) f).1 := by
+  apply pushout.inl_desc
+
+@[reassoc (attr := simp)]
+theorem underSliceLiftingCornerTop_inr
+    (Q : SSet.{u}) (z : Q _⦋0⦌) {n : ℕ} {i : Fin (n + 1)}
+    {f : (Λ[n, i] : SSet.{u}) ⟶ underSlice Q z} {b : Δ[n] ⟶ Q}
+    (sq : CommSq f (SSet.horn n i).ι (underSliceProjection Q z) b) :
+    pushout.inr (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[n, i])
+        (SSet.horn n i).ι ≫ underSliceLiftingCornerTop Q z sq = b := by
+  apply pushout.inr_desc
 
 /-- The representable over-slice, obtained by reversing an under-slice. -/
 abbrev overSlice (Q : SSet.{u}) (z : Q _⦋0⦌) : SSet.{u} :=
