@@ -3,6 +3,7 @@ import Mathlib.AlgebraicTopology.SimplicialSet.Basic
 import Mathlib.AlgebraicTopology.SimplicialSet.StdSimplex
 import Mathlib.AlgebraicTopology.SimplicialSet.HornColimits
 import Mathlib.AlgebraicTopology.SimplicialSet.FiniteColimits
+import Mathlib.AlgebraicTopology.SimplicialSet.AnodyneExtensions.Inner.Basic
 import Mathlib.AlgebraicTopology.Quasicategory.InnerFibration
 import Mathlib.CategoryTheory.Functor.KanExtension.Adjunction
 import Mathlib.CategoryTheory.Functor.KanExtension.Pointwise
@@ -1283,6 +1284,46 @@ lemma joinSigmaOneHornRange_le_face (m n : ℕ)
       (SSet.horn (T.card + n) (joinSigmaOneDistinguishedIndex n T i)).ι).image
         (joinSigmaOneFaceIso m n T).hom)
     (SSet.stdSimplex.face (joinSigmaOneVertices m n T)).ι
+
+def joinSigmaOneHornRangeToFace (m n : ℕ)
+    (T : Finset (Fin (m + 1))) (i : Fin (n + 1)) :
+    (joinSigmaOneHornRange m n T i : SSet.{u}) ⟶
+      (SSet.stdSimplex.face (joinSigmaOneVertices m n T) : SSet.{u}) :=
+  SSet.Subcomplex.homOfLE (by
+    rw [joinSigmaOneFace_eq_ofSimplex]
+    exact joinSigmaOneHornRange_le_face m n T i)
+
+noncomputable def joinSigmaOneHornArrowIso (m n : ℕ)
+    (T : Finset (Fin (m + 1))) (i : Fin (n + 1)) :
+    Arrow.mk (SSet.horn (T.card + n)
+      (joinSigmaOneDistinguishedIndex n T i)).ι ≅
+      Arrow.mk (joinSigmaOneHornRangeToFace m n T i) := by
+  refine Arrow.isoMk (joinSigmaOneHornIsoRange m n T i)
+    (joinSigmaOneFaceIso m n T) ?_
+  apply (cancel_mono
+    (SSet.stdSimplex.face (joinSigmaOneVertices m n T)).ι).1
+  change (SSet.Subcomplex.toRange (joinSigmaOneHornMap m n T i) ≫
+      joinSigmaOneHornRangeToFace m n T i) ≫
+      (SSet.stdSimplex.face (joinSigmaOneVertices m n T)).ι = _
+  calc
+    _ = SSet.Subcomplex.toRange (joinSigmaOneHornMap m n T i) ≫
+        (joinSigmaOneHornRange m n T i).ι := by
+      dsimp [joinSigmaOneHornRangeToFace]
+      rw [Category.assoc]
+      congr 1
+    _ = joinSigmaOneHornMap m n T i :=
+      SSet.Subcomplex.toRange_ι _
+    _ = _ := rfl
+
+lemma joinSigmaOneHornRangeToFace_innerAnodyne
+    (m n : ℕ) (T : Finset (Fin (m + 1))) (i : Fin (n + 1))
+    (h0 : 0 < i) (hn : i < Fin.last n) :
+    SSet.innerAnodyneExtensions (joinSigmaOneHornRangeToFace m n T i) := by
+  apply (SSet.innerAnodyneExtensions.arrow_mk_iso_iff
+    (joinSigmaOneHornArrowIso m n T i)).1
+  exact SSet.innerAnodyneExtensions.horn_ι
+    (joinSigmaOneDistinguishedIndex_pos T i h0)
+    (joinSigmaOneDistinguishedIndex_lt_last T i hn)
 
 def joinSigmaOneFirstIndex {m : ℕ} (n : ℕ) (T : Finset (Fin (m + 1)))
     (t : Fin (m + 1)) (ht : t ∈ T) : Fin (T.card + n + 1) :=
