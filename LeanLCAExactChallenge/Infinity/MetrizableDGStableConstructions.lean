@@ -1,4 +1,4 @@
-import LeanLCAExactChallenge.Infinity.MetrizableDGSimplicialCategory
+import LeanLCAExactChallenge.Infinity.MetrizableDGSimplicialCategoryOrdinaryEquivalence
 
 /-!
 # Mapping-cone objects in the bounded dg carrier
@@ -17,6 +17,28 @@ namespace Infinity
 namespace MetrizableBoundedComplexes
 
 open CategoryTheory
+open CategoryTheory.Limits
+open scoped ZeroObject
+
+/-- The zero bounded complex as an actual object of the direct simplicial dg category. -/
+def directDGZeroObject : DirectDGSimplicialCategory :=
+  directDGObject 0
+
+/-- The direct simplicial dg category has a genuine zero object on its underlying category.
+The proof transports uniqueness of arrows through the explicitly verified hom equivalence. -/
+theorem directDGZeroObject_isZero : IsZero directDGZeroObject := by
+  let h0 : IsZero (0 : ComplexCategory) := isZero_zero ComplexCategory
+  constructor
+  · intro Y
+    let e := directDGToComplexHomEquiv directDGZeroObject Y
+    exact ⟨
+      { default := e.symm (h0.to_ (directDGToComplexFunctor.obj Y))
+        uniq := fun f ↦ e.injective (h0.eq_of_src (e f) (e _)) }⟩
+  · intro Y
+    let e := directDGToComplexHomEquiv Y directDGZeroObject
+    exact ⟨
+      { default := e.symm (h0.from_ (directDGToComplexFunctor.obj Y))
+        uniq := fun f ↦ e.injective (h0.eq_of_tgt (e f) (e _)) }⟩
 
 /-- The cochain shift, retained as an actual object of the bounded dg carrier. -/
 def dgShiftObject (K : ComplexCategory) (n : ℤ) : ComplexCategory :=
