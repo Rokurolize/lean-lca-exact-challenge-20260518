@@ -16,7 +16,7 @@ universe u
 
 namespace LeanLCAExactChallenge.Infinity
 
-open CategoryTheory CategoryTheory.MorphismProperty Simplicial
+open CategoryTheory CategoryTheory.Limits CategoryTheory.MorphismProperty Simplicial
 
 /-- Positive-index horn inclusions, including the last horn. -/
 inductive rightHornInclusions : MorphismProperty SSet.{u} where
@@ -56,5 +56,16 @@ lemma rightFibrations_le_innerFibrations :
 instance {X Y : SSet.{u}} (p : X ⟶ Y) [RightFibration p] :
     SSet.InnerFibration p :=
   ⟨rightFibrations_le_innerFibrations _ RightFibration.mem⟩
+
+instance rightFibration_comp
+    {X Y Z : SSet.{u}} (p : X ⟶ Y) (q : Y ⟶ Z)
+    [RightFibration p] [RightFibration q] : RightFibration (p ≫ q) :=
+  ⟨rightFibrations.comp_mem p q RightFibration.mem RightFibration.mem⟩
+
+instance rightFibration_pullback_snd
+    {X Y Z : SSet.{u}} (p : X ⟶ Z) (q : Y ⟶ Z) [RightFibration p] :
+    RightFibration (pullback.snd p q) := by
+  refine ⟨?_⟩
+  exact rightFibrations.pullback_snd _ _ RightFibration.mem
 
 end LeanLCAExactChallenge.Infinity
