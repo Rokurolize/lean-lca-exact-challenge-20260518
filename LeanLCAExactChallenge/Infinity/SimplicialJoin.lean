@@ -938,6 +938,21 @@ def forgetAugmentationULiftYonedaInclusionIso (n : SimplexCategory) :
       SSet.stdSimplex.obj n :=
   Iso.refl _
 
+lemma forgetAugmentationULiftYonedaInclusionIso_naturality
+    {m n : SimplexCategory} (f : m ⟶ n) :
+    forgetAugmentation.{u}.map
+          (CategoryTheory.uliftYoneda.{u}.map
+            (AugmentedSimplexCategory.inclusion.map f)) ≫
+        (forgetAugmentationULiftYonedaInclusionIso.{u} n).hom =
+      (forgetAugmentationULiftYonedaInclusionIso.{u} m).hom ≫
+        SSet.stdSimplex.map f := by
+  apply NatTrans.ext
+  funext U
+  apply ConcreteCategory.hom_ext
+  intro x
+  rcases x with ⟨x⟩
+  rfl
+
 /-- Join of standard simplices is the standard simplex on ordinal sum. -/
 def simplicialJoinStdSimplexIso (m n : SimplexCategory) :
     simplicialJoin (SSet.stdSimplex.obj m) (SSet.stdSimplex.obj n) ≅
@@ -950,6 +965,29 @@ def simplicialJoinStdSimplexIso (m n : SimplexCategory) :
 def simplicialJoinStdSimplexIsoNat (m n : ℕ) :
     simplicialJoin (Δ[m] : SSet.{u}) Δ[n] ≅ Δ[m + n + 1] :=
   simplicialJoinStdSimplexIso.{u} (SimplexCategory.mk m) (SimplexCategory.mk n)
+
+theorem simplicialJoinStdSimplexIsoNat_naturality_rightCoface
+    (m n : ℕ) (j : Fin (n + 2)) :
+    simplicialJoinMap (𝟙 (Δ[m] : SSet.{u}))
+        (SSet.stdSimplex.map (SimplexCategory.δ j)) ≫
+        (simplicialJoinStdSimplexIsoNat m (n + 1)).hom =
+      (simplicialJoinStdSimplexIsoNat m n).hom ≫
+        SSet.stdSimplex.map
+          (SimplexCategory.δ
+            (⟨m + 1 + j.val, by omega⟩ : Fin (m + n + 3))) := by
+  unfold simplicialJoinStdSimplexIsoNat simplicialJoinStdSimplexIso
+  rw [Iso.trans_hom, Iso.trans_hom, ← Category.assoc,
+    simplicialJoinStdSimplexIsoRaw_naturality_rightCoface]
+  rw [augmentedInclusion_tensor_rightCoface]
+  simp only [Category.assoc]
+  apply (cancel_epi (simplicialJoinStdSimplexIsoRaw.{u}
+    (SimplexCategory.mk m) (SimplexCategory.mk n)).hom).2
+  apply NatTrans.ext
+  funext U
+  apply ConcreteCategory.hom_ext
+  intro x
+  rcases x with ⟨x⟩
+  rfl
 
 /-! ## The paired simplices in the representable join-horn filtration -/
 
