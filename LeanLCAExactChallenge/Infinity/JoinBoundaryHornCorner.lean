@@ -1,4 +1,5 @@
-import LeanLCAExactChallenge.Infinity.SimplicialJoin
+import LeanLCAExactChallenge.Infinity.RightConeHorn
+import Mathlib.CategoryTheory.Limits.Shapes.Pullback.PullbackObjObj
 
 /-! # Join boundary-horn corners -/
 
@@ -10,7 +11,7 @@ universe u
 
 namespace LeanLCAExactChallenge.Infinity
 
-open CategoryTheory Simplicial
+open CategoryTheory CategoryTheory.Limits Simplicial
 open scoped CategoryTheory.MonoidalCategory.DayConvolution MonoidalCategory
 
 /-- Arithmetic reassociation of the target of a left-block coface. -/
@@ -128,5 +129,41 @@ lemma representableJoin_leftCoface_range
   rw [simplicialJoinStdSimplexIsoNat_naturality_leftCoface]
   rw [SSet.Subcomplex.range_comp, SSet.Subcomplex.range_eq_top,
     SSet.Subcomplex.image_top, stdSimplex_range_map_leftJoinCoface]
+
+/-- The ordinary join, curried for the pushout-product API. -/
+abbrev ordinaryJoinCurried : SSet.{u} ⥤ SSet.{u} ⥤ SSet.{u} :=
+  Functor.curryObj ordinaryJoinBifunctor
+
+/-- The canonical join pushout-product square of a boundary and a horn. -/
+noncomputable def joinBoundaryHornCornerSq
+    (m n : ℕ) (i : Fin (n + 1)) :=
+  Functor.PushoutObjObj.ofHasPushout ordinaryJoinCurried
+    ((SSet.boundary m).ι : (SSet.boundary m : SSet.{u}) ⟶ Δ[m])
+    ((SSet.horn n i).ι : (Λ[n, i] : SSet.{u}) ⟶ Δ[n])
+
+/-- The pushout-product corner map of a simplex boundary and a horn under join. -/
+noncomputable def joinBoundaryHornCornerMap
+    (m n : ℕ) (i : Fin (n + 1)) :
+    (joinBoundaryHornCornerSq m n i).pt ⟶
+      simplicialJoin (Δ[m] : SSet.{u}) Δ[n] :=
+  (joinBoundaryHornCornerSq m n i).ι
+
+@[reassoc (attr := simp)]
+lemma joinBoundaryHornCornerMap_inl
+    (m n : ℕ) (i : Fin (n + 1)) :
+    (joinBoundaryHornCornerSq m n i).inl ≫
+      joinBoundaryHornCornerMap m n i =
+        simplicialJoinMap (𝟙 (Δ[m] : SSet.{u}))
+          (SSet.horn n i).ι :=
+  (joinBoundaryHornCornerSq m n i).inl_ι
+
+@[reassoc (attr := simp)]
+lemma joinBoundaryHornCornerMap_inr
+    (m n : ℕ) (i : Fin (n + 1)) :
+    (joinBoundaryHornCornerSq m n i).inr ≫
+      joinBoundaryHornCornerMap m n i =
+        simplicialJoinMap (SSet.boundary m).ι
+          (𝟙 (Δ[n] : SSet.{u})) :=
+  (joinBoundaryHornCornerSq m n i).inr_ι
 
 end LeanLCAExactChallenge.Infinity
