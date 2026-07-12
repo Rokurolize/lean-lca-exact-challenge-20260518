@@ -128,6 +128,14 @@ lemma pre_innerAnodyne_mem_monomorphisms_rlp
     (monomorphisms SSet.{u}).rlp ((MonoidalClosed.pre i).app Q) :=
   pre_mem_monomorphisms_rlp innerAnodyneCartesianPushoutProduct hi
 
+/-- Precomposition by a simplicial monomorphism into a quasicategory is an inner fibration. -/
+theorem innerFibration_precomp_of_mono
+    {A B Q : SSet.{u}} (i : A ⟶ B) [Mono i] [SSet.Quasicategory Q] :
+    SSet.InnerFibration ((MonoidalClosed.pre i).app Q) := by
+  set_option backward.isDefEq.respectTransparency false in
+    simpa using SSet.innerFibration_pullbackObjObjπ (Functor.PullbackObjObj.ofIsTerminal
+      MonoidalClosed.internalHom i (terminal.from Q) terminalIsTerminal)
+
 /-- The generating inner-horn case makes precomposition mono-injective. -/
 lemma pre_mem_monomorphisms_rlp_of_innerHornMono
     {A B Q : SSet.{u}} {i : A ⟶ B} [SSet.Quasicategory Q]
