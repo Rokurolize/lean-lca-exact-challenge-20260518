@@ -131,6 +131,46 @@ lemma representableJoin_leftCoface_range
   rw [SSet.Subcomplex.range_comp, SSet.Subcomplex.range_eq_top,
     SSet.Subcomplex.image_top, stdSimplex_range_map_leftJoinCoface]
 
+/-- Identify a left codimension-one face with the smaller standard simplex
+before joining on the right. -/
+noncomputable def ordinaryJoinLeftFaceIso
+    (m n : ℕ) (j : Fin (m + 2)) :
+    ordinaryJoinBifunctor.{u}.obj
+        ((Δ[m] : SSet.{u}), Δ[n]) ≅
+  ordinaryJoinBifunctor.{u}.obj
+        ((SSet.stdSimplex.face {j}ᶜ : SSet.{u}), Δ[n]) := by
+  let e := SSet.stdSimplex.faceSingletonComplIso.{u} j
+  exact ordinaryJoinBifunctor.mapIso (e.prod (Iso.refl _))
+
+set_option maxHeartbeats 800000 in
+/-- A transported left face of a representable join. -/
+noncomputable def ordinaryJoinTransportedLeftLeg
+    (m n : ℕ) (j : Fin (m + 2)) :
+  ordinaryJoinBifunctor.{u}.obj
+        ((SSet.stdSimplex.face {j}ᶜ : SSet.{u}), Δ[n]) ⟶
+      Δ[(m + 1) + n + 1] :=
+  (ordinaryJoinLeftFaceIso m n j).inv ≫
+    simplicialJoinMap (SSet.stdSimplex.δ j) (𝟙 (Δ[n] : SSet.{u})) ≫
+    (simplicialJoinStdSimplexIsoNat (m + 1) n).hom
+
+lemma ordinaryJoinTransportedLeftLeg_range
+    (m n : ℕ) (j : Fin (m + 2)) :
+    SSet.Subcomplex.range (ordinaryJoinTransportedLeftLeg.{u} m n j) =
+      (SSet.stdSimplex.face
+        ({(Fin.castLE (by omega) j : Fin (m + n + 3))}ᶜ)).image
+          (leftJoinTargetIso.{u} m n).hom := by
+  let f := simplicialJoinMap (SSet.stdSimplex.δ j)
+    (𝟙 (Δ[n] : SSet.{u})) ≫
+      (simplicialJoinStdSimplexIsoNat (m + 1) n).hom
+  have hr := subcomplex_range_eq_of_precomp_iso
+    (ordinaryJoinLeftFaceIso.{u} m n j).inv f
+    ((ordinaryJoinLeftFaceIso m n j).inv ≫ f) rfl
+  rw [ordinaryJoinTransportedLeftLeg]
+  change SSet.Subcomplex.range
+    ((ordinaryJoinLeftFaceIso m n j).inv ≫ f) = _
+  rw [← hr]
+  exact representableJoin_leftCoface_range m n j
+
 /-- The ordinary join, curried for the pushout-product API. -/
 abbrev ordinaryJoinCurried : SSet.{u} ⥤ SSet.{u} ⥤ SSet.{u} :=
   Functor.curryObj ordinaryJoinBifunctor
