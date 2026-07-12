@@ -596,4 +596,60 @@ lemma rightTensorHornCocone_left_comp
   exact leftHornFaceJoin_comp m n i j.1 (by
     simpa only [Set.mem_compl_iff, Set.mem_singleton_iff] using j.2)
 
+lemma leftRepresentableJoinHornRange_eq_iSup_leftFaces
+    (m n : ℕ) (i : Fin (m + 2)) :
+    SSet.Subcomplex.range
+        (leftRepresentableJoinHornMap.{u} (m + 1) n i) =
+      ⨆ (j : ({i}ᶜ : Set (Fin (m + 2)))),
+        SSet.Subcomplex.range
+          ((rightTensorHornCocone (Δ[n] : SSet.{u}) i).ι.app (.right j) ≫
+            leftRepresentableJoinHornMap (m + 1) n i) := by
+  rw [leftRepresentableJoinHornRange_eq_iSup_multicoforkRanges
+    (m + 1) n i (by omega)]
+  let c := rightTensorHornCocone (Δ[n] : SSet.{u}) i
+  apply le_antisymm
+  · apply iSup_le
+    rintro (a | j)
+    · let j₀ := (Limits.MultispanShape.ofLinearOrder
+          ({i}ᶜ : Set (Fin (m + 2)))).fst a
+      refine le_iSup_of_le j₀ ?_
+      let f := Limits.WalkingMultispan.Hom.fst
+        (J := Limits.MultispanShape.ofLinearOrder
+          ({i}ᶜ : Set (Fin (m + 2)))) a
+      let D := (((((SSet.horn.multicoequalizerDiagram i).multispanIndex.toLinearOrder.map
+            SSet.Subcomplex.toSSetFunctor).multispan ⋙ singletonAugmentation.{u}) ⋙
+          augmentedDayTensorRight (emptyAugmentation.{u}.obj (Δ[n] : SSet.{u}))) ⋙
+        forgetAugmentation.{u})
+      let d := D.map f
+      have hnat := c.ι.naturality f
+      have hleg := hnat.trans (Category.comp_id _)
+      rw [← hleg]
+      rw [SSet.Subcomplex.range_comp]
+      rw [SSet.Subcomplex.range_comp (c.ι.app (.right j₀))
+        (leftRepresentableJoinHornMap (m + 1) n i)]
+      apply SSet.Subcomplex.image_monotone
+      change SSet.Subcomplex.range (d ≫ c.ι.app (.right j₀)) ≤ _
+      rw [SSet.Subcomplex.range_comp]
+      exact SSet.Subcomplex.image_le_range _ _
+    · exact le_iSup (fun k ↦ SSet.Subcomplex.range
+        (c.ι.app (.right k) ≫
+          leftRepresentableJoinHornMap (m + 1) n i)) j
+  · apply iSup_le
+    intro j
+    exact le_iSup (fun k ↦ SSet.Subcomplex.range
+      (c.ι.app k ≫ leftRepresentableJoinHornMap (m + 1) n i)) (.right j)
+
+lemma leftRepresentableJoinHornRange_eq_iSup_transportedLeftFaces
+    (m n : ℕ) (i : Fin (m + 2)) :
+    SSet.Subcomplex.range
+        (leftRepresentableJoinHornMap.{u} (m + 1) n i) =
+      ⨆ (j : ({i}ᶜ : Set (Fin (m + 2)))),
+        SSet.Subcomplex.range
+          (ordinaryJoinTransportedLeftLeg.{u} m n j.1) := by
+  rw [leftRepresentableJoinHornRange_eq_iSup_leftFaces]
+  congr 1
+  funext j
+  rw [rightTensorHornCocone_left_comp]
+  rfl
+
 end LeanLCAExactChallenge.Infinity
