@@ -1,4 +1,4 @@
-import LeanLCAExactChallenge.Infinity.RightConeHorn
+import LeanLCAExactChallenge.Infinity.LeftOuterHornBoundary
 import Mathlib.CategoryTheory.Limits.Shapes.Pullback.PullbackObjObj
 import Mathlib.CategoryTheory.Monoidal.Braided.Basic
 
@@ -305,5 +305,70 @@ noncomputable instance augmentedDayTensorRight_preservesColimits
   letI : PreservesColimits L := (T.lanAdjunction (Type u)).leftAdjoint_preservesColimits
   dsimp only [augmentedDayTensorRight]
   infer_instance
+
+set_option backward.isDefEq.respectTransparency false in
+lemma augmentedDayTensorRight_map
+    (G : AugmentedSSet.{u}) {F F' : AugmentedSSet.{u}} (f : F ⟶ F') :
+    (augmentedDayTensorRight G).map f =
+      (letI := augmentedDayConvolution F G
+       letI := augmentedDayConvolution F' G
+       CategoryTheory.MonoidalCategory.DayConvolution.map f (𝟙 G)) := by
+  rfl
+
+set_option backward.isDefEq.respectTransparency false in
+lemma simplicialJoinRight_map_isPushout
+    (Y : SSet.{u}) {A B C D : SSet.{u}}
+    {f : A ⟶ B} {g : A ⟶ C} {h : B ⟶ D} {k : C ⟶ D}
+    (sq : IsPushout f g h k) :
+    IsPushout (simplicialJoinMap f (𝟙 Y))
+      (simplicialJoinMap g (𝟙 Y))
+      (simplicialJoinMap h (𝟙 Y))
+      (simplicialJoinMap k (𝟙 Y)) := by
+  let G := emptyAugmentation.{u}.obj Y
+  have hs₀ := emptyAugmentation_map_isPushout sq
+  have hs₁ := hs₀.map (augmentedDayTensorRight G)
+  have hs : IsPushout
+      (forgetAugmentation.map ((augmentedDayTensorRight G).map
+        (emptyAugmentation.map f)))
+      (forgetAugmentation.map ((augmentedDayTensorRight G).map
+        (emptyAugmentation.map g)))
+      (forgetAugmentation.map ((augmentedDayTensorRight G).map
+        (emptyAugmentation.map h)))
+      (forgetAugmentation.map ((augmentedDayTensorRight G).map
+        (emptyAugmentation.map k))) := by
+    apply IsPushout.of_forall_isPushout_app
+    intro U
+    exact hs₁.app (AugmentedSimplexCategory.inclusion.op.obj U)
+  letI := augmentedDayConvolution (emptyAugmentation.obj A) G
+  letI := augmentedDayConvolution (emptyAugmentation.obj B) G
+  letI := augmentedDayConvolution (emptyAugmentation.obj C) G
+  letI := augmentedDayConvolution (emptyAugmentation.obj D) G
+  change IsPushout
+    (forgetAugmentation.map
+      (CategoryTheory.MonoidalCategory.DayConvolution.map
+        (emptyAugmentation.map f) (𝟙 G)))
+    (forgetAugmentation.map
+      (CategoryTheory.MonoidalCategory.DayConvolution.map
+        (emptyAugmentation.map g) (𝟙 G)))
+    (forgetAugmentation.map
+      (CategoryTheory.MonoidalCategory.DayConvolution.map
+        (emptyAugmentation.map h) (𝟙 G)))
+    (forgetAugmentation.map
+      (CategoryTheory.MonoidalCategory.DayConvolution.map
+        (emptyAugmentation.map k) (𝟙 G))) at hs
+  change IsPushout
+    (forgetAugmentation.map
+      (CategoryTheory.MonoidalCategory.DayConvolution.map
+        (emptyAugmentation.map f) (emptyAugmentation.map (𝟙 Y))))
+    (forgetAugmentation.map
+      (CategoryTheory.MonoidalCategory.DayConvolution.map
+        (emptyAugmentation.map g) (emptyAugmentation.map (𝟙 Y))))
+    (forgetAugmentation.map
+      (CategoryTheory.MonoidalCategory.DayConvolution.map
+        (emptyAugmentation.map h) (emptyAugmentation.map (𝟙 Y))))
+    (forgetAugmentation.map
+      (CategoryTheory.MonoidalCategory.DayConvolution.map
+        (emptyAugmentation.map k) (emptyAugmentation.map (𝟙 Y))))
+  simpa only [emptyAugmentation.map_id] using hs
 
 end LeanLCAExactChallenge.Infinity
