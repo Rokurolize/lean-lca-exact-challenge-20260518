@@ -1,5 +1,6 @@
 import LeanLCAExactChallenge.Infinity.SimplicialJoin
 import LeanLCAExactChallenge.Infinity.JoyalLeftFibration
+import LeanLCAExactChallenge.Infinity.RightConeHorn
 
 /-!
 # Representable under- and over-slices
@@ -479,6 +480,34 @@ theorem underSliceLiftOfCornerExtension
     dsimp only [Φ, fixedBaseDayConvolutionMapOfRestriction]
     rw [forgetAugmentation_augmentedJoinMapOfUnderlying]
     exact hright
+
+/-- Positive-dimensional generators of the under-slice projection have the
+required lifting property. -/
+theorem underSliceProjection_hasLifting_positive
+    (Q : SSet.{u}) (z : Q _⦋0⦌) [SSet.Quasicategory Q]
+    (s : ℕ) (i : Fin (s + 3)) (hi : i < Fin.last (s + 2)) :
+    HasLiftingProperty (SSet.horn (s + 2) i).ι
+      (underSliceProjection Q z) := by
+  refine ⟨fun {f b} sq ↦ ?_⟩
+  have hcorner : underSliceHornCornerMap (s + 2) i =
+      positiveConeHornStandardCornerMap s i :=
+    underSliceHornCornerMap_eq_of_fac (s + 2) i _
+      (positiveConeHornStandardCornerMap_inl s i)
+      (positiveConeHornStandardCornerMap_inr s i)
+  have ha : SSet.innerAnodyneExtensions
+      (underSliceHornCornerMap (s + 2) i) := by
+    rw [hcorner]
+    exact positiveConeHornStandardCornerMap_innerAnodyne s i hi
+  let t : IsTerminal (⊤_ SSet.{u}) := Limits.terminalIsTerminal
+  have hq : SSet.InnerFibration (t.from Q) :=
+    (SSet.quasicategory_iff_of_isTerminal (t.from Q) t).mp inferInstance
+  letI : HasLiftingProperty (underSliceHornCornerMap (s + 2) i)
+      (t.from Q) := ha _ hq.mem
+  let csq : CommSq (underSliceLiftingCornerTop Q z sq)
+      (underSliceHornCornerMap (s + 2) i) (t.from Q)
+      (t.from (simplicialJoin (Δ[0] : SSet.{u}) Δ[s + 2])) :=
+    ⟨t.hom_ext _ _⟩
+  exact underSliceLiftOfCornerExtension Q z sq csq.lift csq.fac_left.symm
 
 /-- The representable over-slice, obtained by reversing an under-slice. -/
 abbrev overSlice (Q : SSet.{u}) (z : Q _⦋0⦌) : SSet.{u} :=
