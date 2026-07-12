@@ -586,6 +586,96 @@ lemma leftConeHornCornerMap_innerAnodyne
   simpa only [Category.assoc, Iso.hom_inv_id, Category.comp_id] using hc
 -/
 
+noncomputable def hornOneZeroIsoPoint :
+    (Λ[1, (0 : Fin 2)] : SSet.{u}) ≅ Δ[0] := by
+  let f : ∀ (j : Fin 2) (_ : j ≠ (0 : Fin 2)),
+      (Δ[0] : SSet.{u}) ⟶ Δ[0] := fun _ _ ↦ 𝟙 _
+  have hf : SSet.horn.IsCompatible f := by trivial
+  refine
+    { hom := hf.desc
+      inv := SSet.horn.ι (0 : Fin 2) (1 : Fin 2) (by decide)
+      hom_inv_id := ?_
+      inv_hom_id := SSet.stdSimplex.isTerminalObj₀.hom_ext _ _ }
+  apply SSet.horn.hom_ext'
+  intro j hj
+  have hj1 : j = (1 : Fin 2) := by
+    rcases Fin.eq_zero_or_eq_succ j with h | ⟨k, rfl⟩
+    · exact (hj h).elim
+    · have hk : k = 0 := Fin.eq_zero k
+      subst k
+      rfl
+  subst j
+  rw [← Category.assoc, hf.ι_desc]
+  simp [f]
+
+noncomputable def pointJoinHornOneZeroIso :
+    simplicialJoin (Δ[0] : SSet.{u}) Λ[1, (0 : Fin 2)] ≅
+      simplicialJoin (Δ[0] : SSet.{u}) Δ[0] := by
+  letI : IsIso (hornOneZeroIsoPoint.{u}.hom) :=
+    hornOneZeroIsoPoint.isIso_hom
+  have hi := ordinaryJoinBifunctor_map_isIso
+    (𝟙 (Δ[0] : SSet.{u})) hornOneZeroIsoPoint.hom
+  change IsIso (simplicialJoinMap (𝟙 (Δ[0] : SSet.{u}))
+    hornOneZeroIsoPoint.hom) at hi
+  letI := hi
+  exact asIso (simplicialJoinMap (𝟙 (Δ[0] : SSet.{u}))
+    hornOneZeroIsoPoint.hom)
+
+@[simp]
+lemma pointJoinHornOneZeroIso_hom :
+    (pointJoinHornOneZeroIso.{u}).hom =
+      simplicialJoinMap (𝟙 (Δ[0] : SSet.{u})) hornOneZeroIsoPoint.hom := by
+  rfl
+
+lemma representableJoinHornInitial_zero_one_zero :
+    representableJoinHornInitial.{u} 0 1 (0 : Fin 2) =
+      SSet.stdSimplex.face ({(2 : Fin 3)}ᶜ) := by
+  rw [representableJoinHornInitial_eq_iSup_shiftedRightFaces 0 0]
+  apply le_antisymm
+  · apply iSup_le
+    rintro ⟨j, hj⟩
+    have hj1 : j = (1 : Fin 2) := by
+      rcases Fin.eq_zero_or_eq_succ j with h | ⟨k, rfl⟩
+      · exact (hj h).elim
+      · have hk : k = 0 := Fin.eq_zero k
+        subst k
+        rfl
+    subst j
+    exact le_rfl
+  · exact le_iSup (fun j : ({(0 : Fin 2)}ᶜ : Set (Fin 2)) ↦
+      SSet.stdSimplex.face
+        ({(⟨0 + 1 + j.1.val, by omega⟩ : Fin (0 + (0 + 1) + 2))}ᶜ))
+      ⟨1, by decide⟩
+
+noncomputable def pointJoinHornOneZeroInitialIso :
+    simplicialJoin (Δ[0] : SSet.{u}) Λ[1, (0 : Fin 2)] ≅
+      (representableJoinHornInitial 0 1 (0 : Fin 2) : SSet.{u}) :=
+  pointJoinHornOneZeroIso.{u} ≪≫
+    simplicialJoinStdSimplexIsoNat 0 0 ≪≫
+    SSet.stdSimplex.faceSingletonComplIso (2 : Fin 3) ≪≫
+    (eqToIso (congrArg (fun S : (Δ[2] : SSet.{u}).Subcomplex ↦ (S : SSet.{u}))
+      representableJoinHornInitial_zero_one_zero)).symm
+
+lemma eqToIso_subcomplex_symm_hom_ι {n : ℕ}
+    {X Y : (Δ[n] : SSet.{u}).Subcomplex} (h : X = Y) :
+    (eqToIso (congrArg
+      (fun S : (Δ[n] : SSet.{u}).Subcomplex ↦ (S : SSet.{u})) h)).symm.hom ≫
+      X.ι = Y.ι := by
+  subst Y
+  simp
+
+lemma pointJoinHornOneZeroInitialIso_hom_ι :
+    (pointJoinHornOneZeroInitialIso.{u}).hom ≫
+        (representableJoinHornInitial 0 1 (0 : Fin 2)).ι =
+      (pointJoinHornOneZeroIso.{u} ≪≫
+        simplicialJoinStdSimplexIsoNat 0 0 ≪≫
+        SSet.stdSimplex.faceSingletonComplIso (2 : Fin 3)).hom ≫
+          (SSet.stdSimplex.face ({(2 : Fin 3)}ᶜ)).ι := by
+  unfold pointJoinHornOneZeroInitialIso
+  simp only [Iso.trans_hom, Category.assoc]
+  rw [eqToIso_subcomplex_symm_hom_ι
+    representableJoinHornInitial_zero_one_zero]
+
 /-- The canonical range square underlying the cone-horn corner. -/
 noncomputable def leftConeHornCanonicalBicartSq (r : ℕ) (i : Fin (r + 2)) :
     SSet.Subcomplex.BicartSq
@@ -652,6 +742,21 @@ lemma emptyJoinFaceIso_hom_ι (r : ℕ) :
     intro a
     simp [joinSigmaOneVertices, joinFirstVertices, joinSecondVertices, e]
   exact congrArg Fin.val (congrArg (fun f ↦ f j) he.symm)
+
+lemma hornOneZeroIsoPoint_inv_comp_joinSigmaOneHornMap :
+    hornOneZeroIsoPoint.{u}.inv ≫
+        joinSigmaOneHornMap 0 1 (∅ : Finset (Fin 1)) (0 : Fin 2) =
+      SSet.const (X := Δ[0])
+        (SSet.stdSimplex.obj₀Equiv.symm (1 : Fin 3)) := by
+  unfold joinSigmaOneHornMap
+  change hornOneZeroIsoPoint.inv ≫ (SSet.horn 1 (0 : Fin 2)).ι ≫
+      (emptyJoinFaceIso 0).hom ≫
+      (SSet.stdSimplex.face
+        (joinSigmaOneVertices 0 1 (∅ : Finset (Fin 1)))).ι = _
+  rw [emptyJoinFaceIso_hom_ι]
+  simp only [hornOneZeroIsoPoint, SSet.horn.ι_ι_assoc]
+  rw [SSet.stdSimplex.δ_one_eq_const, SSet.const_comp]
+  congr 2
 
 noncomputable def positiveJoinHornIsoRange (s : ℕ) (i : Fin (s + 3)) :
     simplicialJoin (Δ[0] : SSet.{u}) Λ[s + 2, i] ≅
@@ -759,6 +864,183 @@ noncomputable def positiveConeHornTransportedIsPushout
     (emptyJoinFaceIso (s + 1)) (Iso.refl _) ?_ ?_ ?_ ?_
   all_goals simp [positiveConeHornTransportedLeftLeg,
     positiveConeHornTransportedRightLeg, sq, Category.assoc]
+
+set_option maxHeartbeats 800000 in
+noncomputable def smallConeHornStandardIsPushout :
+    IsPushout
+      (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[1, (0 : Fin 2)])
+      (SSet.horn 1 (0 : Fin 2)).ι
+      ((pointJoinHornOneZeroInitialIso.{u}).hom ≫
+        SSet.Subcomplex.homOfLE
+          (leftConeHornCanonicalBicartSq 0 (0 : Fin 2)).le₂₄)
+      ((emptyJoinFaceIso 0).hom ≫
+        SSet.Subcomplex.homOfLE
+          (leftConeHornCanonicalBicartSq 0 (0 : Fin 2)).le₃₄) := by
+  let sq := leftConeHornCanonicalBicartSq.{u} 0 (0 : Fin 2)
+  refine sq.isPushout.of_iso'
+    (emptyJoinHornIsoRange 0 (0 : Fin 2))
+    pointJoinHornOneZeroInitialIso
+    (emptyJoinFaceIso 0) (Iso.refl _) ?_ ?_ ?_ ?_
+  · apply (cancel_mono (representableJoinHornInitial 0 1 (0 : Fin 2)).ι).mp
+    simp only [Category.assoc, SSet.Subcomplex.homOfLE_ι]
+    unfold emptyJoinHornIsoRange
+    simp only [Iso.trans_hom, ← Category.assoc]
+    dsimp [joinSigmaOneHornIsoRange, joinSigmaOneHornRange]
+    rw [Category.assoc, SSet.Subcomplex.toRange_ι]
+    apply (cancel_epi (hornOneZeroIsoPoint.{u}).inv).mp
+    have hjoin : (hornOneZeroIsoPoint.{u}).inv ≫
+        simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[1, (0 : Fin 2)] ≫
+        simplicialJoinMap (𝟙 (Δ[0] : SSet.{u})) hornOneZeroIsoPoint.hom =
+        simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[0] := by
+      calc
+        _ = hornOneZeroIsoPoint.inv ≫
+            (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[1, (0 : Fin 2)] ≫
+              simplicialJoinMap (𝟙 (Δ[0] : SSet.{u}))
+                hornOneZeroIsoPoint.hom) := rfl
+        _ = hornOneZeroIsoPoint.inv ≫
+            (hornOneZeroIsoPoint.hom ≫
+              simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[0]) :=
+          congrArg (fun k ↦ hornOneZeroIsoPoint.inv ≫ k)
+            (rightCone_rightInclusion_naturality
+              (Δ[0] : SSet.{u}) hornOneZeroIsoPoint.hom).symm
+        _ = (hornOneZeroIsoPoint.inv ≫ hornOneZeroIsoPoint.hom) ≫
+            simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[0] :=
+          (Category.assoc _ _ _).symm
+        _ = _ := by rw [Iso.inv_hom_id, Category.id_comp]
+    simp only [Category.assoc]
+    rw [pointJoinHornOneZeroInitialIso_hom_ι]
+    simp only [Iso.trans_hom, pointJoinHornOneZeroIso_hom]
+    simp only [← Category.assoc] at hjoin ⊢
+    rw [hjoin]
+    rw [rightCone_rightInclusion_stdSimplex]
+    apply SSet.yonedaEquiv.injective
+    simp_rw [SSet.yonedaEquiv_comp]
+    apply ULift.ext
+    apply SimplexCategory.Hom.ext
+    ext k
+    let U : SimplexCategoryᵒᵖ := Opposite.op ⦋0⦌
+    let x := SSet.yonedaEquiv (hornOneZeroIsoPoint.{u}.inv)
+    let iRaw := Fin.cast
+      (congrArg (fun n ↦ n + 1) (Nat.zero_add (0 + 1)).symm) (0 : Fin 2)
+    let iJoin := joinSigmaOneDistinguishedIndex (0 + 1)
+      (∅ : Finset (Fin 1)) (0 : Fin 2)
+    have hidx : iRaw = iJoin := by
+      apply Fin.ext
+      simp [iRaw, iJoin, joinSigmaOneDistinguishedIndex]
+    have hn := normalizedEmptyJoinHornIso_hom_app_heq
+      0 (0 : Fin 2) U x
+    have hi := eqToHom_app_heq
+      (congrArg (fun j ↦ (SSet.horn (0 + (0 + 1)) j : SSet.{u})) hidx)
+      U ((normalizedEmptyJoinHornIso 0 (0 : Fin 2)).hom.app U x)
+    have ht := hi.trans hn
+    simp only [emptyJoinHornIsoRange, Iso.trans_hom, Category.assoc]
+    have ht' := eq_of_heq ht
+    have ht'' := congrArg
+      (fun y ↦ (joinSigmaOneHornMap 0 1
+        (∅ : Finset (Fin 1)) (0 : Fin 2)).app U y) ht'
+    have ht''' := congrArg
+      (fun y ↦ Fin.val ((SimplexCategory.Hom.toOrderHom y.down) k)) ht''
+    dsimp [U, x] at ht'''
+    refine ht'''.trans ?_
+    have hy := congrArg SSet.yonedaEquiv
+      hornOneZeroIsoPoint_inv_comp_joinSigmaOneHornMap.{u}
+    simp only [SSet.yonedaEquiv_comp, SSet.yonedaEquiv_map] at hy
+    have hyval := congrArg
+      (fun y ↦ Fin.val ((SimplexCategory.Hom.toOrderHom y.down) (0 : Fin 1))) hy
+    simp only [SSet.stdSimplex.objEquiv_symm_apply] at hyval
+    simp [pointJoinHornOneZeroIso, hornOneZeroIsoPoint,
+      pointJoinHornOneZeroInitialIso, emptyJoinHornIsoRange,
+      normalizedEmptyJoinHornIso, joinSigmaOneHornIsoRange,
+      joinSigmaOneHornRange, joinSigmaOneHornMap,
+      representableJoinHornInitial_zero_one_zero, Category.assoc]
+    have hk : k = 0 := Fin.eq_zero k
+    subst k
+    let e : Fin 2 ↪o Fin 3 :=
+      { toFun := fun k ↦ ⟨1 + k.val, by omega⟩
+        inj' := by
+          intro a b h
+          apply Fin.ext
+          simpa using congrArg Fin.val h
+        map_rel_iff' := by
+          intro a b
+          change (1 + a.val ≤ 1 + b.val) ↔ a.val ≤ b.val
+          omega }
+    have he : e =
+        (joinSigmaOneVertices 0 1 (∅ : Finset (Fin 1))).orderEmbOfFin (by
+          rw [card_joinSigmaOneVertices]
+          simp) := by
+      apply Finset.orderEmbOfFin_unique'
+      intro a
+      simp [joinSigmaOneVertices, joinFirstVertices, joinSecondVertices, e]
+    let e' : Fin 2 ↪o Fin 3 :=
+      { toFun := fun k ↦ ⟨k.val, by omega⟩
+        inj' := by
+          intro a b h
+          apply Fin.ext
+          simpa using congrArg Fin.val h
+        map_rel_iff' := by
+          intro a b
+          rfl }
+    have he' : e' =
+        (SSet.stdSimplex.finSuccAboveOrderIsoFinset
+          (2 : Fin 3)).toOrderEmbedding.comp (OrderEmbedding.subtype _) := by
+      apply DFunLike.ext
+      intro a
+      apply Fin.ext
+      change a.val = ((2 : Fin 3).succAbove a).val
+      rw [show (2 : Fin 3) = Fin.last 2 by rfl, Fin.succAbove_last_apply]
+      rfl
+    have hv :
+        (joinSigmaOneVertices 0 1 (∅ : Finset (Fin 1))).orderEmbOfFin (by
+            rw [card_joinSigmaOneVertices]
+            simp) (0 : Fin 2) =
+          (SSet.stdSimplex.finSuccAboveOrderIsoFinset
+              (2 : Fin 3)).toOrderEmbedding.comp
+            (OrderEmbedding.subtype _) (1 : Fin 2) := by
+      rw [← he, ← he']
+      rfl
+    simp [emptyJoinHornIsoRange, normalizedEmptyJoinHornIso,
+      joinSigmaOneHornIsoRange, joinSigmaOneHornRange, joinSigmaOneHornMap,
+      pointJoinHornOneZeroInitialIso,
+      joinSigmaOneFaceIso, SSet.stdSimplex.faceSingletonComplIso,
+      SSet.stdSimplex.isoOfRepresentableBy,
+      SSet.stdSimplex.faceRepresentableBy, standardJoinRightOperator,
+      joinSigmaOneVertices, joinFirstVertices, joinSecondVertices,
+      SSet.yonedaEquiv_map, SimplexCategory.eqToHom_toOrderHom]
+    convert congrArg Fin.val hv using 1
+    · exact hyval.trans (congrArg Fin.val
+        (congrArg (fun f ↦ f (0 : Fin 2)) he))
+    · change (1 : ℕ) = 1
+      rfl
+  · apply (cancel_mono (SSet.stdSimplex.face
+      (joinSigmaOneVertices 0 1 (∅ : Finset (Fin 1)))).ι).mp
+    apply SSet.horn.hom_ext'
+    intro j hj
+    have hj1 : j = (1 : Fin 2) := by
+      rcases Fin.eq_zero_or_eq_succ j with h | ⟨k, rfl⟩
+      · exact (hj h).elim
+      · have hk : k = 0 := Fin.eq_zero k
+        subst k
+        rfl
+    subst j
+    simp [sq, Category.assoc, emptyJoinHornIsoRange,
+      normalizedEmptyJoinHornIso, emptyJoinFaceIso,
+      joinSigmaOneHornIsoRange, joinSigmaOneHornRange,
+      joinSigmaOneHornMap]
+    apply SSet.yonedaEquiv.injective
+    apply ULift.ext
+    apply SimplexCategory.Hom.ext
+    ext k
+    simp [emptyJoinHornIsoRange, normalizedEmptyJoinHornIso,
+      emptyJoinFaceIso, joinSigmaOneHornIsoRange,
+      joinSigmaOneHornRange, joinSigmaOneHornMap, Category.assoc]
+    have hk : k = 0 := Fin.eq_zero k
+    subst k
+    rfl
+  · change _ = _ ≫ 𝟙 _
+    rw [Category.comp_id]
+  · change _ = _ ≫ 𝟙 _
+    rw [Category.comp_id]
 
 lemma positiveConeHornTransported_w (s : ℕ) (i : Fin (s + 3)) :
     positiveConeHornTransportedLeftLeg.{u} s i ≫
