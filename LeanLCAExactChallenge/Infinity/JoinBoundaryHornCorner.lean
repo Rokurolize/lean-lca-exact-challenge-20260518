@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.Infinity.LeftOuterHornBoundary
+import LeanLCAExactChallenge.Infinity.MultispanRangeMono
 import Mathlib.CategoryTheory.Limits.Shapes.Pullback.PullbackObjObj
 import Mathlib.CategoryTheory.Monoidal.Braided.Basic
 
@@ -177,6 +178,45 @@ lemma ordinaryJoinTransportedLeftLeg_range
     ((ordinaryJoinLeftFaceIso m n j).inv ≫ f) = _
   rw [← hr]
   exact representableJoin_leftCoface_range m n j
+
+noncomputable instance ordinaryJoinTransportedLeftLeg_mono
+    (m n : ℕ) (j : Fin (m + 2)) :
+    Mono (ordinaryJoinTransportedLeftLeg.{u} m n j) := by
+  let q := simplicialJoinMap (SSet.stdSimplex.δ j)
+      (𝟙 (Δ[n] : SSet.{u})) ≫
+    (simplicialJoinStdSimplexIsoNat (m + 1) n).hom
+  haveI : Mono q := by
+    change Mono (simplicialJoinMap
+      (SSet.stdSimplex.map (SimplexCategory.δ j))
+      (𝟙 (Δ[n] : SSet.{u})) ≫
+        (simplicialJoinStdSimplexIsoNat (m + 1) n).hom)
+    rw [simplicialJoinStdSimplexIsoNat_naturality_leftCoface]
+    haveI : Mono (SSet.stdSimplex.map (leftJoinCoface m n j)) := by
+      let e : SimplexCategory.mk (m + n + 2) ≅
+          SimplexCategory.mk ((m + 1) + n + 1) :=
+        eqToIso (by
+          apply SimplexCategory.ext
+          simp
+          omega)
+      change Mono (SSet.stdSimplex.map
+        (SimplexCategory.δ
+          (Fin.castLE (show m + 2 ≤ m + n + 3 by omega) j) ≫ e.hom))
+      rw [Functor.map_comp]
+      haveI : Mono (SSet.stdSimplex.map
+          (SimplexCategory.δ
+            (Fin.castLE (show m + 2 ≤ m + n + 3 by omega) j))) := by
+        change Mono (SSet.stdSimplex.δ
+          (Fin.castLE (show m + 2 ≤ m + n + 3 by omega) j))
+        infer_instance
+      haveI : IsIso (SSet.stdSimplex.map e.hom) := inferInstance
+      haveI : Mono (SSet.stdSimplex.map e.hom) := inferInstance
+      infer_instance
+    infer_instance
+  unfold ordinaryJoinTransportedLeftLeg
+  change Mono ((ordinaryJoinLeftFaceIso m n j).inv ≫ q)
+  haveI : IsIso (ordinaryJoinLeftFaceIso m n j).inv := inferInstance
+  haveI : Mono (ordinaryJoinLeftFaceIso m n j).inv := inferInstance
+  exact mono_comp _ q
 
 /-- The ordinary join, curried for the pushout-product API. -/
 abbrev ordinaryJoinCurried : SSet.{u} ⥤ SSet.{u} ⥤ SSet.{u} :=
