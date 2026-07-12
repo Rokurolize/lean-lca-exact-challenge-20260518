@@ -694,6 +694,86 @@ theorem internalDifferentialLargeMap_comp_contractionDifferential
         contractionDifferentialFromSummand (d.raise j) := by
   simp [internalDifferentialLargeMap, Category.assoc]
 
+theorem paritySign_add_one (m : ℤ) :
+    (if Even (m + 1) then (1 : ℤ) else -1) =
+      -(if Even m then (1 : ℤ) else -1) := by
+  by_cases h : Even m <;> simp [Int.even_add_one, h]
+
+theorem DegreeProfile.prefixTotal_raise_of_lt
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i j : Fin (w.length + 1)) (h : i < j) :
+    (d.raise i).prefixTotal j = d.prefixTotal j + 1 := by
+  simp [DegreeProfile.prefixTotal, DegreeProfile.raise, Finset.sum_add_distrib, h]
+  omega
+
+theorem DegreeProfile.prefixTotal_raise_of_le
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i j : Fin (w.length + 1)) (h : j ≤ i) :
+    (d.raise i).prefixTotal j = d.prefixTotal j := by
+  simp [DegreeProfile.prefixTotal, DegreeProfile.raise, Finset.sum_add_distrib,
+    not_lt_of_ge h]
+
+theorem DegreeProfile.internalSign_raise_of_lt
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i j : Fin (w.length + 1)) (h : i < j) :
+    (d.raise i).internalSign j = -d.internalSign j := by
+  rw [DegreeProfile.internalSign, DegreeProfile.internalSign,
+    d.prefixTotal_raise_of_lt i j h, paritySign_add_one]
+
+theorem DegreeProfile.internalSign_raise_of_le
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i j : Fin (w.length + 1)) (h : j ≤ i) :
+    (d.raise i).internalSign j = d.internalSign j := by
+  rw [DegreeProfile.internalSign, DegreeProfile.internalSign,
+    d.prefixTotal_raise_of_le i j h]
+
+/-- Ordered pairs of distinct contraction positions, represented by the first removed
+position and the position of the second removal in the shortened word. -/
+abbrev ContractionPairIndex (n : ℕ) := Fin (n + 1) × Fin n
+
+/-- Exchange the order of two contractions. -/
+def contractionPairSwap {n : ℕ} (p : ContractionPairIndex n) :
+    ContractionPairIndex n :=
+  ⟨p.1.succAbove p.2, p.2.predAbove p.1⟩
+
+@[simp]
+theorem contractionPairSwap_fst {n : ℕ} (p : ContractionPairIndex n) :
+    (contractionPairSwap p).1 = p.1.succAbove p.2 := rfl
+
+@[simp]
+theorem contractionPairSwap_snd {n : ℕ} (p : ContractionPairIndex n) :
+    (contractionPairSwap p).2 = p.2.predAbove p.1 := rfl
+
+theorem contractionPairSwap_ne {n : ℕ} (p : ContractionPairIndex n) :
+    contractionPairSwap p ≠ p := by
+  intro h
+  exact Fin.succAbove_ne p.1 p.2 (congrArg Prod.fst h)
+
+@[simp]
+theorem contractionPairSwap_involutive {n : ℕ} (p : ContractionPairIndex n) :
+    contractionPairSwap (contractionPairSwap p) = p := by
+  apply Prod.ext
+  · exact Fin.succAbove_succAbove_predAbove p.1 p.2
+  · exact Fin.predAbove_predAbove_succAbove p.1 p.2
+
+/-- Any coefficient family negated by exchanging the two contraction orders has zero total
+sum. -/
+theorem sum_contractionPairIndex_eq_zero_of_swap_neg
+    {n : ℕ} (f : ContractionPairIndex n → ℤ)
+    (hneg : ∀ p, f (contractionPairSwap p) = -f p) :
+    ∑ p, f p = 0 := by
+  classical
+  apply Finset.sum_ninvolution contractionPairSwap
+  · intro p
+    rw [hneg]
+    omega
+  · intro p _
+    exact contractionPairSwap_ne p
+  · intro p
+    simp
+  · intro p
+    simp
+
 
 
 
