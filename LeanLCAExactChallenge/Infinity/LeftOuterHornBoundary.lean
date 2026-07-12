@@ -195,4 +195,99 @@ noncomputable def boundaryLastFaceIntersectionIsoSucc (n : ℕ) :
     SSet.Subcomplex.toSSetFunctor.mapIso
       (eqToIso (lastFaceBoundaryAmbientMap_range_succ n))
 
+lemma strictSingletonAugmentation_map_isPushout
+    {A B C D : SSet.{u}} {f : A ⟶ B} {g : A ⟶ C}
+    {h : B ⟶ D} {k : C ⟶ D} (sq : IsPushout f g h k) :
+    IsPushout (strictSingletonAugmentation.{u}.map f)
+      (strictSingletonAugmentation.{u}.map g)
+      (strictSingletonAugmentation.{u}.map h)
+      (strictSingletonAugmentation.{u}.map k) := by
+  apply IsPushout.of_forall_isPushout_app
+  rintro ⟨U⟩
+  rcases U with U | _
+  · apply (sq.app (Opposite.op U)).of_iso'
+      ((strictSingletonAugmentationEvalOfIso.{u} U).app A)
+      ((strictSingletonAugmentationEvalOfIso.{u} U).app B)
+      ((strictSingletonAugmentationEvalOfIso.{u} U).app C)
+      ((strictSingletonAugmentationEvalOfIso.{u} U).app D)
+    all_goals rfl
+  · let hp : IsPushout (𝟙 PUnit.{u + 1}) (𝟙 PUnit.{u + 1})
+        (𝟙 PUnit.{u + 1}) (𝟙 PUnit.{u + 1}) :=
+      IsPushout.of_id_fst
+    apply hp.of_iso'
+      (strictSingletonAugmentationEvalStarIso.app A)
+      (strictSingletonAugmentationEvalStarIso.app B)
+      (strictSingletonAugmentationEvalStarIso.app C)
+      (strictSingletonAugmentationEvalStarIso.app D)
+    all_goals apply Limits.Types.isTerminalPUnit.hom_ext
+
+lemma emptyAugmentation_map_isPushout
+    {A B C D : SSet.{u}} {f : A ⟶ B} {g : A ⟶ C}
+    {h : B ⟶ D} {k : C ⟶ D} (sq : IsPushout f g h k) :
+    IsPushout (emptyAugmentation.{u}.map f) (emptyAugmentation.{u}.map g)
+      (emptyAugmentation.{u}.map h) (emptyAugmentation.{u}.map k) := by
+  apply (strictSingletonAugmentation_map_isPushout sq).of_iso
+    (strictSingletonAugmentationIso.app A)
+    (strictSingletonAugmentationIso.app B)
+    (strictSingletonAugmentationIso.app C)
+    (strictSingletonAugmentationIso.app D)
+  all_goals simpa using strictSingletonAugmentationIso.hom.naturality _
+
+lemma simplicialJoinLeft_map_isPushout
+    (X : SSet.{u}) {A B C D : SSet.{u}}
+    {f : A ⟶ B} {g : A ⟶ C} {h : B ⟶ D} {k : C ⟶ D}
+    (sq : IsPushout f g h k) :
+    IsPushout (simplicialJoinMap (𝟙 X) f)
+      (simplicialJoinMap (𝟙 X) g)
+      (simplicialJoinMap (𝟙 X) h)
+      (simplicialJoinMap (𝟙 X) k) := by
+  let F := augmentedDayTensorLeft (emptyAugmentation.{u}.obj X)
+  have hs := (emptyAugmentation_map_isPushout sq).map F
+  have hf : IsPushout
+      (forgetAugmentation.{u}.map (F.map (emptyAugmentation.{u}.map f)))
+      (forgetAugmentation.{u}.map (F.map (emptyAugmentation.{u}.map g)))
+      (forgetAugmentation.{u}.map (F.map (emptyAugmentation.{u}.map h)))
+      (forgetAugmentation.{u}.map (F.map (emptyAugmentation.{u}.map k))) := by
+    apply IsPushout.of_forall_isPushout_app
+    intro U
+    change IsPushout
+      ((F.map (emptyAugmentation.{u}.map f)).app
+        (AugmentedSimplexCategory.inclusion.op.obj U))
+      ((F.map (emptyAugmentation.{u}.map g)).app
+        (AugmentedSimplexCategory.inclusion.op.obj U))
+      ((F.map (emptyAugmentation.{u}.map h)).app
+        (AugmentedSimplexCategory.inclusion.op.obj U))
+      ((F.map (emptyAugmentation.{u}.map k)).app
+        (AugmentedSimplexCategory.inclusion.op.obj U))
+    exact hs.app (AugmentedSimplexCategory.inclusion.op.obj U)
+  have hA : simplicialJoin X A =
+      forgetAugmentation.{u}.obj (F.obj (emptyAugmentation.{u}.obj A)) := rfl
+  have hB : simplicialJoin X B =
+      forgetAugmentation.{u}.obj (F.obj (emptyAugmentation.{u}.obj B)) := rfl
+  have hC : simplicialJoin X C =
+      forgetAugmentation.{u}.obj (F.obj (emptyAugmentation.{u}.obj C)) := rfl
+  have hD : simplicialJoin X D =
+      forgetAugmentation.{u}.obj (F.obj (emptyAugmentation.{u}.obj D)) := rfl
+  let eA := eqToIso hA
+  let eB := eqToIso hB
+  let eC := eqToIso hC
+  let eD := eqToIso hD
+  apply hf.of_iso' eA eB eC eD
+  · cases hA; cases hB
+    simp only [eA, eB, eqToIso_refl, Iso.refl_hom,
+      Category.id_comp, Category.comp_id]
+    exact (simplicialJoinMap_id_eq_augmentedDayTensorLeft_map X f).symm
+  · cases hA; cases hC
+    simp only [eA, eC, eqToIso_refl, Iso.refl_hom,
+      Category.id_comp, Category.comp_id]
+    exact (simplicialJoinMap_id_eq_augmentedDayTensorLeft_map X g).symm
+  · cases hB; cases hD
+    simp only [eB, eD, eqToIso_refl, Iso.refl_hom,
+      Category.id_comp, Category.comp_id]
+    exact (simplicialJoinMap_id_eq_augmentedDayTensorLeft_map X h).symm
+  · cases hC; cases hD
+    simp only [eC, eD, eqToIso_refl, Iso.refl_hom,
+      Category.id_comp, Category.comp_id]
+    exact (simplicialJoinMap_id_eq_augmentedDayTensorLeft_map X k).symm
+
 end LeanLCAExactChallenge.Infinity
