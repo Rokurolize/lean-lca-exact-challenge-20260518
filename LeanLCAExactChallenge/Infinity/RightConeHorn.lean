@@ -627,6 +627,52 @@ lemma pointJoinHornOneZeroIso_hom :
       simplicialJoinMap (𝟙 (Δ[0] : SSet.{u})) hornOneZeroIsoPoint.hom := by
   rfl
 
+lemma hornOneZeroIsoPoint_hom_comp_coface :
+    hornOneZeroIsoPoint.{u}.hom ≫
+        SSet.stdSimplex.map (SimplexCategory.δ (1 : Fin 2)) =
+      (SSet.horn 1 (0 : Fin 2)).ι := by
+  apply (cancel_epi hornOneZeroIsoPoint.inv).mp
+  rw [Iso.inv_hom_id_assoc]
+  simp [hornOneZeroIsoPoint]
+  rfl
+
+lemma pointJoinHornOneZeroIso_hom_comp_rightCoface :
+    pointJoinHornOneZeroIso.{u}.hom ≫
+        simplicialJoinMap (𝟙 (Δ[0] : SSet.{u}))
+          (SSet.stdSimplex.map (SimplexCategory.δ (1 : Fin 2))) =
+      simplicialJoinMap (𝟙 (Δ[0] : SSet.{u}))
+        (SSet.horn 1 (0 : Fin 2)).ι := by
+  rw [pointJoinHornOneZeroIso_hom]
+  let F := augmentedDayTensorLeft
+    (emptyAugmentation.{u}.obj (Δ[0] : SSet.{u}))
+  have hmid :
+      forgetAugmentation.{u}.map
+          (F.map (emptyAugmentation.{u}.map hornOneZeroIsoPoint.hom)) ≫
+          forgetAugmentation.{u}.map
+            (F.map (emptyAugmentation.{u}.map
+              (SSet.stdSimplex.map (SimplexCategory.δ (1 : Fin 2))))) =
+        forgetAugmentation.{u}.map
+          (F.map (emptyAugmentation.{u}.map
+            (SSet.horn 1 (0 : Fin 2)).ι)) := by
+    rw [← forgetAugmentation.map_comp, ← F.map_comp,
+      ← emptyAugmentation.map_comp,
+      hornOneZeroIsoPoint_hom_comp_coface]
+  calc
+    _ = forgetAugmentation.{u}.map
+          (F.map (emptyAugmentation.{u}.map hornOneZeroIsoPoint.hom)) ≫
+        forgetAugmentation.{u}.map
+          (F.map (emptyAugmentation.{u}.map
+            (SSet.stdSimplex.map (SimplexCategory.δ (1 : Fin 2))))) :=
+      congrArg₂ (fun a b ↦ a ≫ b)
+        (simplicialJoinMap_id_eq_augmentedDayTensorLeft_map
+          (Δ[0] : SSet.{u}) hornOneZeroIsoPoint.hom)
+        (simplicialJoinMap_id_eq_augmentedDayTensorLeft_map
+          (Δ[0] : SSet.{u})
+            (SSet.stdSimplex.map (SimplexCategory.δ (1 : Fin 2))))
+    _ = _ := hmid
+    _ = _ := (simplicialJoinMap_id_eq_augmentedDayTensorLeft_map
+      (Δ[0] : SSet.{u}) (SSet.horn 1 (0 : Fin 2)).ι).symm
+
 lemma representableJoinHornInitial_zero_one_zero :
     representableJoinHornInitial.{u} 0 1 (0 : Fin 2) =
       SSet.stdSimplex.face ({(2 : Fin 3)}ᶜ) := by
@@ -1092,6 +1138,80 @@ noncomputable def smallConeHornStandardCornerMap :
       simplicialJoin (Δ[0] : SSet.{u}) Δ[1] :=
   smallConeHornStandardPushoutIso.{u}.inv ≫
     smallCanonicalConeHornCornerMap
+
+@[reassoc]
+lemma smallConeHornStandardCornerMap_inl :
+    pushout.inl
+        (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[1, (0 : Fin 2)])
+        (SSet.horn 1 (0 : Fin 2)).ι ≫
+      smallConeHornStandardCornerMap =
+    simplicialJoinMap (𝟙 (Δ[0] : SSet.{u}))
+      (SSet.horn 1 (0 : Fin 2)).ι := by
+  unfold smallConeHornStandardCornerMap
+  rw [← Category.assoc, smallConeHornStandardPushoutIso_inl_factor]
+  apply (cancel_mono (simplicialJoinStdSimplexIsoNat 0 1).hom).mp
+  unfold smallCanonicalConeHornCornerMap
+  simp only [Category.assoc, Iso.inv_hom_id, Category.comp_id]
+  calc
+    _ = pointJoinHornOneZeroInitialIso.hom ≫
+        (SSet.Subcomplex.homOfLE
+          (leftConeHornCanonicalBicartSq 0 (0 : Fin 2)).le₂₄ ≫
+          (representableJoinHornInitial 0 1 (0 : Fin 2) ⊔
+            SSet.stdSimplex.face
+              (joinSigmaOneVertices 0 1 (∅ : Finset (Fin 1)))).ι) :=
+      Category.assoc _ _ _
+    _ = pointJoinHornOneZeroInitialIso.hom ≫
+        (representableJoinHornInitial 0 1 (0 : Fin 2)).ι := by
+      exact congrArg (fun k ↦ pointJoinHornOneZeroInitialIso.hom ≫ k)
+        (SSet.Subcomplex.homOfLE_ι _)
+    _ = _ := by
+      rw [pointJoinHornOneZeroInitialIso_hom_ι]
+      simp only [Iso.trans_hom, Category.assoc,
+        SSet.stdSimplex.faceSingletonComplIso_hom_ι]
+      have hnat :
+          simplicialJoinMap (𝟙 (Δ[0] : SSet.{u}))
+              (SSet.stdSimplex.map
+                (SimplexCategory.δ (1 : Fin 2))) ≫
+              (simplicialJoinStdSimplexIsoNat 0 1).hom =
+            (simplicialJoinStdSimplexIsoNat 0 0).hom ≫
+              SSet.stdSimplex.map
+                (SimplexCategory.δ (2 : Fin 3)) :=
+        simplicialJoinStdSimplexIsoNat_naturality_rightCoface
+          0 0 (1 : Fin 2)
+      change pointJoinHornOneZeroIso.hom ≫
+          (simplicialJoinStdSimplexIsoNat 0 0).hom ≫
+            SSet.stdSimplex.map (SimplexCategory.δ (2 : Fin 3)) = _
+      rw [← hnat]
+      rw [← Category.assoc,
+        pointJoinHornOneZeroIso_hom_comp_rightCoface]
+
+@[reassoc]
+lemma smallConeHornStandardCornerMap_inr :
+    pushout.inr
+        (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[1, (0 : Fin 2)])
+        (SSet.horn 1 (0 : Fin 2)).ι ≫
+      smallConeHornStandardCornerMap =
+    simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[1] := by
+  unfold smallConeHornStandardCornerMap
+  rw [← Category.assoc, smallConeHornStandardPushoutIso_inr_factor]
+  apply (cancel_mono (simplicialJoinStdSimplexIsoNat 0 1).hom).mp
+  unfold smallCanonicalConeHornCornerMap
+  simp only [Category.assoc, Iso.inv_hom_id, Category.comp_id,
+    rightCone_rightInclusion_stdSimplex]
+  calc
+    _ = (emptyJoinFaceIso 0).hom ≫
+        (SSet.Subcomplex.homOfLE
+          (leftConeHornCanonicalBicartSq 0 (0 : Fin 2)).le₃₄ ≫
+          (representableJoinHornInitial 0 1 (0 : Fin 2) ⊔
+            SSet.stdSimplex.face
+              (joinSigmaOneVertices 0 1 (∅ : Finset (Fin 1)))).ι) :=
+      Category.assoc _ _ _
+    _ = (emptyJoinFaceIso 0).hom ≫
+        (SSet.stdSimplex.face
+          (joinSigmaOneVertices 0 1 (∅ : Finset (Fin 1)))).ι := by
+      exact congrArg (fun k ↦ (emptyJoinFaceIso 0).hom ≫ k)
+        (SSet.Subcomplex.homOfLE_ι _)
+    _ = _ := emptyJoinFaceIso_hom_ι 0
 
 lemma smallCanonicalConeHornCornerMap_innerAnodyne :
     SSet.innerAnodyneExtensions
