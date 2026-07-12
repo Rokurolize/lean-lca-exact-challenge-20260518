@@ -352,6 +352,72 @@ lemma joinBoundaryHornStandardCornerMap_range
     joinBoundaryHornStandardCornerMap_inr]
   rfl
 
+/-- A simplicial pushout map is monic when its two component images meet exactly
+at the image of the overlap.  The proof is degreewise, using the corresponding
+criterion for pushouts of types. -/
+lemma mono_of_pushout_range_inter
+    {A B C X : SSet.{u}} {a : A ⟶ B} {b : A ⟶ C}
+    {h : B ⟶ X} {k : C ⟶ X} (w : a ≫ h = b ≫ k)
+    [Mono a] [Mono b] [Mono h] [Mono k]
+    (hr : SSet.Subcomplex.range (a ≫ h) =
+      SSet.Subcomplex.range h ⊓ SSet.Subcomplex.range k) :
+    Mono (pushout.desc h k w) := by
+  rw [NatTrans.mono_iff_mono_app]
+  intro U
+  rw [mono_iff_injective]
+  let G := (evaluation SimplexCategoryᵒᵖ (Type u)).obj U
+  have hmapcol : IsColimit
+      (Functor.mapCocone G (PushoutCocone.mk (pushout.inl a b)
+        (pushout.inr a b) pushout.condition)) :=
+    isColimitOfPreserves G (pushoutIsPushout a b)
+  have hp0 := (isColimitMapCoconePushoutCoconeEquiv G pushout.condition).1 hmapcol
+  have hp : IsPushout (a.app U) (b.app U)
+      ((pushout.inl a b).app U) ((pushout.inr a b).app U) := by
+    refine ⟨?_, ⟨hp0⟩⟩
+    refine ⟨?_⟩
+    have hw0 : a ≫ pushout.inl a b = b ≫ pushout.inr a b :=
+      pushout.condition
+    simpa only [NatTrans.comp_app] using
+      congrArg (fun q : A ⟶ pushout a b => q.app U) hw0
+  have hw : (a.app U) ≫ h.app U = (b.app U) ≫ k.app U := by
+    simpa only [NatTrans.comp_app] using congrArg (fun q => q.app U) w
+  let h₂ : IsPullback (a.app U) (b.app U) (h.app U) (k.app U) := by
+    rw [Types.isPullback_iff]
+    refine ⟨hw, ?_, ?_⟩
+    · intro x y he
+      exact (mono_iff_injective _).mp (inferInstance : Mono (b.app U)) he.2
+    · intro x₂ x₃ he
+      have hx : (h.app U) x₂ ∈
+          (SSet.Subcomplex.range h ⊓ SSet.Subcomplex.range k).obj U := by
+        exact ⟨⟨x₂, rfl⟩, ⟨x₃, he.symm⟩⟩
+      rw [← hr] at hx
+      obtain ⟨x₁, hx₁⟩ := hx
+      change (h.app U) ((a.app U) x₁) = (h.app U) x₂ at hx₁
+      have hx₁' : (a.app U) x₁ = x₂ :=
+        (mono_iff_injective _).mp (inferInstance : Mono (h.app U)) hx₁
+      have hx₃' : (b.app U) x₁ = x₃ :=
+        (mono_iff_injective _).mp (inferInstance : Mono (k.app U))
+          (by
+            calc
+              (k.app U) ((b.app U) x₁) = (h.app U) ((a.app U) x₁) := by
+                exact (congrArg (fun q => q x₁) hw).symm
+              _ = (h.app U) x₂ := hx₁
+              _ = (k.app U) x₃ := he)
+      exact ⟨x₁, hx₁', hx₃'⟩
+  have hmap : ((pushout.inl a b).app U) ≫
+      ((pushout.desc h k w).app U) = h.app U := by
+    simpa only [NatTrans.comp_app] using
+      congrArg (fun q => q.app U) (pushout.inl_desc h k w)
+  have hmap' : ((pushout.inr a b).app U) ≫
+      ((pushout.desc h k w).app U) = k.app U := by
+    simpa only [NatTrans.comp_app] using
+      congrArg (fun q => q.app U) (pushout.inr_desc h k w)
+  have hm : Mono ((pushout.desc h k w).app U) := by
+    apply Types.mono_of_isPushout_of_isPullback hp h₂ hmap hmap'
+    intro x y hx hy he
+    exact (mono_iff_injective _).mp (inferInstance : Mono (k.app U)) he
+  exact (mono_iff_injective _).mp hm
+
 /-- External product with a fixed right augmented simplicial set. -/
 def augmentedExternalProductRight (G : AugmentedSSet.{u}) :
     AugmentedSSet.{u} ⥤
@@ -1131,6 +1197,16 @@ noncomputable instance leftRepresentableJoinHornMapPairNormalized_mono
               (leftJoinPairTargetIso r n).inv) := by
             rw [ordinaryJoinTransportedLeftLeg_range_pairNormalized,
               ordinaryJoinTransportedLeftLeg_range_pairNormalized]
+
+lemma leftRepresentableJoinHornMap_mono_of_pairNormalized
+    (r n : ℕ) (i : Fin (r + 3)) :
+    Mono (leftRepresentableJoinHornMap.{u} (r + 2) n i) := by
+  haveI : Mono (leftRepresentableJoinHornMapPairNormalized.{u} r n i) :=
+    leftRepresentableJoinHornMapPairNormalized_mono r n i
+  haveI : Mono (leftJoinPairTargetIso.{u} r n).hom := inferInstance
+  change Mono (leftRepresentableJoinHornMapPairNormalized r n i ≫
+    (leftJoinPairTargetIso r n).hom)
+  infer_instance
 
 set_option backward.isDefEq.respectTransparency false in
 lemma simplicialJoinMap_comp_right_id
