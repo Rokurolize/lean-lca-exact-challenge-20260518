@@ -418,6 +418,113 @@ lemma mono_of_pushout_range_inter
     exact (mono_iff_injective _).mp (inferInstance : Mono (k.app U)) he
   exact (mono_iff_injective _).mp hm
 
+/-- The boundary is the linear multicoequalizer of its codimension-one faces. -/
+def boundaryMulticoequalizerDiagram (n : ℕ) :
+    SSet.Subcomplex.MulticoequalizerDiagram
+      (SSet.boundary n)
+      (fun j : Fin (n + 1) => SSet.stdSimplex.face {j}ᶜ)
+      (fun j k => SSet.stdSimplex.face {j, k}ᶜ) where
+  iSup_eq := (SSet.boundary_eq_iSup n).symm
+  eq_inf j k := by
+    rw [SSet.stdSimplex.face_inter_face]
+    congr 1
+    ext x
+    simp
+
+noncomputable def boundaryMulticoequalizerIsColimit (n : ℕ) :
+    IsColimit
+      ((boundaryMulticoequalizerDiagram n).multicofork.toLinearOrder.map
+        SSet.Subcomplex.toSSetFunctor) :=
+  (boundaryMulticoequalizerDiagram n).isColimit'
+
+theorem boundaryMulticoequalizerIndex_isConnected (n : ℕ) :
+    CategoryTheory.IsConnected
+      (Limits.WalkingMultispan
+        (Limits.MultispanShape.ofLinearOrder (Fin (n + 1)))) := by
+  letI : Nonempty (Fin (n + 1)) := ⟨0⟩
+  exact walkingMultispanOfLinearOrder_isConnected _
+
+noncomputable def strictSingletonAugmentationBoundaryCocone (n : ℕ) :
+    Cocone
+      (((boundaryMulticoequalizerDiagram n).multispanIndex.toLinearOrder.map
+        SSet.Subcomplex.toSSetFunctor).multispan ⋙ strictSingletonAugmentation.{u}) :=
+  strictSingletonAugmentation.{u}.mapCocone
+    ((boundaryMulticoequalizerDiagram n).multicofork.toLinearOrder.map
+      SSet.Subcomplex.toSSetFunctor)
+
+noncomputable def strictSingletonAugmentationBoundaryIsColimit (n : ℕ) :
+    IsColimit (strictSingletonAugmentationBoundaryCocone.{u} n) := by
+  apply evaluationJointlyReflectsColimits
+  rintro ⟨(j | _)⟩
+  · let c := (boundaryMulticoequalizerDiagram n).multicofork.toLinearOrder.map
+      SSet.Subcomplex.toSSetFunctor
+    let e := (evaluation SimplexCategoryᵒᵖ (Type u)).obj (Opposite.op j)
+    have hc : IsColimit (e.mapCocone c) :=
+      isColimitOfPreserves e (boundaryMulticoequalizerIsColimit n)
+    exact IsColimit.ofIsoColimit
+      (IsColimit.mapCoconeEquiv
+        (strictSingletonAugmentationEvalOfIso.{u} j).symm hc)
+      (Functor.mapCoconeMapCocone c).symm
+  · let c := (boundaryMulticoequalizerDiagram n).multicofork.toLinearOrder.map
+      SSet.Subcomplex.toSSetFunctor
+    letI : CategoryTheory.IsConnected
+        (Limits.WalkingMultispan
+          (Limits.MultispanShape.ofLinearOrder (Fin (n + 1)))) :=
+      boundaryMulticoequalizerIndex_isConnected n
+    have hc : IsColimit
+        (((Functor.const SSet.{u}).obj PUnit.{u + 1}).mapCocone c) := by
+      refine
+        { desc := fun s ↦ s.ι.app Classical.ofNonempty
+          fac := fun s j ↦ ?_
+          uniq := fun s m h ↦ ?_ }
+      · ext ⟨⟩
+        refine constant_of_preserves_morphisms (α := s.pt)
+          (fun k ↦ s.ι.app k PUnit.unit) ?_ Classical.ofNonempty j
+        intro X Y f
+        exact ConcreteCategory.congr_hom (s.ι.naturality f).symm PUnit.unit
+      · ext ⟨⟩
+        have hh := h Classical.ofNonempty
+        simp [c] at hh
+        change m = s.ι.app Classical.ofNonempty at hh
+        exact ConcreteCategory.congr_hom hh PUnit.unit
+    exact IsColimit.ofIsoColimit
+      (IsColimit.mapCoconeEquiv strictSingletonAugmentationEvalStarIso.symm hc)
+      (Functor.mapCoconeMapCocone c).symm
+
+noncomputable def singletonAugmentationBoundaryCocone (n : ℕ) :
+    Cocone
+      (((boundaryMulticoequalizerDiagram n).multispanIndex.toLinearOrder.map
+        SSet.Subcomplex.toSSetFunctor).multispan ⋙ singletonAugmentation.{u}) :=
+  singletonAugmentation.{u}.mapCocone
+    ((boundaryMulticoequalizerDiagram n).multicofork.toLinearOrder.map
+      SSet.Subcomplex.toSSetFunctor)
+
+noncomputable def singletonAugmentationBoundaryIsColimit (n : ℕ) :
+    IsColimit (singletonAugmentationBoundaryCocone.{u} n) :=
+  IsColimit.mapCoconeEquiv strictSingletonAugmentationIso
+    (strictSingletonAugmentationBoundaryIsColimit.{u} n)
+
+noncomputable def leftTensorBoundaryCocone (m n : ℕ) :
+    Cocone
+      (((boundaryMulticoequalizerDiagram (m + 1)).multispanIndex.toLinearOrder.map
+        SSet.Subcomplex.toSSetFunctor).multispan ⋙
+        (augmentedDayTensorLeft (emptyAugmentation.{u}.obj (Δ[n] : SSet.{u})) ⋙
+          forgetAugmentation.{u})) :=
+  (augmentedDayTensorLeft (emptyAugmentation.{u}.obj (Δ[n] : SSet.{u})) ⋙
+    forgetAugmentation.{u}).mapCocone
+      (singletonAugmentationBoundaryCocone.{u} (m + 1))
+
+noncomputable def leftTensorBoundaryIsColimit (m n : ℕ) :
+    IsColimit (leftTensorBoundaryCocone.{u} m n) := by
+  let T := augmentedDayTensorLeft (emptyAugmentation.{u}.obj (Δ[n] : SSet.{u}))
+  letI : PreservesColimitsOfSize.{0, 0} T :=
+    (augmentedDayAdjunction _).leftAdjoint_preservesColimits
+  letI : PreservesColimitsOfSize.{0, 0} forgetAugmentation.{u} :=
+    forgetAugmentation_preservesSmallColimits
+  exact isColimitOfPreserves forgetAugmentation.{u}
+    (isColimitOfPreserves T
+      (singletonAugmentationBoundaryIsColimit.{u} (m + 1)))
+
 /-- External product with a fixed right augmented simplicial set. -/
 def augmentedExternalProductRight (G : AugmentedSSet.{u}) :
     AugmentedSSet.{u} ⥤
@@ -1204,8 +1311,12 @@ lemma leftRepresentableJoinHornMap_mono_of_pairNormalized
   haveI : Mono (leftRepresentableJoinHornMapPairNormalized.{u} r n i) :=
     leftRepresentableJoinHornMapPairNormalized_mono r n i
   haveI : Mono (leftJoinPairTargetIso.{u} r n).hom := inferInstance
-  change Mono (leftRepresentableJoinHornMapPairNormalized r n i ≫
-    (leftJoinPairTargetIso r n).hom)
+  have hf : leftRepresentableJoinHornMap.{u} (r + 2) n i =
+      leftRepresentableJoinHornMapPairNormalized r n i ≫
+        (leftJoinPairTargetIso r n).hom := by
+    unfold leftRepresentableJoinHornMapPairNormalized
+    simp
+  rw [hf]
   infer_instance
 
 set_option backward.isDefEq.respectTransparency false in
