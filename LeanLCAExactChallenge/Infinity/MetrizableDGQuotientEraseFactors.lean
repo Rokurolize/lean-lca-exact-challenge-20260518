@@ -493,6 +493,15 @@ def contractionTensorMap
   contractionTensorMapAtOldIndex d i ≫
     eqToHom (congrArg tensorModuleList (contractedFactorsOldIndex_eq d i))
 
+theorem adjacentMergeData_head_empty_tensorMap
+    {M N P : ModuleCat.{0} ℤ} (f : Quiver.Hom (M ⊗ N) P) :
+    (@AdjacentMergeData.head M N P [] f).tensorMap =
+      (α_ M N (𝟙_ (ModuleCat.{0} ℤ))).inv ≫
+        (ρ_ (M ⊗ N)).hom ≫ f ≫ (ρ_ P).inv := by
+  dsimp only [AdjacentMergeData.tensorMap, tensorModuleList]
+  simp
+
+
 
 end DrinfeldWord
 end MetrizableBoundedComplexes
