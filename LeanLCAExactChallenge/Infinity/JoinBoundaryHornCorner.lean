@@ -13,16 +13,24 @@ namespace LeanLCAExactChallenge.Infinity
 open CategoryTheory Simplicial
 open scoped CategoryTheory.MonoidalCategory.DayConvolution MonoidalCategory
 
+/-- Arithmetic reassociation of the target of a left-block coface. -/
+noncomputable def leftJoinTargetIso (m n : ℕ) :
+    (Δ[m + n + 2] : SSet.{u}) ≅ Δ[(m + 1) + n + 1] :=
+  SSet.stdSimplex.mapIso (eqToIso (by
+    apply SimplexCategory.ext
+    simp
+    omega))
+
 /-- The left-block coface in an ordinal sum, with its target arithmetic
 transport made explicit. -/
 def leftJoinCoface (m n : ℕ) (i : Fin (m + 2)) :
     SimplexCategory.mk (m + n + 1) ⟶
       SimplexCategory.mk ((m + 1) + n + 1) :=
   SimplexCategory.δ (Fin.castLE (by omega) i : Fin (m + n + 3)) ≫
-    eqToHom (by
+    (eqToIso (by
       apply SimplexCategory.ext
       simp
-      omega)
+      omega)).hom
 
 /-- Tensoring a left coface with an identity preserves its index in the
 ordinal sum, up to the canonical arithmetic transport of the target. -/
@@ -94,5 +102,31 @@ theorem simplicialJoinStdSimplexIsoNat_naturality_leftCoface
   intro x
   rcases x with ⟨x⟩
   rfl
+
+lemma stdSimplex_range_map_leftJoinCoface
+    (m n : ℕ) (i : Fin (m + 2)) :
+    SSet.Subcomplex.range (SSet.stdSimplex.map (leftJoinCoface m n i) :
+      (Δ[m + n + 1] : SSet.{u}) ⟶ Δ[(m + 1) + n + 1]) =
+      (SSet.stdSimplex.face
+        ({(Fin.castLE (by omega) i : Fin (m + n + 3))}ᶜ)).image
+          (leftJoinTargetIso.{u} m n).hom := by
+  rw [SSet.Subcomplex.range_eq_ofSimplex,
+    SSet.stdSimplex.face_singleton_compl,
+    SSet.Subcomplex.image_ofSimplex]
+  congr 1
+
+lemma representableJoin_leftCoface_range
+    (m n : ℕ) (i : Fin (m + 2)) :
+    SSet.Subcomplex.range
+        (simplicialJoinMap
+            (SSet.stdSimplex.map (SimplexCategory.δ i))
+            (𝟙 (Δ[n] : SSet.{u})) ≫
+          (simplicialJoinStdSimplexIsoNat (m + 1) n).hom) =
+      (SSet.stdSimplex.face
+        ({(Fin.castLE (by omega) i : Fin (m + n + 3))}ᶜ)).image
+          (leftJoinTargetIso.{u} m n).hom := by
+  rw [simplicialJoinStdSimplexIsoNat_naturality_leftCoface]
+  rw [SSet.Subcomplex.range_comp, SSet.Subcomplex.range_eq_top,
+    SSet.Subcomplex.image_top, stdSimplex_range_map_leftJoinCoface]
 
 end LeanLCAExactChallenge.Infinity
