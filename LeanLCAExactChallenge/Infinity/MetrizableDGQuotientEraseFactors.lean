@@ -501,6 +501,99 @@ theorem adjacentMergeData_head_empty_tensorMap
   dsimp only [AdjacentMergeData.tensorMap, tensorModuleList]
   simp
 
+def singletonCompositionFactorMap
+    (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory) {n : ℤ}
+    (d : DegreeProfile (singleton X Y A) n) :
+    Quiver.Hom (factorModule d 0 ⊗ factorModule d 1)
+      ((dgHomZModuleCochainComplex X Y).X
+        (d.arrowDegree 0 + d.arrowDegree 1)) := by
+  have hs₀ : (singleton X Y A).arrowSource 0 = X := rfl
+  have ht₀ : (singleton X Y A).arrowTarget 0 = A.obj := rfl
+  have hs₁ : (singleton X Y A).arrowSource 1 = A.obj := rfl
+  have ht₁ : (singleton X Y A).arrowTarget 1 = Y :=
+    vertex_last (singleton X Y A)
+  simp only [factorModule]
+  rw [hs₀, ht₀, hs₁, ht₁]
+  exact dgCochainCompTensor X A.obj Y rfl
+
+def singletonCompositionFactorMapAt
+    (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory) {n : ℤ}
+    (d : DegreeProfile (singleton X Y A) n)
+    (i : Fin (singleton X Y A).length) :
+    Quiver.Hom (factorModule d i.castSucc ⊗ factorModule d i.succ)
+      ((dgHomZModuleCochainComplex
+        ((singleton X Y A).arrowSource i.castSucc)
+        ((singleton X Y A).arrowTarget i.succ)).X
+        (d.arrowDegree i.castSucc + d.arrowDegree i.succ)) := by
+  simp only [factorModule]
+  rw [arrowTarget_castSucc_eq_arrowSource_succ]
+  exact dgCochainCompTensor
+    ((singleton X Y A).arrowSource i.castSucc)
+    ((singleton X Y A).arrowSource i.succ)
+    ((singleton X Y A).arrowTarget i.succ) rfl
+
+theorem contractFactorComposition_singleton
+    (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory) {n : ℤ}
+    (d : DegreeProfile (singleton X Y A) n)
+    (i : Fin (singleton X Y A).length) :
+    contractFactorComposition d i =
+      singletonCompositionFactorMapAt X Y A d i ≫
+        (contractFactorModuleAtIso d i).inv := by
+  refine Fin.cases ?_ (fun j ↦ Fin.elim0 j) i
+  unfold contractFactorComposition singletonCompositionFactorMapAt
+  rfl
+
+theorem singletonCompositionFactorMapAt_heq
+    (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory) {n : ℤ}
+    (d : DegreeProfile (singleton X Y A) n)
+    (i : Fin (singleton X Y A).length) :
+    HEq (singletonCompositionFactorMapAt X Y A d i)
+      (singletonCompositionFactorMap X Y A d) := by
+  refine Fin.cases ?_ (fun j ↦ Fin.elim0 j) i
+  unfold singletonCompositionFactorMapAt singletonCompositionFactorMap
+  rfl
+
+/-- One signed contraction term, included into the degree-`n+1` quotient carrier. -/
+def contractionLargeMap {X Y : ComplexCategory}
+    {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
+    (i : Fin w.length) :
+    Quiver.Hom (largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+      (quotientGradedModule X Y (n + 1)) :=
+  d.contractionSign i •
+    ((ModuleCat.uliftFunctor.{1} ℤ).map (contractionTensorMap d i) ≫
+      Limits.Sigma.ι
+        (fun s : GradedSummandIndex X Y (n + 1) ↦ largeSummandModule s)
+        ⟨eraseIntermediate w i, d.contract i⟩)
+
+/-- Sum of all signed contraction terms leaving one homogeneous word summand. -/
+def contractionDifferentialFromSummand {X Y : ComplexCategory}
+    {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n) :
+    Quiver.Hom (largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+      (quotientGradedModule X Y (n + 1)) :=
+  ∑ i, contractionLargeMap d i
+
+/-- The contraction part of the Drinfeld differential on the whole coproduct carrier. -/
+def quotientContractionDifferential (X Y : ComplexCategory) (n : ℤ) :
+    Quiver.Hom (quotientGradedModule X Y n) (quotientGradedModule X Y (n + 1)) :=
+  Limits.Sigma.desc fun s : GradedSummandIndex X Y n ↦
+    contractionDifferentialFromSummand s.2
+
+@[reassoc (attr := simp)]
+theorem quotientContractionDifferential_inclusion
+    (X Y : ComplexCategory) (n : ℤ) (s : GradedSummandIndex X Y n) :
+    Limits.Sigma.ι (fun t : GradedSummandIndex X Y n ↦ largeSummandModule t) s ≫
+        quotientContractionDifferential X Y n =
+      contractionDifferentialFromSummand s.2 :=
+  Limits.Sigma.ι_desc _ s
+
+@[simp]
+theorem contractionDifferentialFromSummand_nil
+    (X Y : ComplexCategory) {n : ℤ} (d : DegreeProfile (nil X Y) n) :
+    contractionDifferentialFromSummand d = 0 := by
+  change (∑ i : Fin 0, contractionLargeMap d i) = 0
+  exact Finset.sum_empty
+
+
 
 
 end DrinfeldWord
