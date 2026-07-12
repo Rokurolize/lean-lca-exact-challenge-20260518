@@ -1,0 +1,17 @@
+[mcp_servers.lean-lsp]
+enabled = true
+required = false
+command = "uvx"
+args = [
+  "lean-lsp-mcp",
+  "--transport",
+  "stdio",
+]
+cwd = ".."
+startup_timeout_sec = 60.0
+tool_timeout_sec = 120.0
+
+[mcp_servers.lean-lsp.env]
+LEAN_LOG_LEVEL = "NONE"
+LEAN_MCP_DISABLED_TOOLS = "lean_build,lean_run_code"
+LEAN_BUILD_CONCURRENCY = "cancel"
