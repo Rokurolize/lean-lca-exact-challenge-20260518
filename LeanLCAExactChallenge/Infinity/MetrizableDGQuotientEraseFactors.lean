@@ -13,6 +13,9 @@ namespace Infinity
 namespace MetrizableBoundedComplexes
 namespace DrinfeldWord
 
+open CategoryTheory
+open CategoryTheory.MonoidalCategory
+
 theorem eraseVertexSuccAbove_internal (k : ℕ) (i : Fin (k + 1)) (q : Fin k) :
     i.succ.castSucc.succAbove q.castSucc.succ =
       (i.succAbove q).succ.castSucc := by
@@ -235,6 +238,122 @@ theorem eraseIntermediate_arrowTarget_of_after
   congr 1
   rw [Fin.succAbove_of_lt_succ]
   simpa using h.le
+
+theorem contract_arrowDegree_of_before
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1))
+    (h : eraseFactorIndex w i j < i) :
+    (d.contract i).arrowDegree j =
+      d.arrowDegree (eraseFactorIndex w i j).castSucc := by
+  change contractedArrowDegree d.arrowDegree i (eraseFactorIndex w i j) = _
+  simp only [contractedArrowDegree]
+  rw [Fin.succAbove_castSucc_of_lt _ _ h]
+  simp [h.ne]
+
+theorem contract_arrowDegree_at
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    (d.contract i).arrowDegree (erasePosition w i) =
+      d.arrowDegree i.castSucc + d.arrowDegree i.succ := by
+  change contractedArrowDegree d.arrowDegree i
+    (eraseFactorIndex w i (erasePosition w i)) = _
+  rw [eraseFactorIndex_erasePosition, contractedArrowDegree_self, add_comm]
+
+theorem contract_arrowDegree_of_after
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1))
+    (h : i < eraseFactorIndex w i j) :
+    (d.contract i).arrowDegree j =
+      d.arrowDegree (eraseFactorIndex w i j).succ := by
+  change contractedArrowDegree d.arrowDegree i (eraseFactorIndex w i j) = _
+  simp only [contractedArrowDegree]
+  rw [Fin.succAbove_castSucc_of_le _ _ h.le]
+  simp [h.ne']
+
+/-- Away from and before a contraction, the corresponding homogeneous Hom module is
+canonically unchanged. -/
+def contractFactorModuleBeforeIso
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1))
+    (h : eraseFactorIndex w i j < i) :
+    factorModule (d.contract i) j ≅
+      factorModule d (eraseFactorIndex w i j).castSucc := by
+  apply eqToIso
+  simp only [factorModule]
+  rw [eraseIntermediate_arrowSource_of_before w i j h,
+    eraseIntermediate_arrowTarget_of_before w i j h,
+    contract_arrowDegree_of_before d i j h]
+
+/-- At the contraction position, the new factor is the homogeneous target of composition
+of the two adjacent old factors. -/
+def contractFactorModuleAtIso
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    factorModule (d.contract i) (erasePosition w i) ≅
+      (dgHomZModuleCochainComplex
+        (w.arrowSource i.castSucc) (w.arrowTarget i.succ)).X
+          (d.arrowDegree i.castSucc + d.arrowDegree i.succ) := by
+  apply eqToIso
+  simp only [factorModule]
+  rw [eraseIntermediate_arrowSource_at w i, eraseIntermediate_arrowTarget_at w i,
+    contract_arrowDegree_at d i]
+
+/-- Away from and after a contraction, the corresponding homogeneous Hom module is the
+successor old factor. -/
+def contractFactorModuleAfterIso
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1))
+    (h : i < eraseFactorIndex w i j) :
+    factorModule (d.contract i) j ≅
+      factorModule d (eraseFactorIndex w i j).succ := by
+  apply eqToIso
+  simp only [factorModule]
+  rw [eraseIntermediate_arrowSource_of_after w i j h,
+    eraseIntermediate_arrowTarget_of_after w i j h,
+    contract_arrowDegree_of_after d i j h]
+
+/-- Identity transport from an old factor before the contraction to its erased-word
+counterpart. -/
+def contractFactorBeforeTransport
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1))
+    (h : eraseFactorIndex w i j < i) :
+    Quiver.Hom (factorModule d (eraseFactorIndex w i j).castSucc)
+      (factorModule (d.contract i) j) :=
+  (contractFactorModuleBeforeIso d i j h).inv
+
+/-- Identity transport from an old factor after the contraction to its erased-word
+counterpart. -/
+def contractFactorAfterTransport
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1))
+    (h : i < eraseFactorIndex w i j) :
+    Quiver.Hom (factorModule d (eraseFactorIndex w i j).succ)
+      (factorModule (d.contract i) j) :=
+  (contractFactorModuleAfterIso d i j h).inv
+
+/-- Homogeneous composition of the two factors adjacent to the erased intermediate
+object, with its codomain transported to the contracted factor module. -/
+def contractFactorComposition
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    Quiver.Hom (factorModule d i.castSucc ⊗ factorModule d i.succ)
+      (factorModule (d.contract i) (erasePosition w i)) := by
+  let f : Quiver.Hom (factorModule d i.castSucc ⊗ factorModule d i.succ)
+      ((dgHomZModuleCochainComplex
+        (w.arrowSource i.castSucc) (w.arrowTarget i.succ)).X
+          (d.arrowDegree i.castSucc + d.arrowDegree i.succ)) := by
+    simp only [factorModule]
+    rw [arrowTarget_castSucc_eq_arrowSource_succ]
+    exact dgCochainCompTensor
+      (w.arrowSource i.castSucc) (w.arrowSource i.succ) (w.arrowTarget i.succ) rfl
+  exact f ≫ (contractFactorModuleAtIso d i).inv
 
 end DrinfeldWord
 end MetrizableBoundedComplexes
