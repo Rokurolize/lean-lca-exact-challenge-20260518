@@ -509,6 +509,62 @@ theorem underSliceProjection_hasLifting_positive
     ⟨t.hom_ext _ _⟩
   exact underSliceLiftOfCornerExtension Q z sq csq.lift csq.fac_left.symm
 
+/-- The one-dimensional left horn is the remaining generator of the
+under-slice projection. -/
+theorem underSliceProjection_hasLifting_one_zero
+    (Q : SSet.{u}) (z : Q _⦋0⦌) [SSet.Quasicategory Q] :
+    HasLiftingProperty (SSet.horn 1 (0 : Fin 2)).ι
+      (underSliceProjection Q z) := by
+  refine ⟨fun {f b} sq ↦ ?_⟩
+  have hcorner : underSliceHornCornerMap 1 (0 : Fin 2) =
+      smallConeHornStandardCornerMap :=
+    underSliceHornCornerMap_eq_of_fac 1 (0 : Fin 2) _
+      (smallConeHornStandardCornerMap_inl)
+      (smallConeHornStandardCornerMap_inr)
+  have ha : SSet.innerAnodyneExtensions
+      (underSliceHornCornerMap 1 (0 : Fin 2)) := by
+    rw [hcorner]
+    exact smallConeHornStandardCornerMap_innerAnodyne
+  let t : IsTerminal (⊤_ SSet.{u}) := Limits.terminalIsTerminal
+  have hq : SSet.InnerFibration (t.from Q) :=
+    (SSet.quasicategory_iff_of_isTerminal (t.from Q) t).mp inferInstance
+  letI : HasLiftingProperty (underSliceHornCornerMap 1 (0 : Fin 2))
+      (t.from Q) := ha _ hq.mem
+  let csq : CommSq (underSliceLiftingCornerTop Q z sq)
+      (underSliceHornCornerMap 1 (0 : Fin 2)) (t.from Q)
+      (t.from (simplicialJoin (Δ[0] : SSet.{u}) Δ[1])) :=
+    ⟨t.hom_ext _ _⟩
+  exact underSliceLiftOfCornerExtension Q z sq csq.lift csq.fac_left.symm
+
+/-- The projection from a representable under-slice is a left fibration. -/
+noncomputable instance underSliceProjection_leftFibration
+    (Q : SSet.{u}) (z : Q _⦋0⦌) [SSet.Quasicategory Q] :
+    LeftFibration (underSliceProjection Q z) := by
+  refine ⟨?_⟩
+  intro A B j hj
+  cases hj with
+  | @intro n i hn =>
+      cases n with
+      | zero =>
+          have hi : i = (0 : Fin 2) := by
+            fin_cases i
+            · rfl
+            · simp at hn
+          subst i
+          exact underSliceProjection_hasLifting_one_zero Q z
+      | succ s =>
+          exact underSliceProjection_hasLifting_positive Q z s i hn
+
+/-- A representable under-slice of a quasicategory is a quasicategory. -/
+noncomputable instance underSlice_quasicategory
+    (Q : SSet.{u}) (z : Q _⦋0⦌) [SSet.Quasicategory Q] :
+    SSet.Quasicategory (underSlice Q z) := by
+  letI : LeftFibration (underSliceProjection Q z) :=
+    underSliceProjection_leftFibration Q z
+  letI : SSet.InnerFibration (underSliceProjection Q z) :=
+    ⟨leftFibrations_le_innerFibrations _ LeftFibration.mem⟩
+  exact SSet.quasicategory_of_innerFibration (underSliceProjection Q z)
+
 /-- The representable over-slice, obtained by reversing an under-slice. -/
 abbrev overSlice (Q : SSet.{u}) (z : Q _⦋0⦌) : SSet.{u} :=
   (underSlice Q.op z).op
@@ -518,5 +574,22 @@ def overSliceProjection (Q : SSet.{u}) (z : Q _⦋0⦌) :
     overSlice Q z ⟶ Q :=
   SSet.opFunctor.map (underSliceProjection Q.op z) ≫
     (SSet.opFunctorCompOpFunctorIso.app Q).hom
+
+/-- The projection from a representable over-slice is a right fibration. -/
+noncomputable instance overSliceProjection_rightFibration
+    (Q : SSet.{u}) (z : Q _⦋0⦌) [SSet.Quasicategory Q] :
+    RightFibration (overSliceProjection Q z) := by
+  dsimp only [overSliceProjection]
+  haveI : RightFibration
+      (SSet.opFunctor.map (underSliceProjection Q.op z)) := inferInstance
+  have hp : rightFibrations
+      (SSet.opFunctor.map (underSliceProjection Q.op z)) := RightFibration.mem
+  exact ⟨rightFibrations.comp_mem _ _ hp (rightFibrations.of_isIso _)⟩
+
+/-- A representable over-slice of a quasicategory is a quasicategory. -/
+noncomputable instance overSlice_quasicategory
+    (Q : SSet.{u}) (z : Q _⦋0⦌) [SSet.Quasicategory Q] :
+    SSet.Quasicategory (overSlice Q z) :=
+  SSet.quasicategory_of_innerFibration (overSliceProjection Q z)
 
 end LeanLCAExactChallenge.Infinity
