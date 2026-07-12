@@ -652,4 +652,70 @@ lemma leftRepresentableJoinHornRange_eq_iSup_transportedLeftFaces
   rw [rightTensorHornCocone_left_comp]
   rfl
 
+set_option backward.isDefEq.respectTransparency false in
+lemma simplicialJoinMap_comp_right_id
+    {A B C Y : SSet.{u}} (f : A ⟶ B) (g : B ⟶ C) :
+    simplicialJoinMap f (𝟙 Y) ≫ simplicialJoinMap g (𝟙 Y) =
+      simplicialJoinMap (f ≫ g) (𝟙 Y) := by
+  letI := augmentedDayConvolution
+    (emptyAugmentation.{u}.obj A) (emptyAugmentation.{u}.obj Y)
+  letI := augmentedDayConvolution
+    (emptyAugmentation.{u}.obj B) (emptyAugmentation.{u}.obj Y)
+  letI := augmentedDayConvolution
+    (emptyAugmentation.{u}.obj C) (emptyAugmentation.{u}.obj Y)
+  simp only [simplicialJoinMap, emptyAugmentation.map_id]
+  change Functor.whiskerLeft AugmentedSimplexCategory.inclusion.op (_ ≫ _) = _
+  congr 1
+  rw [dayConvolutionMap_comp]
+  rw [← emptyAugmentation.map_comp]
+  simp
+
+lemma joinBoundaryStandardMap_range_succ
+    (m n : ℕ) :
+    SSet.Subcomplex.range (joinBoundaryStandardMap.{u} (m + 1) n) =
+      SSet.Subcomplex.range
+          (leftRepresentableJoinHornMap.{u} (m + 1) n (Fin.last (m + 1))) ⊔
+        SSet.Subcomplex.range
+          (ordinaryJoinTransportedLeftLeg.{u} m n (Fin.last (m + 1))) := by
+  let b := boundaryLastFaceBicartSq (m + 1)
+  have sq := simplicialJoinRight_map_isPushout (Δ[n] : SSet.{u}) b.isPushout
+  have hr := range_isPushout_map_eq_sup sq
+    (joinBoundaryStandardMap (m + 1) n)
+  rw [hr]
+  congr 1
+  · apply congrArg SSet.Subcomplex.range
+    unfold joinBoundaryStandardMap leftRepresentableJoinHornMap
+    rw [← Category.assoc, simplicialJoinMap_comp_right_id,
+      SSet.Subcomplex.homOfLE_ι]
+  · apply congrArg SSet.Subcomplex.range
+    unfold joinBoundaryStandardMap ordinaryJoinTransportedLeftLeg
+    rw [ordinaryJoinLeftFaceIso_inv]
+    rw [← Category.assoc, simplicialJoinMap_comp_right_id,
+      SSet.Subcomplex.homOfLE_ι]
+    have hf := SSet.stdSimplex.faceSingletonComplIso_hom_ι
+      (Fin.last (m + 1))
+    have hi : (SSet.stdSimplex.face
+          ({Fin.last (m + 1)}ᶜ) :
+            (Δ[m + 1] : SSet.{u}).Subcomplex).ι =
+        (SSet.stdSimplex.faceSingletonComplIso (Fin.last (m + 1))).inv ≫
+          SSet.stdSimplex.δ (Fin.last (m + 1)) := by
+      apply (cancel_epi
+        (SSet.stdSimplex.faceSingletonComplIso.{u} (Fin.last (m + 1))).hom).mp
+      simpa only [Category.assoc, Iso.hom_inv_id_assoc] using hf
+    rw [hi]
+    have hc := simplicialJoinMap_comp_right_id
+      (Y := (Δ[n] : SSet.{u}))
+      (SSet.stdSimplex.faceSingletonComplIso (Fin.last (m + 1))).inv
+      (SSet.stdSimplex.δ (Fin.last (m + 1)))
+    calc
+      _ = (simplicialJoinMap
+            (SSet.stdSimplex.faceSingletonComplIso (Fin.last (m + 1))).inv
+            (𝟙 (Δ[n] : SSet.{u})) ≫
+          simplicialJoinMap (SSet.stdSimplex.δ (Fin.last (m + 1)))
+            (𝟙 (Δ[n] : SSet.{u}))) ≫
+          (simplicialJoinStdSimplexIsoNat (m + 1) n).hom :=
+        congrArg (fun q ↦ q ≫
+          (simplicialJoinStdSimplexIsoNat (m + 1) n).hom) hc.symm
+      _ = _ := Category.assoc _ _ _
+
 end LeanLCAExactChallenge.Infinity
