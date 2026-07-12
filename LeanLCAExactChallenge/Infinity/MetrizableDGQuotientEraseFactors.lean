@@ -593,6 +593,107 @@ theorem contractionDifferentialFromSummand_nil
   change (∑ i : Fin 0, contractionLargeMap d i) = 0
   exact Finset.sum_empty
 
+/-- The full candidate Drinfeld differential is the sum of the internal-Hom and contraction
+parts. -/
+def quotientTotalDifferential (X Y : ComplexCategory) (n : ℤ) :
+    Quiver.Hom (quotientGradedModule X Y n) (quotientGradedModule X Y (n + 1)) :=
+  quotientInternalDifferential X Y n + quotientContractionDifferential X Y n
+
+@[reassoc (attr := simp)]
+theorem quotientTotalDifferential_inclusion
+    (X Y : ComplexCategory) (n : ℤ) (s : GradedSummandIndex X Y n) :
+    Limits.Sigma.ι (fun t : GradedSummandIndex X Y n ↦ largeSummandModule t) s ≫
+        quotientTotalDifferential X Y n =
+      internalDifferentialFromSummand s.2 + contractionDifferentialFromSummand s.2 := by
+  simp [quotientTotalDifferential, Preadditive.comp_add]
+
+@[reassoc]
+theorem quotientTotalDifferential_nil_inclusion
+    (X Y : ComplexCategory) {n : ℤ} (d : DegreeProfile (nil X Y) n) :
+    Limits.Sigma.ι
+          (fun t : GradedSummandIndex X Y n ↦ largeSummandModule t) ⟨nil X Y, d⟩ ≫
+        quotientTotalDifferential X Y n = internalDifferentialFromSummand d := by
+  rw [quotientTotalDifferential_inclusion]
+  simp
+
+theorem contractionDifferentialFromSummand_singleton
+    (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory) {n : ℤ}
+    (d : DegreeProfile (singleton X Y A) n)
+    (i : Fin (singleton X Y A).length) :
+    contractionDifferentialFromSummand d = contractionLargeMap d i := by
+  unfold contractionDifferentialFromSummand
+  apply Fintype.sum_eq_single i
+  intro j hji
+  exfalso
+  apply hji
+  apply Fin.ext
+  have hi := i.isLt
+  have hj := j.isLt
+  change i.val < 1 at hi
+  change j.val < 1 at hj
+  omega
+
+@[reassoc]
+theorem quotientTotalDifferential_singleton_inclusion
+    (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory) {n : ℤ}
+    (d : DegreeProfile (singleton X Y A) n)
+    (i : Fin (singleton X Y A).length) :
+    Limits.Sigma.ι
+          (fun t : GradedSummandIndex X Y n ↦ largeSummandModule t)
+          ⟨singleton X Y A, d⟩ ≫
+        quotientTotalDifferential X Y n =
+      internalDifferentialFromSummand d + contractionLargeMap d i := by
+  rw [quotientTotalDifferential_inclusion,
+    contractionDifferentialFromSummand_singleton X Y A d i]
+
+/-- Algebraic four-term expansion of the square of the candidate total differential. -/
+theorem quotientTotalDifferential_comp (X Y : ComplexCategory) (n : ℤ) :
+    quotientTotalDifferential X Y n ≫ quotientTotalDifferential X Y (n + 1) =
+      quotientInternalDifferential X Y n ≫ quotientInternalDifferential X Y (n + 1) +
+        quotientInternalDifferential X Y n ≫
+          quotientContractionDifferential X Y (n + 1) +
+        quotientContractionDifferential X Y n ≫
+          quotientInternalDifferential X Y (n + 1) +
+        quotientContractionDifferential X Y n ≫
+          quotientContractionDifferential X Y (n + 1) := by
+  simp only [quotientTotalDifferential, Preadditive.add_comp, Preadditive.comp_add]
+  abel
+
+theorem largeModule_zsmul_comp
+    {P Q R : ModuleCat.{1} ℤ} (n : ℤ) (f : Quiver.Hom P Q) (g : Quiver.Hom Q R) :
+    (n • f) ≫ g = n • (f ≫ g) :=
+  (Preadditive.rightComp P g).map_zsmul n f
+
+@[reassoc]
+theorem contractionLargeMap_comp_internalDifferential
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    contractionLargeMap d i ≫ quotientInternalDifferential X Y (n + 1) =
+      d.contractionSign i •
+        ((ModuleCat.uliftFunctor.{1} ℤ).map (contractionTensorMap d i) ≫
+          internalDifferentialFromSummand (d.contract i)) := by
+  simp [contractionLargeMap, Category.assoc, largeModule_zsmul_comp]
+
+@[reassoc]
+theorem contractionLargeMap_comp_contractionDifferential
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    contractionLargeMap d i ≫ quotientContractionDifferential X Y (n + 1) =
+      d.contractionSign i •
+        ((ModuleCat.uliftFunctor.{1} ℤ).map (contractionTensorMap d i) ≫
+          contractionDifferentialFromSummand (d.contract i)) := by
+  simp [contractionLargeMap, Category.assoc, largeModule_zsmul_comp]
+
+@[reassoc]
+theorem internalDifferentialLargeMap_comp_contractionDifferential
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (j : Fin (w.length + 1)) :
+    internalDifferentialLargeMap d j ≫
+        quotientContractionDifferential X Y (n + 1) =
+      (ModuleCat.uliftFunctor.{1} ℤ).map (internalDifferentialTensorMap d j) ≫
+        contractionDifferentialFromSummand (d.raise j) := by
+  simp [internalDifferentialLargeMap, Category.assoc]
+
 
 
 
