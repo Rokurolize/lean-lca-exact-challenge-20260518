@@ -718,4 +718,32 @@ lemma joinBoundaryStandardMap_range_succ
           (simplicialJoinStdSimplexIsoNat (m + 1) n).hom) hc.symm
       _ = _ := Category.assoc _ _ _
 
+lemma joinBoundaryStandardMap_range_eq_iSup_leftFaces
+    (m n : ℕ) :
+    SSet.Subcomplex.range (joinBoundaryStandardMap.{u} (m + 1) n) =
+      ⨆ j : Fin (m + 2), SSet.Subcomplex.range
+        (ordinaryJoinTransportedLeftLeg.{u} m n j) := by
+  rw [joinBoundaryStandardMap_range_succ,
+    leftRepresentableJoinHornRange_eq_iSup_transportedLeftFaces]
+  apply le_antisymm
+  · apply sup_le
+    · apply iSup_le
+      rintro ⟨j, hj⟩
+      exact le_iSup
+        (fun q : Fin (m + 2) ↦ SSet.Subcomplex.range
+          (ordinaryJoinTransportedLeftLeg.{u} m n q)) j
+    · exact le_iSup
+        (fun q : Fin (m + 2) ↦ SSet.Subcomplex.range
+          (ordinaryJoinTransportedLeftLeg.{u} m n q)) (Fin.last (m + 1))
+  · apply iSup_le
+    intro j
+    by_cases hj : j = Fin.last (m + 1)
+    · subst j
+      exact le_sup_right
+    · exact le_sup_of_le_left (le_iSup
+        (fun q : ({Fin.last (m + 1)}ᶜ : Set (Fin (m + 2))) ↦
+          SSet.Subcomplex.range
+            (ordinaryJoinTransportedLeftLeg.{u} m n q.1))
+        ⟨j, by simpa using hj⟩)
+
 end LeanLCAExactChallenge.Infinity
