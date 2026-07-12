@@ -1,5 +1,6 @@
 import LeanLCAExactChallenge.Infinity.RightConeHorn
 import Mathlib.CategoryTheory.Limits.Shapes.Pullback.PullbackObjObj
+import Mathlib.CategoryTheory.Monoidal.Braided.Basic
 
 /-! # Join boundary-horn corners -/
 
@@ -263,5 +264,46 @@ lemma joinBoundaryHornStandardCornerMap_range
   rw [joinBoundaryHornStandardCornerMap_inl,
     joinBoundaryHornStandardCornerMap_inr]
   rfl
+
+/-- External product with a fixed right augmented simplicial set. -/
+def augmentedExternalProductRight (G : AugmentedSSet.{u}) :
+    AugmentedSSet.{u} ⥤
+      (AugmentedSimplexCategoryᵒᵖ × AugmentedSimplexCategoryᵒᵖ ⥤ Type u) :=
+  (Functor.curryObj
+    (CategoryTheory.MonoidalCategory.externalProductBifunctor
+      AugmentedSimplexCategoryᵒᵖ AugmentedSimplexCategoryᵒᵖ (Type u))).flip.obj G
+
+noncomputable instance augmentedExternalProductRight_preservesColimits
+    (G : AugmentedSSet.{u}) :
+    PreservesColimits (augmentedExternalProductRight G) := by
+  apply preservesColimits_of_evaluation
+  intro cd
+  let X := G.obj cd.2
+  letI : PreservesColimits (MonoidalCategory.tensorLeft X) :=
+    (CategoryTheory.ihom.adjunction X).leftAdjoint_preservesColimits
+  letI : PreservesColimits (MonoidalCategory.tensorRight X) :=
+    preservesColimits_of_natIso (BraidedCategory.tensorLeftIsoTensorRight X)
+  dsimp [augmentedExternalProductRight, Functor.curryObj, Functor.flip]
+  change PreservesColimits
+    ((evaluation AugmentedSimplexCategoryᵒᵖ (Type u)).obj cd.1 ⋙
+      MonoidalCategory.tensorRight X)
+  infer_instance
+
+/-- Day convolution with a fixed right input. -/
+noncomputable def augmentedDayTensorRight (G : AugmentedSSet.{u}) :
+    AugmentedSSet.{u} ⥤ AugmentedSSet.{u} :=
+  augmentedExternalProductRight G ⋙
+    (CategoryTheory.MonoidalCategory.tensor
+      AugmentedSimplexCategoryᵒᵖ).lan
+
+noncomputable instance augmentedDayTensorRight_preservesColimits
+    (G : AugmentedSSet.{u}) : PreservesColimits (augmentedDayTensorRight G) := by
+  let T := CategoryTheory.MonoidalCategory.tensor AugmentedSimplexCategoryᵒᵖ
+  let L :
+      (AugmentedSimplexCategoryᵒᵖ × AugmentedSimplexCategoryᵒᵖ ⥤ Type u) ⥤
+        AugmentedSSet.{u} := T.lan
+  letI : PreservesColimits L := (T.lanAdjunction (Type u)).leftAdjoint_preservesColimits
+  dsimp only [augmentedDayTensorRight]
+  infer_instance
 
 end LeanLCAExactChallenge.Infinity
