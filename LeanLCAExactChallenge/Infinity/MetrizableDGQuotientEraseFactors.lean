@@ -355,6 +355,145 @@ def contractFactorComposition
       (w.arrowSource i.castSucc) (w.arrowSource i.succ) (w.arrowTarget i.succ) rfl
   exact f ≫ (contractFactorModuleAtIso d i).inv
 
+/-- The factor list obtained by replacing the two entries adjacent to `i` by `P`. -/
+def mergedFactor {k : ℕ} (M : Fin (k + 1) → ModuleCat.{0} ℤ)
+    (i : Fin k) (P : ModuleCat.{0} ℤ) (j : Fin k) : ModuleCat.{0} ℤ :=
+  if j < i then M j.castSucc else if j = i then P else M j.succ
+
+/-- `AdjacentMergeData` for an arbitrary finite family, with the merge at a specified
+finite position. -/
+def adjacentMergeDataOfFn : {k : ℕ} → (M : Fin (k + 1) → ModuleCat.{0} ℤ) →
+    (i : Fin k) → (P : ModuleCat.{0} ℤ) →
+    Quiver.Hom (M i.castSucc ⊗ M i.succ) P →
+    AdjacentMergeData (List.ofFn M) (List.ofFn (mergedFactor M i P))
+  | 0, _, i, _, _ => Fin.elim0 i
+  | k + 1, M, i, P, f => by
+      cases i using Fin.cases with
+      | zero =>
+          simpa [List.ofFn_succ, mergedFactor] using
+            (AdjacentMergeData.head
+              (Ms := List.ofFn (fun q : Fin k ↦ M q.succ.succ)) f)
+      | succ q =>
+          let tailM : Fin (k + 1) → ModuleCat.{0} ℤ := fun j ↦ M j.succ
+          have ftail : Quiver.Hom (tailM q.castSucc ⊗ tailM q.succ) P := by
+            simpa [tailM] using f
+          have tail := adjacentMergeDataOfFn tailM q P ftail
+          have hmerged : List.ofFn (mergedFactor M q.succ P) =
+              M 0 :: List.ofFn (mergedFactor tailM q P) := by
+            rw [List.ofFn_succ]
+            congr 1
+            apply congrArg List.ofFn
+            funext j
+            by_cases hlt : j < q
+            · simp only [mergedFactor, Fin.succ_lt_succ_iff, hlt, ↓reduceIte, tailM]
+              congr 1
+            · by_cases heq : j = q
+              · subst j
+                simp [mergedFactor, tailM]
+              · simp only [mergedFactor, Fin.succ_lt_succ_iff, hlt, ↓reduceIte,
+                  Fin.succ_inj, heq, tailM]
+          rw [hmerged]
+          simpa only [List.ofFn_succ, tailM] using AdjacentMergeData.tail tail
+
+/-- Regard an old intermediate-object position as a factor position of the erased word. -/
+def uneraseFactorIndex {X Y : ComplexCategory} (w : DrinfeldWord X Y)
+    (i j : Fin w.length) : Fin ((eraseIntermediate w i).length + 1) :=
+  Fin.cast (eraseIntermediate_length w i).symm j
+
+@[simp]
+theorem eraseFactorIndex_uneraseFactorIndex
+    {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i j : Fin w.length) :
+    eraseFactorIndex w i (uneraseFactorIndex w i j) = j := by
+  apply Fin.ext
+  rfl
+
+@[simp]
+theorem uneraseFactorIndex_self
+    {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i : Fin w.length) :
+    uneraseFactorIndex w i i = erasePosition w i := by
+  apply Fin.ext
+  rfl
+
+/-- Contracted factor family, indexed by the original intermediate positions. -/
+def contractedFactorAtOldIndex
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i j : Fin w.length) : ModuleCat.{0} ℤ :=
+  factorModule (d.contract i) (uneraseFactorIndex w i j)
+
+/-- The canonical adjacent merge of the old factor family.  Its target is the contracted
+family indexed through the old finite ordinal, with the non-merged entries still represented
+by their canonically identical old modules. -/
+def contractionAdjacentMergeData
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    AdjacentMergeData (List.ofFn (factorModule d))
+      (List.ofFn (mergedFactor (factorModule d) i (contractedFactorAtOldIndex d i i))) := by
+  apply adjacentMergeDataOfFn (factorModule d) i (contractedFactorAtOldIndex d i i)
+  simpa only [contractedFactorAtOldIndex, uneraseFactorIndex_self] using
+    contractFactorComposition d i
+
+/-- Pointwise transport from the output of the adjacent merge to the actual contracted
+factor family. -/
+def contractionMergedFactorMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i j : Fin w.length) :
+    Quiver.Hom
+      (mergedFactor (factorModule d) i (contractedFactorAtOldIndex d i i) j)
+      (contractedFactorAtOldIndex d i j) := by
+  by_cases hlt : j < i
+  · have hbefore : eraseFactorIndex w i (uneraseFactorIndex w i j) < i := by
+      simpa using hlt
+    simpa [mergedFactor, hlt, contractedFactorAtOldIndex] using
+      contractFactorBeforeTransport d i (uneraseFactorIndex w i j) hbefore
+  · by_cases heq : j = i
+    · subst j
+      simpa [mergedFactor] using (𝟙 (contractedFactorAtOldIndex d i i))
+    · have hafter : i < eraseFactorIndex w i (uneraseFactorIndex w i j) := by
+        simp only [eraseFactorIndex_uneraseFactorIndex]
+        exact lt_of_le_of_ne (Fin.not_lt.mp hlt) (Ne.symm heq)
+      simpa [mergedFactor, hlt, heq, contractedFactorAtOldIndex] using
+        contractFactorAfterTransport d i (uneraseFactorIndex w i j) hafter
+
+/-- Tensor the pointwise before/middle/after transports following the adjacent merge. -/
+def contractionMergedFactorsTensorMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    Quiver.Hom
+      (tensorModuleList
+        (List.ofFn (mergedFactor (factorModule d) i (contractedFactorAtOldIndex d i i))))
+      (tensorModuleList (List.ofFn (contractedFactorAtOldIndex d i))) :=
+  (TensorMapData.ofFn _ _ (contractionMergedFactorMap d i)).tensorMap
+
+/-- The canonical contraction tensor map for an arbitrary word and degree profile, with the
+contracted factors indexed by the old finite ordinal. -/
+def contractionTensorMapAtOldIndex
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    Quiver.Hom (summandModule d)
+      (tensorModuleList (List.ofFn (contractedFactorAtOldIndex d i))) :=
+  (contractionAdjacentMergeData d i).tensorMap ≫
+    contractionMergedFactorsTensorMap d i
+
+theorem contractedFactorsOldIndex_eq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    List.ofFn (contractedFactorAtOldIndex d i) =
+      List.ofFn (factorModule (d.contract i)) := by
+  cases w with
+  | mk k intermediate =>
+      cases k with
+      | zero => exact Fin.elim0 i
+      | succ k => rfl
+
+/-- The general contraction map between the actual word summands. -/
+def contractionTensorMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    Quiver.Hom (summandModule d) (summandModule (d.contract i)) :=
+  contractionTensorMapAtOldIndex d i ≫
+    eqToHom (congrArg tensorModuleList (contractedFactorsOldIndex_eq d i))
+
+
 end DrinfeldWord
 end MetrizableBoundedComplexes
 end Infinity
