@@ -767,4 +767,166 @@ lemma normalizedJoinBoundaryStandardMap_range (m n : ℕ) :
   rw [← SSet.Subcomplex.image_comp]
   simp
 
+/-- The join boundary-horn corner in the same strict standard coordinates as
+`normalizedJoinBoundaryStandardMap`. -/
+noncomputable def normalizedJoinBoundaryHornCornerMap
+    (m n : ℕ) (i : Fin (n + 2)) :
+    (joinBoundaryHornCornerSq (m + 1) (n + 1) i).pt ⟶
+      Δ[m + (n + 1) + 2] :=
+  joinBoundaryHornStandardCornerMap (m + 1) (n + 1) i ≫
+    (leftJoinTargetIso m (n + 1)).inv
+
+lemma normalizedJoinBoundaryHornCornerMap_range
+    (m n : ℕ) (i : Fin (n + 2)) :
+    SSet.Subcomplex.range
+        (normalizedJoinBoundaryHornCornerMap.{u} m n i) =
+      (representableJoinHornInitial (m + 1) (n + 1) i).image
+          (leftJoinTargetIso m (n + 1)).inv ⊔
+        SSet.Subcomplex.range
+          (normalizedJoinBoundaryStandardMap m (n + 1)) := by
+  unfold normalizedJoinBoundaryHornCornerMap
+  rw [SSet.Subcomplex.range_comp,
+    joinBoundaryHornStandardCornerMap_range]
+  unfold normalizedJoinBoundaryStandardMap
+  rw [SSet.Subcomplex.range_comp]
+  simp only [sup_eq_iSup, SSet.Subcomplex.image_iSup]
+  congr 1
+  funext b
+  cases b <;> rfl
+
+lemma shiftedRightFace_image_leftJoinTargetIso_inv
+    (m n : ℕ) (j : Fin (n + 2)) :
+    (SSet.stdSimplex.face
+      ({(⟨(m + 1) + 1 + j.val, by omega⟩ :
+        Fin ((m + 1) + (n + 1) + 2))}ᶜ)).image
+        (leftJoinTargetIso.{u} m (n + 1)).inv =
+      SSet.stdSimplex.face
+        ({(⟨m + 2 + j.val, by omega⟩ : Fin (m + (n + 1) + 3))}ᶜ) := by
+  have hi : inv (leftJoinTargetIso.{u} m (n + 1)).hom =
+      (leftJoinTargetIso m (n + 1)).inv := by simp
+  rw [← hi]
+  rw [SSet.Subcomplex.image_inv]
+  ext U x
+  rcases U with ⟨⟨d⟩⟩
+  change ((leftJoinTargetIso m (n + 1)).hom.app _ x ∈
+      (SSet.stdSimplex.face _).obj _) ↔
+    x ∈ (SSet.stdSimplex.face _).obj _
+  rw [SSet.stdSimplex.mem_face_iff, SSet.stdSimplex.mem_face_iff]
+  simp only [Finset.mem_compl, Finset.mem_singleton]
+  have hval (k : Fin (d + 1)) :
+      (((leftJoinTargetIso m (n + 1)).hom.app _ x) k).val = (x k).val := by
+    change (SimplexCategory.Hom.toOrderHom
+      (eqToHom (by
+        apply SimplexCategory.ext
+        simp
+        omega) : SimplexCategory.mk (m + (n + 1) + 2) ⟶
+          SimplexCategory.mk ((m + 1) + (n + 1) + 1)) (x k)).val = _
+    simp
+  constructor
+  · intro h k hk
+    apply h k
+    apply Fin.ext
+    rw [hval]
+    exact congrArg Fin.val hk
+  · intro h k hk
+    apply h k
+    apply Fin.ext
+    have hv := congrArg Fin.val hk
+    rw [hval] at hv
+    exact hv
+
+lemma representableJoinHornInitial_image_leftJoinTargetIso_inv
+    (m n : ℕ) (i : Fin (n + 2)) :
+    (representableJoinHornInitial (m + 1) (n + 1) i).image
+        (leftJoinTargetIso.{u} m (n + 1)).inv =
+      ⨆ j : ({i}ᶜ : Set (Fin (n + 2))), SSet.stdSimplex.face
+        ({(⟨m + 2 + j.1.val, by omega⟩ : Fin (m + (n + 1) + 3))}ᶜ) := by
+  rw [representableJoinHornInitial_eq_iSup_shiftedRightFaces,
+    SSet.Subcomplex.image_iSup]
+  apply iSup_congr
+  intro j
+  exact shiftedRightFace_image_leftJoinTargetIso_inv m n j
+
+set_option maxHeartbeats 800000 in
+lemma normalizedRightFaces_sup_leftFaces_eq_horn
+    (m n : ℕ) (i : Fin (n + 2)) :
+    (⨆ j : ({i}ᶜ : Set (Fin (n + 2))), SSet.stdSimplex.face
+        ({(⟨m + 2 + j.1.val, by omega⟩ : Fin (m + (n + 1) + 3))}ᶜ)) ⊔
+      (⨆ j : Fin (m + 2), SSet.stdSimplex.face
+        ({(Fin.castLE (by omega) j : Fin (m + (n + 1) + 3))}ᶜ)) =
+      SSet.horn (m + (n + 1) + 2)
+        (⟨m + 2 + i.val, by omega⟩ : Fin (m + (n + 1) + 3)) := by
+  rw [SSet.horn_eq_iSup]
+  apply le_antisymm
+  · apply sup_le
+    · apply iSup_le
+      rintro ⟨j, hj⟩
+      exact le_iSup (fun q :
+        ({(⟨m + 2 + i.val, by omega⟩ : Fin (m + (n + 1) + 3))}ᶜ :
+          Set (Fin (m + (n + 1) + 3))) ↦
+          SSet.stdSimplex.face ({q.1}ᶜ))
+        ⟨⟨m + 2 + j.val, by omega⟩, by
+          simp only [Set.mem_compl_iff, Set.mem_singleton_iff]
+          intro h
+          apply hj
+          apply Fin.ext
+          have hv := congrArg Fin.val h
+          have hv' : m + 2 + j.val = m + 2 + i.val := by
+            exact hv
+          omega⟩
+    · apply iSup_le
+      intro j
+      exact le_iSup (fun q :
+        ({(⟨m + 2 + i.val, by omega⟩ : Fin (m + (n + 1) + 3))}ᶜ :
+          Set (Fin (m + (n + 1) + 3))) ↦
+          SSet.stdSimplex.face ({q.1}ᶜ))
+        ⟨Fin.castLE (by omega) j, by
+          simp only [Set.mem_compl_iff, Set.mem_singleton_iff]
+          intro h
+          have hv := congrArg Fin.val h
+          simp only [Fin.val_castLE] at hv
+          omega⟩
+  · apply iSup_le
+    rintro ⟨j, hj⟩
+    by_cases hleft : j.val < m + 2
+    · let k : Fin (m + 2) := ⟨j.val, hleft⟩
+      have hk : (Fin.castLE (by omega) k : Fin (m + (n + 1) + 3)) = j := by
+        apply Fin.ext
+        rfl
+      exact le_sup_of_le_right (by
+        convert le_iSup (fun q : Fin (m + 2) ↦ SSet.stdSimplex.face
+          ({(Fin.castLE (by omega) q : Fin (m + (n + 1) + 3))}ᶜ)) k using 1
+        rw [hk])
+    · let k : Fin (n + 2) := ⟨j.val - (m + 2), by omega⟩
+      have hkface :
+          (⟨m + 2 + k.val, by omega⟩ : Fin (m + (n + 1) + 3)) = j := by
+        apply Fin.ext
+        dsimp [k]
+        omega
+      have hki : k ≠ i := by
+        intro h
+        apply hj
+        simp only [Set.mem_singleton_iff]
+        exact hkface.symm.trans (by
+          apply Fin.ext
+          change m + 2 + k.val = m + 2 + i.val
+          rw [h])
+      exact le_sup_of_le_left (by
+        convert le_iSup (fun q : ({i}ᶜ : Set (Fin (n + 2))) ↦
+          SSet.stdSimplex.face
+            ({(⟨m + 2 + q.1.val, by omega⟩ :
+              Fin (m + (n + 1) + 3))}ᶜ)) ⟨k, by simpa using hki⟩ using 1
+        rw [hkface])
+
+lemma normalizedJoinBoundaryHornCornerMap_range_eq_horn
+    (m n : ℕ) (i : Fin (n + 2)) :
+    SSet.Subcomplex.range
+        (normalizedJoinBoundaryHornCornerMap.{u} m n i) =
+      SSet.horn (m + (n + 1) + 2)
+        (⟨m + 2 + i.val, by omega⟩ : Fin (m + (n + 1) + 3)) := by
+  rw [normalizedJoinBoundaryHornCornerMap_range,
+    representableJoinHornInitial_image_leftJoinTargetIso_inv,
+    normalizedJoinBoundaryStandardMap_range,
+    normalizedRightFaces_sup_leftFaces_eq_horn]
+
 end LeanLCAExactChallenge.Infinity
