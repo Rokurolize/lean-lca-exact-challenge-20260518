@@ -684,6 +684,22 @@ noncomputable def forgetAugmentation_preservesSmallColimits :
       (AugmentedSimplexCategory.inclusion.op.obj U))
   infer_instance
 
+noncomputable def rightTensorBoundaryCocone (m n : ℕ) :=
+  forgetAugmentation.{u}.mapCocone
+    ((augmentedDayTensorRight (emptyAugmentation.{u}.obj (Δ[n] : SSet.{u}))).mapCocone
+      (singletonAugmentationBoundaryCocone.{u} (m + 1)))
+
+noncomputable def rightTensorBoundaryIsColimit (m n : ℕ) :
+    IsColimit (rightTensorBoundaryCocone.{u} m n) := by
+  let T := augmentedDayTensorRight (emptyAugmentation.{u}.obj (Δ[n] : SSet.{u}))
+  letI : PreservesColimitsOfSize.{0, 0} T :=
+    augmentedDayTensorRight_preservesSmallColimits _
+  letI : PreservesColimitsOfSize.{0, 0} forgetAugmentation.{u} :=
+    forgetAugmentation_preservesSmallColimits
+  exact isColimitOfPreserves forgetAugmentation.{u}
+    (isColimitOfPreserves T
+      (singletonAugmentationBoundaryIsColimit.{u} (m + 1)))
+
 noncomputable def rightTensorHornIsColimit
     (Y : SSet.{u}) {n : ℕ} (i : Fin (n + 1)) (hn : 0 < n) :
     IsColimit (rightTensorHornCocone Y i) := by
