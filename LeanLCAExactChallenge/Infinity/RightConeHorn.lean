@@ -1042,6 +1042,87 @@ noncomputable def smallConeHornStandardIsPushout :
   · change _ = _ ≫ 𝟙 _
     rw [Category.comp_id]
 
+noncomputable def smallCanonicalConeHornApex : SSet.{u} :=
+  ((representableJoinHornInitial 0 1 (0 : Fin 2) ⊔
+    SSet.stdSimplex.face
+      (joinSigmaOneVertices 0 1 (∅ : Finset (Fin 1))) :
+    (Δ[2] : SSet.{u}).Subcomplex) : SSet.{u})
+
+noncomputable def smallCanonicalConeHornCornerMap :
+    smallCanonicalConeHornApex.{u} ⟶
+      simplicialJoin (Δ[0] : SSet.{u}) Δ[1] :=
+  (representableJoinHornInitial 0 1 (0 : Fin 2) ⊔
+      SSet.stdSimplex.face
+        (joinSigmaOneVertices 0 1 (∅ : Finset (Fin 1)))).ι ≫
+    (simplicialJoinStdSimplexIsoNat 0 1).inv
+
+noncomputable def smallConeHornStandardPushoutIso :
+    smallCanonicalConeHornApex.{u} ≅
+      pushout
+        (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[1, (0 : Fin 2)])
+        (SSet.horn 1 (0 : Fin 2)).ι :=
+  (smallConeHornStandardIsPushout.{u}).isoPushout
+
+@[reassoc]
+lemma smallConeHornStandardPushoutIso_inl_factor :
+    pushout.inl
+        (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[1, (0 : Fin 2)])
+        (SSet.horn 1 (0 : Fin 2)).ι ≫
+      smallConeHornStandardPushoutIso.{u}.inv =
+    pointJoinHornOneZeroInitialIso.hom ≫
+      SSet.Subcomplex.homOfLE
+        (leftConeHornCanonicalBicartSq 0 (0 : Fin 2)).le₂₄ :=
+  (smallConeHornStandardIsPushout.{u}).inl_isoPushout_inv
+
+@[reassoc]
+lemma smallConeHornStandardPushoutIso_inr_factor :
+    pushout.inr
+        (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[1, (0 : Fin 2)])
+        (SSet.horn 1 (0 : Fin 2)).ι ≫
+      smallConeHornStandardPushoutIso.{u}.inv =
+    (emptyJoinFaceIso 0).hom ≫
+      SSet.Subcomplex.homOfLE
+        (leftConeHornCanonicalBicartSq 0 (0 : Fin 2)).le₃₄ :=
+  (smallConeHornStandardIsPushout.{u}).inr_isoPushout_inv
+
+noncomputable def smallConeHornStandardCornerMap :
+    pushout
+        (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[1, (0 : Fin 2)])
+        (SSet.horn 1 (0 : Fin 2)).ι ⟶
+      simplicialJoin (Δ[0] : SSet.{u}) Δ[1] :=
+  smallConeHornStandardPushoutIso.{u}.inv ≫
+    smallCanonicalConeHornCornerMap
+
+lemma smallCanonicalConeHornCornerMap_innerAnodyne :
+    SSet.innerAnodyneExtensions
+      smallCanonicalConeHornCornerMap.{u} := by
+  let D := representableJoinHornInitial 0 1 (0 : Fin 2) ⊔
+    SSet.stdSimplex.face
+      (joinSigmaOneVertices 0 1 (∅ : Finset (Fin 1)))
+  have hface : SSet.stdSimplex.face
+      (joinSigmaOneVertices 0 1 (∅ : Finset (Fin 1))) =
+      SSet.stdSimplex.face ({(0 : Fin 3)}ᶜ) := by
+    congr 1
+  have hD : D = SSet.horn 2 (1 : Fin 3) := by
+    dsimp [D]
+    rw [hface]
+    simpa using representableJoinHornInitial_sup_baseFace_eq_shiftedHorn
+      0 (0 : Fin 2)
+  have hι : SSet.innerAnodyneExtensions D.ι := by
+    rw [hD]
+    exact SSet.innerAnodyneExtensions.horn_ι (by decide) (by decide)
+  exact SSet.innerAnodyneExtensions.comp_mem _ _ hι
+    (SSet.innerAnodyneExtensions.of_isIso
+      (simplicialJoinStdSimplexIsoNat 0 1).inv)
+
+lemma smallConeHornStandardCornerMap_innerAnodyne :
+    SSet.innerAnodyneExtensions
+      smallConeHornStandardCornerMap.{u} := by
+  exact SSet.innerAnodyneExtensions.comp_mem _ _
+    (SSet.innerAnodyneExtensions.of_isIso
+      smallConeHornStandardPushoutIso.{u}.inv)
+    smallCanonicalConeHornCornerMap_innerAnodyne
+
 lemma positiveConeHornTransported_w (s : ℕ) (i : Fin (s + 3)) :
     positiveConeHornTransportedLeftLeg.{u} s i ≫
         ((positiveJoinHornIsoRange s i).hom ≫
