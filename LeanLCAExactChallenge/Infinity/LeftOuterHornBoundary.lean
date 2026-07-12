@@ -109,4 +109,90 @@ noncomputable def leftOuterHornLastFaceBicartSq (n : ℕ) :
           ⟨q, by simpa using hq⟩ using 1
         rw [hshift]
 
+/-- The boundary of the last face, regarded as a subobject of the ambient
+simplex one dimension higher. -/
+def lastFaceBoundaryAmbientMap (n : ℕ) :
+    (SSet.boundary n : SSet.{u}) ⟶ Δ[n + 1] :=
+  (SSet.boundary n).ι ≫ SSet.stdSimplex.δ (Fin.last (n + 1))
+
+noncomputable instance lastFaceBoundaryAmbientMap_mono (n : ℕ) :
+    Mono (lastFaceBoundaryAmbientMap.{u} n) := by
+  unfold lastFaceBoundaryAmbientMap
+  infer_instance
+
+lemma lastFaceBoundaryAmbientMap_range_succ (n : ℕ) :
+    SSet.Subcomplex.range (lastFaceBoundaryAmbientMap.{u} (n + 1)) =
+      SSet.horn (n + 2) (Fin.last (n + 2)) ⊓
+        SSet.stdSimplex.face ({Fin.last (n + 2)}ᶜ) := by
+  rw [lastFaceBoundaryAmbientMap, SSet.Subcomplex.range_comp,
+    show SSet.Subcomplex.range (SSet.boundary (n + 1)).ι =
+      SSet.boundary (n + 1) from Subfunctor.range_ι (SSet.boundary (n + 1)),
+    SSet.boundary_eq_iSup,
+    SSet.Subcomplex.image_iSup, SSet.horn_eq_iSup,
+    subcomplex_iSup_inf_eq]
+  have hcomponent (j : Fin (n + 2)) :
+      (SSet.stdSimplex.face ({j}ᶜ)).image
+          (SSet.stdSimplex.δ (Fin.last (n + 2))) =
+        SSet.stdSimplex.face ({j.castSucc}ᶜ) ⊓
+          SSet.stdSimplex.face ({Fin.last (n + 2)}ᶜ) := by
+    let J : Fin (n + 3) := j.castSucc
+    let L : Fin (n + 3) := Fin.last (n + 2)
+    have hJL : J < L := by simp [J, L]
+    have hpair :
+        SSet.Subcomplex.range
+            (SSet.stdSimplex.δ (n := n) j ≫
+              SSet.stdSimplex.δ (n := n + 1) L) =
+          SSet.stdSimplex.face ({J, L}ᶜ) := by
+      symm
+      have hface := SSet.stdSimplex.facePairComplIso_hom_ι J L hJL
+      have hJ : J.castPred (Fin.ne_last_of_lt hJL) = j := by
+        apply Fin.ext
+        rfl
+      simpa only [Subfunctor.range_ι] using
+        (subcomplex_range_eq_of_precomp_iso
+        (SSet.stdSimplex.facePairComplIso.{u} J L hJL).hom
+        ((SSet.stdSimplex.face ({J, L}ᶜ) :
+          (Δ[n + 2] : SSet.{u}).Subcomplex).ι)
+        (SSet.stdSimplex.δ (n := n) j ≫
+          SSet.stdSimplex.δ (n := n + 1) L)
+        (by simpa only [hJ] using hface))
+    rw [← stdSimplex_range_map_delta (n := n) j,
+      ← SSet.Subcomplex.range_comp]
+    change SSet.Subcomplex.range
+        (SSet.stdSimplex.δ j ≫ SSet.stdSimplex.δ L) = _
+    rw [hpair,
+      SSet.stdSimplex.face_inter_face]
+    congr 2
+    ext x
+    simp [J, L]
+  apply le_antisymm
+  · apply iSup_le
+    intro j
+    rw [hcomponent j]
+    exact le_iSup
+      (fun q : ({Fin.last (n + 2)}ᶜ : Set (Fin (n + 3))) =>
+        SSet.stdSimplex.face ({q.1}ᶜ) ⊓
+          SSet.stdSimplex.face ({Fin.last (n + 2)}ᶜ))
+      ⟨j.castSucc, by simp⟩
+  · apply iSup_le
+    rintro ⟨q, hq⟩
+    let j : Fin (n + 2) := q.castPred (by simpa using hq)
+    have hle := le_iSup (fun t : Fin (n + 2) =>
+      (SSet.stdSimplex.face ({t}ᶜ)).image
+        (SSet.stdSimplex.δ (Fin.last (n + 2)))) j
+    rw [hcomponent j] at hle
+    convert hle using 1
+    · congr 3
+
+/-- The boundary of the last face is canonically the intersection appearing
+in the boundary pushout square. -/
+noncomputable def boundaryLastFaceIntersectionIsoSucc (n : ℕ) :
+    (SSet.boundary (n + 1) : SSet.{u}) ≅
+      ((SSet.horn (n + 2) (Fin.last (n + 2)) ⊓
+        SSet.stdSimplex.face ({Fin.last (n + 2)}ᶜ) :
+          (Δ[n + 2] : SSet.{u}).Subcomplex) : SSet.{u}) :=
+  simplicialSetIsoRangeOfMono (lastFaceBoundaryAmbientMap (n + 1)) ≪≫
+    SSet.Subcomplex.toSSetFunctor.mapIso
+      (eqToIso (lastFaceBoundaryAmbientMap_range_succ n))
+
 end LeanLCAExactChallenge.Infinity
