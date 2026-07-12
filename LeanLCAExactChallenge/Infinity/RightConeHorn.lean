@@ -1170,6 +1170,72 @@ lemma positiveConeHornTransportedLeftLeg_eq
   rw [positiveConeHornTransportedRightLeg_eq] at hw
   exact hw.trans hab.symm
 
+noncomputable def positiveConeHornStandardIsPushout
+    (s : ℕ) (i : Fin (s + 3)) :
+    IsPushout
+      (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[s + 2, i])
+      (SSet.horn (s + 2) i).ι
+      ((positiveJoinHornIsoRange s i).hom ≫
+        SSet.Subcomplex.homOfLE
+          (leftConeHornCanonicalBicartSq (s + 1) i).le₂₄)
+      ((emptyJoinFaceIso (s + 1)).hom ≫
+        SSet.Subcomplex.homOfLE
+          (leftConeHornCanonicalBicartSq (s + 1) i).le₃₄) := by
+  simpa only [positiveConeHornTransportedLeftLeg_eq,
+    positiveConeHornTransportedRightLeg_eq] using
+      positiveConeHornTransportedIsPushout.{u} s i
+
+noncomputable def positiveConeHornStandardPushoutIso
+    (s : ℕ) (i : Fin (s + 3)) :
+    positiveCanonicalConeHornApex.{u} s i ≅
+      pushout (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[s + 2, i])
+        (SSet.horn (s + 2) i).ι :=
+  (positiveConeHornStandardIsPushout.{u} s i).isoPushout
+
+noncomputable def positiveConeHornStandardCornerMap
+    (s : ℕ) (i : Fin (s + 3)) :
+    pushout (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[s + 2, i])
+        (SSet.horn (s + 2) i).ι ⟶
+      simplicialJoin (Δ[0] : SSet.{u}) Δ[s + 2] :=
+  (positiveConeHornStandardPushoutIso s i).inv ≫
+    positiveCanonicalConeHornCornerMap s i
+
+@[reassoc]
+lemma positiveConeHornStandardCornerMap_inl
+    (s : ℕ) (i : Fin (s + 3)) :
+    pushout.inl (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[s + 2, i])
+        (SSet.horn (s + 2) i).ι ≫
+      positiveConeHornStandardCornerMap.{u} s i =
+    simplicialJoinMap (𝟙 (Δ[0] : SSet.{u})) (SSet.horn (s + 2) i).ι := by
+  unfold positiveConeHornStandardCornerMap
+  have h := (positiveConeHornStandardIsPushout.{u} s i).inl_isoPushout_inv
+  calc
+    _ = (pushout.inl _ _ ≫ (positiveConeHornStandardPushoutIso.{u} s i).inv) ≫
+        positiveCanonicalConeHornCornerMap.{u} s i := (Category.assoc _ _ _).symm
+    _ = positiveCanonicalConeHornLeftComposite.{u} s i ≫
+        positiveCanonicalConeHornCornerMap.{u} s i :=
+      congrArg (fun k ↦ k ≫ positiveCanonicalConeHornCornerMap.{u} s i) h
+    _ = _ := positiveCanonicalConeHornCornerMap_left s i
+
+@[reassoc]
+lemma positiveConeHornStandardCornerMap_inr
+    (s : ℕ) (i : Fin (s + 3)) :
+    pushout.inr (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[s + 2, i])
+        (SSet.horn (s + 2) i).ι ≫
+      positiveConeHornStandardCornerMap.{u} s i =
+    simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[s + 2] := by
+  unfold positiveConeHornStandardCornerMap
+  have h := (positiveConeHornStandardIsPushout.{u} s i).inr_isoPushout_inv
+  calc
+    _ = (pushout.inr _ _ ≫ (positiveConeHornStandardPushoutIso.{u} s i).inv) ≫
+        positiveCanonicalConeHornCornerMap.{u} s i := (Category.assoc _ _ _).symm
+    _ = ((emptyJoinFaceIso (s + 1)).hom ≫
+          SSet.Subcomplex.homOfLE
+            (leftConeHornCanonicalBicartSq (s + 1) i).le₃₄) ≫
+        positiveCanonicalConeHornCornerMap.{u} s i :=
+      congrArg (fun k ↦ k ≫ positiveCanonicalConeHornCornerMap.{u} s i) h
+    _ = _ := positiveCanonicalConeHornCornerMap_right s i
+
 lemma positiveCanonicalConeHornCornerMap_innerAnodyne
     (s : ℕ) (i : Fin (s + 3)) (hi : i < Fin.last (s + 2)) :
     SSet.innerAnodyneExtensions
@@ -1214,5 +1280,14 @@ lemma positiveCanonicalConeHornCornerMap_innerAnodyne
   have he := SSet.innerAnodyneExtensions.of_isIso
     (simplicialJoinStdSimplexIsoNat 0 (s + 2)).inv
   exact SSet.innerAnodyneExtensions.comp_mem _ _ hι he
+
+lemma positiveConeHornStandardCornerMap_innerAnodyne
+    (s : ℕ) (i : Fin (s + 3)) (hi : i < Fin.last (s + 2)) :
+    SSet.innerAnodyneExtensions
+      (positiveConeHornStandardCornerMap.{u} s i) := by
+  exact SSet.innerAnodyneExtensions.comp_mem _ _
+    (SSet.innerAnodyneExtensions.of_isIso
+      (positiveConeHornStandardPushoutIso s i).inv)
+    (positiveCanonicalConeHornCornerMap_innerAnodyne s i hi)
 
 end LeanLCAExactChallenge.Infinity
