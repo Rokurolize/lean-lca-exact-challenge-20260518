@@ -371,4 +371,13 @@ lemma simplicialJoinRight_map_isPushout
         (emptyAugmentation.map k) (emptyAugmentation.map (𝟙 Y))))
   simpa only [emptyAugmentation.map_id] using hs
 
+noncomputable instance forgetAugmentation_preservesColimits :
+    PreservesColimits (forgetAugmentation.{u}) := by
+  apply preservesColimits_of_evaluation
+  intro U
+  change PreservesColimits
+    ((evaluation AugmentedSimplexCategoryᵒᵖ (Type u)).obj
+      (AugmentedSimplexCategory.inclusion.op.obj U))
+  infer_instance
+
 end LeanLCAExactChallenge.Infinity
