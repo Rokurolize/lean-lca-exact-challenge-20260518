@@ -772,7 +772,28 @@ theorem sum_contractionPairIndex_eq_zero_of_swap_neg
   · intro p
     simp
   · intro p
+    exact contractionPairSwap_involutive p
+
+/-- Map-valued version of contraction-pair cancellation: the structural maps are invariant
+under exchanging the contraction order, while their integer coefficients change sign. -/
+theorem sum_contractionPairIndex_smul_eq_zero_of_swap
+    {n : ℕ} {P Q : ModuleCat.{1} ℤ}
+    (c : ContractionPairIndex n → ℤ)
+    (f : ContractionPairIndex n → Quiver.Hom P Q)
+    (hc : ∀ p, c (contractionPairSwap p) = -c p)
+    (hf : ∀ p, f (contractionPairSwap p) = f p) :
+    ∑ p, c p • f p = 0 := by
+  classical
+  apply Finset.sum_ninvolution contractionPairSwap
+  · intro p
+    rw [hc, hf]
     simp
+  · intro p _
+    exact contractionPairSwap_ne p
+  · intro p
+    simp
+  · intro p
+    exact contractionPairSwap_involutive p
 
 
 
