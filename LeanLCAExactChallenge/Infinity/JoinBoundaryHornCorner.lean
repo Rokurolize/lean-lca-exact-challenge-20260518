@@ -197,4 +197,71 @@ lemma joinBoundaryHornStandardCornerMap_inr
   unfold joinBoundaryHornStandardCornerMap joinBoundaryStandardMap
   exact joinBoundaryHornCornerMap_inr_assoc m n i _
 
+/-- The range of a map from an arbitrary pushout object is the union of the
+ranges of its restrictions to the two pushout legs. -/
+lemma range_isPushout_map_eq_sup
+    {A B C P D : SSet.{u}} {f : A ⟶ B} {g : A ⟶ C}
+    {inl : B ⟶ P} {inr : C ⟶ P}
+    (sq : IsPushout f g inl inr) (h : P ⟶ D) :
+    SSet.Subcomplex.range h =
+      SSet.Subcomplex.range (inl ≫ h) ⊔
+        SSet.Subcomplex.range (inr ≫ h) := by
+  let R := SSet.Subcomplex.range (inl ≫ h) ⊔
+    SSet.Subcomplex.range (inr ≫ h)
+  let h' : B ⟶ (R : SSet.{u}) :=
+    SSet.Subcomplex.toRange (inl ≫ h) ≫
+      SSet.Subcomplex.homOfLE le_sup_left
+  let k' : C ⟶ (R : SSet.{u}) :=
+    SSet.Subcomplex.toRange (inr ≫ h) ≫
+      SSet.Subcomplex.homOfLE le_sup_right
+  have w' : f ≫ h' = g ≫ k' := by
+    apply (cancel_mono R.ι).mp
+    simp only [h', k', Category.assoc, SSet.Subcomplex.homOfLE_ι,
+      SSet.Subcomplex.toRange_ι]
+    rw [← Category.assoc, sq.w, Category.assoc]
+  let q : P ⟶ (R : SSet.{u}) := sq.desc h' k' w'
+  have hfac : q ≫ R.ι = h := by
+    apply sq.hom_ext
+    · dsimp only [q]
+      rw [← Category.assoc, sq.inl_desc]
+      dsimp only [h']
+      rw [Category.assoc, SSet.Subcomplex.homOfLE_ι,
+        SSet.Subcomplex.toRange_ι]
+    · dsimp only [q]
+      rw [← Category.assoc, sq.inr_desc]
+      dsimp only [k']
+      rw [Category.assoc, SSet.Subcomplex.homOfLE_ι,
+        SSet.Subcomplex.toRange_ι]
+  apply le_antisymm
+  · calc
+      SSet.Subcomplex.range h = SSet.Subcomplex.range (q ≫ R.ι) :=
+        congrArg SSet.Subcomplex.range hfac.symm
+      _ = (SSet.Subcomplex.range q).image R.ι :=
+        SSet.Subcomplex.range_comp _ _
+      _ ≤ R := (SSet.Subcomplex.image_le_range _ _).trans (by simp [R])
+  · apply sup_le
+    · calc
+        SSet.Subcomplex.range (inl ≫ h) =
+            (SSet.Subcomplex.range inl).image h :=
+          SSet.Subcomplex.range_comp _ _
+        _ ≤ SSet.Subcomplex.range h :=
+          SSet.Subcomplex.image_le_range _ _
+    · calc
+        SSet.Subcomplex.range (inr ≫ h) =
+            (SSet.Subcomplex.range inr).image h :=
+          SSet.Subcomplex.range_comp _ _
+        _ ≤ SSet.Subcomplex.range h :=
+          SSet.Subcomplex.image_le_range _ _
+
+lemma joinBoundaryHornStandardCornerMap_range
+    (m n : ℕ) (i : Fin (n + 1)) :
+    SSet.Subcomplex.range (joinBoundaryHornStandardCornerMap.{u} m n i) =
+      representableJoinHornInitial m n i ⊔
+        SSet.Subcomplex.range (joinBoundaryStandardMap m n) := by
+  rw [range_isPushout_map_eq_sup
+    (joinBoundaryHornCornerSq m n i).isPushout]
+  rw [joinBoundaryHornStandardCornerMap_inl,
+    joinBoundaryHornStandardCornerMap_inr]
+  rfl
+
 end LeanLCAExactChallenge.Infinity
