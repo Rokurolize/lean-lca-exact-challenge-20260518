@@ -719,6 +719,12 @@ lemma normalizedEmptyJoinHornIso_hom_app_heq (r : ℕ) (i : Fin (r + 2))
   change HEq ((eqToHom h).app U x) x
   exact eqToHom_app_heq h U x
 
+lemma eqToIso_horn_index_hom_ι (n : ℕ) {i j : Fin (n + 1)} (h : i = j) :
+    (eqToIso (congrArg (fun k ↦ (SSet.horn n k : SSet.{u})) h)).hom ≫
+      (SSet.horn n j).ι = (SSet.horn n i).ι := by
+  subst j
+  simp
+
 noncomputable def positiveConeHornTransportedLeftLeg
     (s : ℕ) (i : Fin (s + 3)) :
     (Λ[s + 2, i] : SSet.{u}) ⟶ simplicialJoin (Δ[0] : SSet.{u}) Λ[s + 2, i] :=
@@ -962,6 +968,174 @@ lemma positiveCanonicalConeHornCornerMap_left
       congrArg (fun k ↦ k ≫
         (simplicialJoinStdSimplexIsoNat 0 (s + 2)).inv) ha
     _ = _ := hb
+
+lemma positiveCanonicalConeHorn_le₁₃_face_ι
+    (s : ℕ) (i : Fin (s + 3)) :
+    SSet.Subcomplex.homOfLE
+        (leftConeHornCanonicalBicartSq (s + 1) i).le₁₃ ≫
+      (SSet.stdSimplex.face
+        (joinSigmaOneVertices 0 (s + 2) (∅ : Finset (Fin 1)))).ι =
+      (joinSigmaOneHornRange 0 (s + 2)
+        (∅ : Finset (Fin 1)) i).ι :=
+  SSet.Subcomplex.homOfLE_ι _
+
+noncomputable def normalizedEmptyJoinAmbientIso (r : ℕ) :
+    (Δ[r + 1] : SSet.{u}) ≅ Δ[0 + (r + 1)] :=
+  SSet.stdSimplex.mapIso
+    (eqToIso (congrArg SimplexCategory.mk (Nat.zero_add (r + 1)).symm))
+
+lemma hornSigmaEqIso_hom_ι
+    {p q : Σ n : ℕ, Fin (n + 1)} (h : p = q) :
+    (eqToIso (congrArg (fun z : Σ n : ℕ, Fin (n + 1) ↦
+      (SSet.horn z.1 z.2 : SSet.{u})) h)).hom ≫
+        (SSet.horn q.1 q.2).ι =
+      (SSet.horn p.1 p.2).ι ≫
+        (SSet.stdSimplex.mapIso
+          (eqToIso (congrArg SimplexCategory.mk
+            (congrArg Sigma.fst h)))).hom := by
+  subst q
+  simp
+
+lemma normalizedEmptyJoinHornIso_hom_ι
+    (r : ℕ) (i : Fin (r + 2)) :
+    (normalizedEmptyJoinHornIso.{u} r i).hom ≫
+        (SSet.horn (0 + (r + 1))
+          (Fin.cast
+            (congrArg (fun n => n + 1) (Nat.zero_add (r + 1)).symm) i)).ι =
+      (SSet.horn (r + 1) i).ι ≫ (normalizedEmptyJoinAmbientIso r).hom := by
+  let hN : 0 + (r + 1) = r + 1 := Nat.zero_add _
+  let p : Σ n : ℕ, Fin (n + 1) := ⟨r + 1, i⟩
+  let q : Σ n : ℕ, Fin (n + 1) :=
+    ⟨0 + (r + 1), Fin.cast (congrArg (fun n => n + 1) hN.symm) i⟩
+  have hpq : p = q := by
+    apply Sigma.ext hN.symm
+    apply (Fin.heq_ext_iff (congrArg (fun n => n + 1) hN.symm)).2
+    simp [p, q]
+  have h := hornSigmaEqIso_hom_ι hpq
+  simpa only [normalizedEmptyJoinHornIso, normalizedEmptyJoinAmbientIso,
+    p, q] using h
+
+lemma normalizedEmptyJoinAmbientIso_hom_comp_faceIso_ι (r : ℕ) :
+    (normalizedEmptyJoinAmbientIso.{u} r).hom ≫
+        (joinSigmaOneFaceIso 0 (r + 1) (∅ : Finset (Fin 1))).hom ≫
+        (SSet.stdSimplex.face
+          (joinSigmaOneVertices 0 (r + 1) (∅ : Finset (Fin 1)))).ι =
+      SSet.stdSimplex.map (standardJoinRightOperator 0 (r + 1)) := by
+  apply SSet.yonedaEquiv.injective
+  rw [SSet.yonedaEquiv_comp, SSet.yonedaEquiv_map]
+  apply ULift.ext
+  apply SimplexCategory.Hom.ext
+  ext j
+  simp [normalizedEmptyJoinAmbientIso, joinSigmaOneFaceIso,
+    SSet.stdSimplex.isoOfRepresentableBy,
+    SSet.stdSimplex.faceRepresentableBy, joinSigmaOneVertices,
+    joinFirstVertices, joinSecondVertices, standardJoinRightOperator,
+    SSet.yonedaEquiv_map, SimplexCategory.eqToHom_toOrderHom]
+  let e : Fin (r + 2) ↪o Fin (0 + (r + 1) + 2) :=
+    { toFun := fun (k : Fin (r + 2)) => ⟨1 + k.val, by omega⟩
+      inj' := by
+        intro a b h
+        apply Fin.ext
+        simpa using congrArg Fin.val h
+      map_rel_iff' := by
+        intro a b
+        change (1 + a.val ≤ 1 + b.val) ↔ a.val ≤ b.val
+        omega }
+  have he : e =
+      (joinSigmaOneVertices 0 (r + 1) (∅ : Finset (Fin 1))).orderEmbOfFin (by
+        rw [card_joinSigmaOneVertices]
+        simp) := by
+    apply Finset.orderEmbOfFin_unique'
+    intro a
+    simp [joinSigmaOneVertices, joinFirstVertices, joinSecondVertices, e]
+  exact congrArg Fin.val (congrArg (fun f ↦ f j) he.symm)
+
+lemma joinSigmaOneHornIsoRange_hom_ι_empty
+    (r : ℕ) (i : Fin (r + 2)) :
+    (joinSigmaOneHornIsoRange.{u} 0 (r + 1)
+        (∅ : Finset (Fin 1)) i).hom ≫
+      (joinSigmaOneHornRange 0 (r + 1)
+        (∅ : Finset (Fin 1)) i).ι =
+      joinSigmaOneHornMap 0 (r + 1) (∅ : Finset (Fin 1)) i := by
+  change SSet.Subcomplex.toRange
+      (joinSigmaOneHornMap 0 (r + 1) (∅ : Finset (Fin 1)) i) ≫
+    (SSet.Subcomplex.range
+      (joinSigmaOneHornMap 0 (r + 1) (∅ : Finset (Fin 1)) i)).ι = _
+  exact SSet.Subcomplex.toRange_ι _
+
+set_option maxHeartbeats 800000 in
+lemma emptyJoinHornIsoRange_hom_ι
+    (s : ℕ) (i : Fin (s + 3)) :
+    (emptyJoinHornIsoRange.{u} (s + 1) i).hom ≫
+        (joinSigmaOneHornRange 0 (s + 2)
+          (∅ : Finset (Fin 1)) i).ι =
+      (SSet.horn (s + 2) i).ι ≫
+        SSet.stdSimplex.map (standardJoinRightOperator 0 (s + 2)) := by
+  unfold emptyJoinHornIsoRange
+  change (normalizedEmptyJoinHornIso (s + 1) i).hom ≫ _ ≫
+    (joinSigmaOneHornIsoRange 0 ((s + 1) + 1)
+      (∅ : Finset (Fin 1)) i).hom ≫
+    (joinSigmaOneHornRange 0 ((s + 1) + 1)
+      (∅ : Finset (Fin 1)) i).ι = _
+  have hj := joinSigmaOneHornIsoRange_hom_ι_empty (s + 1) i
+  let iRaw := Fin.cast
+    (congrArg (fun n => n + 1) (Nat.zero_add ((s + 1) + 1)).symm) i
+  let iJoin := joinSigmaOneDistinguishedIndex ((s + 1) + 1)
+    (∅ : Finset (Fin 1)) i
+  have hidx : iRaw = iJoin := by
+    apply Fin.ext
+    simp [iRaw, iJoin, joinSigmaOneDistinguishedIndex]
+  have hi := eqToIso_horn_index_hom_ι (0 + ((s + 1) + 1)) hidx
+  have hn := normalizedEmptyJoinHornIso_hom_ι (s + 1) i
+  have hpref : (normalizedEmptyJoinHornIso (s + 1) i).hom ≫
+      (eqToIso (congrArg (fun j =>
+          (SSet.horn (0 + ((s + 1) + 1)) j : SSet.{u})) hidx)).hom ≫
+      (SSet.horn (0 + ((s + 1) + 1)) iJoin).ι =
+      (SSet.horn ((s + 1) + 1) i).ι ≫
+        (normalizedEmptyJoinAmbientIso (s + 1)).hom := by
+    exact (congrArg (fun k ↦
+      (normalizedEmptyJoinHornIso (s + 1) i).hom ≫ k) hi).trans hn
+  have hpref' : ((normalizedEmptyJoinHornIso (s + 1) i).hom ≫
+      (eqToIso (congrArg (fun j =>
+        (SSet.horn (0 + ((s + 1) + 1)) j : SSet.{u})) hidx)).hom) ≫
+      (SSet.horn (0 + ((s + 1) + 1)) iJoin).ι =
+      (SSet.horn ((s + 1) + 1) i).ι ≫
+        (normalizedEmptyJoinAmbientIso (s + 1)).hom := by
+    rw [Category.assoc]
+    exact hpref
+  dsimp [iJoin] at hpref'
+  calc
+    _ = (normalizedEmptyJoinHornIso (s + 1) i).hom ≫ _ ≫
+        joinSigmaOneHornMap 0 ((s + 1) + 1)
+          (∅ : Finset (Fin 1)) i :=
+      congrArg (fun k ↦ (normalizedEmptyJoinHornIso (s + 1) i).hom ≫ _ ≫ k) hj
+    _ = _ := by
+      unfold joinSigmaOneHornMap
+      simp only [Finset.card_empty]
+      exact (congrArg (fun k ↦ k ≫
+        (joinSigmaOneFaceIso 0 ((s + 1) + 1) (∅ : Finset (Fin 1))).hom ≫
+        (SSet.stdSimplex.face
+          (joinSigmaOneVertices 0 ((s + 1) + 1) (∅ : Finset (Fin 1)))).ι)
+        hpref').trans (by
+          convert congrArg
+              (fun k ↦ (SSet.horn ((s + 1) + 1) i).ι ≫ k)
+              (normalizedEmptyJoinAmbientIso_hom_comp_faceIso_ι (s + 1)) using 1 <;>
+            rfl)
+
+lemma positiveConeHornTransportedRightLeg_eq
+    (s : ℕ) (i : Fin (s + 3)) :
+    positiveConeHornTransportedRightLeg.{u} s i =
+      (SSet.horn (s + 2) i).ι := by
+  apply (cancel_mono (emptyJoinFaceIso (s + 1)).hom).mp
+  unfold positiveConeHornTransportedRightLeg
+  simp only [Category.assoc, Iso.inv_hom_id, Category.comp_id]
+  apply (cancel_mono (SSet.stdSimplex.face
+    (joinSigmaOneVertices 0 (s + 2) (∅ : Finset (Fin 1)))).ι).mp
+  have hl := positiveCanonicalConeHorn_le₁₃_face_ι s i
+  have hc := emptyJoinHornIsoRange_hom_ι s i
+  have hr := emptyJoinFaceIso_hom_ι (s + 1)
+  exact (congrArg (fun k ↦ (emptyJoinHornIsoRange (s + 1) i).hom ≫ k) hl).trans
+    (hc.trans (congrArg (fun k ↦ (SSet.horn (s + 2) i).ι ≫ k) hr.symm))
 
 lemma positiveCanonicalConeHornCornerMap_right
     (s : ℕ) (i : Fin (s + 3)) :
