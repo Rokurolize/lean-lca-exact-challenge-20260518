@@ -142,6 +142,13 @@ noncomputable def ordinaryJoinLeftFaceIso
   let e := SSet.stdSimplex.faceSingletonComplIso.{u} j
   exact ordinaryJoinBifunctor.mapIso (e.prod (Iso.refl _))
 
+@[simp]
+lemma ordinaryJoinLeftFaceIso_inv
+    (m n : ℕ) (j : Fin (m + 2)) :
+    (ordinaryJoinLeftFaceIso.{u} m n j).inv =
+      simplicialJoinMap (SSet.stdSimplex.faceSingletonComplIso j).inv
+        (𝟙 (Δ[n] : SSet.{u})) := rfl
+
 set_option maxHeartbeats 800000 in
 /-- A transported left face of a representable join. -/
 noncomputable def ordinaryJoinTransportedLeftLeg
@@ -486,5 +493,107 @@ noncomputable def rightTensorHornIsColimit
   exact isColimitOfPreserves forgetAugmentation.{u}
     (isColimitOfPreserves T
       (singletonAugmentationHornIsColimit.{u} i hn))
+
+/-- A horn in the left block joined with a representable right block. -/
+def leftRepresentableJoinHornMap
+    (m n : ℕ) (i : Fin (m + 1)) :
+    simplicialJoin (Λ[m, i] : SSet.{u}) Δ[n] ⟶ Δ[m + n + 1] :=
+  simplicialJoinMap (SSet.horn m i).ι (𝟙 (Δ[n] : SSet.{u})) ≫
+    (simplicialJoinStdSimplexIsoNat m n).hom
+
+lemma leftRepresentableJoinHornRange_eq_iSup_multicoforkRanges
+    (m n : ℕ) (i : Fin (m + 1)) (hm : 0 < m) :
+    SSet.Subcomplex.range (leftRepresentableJoinHornMap.{u} m n i) =
+      ⨆ j, SSet.Subcomplex.range
+        ((rightTensorHornCocone (Δ[n] : SSet.{u}) i).ι.app j ≫
+          leftRepresentableJoinHornMap m n i) := by
+  exact SSet.range_eq_iSup_of_isColimit
+    (rightTensorHornIsColimit (Δ[n] : SSet.{u}) i hm)
+    (leftRepresentableJoinHornMap m n i)
+
+set_option maxHeartbeats 600000 in
+lemma leftHornFaceJoin_comp
+    (m n : ℕ) (i : Fin (m + 2))
+    (j : Fin (m + 2)) (hji : j ≠ i) :
+    simplicialJoinMap (SSet.horn.faceι i j hji)
+        (𝟙 (Δ[n] : SSet.{u})) ≫
+        leftRepresentableJoinHornMap (m + 1) n i =
+      ordinaryJoinTransportedLeftLeg.{u} m n j := by
+  rw [leftRepresentableJoinHornMap, ordinaryJoinTransportedLeftLeg]
+  rw [← Category.assoc]
+  change (_ ≫ _) ≫ (simplicialJoinStdSimplexIsoNat (m + 1) n).hom =
+    (_ ≫ _) ≫ (simplicialJoinStdSimplexIsoNat (m + 1) n).hom
+  apply (cancel_mono (simplicialJoinStdSimplexIsoNat (m + 1) n).hom).mpr
+  letI := augmentedDayConvolution
+    (emptyAugmentation.{u}.obj (SSet.stdSimplex.face {j}ᶜ : SSet.{u}))
+    (emptyAugmentation.{u}.obj (Δ[n] : SSet.{u}))
+  letI := augmentedDayConvolution
+    (emptyAugmentation.{u}.obj (Λ[m + 1, i] : SSet.{u}))
+    (emptyAugmentation.{u}.obj (Δ[n] : SSet.{u}))
+  letI := augmentedDayConvolution
+    (emptyAugmentation.{u}.obj (Δ[m] : SSet.{u}))
+    (emptyAugmentation.{u}.obj (Δ[n] : SSet.{u}))
+  letI := augmentedDayConvolution
+    (emptyAugmentation.{u}.obj (Δ[m + 1] : SSet.{u}))
+    (emptyAugmentation.{u}.obj (Δ[n] : SSet.{u}))
+  rw [← SSet.horn.faceSingletonComplIso_inv_ι i j hji]
+  rw [ordinaryJoinLeftFaceIso_inv]
+  simp only [ordinaryJoinBifunctor, simplicialJoinMap,
+    emptyAugmentation.map_id]
+  change Functor.whiskerLeft AugmentedSimplexCategory.inclusion.op
+        (CategoryTheory.MonoidalCategory.DayConvolution.map
+          (emptyAugmentation.{u}.map
+            ((SSet.stdSimplex.faceSingletonComplIso j).inv ≫
+              SSet.horn.ι i j hji))
+          (𝟙 (emptyAugmentation.{u}.obj (Δ[n] : SSet.{u})))) ≫ _ = _
+  rw [emptyAugmentation.map_comp]
+  change Functor.whiskerLeft AugmentedSimplexCategory.inclusion.op (_ ≫ _) =
+    Functor.whiskerLeft AugmentedSimplexCategory.inclusion.op (_ ≫ _)
+  congr 1
+  rw [dayConvolutionMap_comp, dayConvolutionMap_comp]
+  simp only [Category.comp_id]
+  rw [← emptyAugmentation.map_comp, ← emptyAugmentation.map_comp]
+  rw [Category.assoc, SSet.horn.ι_ι]
+  rw [← emptyAugmentation.map_comp]
+
+set_option maxHeartbeats 400000 in
+lemma rightTensorHornCocone_right_app
+    (m n : ℕ) (i : Fin (m + 2))
+    (j : ({i}ᶜ : Set (Fin (m + 2)))) :
+    (rightTensorHornCocone (Δ[n] : SSet.{u}) i).ι.app (.right j) =
+      simplicialJoinMap (SSet.horn.faceι i j.1 (by
+        simpa only [Set.mem_compl_iff, Set.mem_singleton_iff] using j.2))
+        (𝟙 (Δ[n] : SSet.{u})) := by
+  letI := augmentedDayConvolution
+    (emptyAugmentation.{u}.obj (SSet.stdSimplex.face {j.1}ᶜ : SSet.{u}))
+    (emptyAugmentation.{u}.obj (Δ[n] : SSet.{u}))
+  letI := augmentedDayConvolution
+    (emptyAugmentation.{u}.obj (Λ[m + 1, i] : SSet.{u}))
+    (emptyAugmentation.{u}.obj (Δ[n] : SSet.{u}))
+  have hji : j.1 ≠ i := by
+    simpa only [Set.mem_compl_iff, Set.mem_singleton_iff] using j.2
+  have hface :
+      (((SSet.horn.multicoequalizerDiagram i).multicofork.toLinearOrder.map
+          SSet.Subcomplex.toSSetFunctor).ι.app (.right j)) =
+        SSet.horn.faceι i j.1 hji := by
+    rfl
+  simp only [rightTensorHornCocone, singletonAugmentationHornCocone,
+    Functor.mapCocone_ι_app, augmentedDayTensorRight_map]
+  rw [hface]
+  unfold simplicialJoinMap
+  rw [emptyAugmentation.map_id]
+  change Functor.whiskerLeft AugmentedSimplexCategory.inclusion.op _ =
+    Functor.whiskerLeft AugmentedSimplexCategory.inclusion.op _
+  congr 2
+
+lemma rightTensorHornCocone_left_comp
+    (m n : ℕ) (i : Fin (m + 2))
+    (j : ({i}ᶜ : Set (Fin (m + 2)))) :
+    (rightTensorHornCocone (Δ[n] : SSet.{u}) i).ι.app (.right j) ≫
+        leftRepresentableJoinHornMap (m + 1) n i =
+      ordinaryJoinTransportedLeftLeg.{u} m n j.1 := by
+  rw [rightTensorHornCocone_right_app]
+  exact leftHornFaceJoin_comp m n i j.1 (by
+    simpa only [Set.mem_compl_iff, Set.mem_singleton_iff] using j.2)
 
 end LeanLCAExactChallenge.Infinity
