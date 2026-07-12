@@ -32,6 +32,35 @@ def eraseLift {X Y : ComplexCategory} (w : DrinfeldWord X Y)
     (i : Fin w.length) (j : Fin (eraseIntermediate w i).length) : Fin w.length :=
   Fin.cast (eraseIntermediate_length w i) ((erasePosition w i).succAbove j)
 
+/-- The factor of the erased word, viewed as a position among the old intermediate
+objects.  This is also the index of the first old arrow contributing to that factor. -/
+def eraseFactorIndex {X Y : ComplexCategory} (w : DrinfeldWord X Y)
+    (i : Fin w.length) (j : Fin ((eraseIntermediate w i).length + 1)) : Fin w.length :=
+  Fin.cast (eraseIntermediate_length w i) j
+
+@[simp]
+theorem eraseFactorIndex_erasePosition
+    {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i : Fin w.length) :
+    eraseFactorIndex w i (erasePosition w i) = i := by
+  apply Fin.ext
+  rfl
+
+theorem eraseFactorIndex_castSucc
+    {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1)) :
+    Fin.cast (congrArg (fun n ↦ n + 1) (eraseIntermediate_length w i)) j.castSucc =
+      (eraseFactorIndex w i j).castSucc := by
+  apply Fin.ext
+  rfl
+
+theorem eraseFactorIndex_succ
+    {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1)) :
+    Fin.cast (congrArg (fun n ↦ n + 1) (eraseIntermediate_length w i)) j.succ =
+      (eraseFactorIndex w i j).succ := by
+  apply Fin.ext
+  rfl
+
 /-- The intermediate vertices after erasure are enumerated by `succAbove`. -/
 theorem eraseIntermediate_object
     {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i : Fin w.length)
@@ -118,6 +147,94 @@ theorem eraseIntermediate_object_of_after
     (eraseIntermediate w i).object j =
       w.object (Fin.cast (eraseIntermediate_length w i) j.succ) := by
   rw [eraseIntermediate_object, eraseLift_of_after w i j h]
+
+/-- Before the contracted position, erasure preserves the source of an arrow factor. -/
+theorem eraseIntermediate_arrowSource_of_before
+    {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1))
+    (h : eraseFactorIndex w i j < i) :
+    (eraseIntermediate w i).arrowSource j =
+      w.arrowSource (eraseFactorIndex w i j).castSucc := by
+  unfold arrowSource
+  rw [eraseIntermediate_vertex]
+  rw [eraseFactorIndex_castSucc]
+  congr 1
+  rw [Fin.succAbove_of_castSucc_lt]
+  simpa using h.le
+
+/-- Before the contracted position, erasure preserves the target of an arrow factor. -/
+theorem eraseIntermediate_arrowTarget_of_before
+    {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1))
+    (h : eraseFactorIndex w i j < i) :
+    (eraseIntermediate w i).arrowTarget j =
+      w.arrowTarget (eraseFactorIndex w i j).castSucc := by
+  unfold arrowTarget
+  rw [eraseIntermediate_vertex]
+  rw [eraseFactorIndex_succ]
+  congr 1
+  apply Fin.ext
+  rw [Fin.succAbove_of_succ_le _ _ (by
+    change (eraseFactorIndex w i j).val + 2 ≤ i.val + 1
+    omega)]
+  rfl
+
+/-- The source of the merged factor is the source of the arrow immediately before the
+erased intermediate object. -/
+theorem eraseIntermediate_arrowSource_at
+    {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i : Fin w.length) :
+    (eraseIntermediate w i).arrowSource (erasePosition w i) =
+      w.arrowSource i.castSucc := by
+  unfold arrowSource
+  rw [eraseIntermediate_vertex]
+  congr 1
+  apply Fin.ext
+  simp [Fin.succAbove, erasePosition]
+
+/-- The target of the merged factor is the target of the arrow immediately after the
+erased intermediate object. -/
+theorem eraseIntermediate_arrowTarget_at
+    {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i : Fin w.length) :
+    (eraseIntermediate w i).arrowTarget (erasePosition w i) =
+      w.arrowTarget i.succ := by
+  unfold arrowTarget
+  rw [eraseIntermediate_vertex]
+  congr 1
+  apply Fin.ext
+  simp [Fin.succAbove, erasePosition]
+
+/-- After the contracted position, an erased arrow factor is the successor of its old
+position. -/
+theorem eraseIntermediate_arrowSource_of_after
+    {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1))
+    (h : i < eraseFactorIndex w i j) :
+    (eraseIntermediate w i).arrowSource j =
+      w.arrowSource (eraseFactorIndex w i j).succ := by
+  unfold arrowSource
+  rw [eraseIntermediate_vertex]
+  rw [eraseFactorIndex_castSucc]
+  congr 1
+  apply Fin.ext
+  rw [Fin.succAbove_of_le_castSucc _ _ (by
+    change i.val + 1 ≤ (eraseFactorIndex w i j).val
+    omega)]
+  rfl
+
+/-- After the contracted position, an erased arrow factor is the successor of its old
+position. -/
+theorem eraseIntermediate_arrowTarget_of_after
+    {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1))
+    (h : i < eraseFactorIndex w i j) :
+    (eraseIntermediate w i).arrowTarget j =
+      w.arrowTarget (eraseFactorIndex w i j).succ := by
+  unfold arrowTarget
+  rw [eraseIntermediate_vertex]
+  rw [eraseFactorIndex_succ]
+  congr 1
+  rw [Fin.succAbove_of_lt_succ]
+  simpa using h.le
 
 end DrinfeldWord
 end MetrizableBoundedComplexes
