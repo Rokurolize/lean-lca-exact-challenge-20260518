@@ -74,4 +74,83 @@ noncomputable def augmentedDayInternalHomPre
       congrArg (fun k ↦
         (augmentedDayInternalHomStructure F G).π c j' ≫ k) hc.symm
 
+theorem augmentedDayInternalHomPre_starOfMap
+    {F F' G : AugmentedSSet.{u}} (u : F' ⟶ F) (a : F ⟶ G) :
+    (augmentedDayInternalHomPre u).app (Opposite.op WithInitial.star)
+        (dayInternalHomStarOfMap a) =
+      dayInternalHomStarOfMap (u ≫ a) := by
+  apply Subtype.ext
+  funext j
+  change (MonoidalClosed.pre (u.app j)).app _
+      (MonoidalClosed.curry ((ρ_ (F.obj j)).hom ≫ a.app j ≫
+        G.map (ρ_ j).inv) PUnit.unit) =
+    MonoidalClosed.curry ((ρ_ (F'.obj j)).hom ≫
+      (u ≫ a).app j ≫ G.map (ρ_ j).inv) PUnit.unit
+  rw [← ConcreteCategory.comp_apply, MonoidalClosed.curry_pre_app]
+  apply ConcreteCategory.congr_hom
+  simp only [NatTrans.comp_app, Category.assoc]
+  simp
+
+set_option backward.isDefEq.respectTransparency false in
+/-- Restriction of cones along a map of diagram shapes. -/
+noncomputable def diagramUnderRestriction
+    {Q K K' : SSet.{u}} (j : K' ⟶ K) (a : K ⟶ Q) :
+    diagramUnderSlice Q K a ⟶ diagramUnderSlice Q K' (j ≫ a) := by
+  let F := emptyAugmentation.{u}.obj K
+  let F' := emptyAugmentation.{u}.obj K'
+  let G := emptyAugmentation.{u}.obj Q
+  let uMap := emptyAugmentation.{u}.map j
+  let H := diagramUnderSlice Q K a
+  let ψ : H ⟶ forgetAugmentation.{u}.obj (augmentedDayInternalHom F' G) :=
+    relativeDaySlice.ι F G (dayInternalHomStarOfMap
+      (emptyAugmentation.map a)) ≫
+      forgetAugmentation.map (augmentedDayInternalHomPre (G := G) uMap)
+  change H ⟶ relativeDaySliceOverMap F' G
+    (emptyAugmentation.map (j ≫ a))
+  refine (relativeDaySliceOverMapHomEquiv F' G
+    (emptyAugmentation.map (j ≫ a)) H).symm ⟨ψ, ?_⟩
+  let E := AugmentedSimplexCategory.equivAugmentedSimplicialObject (C := Type u)
+  have hw : (E.functor.map
+        (augmentedDayInternalHomPre (G := G) uMap)).left ≫
+        (E.functor.obj (augmentedDayInternalHom F' G)).hom =
+      (E.functor.obj (augmentedDayInternalHom F G)).hom ≫
+        (SimplicialObject.const (Type u)).map
+          (E.functor.map
+            (augmentedDayInternalHomPre (G := G) uMap)).right := by
+    exact (E.functor.map
+      (augmentedDayInternalHomPre (G := G) uMap)).w
+  change (relativeDaySlice.ι F G (dayInternalHomStarOfMap
+      (emptyAugmentation.map a)) ≫
+      (E.functor.map
+        (augmentedDayInternalHomPre (G := G) uMap)).left) ≫
+        (E.functor.obj (augmentedDayInternalHom F' G)).hom = _
+  rw [Category.assoc, hw]
+  rw [← Category.assoc]
+  change ((Limits.pullback.fst
+      (dayInternalHomAugmentedObject F G).hom
+      (dayInternalHomConstantPoint F G
+        (dayInternalHomStarOfMap (emptyAugmentation.map a)))) ≫
+        (dayInternalHomAugmentedObject F G).hom) ≫ _ = _
+  rw [Limits.pullback.condition]
+  have hsnd : Limits.pullback.snd
+      (dayInternalHomAugmentedObject F G).hom
+      (dayInternalHomConstantPoint F G
+        (dayInternalHomStarOfMap (emptyAugmentation.map a))) =
+      toConstantTerminal H := by
+    apply NatTrans.ext
+    funext n
+    apply Limits.terminal.hom_ext
+  rw [hsnd, Category.assoc]
+  congr 1
+  apply NatTrans.ext
+  funext n
+  apply ConcreteCategory.hom_ext
+  intro x
+  change (augmentedDayInternalHomPre (G := G) uMap).app
+      (Opposite.op WithInitial.star)
+        (dayInternalHomStarOfMap (emptyAugmentation.map a)) =
+    dayInternalHomStarOfMap (emptyAugmentation.map (j ≫ a))
+  rw [augmentedDayInternalHomPre_starOfMap]
+  rw [Functor.map_comp]
+
 end LeanLCAExactChallenge.Infinity
