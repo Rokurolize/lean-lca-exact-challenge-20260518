@@ -290,4 +290,16 @@ lemma simplicialJoinLeft_map_isPushout
       Category.id_comp, Category.comp_id]
     exact (simplicialJoinMap_id_eq_augmentedDayTensorLeft_map X k).symm
 
+/-- Embed the left outer horn in the last face of the next simplex.  Its
+range is the upper-left corner of `leftOuterHornLastFaceBicartSq`. -/
+def lastFaceOuterHornAmbientMap (n : ℕ) :
+    (SSet.horn (n + 1) (0 : Fin (n + 2)) : SSet.{u}) ⟶ Δ[n + 2] :=
+  (SSet.horn (n + 1) (0 : Fin (n + 2))).ι ≫
+    SSet.stdSimplex.δ (Fin.last (n + 2))
+
+noncomputable instance lastFaceOuterHornAmbientMap_mono (n : ℕ) :
+    Mono (lastFaceOuterHornAmbientMap.{u} n) := by
+  unfold lastFaceOuterHornAmbientMap
+  infer_instance
+
 end LeanLCAExactChallenge.Infinity
