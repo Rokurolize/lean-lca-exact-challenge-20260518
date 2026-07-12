@@ -380,4 +380,71 @@ noncomputable instance forgetAugmentation_preservesColimits :
       (AugmentedSimplexCategory.inclusion.op.obj U))
   infer_instance
 
+/-- The horn face multicofork after joining on the right by a fixed simplicial
+set. -/
+noncomputable def rightTensorHornCocone
+    (Y : SSet.{u}) {n : ℕ} (i : Fin (n + 1)) :=
+  forgetAugmentation.{u}.mapCocone
+    ((augmentedDayTensorRight (emptyAugmentation.{u}.obj Y)).mapCocone
+      (singletonAugmentationHornCocone.{u} i))
+
+@[implicit_reducible]
+noncomputable def augmentedDayTensorRight_preservesSmallColimits
+    (G : AugmentedSSet.{u}) :
+    PreservesColimitsOfSize.{0, 0} (augmentedDayTensorRight G) := by
+  let E := augmentedExternalProductRight G
+  letI : PreservesColimitsOfSize.{0, 0} E := by
+    apply preservesColimits_of_evaluation
+    intro cd
+    let X := G.obj cd.2
+    letI : PreservesColimitsOfSize.{0, 0}
+        (MonoidalCategory.tensorLeft X) :=
+      (CategoryTheory.ihom.adjunction X).leftAdjoint_preservesColimits
+    letI : PreservesColimitsOfSize.{0, 0}
+        (MonoidalCategory.tensorRight X) :=
+      preservesColimits_of_natIso
+        (BraidedCategory.tensorLeftIsoTensorRight X)
+    letI : PreservesColimitsOfSize.{0, 0}
+        ((evaluation AugmentedSimplexCategoryᵒᵖ (Type u)).obj cd.1) :=
+      { preservesColimitsOfShape := inferInstance }
+    dsimp [E, augmentedExternalProductRight, Functor.curryObj, Functor.flip]
+    change PreservesColimitsOfSize.{0, 0}
+      ((evaluation AugmentedSimplexCategoryᵒᵖ (Type u)).obj cd.1 ⋙
+        MonoidalCategory.tensorRight X)
+    infer_instance
+  let T := CategoryTheory.MonoidalCategory.tensor AugmentedSimplexCategoryᵒᵖ
+  let L :
+      (AugmentedSimplexCategoryᵒᵖ × AugmentedSimplexCategoryᵒᵖ ⥤ Type u) ⥤
+        AugmentedSSet.{u} := T.lan
+  letI : PreservesColimitsOfSize.{0, 0} L :=
+    (T.lanAdjunction (Type u)).leftAdjoint_preservesColimits
+  change PreservesColimitsOfSize.{0, 0} (E ⋙ L)
+  infer_instance
+
+@[implicit_reducible]
+noncomputable def forgetAugmentation_preservesSmallColimits :
+    PreservesColimitsOfSize.{0, 0} (forgetAugmentation.{u}) := by
+  apply preservesColimits_of_evaluation
+  intro U
+  letI : PreservesColimitsOfSize.{0, 0}
+      ((evaluation AugmentedSimplexCategoryᵒᵖ (Type u)).obj
+        (AugmentedSimplexCategory.inclusion.op.obj U)) :=
+    { preservesColimitsOfShape := inferInstance }
+  change PreservesColimitsOfSize.{0, 0}
+    ((evaluation AugmentedSimplexCategoryᵒᵖ (Type u)).obj
+      (AugmentedSimplexCategory.inclusion.op.obj U))
+  infer_instance
+
+noncomputable def rightTensorHornIsColimit
+    (Y : SSet.{u}) {n : ℕ} (i : Fin (n + 1)) (hn : 0 < n) :
+    IsColimit (rightTensorHornCocone Y i) := by
+  let T := augmentedDayTensorRight (emptyAugmentation.{u}.obj Y)
+  letI : PreservesColimitsOfSize.{0, 0} T :=
+    augmentedDayTensorRight_preservesSmallColimits _
+  letI : PreservesColimitsOfSize.{0, 0} forgetAugmentation.{u} :=
+    forgetAugmentation_preservesSmallColimits
+  exact isColimitOfPreserves forgetAugmentation.{u}
+    (isColimitOfPreserves T
+      (singletonAugmentationHornIsColimit.{u} i hn))
+
 end LeanLCAExactChallenge.Infinity
