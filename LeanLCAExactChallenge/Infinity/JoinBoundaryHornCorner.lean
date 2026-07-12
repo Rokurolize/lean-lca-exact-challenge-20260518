@@ -746,4 +746,25 @@ lemma joinBoundaryStandardMap_range_eq_iSup_leftFaces
             (ordinaryJoinTransportedLeftLeg.{u} m n q.1))
         ⟨j, by simpa using hj⟩)
 
+/-- The joined boundary map, with the harmless arithmetic transport on its
+target removed. -/
+noncomputable def normalizedJoinBoundaryStandardMap (m n : ℕ) :
+    simplicialJoin (SSet.boundary (m + 1) : SSet.{u}) Δ[n] ⟶
+      Δ[m + n + 2] :=
+  joinBoundaryStandardMap (m + 1) n ≫ (leftJoinTargetIso m n).inv
+
+lemma normalizedJoinBoundaryStandardMap_range (m n : ℕ) :
+    SSet.Subcomplex.range (normalizedJoinBoundaryStandardMap.{u} m n) =
+      ⨆ j : Fin (m + 2), SSet.stdSimplex.face
+        ({(Fin.castLE (by omega) j : Fin (m + n + 3))}ᶜ) := by
+  unfold normalizedJoinBoundaryStandardMap
+  rw [SSet.Subcomplex.range_comp,
+    joinBoundaryStandardMap_range_eq_iSup_leftFaces,
+    SSet.Subcomplex.image_iSup]
+  apply iSup_congr
+  intro j
+  rw [ordinaryJoinTransportedLeftLeg_range]
+  rw [← SSet.Subcomplex.image_comp]
+  simp
+
 end LeanLCAExactChallenge.Infinity
