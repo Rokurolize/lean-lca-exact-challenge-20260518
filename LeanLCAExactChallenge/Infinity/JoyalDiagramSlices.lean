@@ -18,6 +18,17 @@ abbrev diagramUnderSlice (Q K : SSet.{u}) (a : K ⟶ Q) : SSet.{u} :=
   relativeDaySliceOverMap (emptyAugmentation.{u}.obj K)
     (emptyAugmentation.{u}.obj Q) (emptyAugmentation.{u}.map a)
 
+/-- The augmented Day-slice evaluation is restriction along the augmented initial map. -/
+@[simp]
+theorem dayInternalHomAugmentedObject_hom_app
+    (Q K : SSet.{u}) (U : SimplexCategory) :
+    (dayInternalHomAugmentedObject
+      (emptyAugmentation.{u}.obj K) (emptyAugmentation.{u}.obj Q)).hom.app
+        (Opposite.op U) =
+      (augmentedDayInternalHom
+        (emptyAugmentation.{u}.obj K) (emptyAugmentation.{u}.obj Q)).map
+        (Opposite.op (WithInitial.starInitial.to (WithInitial.of U))) := rfl
+
 set_option backward.defeqAttrib.useBackward true in
 set_option backward.isDefEq.respectTransparency false in
 /-- Contravariance of the chosen augmented Day internal hom in its first input. -/
