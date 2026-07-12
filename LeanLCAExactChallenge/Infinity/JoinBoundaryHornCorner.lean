@@ -166,4 +166,35 @@ lemma joinBoundaryHornCornerMap_inr
           (𝟙 (Δ[n] : SSet.{u})) :=
   (joinBoundaryHornCornerSq m n i).inr_ι
 
+/-- The boundary-join inclusion transported to the standard ambient simplex. -/
+noncomputable def joinBoundaryStandardMap (m n : ℕ) :
+    simplicialJoin (SSet.boundary m : SSet.{u}) Δ[n] ⟶ Δ[m + n + 1] :=
+  simplicialJoinMap (SSet.boundary m).ι (𝟙 (Δ[n] : SSet.{u})) ≫
+    (simplicialJoinStdSimplexIsoNat m n).hom
+
+/-- The join boundary-horn corner transported to its standard ambient simplex. -/
+noncomputable def joinBoundaryHornStandardCornerMap
+    (m n : ℕ) (i : Fin (n + 1)) :
+    (joinBoundaryHornCornerSq m n i).pt ⟶ Δ[m + n + 1] :=
+  joinBoundaryHornCornerMap m n i ≫
+    (simplicialJoinStdSimplexIsoNat m n).hom
+
+@[reassoc (attr := simp)]
+lemma joinBoundaryHornStandardCornerMap_inl
+    (m n : ℕ) (i : Fin (n + 1)) :
+    (joinBoundaryHornCornerSq m n i).inl ≫
+      joinBoundaryHornStandardCornerMap m n i =
+        representableJoinHornMap m n i := by
+  unfold joinBoundaryHornStandardCornerMap
+  exact joinBoundaryHornCornerMap_inl_assoc m n i _
+
+@[reassoc (attr := simp)]
+lemma joinBoundaryHornStandardCornerMap_inr
+    (m n : ℕ) (i : Fin (n + 1)) :
+    (joinBoundaryHornCornerSq m n i).inr ≫
+      joinBoundaryHornStandardCornerMap m n i =
+        joinBoundaryStandardMap m n := by
+  unfold joinBoundaryHornStandardCornerMap joinBoundaryStandardMap
+  exact joinBoundaryHornCornerMap_inr_assoc m n i _
+
 end LeanLCAExactChallenge.Infinity
