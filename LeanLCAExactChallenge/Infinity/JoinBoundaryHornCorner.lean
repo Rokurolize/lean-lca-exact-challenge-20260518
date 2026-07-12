@@ -504,27 +504,6 @@ noncomputable def singletonAugmentationBoundaryIsColimit (n : ℕ) :
   IsColimit.mapCoconeEquiv strictSingletonAugmentationIso
     (strictSingletonAugmentationBoundaryIsColimit.{u} n)
 
-noncomputable def leftTensorBoundaryCocone (m n : ℕ) :
-    Cocone
-      (((boundaryMulticoequalizerDiagram (m + 1)).multispanIndex.toLinearOrder.map
-        SSet.Subcomplex.toSSetFunctor).multispan ⋙
-        (augmentedDayTensorLeft (emptyAugmentation.{u}.obj (Δ[n] : SSet.{u})) ⋙
-          forgetAugmentation.{u})) :=
-  (augmentedDayTensorLeft (emptyAugmentation.{u}.obj (Δ[n] : SSet.{u})) ⋙
-    forgetAugmentation.{u}).mapCocone
-      (singletonAugmentationBoundaryCocone.{u} (m + 1))
-
-noncomputable def leftTensorBoundaryIsColimit (m n : ℕ) :
-    IsColimit (leftTensorBoundaryCocone.{u} m n) := by
-  let T := augmentedDayTensorLeft (emptyAugmentation.{u}.obj (Δ[n] : SSet.{u}))
-  letI : PreservesColimitsOfSize.{0, 0} T :=
-    (augmentedDayAdjunction _).leftAdjoint_preservesColimits
-  letI : PreservesColimitsOfSize.{0, 0} forgetAugmentation.{u} :=
-    forgetAugmentation_preservesSmallColimits
-  exact isColimitOfPreserves forgetAugmentation.{u}
-    (isColimitOfPreserves T
-      (singletonAugmentationBoundaryIsColimit.{u} (m + 1)))
-
 /-- External product with a fixed right augmented simplicial set. -/
 def augmentedExternalProductRight (G : AugmentedSSet.{u}) :
     AugmentedSSet.{u} ⥤
