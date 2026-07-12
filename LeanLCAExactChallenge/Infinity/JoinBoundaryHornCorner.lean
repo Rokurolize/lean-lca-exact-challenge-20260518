@@ -1415,6 +1415,432 @@ noncomputable def normalizedJoinBoundaryStandardMap (m n : ℕ) :
       Δ[m + n + 2] :=
   joinBoundaryStandardMap (m + 1) n ≫ (leftJoinTargetIso m n).inv
 
+lemma rightTensorBoundaryCocone_right_comp
+    (m n : ℕ) (j : Fin (m + 2)) :
+    (rightTensorBoundaryCocone.{u} m n).ι.app (.right j) ≫
+      normalizedJoinBoundaryStandardMap m n =
+        ordinaryJoinTransportedLeftLeg m n j ≫ (leftJoinTargetIso m n).inv := by
+  let b :=
+    ((boundaryMulticoequalizerDiagram (m + 1)).multicofork.toLinearOrder.map
+      SSet.Subcomplex.toSSetFunctor).ι.app (.right j)
+  have hobj :
+      (((boundaryMulticoequalizerDiagram (m + 1)).multispanIndex.toLinearOrder.map
+        SSet.Subcomplex.toSSetFunctor).multispan.obj (.right j) : SSet.{u}) =
+        (SSet.stdSimplex.face {j}ᶜ : SSet.{u}) := by
+    rfl
+  have happ : (rightTensorBoundaryCocone.{u} m n).ι.app (.right j) =
+      simplicialJoinMap b (𝟙 (Δ[n] : SSet.{u})) := by
+    dsimp [rightTensorBoundaryCocone, singletonAugmentationBoundaryCocone, b]
+    simp only [Functor.mapCocone_ι_app, augmentedDayTensorRight_map]
+    unfold simplicialJoinMap
+    rw [emptyAugmentation.map_id]
+    change Functor.whiskerLeft AugmentedSimplexCategory.inclusion.op _ =
+      Functor.whiskerLeft AugmentedSimplexCategory.inclusion.op _
+    congr 2
+  rw [happ]
+  have hface : b ≫ (SSet.boundary (m + 1)).ι =
+      (SSet.stdSimplex.face {j}ᶜ : (Δ[m + 1] : SSet.{u}).Subcomplex).ι := by
+    rfl
+  have hface' :
+      (SSet.stdSimplex.face {j}ᶜ : (Δ[m + 1] : SSet.{u}).Subcomplex).ι =
+        (SSet.stdSimplex.faceSingletonComplIso j).inv ≫ SSet.stdSimplex.δ j := by
+    apply (cancel_epi (SSet.stdSimplex.faceSingletonComplIso.{u} j).hom).mp
+    rw [← Category.assoc, Iso.hom_inv_id, Category.id_comp]
+    exact SSet.stdSimplex.faceSingletonComplIso_hom_ι j
+  cases hobj
+  unfold normalizedJoinBoundaryStandardMap joinBoundaryStandardMap
+  have hcomp :
+      simplicialJoinMap b (𝟙 (Δ[n] : SSet.{u})) ≫
+          simplicialJoinMap ((SSet.boundary (m + 1)).ι)
+            (𝟙 (Δ[n] : SSet.{u})) =
+        simplicialJoinMap
+          ((SSet.stdSimplex.face {j}ᶜ :
+            (Δ[m + 1] : SSet.{u}).Subcomplex).ι)
+          (𝟙 (Δ[n] : SSet.{u})) := by
+    exact (simplicialJoinMap_comp_right_id
+      (Y := (Δ[n] : SSet.{u})) b (SSet.boundary (m + 1)).ι).trans
+        (congrArg (fun q ↦ simplicialJoinMap q (𝟙 (Δ[n] : SSet.{u}))) hface)
+  unfold ordinaryJoinTransportedLeftLeg
+  rw [ordinaryJoinLeftFaceIso_inv]
+  have hnat := simplicialJoinMap_comp_right_id
+    (Y := (Δ[n] : SSet.{u}))
+    (SSet.stdSimplex.faceSingletonComplIso j).inv
+    (SSet.stdSimplex.δ j)
+  calc
+    _ = (simplicialJoinMap b (𝟙 (Δ[n] : SSet.{u})) ≫
+          simplicialJoinMap ((SSet.boundary (m + 1)).ι)
+            (𝟙 (Δ[n] : SSet.{u}))) ≫
+        (simplicialJoinStdSimplexIsoNat (m + 1) n).hom ≫
+        (leftJoinTargetIso m n).inv := by rfl
+    _ = simplicialJoinMap
+          ((SSet.stdSimplex.face {j}ᶜ :
+            (Δ[m + 1] : SSet.{u}).Subcomplex).ι)
+          (𝟙 (Δ[n] : SSet.{u})) ≫
+        (simplicialJoinStdSimplexIsoNat (m + 1) n).hom ≫
+        (leftJoinTargetIso m n).inv :=
+      congrArg (fun q ↦ q ≫
+        (simplicialJoinStdSimplexIsoNat (m + 1) n).hom ≫
+          (leftJoinTargetIso m n).inv) hcomp
+    _ = simplicialJoinMap
+          ((SSet.stdSimplex.faceSingletonComplIso j).inv ≫
+            SSet.stdSimplex.δ j)
+          (𝟙 (Δ[n] : SSet.{u})) ≫
+        (simplicialJoinStdSimplexIsoNat (m + 1) n).hom ≫
+        (leftJoinTargetIso m n).inv :=
+      congrArg (fun q ↦ simplicialJoinMap q (𝟙 (Δ[n] : SSet.{u})) ≫
+        (simplicialJoinStdSimplexIsoNat (m + 1) n).hom ≫
+          (leftJoinTargetIso m n).inv) hface'
+    _ = (simplicialJoinMap
+          (SSet.stdSimplex.faceSingletonComplIso j).inv
+          (𝟙 (Δ[n] : SSet.{u})) ≫
+        simplicialJoinMap (SSet.stdSimplex.δ j)
+          (𝟙 (Δ[n] : SSet.{u}))) ≫
+        (simplicialJoinStdSimplexIsoNat (m + 1) n).hom ≫
+        (leftJoinTargetIso m n).inv := by
+          exact congrArg (fun q ↦ q ≫
+            (simplicialJoinStdSimplexIsoNat (m + 1) n).hom ≫
+              (leftJoinTargetIso m n).inv) hnat.symm
+    _ = _ := by rfl
+
+lemma rightTensorBoundaryCocone_right_comp_range
+    (m n : ℕ) (j : Fin (m + 2)) :
+    SSet.Subcomplex.range
+        ((rightTensorBoundaryCocone.{u} m n).ι.app (.right j) ≫
+          normalizedJoinBoundaryStandardMap m n) =
+      SSet.stdSimplex.face
+        ({(Fin.castLE (by omega) j : Fin (m + n + 3))}ᶜ) := by
+  calc
+    _ = SSet.Subcomplex.range
+        (ordinaryJoinTransportedLeftLeg.{u} m n j ≫
+          (leftJoinTargetIso m n).inv) :=
+      congrArg SSet.Subcomplex.range
+        (rightTensorBoundaryCocone_right_comp m n j)
+    _ = (SSet.Subcomplex.range
+        (ordinaryJoinTransportedLeftLeg.{u} m n j)).image
+          (leftJoinTargetIso m n).inv :=
+      SSet.Subcomplex.range_comp _ _
+    _ = ((SSet.stdSimplex.face
+          ({(Fin.castLE (by omega) j : Fin (m + n + 3))}ᶜ)).image
+        (leftJoinTargetIso.{u} m n).hom).image
+          (leftJoinTargetIso m n).inv := by
+      rw [ordinaryJoinTransportedLeftLeg_range]
+    _ = _ := by
+      rw [← SSet.Subcomplex.image_comp]
+      simp
+
+set_option backward.isDefEq.respectTransparency false in
+set_option maxHeartbeats 1200000 in
+-- Unfolding the two preserved colimit legs and the Day convolution maps is expensive.
+lemma rightTensorBoundaryCocone_left_comp_eq_doubleLeftCoface
+    (r n : ℕ)
+    (a : (Limits.MultispanShape.ofLinearOrder (Fin (r + 3))).L) :
+    let j := a.1.1
+    let k := a.1.2
+    let kp := k.pred (Fin.ne_zero_of_lt a.2)
+    let e := ordinaryJoinBifunctor.{u}.map
+      (((SSet.stdSimplex.facePairComplIso.{u} j k a.2).hom,
+        𝟙 (Δ[n] : SSet.{u})) :
+        ((Δ[r] : SSet.{u}), (Δ[n] : SSet.{u})) ⟶
+          ((SSet.stdSimplex.face {j, k}ᶜ : SSet.{u}), Δ[n]))
+    e ≫
+        (rightTensorBoundaryCocone (r + 1) n).ι.app (.left a) ≫
+          joinBoundaryStandardMap (r + 2) n =
+      (simplicialJoinStdSimplexIsoNat r n).hom ≫
+        SSet.stdSimplex.map (leftJoinCoface r n kp) ≫
+        SSet.stdSimplex.map (leftJoinCoface (r + 1) n j) := by
+  dsimp
+  let j := a.1.1
+  let k := a.1.2
+  have hjk : j < k := a.2
+  let kp := k.pred (Fin.ne_zero_of_lt hjk)
+  let e := ordinaryJoinBifunctor.{u}.map
+    (((SSet.stdSimplex.facePairComplIso.{u} j k hjk).hom,
+      𝟙 (Δ[n] : SSet.{u})) :
+      ((Δ[r] : SSet.{u}), (Δ[n] : SSet.{u})) ⟶
+        ((SSet.stdSimplex.face {j, k}ᶜ : SSet.{u}), Δ[n]))
+  change e ≫ _ ≫ _ = _
+  conv_rhs => rw [← Category.assoc]
+  rw [← simplicialJoinStdSimplexIsoNat_naturality_leftCoface.{u}
+    r n kp]
+  rw [Category.assoc,
+    ← simplicialJoinStdSimplexIsoNat_naturality_leftCoface.{u}
+      (r + 1) n j]
+  rw [joinBoundaryStandardMap, ← Category.assoc]
+  change ((e ≫
+      (rightTensorBoundaryCocone (r + 1) n).ι.app (.left a)) ≫
+      simplicialJoinMap (SSet.boundary (r + 2)).ι
+        (𝟙 (Δ[n] : SSet.{u})) ≫
+        (simplicialJoinStdSimplexIsoNat (r + 2) n).hom =
+    (simplicialJoinMap (SSet.stdSimplex.map (SimplexCategory.δ kp))
+        (𝟙 (Δ[n] : SSet.{u})) ≫
+      simplicialJoinMap (SSet.stdSimplex.map (SimplexCategory.δ j))
+        (𝟙 (Δ[n] : SSet.{u}))) ≫
+      (simplicialJoinStdSimplexIsoNat (r + 2) n).hom)
+  rw [← Category.assoc]
+  apply (cancel_mono (simplicialJoinStdSimplexIsoNat (r + 2) n).hom).mpr
+  simp only [e, ordinaryJoinBifunctor, rightTensorBoundaryCocone,
+    singletonAugmentationBoundaryCocone, Functor.mapCocone_ι_app]
+  let l := (((boundaryMulticoequalizerDiagram (r + 2)).multicofork.toLinearOrder.map
+    SSet.Subcomplex.toSSetFunctor).ι.app (.left a))
+  have hface : l ≫ (SSet.boundary (r + 2)).ι =
+      (SSet.stdSimplex.face {j, k}ᶜ).ι := by
+    rfl
+  let T := augmentedDayTensorRight
+    (emptyAugmentation.{u}.obj (Δ[n] : SSet.{u}))
+  have hT : T.map (emptyAugmentation.{u}.map l) ≫
+        T.map (emptyAugmentation.{u}.map (SSet.boundary (r + 2)).ι) =
+      T.map (emptyAugmentation.{u}.map
+        (SSet.stdSimplex.face {j, k}ᶜ).ι) := by
+    rw [← T.map_comp, ← emptyAugmentation.map_comp, hface]
+  have hforget := congrArg forgetAugmentation.{u}.map hT
+  simp only [forgetAugmentation.map_comp] at hforget
+  dsimp [T, l] at hforget
+  simp_rw [simplicialJoinMap_right_id_eq_augmentedDayTensorRight_map]
+  slice_lhs 2 3 => rw [hforget]
+  rw [← forgetAugmentation.map_comp, ← forgetAugmentation.map_comp]
+  congr 1
+  rw [← T.map_comp, ← T.map_comp]
+  congr 1
+  rw [← emptyAugmentation.map_comp, ← emptyAugmentation.map_comp]
+  congr 1
+  exact SSet.stdSimplex.facePairComplIso_hom_ι' j k hjk
+
+lemma rightTensorBoundaryCocone_right_comp_unnormalized
+    (m n : ℕ) (j : Fin (m + 2)) :
+    (rightTensorBoundaryCocone.{u} m n).ι.app (.right j) ≫
+        joinBoundaryStandardMap (m + 1) n =
+      ordinaryJoinTransportedLeftLeg m n j := by
+  apply (cancel_mono (leftJoinTargetIso.{u} m n).inv).mp
+  exact rightTensorBoundaryCocone_right_comp.{u} m n j
+
+/-- The joined boundary map in the strict coordinates used for intersections
+of two left faces. -/
+noncomputable def joinBoundaryStandardMapPairNormalized (r n : ℕ) :
+    simplicialJoin (SSet.boundary (r + 2) : SSet.{u}) Δ[n] ⟶
+      Δ[r + n + 3] :=
+  joinBoundaryStandardMap (r + 2) n ≫
+    (leftJoinPairTargetIso r n).inv
+
+lemma rightTensorBoundaryCocone_right_comp_pairNormalized
+    (r n : ℕ) (j : Fin (r + 3)) :
+    (rightTensorBoundaryCocone.{u} (r + 1) n).ι.app (.right j) ≫
+        joinBoundaryStandardMapPairNormalized r n =
+      ordinaryJoinTransportedLeftLeg (r + 1) n j ≫
+        (leftJoinPairTargetIso r n).inv := by
+  unfold joinBoundaryStandardMapPairNormalized
+  exact congrArg (fun q ↦ q ≫ (leftJoinPairTargetIso r n).inv)
+    (rightTensorBoundaryCocone_right_comp_unnormalized.{u} (r + 1) n j)
+
+lemma rightTensorBoundaryCocone_right_comp_range_pairNormalized
+    (r n : ℕ) (j : Fin (r + 3)) :
+    SSet.Subcomplex.range
+        ((rightTensorBoundaryCocone.{u} (r + 1) n).ι.app (.right j) ≫
+          joinBoundaryStandardMapPairNormalized r n) =
+      SSet.stdSimplex.face
+        ({(Fin.castLE (by omega) j : Fin (r + n + 4))}ᶜ) := by
+  calc
+    _ = SSet.Subcomplex.range
+        (ordinaryJoinTransportedLeftLeg.{u} (r + 1) n j ≫
+          (leftJoinPairTargetIso r n).inv) :=
+      congrArg SSet.Subcomplex.range
+        (rightTensorBoundaryCocone_right_comp_pairNormalized r n j)
+    _ = _ := ordinaryJoinTransportedLeftLeg_range_pairNormalized r n j
+
+lemma rightTensorBoundaryCocone_left_comp_range
+    (r n : ℕ)
+    (a : (Limits.MultispanShape.ofLinearOrder (Fin (r + 3))).L) :
+    let j := a.1.1
+    let k := a.1.2
+    let J := (Fin.castLE (by omega) j : Fin (r + n + 4))
+    let K := (Fin.castLE (by omega) k : Fin (r + n + 4))
+    SSet.Subcomplex.range
+        ((rightTensorBoundaryCocone.{u} (r + 1) n).ι.app (.left a) ≫
+          joinBoundaryStandardMap.{u} (r + 2) n) =
+      (SSet.stdSimplex.face {J, K}ᶜ).image
+        (leftJoinPairTargetIso.{u} r n).hom := by
+  dsimp
+  let j := a.1.1
+  let k := a.1.2
+  have hjk : j < k := a.2
+  let kp := k.pred (Fin.ne_zero_of_lt hjk)
+  let J := (Fin.castLE (by omega) j : Fin (r + n + 4))
+  let K := (Fin.castLE (by omega) k : Fin (r + n + 4))
+  have hJK : J < K := by
+    simp only [Fin.lt_def, J, K, Fin.val_castLE]
+    exact hjk
+  let e := ordinaryJoinBifunctor.{u}.map
+    (((SSet.stdSimplex.facePairComplIso.{u} j k hjk).hom,
+      𝟙 (Δ[n] : SSet.{u})) :
+      ((Δ[r] : SSet.{u}), (Δ[n] : SSet.{u})) ⟶
+        ((SSet.stdSimplex.face {j, k}ᶜ : SSet.{u}), Δ[n]))
+  haveI : IsIso e := by
+    dsimp [e]
+    apply ordinaryJoinBifunctor_map_isIso
+  let f := (rightTensorBoundaryCocone.{u} (r + 1) n).ι.app (.left a) ≫
+    joinBoundaryStandardMap.{u} (r + 2) n
+  let g := (simplicialJoinStdSimplexIsoNat r n).hom ≫
+    SSet.stdSimplex.map (leftJoinCoface r n kp) ≫
+    SSet.stdSimplex.map (leftJoinCoface (r + 1) n j)
+  have heq : e ≫ f = g := by
+    exact rightTensorBoundaryCocone_left_comp_eq_doubleLeftCoface r n a
+  calc
+    SSet.Subcomplex.range f = SSet.Subcomplex.range g :=
+      subcomplex_range_eq_of_precomp_iso e f g heq
+    _ = SSet.Subcomplex.range
+        (SSet.stdSimplex.map (leftJoinCoface r n kp) ≫
+          SSet.stdSimplex.map (leftJoinCoface (r + 1) n j)) := by
+      symm
+      apply subcomplex_range_eq_of_precomp_iso
+        (simplicialJoinStdSimplexIsoNat r n).hom
+      rfl
+    _ = SSet.Subcomplex.range
+        ((SSet.stdSimplex.facePairComplIso J K hJK).hom ≫
+          (SSet.stdSimplex.face {J, K}ᶜ).ι ≫
+          (leftJoinPairTargetIso r n).hom) := by
+      apply congrArg SSet.Subcomplex.range
+      exact doubleLeftCoface_std_map_eq_facePair r n j k hjk
+    _ = (SSet.stdSimplex.face {J, K}ᶜ).image
+        (leftJoinPairTargetIso r n).hom := by
+      have hr := subcomplex_range_eq_of_precomp_iso
+        (SSet.stdSimplex.facePairComplIso.{u} J K hJK).hom
+        ((SSet.stdSimplex.face {J, K}ᶜ).ι ≫
+          (leftJoinPairTargetIso r n).hom)
+        ((SSet.stdSimplex.facePairComplIso J K hJK).hom ≫
+          ((SSet.stdSimplex.face {J, K}ᶜ).ι ≫
+            (leftJoinPairTargetIso r n).hom)) rfl
+      rw [← hr, SSet.Subcomplex.range_comp]
+      congr 1
+      ext U x
+      simp [SSet.Subcomplex.range]
+
+lemma rightTensorBoundaryCocone_left_comp_range_pairNormalized
+    (r n : ℕ)
+    (a : (Limits.MultispanShape.ofLinearOrder (Fin (r + 3))).L) :
+    let j := a.1.1
+    let k := a.1.2
+    let J := (Fin.castLE (by omega) j : Fin (r + n + 4))
+    let K := (Fin.castLE (by omega) k : Fin (r + n + 4))
+    SSet.Subcomplex.range
+        ((rightTensorBoundaryCocone.{u} (r + 1) n).ι.app (.left a) ≫
+          joinBoundaryStandardMapPairNormalized.{u} r n) =
+      SSet.stdSimplex.face {J, K}ᶜ := by
+  dsimp
+  unfold joinBoundaryStandardMapPairNormalized
+  change SSet.Subcomplex.range
+    (((rightTensorBoundaryCocone.{u} (r + 1) n).ι.app (.left a) ≫
+      joinBoundaryStandardMap.{u} (r + 2) n) ≫
+        (leftJoinPairTargetIso.{u} r n).inv) = _
+  rw [SSet.Subcomplex.range_comp,
+    rightTensorBoundaryCocone_left_comp_range]
+  rw [← SSet.Subcomplex.image_comp]
+  simp
+
+lemma rightTensorBoundaryCocone_left_comp_mono_pairNormalized
+    (r n : ℕ)
+    (a : (Limits.MultispanShape.ofLinearOrder (Fin (r + 3))).L) :
+    Mono ((rightTensorBoundaryCocone.{u} (r + 1) n).ι.app (.left a) ≫
+      joinBoundaryStandardMapPairNormalized r n) := by
+  let j := a.1.1
+  let k := a.1.2
+  have hjk : j < k := a.2
+  let J := (Fin.castLE (by omega) j : Fin (r + n + 4))
+  let K := (Fin.castLE (by omega) k : Fin (r + n + 4))
+  have hJK : J < K := by
+    simp only [Fin.lt_def, J, K, Fin.val_castLE]
+    exact hjk
+  let e := ordinaryJoinBifunctor.{u}.map
+    (((SSet.stdSimplex.facePairComplIso.{u} j k hjk).hom,
+      𝟙 (Δ[n] : SSet.{u})) :
+      ((Δ[r] : SSet.{u}), (Δ[n] : SSet.{u})) ⟶
+        ((SSet.stdSimplex.face {j, k}ᶜ : SSet.{u}), Δ[n]))
+  haveI : IsIso e := by
+    dsimp [e]
+    apply ordinaryJoinBifunctor_map_isIso
+  let f := (rightTensorBoundaryCocone.{u} (r + 1) n).ι.app (.left a) ≫
+    joinBoundaryStandardMapPairNormalized r n
+  have hr : SSet.Subcomplex.range f =
+      SSet.stdSimplex.face {J, K}ᶜ := by
+    exact rightTensorBoundaryCocone_left_comp_range_pairNormalized r n a
+  let E := (asIso e).symm ≪≫ simplicialJoinStdSimplexIsoNat r n ≪≫
+    SSet.stdSimplex.facePairComplIso J K hJK ≪≫
+      SSet.Subcomplex.toSSetFunctor.mapIso (eqToIso hr.symm)
+  haveI : Mono (SSet.Subcomplex.toRange f) := by
+    rw [NatTrans.mono_iff_mono_app]
+    intro U
+    rw [mono_iff_injective]
+    letI : Finite ((SSet.Subcomplex.toSSetFunctor.obj
+        (SSet.Subcomplex.range f)).obj U) :=
+      Finite.of_injective ((SSet.Subcomplex.range f).ι.app U)
+        ((mono_iff_injective _).mp inferInstance)
+    letI : Finite ((ordinaryJoinBifunctor.{u}.obj
+        ((SSet.stdSimplex.face {j, k}ᶜ : SSet.{u}),
+          (Δ[n] : SSet.{u}))).obj U) :=
+      Finite.of_injective (E.app U).toEquiv (E.app U).toEquiv.injective
+    apply (Finite.injective_iff_surjective_of_equiv ((E.app U).toEquiv)).2
+    rintro ⟨y, x, rfl⟩
+    exact ⟨x, rfl⟩
+  change Mono f
+  rw [← SSet.Subcomplex.toRange_ι (f := f)]
+  infer_instance
+
+set_option synthInstance.maxHeartbeats 200000 in
+-- The multispan mono synthesis repeatedly unfolds the convolved boundary diagram.
+noncomputable instance joinBoundaryStandardMapPairNormalized_mono
+    (r n : ℕ) :
+    Mono (joinBoundaryStandardMapPairNormalized.{u} r n) := by
+  let c := rightTensorBoundaryCocone.{u} (r + 1) n
+  let hc := rightTensorBoundaryIsColimit.{u} (r + 1) n
+  apply mono_of_linearMultispan_ranges c
+    (joinBoundaryStandardMapPairNormalized r n) hc
+  · rintro (a | j)
+    · exact rightTensorBoundaryCocone_left_comp_mono_pairNormalized r n a
+    · have hj := rightTensorBoundaryCocone_right_comp_pairNormalized.{u} r n j
+      have hleg : Mono (ordinaryJoinTransportedLeftLeg.{u} (r + 1) n j) :=
+        ordinaryJoinTransportedLeftLeg_mono (r + 1) n j
+      have hinv : Mono (leftJoinPairTargetIso.{u} r n).inv := inferInstance
+      have hcomp : Mono (ordinaryJoinTransportedLeftLeg.{u} (r + 1) n j ≫
+          (leftJoinPairTargetIso r n).inv) := by
+        letI := hleg
+        letI := hinv
+        exact mono_comp _ _
+      exact hj.symm ▸ hcomp
+  · intro a
+    rw [rightTensorBoundaryCocone_left_comp_range_pairNormalized]
+    let j := (Limits.MultispanShape.ofLinearOrder (Fin (r + 3))).fst a
+    let k := (Limits.MultispanShape.ofLinearOrder (Fin (r + 3))).snd a
+    calc
+      SSet.stdSimplex.face {Fin.castLE (by omega) j,
+          Fin.castLE (by omega) k}ᶜ =
+        SSet.stdSimplex.face {Fin.castLE (by omega) j}ᶜ ⊓
+          SSet.stdSimplex.face {Fin.castLE (by omega) k}ᶜ := by
+            rw [SSet.stdSimplex.face_inter_face]
+            congr 1
+            ext x
+            simp
+      _ = SSet.Subcomplex.range
+            (c.ι.app (.right j) ≫
+              joinBoundaryStandardMapPairNormalized r n) ⊓
+          SSet.Subcomplex.range
+            (c.ι.app (.right k) ≫
+              joinBoundaryStandardMapPairNormalized r n) := by
+            rw [rightTensorBoundaryCocone_right_comp_range_pairNormalized,
+              rightTensorBoundaryCocone_right_comp_range_pairNormalized]
+
+lemma joinBoundaryStandardMap_succ_mono (r n : ℕ) :
+    Mono (joinBoundaryStandardMap.{u} (r + 2) n) := by
+  haveI : Mono (joinBoundaryStandardMapPairNormalized.{u} r n) :=
+    joinBoundaryStandardMapPairNormalized_mono r n
+  apply mono_of_mono_fac (h := joinBoundaryStandardMapPairNormalized r n)
+  rfl
+
+lemma normalizedJoinBoundaryStandardMap_succ_mono (r n : ℕ) :
+    Mono (normalizedJoinBoundaryStandardMap.{u} (r + 1) n) := by
+  unfold normalizedJoinBoundaryStandardMap
+  haveI : Mono (joinBoundaryStandardMap.{u} (r + 2) n) :=
+    joinBoundaryStandardMap_succ_mono r n
+  haveI : Mono (leftJoinTargetIso.{u} (r + 1) n).inv := inferInstance
+  exact mono_comp _ _
+
 lemma normalizedJoinBoundaryStandardMap_range (m n : ℕ) :
     SSet.Subcomplex.range (normalizedJoinBoundaryStandardMap.{u} m n) =
       ⨆ j : Fin (m + 2), SSet.stdSimplex.face
