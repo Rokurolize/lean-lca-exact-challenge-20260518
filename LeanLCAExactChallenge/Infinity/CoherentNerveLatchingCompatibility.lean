@@ -1275,6 +1275,130 @@ theorem avoidingPathSubcomplex_eq_top_of_left
   intro U x _ hl
   exact (not_le_of_gt hli) ((ofNerveSimplex x).last.left_le l hl)
 
+/-- An available horn face whose deleted vertex lies outside an interval. -/
+structure OutsideAvailableFace {n : ℕ}
+    (missing i j : Fin (n + 3)) where
+  face : Fin (n + 3)
+  face_ne_missing : face ≠ missing
+  face_ne_left : face ≠ i
+  face_ne_right : face ≠ j
+  outside : face < i ∨ j < face
+
+/-- Every proper ordered interval has an available outer face outside it. -/
+noncomputable def outsideAvailableFace {n : ℕ}
+    {missing i j : Fin (n + 3)}
+    (hkZero : missing ≠ 0) (hkLast : missing ≠ Fin.last (n + 2))
+    (hij : i ≤ j) (hproper : ¬ (i = 0 ∧ j = Fin.last (n + 2))) :
+    OutsideAvailableFace missing i j := by
+  by_cases hi : i = 0
+  · refine
+      { face := Fin.last (n + 2)
+        face_ne_missing := fun h ↦ hkLast h.symm
+        face_ne_left := ?_
+        face_ne_right := ?_
+        outside := Or.inr ?_ }
+    · rw [hi]
+      exact ne_of_gt (Fin.last_pos)
+    · intro hj
+      exact hproper ⟨hi, hj.symm⟩
+    · apply Fin.lt_last_iff_ne_last.mpr
+      intro hj
+      exact hproper ⟨hi, hj⟩
+  · refine
+      { face := 0
+        face_ne_missing := hkZero.symm
+        face_ne_left := fun h ↦ hi h.symm
+        face_ne_right := ?_
+        outside := Or.inl (Fin.pos_iff_ne_zero.mpr hi) }
+    intro hj
+    apply hi
+    apply Fin.le_zero_iff.mp
+    simpa [hj] using hij
+
+/-- A proper ordered interval receives its full path map from an available outer face. -/
+noncomputable def properPathMap
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {missing i j : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) missing : SSet.{u}) ⟶
+      CategoryTheory.SimplicialNerve C)
+    (hkZero : missing ≠ 0) (hkLast : missing ≠ Fin.last (n + 2))
+    (hij : i ≤ j) (hproper : ¬ (i = 0 ∧ j = Fin.last (n + 2))) :
+    CategoryTheory.nerve
+        (ThickPath (ULift.up.{u, 0} i) (ULift.up.{u, 0} j)) ⟶
+      (innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up i)) ⟶[SSet]
+        innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up j))) :=
+  let l := outsideAvailableFace hkZero hkLast hij hproper
+  pathMapOfInnerHornFace C σ
+    (fun h ↦ l.face_ne_left h.symm)
+    (fun h ↦ l.face_ne_right h.symm)
+    l.face_ne_missing
+
+/-- Every path omits a vertex outside its interval. -/
+theorem pathChain_not_mem_last_of_outside
+    {J : Type u} [LinearOrder J] {r : ℕ} {i j l : J}
+    (c : PathChain r i j) (h : l < i ∨ j < l) : l ∉ c.last.I := by
+  intro hl
+  rcases h with hli | hjl
+  · exact (not_le_of_gt hli) (c.last.left_le l hl)
+  · exact (not_le_of_gt hjl) (c.last.le_right l hl)
+
+/-- The proper path map agrees with every available face outside the interval. -/
+theorem properPathMap_eq_pathMapOf_outsideFace
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {missing i j l : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) missing : SSet.{u}) ⟶
+      CategoryTheory.SimplicialNerve C)
+    (hkZero : missing ≠ 0) (hkLast : missing ≠ Fin.last (n + 2))
+    (hij : i ≤ j) (hproper : ¬ (i = 0 ∧ j = Fin.last (n + 2)))
+    (hlout : l < i ∨ j < l) (hlk : l ≠ missing) :
+    properPathMap C σ hkZero hkLast hij hproper =
+      pathMapOfInnerHornFace C σ
+        (by rcases hlout with h | h <;> omega)
+        (by rcases hlout with h | h <;> omega) hlk := by
+  let q := outsideAvailableFace hkZero hkLast hij hproper
+  change pathMapOfInnerHornFace C σ
+      (fun h ↦ q.face_ne_left h.symm)
+      (fun h ↦ q.face_ne_right h.symm) q.face_ne_missing = _
+  rcases lt_trichotomy q.face l with hql | hql | hlq
+  · ext U x
+    have hxq := pathChain_not_mem_last_of_outside
+      (l := ULift.up.{u, 0} q.face) (ofNerveSimplex x) (by
+        change q.face < i ∨ j < q.face
+        exact q.outside)
+    have hxl := pathChain_not_mem_last_of_outside
+      (l := ULift.up.{u, 0} l) (ofNerveSimplex x) (by
+        change l < i ∨ j < l
+        exact hlout)
+    have h := congrArg (fun f ↦ f.app U ⟨x, ⟨hxq, hxl⟩⟩)
+      (pathMapOfInnerHornFace_pairwise_on_inf_of_lt C σ hql
+        (fun h ↦ q.face_ne_left h.symm)
+        (fun h ↦ q.face_ne_right h.symm)
+        (by rcases hlout with h | h <;> omega)
+        (by rcases hlout with h | h <;> omega)
+        q.face_ne_missing hlk)
+    exact h
+  · subst l
+    rfl
+  · ext U x
+    have hxl := pathChain_not_mem_last_of_outside
+      (l := ULift.up.{u, 0} l) (ofNerveSimplex x) (by
+        change l < i ∨ j < l
+        exact hlout)
+    have hxq := pathChain_not_mem_last_of_outside
+      (l := ULift.up.{u, 0} q.face) (ofNerveSimplex x) (by
+        change q.face < i ∨ j < q.face
+        exact q.outside)
+    have h := congrArg (fun f ↦ f.app U ⟨x, ⟨hxl, hxq⟩⟩)
+      (pathMapOfInnerHornFace_pairwise_on_inf_of_lt C σ hlq
+        (by rcases hlout with h | h <;> omega)
+        (by rcases hlout with h | h <;> omega)
+        (fun h ↦ q.face_ne_left h.symm)
+        (fun h ↦ q.face_ne_right h.symm)
+        hlk q.face_ne_missing)
+    exact h.symm
+
 /-- If every path omitting the lower face vertex also omits the higher one, the two full face
 path-maps agree on the lower avoiding subcomplex. -/
 theorem pathMapOfInnerHornFace_pairwise_on_avoiding_of_lt
@@ -1332,6 +1456,42 @@ theorem avoidingPathSubcomplex_pathMapOfInnerHornFace
         pathMapOfInnerHornFace C σ (ne_of_lt hil) (ne_of_gt hlj) hlk =
       avoidingPathMapOfInnerHornFace C σ hil hlj hlk := by
   rfl
+
+/-- Proper interval maps recover every available internal horn face. -/
+theorem avoidingPathSubcomplex_properPathMap
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {missing i l j : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) missing : SSet.{u}) ⟶
+      CategoryTheory.SimplicialNerve C)
+    (hkZero : missing ≠ 0) (hkLast : missing ≠ Fin.last (n + 2))
+    (hij : i ≤ j) (hproper : ¬ (i = 0 ∧ j = Fin.last (n + 2)))
+    (hil : i < l) (hlj : l < j) (hlk : l ≠ missing) :
+    (avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l)).ι ≫
+        properPathMap C σ hkZero hkLast hij hproper =
+      avoidingPathMapOfInnerHornFace C σ hil hlj hlk := by
+  rw [← avoidingPathSubcomplex_pathMapOfInnerHornFace C σ hil hlj hlk]
+  let q := outsideAvailableFace hkZero hkLast hij hproper
+  change (avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l)).ι ≫
+      pathMapOfInnerHornFace C σ
+        (fun h ↦ q.face_ne_left h.symm)
+        (fun h ↦ q.face_ne_right h.symm) q.face_ne_missing = _
+  rcases q.outside with hqi | hjq
+  · exact pathMapOfInnerHornFace_pairwise_on_higher_avoiding_of_lt
+      C σ (lt_trans hqi hil)
+      (fun h ↦ q.face_ne_left h.symm)
+      (fun h ↦ q.face_ne_right h.symm)
+      (ne_of_lt hil) (ne_of_gt hlj) q.face_ne_missing hlk (by
+        rw [avoidingPathSubcomplex_eq_top_of_left
+          (show ULift.up.{u, 0} q.face < ULift.up i from hqi)]
+        exact le_top)
+  · exact (pathMapOfInnerHornFace_pairwise_on_avoiding_of_lt
+      C σ (lt_trans hlj hjq)
+      (ne_of_lt hil) (ne_of_gt hlj)
+      (fun h ↦ q.face_ne_left h.symm)
+      (fun h ↦ q.face_ne_right h.symm) hlk q.face_ne_missing (by
+        rw [avoidingPathSubcomplex_eq_top_of_right
+          (show ULift.up.{u, 0} j < ULift.up q.face from hjq)]
+        exact le_top)).symm
 
 /-- The last available face supplies every full path-map ending at the missing inner-horn
 vertex. -/
