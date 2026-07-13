@@ -1098,6 +1098,82 @@ noncomputable def avoidingPathMapOfInnerHornFace
       (CategoryTheory.SimplicialThickening.mk (ULift.up j')) ≫
     eqToHom (congrArg₂ (fun A B : C ↦ A ⟶[SSet] B) hobj_i hobj_j)
 
+/-- A horn face supplies a full path-map whenever its deleted vertex is distinct from both
+interval endpoints. This map is useful when the deleted vertex lies outside the interval. -/
+noncomputable def pathMapOfInnerHornFace
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    {i j l : Fin (n + 3)} (hil : i ≠ l) (hjl : j ≠ l) (hlk : l ≠ k) :
+    CategoryTheory.nerve
+        (ThickPath (ULift.up.{u, 0} i) (ULift.up.{u, 0} j)) ⟶
+      (innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up i)) ⟶[SSet]
+        innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up j))) := by
+  let i' := deleteFinVertex l i hil
+  let j' := deleteFinVertex l j hjl
+  let F := innerHornFaceFunctor C σ hlk
+  have hobj_i : F.obj (CategoryTheory.SimplicialThickening.mk (ULift.up i')) =
+      innerHornObject C σ
+        (CategoryTheory.SimplicialThickening.mk (ULift.up i)) := by
+    simpa [F, i'] using innerHornFaceFunctor_obj C σ hlk
+      (CategoryTheory.SimplicialThickening.mk (ULift.up i'))
+  have hobj_j : F.obj (CategoryTheory.SimplicialThickening.mk (ULift.up j')) =
+      innerHornObject C σ
+        (CategoryTheory.SimplicialThickening.mk (ULift.up j)) := by
+    simpa [F, j'] using innerHornFaceFunctor_obj C σ hlk
+      (CategoryTheory.SimplicialThickening.mk (ULift.up j'))
+  exact deleteVertexPathNerveMap l hil hjl ≫
+    F.map (CategoryTheory.SimplicialThickening.mk (ULift.up i'))
+      (CategoryTheory.SimplicialThickening.mk (ULift.up j')) ≫
+    eqToHom (congrArg₂ (fun A B : C ↦ A ⟶[SSet] B) hobj_i hobj_j)
+
+/-- Restricting a full face path-map to paths omitting that face vertex recovers the omitted-face
+map. -/
+theorem avoidingPathSubcomplex_pathMapOfInnerHornFace
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k i j l : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hil : i < l) (hlj : l < j) (hlk : l ≠ k) :
+    (avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l)).ι ≫
+        pathMapOfInnerHornFace C σ (ne_of_lt hil) (ne_of_gt hlj) hlk =
+      avoidingPathMapOfInnerHornFace C σ hil hlj hlk := by
+  rfl
+
+/-- The last available face supplies every full path-map ending at the missing inner-horn
+vertex. -/
+noncomputable def innerHornLeftPathMap
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hkLast : k ≠ Fin.last (n + 2)) {i : Fin (n + 3)} (hik : i < k) :
+    CategoryTheory.nerve
+        (ThickPath (ULift.up.{u, 0} i) (ULift.up.{u, 0} k)) ⟶
+      (innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up i)) ⟶[SSet]
+        innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up k))) :=
+  pathMapOfInnerHornFace C σ
+    (ne_of_lt (lt_trans hik (Fin.lt_last_iff_ne_last.mpr hkLast)))
+    hkLast hkLast.symm
+
+/-- The first available face supplies every full path-map starting at the missing inner-horn
+vertex. -/
+noncomputable def innerHornRightPathMap
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hkZero : k ≠ 0) {j : Fin (n + 3)} (hkj : k < j) :
+    CategoryTheory.nerve
+        (ThickPath (ULift.up.{u, 0} k) (ULift.up.{u, 0} j)) ⟶
+      (innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up k)) ⟶[SSet]
+        innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up j))) :=
+  pathMapOfInnerHornFace C σ hkZero
+    (ne_of_gt (lt_trans (Fin.pos_iff_ne_zero.mpr hkZero) hkj)) hkZero.symm
+
 /-- Two ordered omitted-vertex face maps agree on paths omitting both vertices. -/
 theorem avoidingPathMapOfInnerHornFace_pairwise_of_lt
     (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
