@@ -2964,7 +2964,7 @@ noncomputable def throughPairSubcomplexToTriple
       let hs : s.as ∈ cr.first.I := ⟨x.2.2, hrs⟩
       ⟨⟨(c.beforeAt x.2.1).toNerveSimplex,
           (cr.beforeAt hs).toNerveSimplex⟩,
-        (c.afterAt x.2.2).toNerveSimplex⟩
+        (cr.afterAt hs).toNerveSimplex⟩
   naturality := by
     rintro ⟨⟨d⟩⟩ ⟨⟨e⟩⟩ f
     ext x
@@ -2979,5 +2979,125 @@ noncomputable def throughPairSubcomplexToTriple
     · exact CategoryTheory.Functor.ext
         (h_obj := fun _ ↦ rfl)
         (h_map := fun _ _ _ ↦ (thickPathHomSubsingleton _ _).elim _ _)
+
+/-- Compose three path chains into the intersection of two through pieces. -/
+def pathTripleCompositionToThroughPair
+    {J : Type u} [LinearOrder J]
+    (i r s j : CategoryTheory.SimplicialThickening J) :
+    (CategoryTheory.nerve (i ⟶ r) ⊗ CategoryTheory.nerve (r ⟶ s)) ⊗
+        CategoryTheory.nerve (s ⟶ j) ⟶
+      (throughPathSubcomplex i.as j.as r.as ⊓
+        throughPathSubcomplex i.as j.as s.as).toSSet :=
+  SSet.Subcomplex.lift
+    ((α_ (CategoryTheory.nerve (i ⟶ r)) (CategoryTheory.nerve (r ⟶ s))
+          (CategoryTheory.nerve (s ⟶ j))).hom ≫
+        (CategoryTheory.nerve (i ⟶ r) ◁
+          CategoryTheory.eComp SSet r s j) ≫
+      CategoryTheory.eComp SSet i r j) (by
+        rintro U _ ⟨x, rfl⟩
+        constructor
+        · change r.as ∈ (((x.1.1.prod' ((x.1.2.prod' x.2) ⋙
+            CategoryTheory.SimplicialThickening.compFunctor r s j)) ⋙
+              CategoryTheory.SimplicialThickening.compFunctor i r j).obj 0).I
+          exact Or.inl (x.1.1.obj 0).right
+        · change s.as ∈ (((x.1.1.prod' ((x.1.2.prod' x.2) ⋙
+            CategoryTheory.SimplicialThickening.compFunctor r s j)) ⋙
+              CategoryTheory.SimplicialThickening.compFunctor i r j).obj 0).I
+          exact Or.inr (Or.inl (x.1.2.obj 0).right))
+
+@[reassoc (attr := simp)]
+theorem pathTripleCompositionToThroughPair_ι
+    {J : Type u} [LinearOrder J]
+    (i r s j : CategoryTheory.SimplicialThickening J) :
+    pathTripleCompositionToThroughPair i r s j ≫
+      (throughPathSubcomplex i.as j.as r.as ⊓
+          throughPathSubcomplex i.as j.as s.as).ι =
+      (α_ (CategoryTheory.nerve (i ⟶ r)) (CategoryTheory.nerve (r ⟶ s))
+          (CategoryTheory.nerve (s ⟶ j))).hom ≫
+        (CategoryTheory.nerve (i ⟶ r) ◁
+          CategoryTheory.eComp SSet r s j) ≫
+        CategoryTheory.eComp SSet i r j :=
+  rfl
+
+/-- Triple composition followed by ordered splitting is the identity. -/
+theorem pathTripleCompositionToThroughPair_split
+    {J : Type u} [LinearOrder J]
+    (i r s j : CategoryTheory.SimplicialThickening J) (hrs : r.as ≤ s.as) :
+    pathTripleCompositionToThroughPair i r s j ≫
+      throughPairSubcomplexToTriple i r s j hrs = 𝟙 _ := by
+  ext U x
+  · exact CategoryTheory.Functor.ext
+      (h_obj := fun a ↦ congrArg Prod.fst
+        (splitCritical_joinCritical
+          (x.1.1.obj a, x.1.2.obj a ≫ x.2.obj a)))
+      (h_map := fun _ _ _ ↦ (thickPathHomSubsingleton _ _).elim _ _)
+  · exact CategoryTheory.Functor.ext
+      (h_obj := fun a ↦ by
+        apply CategoryTheory.SimplicialThickening.Path.ext
+        ext z
+        change ((((z ∈ (x.1.1.obj a).I ∨ z ∈ (x.1.2.obj a).I ∨
+          z ∈ (x.2.obj a).I) ∧ r.as ≤ z) ∧ z ≤ s.as) ↔
+            z ∈ (x.1.2.obj a).I)
+        constructor
+        · rintro ⟨⟨hp | hq | ht, hrz⟩, hzs⟩
+          · have hzr := (x.1.1.obj a).le_right z hp
+            exact (le_antisymm hrz hzr) ▸ (x.1.2.obj a).left
+          · exact hq
+          · have hsz := (x.2.obj a).left_le z ht
+            exact (le_antisymm hzs hsz) ▸ (x.1.2.obj a).right
+        · intro hq
+          exact ⟨⟨Or.inr (Or.inl hq), (x.1.2.obj a).left_le z hq⟩,
+            (x.1.2.obj a).le_right z hq⟩)
+      (h_map := fun _ _ _ ↦ (thickPathHomSubsingleton _ _).elim _ _)
+  · exact CategoryTheory.Functor.ext
+      (h_obj := fun a ↦ by
+        apply CategoryTheory.SimplicialThickening.Path.ext
+        ext z
+        change ((((z ∈ (x.1.1.obj a).I ∨ z ∈ (x.1.2.obj a).I ∨
+          z ∈ (x.2.obj a).I) ∧ r.as ≤ z) ∧ s.as ≤ z) ↔
+            z ∈ (x.2.obj a).I)
+        constructor
+        · rintro ⟨⟨hp | hq | ht, _⟩, hsz⟩
+          · have hzr := (x.1.1.obj a).le_right z hp
+            have hzs := hzr.trans hrs
+            exact (le_antisymm hzs hsz) ▸ (x.2.obj a).left
+          · have hzs := (x.1.2.obj a).le_right z hq
+            exact (le_antisymm hsz hzs) ▸ (x.2.obj a).left
+          · exact ht
+        · intro ht
+          have hsz := (x.2.obj a).left_le z ht
+          exact ⟨⟨Or.inr (Or.inr ht), hrs.trans hsz⟩, hsz⟩)
+      (h_map := fun _ _ _ ↦ (thickPathHomSubsingleton _ _).elim _ _)
+
+/-- Ordered splitting followed by triple composition is the identity. -/
+theorem throughPairSubcomplexToTriple_comp
+    {J : Type u} [LinearOrder J]
+    (i r s j : CategoryTheory.SimplicialThickening J) (hrs : r.as ≤ s.as) :
+    throughPairSubcomplexToTriple i r s j hrs ≫
+      pathTripleCompositionToThroughPair i r s j = 𝟙 _ := by
+  ext U x
+  apply Subtype.ext
+  exact CategoryTheory.Functor.ext
+    (h_obj := fun a ↦ by
+      let c := ofNerveSimplex x.1
+      let cr := c.afterAt x.2.1
+      let hs : s.as ∈ cr.first.I := ⟨x.2.2, hrs⟩
+      change join ((c.beforeAt x.2.1).path a)
+          (join ((cr.beforeAt hs).path a) ((cr.afterAt hs).path a)) = c.path a
+      rw [cr.join_beforeAt_afterAt hs, c.join_beforeAt_afterAt x.2.1])
+    (h_map := fun _ _ _ ↦ (thickPathHomSubsingleton _ _).elim _ _)
+
+/-- The double-through intersection is the triple product of shorter path nerves. -/
+noncomputable def throughPairSubcomplexTripleIso
+    {J : Type u} [LinearOrder J]
+    (i r s j : CategoryTheory.SimplicialThickening J) (hrs : r.as ≤ s.as) :
+    ((CategoryTheory.nerve (i ⟶ r) ⊗ CategoryTheory.nerve (r ⟶ s)) ⊗
+        CategoryTheory.nerve (s ⟶ j)) ≅
+      (throughPathSubcomplex i.as j.as r.as ⊓
+        throughPathSubcomplex i.as j.as s.as).toSSet where
+  hom := pathTripleCompositionToThroughPair i r s j
+  inv := throughPairSubcomplexToTriple i r s j hrs
+  hom_inv_id := pathTripleCompositionToThroughPair_split i r s j hrs
+  inv_hom_id := throughPairSubcomplexToTriple_comp i r s j hrs
 
 end LeanLCAExactChallenge.Infinity.CoherentNervePathFiltration
