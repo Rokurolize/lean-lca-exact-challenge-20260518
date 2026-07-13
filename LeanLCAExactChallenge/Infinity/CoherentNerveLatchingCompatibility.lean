@@ -244,10 +244,52 @@ theorem insertVertexPathFunctor_obj_heq {n : ℕ} {i j : Fin (n + 2)}
   · ext q
     simp only [insertVertexPathFunctor, insertPathVertex, Set.mem_image]
     constructor
-    · rintro ⟨r, hr, rfl⟩
-      exact ⟨r, hr, rfl⟩
-    · rintro ⟨r, hr, rfl⟩
-      exact ⟨r, hr, rfl⟩
+    · rintro ⟨r, hr, hq⟩
+      exact ⟨r, hr, hq.symm⟩
+    · rintro ⟨r, hr, hq⟩
+      exact ⟨r, hr, hq.symm⟩
+
+/-- Objectwise heterogeneous equality of path-valued functors induces heterogeneous equality
+of their nerve simplices when the endpoints agree propositionally. -/
+theorem nerveMap_app_heq_of_pathFunctor_obj_heq
+    {J A : Type u} [LinearOrder J] [Category.{u} A]
+    {i j i' j' : J} (hi : i = i') (hj : j = j')
+    (F : CategoryTheory.Functor A (ThickPath i j))
+    (G : CategoryTheory.Functor A (ThickPath i' j'))
+    (hobj : ∀ a, HEq (F.obj a) (G.obj a))
+    (U : SimplexCategoryᵒᵖ) (x : (CategoryTheory.nerve A).obj U) :
+    HEq ((CategoryTheory.nerveMap F).app U x)
+      ((CategoryTheory.nerveMap G).app U x) := by
+  subst i'
+  subst j'
+  apply heq_of_eq
+  exact CategoryTheory.Functor.ext
+    (h_obj := fun a ↦ eq_of_heq (hobj (x.obj a)))
+    (h_map := fun _ _ _ ↦ Subsingleton.elim _ _)
+
+/-- Explicit and canonical vertex reinsertion induce the same nerve simplex, up to their
+propositionally equal endpoint types. -/
+theorem insertVertexPathNerveMap_app_heq {n : ℕ} {i j : Fin (n + 2)}
+    (l : Fin (n + 2)) (hli : i ≠ l) (hlj : j ≠ l)
+    (U : SimplexCategoryᵒᵖ) (x : (CategoryTheory.nerve
+      (ThickPath
+        (ULift.up.{u, 0} (deleteFinVertex l i hli))
+        (ULift.up.{u, 0} (deleteFinVertex l j hlj)))).obj U) :
+    HEq ((insertVertexPathNerveMap l hli hlj).app U x)
+      ((CategoryTheory.nerveMap
+        (CategoryTheory.SimplicialThickening.functorMap
+          (SimplexCategory.δ l).toOrderHom.uliftMap
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up.{u, 0} (deleteFinVertex l i hli)))
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up.{u, 0} (deleteFinVertex l j hlj))))).app U x) := by
+  apply nerveMap_app_heq_of_pathFunctor_obj_heq
+  · apply ULift.ext
+    exact (succAbove_deleteFinVertex l i hli).symm
+  · apply ULift.ext
+    exact (succAbove_deleteFinVertex l j hlj).symm
+  · intro p
+    exact insertVertexPathFunctor_obj_heq l hli hlj p
 
 /-- Reindex thick paths along deletion of one endpoint-distinct vertex. -/
 noncomputable def deleteVertexPathFunctor {n : ℕ} {i j : Fin (n + 2)}
