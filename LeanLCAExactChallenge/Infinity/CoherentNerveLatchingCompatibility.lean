@@ -1402,6 +1402,55 @@ theorem avoidingPathSubcomplex_innerHornRightPathMap
     (avoidingPathSubcomplex_le_avoiding_of_left
       (show ULift.up.{u, 0} 0 < ULift.up k from Fin.pos_iff_ne_zero.mpr hkZero))
 
+/-- A face vertex to the right of a left interval supplies the same full interval map as the
+canonical last face. -/
+theorem innerHornLeftPathMap_eq_pathMapOfInnerHornFace_of_right
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k i l : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hkLast : k ≠ Fin.last (n + 2)) (hik : i < k) (hkl : k < l)
+    (hlLast : l < Fin.last (n + 2)) :
+    innerHornLeftPathMap C σ hkLast hik =
+      pathMapOfInnerHornFace C σ (ne_of_lt (lt_trans hik hkl))
+        (ne_of_lt hkl) (ne_of_gt hkl) := by
+  ext U x
+  have hx : ULift.up.{u, 0} l ∉ (ofNerveSimplex x).last.I := by
+    intro hl
+    exact (not_le_of_gt hkl) ((ofNerveSimplex x).last.le_right _ hl)
+  have h := congrArg (fun q ↦ q.app U ⟨x, hx⟩)
+    (pathMapOfInnerHornFace_pairwise_on_avoiding_of_lt
+      C σ hlLast
+      (ne_of_lt (lt_trans hik hkl)) (ne_of_lt hkl)
+      (ne_of_lt (lt_trans hik (lt_trans hkl hlLast)))
+      (ne_of_lt (lt_trans hkl hlLast)) (ne_of_gt hkl) hkLast.symm
+      (avoidingPathSubcomplex_le_avoiding_of_right
+        (show ULift.up.{u, 0} k < ULift.up (Fin.last (n + 2)) from
+          Fin.lt_last_iff_ne_last.mpr hkLast)))
+  exact h.symm
+
+/-- A face vertex to the left of a right interval supplies the same full interval map as the
+canonical zero face. -/
+theorem innerHornRightPathMap_eq_pathMapOfInnerHornFace_of_left
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k l j : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hkZero : k ≠ 0) (hZeroL : 0 < l) (hlk : l < k) (hkj : k < j) :
+    innerHornRightPathMap C σ hkZero hkj =
+      pathMapOfInnerHornFace C σ (ne_of_gt hlk)
+        (ne_of_gt (lt_trans hlk hkj)) (ne_of_lt hlk) := by
+  ext U x
+  have hx : ULift.up.{u, 0} l ∉ (ofNerveSimplex x).last.I := by
+    intro hl
+    exact (not_le_of_gt hlk) ((ofNerveSimplex x).last.left_le _ hl)
+  have h := congrArg (fun q ↦ q.app U ⟨x, hx⟩)
+    (pathMapOfInnerHornFace_pairwise_on_higher_avoiding_of_lt
+      C σ hZeroL hkZero
+      (ne_of_gt (lt_trans (Fin.pos_iff_ne_zero.mpr hkZero) hkj))
+      (ne_of_gt hlk) (ne_of_gt (lt_trans hlk hkj)) hkZero.symm (ne_of_lt hlk)
+      (avoidingPathSubcomplex_le_avoiding_of_left
+        (show ULift.up.{u, 0} 0 < ULift.up k from Fin.pos_iff_ne_zero.mpr hkZero)))
+  exact h
+
 /-- Two ordered omitted-vertex face maps agree on paths omitting both vertices. -/
 theorem avoidingPathMapOfInnerHornFace_pairwise_of_lt
     (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
