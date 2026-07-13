@@ -349,7 +349,7 @@ theorem avoidingPathSubcomplex_delete_insert
   rw [insert_deletePathVertex (x.1.obj a) l hli hlj
     ((ofNerveSimplex x.1).not_mem_of_not_mem_last x.2 a)]
 
-/-- On paths omitting two vertices, deleting the first lands in paths omitting the reindexed second. -/
+/-- Deleting one of two omitted vertices preserves omission of the other. -/
 noncomputable def deleteVertexAvoidingPathMap
     {n : ℕ} {i j l m : Fin (n + 2)}
     (hli : i ≠ l) (hlj : j ≠ l) (hml : m ≠ l) :
