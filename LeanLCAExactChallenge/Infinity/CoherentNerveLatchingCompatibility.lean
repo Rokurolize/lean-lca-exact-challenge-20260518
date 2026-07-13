@@ -1213,7 +1213,7 @@ theorem pathMapOfInnerHornFace_map_comp
   rw [← Category.assoc,
     pathComposition_deleteVertexPathNerveMap hil hrl hjl]
   slice_lhs 2 3 => rw [(innerHornFaceFunctor C σ hlm).map_comp]
-  simp
+  simp only [Category.assoc, tensorHom_comp_tensorHom_assoc]
   rw [← tensorHom_comp_tensorHom]
   simp only [Category.assoc]
   rw [eComp_eqToHom_of_obj_eq hi hr hj]
