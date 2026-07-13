@@ -84,6 +84,15 @@ theorem succAbove_deleteFinVertex {n : ℕ} (l : Fin (n + 2))
   exact congrArg Subtype.val ((Fin.succAboveOrderIso l).apply_symm_apply
     ⟨a, by simpa using hal⟩)
 
+/-- Deletion is injective away from the deleted vertex. -/
+theorem deleteFinVertex_ne {n : ℕ} (l a b : Fin (n + 2))
+    (hal : a ≠ l) (hbl : b ≠ l) (hab : a ≠ b) :
+    deleteFinVertex l a hal ≠ deleteFinVertex l b hbl := by
+  intro h
+  apply hab
+  rw [← succAbove_deleteFinVertex l a hal,
+    ← succAbove_deleteFinVertex l b hbl, h]
+
 /-- Deleting a lower vertex shifts a higher vertex down by one. -/
 theorem deleteFinVertex_of_lt {n : ℕ} {l a : Fin (n + 2)} (h : l < a) :
     deleteFinVertex l a (ne_of_gt h) = a.pred (Fin.ne_zero_of_lt h) := by
@@ -223,6 +232,15 @@ theorem path_heq_of_endpoint_eq {J : Type u} [LinearOrder J]
   subst j'
   exact heq_of_eq (CategoryTheory.SimplicialThickening.Path.ext hI)
 
+/-- The nerves of thick-path categories respect propositional equality of their endpoints. -/
+theorem nerve_thickPath_eq_of_endpoint_eq {J : Type u} [LinearOrder J]
+    {i j i' j' : J} (hi : i = i') (hj : j = j') :
+    CategoryTheory.nerve (ThickPath i j) =
+      CategoryTheory.nerve (ThickPath i' j') := by
+  subst i'
+  subst j'
+  rfl
+
 /-- Explicit vertex reinsertion agrees heterogeneously with the thickening face functor. -/
 theorem insertVertexPathFunctor_obj_heq {n : ℕ} {i j : Fin (n + 2)}
     (l : Fin (n + 2)) (hli : i ≠ l) (hlj : j ≠ l)
@@ -267,6 +285,25 @@ theorem nerveMap_app_heq_of_pathFunctor_obj_heq
     (h_obj := fun a ↦ eq_of_heq (hobj (x.obj a)))
     (h_map := fun _ _ _ ↦ Subsingleton.elim _ _)
 
+/-- The preceding simplexwise comparison assembles into a heterogeneous equality of nerve
+maps. -/
+theorem nerveMap_heq_of_pathFunctor_obj_heq
+    {J A : Type u} [LinearOrder J] [Category.{u} A]
+    {i j i' j' : J} (hi : i = i') (hj : j = j')
+    (F : CategoryTheory.Functor A (ThickPath i j))
+    (G : CategoryTheory.Functor A (ThickPath i' j'))
+    (hobj : ∀ a, HEq (F.obj a) (G.obj a)) :
+    HEq (CategoryTheory.nerveMap F) (CategoryTheory.nerveMap G) := by
+  subst i'
+  subst j'
+  apply heq_of_eq
+  apply CategoryTheory.NatTrans.ext
+  funext U
+  apply ConcreteCategory.hom_ext
+  intro x
+  exact eq_of_heq
+    (nerveMap_app_heq_of_pathFunctor_obj_heq rfl rfl F G hobj U x)
+
 /-- Explicit and canonical vertex reinsertion induce the same nerve simplex, up to their
 propositionally equal endpoint types. -/
 theorem insertVertexPathNerveMap_app_heq {n : ℕ} {i j : Fin (n + 2)}
@@ -290,6 +327,81 @@ theorem insertVertexPathNerveMap_app_heq {n : ℕ} {i j : Fin (n + 2)}
     exact (succAbove_deleteFinVertex l j hlj).symm
   · intro p
     exact insertVertexPathFunctor_obj_heq l hli hlj p
+
+/-- Explicit and canonical vertex reinsertion agree as heterogeneous simplicial maps. -/
+theorem insertVertexPathNerveMap_heq {n : ℕ} {i j : Fin (n + 2)}
+    (l : Fin (n + 2)) (hli : i ≠ l) (hlj : j ≠ l) :
+    HEq (insertVertexPathNerveMap l hli hlj)
+      (CategoryTheory.nerveMap
+        (CategoryTheory.SimplicialThickening.functorMap
+          (SimplexCategory.δ l).toOrderHom.uliftMap
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up.{u, 0} (deleteFinVertex l i hli)))
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up.{u, 0} (deleteFinVertex l j hlj))))) := by
+  apply nerveMap_heq_of_pathFunctor_obj_heq
+  · apply ULift.ext
+    exact (succAbove_deleteFinVertex l i hli).symm
+  · apply ULift.ext
+    exact (succAbove_deleteFinVertex l j hlj).symm
+  · intro p
+    exact insertVertexPathFunctor_obj_heq l hli hlj p
+
+/-- An enriched functor's Hom maps respect propositional equality of both endpoint objects. -/
+theorem enrichedFunctor_map_heq_of_obj_eq
+    {D E : Type u} [Category.{u} D] [Category.{u} E]
+    [CategoryTheory.SimplicialCategory D] [CategoryTheory.SimplicialCategory E]
+    (F : CategoryTheory.EnrichedFunctor SSet D E)
+    {a b a' b' : D} (ha : a = a') (hb : b = b') :
+    HEq (F.map a b) (F.map a' b') := by
+  subst a'
+  subst b'
+  rfl
+
+/-- Explicit reinsertion followed by an enriched Hom map is the Hom map of the canonical
+restricted enriched functor. -/
+theorem insertVertexPathNerveMap_comp_enrichedMap_heq
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {i j : Fin (n + 2)}
+    (l : Fin (n + 2)) (hli : i ≠ l) (hlj : j ≠ l)
+    (F : CategoryTheory.EnrichedFunctor SSet
+      (CategoryTheory.SimplicialThickening (ULift.{u, 0} (Fin (n + 2)))) C) :
+    HEq
+      (insertVertexPathNerveMap l hli hlj ≫
+        F.map
+          (CategoryTheory.SimplicialThickening.mk (ULift.up i))
+          (CategoryTheory.SimplicialThickening.mk (ULift.up j)))
+      (((CategoryTheory.SimplicialThickening.functor
+        (SimplexCategory.δ l).toOrderHom.uliftMap).comp (E := C) SSet F).map
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (deleteFinVertex l i hli)))
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (deleteFinVertex l j hlj)))) := by
+  let a := CategoryTheory.SimplicialThickening.mk (ULift.up.{u, 0} i)
+  let b := CategoryTheory.SimplicialThickening.mk (ULift.up.{u, 0} j)
+  let a' := CategoryTheory.SimplicialThickening.mk
+    (ULift.up.{u, 0} (deleteFinVertex l i hli))
+  let b' := CategoryTheory.SimplicialThickening.mk
+    (ULift.up.{u, 0} (deleteFinVertex l j hlj))
+  let G := CategoryTheory.SimplicialThickening.functor
+    (SimplexCategory.δ l).toOrderHom.uliftMap
+  have ha : a = G.obj a' := by
+    apply congrArg CategoryTheory.SimplicialThickening.mk
+    apply ULift.ext
+    exact (succAbove_deleteFinVertex l i hli).symm
+  have hb : b = G.obj b' := by
+    apply congrArg CategoryTheory.SimplicialThickening.mk
+    apply ULift.ext
+    exact (succAbove_deleteFinVertex l j hlj).symm
+  apply CategoryTheory.heq_comp
+  · rfl
+  · exact nerve_thickPath_eq_of_endpoint_eq
+      (congrArg CategoryTheory.SimplicialThickening.as ha)
+      (congrArg CategoryTheory.SimplicialThickening.as hb)
+  · exact congrArg₂ (fun X Y : C ↦ X ⟶[SSet] Y)
+      (congrArg F.obj ha) (congrArg F.obj hb)
+  · exact insertVertexPathNerveMap_heq l hli hlj
+  · exact enrichedFunctor_map_heq_of_obj_eq F ha hb
 
 /-- Reindex thick paths along deletion of one endpoint-distinct vertex. -/
 noncomputable def deleteVertexPathFunctor {n : ℕ} {i j : Fin (n + 2)}
@@ -485,6 +597,33 @@ theorem deleteVertexAvoidingPathMap_ι
           (ULift.up.{u, 0} i) (ULift.up.{u, 0} j) (ULift.up.{u, 0} m)).ι ≫
         deleteVertexPathNerveMap l hli hlj :=
   rfl
+
+/-- On paths omitting two vertices, deleting the first and then deleting and reinserting the
+second is the same as deleting only the first. -/
+theorem inf_avoiding_delete_delete_insert
+    {n : ℕ} {i j l m : Fin (n + 3)}
+    (hli : i ≠ l) (hlj : j ≠ l) (hml : m ≠ l)
+    (him : i ≠ m) (hjm : j ≠ m) :
+    (avoidingPathSubcomplex (ULift.up.{u, 0} i) (ULift.up.{u, 0} j)
+        (ULift.up.{u, 0} l) ⊓
+      avoidingPathSubcomplex (ULift.up.{u, 0} i) (ULift.up.{u, 0} j)
+        (ULift.up.{u, 0} m)).ι ≫
+        deleteVertexPathNerveMap l hli hlj ≫
+        deleteVertexPathNerveMap (deleteFinVertex l m hml)
+          (deleteFinVertex_ne l i m hli hml him)
+          (deleteFinVertex_ne l j m hlj hml hjm) ≫
+        insertVertexPathNerveMap (deleteFinVertex l m hml)
+          (deleteFinVertex_ne l i m hli hml him)
+          (deleteFinVertex_ne l j m hlj hml hjm) =
+      (avoidingPathSubcomplex (ULift.up.{u, 0} i) (ULift.up.{u, 0} j)
+        (ULift.up.{u, 0} l) ⊓
+      avoidingPathSubcomplex (ULift.up.{u, 0} i) (ULift.up.{u, 0} j)
+        (ULift.up.{u, 0} m)).ι ≫
+        deleteVertexPathNerveMap l hli hlj := by
+  simp only [← Category.assoc]
+  rw [← deleteVertexAvoidingPathMap_ι hli hlj hml]
+  simp only [Category.assoc]
+  rw [avoidingPathSubcomplex_delete_insert]
 
 /-- The mapping-object map carried by an available horn face on paths omitting that face vertex. -/
 noncomputable def avoidingPathMapOfInnerHornFace
