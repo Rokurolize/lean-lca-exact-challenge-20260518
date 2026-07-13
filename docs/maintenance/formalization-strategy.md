@@ -1,15 +1,15 @@
 # Formalization Strategy
 
-The project should converge on one source-level product contract: `OriginalFourTaskProductSuccess` is complete only when Lean checks the exact-category, metrizable LCA exact-category, Yoneda Ext, and stable bounded-derived infinity-category witnesses without relying on terminal metadata.
+The project converges on source-level witnesses for the four objectives: the exact-category, metrizable LCA, and Yoneda Ext constructions are complete, while the stable bounded-derived infinity-category remains complete only when Lean checks the localization, coherent DG comparison, genuine stability, and ordinary comparison data.
 
-The public import surface should stay small and mathematical: exact-category interfaces, metrizable LCA constructions, Yoneda Ext, bounded-derived base definitions, finite-product support, stable-boundary bridge APIs, and original-four-task product data.
+The public import surface stays small and mathematical: exact-category interfaces, metrizable LCA constructions, Yoneda Ext, the corrected ordinary Verdier package, mapping-quasicategory localization, coherent DG constructions, and the genuine stability interface.
 
-Long W-number route modules are exploratory route ledgers, not public API; they may stay in the tree while they compile and are exercised by `lake build`, but they should not be imported from the root module unless they become a named reusable theorem family.
+Exploratory route ledgers, assumption relays, status booleans, and provider-name adapters do not belong in the source tree. A retained module must contribute a checked mathematical construction or directly support a stated remaining theorem.
 
-Future route work should replace provider assumptions with concrete constructions or record a precise theorem gap in `docs/research/`; adding another metadata wrapper is not progress toward the product contract.
+Future work should replace assumptions with concrete constructions or isolate the smallest precise theorem gap in `docs/STATUS.md`; adding metadata wrappers is not mathematical progress.
 
 Prefer existing mathlib abstractions before local wrappers: use category-theory kernels, cokernels, short complexes, localizations, finite products, and exactness APIs directly when they fit, and document any local replacement with the missing mathlib theorem that would retire it.
 
-The stable bounded-derived route must consume concrete field evidence for finite limits, finite colimits, suspension/loop equivalence, and pushout/pullback compatibility; an ordinary nerve, a certificate name alone, or a terminal outcome is not enough.
+The stable bounded-derived route must construct finite infinity-limits, finite infinity-colimits, corner-extension adjunctions, and the equivalence of cartesian and cocartesian squares; an ordinary triangulated nerve is not enough.
 
-The root `LeanLCAExactChallenge.lean` should import route modules explicitly and expose only the intended review and user-facing modules.
+The root `LeanLCAExactChallenge.lean` imports every retained project module so the full build checks the complete maintained surface and unreachable source is visible as dead weight.

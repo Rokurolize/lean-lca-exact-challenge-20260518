@@ -152,71 +152,7 @@ theorem rightCone_rightInclusion_stdSimplex (n : ℕ) :
     simplicialJoinRightInclusion (Δ[0] : SSet.{u}) (Δ[n] : SSet.{u}) ≫
         (simplicialJoinStdSimplexIsoNat 0 n).hom =
       SSet.stdSimplex.map (standardJoinRightOperator 0 n) := by
-  let F := emptyAugmentation.{u}.obj (Δ[0] : SSet.{u})
-  let G := emptyAugmentation.{u}.obj (Δ[n] : SSet.{u})
-  let h := augmentedDayConvolution F G
-  let h' : CategoryTheory.MonoidalCategory.DayConvolution F G :=
-    standardSimplexDayConvolution.{u}
-      (SimplexCategory.mk 0) (SimplexCategory.mk n)
-  letI : Unique (F.obj (Opposite.op WithInitial.star)) :=
-    (Limits.Types.isTerminalEquivUnique _) (emptyAugmentationStarIsTerminal (Δ[0] : SSet.{u}))
-  let p : AugmentedSimplexCategoryᵒᵖ × AugmentedSimplexCategoryᵒᵖ :=
-    (Opposite.op WithInitial.star,
-    AugmentedSimplexCategory.inclusion.op.obj (Opposite.op (SimplexCategory.mk n)))
-  let y : G.obj (AugmentedSimplexCategory.inclusion.op.obj
-      (Opposite.op (SimplexCategory.mk n))) :=
-    SSet.yonedaEquiv (𝟙 (Δ[n] : SSet.{u}))
-  let input : (F ⊠ G).obj (Opposite.op WithInitial.star,
-      AugmentedSimplexCategory.inclusion.op.obj
-        (Opposite.op (SimplexCategory.mk n))) := by
-    change F.obj (Opposite.op WithInitial.star) ×
-      G.obj (AugmentedSimplexCategory.inclusion.op.obj
-        (Opposite.op (SimplexCategory.mk n)))
-    exact (default, y)
-  let chosenValue := by
-    exact ConcreteCategory.hom
-      ((@CategoryTheory.MonoidalCategory.DayConvolution.unit
-        _ _ _ _ _ _ F G h).app p) input
-  let stdValue := by
-    exact ConcreteCategory.hom
-      ((@CategoryTheory.MonoidalCategory.DayConvolution.unit
-        _ _ _ _ _ _ F G h').app p) input
-  let isoValue := ConcreteCategory.hom ((h.uniqueUpToIso h').hom.app
-    ((CategoryTheory.MonoidalCategory.tensor AugmentedSimplexCategoryᵒᵖ).obj p)) chosenValue
-  have hvUnique : isoValue = stdValue := by
-    let hu := CategoryTheory.MonoidalCategory.DayConvolution.unit_uniqueUpToIso_hom h h'
-    have hu0 := congrArg (fun τ ↦ τ.app p) hu
-    have hu1 := ConcreteCategory.congr_hom hu0 input
-    exact hu1
-  have hvStd : stdValue =
-      SSet.yonedaEquiv
-        (SSet.stdSimplex.map (standardJoinRightOperator 0 n)) := by
-    dsimp [stdValue, h', standardSimplexDayConvolution, dayConvolutionOfInputIsos,
-      input, y, F, G]
-    rw [SSet.yonedaEquiv_map]
-    apply ULift.ext
-    change ((default : ULift.{u} (WithInitial.star ⟶
-      AugmentedSimplexCategory.inclusion.obj (SimplexCategory.mk 0))).down ⊗ₘ
-        AugmentedSimplexCategory.inclusion.map (𝟙 (SimplexCategory.mk n))) = _
-    have hrhs : (SSet.stdSimplex.objEquiv.{u}.symm
-        (standardJoinRightOperator 0 n)).down = standardJoinRightOperator 0 n := rfl
-    rw [hrhs]
-    apply SimplexCategory.Hom.ext
-    ext j
-    have ht : (default : ULift.{u} (WithInitial.star ⟶
-        AugmentedSimplexCategory.inclusion.obj (SimplexCategory.mk 0))).down ⊗ₘ
-          AugmentedSimplexCategory.inclusion.map (𝟙 (SimplexCategory.mk n)) =
-        AugmentedSimplexCategory.inr' (SimplexCategory.mk 0)
-          (SimplexCategory.mk n) := by rfl
-    rw [ht, AugmentedSimplexCategory.inr'_eval]
-    rfl
-  apply SSet.yonedaEquiv.injective
-  dsimp [simplicialJoinRightInclusion, simplicialJoinStdSimplexIsoNat,
-    simplicialJoinStdSimplexIso, simplicialJoinStdSimplexIsoRaw]
-  rw [SSet.yonedaEquiv_comp]
-  change isoValue = SSet.yonedaEquiv
-    (SSet.stdSimplex.map (standardJoinRightOperator 0 n))
-  exact hvUnique.trans hvStd
+  exact simplicialJoinRightInclusion_stdSimplex 0 n
 
 lemma range_rightConeBaseLeg (n : ℕ) :
     SSet.Subcomplex.range
@@ -438,154 +374,6 @@ lemma emptyJoinCell_zero_eq_baseFace (r : ℕ) :
     · exact (hx rfl).elim
     · exact ⟨⟨a.val, by omega⟩, by apply Fin.ext; simp [Nat.add_comm]⟩
 
-/- The abandoned range-factorization route is retained temporarily below for reference.
-It is superseded by the canonical join-sigma bicartesian-square transport. -/
-/-
-lemma range_horn_comp_rightConeBase_eq_emptyHornRange
-    (r : ℕ) (i : Fin (r + 2)) :
-    SSet.Subcomplex.range
-        ((SSet.horn (r + 1) i).ι ≫
-          simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[r + 1] ≫
-          (simplicialJoinStdSimplexIsoNat 0 (r + 1)).hom) =
-      joinSigmaOneHornRange 0 (r + 1) (∅ : Finset (Fin 1)) i := by
-  rw [rightCone_rightInclusion_stdSimplex]
-  rw [SSet.Subcomplex.range_comp]
-  have hr : SSet.Subcomplex.range (SSet.horn (r + 1) i).ι =
-      SSet.horn (r + 1) i := Subfunctor.range_ι _
-  rw [hr]
-  rw [SSet.horn_eq_iSup,
-    SSet.Subcomplex.image_iSup]
-  have hjoin : joinSigmaOneHornRange.{u} 0 (r + 1)
-      (∅ : Finset (Fin 1)) i =
-      ⨆ (k : ({i}ᶜ : Set (Fin (r + 2)))), SSet.stdSimplex.face
-        ((joinSigmaOneVertices 0 (r + 1) (∅ : Finset (Fin 1))).erase
-          (joinSigmaOne 0 (r + 1) (∅ : Finset (Fin 1)) k.1)) := by
-    simpa only [Finset.card_empty, Nat.zero_add,
-      joinSigmaOneDistinguishedIndex] using
-      joinSigmaOneHornRange_eq_iSup_erasedFaces (u := u) 0 r
-        (∅ : Finset (Fin 1)) i
-  rw [hjoin]
-  congr 1
-  funext j
-  rw [← stdSimplex_range_map_delta j.1, ← SSet.Subcomplex.range_comp]
-  congr 1
-  apply SimplexCategory.Hom.ext
-  ext k
-  simp [standardJoinRightOperator, SimplexCategory.δ,
-    joinSigmaOne, joinSigmaOneVertices, joinFirstVertices,
-    joinSecondVertices, joinSigmaOneDistinguishedIndex]
-
-noncomputable def leftConeHornRangeBicartSq (r : ℕ) (i : Fin (r + 2)) :
-    SSet.Subcomplex.BicartSq
-      (SSet.Subcomplex.range
-        ((SSet.horn (r + 1) i).ι ≫
-          simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[r + 1] ≫
-          (simplicialJoinStdSimplexIsoNat 0 (r + 1)).hom))
-      (representableJoinHornInitial 0 (r + 1) i)
-      (SSet.stdSimplex.face ({(0 : Fin (0 + (r + 1) + 2))}ᶜ))
-      (representableJoinHornInitial 0 (r + 1) i ⊔
-        SSet.stdSimplex.face ({(0 : Fin (0 + (r + 1) + 2))}ᶜ)) where
-  sup_eq := rfl
-  inf_eq := by
-    rw [range_horn_comp_rightConeBase_eq_emptyHornRange,
-      ← emptyJoinCell_zero_eq_baseFace,
-      initial_inf_emptyJoinCell_eq_hornRange]
-
-noncomputable def leftConeHornSourceIsPushoutRange
-    (r : ℕ) (i : Fin (r + 2)) :
-    let f := simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[r + 1, i]
-    let g := (SSet.horn (r + 1) i).ι
-    let h := representableJoinHornMap.{u} 0 (r + 1) i
-    let k := simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[r + 1] ≫
-      (simplicialJoinStdSimplexIsoNat 0 (r + 1)).hom
-    let sq := leftConeHornRangeBicartSq.{u} r i
-    IsPushout f g
-      (SSet.Subcomplex.toRange h ≫ SSet.Subcomplex.homOfLE sq.le₂₄)
-      (SSet.Subcomplex.toRange k ≫ SSet.Subcomplex.homOfLE sq.le₃₄) := by
-  dsimp only
-  let f := simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[r + 1, i]
-  let g := (SSet.horn (r + 1) i).ι
-  let h := representableJoinHornMap.{u} 0 (r + 1) i
-  let k := simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Δ[r + 1] ≫
-    (simplicialJoinStdSimplexIsoNat 0 (r + 1)).hom
-  let sq := leftConeHornRangeBicartSq.{u} r i
-  let e₁ := simplicialSetIsoRangeOfMono (g ≫ k)
-  let e₂ := simplicialSetIsoRangeOfMono h
-  let e₃ := simplicialSetIsoRangeOfMono k
-  refine sq.isPushout.of_iso' e₁ e₂ e₃ (Iso.refl _) ?_ ?_ ?_ ?_
-  · apply (cancel_mono (SSet.Subcomplex.range h).ι).mp
-    simp [e₁, e₂, f, g, h, k, sq, simplicialSetIsoRangeOfMono,
-      Category.assoc]
-  · apply (cancel_mono (SSet.Subcomplex.range k).ι).mp
-    simp [e₁, e₃, g, k, sq, simplicialSetIsoRangeOfMono,
-      Category.assoc]
-  · simp [e₂, h, sq, simplicialSetIsoRangeOfMono, Category.assoc]
-  · simp [e₃, k, sq, simplicialSetIsoRangeOfMono, Category.assoc]
-
-noncomputable def leftConeHornSourceRangeIso (r : ℕ) (i : Fin (r + 2)) :
-    pushout (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[r + 1, i])
-        (SSet.horn (r + 1) i).ι ≅
-      ((representableJoinHornInitial 0 (r + 1) i ⊔
-        SSet.stdSimplex.face ({(0 : Fin (0 + (r + 1) + 2))}ᶜ)) : SSet.{u}) :=
-  (leftConeHornSourceIsPushoutRange.{u} r i).isoPushout.symm
-
-lemma leftConeHornSourceRangeIso_hom_ι (r : ℕ) (i : Fin (r + 2)) :
-    (leftConeHornSourceRangeIso.{u} r i).hom ≫
-        (representableJoinHornInitial 0 (r + 1) i ⊔
-          SSet.stdSimplex.face ({(0 : Fin (0 + (r + 1) + 2))}ᶜ)).ι =
-      leftConeHornCornerStdMap (r + 1) i := by
-  apply pushout.hom_ext
-  · rw [← Category.assoc]
-    rw [leftConeHornSourceRangeIso, Iso.symm_hom,
-      IsPushout.inl_isoPushout_inv]
-    simp [representableJoinHornMap, leftConeHornCornerStdMap,
-      Category.assoc]
-  · rw [← Category.assoc]
-    rw [leftConeHornSourceRangeIso, Iso.symm_hom,
-      IsPushout.inr_isoPushout_inv]
-    simp [leftConeHornCornerStdMap, Category.assoc]
-
-noncomputable instance leftConeHornCornerStdMap_mono
-    (r : ℕ) (i : Fin (r + 2)) :
-    Mono (leftConeHornCornerStdMap.{u} (r + 1) i) := by
-  rw [← leftConeHornSourceRangeIso_hom_ι (u := u) r i]
-  infer_instance
-
-lemma leftConeHornCornerStdMap_innerAnodyne
-    (n : ℕ) (i : Fin (n + 1)) (hi : i < Fin.last n) :
-    SSet.innerAnodyneExtensions (leftConeHornCornerStdMap.{u} n i) := by
-  cases n with
-  | zero => omega
-  | succ r =>
-      let D := representableJoinHornInitial 0 (r + 1) i ⊔
-        SSet.stdSimplex.face ({(0 : Fin (0 + (r + 1) + 2))}ᶜ)
-      have hD : D = SSet.horn (0 + (r + 1) + 1)
-          (⟨i.val + 1, by omega⟩ : Fin (0 + (r + 1) + 2)) :=
-        representableJoinHornInitial_sup_baseFace_eq_shiftedHorn r i
-      have hι : SSet.innerAnodyneExtensions D.ι := by
-        rw [hD]
-        exact SSet.innerAnodyneExtensions.horn_ι (by omega) (by
-          simpa only [Fin.lt_iff_val_lt_val, Fin.val_mk, Fin.val_last] using hi)
-      have he := SSet.innerAnodyneExtensions.of_isIso
-        (leftConeHornSourceRangeIso.{u} r i).hom
-      have hc := SSet.innerAnodyneExtensions.comp_mem _ _ he hι
-      rw [leftConeHornSourceRangeIso_hom_ι] at hc
-      exact hc
-
-lemma leftConeHornCornerMap_innerAnodyne
-    (n : ℕ) (i : Fin (n + 1)) (hi : i < Fin.last n) :
-    SSet.innerAnodyneExtensions (leftConeHornCornerMap.{u} n i) := by
-  have hs := leftConeHornCornerStdMap_innerAnodyne (u := u) n i hi
-  have he := SSet.innerAnodyneExtensions.of_isIso
-    (simplicialJoinStdSimplexIsoNat 0 n).inv
-  have hc := SSet.innerAnodyneExtensions.comp_mem _ _ hs he
-  change SSet.innerAnodyneExtensions
-    ((leftConeHornCornerMap n i ≫
-      (simplicialJoinStdSimplexIsoNat 0 n).hom) ≫
-      (simplicialJoinStdSimplexIsoNat 0 n).inv) at hc
-  simpa only [Category.assoc, Iso.hom_inv_id, Category.comp_id] using hc
--/
-
 noncomputable def hornOneZeroIsoPoint :
     (Λ[1, (0 : Fin 2)] : SSet.{u}) ≅ Δ[0] := by
   let f : ∀ (j : Fin 2) (_ : j ≠ (0 : Fin 2)),
@@ -635,6 +423,128 @@ lemma hornOneZeroIsoPoint_hom_comp_coface :
   rw [Iso.inv_hom_id_assoc]
   simp [hornOneZeroIsoPoint]
   rfl
+
+/-- The one-dimensional horn at index one is a point. -/
+noncomputable def hornOneOneIsoPoint :
+    (Λ[1, (1 : Fin 2)] : SSet.{u}) ≅ Δ[0] := by
+  let f : ∀ (j : Fin 2) (_ : j ≠ (1 : Fin 2)),
+      (Δ[0] : SSet.{u}) ⟶ Δ[0] := fun _ _ ↦ 𝟙 _
+  have hf : SSet.horn.IsCompatible f := by trivial
+  refine
+    { hom := hf.desc
+      inv := SSet.horn.ι (1 : Fin 2) (0 : Fin 2) (by decide)
+      hom_inv_id := ?_
+      inv_hom_id := SSet.stdSimplex.isTerminalObj₀.hom_ext _ _ }
+  apply SSet.horn.hom_ext'
+  intro j hj
+  have hj0 : j = (0 : Fin 2) := by
+    rcases Fin.eq_zero_or_eq_succ j with h | ⟨k, rfl⟩
+    · exact h
+    · have hk : k = 0 := Fin.eq_zero k
+      subst k
+      exact (hj rfl).elim
+  subst j
+  rw [← Category.assoc, hf.ι_desc]
+  simp [f]
+
+lemma hornOneOneIsoPoint_hom_comp_coface :
+    hornOneOneIsoPoint.{u}.hom ≫
+        SSet.stdSimplex.map (SimplexCategory.δ (0 : Fin 2)) =
+      (SSet.horn 1 (1 : Fin 2)).ι := by
+  apply (cancel_epi hornOneOneIsoPoint.inv).mp
+  rw [Iso.inv_hom_id_assoc]
+  simp [hornOneOneIsoPoint]
+  rfl
+
+/-- A representable left factor joined with the zero-index one-dimensional horn maps monically
+to the ambient representable join. -/
+noncomputable instance representableJoinHornMap_one_zero_mono (m : ℕ) :
+    Mono (representableJoinHornMap.{u} m 1 (0 : Fin 2)) := by
+  let e := simplicialJoinMap (𝟙 (Δ[m] : SSet.{u}))
+    hornOneZeroIsoPoint.hom
+  haveI : IsIso e := by
+    dsimp [e]
+    apply ordinaryJoinBifunctor_map_isIso
+  let q := simplicialJoinMap (𝟙 (Δ[m] : SSet.{u}))
+      (SSet.stdSimplex.map (SimplexCategory.δ (1 : Fin 2))) ≫
+    (simplicialJoinStdSimplexIsoNat m 1).hom
+  haveI : Mono q := by
+    dsimp [q]
+    rw [simplicialJoinStdSimplexIsoNat_naturality_rightCoface]
+    haveI : Mono (SSet.stdSimplex.map
+        (SimplexCategory.δ
+          (⟨m + 1 + (1 : Fin 2).val, by omega⟩ : Fin (m + 3)))) := by
+      change Mono (SSet.stdSimplex.δ
+        (⟨m + 1 + (1 : Fin 2).val, by omega⟩ : Fin (m + 3)))
+      infer_instance
+    infer_instance
+  have heq : representableJoinHornMap.{u} m 1 (0 : Fin 2) = e ≫ q := by
+    unfold representableJoinHornMap
+    dsimp [e, q]
+    rw [← Category.assoc]
+    change ordinaryJoinBifunctor.{u}.map
+          ((𝟙 (Δ[m] : SSet.{u}), (SSet.horn 1 (0 : Fin 2)).ι) :
+            ((Δ[m] : SSet.{u}), (Λ[1, (0 : Fin 2)] : SSet.{u})) ⟶
+              ((Δ[m] : SSet.{u}), (Δ[1] : SSet.{u}))) ≫ _ =
+      (ordinaryJoinBifunctor.{u}.map
+          ((𝟙 (Δ[m] : SSet.{u}), hornOneZeroIsoPoint.hom) :
+            ((Δ[m] : SSet.{u}), (Λ[1, (0 : Fin 2)] : SSet.{u})) ⟶
+              ((Δ[m] : SSet.{u}), (Δ[0] : SSet.{u}))) ≫
+        ordinaryJoinBifunctor.{u}.map
+          ((𝟙 (Δ[m] : SSet.{u}),
+            SSet.stdSimplex.map (SimplexCategory.δ (1 : Fin 2))) :
+            ((Δ[m] : SSet.{u}), (Δ[0] : SSet.{u})) ⟶
+              ((Δ[m] : SSet.{u}), (Δ[1] : SSet.{u})))) ≫ _
+    rw [← ordinaryJoinBifunctor.map_comp]
+    congr 2
+    ext <;> simp [hornOneZeroIsoPoint_hom_comp_coface]
+  rw [heq]
+  infer_instance
+
+/-- A representable left factor joined with the one-index one-dimensional horn maps monically to
+the ambient representable join. -/
+noncomputable instance representableJoinHornMap_one_one_mono (m : ℕ) :
+    Mono (representableJoinHornMap.{u} m 1 (1 : Fin 2)) := by
+  let e := simplicialJoinMap (𝟙 (Δ[m] : SSet.{u}))
+    hornOneOneIsoPoint.hom
+  haveI : IsIso e := by
+    dsimp [e]
+    apply ordinaryJoinBifunctor_map_isIso
+  let q := simplicialJoinMap (𝟙 (Δ[m] : SSet.{u}))
+      (SSet.stdSimplex.map (SimplexCategory.δ (0 : Fin 2))) ≫
+    (simplicialJoinStdSimplexIsoNat m 1).hom
+  haveI : Mono q := by
+    dsimp [q]
+    rw [simplicialJoinStdSimplexIsoNat_naturality_rightCoface]
+    haveI : Mono (SSet.stdSimplex.map
+        (SimplexCategory.δ
+          (⟨m + 1 + (0 : Fin 2).val, by omega⟩ : Fin (m + 3)))) := by
+      change Mono (SSet.stdSimplex.δ
+        (⟨m + 1 + (0 : Fin 2).val, by omega⟩ : Fin (m + 3)))
+      infer_instance
+    infer_instance
+  have heq : representableJoinHornMap.{u} m 1 (1 : Fin 2) = e ≫ q := by
+    unfold representableJoinHornMap
+    dsimp [e, q]
+    rw [← Category.assoc]
+    change ordinaryJoinBifunctor.{u}.map
+          ((𝟙 (Δ[m] : SSet.{u}), (SSet.horn 1 (1 : Fin 2)).ι) :
+            ((Δ[m] : SSet.{u}), (Λ[1, (1 : Fin 2)] : SSet.{u})) ⟶
+              ((Δ[m] : SSet.{u}), (Δ[1] : SSet.{u}))) ≫ _ =
+      (ordinaryJoinBifunctor.{u}.map
+          ((𝟙 (Δ[m] : SSet.{u}), hornOneOneIsoPoint.hom) :
+            ((Δ[m] : SSet.{u}), (Λ[1, (1 : Fin 2)] : SSet.{u})) ⟶
+              ((Δ[m] : SSet.{u}), (Δ[0] : SSet.{u}))) ≫
+        ordinaryJoinBifunctor.{u}.map
+          ((𝟙 (Δ[m] : SSet.{u}),
+            SSet.stdSimplex.map (SimplexCategory.δ (0 : Fin 2))) :
+            ((Δ[m] : SSet.{u}), (Δ[0] : SSet.{u})) ⟶
+              ((Δ[m] : SSet.{u}), (Δ[1] : SSet.{u})))) ≫ _
+    rw [← ordinaryJoinBifunctor.map_comp]
+    congr 2
+    ext <;> simp [hornOneOneIsoPoint_hom_comp_coface]
+  rw [heq]
+  infer_instance
 
 lemma pointJoinHornOneZeroIso_hom_comp_rightCoface :
     pointJoinHornOneZeroIso.{u}.hom ≫

@@ -1,6 +1,8 @@
 import LeanLCAExactChallenge.Infinity.EquivalenceForcing
 import LeanLCAExactChallenge.Infinity.EquivalenceForcingProductDecomposition
 import LeanLCAExactChallenge.Infinity.InnerAnodyneMapping
+import LeanLCAExactChallenge.Infinity.JoyalParameterizedExtension
+import LeanLCAExactChallenge.Infinity.JoyalSpecialOuterHornDuality
 import LeanLCAExactChallenge.Infinity.MetrizableRelative
 
 /-!
@@ -165,37 +167,6 @@ theorem metrizableEquivalenceForcingMappingLocalizationProperty_of_unconditional
           metrizableEquivalenceForcingQCatMap,
           ObjectProperty.homMk_hom] using hEquiv Q)⟩)
 
-/-- The legacy targetwise equivalence assertion parameterized by the v4.30 closure
-hypothesis. -/
-def MetrizableEquivalenceForcingCanonicalComparisonIsEquivalence
-    (hprod : InnerHornPushoutProductIsInnerAnodyne.{1})
-    (Q : SSet.QCat.{1}) : Prop :=
-  IsBicategoricalEquivalence
-    (ObjectProperty.homMk
-      (metrizableEquivalenceForcingMappingComparison Q) :
-        internalHomQCat metrizableEquivalenceForcingQCat.obj Q.obj
-            (@quasicategory_ihom_of_innerHornPushoutProduct
-              hprod metrizableEquivalenceForcingQCat.obj Q.obj Q.property) ⟶
-          relativeInternalHomQCat
-            (relativeNerveEdgeMarking relativeCategory) Q.obj
-            (@relativeInternalHom_quasicategory_of_innerHornPushoutProduct
-              hprod (CategoryTheory.nerve ComplexCategory) Q.obj Q.property
-              (relativeNerveEdgeMarking relativeCategory)))
-
-/-- Pushout-product closure and equivalence of the canonical comparisons imply the full
-mapping-quasicategory localization property. -/
-theorem metrizableEquivalenceForcingMappingLocalizationProperty_of_comparisons
-    (hprod : InnerHornPushoutProductIsInnerAnodyne.{1})
-    (hEquiv : ∀ Q : SSet.QCat.{1},
-      MetrizableEquivalenceForcingCanonicalComparisonIsEquivalence hprod Q) :
-    MetrizableEquivalenceForcingMappingLocalizationProperty :=
-  metrizableEquivalenceForcingMappingLocalizationProperty_of_universal
-    (fun Q => ⟨MappingQuasicategoryLocalizationAt.ofCanonicalOfInnerHornPushoutProduct
-      hprod (relativeNerveEdgeMarking relativeCategory)
-      metrizableEquivalenceForcingQCatMap Q
-      metrizableEquivalenceForcingMap_invertsMarkedEdges (by
-        exact hEquiv Q)⟩)
-
 /-- The presentation-to-quasicategory map is inner anodyne. -/
 theorem metrizableToEquivalenceForcingQCat_innerAnodyne :
     SSet.innerAnodyneExtensions
@@ -325,6 +296,21 @@ theorem metrizableEquivalenceForcingMappingLocalizationProperty_of_intervalMonoR
   metrizableEquivalenceForcingMappingLocalizationProperty_of_presentationMonoRLP
     (fun Q ↦
       metrizableEquivalenceForcingPresentationComparisonHasMonoRLP_of_interval Q (h Q))
+
+/-- Special-left-horn fillers in every target imply the mapping localization property. -/
+theorem metrizableEquivalenceForcingMappingLocalizationProperty_of_specialLeftHornFillers
+    (h : ∀ Q : SSet.QCat.{1}, HasAllSpecialLeftHornFillers Q.obj) :
+    MetrizableEquivalenceForcingMappingLocalizationProperty :=
+  metrizableEquivalenceForcingMappingLocalizationProperty_of_intervalMonoRLP
+    (fun Q ↦ @intervalRestriction_mem_monomorphisms_rlp_of_specialLeftHornFillers
+      Q.obj Q.property (h Q))
+
+/-- The equivalence-forcing carrier satisfies the complete mapping-quasicategory
+localization universal property. -/
+theorem metrizableEquivalenceForcingMappingLocalizationProperty_direct :
+    MetrizableEquivalenceForcingMappingLocalizationProperty :=
+  metrizableEquivalenceForcingMappingLocalizationProperty_of_specialLeftHornFillers
+    (fun Q ↦ @hasAllSpecialLeftHornFillers_direct Q.obj Q.property)
 
 /-- The equivalence-forcing map sends every generated weak equivalence to an equivalence. -/
 theorem metrizableEquivalenceForcingMap_generated

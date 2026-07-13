@@ -9,6 +9,7 @@ import Mathlib.CategoryTheory.Functor.KanExtension.Adjunction
 import Mathlib.CategoryTheory.Functor.KanExtension.Pointwise
 import Mathlib.CategoryTheory.Monoidal.DayConvolution
 import Mathlib.CategoryTheory.Monoidal.DayConvolution.Closed
+import Mathlib.CategoryTheory.Monoidal.Closed.Braided
 import Mathlib.CategoryTheory.Monoidal.Types.Basic
 import Mathlib.CategoryTheory.Monoidal.Closed.Types
 import Mathlib.CategoryTheory.Limits.Presheaf
@@ -2024,6 +2025,428 @@ theorem dayConvolutionMap_id
   rw [h]
   simp only [CategoryTheory.Functor.map_id, Category.id_comp,
     Functor.whiskerLeft_id', Category.comp_id]
+
+/-- The augmented representable at the initial augmented simplex. -/
+abbrev augmentedYonedaStar : AugmentedSSet.{u} :=
+  CategoryTheory.uliftYoneda.{u}.obj
+    (WithInitial.star : AugmentedSimplexCategory)
+
+/-- The identity point at the monoidal unit of the opposite augmented simplex category. -/
+def augmentedYonedaStarCan :
+    𝟙_ (Type u) ⟶ augmentedYonedaStar.{u}.obj
+      (𝟙_ AugmentedSimplexCategoryᵒᵖ) :=
+  ↾fun _ ↦ ULift.up (𝟙 (WithInitial.star : AugmentedSimplexCategory))
+
+/-- The identity point as the unit natural transformation for the augmented Yoneda presheaf. -/
+def augmentedYonedaStarCanNat :
+    Functor.fromPUnit.{0} (𝟙_ (Type u)) ⟶
+      Functor.fromPUnit.{0} (𝟙_ AugmentedSimplexCategoryᵒᵖ) ⋙
+        augmentedYonedaStar.{u} where
+  app _ := augmentedYonedaStarCan.{u}
+
+/-- The augmented Yoneda presheaf at the initial simplex is the pointwise Day unit. -/
+@[implicit_reducible]
+def augmentedYonedaStarIsLeftKanExtension :
+    augmentedYonedaStar.{u}.IsLeftKanExtension
+      augmentedYonedaStarCanNat.{u} := by
+  refine { nonempty_isUniversal := ⟨?_⟩ }
+  refine Limits.IsInitial.ofUniqueHom
+    (X := Functor.LeftExtension.mk
+      augmentedYonedaStar.{u} augmentedYonedaStarCanNat.{u})
+    (fun s ↦ StructuredArrow.homMk
+      (CategoryTheory.uliftYonedaEquiv.symm
+        (s.hom.app default PUnit.unit)) ?_) ?_
+  · apply NatTrans.ext
+    funext j
+    rcases j with ⟨j⟩
+    rcases j with ⟨⟩
+    apply ConcreteCategory.hom_ext
+    intro x
+    rcases x with ⟨⟩
+    change s.right.map (𝟙 (Opposite.op
+      (WithInitial.star : AugmentedSimplexCategory)))
+        (s.hom.app default PUnit.unit) = s.hom.app default PUnit.unit
+    simp
+  · intro s f
+    apply StructuredArrow.hom_ext
+    apply CategoryTheory.uliftYonedaEquiv.injective
+    change CategoryTheory.uliftYonedaEquiv f.right =
+      CategoryTheory.uliftYonedaEquiv
+        (CategoryTheory.uliftYonedaEquiv.symm
+          (s.hom.app default PUnit.unit))
+    rw [CategoryTheory.uliftYonedaEquiv_apply, Equiv.apply_symm_apply]
+    have hf := ConcreteCategory.congr_hom
+      (NatTrans.congr_app f.w default) PUnit.unit
+    change f.right.app (Opposite.op
+      (WithInitial.star : AugmentedSimplexCategory))
+        (ULift.up (𝟙 (WithInitial.star : AugmentedSimplexCategory))) =
+      s.hom.app default PUnit.unit at hf
+    exact hf
+
+/-- The augmented Yoneda presheaf at the initial simplex is a Day-convolution unit. -/
+@[implicit_reducible]
+def augmentedYonedaStarDayConvolutionUnit :
+    CategoryTheory.MonoidalCategory.DayConvolutionUnit
+      augmentedYonedaStar.{u} where
+  can := augmentedYonedaStarCan.{u}
+  isPointwiseLeftKanExtensionCan := by
+    letI : augmentedYonedaStar.{u}.IsLeftKanExtension
+        augmentedYonedaStarCanNat.{u} :=
+      augmentedYonedaStarIsLeftKanExtension.{u}
+    exact Functor.isPointwiseLeftKanExtensionOfIsLeftKanExtension
+      augmentedYonedaStar.{u} augmentedYonedaStarCanNat.{u}
+
+/-- Forgetting the augmented Yoneda presheaf at the initial simplex gives an initial simplicial
+set. -/
+def augmentedYonedaStarDropIsInitial :
+    Limits.IsInitial
+      (forgetAugmentation.{u}.obj augmentedYonedaStar.{u}) := by
+  refine Limits.IsInitial.ofUniqueHom
+    (X := forgetAugmentation.{u}.obj augmentedYonedaStar.{u})
+    (fun Y ↦
+      { app := fun U ↦ ↾fun x ↦ by
+          rcases x with ⟨x⟩
+          exact (WithInitial.false_of_to_star x).elim
+        naturality := by
+          intro U V f
+          apply ConcreteCategory.hom_ext
+          intro x
+          rcases x with ⟨x⟩
+          exact (WithInitial.false_of_to_star x).elim }) ?_
+  intro Y f
+  apply NatTrans.ext
+  funext U
+  apply ConcreteCategory.hom_ext
+  intro x
+  rcases x with ⟨x⟩
+  exact (WithInitial.false_of_to_star x).elim
+
+/-- Singleton augmentation sends every initial simplicial set to the augmented Yoneda unit. -/
+def emptyAugmentationInitialIso
+    (X : SSet.{u}) (hX : Limits.IsInitial X) :
+    emptyAugmentation.{u}.obj X ≅ augmentedYonedaStar.{u} := by
+  let E := AugmentedSimplexCategory.equivAugmentedSimplicialObject (C := Type u)
+  let R := E.functor.obj augmentedYonedaStar.{u}
+  have hRleft : Limits.IsInitial R.left :=
+    augmentedYonedaStarDropIsInitial.{u}
+  have hRright : Limits.IsTerminal R.right := by
+    change Limits.IsTerminal
+      (ULift ((WithInitial.star : AugmentedSimplexCategory) ⟶ WithInitial.star))
+    exact (Limits.Types.isTerminalEquivUnique _).symm inferInstance
+  let e : terminalAugmentedSSet.obj X ≅ R :=
+    Comma.isoMk (hX.uniqueUpToIso hRleft)
+      (Limits.terminalIsTerminal.uniqueUpToIso hRright) (by
+        apply NatTrans.ext
+        funext j
+        exact hRright.hom_ext _ _)
+  exact E.inverse.mapIso e ≪≫ (E.unitIso.app _).symm
+
+/-- The singleton augmentation of the boundary of the point is the augmented Day unit. -/
+def emptyAugmentationBoundaryZeroIso :
+    emptyAugmentation.{u}.obj (SSet.boundary 0 : SSet.{u}) ≅
+      augmentedYonedaStar.{u} := by
+  apply emptyAugmentationInitialIso
+  rw [SSet.boundary_zero]
+  exact SSet.Subcomplex.isInitialBot
+
+/-- Day convolution carries isomorphisms in both inputs to an isomorphism. -/
+def augmentedDayConvolutionMapIso
+    {F F' G G' : AugmentedSSet.{u}}
+    [CategoryTheory.MonoidalCategory.DayConvolution F G]
+    [CategoryTheory.MonoidalCategory.DayConvolution F' G']
+    (eF : F ≅ F') (eG : G ≅ G') :
+    CategoryTheory.MonoidalCategory.DayConvolution.convolution F G ≅
+      CategoryTheory.MonoidalCategory.DayConvolution.convolution F' G' where
+  hom := CategoryTheory.MonoidalCategory.DayConvolution.map eF.hom eG.hom
+  inv := CategoryTheory.MonoidalCategory.DayConvolution.map eF.inv eG.inv
+  hom_inv_id := by
+    rw [dayConvolutionMap_comp, eF.hom_inv_id, eG.hom_inv_id,
+      dayConvolutionMap_id]
+  inv_hom_id := by
+    rw [dayConvolutionMap_comp, eF.inv_hom_id, eG.inv_hom_id,
+      dayConvolutionMap_id]
+
+/-- A Day-convolution unit structure transports backward across an isomorphism. -/
+@[implicit_reducible]
+def dayConvolutionUnitOfIso
+    {F U : AugmentedSSet.{u}} (e : F ≅ U)
+    (hU : CategoryTheory.MonoidalCategory.DayConvolutionUnit U) :
+    CategoryTheory.MonoidalCategory.DayConvolutionUnit F := by
+  letI : CategoryTheory.MonoidalCategory.DayConvolutionUnit U := hU
+  refine
+    { can := CategoryTheory.MonoidalCategory.DayConvolutionUnit.can ≫
+        e.inv.app (𝟙_ AugmentedSimplexCategoryᵒᵖ)
+      isPointwiseLeftKanExtensionCan := ?_ }
+  exact Functor.LeftExtension.isPointwiseLeftKanExtensionEquivOfIso
+    (StructuredArrow.isoMk e.symm)
+    CategoryTheory.MonoidalCategory.DayConvolutionUnit.isPointwiseLeftKanExtensionCan
+
+/-- Joining an initial simplicial set on the left acts as the identity. -/
+def simplicialJoinInitialIso
+    (X : SSet.{u}) (hX : Limits.IsInitial X) (Y : SSet.{u}) :
+    simplicialJoin X Y ≅ Y := by
+  let F := emptyAugmentation.{u}.obj X
+  let U := augmentedYonedaStar.{u}
+  let G := emptyAugmentation.{u}.obj Y
+  letI := augmentedDayConvolution F G
+  let hU : CategoryTheory.MonoidalCategory.DayConvolutionUnit U :=
+    augmentedYonedaStarDayConvolutionUnit.{u}
+  let eF : F ≅ U := emptyAugmentationInitialIso X hX
+  letI : CategoryTheory.MonoidalCategory.DayConvolutionUnit F :=
+    dayConvolutionUnitOfIso eF hU
+  let eUnit : CategoryTheory.MonoidalCategory.DayConvolution.convolution F G ≅ G :=
+    CategoryTheory.MonoidalCategory.DayConvolutionUnit.leftUnitor F G
+  exact forgetAugmentation.{u}.mapIso eUnit ≪≫
+    forgetSingletonAugmentationIso.{u}.app Y
+
+/-- The inclusion of the right factor is natural in the left join variable. -/
+theorem simplicialJoinRightInclusion_naturality_left
+    {X X' Y : SSet.{u}} (f : X ⟶ X') :
+    simplicialJoinRightInclusion X Y ≫
+        simplicialJoinMap f (𝟙 Y) =
+      simplicialJoinRightInclusion X' Y := by
+  apply NatTrans.ext
+  funext U
+  let F := emptyAugmentation.{u}.obj X
+  let F' := emptyAugmentation.{u}.obj X'
+  let G := emptyAugmentation.{u}.obj Y
+  letI := augmentedDayConvolution F G
+  letI := augmentedDayConvolution F' G
+  letI : Unique (F.obj (Opposite.op WithInitial.star)) :=
+    (Limits.Types.isTerminalEquivUnique _)
+      (emptyAugmentationStarIsTerminal X)
+  letI : Unique (F'.obj (Opposite.op WithInitial.star)) :=
+    (Limits.Types.isTerminalEquivUnique _)
+      (emptyAugmentationStarIsTerminal X')
+  let s : G.obj (AugmentedSimplexCategory.inclusion.op.obj U) ⟶
+      (F ⊠ G).obj (Opposite.op WithInitial.star,
+        AugmentedSimplexCategory.inclusion.op.obj U) :=
+    ConcreteCategory.ofHom (TypeCat.Fun.mk (fun y ↦ (default, y)))
+  let s' : G.obj (AugmentedSimplexCategory.inclusion.op.obj U) ⟶
+      (F' ⊠ G).obj (Opposite.op WithInitial.star,
+        AugmentedSimplexCategory.inclusion.op.obj U) :=
+    ConcreteCategory.ofHom (TypeCat.Fun.mk (fun y ↦ (default, y)))
+  change s ≫
+      (CategoryTheory.MonoidalCategory.DayConvolution.unit F G).app
+        (Opposite.op WithInitial.star,
+          AugmentedSimplexCategory.inclusion.op.obj U) ≫
+      (CategoryTheory.MonoidalCategory.DayConvolution.map
+        (emptyAugmentation.map f) (emptyAugmentation.map (𝟙 Y))).app _ =
+    s' ≫
+      (CategoryTheory.MonoidalCategory.DayConvolution.unit F' G).app
+        (Opposite.op WithInitial.star,
+          AugmentedSimplexCategory.inclusion.op.obj U)
+  rw [emptyAugmentation.map_id]
+  change s ≫
+      (CategoryTheory.MonoidalCategory.DayConvolution.unit F G).app
+        (Opposite.op WithInitial.star,
+          AugmentedSimplexCategory.inclusion.op.obj U) ≫
+      (CategoryTheory.MonoidalCategory.DayConvolution.map
+        (emptyAugmentation.map f) (𝟙 G)).app _ =
+    s' ≫
+      (CategoryTheory.MonoidalCategory.DayConvolution.unit F' G).app
+        (Opposite.op WithInitial.star,
+          AugmentedSimplexCategory.inclusion.op.obj U)
+  have hmap :=
+    CategoryTheory.MonoidalCategory.DayConvolution.unit_app_map_app
+      (F := F) (G := G) (F' := F') (G' := G)
+      (emptyAugmentation.map f) (𝟙 G)
+      (Opposite.op WithInitial.star)
+      (AugmentedSimplexCategory.inclusion.op.obj U)
+  let t :=
+    (emptyAugmentation.map f).app (Opposite.op WithInitial.star) ⊗ₘ
+      NatTrans.app (𝟙 G) (AugmentedSimplexCategory.inclusion.op.obj U)
+  have hpref : s ≫ t = s' := by
+    apply ConcreteCategory.hom_ext
+    intro y
+    apply Prod.ext
+    · apply Subsingleton.elim
+    · rfl
+  calc
+    _ = s ≫
+        ((CategoryTheory.MonoidalCategory.DayConvolution.unit F G).app
+          (Opposite.op WithInitial.star,
+            AugmentedSimplexCategory.inclusion.op.obj U) ≫
+          (CategoryTheory.MonoidalCategory.DayConvolution.map
+            (emptyAugmentation.map f) (𝟙 G)).app _) :=
+      Category.assoc _ _ _
+    _ = s ≫
+        (t ≫
+          (CategoryTheory.MonoidalCategory.DayConvolution.unit F' G).app
+            (Opposite.op WithInitial.star,
+              AugmentedSimplexCategory.inclusion.op.obj U)) :=
+      congrArg (fun q ↦ s ≫ q) hmap
+    _ = (s ≫ t) ≫
+        (CategoryTheory.MonoidalCategory.DayConvolution.unit F' G).app
+          (Opposite.op WithInitial.star,
+            AugmentedSimplexCategory.inclusion.op.obj U) :=
+      (Category.assoc _ _ _).symm
+    _ = _ := by
+      rw [hpref]
+      congr 1
+
+/-- Under the standard representable join isomorphism, the right-factor inclusion is the
+right-block ordinal embedding. -/
+theorem simplicialJoinRightInclusion_stdSimplex (m n : ℕ) :
+    simplicialJoinRightInclusion (Δ[m] : SSet.{u}) (Δ[n] : SSet.{u}) ≫
+        (simplicialJoinStdSimplexIsoNat m n).hom =
+      SSet.stdSimplex.map (standardJoinRightOperator m n) := by
+  let F := emptyAugmentation.{u}.obj (Δ[m] : SSet.{u})
+  let G := emptyAugmentation.{u}.obj (Δ[n] : SSet.{u})
+  let h := augmentedDayConvolution F G
+  let h' : CategoryTheory.MonoidalCategory.DayConvolution F G :=
+    standardSimplexDayConvolution.{u}
+      (SimplexCategory.mk m) (SimplexCategory.mk n)
+  letI : Unique (F.obj (Opposite.op WithInitial.star)) :=
+    (Limits.Types.isTerminalEquivUnique _)
+      (emptyAugmentationStarIsTerminal (Δ[m] : SSet.{u}))
+  let p : AugmentedSimplexCategoryᵒᵖ × AugmentedSimplexCategoryᵒᵖ :=
+    (Opposite.op WithInitial.star,
+      AugmentedSimplexCategory.inclusion.op.obj
+        (Opposite.op (SimplexCategory.mk n)))
+  let y : G.obj (AugmentedSimplexCategory.inclusion.op.obj
+      (Opposite.op (SimplexCategory.mk n))) :=
+    SSet.yonedaEquiv (𝟙 (Δ[n] : SSet.{u}))
+  let input : (F ⊠ G).obj
+      (Opposite.op WithInitial.star,
+        AugmentedSimplexCategory.inclusion.op.obj
+          (Opposite.op (SimplexCategory.mk n))) := by
+    change F.obj (Opposite.op WithInitial.star) ×
+      G.obj (AugmentedSimplexCategory.inclusion.op.obj
+        (Opposite.op (SimplexCategory.mk n)))
+    exact (default, y)
+  let chosenValue := by
+    exact ConcreteCategory.hom
+      ((@CategoryTheory.MonoidalCategory.DayConvolution.unit
+        _ _ _ _ _ _ F G h).app p) input
+  let stdValue := by
+    exact ConcreteCategory.hom
+      ((@CategoryTheory.MonoidalCategory.DayConvolution.unit
+        _ _ _ _ _ _ F G h').app p) input
+  let isoValue := ConcreteCategory.hom
+    ((h.uniqueUpToIso h').hom.app
+      ((CategoryTheory.MonoidalCategory.tensor
+        AugmentedSimplexCategoryᵒᵖ).obj p)) chosenValue
+  have hvUnique : isoValue = stdValue := by
+    let hu :=
+      CategoryTheory.MonoidalCategory.DayConvolution.unit_uniqueUpToIso_hom h h'
+    have hu0 := congrArg (fun τ ↦ τ.app p) hu
+    have hu1 := ConcreteCategory.congr_hom hu0 input
+    exact hu1
+  have hvStd : stdValue =
+      SSet.yonedaEquiv
+        (SSet.stdSimplex.map (standardJoinRightOperator m n)) := by
+    dsimp [stdValue, h', standardSimplexDayConvolution,
+      dayConvolutionOfInputIsos, input, y, F, G]
+    rw [SSet.yonedaEquiv_map]
+    apply ULift.ext
+    change ((default : ULift.{u} (WithInitial.star ⟶
+      AugmentedSimplexCategory.inclusion.obj
+        (SimplexCategory.mk m))).down ⊗ₘ
+        AugmentedSimplexCategory.inclusion.map
+          (𝟙 (SimplexCategory.mk n))) = _
+    have hrhs :
+        (SSet.stdSimplex.objEquiv.{u}.symm
+          (standardJoinRightOperator m n)).down =
+        standardJoinRightOperator m n := rfl
+    rw [hrhs]
+    apply SimplexCategory.Hom.ext
+    ext j
+    have ht :
+        (default : ULift.{u} (WithInitial.star ⟶
+          AugmentedSimplexCategory.inclusion.obj
+            (SimplexCategory.mk m))).down ⊗ₘ
+            AugmentedSimplexCategory.inclusion.map
+              (𝟙 (SimplexCategory.mk n)) =
+          AugmentedSimplexCategory.inr'
+            (SimplexCategory.mk m) (SimplexCategory.mk n) := by
+      rfl
+    rw [ht, AugmentedSimplexCategory.inr'_eval]
+    rfl
+  apply SSet.yonedaEquiv.injective
+  dsimp [simplicialJoinRightInclusion, simplicialJoinStdSimplexIsoNat,
+    simplicialJoinStdSimplexIso, simplicialJoinStdSimplexIsoRaw]
+  rw [SSet.yonedaEquiv_comp]
+  change isoValue = SSet.yonedaEquiv
+    (SSet.stdSimplex.map (standardJoinRightOperator m n))
+  exact hvUnique.trans hvStd
+
+lemma augmentedOp_leftUnitor_inclusion_inv (j : SimplexCategoryᵒᵖ) :
+    (λ_ (AugmentedSimplexCategory.inclusion.op.obj j)).inv = 𝟙 _ := by
+  rfl
+
+set_option backward.isDefEq.respectTransparency false in
+/-- The right-factor inclusion is the inverse of the unit isomorphism when the left factor is
+initial. -/
+lemma simplicialJoinRightInclusion_initial_iso_hom
+    (X : SSet.{u}) (hX : Limits.IsInitial X) (Y : SSet.{u}) :
+    simplicialJoinRightInclusion X Y ≫
+      (simplicialJoinInitialIso X hX Y).hom = 𝟙 Y := by
+  let F := emptyAugmentation.{u}.obj X
+  let U := augmentedYonedaStar.{u}
+  let G := emptyAugmentation.{u}.obj Y
+  letI := augmentedDayConvolution F G
+  let hU : CategoryTheory.MonoidalCategory.DayConvolutionUnit U :=
+    augmentedYonedaStarDayConvolutionUnit.{u}
+  let eF : F ≅ U := emptyAugmentationInitialIso X hX
+  letI : CategoryTheory.MonoidalCategory.DayConvolutionUnit F :=
+    dayConvolutionUnitOfIso eF hU
+  let eUnit : CategoryTheory.MonoidalCategory.DayConvolution.convolution F G ≅ G :=
+    CategoryTheory.MonoidalCategory.DayConvolutionUnit.leftUnitor F G
+  let uF : Unique (F.obj (Opposite.op WithInitial.star)) :=
+    (Limits.Types.isTerminalEquivUnique _)
+      (emptyAugmentationStarIsTerminal X)
+  change simplicialJoinRightInclusion X Y ≫
+    (forgetAugmentation.{u}.mapIso eUnit).hom = 𝟙 Y
+  apply NatTrans.ext
+  funext j
+  apply ConcreteCategory.hom_ext
+  intro y
+  have h :=
+    CategoryTheory.MonoidalCategory.DayConvolutionUnit.leftUnitor_hom_unit_app
+      F G (AugmentedSimplexCategory.inclusion.op.obj j)
+  let input : (𝟙_ (Type u)) ⊗
+      G.obj (AugmentedSimplexCategory.inclusion.op.obj j) := by
+    change PUnit × G.obj (AugmentedSimplexCategory.inclusion.op.obj j)
+    exact (PUnit.unit, y)
+  have hy := ConcreteCategory.congr_hom h input
+  simp [input, F, G,
+    MonoidalCategoryStruct.tensorObj,
+    MonoidalCategoryStruct.tensorUnit,
+    CategoryTheory.monoidalCategoryOp,
+    AugmentedSimplexCategory.tensorObj,
+    AugmentedSimplexCategory.tensorUnit,
+    augmentedOp_leftUnitor_inclusion_inv,
+    CategoryTheory.whiskerRight_apply,
+    CategoryTheory.leftUnitor_hom_apply,
+    -CategoryTheory.MonoidalCategory.DayConvolutionUnit.leftUnitor_hom_unit_app,
+    -CategoryTheory.MonoidalCategory.DayConvolutionUnit.leftUnitor_hom_unit_app_assoc] at hy
+  change ((CategoryTheory.MonoidalCategory.DayConvolutionUnit.leftUnitor F G).hom.app
+      (AugmentedSimplexCategory.inclusion.op.obj j))
+      ((CategoryTheory.MonoidalCategory.DayConvolution.unit F G).app
+        (Opposite.op WithInitial.star,
+          AugmentedSimplexCategory.inclusion.op.obj j) (uF.default, y)) = y
+  rw [← uF.uniq (ConcreteCategory.hom
+    (CategoryTheory.MonoidalCategory.DayConvolutionUnit.can (F := F)) PUnit.unit)]
+  exact hy
+
+/-- The right-factor inclusion is an isomorphism when the left join factor is initial. -/
+lemma simplicialJoinRightInclusion_initial_isIso
+    (X : SSet.{u}) (hX : Limits.IsInitial X) (Y : SSet.{u}) :
+    IsIso (simplicialJoinRightInclusion X Y) := by
+  let e := simplicialJoinInitialIso X hX Y
+  have h : simplicialJoinRightInclusion X Y = e.inv := by
+    apply (cancel_mono e.hom).mp
+    rw [simplicialJoinRightInclusion_initial_iso_hom, Iso.inv_hom_id]
+  rw [h]
+  infer_instance
+
+/-- The join of the boundary of the point with any simplicial set is that simplicial set. -/
+def simplicialJoinBoundaryZeroIso (Y : SSet.{u}) :
+    simplicialJoin (SSet.boundary 0 : SSet.{u}) Y ≅ Y := by
+  apply simplicialJoinInitialIso
+  rw [SSet.boundary_zero]
+  exact SSet.Subcomplex.isInitialBot
 
 /-- The ordinary simplicial join as an actual bifunctor.  Its object formula
 is the restriction of the chosen augmented Day convolution. -/

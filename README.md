@@ -31,7 +31,7 @@ Use the Lean sources and the concise research notes under `docs/research/` as th
 surface. Raw run logs, worker transcripts, packet manifests, terminal outcomes, and progress
 TSVs belong in a thread workspace or CI artifacts, not in the repository history.
 
-Maintenance policy and cleanup runbooks live under `docs/maintenance/`.
+Repository hygiene and formalization policy live under `docs/maintenance/`.
 
 ## Tooling Setup
 

@@ -1,7 +1,6 @@
 # Status
 
-Honest snapshot of the four project objectives. Updated at milestones only — see git log
-for day-to-day history.
+Honest snapshot of the four project objectives. Updated at milestones only; see git log for day-to-day history.
 
 ## Objective status
 
@@ -10,66 +9,32 @@ for day-to-day history.
 | 1 | Quillen exact category formalized | Complete |
 | 2 | `(MetrizableLCA, E)` is an exact category | Complete |
 | 3 | Yoneda Ext groups | Complete |
-| 4 | Bounded derived ∞-category `D^b(C,E)` | **Partial** |
+| 4 | Bounded derived ∞-category `D^b(C,E)` | Partial |
 
 ### Objective 4 detail
 
-The ordinary triangulated bounded-derived semantics is proved: the corrected cycle-object
-acyclicity route, the Verdier quotient, and the full ordinary stable package
-(preadditivity, zero object, finite products/coproducts/biproducts, shift additivity,
-`Pretriangulated`, `IsTriangulated`) are formalized and unconditional.
+The ordinary triangulated bounded-derived semantics is proved: the corrected cycle-object acyclicity route, the Verdier quotient, and the full ordinary stable package (preadditivity, zero object, finite products, coproducts, biproducts, shift additivity, `Pretriangulated`, and `IsTriangulated`) are formalized and unconditional.
 
-The genuine stable ∞-category (quasicategory) enhancement is **in progress, not complete**.
-Built so far: a coherent Dold-Kan simplicial category and its homotopy-coherent nerve, an
-ordinary-nerve equivalence-forcing quasicategory that inverts every corrected weak
-equivalence, and the full mapping-quasicategory localization specification together with
-the canonical ordinary comparison functor out of the corrected localization. The generic
-bridge from a quasicategory map having the right lifting property against every simplicial
-monomorphism to a bicategorical equivalence is also inhabited. Mathlib v4.31's cartesian
-pushout-product theorem is now integrated: functor simplicial sets are unconditionally
-quasicategories, and mapping out of an inner-fibrant replacement is proved to be a
-bicategorical equivalence. For the equivalence-forcing candidate, the final mapping
-comparison is factored through the free-equivalence pushout presentation; its mapping object
-is identified as the expected pullback, and a verified sufficient route to the full localization
-property is the still-uninhabited mono-RLP of the presentation comparison at every target
-quasicategory.
+The genuine stable ∞-category enhancement is in progress and is not complete. The all-dimensional Joyal special-left-outer-horn theorem is proved without assumptions. Its parameterized extension gives the presentation comparison the right lifting property against every simplicial monomorphism, so the ordinary-nerve equivalence-forcing quasicategory now satisfies the full mapping-quasicategory localization universal property. The induced homotopy functor is an ordinary localization, and the canonical comparison from the corrected bounded derived category to its homotopy category is proved to be an equivalence.
+
+The coherent DG side now has a canonical map from the ordinary nerve, an equivalence-forced localized coherent-nerve candidate that explicitly inverts every generated corrected weak edge, and an explicit base-change map from the ordinary localization presentation. The required Dwyer–Kan or Drinfeld comparison is isolated as the statement that this base-change map is a bicategorical equivalence; it remains unproved. Conditional on exactly that proposition, the full mapping-localization property, homotopy-category equivalence, corrected-derived comparison, and canonical factorization have been transferred to the coherent DG candidate. At chain level, mapping cones are actual bounded DG objects, their maps-out complexes are strictly isomorphic to the expected path fibers, and this identity has been transported through truncation and Dold–Kan to a pullback theorem for the enriched mapping simplicial sets. The known-path latching inclusions in the coherent nerve are proved anodyne, so maps into Kan mapping objects extend strictly; the remaining coherent-nerve obstruction is the global compatible horn assembly and its enriched composition laws.
 
 Still missing, and required before objective 4 can be called complete:
 
-- Inhabitation of the ∞-localization universal property (a concrete candidate satisfying
-  the full mapping-quasicategory specification). For the current candidate, a verified
-  sufficient next target is the presentation-comparison mono-RLP described above.
-- Comparison of the ordinary-nerve carrier with the coherent dg carrier.
-- The stability proof for the localized quasicategory.
-- Proof that the ordinary comparison functor is an equivalence.
+1. Prove the Dwyer–Kan or Drinfeld base-change comparison between the ordinary localization carrier and the localized coherent DG carrier.
+2. Construct and verify the genuine stable square calculus for the localized quasicategory, including finite ∞-bicompleteness and the equivalence of cartesian and cocartesian squares.
 
-**Do not claim objective 4 complete until these four items are inhabited and verified.**
-This is a mandatory honesty marker for this repository.
+Do not claim objective 4 complete until the localization universal property, DG-carrier comparison, genuine stability proof, and ordinary comparison equivalence are all inhabited and verified. The first and fourth items are now complete; the second and third remain mandatory.
 
 ## Remaining tasks
 
-Condensed from prior `NEXT_STEPS.md`:
-
-1. Continue the stable-∞ construction from the `LeanLCAExactChallenge/Infinity/` modules:
-   prove the ∞-localization universal property, compare the ordinary-nerve carrier with the
-   coherent dg carrier, prove the localized quasicategory stable, and identify its homotopy
-   category with the corrected ordinary Verdier quotient. Pinned mathlib v4.31 has no
-   ready-made quasicategorical or simplicial localization API — do not present either
-   current carrier as the finished derived ∞-category.
-2. If compatibility with the direct chain localization is still required, prove the
-   composite-localization statement recorded by
-   `BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput` — do not replace it
-   with the (generally false) raw-chain Ore calculus claim.
-3. Keep the honest ordinary stable core (zero object, finite products/coproducts/biproducts,
-   shift additivity, `Pretriangulated`, `IsTriangulated`) as the objective-4 baseline; raw
-   chain-level calculus and ordinary finite limits/colimits remain blocked — see
-   `docs/research/BLOCKER_CORRECTED_DBOUNDED_LITERAL_FIELDS.md` and do not fill the gap with
-   assumptions.
-4. Any future migration to a newer mathlib pin must update `lean-toolchain` and Lake
-   dependencies coherently and must not reuse older compiled artifacts as evidence.
-5. Migrate legacy `exactAcyclic` lemmas theorem-by-theorem only when the corresponding
-   corrected theorem is actually needed.
-6. Keep the legacy degreewise `boundedExactWeakEquivalence` route labeled compatibility-only.
+1. Prove `MetrizableOrdinaryToDirectDGBaseChangeIsEquivalence` by a genuine Dwyer–Kan or corrected Drinfeld DG-quotient comparison; the free-equivalence interval mono-RLP alone does not compare the ordinary and coherent base mapping objects.
+2. Assemble the verified known-path Kan extensions into compatible coherent-nerve horn fillers, then turn the enriched zero object and mapping-cone path-fiber pullback into the corner-extension adjunctions, finite ∞-bicompleteness, and bicartesian-square theorem required by `StableSquareCalculus`.
+3. Transfer the verified stable structure across the localization comparison and package the final bounded derived ∞-category only after that transfer is checked.
+4. If compatibility with the direct chain localization is still required, prove the composite-localization statement recorded by `BoundedExactWeakEquivalenceWithCyclesBoundedVerdierLocalizationInput`; do not replace it with the generally false raw-chain Ore-calculus claim.
+5. Keep the honest ordinary stable core as the objective-4 baseline and do not fill remaining ∞-categorical gaps with assumptions.
+6. Any future mathlib migration must update `lean-toolchain` and Lake dependencies coherently and must not reuse older compiled artifacts as evidence.
+7. Migrate legacy `exactAcyclic` lemmas theorem by theorem only when a corrected theorem needs them, and keep the legacy degreewise `boundedExactWeakEquivalence` route labeled compatibility-only.
 
 ## Verification
 
@@ -100,7 +65,4 @@ lean -j1 -o .lake/build/lib/lean/<Path/To/File>.olean \
 
 ## Notes
 
-- This file is updated at milestones only, not per commit. Day-to-day history lives in
-  `git log`.
-- For the current detailed blocker analysis, see
-  `docs/research/BLOCKER_CORRECTED_DBOUNDED_LITERAL_FIELDS.md`.
+1. This file is updated at milestones only, not per commit. Day-to-day history lives in `git log`.

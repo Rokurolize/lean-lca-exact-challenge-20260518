@@ -128,15 +128,6 @@ theorem relativeInternalHom_quasicategory {X : SSet.{u}} (W : EdgeMarking X)
     SSet.Quasicategory (relativeInternalHom W Q : SSet.{u}) :=
   fullSubcomplexOnVertices_quasicategory _ _
 
-/-- The legacy explicit pushout-product hypothesis supplies both mapping-object closures. -/
-theorem relativeInternalHom_quasicategory_of_innerHornPushoutProduct
-    (hprod : InnerHornPushoutProductIsInnerAnodyne.{u})
-    {X Q : SSet.{u}} [SSet.Quasicategory Q] (W : EdgeMarking X) :
-    SSet.Quasicategory (relativeInternalHom W Q : SSet.{u}) := by
-  letI : SSet.Quasicategory ((ihom X).obj Q) :=
-    quasicategory_ihom_of_innerHornPushoutProduct hprod
-  exact relativeInternalHom_quasicategory W Q
-
 /-- In mathlib v4.31, relative mapping objects into a quasicategory are unconditionally
 quasicategories. -/
 theorem relativeInternalHom_quasicategory_of_quasicategory
@@ -336,29 +327,6 @@ def ofCanonicalUnconditional {A L : SSet.QCat.{u}}
   letI : SSet.Quasicategory Q.obj := Q.property
   exact ofCanonical W ell Q hEll
     (@quasicategory_ihom L.obj Q.obj Q.property) isEquivalence
-
-/-- Build the canonical mapping data assuming inner-horn pushout-product closure. -/
-def ofCanonicalOfInnerHornPushoutProduct {A L : SSet.QCat.{u}}
-    (hprod : InnerHornPushoutProductIsInnerAnodyne.{u})
-    (W : EdgeMarking A.obj) (ell : A ⟶ L) (Q : SSet.QCat.{u})
-    (hEll : InvertsMarkedEdges W ell.hom)
-    (isEquivalence :
-      IsBicategoricalEquivalence
-        (ObjectProperty.homMk
-          (internalHomPrecompToRelative W ell.hom Q.obj hEll) :
-            internalHomQCat L.obj Q.obj
-                (@quasicategory_ihom_of_innerHornPushoutProduct
-                  hprod L.obj Q.obj Q.property) ⟶
-              relativeInternalHomQCat W Q.obj
-                (@relativeInternalHom_quasicategory_of_innerHornPushoutProduct
-                  hprod A.obj Q.obj Q.property W))) :
-    MappingQuasicategoryLocalizationAt W ell Q := by
-  letI : SSet.Quasicategory ((ihom A.obj).obj Q.obj) :=
-    @quasicategory_ihom_of_innerHornPushoutProduct
-      hprod A.obj Q.obj Q.property
-  exact ofCanonical W ell Q hEll
-    (@quasicategory_ihom_of_innerHornPushoutProduct
-      hprod L.obj Q.obj Q.property) isEquivalence
 
 end MappingQuasicategoryLocalizationAt
 

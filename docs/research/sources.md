@@ -11,7 +11,6 @@ This note lists durable sources used by the repository. It is intentionally not 
 - `Mathlib/Algebra/Homology/HomotopyCategory/*.lean`: homotopy category, mapping cone, triangulated, and shift APIs.
 - `Mathlib/AlgebraicTopology/SimplicialSet/Nerve*.lean` and `Mathlib/AlgebraicTopology/Quasicategory/*.lean`: ordinary nerve and quasicategory APIs. These are useful but are not by themselves stable infinity-category evidence.
 - `Mathlib/Topology/Category/TopCat/Basic.lean`, `Mathlib/Topology/Constructions/SumProd.lean`, and quotient/closed-map topology files: local metrizable LCA constructions.
-- Local anchors in `LeanLCAExactChallenge/MathlibSurvey.lean`.
 
 ## Mathematical References
 
@@ -25,5 +24,5 @@ This note lists durable sources used by the repository. It is intentionally not 
 - `LeanLCAExactChallenge/ExactCategory/Basic.lean`: local Quillen exact-category interface.
 - `LeanLCAExactChallenge/LCA/*.lean`: metrizable LCA category, strict exactness, pullbacks, quotients, pushouts, cokernels, and the exact-category instance.
 - `LeanLCAExactChallenge/Ext/Yoneda.lean`: local Yoneda Ext construction over the exact-category interface.
-- `LeanLCAExactChallenge/Derived/Bounded.lean` and related derived route files: bounded complex localization and conditional stable-route data.
-- `audit/negative_fixtures/`: product-success overclaim fixtures.
+- `LeanLCAExactChallenge/Derived/Bounded.lean` and the `ExactAcyclicWithCycles` modules: bounded complex localization and the corrected ordinary derived-category foundation.
+- `LeanLCAExactChallenge/Infinity/`: the mapping-quasicategory localization, coherent DG carrier, comparison, and stability construction surface.

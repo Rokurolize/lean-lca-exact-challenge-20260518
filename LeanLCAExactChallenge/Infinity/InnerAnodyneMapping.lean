@@ -66,38 +66,6 @@ theorem innerAnodyneCartesianPushoutProduct :
   change SSet.innerAnodyneExtensions sq.ι
   exact SSet.innerAnodyneExtensions_pushoutObjObjι' sq hi
 
-/-- The generating pushout-product statement that remains combinatorial. -/
-def InnerHornMonoPushoutProductIsInnerAnodyne : Prop :=
-  ∀ {n : ℕ} {k : Fin (n + 1)}, 0 < k → k < Fin.last n →
-    ∀ ⦃K L : SSet.{u}⦄ (j : K ⟶ L), Mono j →
-      SSet.innerAnodyneExtensions (Arrow.mk Λ[n, k].ι □ Arrow.mk j).hom
-
-/-- The inner-horn/monomorphism compatibility statement is unconditionally inhabited. -/
-theorem innerHornMonoPushoutProductIsInnerAnodyne :
-    InnerHornMonoPushoutProductIsInnerAnodyne.{u} := by
-  intro n k h0 hn K L j hj
-  exact innerAnodyneCartesianPushoutProduct Λ[n, k].ι j
-    (SSet.innerAnodyneExtensions.horn_ι h0 hn) hj
-
-/-- The arbitrary-mono hypothesis supplies the initial-map case used for functor objects. -/
-lemma innerHornPushoutProduct_of_innerHornMono
-    (hgen : InnerHornMonoPushoutProductIsInnerAnodyne.{u}) :
-    InnerHornPushoutProductIsInnerAnodyne.{u} := by
-  intro n k h0 hn K
-  exact hgen h0 hn (initial.to K) inferInstance
-
-/-- The generating inner-horn case implies full cartesian pushout-product closure. -/
-lemma innerAnodyneCartesianPushoutProduct_of_innerHornMono
-    (hgen : InnerHornMonoPushoutProductIsInnerAnodyne.{u}) :
-    InnerAnodyneCartesianPushoutProduct.{u} := by
-  intro A B K L i j hi hj X Y p hp
-  rw [Arrow.PushoutProduct.hasLiftingProperty_mk_iff']
-  apply hi
-  intro U V h hh
-  obtain ⟨k, h0, hn⟩ := hh
-  rw [← Arrow.PushoutProduct.hasLiftingProperty_mk_iff']
-  exact hgen h0 hn j hj _ hp
-
 /-- Reduce one exponential lifting problem to the corresponding pushout-product. -/
 lemma hasLiftingProperty_pre_of_innerAnodyne_pushoutProduct
     {A B K L Q : SSet.{u}} {i : A ⟶ B} {j : K ⟶ L}
@@ -135,15 +103,6 @@ theorem innerFibration_precomp_of_mono
   set_option backward.isDefEq.respectTransparency false in
     simpa using SSet.innerFibration_pullbackObjObjπ (Functor.PullbackObjObj.ofIsTerminal
       MonoidalClosed.internalHom i (terminal.from Q) terminalIsTerminal)
-
-/-- The generating inner-horn case makes precomposition mono-injective. -/
-lemma pre_mem_monomorphisms_rlp_of_innerHornMono
-    {A B Q : SSet.{u}} {i : A ⟶ B} [SSet.Quasicategory Q]
-    (hgen : InnerHornMonoPushoutProductIsInnerAnodyne.{u})
-    (hi : SSet.innerAnodyneExtensions i) :
-    (monomorphisms SSet.{u}).rlp ((MonoidalClosed.pre i).app Q) :=
-  pre_mem_monomorphisms_rlp
-    (innerAnodyneCartesianPushoutProduct_of_innerHornMono hgen) hi
 
 /-- Boundary pushout-product closure suffices for the generating boundary RLP. -/
 lemma pre_mem_boundary_rlp
