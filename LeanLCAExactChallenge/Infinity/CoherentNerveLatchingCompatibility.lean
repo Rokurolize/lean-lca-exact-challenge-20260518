@@ -121,6 +121,97 @@ noncomputable def deletePathVertex
     change l.succAbove q.down ≤ j
     simpa using p.le_right (ULift.up (l.succAbove q.down)) hq
 
+/-- Deleting one vertex preserves omission of every other vertex, with the latter reindexed. -/
+theorem deletePathVertex_not_mem {n : ℕ} {i j : Fin (n + 2)}
+    (p : CategoryTheory.SimplicialThickening.Path (ULift.up i) (ULift.up j))
+    (l m : Fin (n + 2)) (hli : i ≠ l) (hlj : j ≠ l) (hml : m ≠ l)
+    (hm : ULift.up m ∉ p.I) :
+    ULift.up (deleteFinVertex l m hml) ∉ (deletePathVertex p l hli hlj).I := by
+  intro h
+  apply hm
+  change ULift.up (l.succAbove (deleteFinVertex l m hml)) ∈ p.I at h
+  rw [succAbove_deleteFinVertex] at h
+  exact h
+
+/-- Reinsert a deleted finite-ordinal vertex into a thick path. -/
+noncomputable def insertPathVertex {n : ℕ} {i j : Fin (n + 2)}
+    (l : Fin (n + 2)) (hli : i ≠ l) (hlj : j ≠ l)
+    (p : CategoryTheory.SimplicialThickening.Path
+      (ULift.up.{u, 0} (deleteFinVertex l i hli))
+      (ULift.up.{u, 0} (deleteFinVertex l j hlj))) :
+    CategoryTheory.SimplicialThickening.Path
+      (ULift.up.{u, 0} i) (ULift.up.{u, 0} j) where
+  I := {q | ∃ r ∈ p.I, q = ULift.up.{u, 0} (l.succAbove r.down)}
+  left := ⟨ULift.up.{u, 0} (deleteFinVertex l i hli), p.left, by
+    apply ULift.ext
+    exact (succAbove_deleteFinVertex l i hli).symm⟩
+  right := ⟨ULift.up.{u, 0} (deleteFinVertex l j hlj), p.right, by
+    apply ULift.ext
+    exact (succAbove_deleteFinVertex l j hlj).symm⟩
+  left_le q := by
+    rintro ⟨r, hr, rfl⟩
+    change i ≤ l.succAbove r.down
+    rw [← succAbove_deleteFinVertex l i hli]
+    have h := p.left_le r hr
+    change deleteFinVertex l i hli ≤ r.down at h
+    exact (Fin.succAboveOrderEmb l).monotone h
+  le_right q := by
+    rintro ⟨r, hr, rfl⟩
+    change l.succAbove r.down ≤ j
+    rw [← succAbove_deleteFinVertex l j hlj]
+    have h := p.le_right r hr
+    change r.down ≤ deleteFinVertex l j hlj at h
+    exact (Fin.succAboveOrderEmb l).monotone h
+
+/-- Reinserting a deleted vertex recovers any path which omitted that vertex. -/
+theorem insert_deletePathVertex {n : ℕ} {i j : Fin (n + 2)}
+    (p : CategoryTheory.SimplicialThickening.Path
+      (ULift.up.{u, 0} i) (ULift.up.{u, 0} j))
+    (l : Fin (n + 2)) (hli : i ≠ l) (hlj : j ≠ l)
+    (hlp : ULift.up.{u, 0} l ∉ p.I) :
+    insertPathVertex l hli hlj (deletePathVertex p l hli hlj) = p := by
+  apply CategoryTheory.SimplicialThickening.Path.ext
+  ext q
+  constructor
+  · rintro ⟨r, hr, rfl⟩
+    exact hr
+  · intro hq
+    have hql : q.down ≠ l := by
+      intro hql
+      apply hlp
+      have hq' : q = ULift.up.{u, 0} l := by
+        apply ULift.ext
+        exact hql
+      exact hq' ▸ hq
+    refine ⟨ULift.up.{u, 0} (deleteFinVertex l q.down hql), ?_, ?_⟩
+    · change ULift.up.{u, 0}
+        (l.succAbove (deleteFinVertex l q.down hql)) ∈ p.I
+      rw [succAbove_deleteFinVertex]
+      exact hq
+    · apply ULift.ext
+      exact (succAbove_deleteFinVertex l q.down hql).symm
+
+/-- Reindex thick paths by reinserting one finite-ordinal vertex. -/
+noncomputable def insertVertexPathFunctor {n : ℕ} {i j : Fin (n + 2)}
+    (l : Fin (n + 2)) (hli : i ≠ l) (hlj : j ≠ l) :
+    ThickPath (ULift.up.{u, 0} (deleteFinVertex l i hli))
+        (ULift.up.{u, 0} (deleteFinVertex l j hlj)) ⥤
+      ThickPath (ULift.up.{u, 0} i) (ULift.up.{u, 0} j) where
+  obj p := insertPathVertex l hli hlj p
+  map f := ⟨⟨⟨by
+    rintro _ ⟨r, hr, hq⟩
+    exact ⟨r, f.1.1.1 hr, hq⟩⟩⟩⟩
+
+/-- The path-nerve map induced by reinserting a vertex. -/
+noncomputable def insertVertexPathNerveMap {n : ℕ} {i j : Fin (n + 2)}
+    (l : Fin (n + 2)) (hli : i ≠ l) (hlj : j ≠ l) :
+    CategoryTheory.nerve
+        (ThickPath (ULift.up.{u, 0} (deleteFinVertex l i hli))
+          (ULift.up.{u, 0} (deleteFinVertex l j hlj))) ⟶
+      CategoryTheory.nerve
+        (ThickPath (ULift.up.{u, 0} i) (ULift.up.{u, 0} j)) :=
+  CategoryTheory.nerveMap (insertVertexPathFunctor l hli hlj)
+
 /-- Reindex thick paths along deletion of one endpoint-distinct vertex. -/
 noncomputable def deleteVertexPathFunctor {n : ℕ} {i j : Fin (n + 2)}
     (l : Fin (n + 2)) (hli : i ≠ l) (hlj : j ≠ l) :
@@ -239,6 +330,65 @@ def avoidingPathSubcomplex {J : Type u} [LinearOrder J] (i j l : J) :
       rw [← toNerveSimplex_ofNerveSimplex x]
       exact ofNerveSimplex_map_toNerveSimplex _ _]
     exact (ofNerveSimplex x).not_mem_of_not_mem_last hx _
+
+/-- Deletion followed by reinsertion is the identity on paths omitting the deleted vertex. -/
+@[reassoc]
+theorem avoidingPathSubcomplex_delete_insert
+    {n : ℕ} {i j l : Fin (n + 2)} (hli : i ≠ l) (hlj : j ≠ l) :
+    (avoidingPathSubcomplex (ULift.up.{u, 0} i) (ULift.up.{u, 0} j)
+        (ULift.up.{u, 0} l)).ι ≫
+      deleteVertexPathNerveMap l hli hlj ≫
+      insertVertexPathNerveMap l hli hlj =
+    (avoidingPathSubcomplex (ULift.up.{u, 0} i) (ULift.up.{u, 0} j)
+      (ULift.up.{u, 0} l)).ι := by
+  ext U x a q
+  simp only [NatTrans.comp_app, deleteVertexPathNerveMap,
+    insertVertexPathNerveMap, CategoryTheory.nerveMap_app]
+  change q ∈ (insertPathVertex l hli hlj
+      (deletePathVertex (x.1.obj a) l hli hlj)).I ↔ q ∈ (x.1.obj a).I
+  rw [insert_deletePathVertex (x.1.obj a) l hli hlj
+    ((ofNerveSimplex x.1).not_mem_of_not_mem_last x.2 a)]
+
+/-- On paths omitting two vertices, deleting the first lands in paths omitting the reindexed second. -/
+noncomputable def deleteVertexAvoidingPathMap
+    {n : ℕ} {i j l m : Fin (n + 2)}
+    (hli : i ≠ l) (hlj : j ≠ l) (hml : m ≠ l) :
+    (avoidingPathSubcomplex (ULift.up.{u, 0} i) (ULift.up.{u, 0} j) (ULift.up.{u, 0} l) ⊓
+        avoidingPathSubcomplex (ULift.up.{u, 0} i) (ULift.up.{u, 0} j)
+          (ULift.up.{u, 0} m)).toSSet ⟶
+      (avoidingPathSubcomplex
+        (ULift.up.{u, 0} (deleteFinVertex l i hli))
+        (ULift.up.{u, 0} (deleteFinVertex l j hlj))
+        (ULift.up.{u, 0} (deleteFinVertex l m hml))).toSSet :=
+  SSet.Subcomplex.lift
+    ((avoidingPathSubcomplex (ULift.up.{u, 0} i) (ULift.up.{u, 0} j)
+      (ULift.up.{u, 0} l) ⊓ avoidingPathSubcomplex (ULift.up.{u, 0} i)
+      (ULift.up.{u, 0} j) (ULift.up.{u, 0} m)).ι ≫
+        deleteVertexPathNerveMap l hli hlj) (by
+      rintro U _ ⟨x, rfl⟩
+      change ULift.up.{u, 0} (deleteFinVertex l m hml) ∉
+        (deletePathVertex (ofNerveSimplex x.1).last l hli hlj).I
+      intro h
+      apply x.2.2
+      change ULift.up.{u, 0} (l.succAbove (deleteFinVertex l m hml)) ∈
+        (ofNerveSimplex x.1).last.I at h
+      rw [succAbove_deleteFinVertex] at h
+      exact h)
+
+@[reassoc (attr := simp)]
+theorem deleteVertexAvoidingPathMap_ι
+    {n : ℕ} {i j l m : Fin (n + 2)}
+    (hli : i ≠ l) (hlj : j ≠ l) (hml : m ≠ l) :
+    deleteVertexAvoidingPathMap hli hlj hml ≫
+      (avoidingPathSubcomplex
+        (ULift.up.{u, 0} (deleteFinVertex l i hli))
+        (ULift.up.{u, 0} (deleteFinVertex l j hlj))
+        (ULift.up.{u, 0} (deleteFinVertex l m hml))).ι =
+      (avoidingPathSubcomplex (ULift.up.{u, 0} i) (ULift.up.{u, 0} j)
+        (ULift.up.{u, 0} l) ⊓ avoidingPathSubcomplex
+          (ULift.up.{u, 0} i) (ULift.up.{u, 0} j) (ULift.up.{u, 0} m)).ι ≫
+        deleteVertexPathNerveMap l hli hlj :=
+  rfl
 
 /-- The mapping-object map carried by an available horn face on paths omitting that face vertex. -/
 noncomputable def avoidingPathMapOfInnerHornFace
