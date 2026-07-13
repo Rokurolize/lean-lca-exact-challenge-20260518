@@ -1139,6 +1139,33 @@ theorem avoidingPathMapOfInnerHornFace_pairwise_of_lt
   exact innerHornFaceFunctor_avoiding_pairwise_core_heq
     C σ hil hlm hmj hlk hmk
 
+/-- Any two omitted-vertex face maps agree on their binary intersection. -/
+theorem avoidingPathMapOfInnerHornFace_pairwise
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k i j l m : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hil : i < l) (hlj : l < j) (hlk : l ≠ k)
+    (him : i < m) (hmj : m < j) (hmk : m ≠ k) :
+    SSet.Subcomplex.homOfLE (inf_le_left :
+        avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l) ⊓
+          avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up m) ≤
+            avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l)) ≫
+        avoidingPathMapOfInnerHornFace C σ hil hlj hlk =
+      SSet.Subcomplex.homOfLE (inf_le_right :
+        avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l) ⊓
+          avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up m) ≤
+            avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up m)) ≫
+        avoidingPathMapOfInnerHornFace C σ him hmj hmk := by
+  rcases lt_trichotomy l m with hlm | rfl | hml
+  · exact avoidingPathMapOfInnerHornFace_pairwise_of_lt
+      C σ hil hlm hmj hlk hmk
+  · rfl
+  · ext U x
+    have h := congrArg (fun q ↦ q.app U ⟨x.1, ⟨x.2.2, x.2.1⟩⟩)
+      (avoidingPathMapOfInnerHornFace_pairwise_of_lt
+        C σ him hml hlj hmk hlk)
+    exact h.symm
+
 /-- Known paths are through paths or omit a nonmissing vertex. -/
 theorem knownPathSubcomplex_eq_through_sup_avoiding {J : Type u} [LinearOrder J]
     (i j k : J) :
@@ -1230,6 +1257,30 @@ theorem homOfLE_iSup_mapFromISupSubcomplex
   exact hover.symm
 
 end SubcomplexUnionMap
+
+/-- The compatible omitted-vertex horn faces glue over the entire avoiding-path union. -/
+noncomputable def avoidingKnownPathMapOfInnerHorn
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (i j : Fin (n + 3)) :
+    (avoidingKnownPathSubcomplex
+      (ULift.up.{u, 0} i) (ULift.up.{u, 0} j) (ULift.up.{u, 0} k) : SSet) ⟶
+      (innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up i)) ⟶[SSet]
+        innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up j))) := by
+  apply mapFromISupSubcomplex
+    (fun l : {l : ULift.{u, 0} (Fin (n + 3)) //
+      ULift.up i < l ∧ l < ULift.up j ∧ l ≠ ULift.up k} ↦
+        avoidingPathSubcomplex (ULift.up i) (ULift.up j) l.1)
+    (fun ⟨⟨l⟩, hil, hlj, hlk⟩ ↦
+      avoidingPathMapOfInnerHornFace C σ hil hlj
+        (fun h ↦ hlk (congrArg ULift.up h)))
+  rintro ⟨⟨l⟩, hil, hlj, hlk⟩ ⟨⟨m⟩, him, hmj, hmk⟩
+  exact avoidingPathMapOfInnerHornFace_pairwise
+    C σ hil hlj (fun h ↦ hlk (congrArg ULift.up h))
+      him hmj (fun h ↦ hmk (congrArg ULift.up h))
 
 /-- The binary through/omitted decomposition of the known-path latching subcomplex. -/
 theorem knownPathSubcomplex_eq_through_sup_avoidingKnown {J : Type u}
