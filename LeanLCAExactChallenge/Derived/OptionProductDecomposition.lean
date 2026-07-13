@@ -269,7 +269,7 @@ noncomputable def complementSubproductReindexIso {J : Type w}
 The complex-level binary fan after composing the raw `Option` product split with the singleton
 reduction on the `none` side and the complement reindexing on the `some` side.
 -/
-noncomputable def optionProductComplexTransportedBinaryFan {J : Type w}
+noncomputable def transportedBinaryFan {J : Type w}
     (K : Option J → CochainComplex C ℤ)
     [HasProduct K]
     [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
@@ -280,32 +280,35 @@ noncomputable def optionProductComplexTransportedBinaryFan {J : Type w}
     ((optionProductBinaryFan C K).fst ≫ (noneSubproductIso C K).hom)
     ((optionProductBinaryFan C K).snd ≫ (complementSubproductReindexIso C K).hom)
 
-theorem optionProductComplexTransportedBinaryFan_pt {J : Type w}
+omit [HasBinaryBiproducts C] in
+theorem transportedBinaryFan_pt {J : Type w}
     (K : Option J → CochainComplex C ℤ)
     [HasProduct K]
     [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
     [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
     [HasProduct (optionTail C K)] :
-    (optionProductComplexTransportedBinaryFan C K).pt = ∏ᶜ K :=
+    (transportedBinaryFan C K).pt = ∏ᶜ K :=
   rfl
 
-theorem optionProductComplexTransportedBinaryFan_fst {J : Type w}
+omit [HasBinaryBiproducts C] in
+theorem transportedBinaryFan_fst {J : Type w}
     (K : Option J → CochainComplex C ℤ)
     [HasProduct K]
     [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
     [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
     [HasProduct (optionTail C K)] :
-    (optionProductComplexTransportedBinaryFan C K).fst =
+    (transportedBinaryFan C K).fst =
       (optionProductBinaryFan C K).fst ≫ (noneSubproductIso C K).hom :=
   rfl
 
-theorem optionProductComplexTransportedBinaryFan_snd {J : Type w}
+omit [HasBinaryBiproducts C] in
+theorem transportedBinaryFan_snd {J : Type w}
     (K : Option J → CochainComplex C ℤ)
     [HasProduct K]
     [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
     [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
     [HasProduct (optionTail C K)] :
-    (optionProductComplexTransportedBinaryFan C K).snd =
+    (transportedBinaryFan C K).snd =
       (optionProductBinaryFan C K).snd ≫ (complementSubproductReindexIso C K).hom :=
   rfl
 
@@ -313,7 +316,7 @@ theorem optionProductComplexTransportedBinaryFan_snd {J : Type w}
 Assemble degreewise limit proofs for the evaluated transported Option-product fan into the
 complex-level limiting fan.
 -/
-noncomputable def optionProductComplexTransportedBinaryFanIsLimit_of_eval
+noncomputable def transportedBinaryFanIsLimit_of_eval
     {J : Type w}
     (K : Option J → CochainComplex C ℤ)
     [HasProduct K]
@@ -324,15 +327,15 @@ noncomputable def optionProductComplexTransportedBinaryFanIsLimit_of_eval
       ∀ n : ℤ,
         IsLimit
           ((HomologicalComplex.eval C (ComplexShape.up ℤ) n).mapCone
-            (optionProductComplexTransportedBinaryFan C K))) :
-    IsLimit (optionProductComplexTransportedBinaryFan C K) :=
+            (transportedBinaryFan C K))) :
+    IsLimit (transportedBinaryFan C K) :=
   HomologicalComplex.isLimitOfEval (pair (K none) (∏ᶜ (optionTail C K)))
-    (optionProductComplexTransportedBinaryFan C K) hEval
+    (transportedBinaryFan C K) hEval
 
 /--
 Specialization of the cone-point uniqueness conversion to W151's transported complex fan.
 -/
-noncomputable def optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanIsLimit
+noncomputable def optionProductIsoBiprod_of_transportedFan
     {J : Type w}
     (K : Option J → CochainComplex C ℤ)
     [HasProduct K]
@@ -340,18 +343,18 @@ noncomputable def optionProductIsoBiprod_of_optionProductComplexTransportedBinar
     [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
     [HasProduct (optionTail C K)]
     [HasBinaryBiproduct (K none) (∏ᶜ (optionTail C K))]
-    (hFan : IsLimit (optionProductComplexTransportedBinaryFan C K)) :
+    (hFan : IsLimit (transportedBinaryFan C K)) :
     ∏ᶜ K ≅ K none ⊞ ∏ᶜ (optionTail C K) :=
   optionProductIsoBiprod_of_complexFanIsLimit C K
-    (optionProductComplexTransportedBinaryFan C K)
-    (optionProductComplexTransportedBinaryFan_pt C K)
+    (transportedBinaryFan C K)
+    (transportedBinaryFan_pt C K)
     hFan
 
 /--
 Consumer wrapper: degreewise limit proofs for the evaluated transported fan already imply the
 biproduct-shaped Option-product iso.
 -/
-noncomputable def optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit
+noncomputable def optionProductIsoBiprod_of_evaluatedFan
     {J : Type w}
     (K : Option J → CochainComplex C ℤ)
     [HasProduct K]
@@ -363,10 +366,10 @@ noncomputable def optionProductIsoBiprod_of_optionProductComplexTransportedBinar
       ∀ n : ℤ,
         IsLimit
           ((HomologicalComplex.eval C (ComplexShape.up ℤ) n).mapCone
-            (optionProductComplexTransportedBinaryFan C K))) :
+            (transportedBinaryFan C K))) :
     ∏ᶜ K ≅ K none ⊞ ∏ᶜ (optionTail C K) :=
-  optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanIsLimit C K
-    (optionProductComplexTransportedBinaryFanIsLimit_of_eval C K hEval)
+  optionProductIsoBiprod_of_transportedFan C K
+    (transportedBinaryFanIsLimit_of_eval C K hEval)
 
 noncomputable abbrev optionProductSplitPair {J : Type w}
     (K : Option J → CochainComplex C ℤ)
@@ -419,6 +422,7 @@ noncomputable def optionProductDegreeTransportedBinaryFan {J : Type w}
     ((optionProductDegreeBinaryFan C K n).snd ≫
       (complementSubproductDegreeReindexIso C K n).hom)
 
+omit [HasBinaryBiproducts C] in
 theorem optionProductDegreeTransportedBinaryFan_pt {J : Type w}
     (K : Option J → CochainComplex C ℤ) (n : ℤ)
     [HasProduct (fun i : Option J => (K i).X n)]
@@ -429,6 +433,7 @@ theorem optionProductDegreeTransportedBinaryFan_pt {J : Type w}
       ∏ᶜ (fun i : Option J => (K i).X n) :=
   rfl
 
+omit [HasBinaryBiproducts C] in
 theorem optionProductDegreeTransportedBinaryFan_fst {J : Type w}
     (K : Option J → CochainComplex C ℤ) (n : ℤ)
     [HasProduct (fun i : Option J => (K i).X n)]
@@ -439,6 +444,7 @@ theorem optionProductDegreeTransportedBinaryFan_fst {J : Type w}
       (optionProductDegreeBinaryFan C K n).fst ≫ (noneSubproductDegreeIso C K n).hom :=
   rfl
 
+omit [HasBinaryBiproducts C] in
 theorem optionProductDegreeTransportedBinaryFan_snd {J : Type w}
     (K : Option J → CochainComplex C ℤ) (n : ℤ)
     [HasProduct (fun i : Option J => (K i).X n)]
@@ -470,13 +476,13 @@ noncomputable def optionProductDegreeTransportedBinaryFanIsLimit {J : Type w}
   · intro T f g
     have hfac :=
       h₀.fac (BinaryFan.mk (f ≫ eL.inv) (g ≫ eR.inv)) ⟨WalkingPair.left⟩
-    simpa [optionProductDegreeTransportedBinaryFan, s₀, eL, eR, Category.assoc]
-      using congrArg (fun q => q ≫ eL.hom) hfac
+    simp [optionProductDegreeTransportedBinaryFan, s₀, eL, eR,
+      Category.assoc]
   · intro T f g
     have hfac :=
       h₀.fac (BinaryFan.mk (f ≫ eL.inv) (g ≫ eR.inv)) ⟨WalkingPair.right⟩
-    simpa [optionProductDegreeTransportedBinaryFan, s₀, eL, eR, Category.assoc]
-      using congrArg (fun q => q ≫ eR.hom) hfac
+    simp [optionProductDegreeTransportedBinaryFan, s₀, eL, eR,
+      Category.assoc]
   · intro T f g m hm₁ hm₂
     have hm₁' : m ≫ s₀.fst ≫ eL.hom = f := by
       simpa [optionProductDegreeTransportedBinaryFan, s₀, eL, eR, Category.assoc] using hm₁
@@ -484,10 +490,10 @@ noncomputable def optionProductDegreeTransportedBinaryFanIsLimit {J : Type w}
       simpa [optionProductDegreeTransportedBinaryFan, s₀, eL, eR, Category.assoc] using hm₂
     have hfac₁ :
         h₀.lift (BinaryFan.mk (f ≫ eL.inv) (g ≫ eR.inv)) ≫ s₀.fst = f ≫ eL.inv := by
-      simpa using h₀.fac (BinaryFan.mk (f ≫ eL.inv) (g ≫ eR.inv)) ⟨WalkingPair.left⟩
+      simp
     have hfac₂ :
         h₀.lift (BinaryFan.mk (f ≫ eL.inv) (g ≫ eR.inv)) ≫ s₀.snd = g ≫ eR.inv := by
-      simpa using h₀.fac (BinaryFan.mk (f ≫ eL.inv) (g ≫ eR.inv)) ⟨WalkingPair.right⟩
+      simp
     have hm₁base : m ≫ s₀.fst = f ≫ eL.inv := by
       calc
         m ≫ s₀.fst = (m ≫ s₀.fst ≫ eL.hom) ≫ eL.inv := by simp [Category.assoc]
@@ -529,6 +535,7 @@ noncomputable def evalProductPointIso {I : Type w}
       (K i))
   exact PreservesProduct.iso (HomologicalComplex.eval C (ComplexShape.up ℤ) n) K
 
+omit [HasBinaryBiproducts C] in
 @[reassoc]
 theorem evalProductPointIso_hom_π {I : Type w}
     (K : I → CochainComplex C ℤ) (n : ℤ)
@@ -556,6 +563,7 @@ noncomputable def evalTailProductPointIso {J : Type w}
     ((∏ᶜ (optionTail C K)).X n) ≅ ∏ᶜ (optionTailDegree C K n) :=
   evalProductPointIso C (optionTail C K) n
 
+omit [HasBinaryBiproducts C] in
 @[reassoc]
 theorem evalTailProductPointIso_hom_π {J : Type w}
     (K : Option J → CochainComplex C ℤ) (n : ℤ)
@@ -578,8 +586,8 @@ noncomputable def evaluatedOptionProductComplexBinaryFan {J : Type w}
     [HasProduct (optionTail C K)] :
     BinaryFan ((K none).X n) ((∏ᶜ (optionTail C K)).X n) :=
   BinaryFan.mk
-    ((optionProductComplexTransportedBinaryFan C K).fst.f n)
-    ((optionProductComplexTransportedBinaryFan C K).snd.f n)
+    ((transportedBinaryFan C K).fst.f n)
+    ((transportedBinaryFan C K).snd.f n)
 
 /--
 The degreewise transported fan, with its cone point and right target transported back to the
@@ -677,6 +685,7 @@ abbrev EvaluatedDegreeFanComparisonRight {J : Type w}
   (evaluatedOptionProductComplexBinaryFan C K n).snd =
     (optionProductDegreeFanWithEvaluatedTargets C K n).snd
 
+omit [HasBinaryBiproducts C] in
 /--
 After composing the degreewise/evaluated-target right leg with the comparison isomorphism back to
 the evaluated tail product, the trailing `evalTailProductPointIso.inv` cancels.
@@ -696,6 +705,7 @@ theorem optionProductDegreeFanWithEvaluatedTargets_snd_evalTail_hom_π
           Pi.π (optionTailDegree C K n) j := by
   simp [optionProductDegreeFanWithEvaluatedTargets, Category.assoc]
 
+omit [HasBinaryBiproducts C] in
 /--
 The degree-side right leg projected to a tail component is the underlying `Pi.binaryFanOfProp`
 right leg projected to the corresponding complement component.
@@ -736,6 +746,7 @@ theorem optionProductDegreeTransportedBinaryFan_snd_π
   simpa [Category.assoc] using
     congrArg (fun q => (optionProductDegreeBinaryFan C K n).snd ≫ q) hπ
 
+omit [HasBinaryBiproducts C] in
 /--
 The complex-side right leg projected through evaluation and the tail comparison reduces to the
 matching complex product projection at the complement index.
@@ -773,6 +784,7 @@ theorem complementSubproductReindexIso_hom_evalTail_hom_π
       (fun i : {x : Option J // ¬ x = none} => K i.val) j
   simpa [HomologicalComplex.comp_f] using congrArg (fun q => q.f n) hπ
 
+omit [HasBinaryBiproducts C] in
 /--
 The complex-side evaluated right leg has the same tail-component normal form as the complex
 product split projected at the corresponding complement index.
@@ -790,12 +802,13 @@ theorem evaluatedOptionProductComplexBinaryFan_snd_evalTail_hom_π
       (optionProductBinaryFan C K).snd.f n ≫
         (Pi.π (fun i : {x : Option J // ¬ x = none} => K i.val)
           ((optionSomeComplementEquiv J).symm j)).f n := by
-  dsimp [evaluatedOptionProductComplexBinaryFan, optionProductComplexTransportedBinaryFan]
+  dsimp [evaluatedOptionProductComplexBinaryFan, transportedBinaryFan]
   simpa [Category.assoc] using
     congrArg
       (fun q => (optionProductBinaryFan C K).snd.f n ≫ q)
       (complementSubproductReindexIso_hom_evalTail_hom_π C K n j)
 
+omit [HasBinaryBiproducts C] in
 /-- The right leg of the evaluated-degree fan comparison. -/
 theorem evaluatedDegreeFanComparisonRight_direct {J : Type w}
     (K : Option J → CochainComplex C ℤ) (n : ℤ)
@@ -817,13 +830,7 @@ theorem evaluatedDegreeFanComparisonRight_direct {J : Type w}
           Pi.π (fun i : {x : Option J // ¬ x = none} => K i.val)
             ((optionSomeComplementEquiv J).symm j) =
         Pi.π K ((optionSomeComplementEquiv J).symm j).val := by
-    simpa [Pi.binaryFanOfProp] using
-      (Pi.map'_comp_π
-        (f := K)
-        (g := fun i : {x : Option J // ¬ x = none} => K i.val)
-        (p := Subtype.val)
-        (q := fun _ => 𝟙 _)
-        (b := (optionSomeComplementEquiv J).symm j))
+    simp [Pi.binaryFanOfProp]
   have hright_complex_degree :
       (Pi.binaryFanOfProp K (fun x : Option J => x = none)).snd.f n ≫
           (Pi.π (fun i : {x : Option J // ¬ x = none} => K i.val)
@@ -840,13 +847,7 @@ theorem evaluatedDegreeFanComparisonRight_direct {J : Type w}
             ((optionSomeComplementEquiv J).symm j) =
         Pi.π (fun i : Option J => (K i).X n)
           ((optionSomeComplementEquiv J).symm j).val := by
-    simpa [Pi.binaryFanOfProp] using
-      (Pi.map'_comp_π
-        (f := fun i : Option J => (K i).X n)
-        (g := fun i : {x : Option J // ¬ x = none} => (K i.val).X n)
-        (p := Subtype.val)
-        (q := fun _ => 𝟙 _)
-        (b := (optionSomeComplementEquiv J).symm j))
+    simp [Pi.binaryFanOfProp]
   have hright_complex_degree_limit :
       (Pi.binaryFanOfProp K (fun x : Option J => x = none)).snd.f n ≫
           (limit.π (Discrete.functor
@@ -914,6 +915,7 @@ theorem evaluatedDegreeFanComparisonRight_direct {J : Type w}
         hright_degree_limit.symm
   exact hcomplex.trans (hmain.trans (hdegree_fan.trans htransport).symm)
 
+omit [HasBinaryBiproducts C] in
 /-- The left leg of the evaluated-degree fan comparison. -/
 theorem evaluatedDegreeFanComparisonLeft_direct {J : Type w}
     (K : Option J → CochainComplex C ℤ) (n : ℤ)
@@ -930,13 +932,7 @@ theorem evaluatedDegreeFanComparisonLeft_direct {J : Type w}
       (Pi.binaryFanOfProp K (fun x : Option J => x = none)).fst ≫
           Pi.π (fun i : {x : Option J // x = none} => K i.val) default =
         Pi.π K (default : {x : Option J // x = none}).val := by
-    simpa [Pi.binaryFanOfProp] using
-      (Pi.map'_comp_π
-        (f := K)
-        (g := fun i : {x : Option J // x = none} => K i.val)
-        (p := Subtype.val)
-        (q := fun _ => 𝟙 _)
-        (b := default))
+    simp [Pi.binaryFanOfProp]
   have hleft_degree :
       (Pi.binaryFanOfProp K (fun x : Option J => x = none)).fst.f n ≫
           (Pi.π (fun i : {x : Option J // x = none} => K i.val) default).f n =
@@ -951,13 +947,7 @@ theorem evaluatedDegreeFanComparisonLeft_direct {J : Type w}
           Pi.π (fun i : {x : Option J // x = none} => (K i.val).X n) default =
         Pi.π (fun i : Option J => (K i).X n)
           (default : {x : Option J // x = none}).val := by
-    simpa [Pi.binaryFanOfProp] using
-      (Pi.map'_comp_π
-        (f := fun i : Option J => (K i).X n)
-        (g := fun i : {x : Option J // x = none} => (K i.val).X n)
-        (p := Subtype.val)
-        (q := fun _ => 𝟙 _)
-        (b := default))
+    simp [Pi.binaryFanOfProp]
   have hleft_degree_limit :
       (Pi.binaryFanOfProp K (fun x : Option J => x = none)).fst.f n ≫
           (limit.π (Discrete.functor fun i : {x : Option J // x = none} => K i.val)
@@ -971,10 +961,12 @@ theorem evaluatedDegreeFanComparisonLeft_direct {J : Type w}
         Pi.π (fun i : Option J => (K i).X n)
           (default : {x : Option J // x = none}).val := by
     simpa [Pi.π] using hright_degree
-  simp [EvaluatedDegreeFanComparisonLeft, evaluatedOptionProductComplexBinaryFan,
-    optionProductDegreeFanWithEvaluatedTargets, optionProductComplexTransportedBinaryFan,
-    optionProductDegreeTransportedBinaryFan, optionProductBinaryFan, optionProductDegreeBinaryFan,
-    noneSubproductIso, noneSubproductDegreeIso]
+  simp only [EvaluatedDegreeFanComparisonLeft, evaluatedOptionProductComplexBinaryFan,
+    transportedBinaryFan, optionProductBinaryFan, Functor.const_obj_obj, pair_obj_left,
+    noneSubproductIso, productUniqueIso_hom, pair_obj_right, BinaryFan.mk_pt,
+    BinaryFan.mk_fst, HomologicalComplex.comp_f, BinaryFan.mk_snd,
+    optionProductDegreeFanWithEvaluatedTargets, optionProductDegreeTransportedBinaryFan,
+    optionProductDegreeBinaryFan, noneSubproductDegreeIso]
   refine hleft_degree_limit.trans ?_
   refine (evalProductPointIso_hom_π C K n
     (default : {x : Option J // x = none}).val).symm.trans ?_
@@ -986,6 +978,7 @@ theorem evaluatedDegreeFanComparisonLeft_direct {J : Type w}
   cases hdefault
   rfl
 
+omit [HasBinaryBiproducts C] in
 /--
 Binary-fan extensionality reduces the evaluated fan comparison to exactly the two projection legs.
 -/
@@ -1007,6 +1000,7 @@ theorem evaluatedDegreeFanComparison_of_left_right {J : Type w}
     optionProductDegreeFanWithEvaluatedTargets] at hleft hright ⊢
   rw [hleft, hright]
 
+omit [HasBinaryBiproducts C] in
 /--
 After `evaluatedDegreeFanComparisonLeft_direct`, only the right leg remains to prove the full
 evaluated fan comparison.
@@ -1026,6 +1020,7 @@ theorem evaluatedDegreeFanComparison_of_right {J : Type w}
   evaluatedDegreeFanComparison_of_left_right C K n
     (evaluatedDegreeFanComparisonLeft_direct C K n) hright
 
+omit [HasBinaryBiproducts C] in
 /-- Direct evaluated fan comparison, after closing both binary-fan projection legs. -/
 theorem evaluatedDegreeFanComparison_direct {J : Type w}
     (K : Option J → CochainComplex C ℤ) (n : ℤ)
@@ -1075,20 +1070,20 @@ noncomputable def evaluatedOptionProductComplexBinaryFanIsLimitEquivEvalMapCone 
     [HasProduct (optionTail C K)] :
     IsLimit
         ((HomologicalComplex.eval C (ComplexShape.up ℤ) n).mapCone
-          (optionProductComplexTransportedBinaryFan C K)) ≃
+          (transportedBinaryFan C K)) ≃
       IsLimit (evaluatedOptionProductComplexBinaryFan C K n) := by
-  simpa [evaluatedOptionProductComplexBinaryFan, optionProductComplexTransportedBinaryFan]
+  simpa [evaluatedOptionProductComplexBinaryFan, transportedBinaryFan]
     using
       isLimitMapConeBinaryFanEquiv
         (HomologicalComplex.eval C (ComplexShape.up ℤ) n)
-        (optionProductComplexTransportedBinaryFan C K).fst
-        (optionProductComplexTransportedBinaryFan C K).snd
+        (transportedBinaryFan C K).fst
+        (transportedBinaryFan C K).snd
 
 /--
 The exact evaluated `Functor.mapCone` consumer follows by applying the displayed-binary-fan
 equivalence backwards to the direct evaluated binary fan limit.
 -/
-noncomputable def optionProductComplexTransportedBinaryFanEvalIsLimit_direct {J : Type w}
+noncomputable def transportedBinaryFanEvalIsLimit_direct {J : Type w}
     (K : Option J → CochainComplex C ℤ) (n : ℤ)
     [HasProduct K]
     [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
@@ -1102,14 +1097,14 @@ noncomputable def optionProductComplexTransportedBinaryFanEvalIsLimit_direct {J 
     [∀ x : Option J, Decidable (x = none)] :
     IsLimit
       ((HomologicalComplex.eval C (ComplexShape.up ℤ) n).mapCone
-        (optionProductComplexTransportedBinaryFan C K)) :=
+        (transportedBinaryFan C K)) :=
   (evaluatedOptionProductComplexBinaryFanIsLimitEquivEvalMapCone C K n).symm
     (evaluatedOptionProductComplexBinaryFanIsLimit_direct C K n)
 
 /--
 Package the degreewise mapCone limits into the complex-level transported Option-product binary fan.
 -/
-noncomputable def optionProductComplexTransportedBinaryFanIsLimit_direct {J : Type w}
+noncomputable def transportedBinaryFanIsLimit_direct {J : Type w}
     (K : Option J → CochainComplex C ℤ)
     [HasProduct K]
     [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
@@ -1120,9 +1115,9 @@ noncomputable def optionProductComplexTransportedBinaryFanIsLimit_direct {J : Ty
     [HasProduct (optionTail C K)]
     [∀ m : ℤ, HasProduct (optionTailDegree C K m)]
     [∀ x : Option J, Decidable (x = none)] :
-    IsLimit (optionProductComplexTransportedBinaryFan C K) :=
-  optionProductComplexTransportedBinaryFanIsLimit_of_eval C K
-    (fun n => optionProductComplexTransportedBinaryFanEvalIsLimit_direct C K n)
+    IsLimit (transportedBinaryFan C K) :=
+  transportedBinaryFanIsLimit_of_eval C K
+    (fun n => transportedBinaryFanEvalIsLimit_direct C K n)
 
 /--
 Finite-product call-site consumer for the Option induction shape.
@@ -1131,7 +1126,7 @@ This packages the direct fan limit through the existing biproduct-point wrapper 
 exact iso shape expected by `FiniteProductOptionDecompositionInput.optionProductIsoBiprod`, with
 the remaining product and biproduct instances kept explicit.
 -/
-noncomputable def optionProductIsoBiprod_finiteProductCallsite_of_direct {J : Type w}
+noncomputable def optionProductIsoBiprod_direct {J : Type w}
     [Finite J]
     (K : Option J → CochainComplex C ℤ)
     [HasProduct K]
@@ -1145,14 +1140,14 @@ noncomputable def optionProductIsoBiprod_finiteProductCallsite_of_direct {J : Ty
     [∀ x : Option J, Decidable (x = none)]
     [HasBinaryBiproduct (K none) (∏ᶜ (fun j : J => K (some j)))] :
     ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j : J => K (some j)) :=
-  optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanIsLimit C K
-    (optionProductComplexTransportedBinaryFanIsLimit_direct C K)
+  optionProductIsoBiprod_of_transportedFan C K
+    (transportedBinaryFanIsLimit_direct C K)
 
 /--
 Remove the explicit complement-subproduct `HasProduct` requirement from the finite call site.
 It is reconstructed from the tail product hypothesis by `optionSomeComplementEquiv`.
 -/
-noncomputable def optionProductIsoBiprod_finiteProductCallsite_tailComplement_of_direct
+noncomputable def optionProductIsoBiprod_tail_direct
     {J : Type w}
     [Finite J]
     (K : Option J → CochainComplex C ℤ)
@@ -1168,13 +1163,13 @@ noncomputable def optionProductIsoBiprod_finiteProductCallsite_tailComplement_of
     ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j : J => K (some j)) := by
   letI : HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val) :=
     complementSubproductHasProduct_of_someTail C K
-  exact optionProductIsoBiprod_finiteProductCallsite_of_direct C K
+  exact optionProductIsoBiprod_direct C K
 
 /--
 Remove the explicit degreewise complement-subproduct `HasProduct` family from the finite call
 site. It is reconstructed degree by degree from the displayed degreewise tail product hypothesis.
 -/
-noncomputable def optionProductIsoBiprod_finiteProductCallsite_tailDegreeComplement_of_direct
+noncomputable def optionProductIsoBiprod_tailDegree_direct
     {J : Type w}
     [Finite J]
     (K : Option J → CochainComplex C ℤ)
@@ -1190,14 +1185,15 @@ noncomputable def optionProductIsoBiprod_finiteProductCallsite_tailDegreeComplem
   letI : ∀ m : ℤ,
       HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X m) :=
     fun m => complementSubproductDegreeHasProduct_of_someTailDegree C K m
-  exact optionProductIsoBiprod_finiteProductCallsite_tailComplement_of_direct C K
+  exact optionProductIsoBiprod_tail_direct C K
 
 /--
 Remove the singleton-subproduct product requirements from the finite call site. The index
 `{x : Option J // x = none}` is unique, so mathlib's unique-index product instance supplies both
 the complex-level and fixed-degree singleton products.
 -/
-noncomputable def optionProductIsoBiprod_finiteProductCallsite_singletonTailDegreeComplement_of_direct
+noncomputable def
+  optionProductIsoBiprod_singletonTailDegree_direct
     {J : Type w}
     [Finite J]
     (K : Option J → CochainComplex C ℤ)
@@ -1213,13 +1209,13 @@ noncomputable def optionProductIsoBiprod_finiteProductCallsite_singletonTailDegr
   letI : ∀ m : ℤ,
       HasProduct (fun i : {x : Option J // x = none} => (K i.val).X m) :=
     fun _ => inferInstance
-  exact optionProductIsoBiprod_finiteProductCallsite_tailDegreeComplement_of_direct C K
+  exact optionProductIsoBiprod_tailDegree_direct C K
 
 /--
 Remove the selected binary-biproduct requirement from the finite call site. Binary biproducts in
 the cochain-complex category are synthesized from the ambient binary biproducts in `C`.
 -/
-noncomputable def optionProductIsoBiprod_finiteProductCallsite_packaged_of_direct
+noncomputable def optionProductIsoBiprod_packaged_direct
     {J : Type w}
     [Finite J]
     (K : Option J → CochainComplex C ℤ)
@@ -1231,7 +1227,7 @@ noncomputable def optionProductIsoBiprod_finiteProductCallsite_packaged_of_direc
     ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j : J => K (some j)) := by
   letI : HasBinaryBiproduct (K none) (∏ᶜ (fun j : J => K (some j))) :=
     inferInstance
-  exact optionProductIsoBiprod_finiteProductCallsite_singletonTailDegreeComplement_of_direct C K
+  exact optionProductIsoBiprod_singletonTailDegree_direct C K
 
 /--
 Close the finite Option call-site instance packaging under finite products in the base category.
@@ -1239,7 +1235,7 @@ For finite `J`, `[HasFiniteProducts C]` supplies the degreewise products indexed
 `Option J` and `J`; the preceding wrappers discharge the singleton, complement, and selected
 binary-biproduct requirements.
 -/
-noncomputable def optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+noncomputable def optionProductIsoBiprod_finite_direct
     {J : Type w}
     [Finite J]
     (K : Option J → CochainComplex C ℤ)
@@ -1252,7 +1248,7 @@ noncomputable def optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of
     fun _ => inferInstance
   letI : ∀ m : ℤ, HasProduct (fun j : J => (K (some j)).X m) :=
     fun _ => inferInstance
-  exact optionProductIsoBiprod_finiteProductCallsite_packaged_of_direct C K
+  exact optionProductIsoBiprod_packaged_direct C K
 
 end OptionProductDecompositionW151
 

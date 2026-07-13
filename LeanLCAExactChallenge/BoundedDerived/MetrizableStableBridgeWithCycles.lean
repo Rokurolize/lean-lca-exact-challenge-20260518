@@ -4,7 +4,9 @@ import LeanLCAExactChallenge.Derived.ExactAcyclicWithCyclesHomotopy
 /-!
 # Corrected ordinary triangulated semantics
 
-This module exposes the unconditional corrected bounded-homotopy Verdier package. It deliberately excludes the former assumption-parameterized stable-route adapters and does not claim that an ordinary triangulated nerve is a stable infinity-category.
+This module exposes the unconditional corrected bounded-homotopy Verdier package.
+
+It excludes assumption-parameterized adapters and makes no stable infinity-category claim.
 -/
 
 set_option autoImplicit false
@@ -42,7 +44,9 @@ abbrev localization : ComplexCategory ⥤ OrdinaryCategory :=
 abbrev infinityCategory : SSet.QCat :=
   BoundedDerivedOrdinaryQuasicategoryWithCycles MetrizableLCA.{0}
 
-/-- Bounded homotopy objects over default-universe metrizable LCA groups are directly closed under distinguished triangles. -/
+/--
+Bounded homotopy objects over metrizable LCA groups are closed under distinguished triangles.
+-/
 noncomputable instance metrizableBoundedHomotopyObject_isTriangulatedClosed2 :
     (boundedHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
   boundedHomotopyObject_isTriangulatedClosed2_direct MetrizableLCA.{0}
@@ -73,11 +77,19 @@ abbrev homotopyVerdierLocalization :
     boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 MetrizableLCA.{0}
   exact (boundedExactAcyclicWithCyclesHomotopyObject MetrizableLCA.{0}).trW.Q
 
-/-- The ordinary quasicategory nerve of the corrected bounded homotopy Verdier quotient. This does not claim a genuine stable infinity-category enhancement. -/
+/--
+The ordinary quasicategory nerve of the corrected bounded homotopy Verdier quotient.
+
+This definition does not claim a genuine stable infinity-category enhancement.
+-/
 abbrev HomotopyVerdierOrdinaryNerve : SSet.QCat :=
   ⟨CategoryTheory.nerve HomotopyVerdierCategory, inferInstance⟩
 
-/-- Unconditional triangulated semantics for the corrected bounded homotopy Verdier quotient. Ordinary finite limits and colimits are deliberately absent. -/
+/--
+Unconditional triangulated semantics for the corrected bounded homotopy Verdier quotient.
+
+Ordinary finite limits and colimits are deliberately absent.
+-/
 structure HomotopyVerdierTriangulatedPackage : Type 2 where
   ordinaryNerveCarrier :
     HomotopyVerdierOrdinaryNerve =
@@ -111,7 +123,11 @@ structure HomotopyVerdierTriangulatedPackage : Type 2 where
     letI : Pretriangulated HomotopyVerdierCategory := pretriangulatedStructure
     IsTriangulated HomotopyVerdierCategory
 
-/-- The corrected bounded homotopy Verdier quotient has its ordinary triangulated semantics without topological realization, homology-detection, or finite-shape transfer inputs. -/
+/--
+The corrected bounded homotopy Verdier quotient has unconditional ordinary triangulated semantics.
+
+No topological realization, homology detection, or finite-shape transfer input is used.
+-/
 def homotopyVerdierTriangulatedPackage : HomotopyVerdierTriangulatedPackage where
   ordinaryNerveCarrier := rfl
   weakEquivalenceClass := rfl

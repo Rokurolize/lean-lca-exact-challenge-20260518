@@ -316,7 +316,8 @@ structure LeftFibration.EquivalenceTargetLift
   map : p.app _ simplex = e.edge
   isEquivalence : EdgeIsEquivalence (SSet.Edge.mk' simplex)
 
-/-- A left fibration lifts a base equivalence with prescribed target, and the lift remains an equivalence. -/
+/-- A left fibration lifts a base equivalence with prescribed target, and the lift remains an
+  equivalence. -/
 lemma LeftFibration.nonempty_equivalenceTargetLift
     {X Y : SSet.{u}} (p : X ⟶ Y) [LeftFibration p] [SSet.Quasicategory Y]
     (x : X _⦋0⦌) {y : Y _⦋0⦌} (e : SSet.Edge y (p.app _ x))

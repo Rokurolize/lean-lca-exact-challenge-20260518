@@ -219,7 +219,7 @@ lemma iso_hom_openMap {A B : MetrizableLCA.{u}} (e : A ≅ B) :
     · intro hb
       refine ⟨e.inv b, hb, ?_⟩
       have h := congrArg (fun f : B ⟶ B => f b) e.inv_hom_id
-      simpa using h
+      exact h
   rw [hpre]
   exact hU.preimage e.inv.hom.continuous
 
@@ -233,7 +233,7 @@ lemma surjective_comp_iso {A B C : MetrizableLCA.{u}} (q : A ⟶ B) (e : B ≅ C
   change e.hom (q a) = c
   rw [ha]
   have h := congrArg (fun f : C ⟶ C => f c) e.inv_hom_id
-  simpa using h
+  exact h
 
 /-- Openness is preserved by composing on the right with an isomorphism. -/
 lemma openMap_comp_iso {A B C : MetrizableLCA.{u}} (q : A ⟶ B) (e : B ≅ C)
@@ -262,7 +262,7 @@ lemma coequalizerπ_surjective {A B : MetrizableLCA.{u}} (f g : A ⟶ B) :
     exact IsColimit.comp_coconePointUniqueUpToIso_hom hcf
       (colimit.isColimit (parallelPair f g)) WalkingParallelPair.one
   have hck : cf.π = cokernelπ (f - g) := by
-    simpa [cf, ck] using Preadditive.coforkOfCokernelCofork_π ck
+    simp [cf, ck]
   have hsurj : Function.Surjective
       ((cf.π ≫ e.hom : B ⟶ (coequalizer f g : MetrizableLCA.{u})) :
         B → (coequalizer f g : MetrizableLCA.{u})) := by
@@ -292,7 +292,7 @@ lemma coequalizerπ_openMap {A B : MetrizableLCA.{u}} (f g : A ⟶ B) :
     exact IsColimit.comp_coconePointUniqueUpToIso_hom hcf
       (colimit.isColimit (parallelPair f g)) WalkingParallelPair.one
   have hck : cf.π = cokernelπ (f - g) := by
-    simpa [cf, ck] using Preadditive.coforkOfCokernelCofork_π ck
+    simp [cf, ck]
   have hopen : IsOpenMap
       ((cf.π ≫ e.hom : B ⟶ (coequalizer f g : MetrizableLCA.{u})) :
         B → (coequalizer f g : MetrizableLCA.{u})) := by

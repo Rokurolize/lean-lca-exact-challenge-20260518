@@ -92,7 +92,7 @@ noncomputable def leftOuterHornLastFaceBicartSq (n : ℕ) :
           have hjpos : 0 < j.val := Fin.pos_iff_ne_zero.mpr hj0
           have hv := congrArg Fin.val h
           dsimp [q] at hv
-          simp only [Fin.val_last] at hv ⊢
+          simp only [] at hv ⊢
           omega
         have hshift : (⟨0 + 1 + q.val, by omega⟩ :
             Fin (0 + (n + 1) + 1 + 1)) = j := by
@@ -231,7 +231,7 @@ lemma emptyAugmentation_map_isPushout
     (strictSingletonAugmentationIso.app B)
     (strictSingletonAugmentationIso.app C)
     (strictSingletonAugmentationIso.app D)
-  all_goals simpa using strictSingletonAugmentationIso.hom.naturality _
+  all_goals simp
 
 lemma simplicialJoinLeft_map_isPushout
     (X : SSet.{u}) {A B C D : SSet.{u}}
@@ -274,20 +274,16 @@ lemma simplicialJoinLeft_map_isPushout
   let eD := eqToIso hD
   apply hf.of_iso' eA eB eC eD
   · cases hA; cases hB
-    simp only [eA, eB, eqToIso_refl, Iso.refl_hom,
-      Category.id_comp, Category.comp_id]
+    simp only [eA, eB]
     exact (simplicialJoinMap_id_eq_augmentedDayTensorLeft_map X f).symm
   · cases hA; cases hC
-    simp only [eA, eC, eqToIso_refl, Iso.refl_hom,
-      Category.id_comp, Category.comp_id]
+    simp only [eA, eC]
     exact (simplicialJoinMap_id_eq_augmentedDayTensorLeft_map X g).symm
   · cases hB; cases hD
-    simp only [eB, eD, eqToIso_refl, Iso.refl_hom,
-      Category.id_comp, Category.comp_id]
+    simp only [eB, eD]
     exact (simplicialJoinMap_id_eq_augmentedDayTensorLeft_map X h).symm
   · cases hC; cases hD
-    simp only [eC, eD, eqToIso_refl, Iso.refl_hom,
-      Category.id_comp, Category.comp_id]
+    simp only [eC, eD]
     exact (simplicialJoinMap_id_eq_augmentedDayTensorLeft_map X k).symm
 
 /-- Embed the left outer horn in the last face of the next simplex.  Its

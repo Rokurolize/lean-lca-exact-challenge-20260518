@@ -139,7 +139,7 @@ def thickPathInteriorOrderIso {J : Type u} [LinearOrder J] {i j : J} (hij : i �
 def thickPathInteriorFunctor {J : Type u} [LinearOrder J] {i j : J} (hij : i ≤ j) :
     CategoryTheory.Functor (ThickPath i j) (Set (InteriorVertex i j)) where
   obj := thickPathInteriorOrderIso hij
-  map {P Q} f := homOfLE (fun x hx ↦ f.1.1.1 hx)
+  map {_ _} f := homOfLE (fun _ hx ↦ f.1.1.1 hx)
   map_id _ := rfl
   map_comp _ _ := rfl
 

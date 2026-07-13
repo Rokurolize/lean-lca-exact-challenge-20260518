@@ -327,15 +327,11 @@ lemma pullbackIsoPullbackObj_hom_snd :
 
 lemma pullbackIsoPullbackObj_inv_fst :
     (pullbackIsoPullbackObj f g).inv ≫ pullback.fst f g = pullbackFst f g := by
-  simpa [pullbackIsoPullbackObj, pullbackCone] using
-    (limit.isoLimitCone_inv_π (F := cospan f g)
-      ⟨pullbackCone f g, pullbackIsLimit f g⟩ WalkingCospan.left)
+  simp [pullbackIsoPullbackObj, pullbackCone]
 
 lemma pullbackIsoPullbackObj_inv_snd :
     (pullbackIsoPullbackObj f g).inv ≫ pullback.snd f g = pullbackSnd f g := by
-  simpa [pullbackIsoPullbackObj, pullbackCone] using
-    (limit.isoLimitCone_inv_π (F := cospan f g)
-      ⟨pullbackCone f g, pullbackIsLimit f g⟩ WalkingCospan.right)
+  simp [pullbackIsoPullbackObj, pullbackCone]
 
 lemma pullbackFst_surjective_of_snd_surjective (hg : Function.Surjective (g : B → C)) :
     Function.Surjective (pullbackFst f g : pullbackObj f g → A) := by

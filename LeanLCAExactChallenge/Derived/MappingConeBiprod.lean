@@ -344,12 +344,8 @@ theorem leftComponentDifferentialSquareFstEquation_proof (n : ℤ) :
                 ((CochainComplex.mappingCone.fst f₁).1.v n (n + 1) rfl ≫
                   K₁.d (n + 1) (n + 2)) ≫
                     (biprod.inl : K₁ ⟶ K₁ ⊞ K₂).f (n + 2) := by
-          simpa [Category.assoc] using
-            congrArg
-              (fun q =>
-                (CochainComplex.mappingCone.fst f₁).1.v n (n + 1) rfl ≫ q)
-              (biprodCone_d_left_source_component (K₁ := K₁) (K₂ := K₂) (n + 1))
-        simpa [hsrc]
+          simp [Category.assoc]
+        simp [hsrc]
     _ = ((CochainComplex.mappingCone f₁).d n (n + 1) ≫
           (CochainComplex.mappingCone.fst f₁).1.v (n + 1) (n + 2) (by omega)) ≫
         (biprod.inl : K₁ ⟶ K₁ ⊞ K₂).f (n + 2) := by
@@ -501,12 +497,8 @@ theorem rightComponentDifferentialSquareFstEquation_proof (n : ℤ) :
                 ((CochainComplex.mappingCone.fst f₂).1.v n (n + 1) rfl ≫
                   K₂.d (n + 1) (n + 2)) ≫
                     (biprod.inr : K₂ ⟶ K₁ ⊞ K₂).f (n + 2) := by
-          simpa [Category.assoc] using
-            congrArg
-              (fun q =>
-                (CochainComplex.mappingCone.fst f₂).1.v n (n + 1) rfl ≫ q)
-              (biprodCone_d_right_source_component (K₁ := K₁) (K₂ := K₂) (n + 1))
-        simpa [hsrc]
+          simp [Category.assoc]
+        simp [hsrc]
     _ = ((CochainComplex.mappingCone f₂).d n (n + 1) ≫
           (CochainComplex.mappingCone.fst f₂).1.v (n + 1) (n + 2) (by omega)) ≫
         (biprod.inr : K₂ ⟶ K₁ ⊞ K₂).f (n + 2) := by

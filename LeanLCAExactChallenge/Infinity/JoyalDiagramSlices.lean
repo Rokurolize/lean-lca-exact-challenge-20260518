@@ -281,6 +281,7 @@ theorem diagramUnderRestriction_comp_pullback_fst
 
 set_option backward.isDefEq.respectTransparency false in
 set_option maxHeartbeats 200000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 /-- The fixed-base Day transpose of a restricted cone is precomposition in the first tensor
 variable. -/
 theorem relativeDaySliceOverMapFixedBaseEquiv_diagramUnderRestriction
@@ -379,6 +380,7 @@ lemma diagramRestrictionHornCornerSq_inr_ι
 
 set_option backward.isDefEq.respectTransparency false in
 set_option maxHeartbeats 800000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 /-- A lift of the associated join corner gives a lift against diagram-slice restriction. -/
 theorem diagramUnderRestriction_hasLiftingProperty_of_corner
     {Q K K' : SSet.{u}} (j : K' ⟶ K) (a : K ⟶ Q)
@@ -524,7 +526,9 @@ theorem diagramUnderRestriction_hasLiftingProperty_of_corner
       exact hτLeft
     exact hres.trans (hm.trans hΦ)
 
-/-- Join-corner lifting against the terminal map implies that restriction of diagram slices is a left fibration. -/
+/--
+Terminal-map join-corner lifting makes diagram-slice restriction a left fibration.
+-/
 theorem diagramUnderRestriction_leftFibration_of_corner_lifts
     {Q K K' : SSet.{u}} (j : K' ⟶ K) (a : K ⟶ Q)
     (hcorners : ∀ (s : ℕ) (i : Fin (s + 2)),

@@ -448,8 +448,7 @@ def dgHomZModuleCompositionReversed (K L M : ComplexCategory) :
     simp only [LinearMap.compr₂ₛₗ_apply, TensorProduct.mk_apply]
     dsimp [dgHomZModuleCochainComplex, dgCochainCompTensorReversed,
       dgCochainCompTensor, dgCochainCompLinear]
-    simp only [ObjectProperty.ι_obj, BraidedCategory.braiding_naturality_left_assoc,
-      BraidedCategory.braiding_naturality_right_assoc]
+    simp only [ObjectProperty.ι_obj]
     have hqp : q + p = n := by omega
     have hqpm : q + (p + 1) = m := by omega
     have hqmp : (q + 1) + p = m := by omega

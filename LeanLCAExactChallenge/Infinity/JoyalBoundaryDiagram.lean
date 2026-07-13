@@ -13,7 +13,9 @@ namespace LeanLCAExactChallenge.Infinity
 
 open CategoryTheory Simplicial
 
-/-- Inner anodyneness of the normalized boundary–left-horn corners implies that restriction along the boundary is a left fibration. -/
+/--
+Inner-anodyne normalized boundary–left-horn corners make boundary restriction a left fibration.
+-/
 theorem diagramUnderRestriction_boundary_leftFibration_of_normalized_corners
     (Q : SSet.{u}) [SSet.Quasicategory Q] (m : ℕ)
     (a : (Δ[m + 1] : SSet.{u}) ⟶ Q)

@@ -62,7 +62,7 @@ noncomputable def finiteProductOptionDecompositionInput_of_w151 :
   optionProductIsoBiprod := by
     intro J _ K _ _
     exact
-      OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+      OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
         MetrizableLCA K
 
 /-- The Option induction step from product decomposition and binary exact-acyclic closure. -/

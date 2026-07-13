@@ -81,6 +81,7 @@ noncomputable def linearMultispanComponentIso
     exact simplicialSetIsoRangeOfMono (c.ι.app (.right j) ≫ f)
 
 set_option maxHeartbeats 2000000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 noncomputable def linearMultispanDiagramIso :
     F ≅ linearMultispanRangeFunctor c hc f hinf :=
   WalkingMultispan.functorExt
@@ -133,6 +134,7 @@ noncomputable def linearMultispanPointIso :
     (linearMultispanRangeCoconePrecomposeIsColimit c hc f hmono hinf)
 
 set_option maxHeartbeats 800000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 lemma linearMultispanPointIso_hom :
     (linearMultispanPointIso c hc f hmono hinf).hom =
       SSet.Subcomplex.toRange f := by

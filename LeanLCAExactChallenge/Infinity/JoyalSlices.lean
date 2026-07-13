@@ -134,6 +134,7 @@ noncomputable def fixedBaseDayConvolutionMapOfRestriction
 
 set_option backward.isDefEq.respectTransparency false in
 set_option maxHeartbeats 200000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 /-- The fixed-base Day transpose is natural under precomposition of the simplicial
 right variable. -/
 theorem relativeDaySliceOverMapFixedBaseEquiv_precomp_fst

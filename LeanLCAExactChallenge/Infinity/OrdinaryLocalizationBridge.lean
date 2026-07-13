@@ -141,6 +141,7 @@ noncomputable def nerveInternalHomIso (C E : Cat.{u, u}) :
     ((expComparison nerveFunctor.{u, u} C).natTrans.app E) hApp
 
 set_option maxHeartbeats 800000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 set_option backward.isDefEq.respectTransparency false in
 /-- A functor regarded as a vertex through the nerve exponential comparison uncurries
 to its ordinary nerve map. -/
@@ -171,9 +172,18 @@ theorem nerveInternalHomIso_vertex_map (C E : Cat.{u, u}) (F : C ⥤ E) :
       ((CartesianMonoidalCategory.prodComparison nerveFunctor C ((ihom C).obj E)).app U)).1
     rw [ht]
     simp
-  have hinv' := hinv
-  simp [SSet.unitHomEquiv, CategoryTheory.nerveEquiv] at hinv'
-  simp [SSet.unitHomEquiv, CategoryTheory.nerveEquiv]
+  have hvertex :
+      (((SSet.unitHomEquiv (nerveFunctor.obj ((ihom C).obj E))).symm
+          (CategoryTheory.nerveEquiv.symm F)).app U) PUnit.unit =
+        (nerveFunctor.obj ((ihom C).obj E)).map
+          ((Opposite.unop U).const (SimplexCategory.mk 0) 0).op
+            (ComposableArrows.mk₀ F) := by
+    rfl
+  simp only [Functor.id_obj, nerveFunctor_map, NatTrans.comp_app,
+    Monoidal.tensorObj_obj, Monoidal.tensorUnit_obj,
+    Monoidal.rightUnitor_inv_app, Monoidal.whiskerLeft_app,
+    NatIso.isIso_inv_app, TypeCat.Fun.toFun_apply, comp_apply,
+    SSet.rightUnitor_inv_app_apply, Functor.toCatHom_toFunctor]
   have hpair :
       (ConcreteCategory.hom
         ((nerveFunctor.obj C).obj U ◁
@@ -184,8 +194,15 @@ theorem nerveInternalHomIso_vertex_map (C E : Cat.{u, u}) (F : C ⥤ E) :
           ((Opposite.unop U).const ⦋0⦌ 0).op
             (ComposableArrows.mk₀ F)) := by
     rfl
+  have hinv' :
+      inv ((CartesianMonoidalCategory.prodComparison nerveFunctor C
+        ((ihom C).obj E)).app U)
+          (s, (nerveFunctor.obj ((ihom C).obj E)).map
+            ((Opposite.unop U).const (SimplexCategory.mk 0) 0).op
+              (ComposableArrows.mk₀ F)) = t := by
+    simpa only [hvertex] using hinv
   erw [hpair]
-  rw [hinv']
+  erw [hinv']
   apply ComposableArrows.ext
   · intro i hi
     dsimp [t, CategoryTheory.nerveMap]
@@ -287,7 +304,7 @@ def fullSubcomplexToNerveFullSubcategory
       CategoryTheory.nerve P.FullSubcategory where
   app U := TypeCat.ofHom (fullSubcomplexToNerveFullSubcategoryApp P U)
   naturality {X Y} f := by
-    ext s i
+    ext s
     rfl
 
 /-- A categorical full subcategory has nerve equal to the full vertex subcomplex. -/
@@ -299,7 +316,7 @@ noncomputable def nerveFullSubcategoryIsoFullSubcomplex
   hom := nerveFullSubcategoryToFullSubcomplex P
   inv := fullSubcomplexToNerveFullSubcategory P
   hom_inv_id := by
-    ext U s i
+    ext U s
     rfl
   inv_hom_id := by
     ext U s
@@ -437,6 +454,7 @@ theorem hoFunctor_map_reflectionUnit_whiskerRight_isIso (L Z : SSet.{u}) :
       (B := Z) (nerveAdjunction.unit.app L))
 
 set_option maxHeartbeats 800000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 set_option backward.isDefEq.respectTransparency false in
 /-- Under the Yoneda component, internal-Hom precomposition is ordinary precomposition by
 the reflected tensor-unit map. -/
@@ -810,6 +828,7 @@ noncomputable def relativeInternalHomNerveHomotopyEquivalence
         (Cat.of (PulledRelativeFunctorProperty W E).FullSubcategory))
 
 set_option maxHeartbeats 500000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 set_option backward.isDefEq.respectTransparency false in
 theorem relativeInternalHomNerveHomotopyEquivalence_comp_inclusion
     {L : SSet.{u}} (W : EdgeMarking L) (E : Cat.{u, u}) :
@@ -1100,7 +1119,8 @@ theorem transportEnrichment_eHomWhiskerLeft
   rw [Functor.LaxMonoidal.μ_natural_assoc]
   rw [tensorHom_def_assoc, whiskerRight_id_assoc, Iso.inv_hom_id_assoc]
   rw [Functor.LaxMonoidal.right_unitality_inv_assoc]
-  simp
+  simp only [CategoryTheory.Functor.map_id, Category.id_comp]
+  rw [id_tensorHom]
 
 set_option backward.isDefEq.respectTransparency false in
 /-- In the Cat-enrichment of quasicategories, postcomposition is the homotopy-category
@@ -1118,6 +1138,7 @@ theorem qcat_eHomWhiskerLeft_eq_hoFunctor_map_ihom
   rfl
 
 set_option maxHeartbeats 800000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 set_option backward.isDefEq.respectTransparency false in
 /-- The explicit equivalence from maps out of the tensor unit to the homotopy category
 intertwines bicategorical postcomposition with the homotopy-category functor. -/
@@ -1157,12 +1178,12 @@ theorem qcatUnitHomEquivalence_postcomp
     ((MonoidalClosed.unitNatIso (C := SSet.{u})).inv.naturality f.hom)
   simp only [SSet.hoFunctor.map_comp] at hn
   dsimp [qcatTensorUnit, MonoidalClosed.unitIsoSelf, CategoryTheory.Functor.mapIso]
-  simp
+  simp only [CategoryTheory.Functor.map_id, Category.comp_id]
   apply eq_of_heq
   have hn' := congrArg CategoryTheory.Cat.Hom.toFunctor hn
   have hh := CategoryTheory.Functor.hcongr_hom hn'
     (CategoryTheory.CatEnrichedOrdinary.Hom.base α)
-  simp [Functor.comp_map] at hh
+  simp only [heq_eq_eq] at hh
   exact HEq.trans (by
     congr
     apply eq_of_heq
@@ -1348,7 +1369,7 @@ private theorem mappingLocalizationOrdinaryComparison_comp_inclusion
   convert congrArg Cat.Hom.toFunctor hd using 2 <;>
     simp [mappingLocalizationOrdinaryComparisonFactor,
       categoricalNerveQCat, homotopyPrecomp, SSet.hoFunctor.map_comp,
-      Cat.Hom.comp_toFunctor] <;> rfl
+      Cat.Hom.comp_toFunctor] ; rfl
 
 private noncomputable def mappingLocalizationOrdinaryComparisonCompInclusionIso
     {A L : SSet.QCat.{u}} {W : EdgeMarking A.obj} {ell : A ⟶ L}

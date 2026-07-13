@@ -12,7 +12,6 @@ bounded-complex inclusion functor.
 -/
 
 set_option autoImplicit false
-set_option maxHeartbeats 2000000
 set_option backward.defeqAttrib.useBackward true
 set_option backward.isDefEq.respectTransparency false
 
@@ -234,7 +233,9 @@ theorem finiteProductMappingConeInput_metrizableLCA :
       (includedProductIso X₁) (includedProductIso X₂) hcomm).2 hCochain
   simpa [boundedExactWeakEquivalence] using hBounded
 
-/-- Bounded exact weak equivalences over default-universe `MetrizableLCA` are stable under finite products. -/
+/--
+Bounded exact weak equivalences over `MetrizableLCA` are stable under finite products.
+-/
 theorem isStableUnderFiniteProducts_metrizableLCA :
     (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderFiniteProducts where
   isStableUnderProductsOfShape J _ := by
@@ -272,7 +273,9 @@ theorem finiteCoproductStability_of_finiteProductStability
       exact (HasBiproductsOfShape.colimIsoLim (J := J) (C := C)).hom.naturality η |>.symm
     simpa [Limits.Sigma.map, η, F₁, F₂] using hColimitMap
 
-/-- Bounded exact weak equivalences over default-universe `MetrizableLCA` are stable under finite coproducts. -/
+/--
+Bounded exact weak equivalences over `MetrizableLCA` are stable under finite coproducts.
+-/
 theorem isStableUnderFiniteCoproducts_metrizableLCA :
     (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderFiniteCoproducts := by
   letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderFiniteProducts :=
@@ -371,23 +374,6 @@ noncomputable abbrev dboundedHasFiniteProducts_metrizableLCA
   haveI : (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderFiniteProducts :=
     isStableUnderFiniteProducts_metrizableLCA
   exact Dbounded.hasFiniteProductsOfStableFiniteProducts (C := MetrizableLCA.{0})
-
-section Checks
-
-#check includedProductIso
-#check includedProductIso_hom_π
-#check includedProductMap_naturality
-#check exactAcyclic_mappingCone_cochain_piMap
-#check finiteProductMappingConeInput_metrizableLCA
-#check isStableUnderFiniteProducts_metrizableLCA
-#check finiteCoproductStability_of_finiteProductStability
-#check isStableUnderFiniteCoproducts_metrizableLCA
-#check op_isStableUnderProductsOfShape_of_isStableUnderCoproductsOfShape
-#check op_isStableUnderFiniteProducts_of_isStableUnderFiniteCoproducts
-#check isStableUnderFiniteProducts_op_metrizableLCA
-#check dboundedHasFiniteProducts_metrizableLCA
-
-end Checks
 
 end BoundedFiniteProducts
 
@@ -698,7 +684,8 @@ noncomputable def facNatIso {E : Type*} [Category E]
         Dbounded.MetrizableWalkingParallelPairLiftBlueprint.liftFunctor]
       change F.map
             ((normalized.blueprint.mapData
-              (Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor.map τ)).natTrans) ≫
+              (Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor.map
+                τ)).natTrans) ≫
           F.map (eqToHom (normalized.obj_image Y)) =
         F.map (eqToHom (normalized.obj_image X)) ≫ F.map τ
       rw [← F.map_comp, normalized.map_image, F.map_comp])
@@ -1084,7 +1071,7 @@ noncomputable def Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParal
 Under direct bounded left calculus, WPP finite-shape transfer plus triangulated fields supplies
 remaining stable semantic fields for any chosen left-calculus semantic-field record.
 -/
-noncomputable def Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferForAvailable
+noncomputable def Dbounded.metrizableRemainingStableFieldsOfWppTransferAvailable
     [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
     {available : Dbounded.MetrizableLeftCalculusSemanticFields}
     (inputs :
@@ -1109,7 +1096,7 @@ noncomputable def
       Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed := by
   letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
     boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed MetrizableLCA.{0}
-  exact Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferForAvailable
+  exact Dbounded.metrizableRemainingStableFieldsOfWppTransferAvailable
     inputs
 
 /-- Full ordinary stable semantic input from WPP transfer and the remaining triangulated fields. -/
@@ -1152,7 +1139,7 @@ noncomputable def
       Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs available) :
     Dbounded.MetrizableOrdinaryStableSemanticInput :=
   Dbounded.metrizableOrdinaryStableSemanticInputOfLeftCalculusFields available
-    (Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferForAvailable
+    (Dbounded.metrizableRemainingStableFieldsOfWppTransferAvailable
       inputs)
 
 /-- WPP transfer route produces a ready stable certificate once the remaining fields exist. -/
@@ -1228,7 +1215,7 @@ noncomputable def Dbounded.metrizableOrdinaryStableSemanticInputOfEndpointWppTra
     Dbounded.leftCalculus_of_endpointTopology_w604 hasHomology I R
   exact Dbounded.metrizableOrdinaryStableSemanticInputOfLeftCalculusFields
     (Dbounded.metrizableLeftCalculusFieldsOfEndpoint_w605 hasHomology I R)
-    (Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferForAvailable
+    (Dbounded.metrizableRemainingStableFieldsOfWppTransferAvailable
       inputs)
 
 /-- W605 ShortExact route: W604 direct left calculus plus WPP transfer gives stable semantics. -/
@@ -1246,7 +1233,7 @@ noncomputable def Dbounded.metrizableOrdinaryStableSemanticInputOfShortExactWppT
     Dbounded.leftCalculus_of_shortExactTopology_w604 hasHomology I R
   exact Dbounded.metrizableOrdinaryStableSemanticInputOfLeftCalculusFields
     (Dbounded.metrizableLeftCalculusFieldsOfShortExact_w605 hasHomology I R)
-    (Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferForAvailable
+    (Dbounded.metrizableRemainingStableFieldsOfWppTransferAvailable
       inputs)
 
 /-- W605 endpoint route produces a ready stable certificate. -/
@@ -1415,7 +1402,9 @@ theorem Dbounded.metrizableKernelCokernelConditionedWppTransferStableInputNamesW
     Dbounded.metrizableKernelCokernelConditionedWppTransferStableInputNamesW669.length = 5 :=
   rfl
 
-/-- W669 route names for kernel/cokernel-conditioned calculus plus WPP-transfer stable certificates. -/
+/--
+W669 route names for kernel/cokernel-conditioned calculus and WPP-transfer certificates.
+-/
 def Dbounded.metrizableKernelCokernelConditionedWppTransferStableRouteNamesW669 :
     List String :=
   ["Dbounded.metrizableLeftCalculusFieldsOfKernelCokernelConditionedTopology_w669",
@@ -1450,9 +1439,11 @@ def Dbounded.currentMetrizableKernelCokernelConditionedWppTransferStableRouteSup
       "Dbounded.metrizableKernelCokernelConditionedWppTransferStableRouteNamesW669",
       "Dbounded.metrizableKernelCokernelConditionedWppTransferStableRouteNamesW669_count"]
   stableInputResult :=
-    "proved: W668 kernel/cokernel-conditioned left calculus plus WPP transfer supplies ordinary stable semantics"
+    "proved: W668 kernel/cokernel-conditioned left calculus plus WPP transfer supplies ordinary \
+      stable semantics"
   certificateResult :=
-    "proved: W668 kernel/cokernel-conditioned WPP transfer route produces a ready stable certificate"
+    "proved: W668 kernel/cokernel-conditioned WPP transfer route produces a ready stable \
+      certificate"
   replacedInputs :=
     ["W605 endpoint or ShortExact strict-topology package at the WPP stable-certificate layer"]
   remainingInputs :=
@@ -1465,13 +1456,13 @@ def Dbounded.currentMetrizableKernelCokernelConditionedWppTransferStableRouteSup
   productSuccessClaimed := false
 
 /-- Short alias used by the checked product-success marker. -/
-abbrev Dbounded.currentMetrizableKernelCokernelConditionedWppTransferStableRouteStateW669 :
+abbrev Dbounded.currentMetrizableWppTransferRouteStateW669 :
     Dbounded.MetrizableKernelCokernelConditionedWppTransferStableRouteStateW669 :=
   Dbounded.currentMetrizableKernelCokernelConditionedWppTransferStableRouteSupportStateW669
 
 theorem
-    Dbounded.currentMetrizableKernelCokernelConditionedWppTransferStableRouteStateW669_productSuccess :
-    Dbounded.currentMetrizableKernelCokernelConditionedWppTransferStableRouteStateW669.productSuccessClaimed =
+    Dbounded.currentMetrizableWppTransferRouteW669_success :
+    Dbounded.currentMetrizableWppTransferRouteStateW669.productSuccessClaimed =
       false :=
   rfl
 
@@ -1583,93 +1574,5 @@ theorem Dbounded.metrizableWppFiniteShapeTransferFromNormalizedInputNames_count 
     Dbounded.metrizableWppFiniteShapeTransferFromNormalizedInputNames.length = 4 :=
   rfl
 
-section DboundedFiniteShapeTransferChecks
-
-#check CategoryTheory.Localization.hasLimitsOfShape_of_functorCategoryLocalization
-#check CategoryTheory.Localization.hasColimitsOfShape_of_functorCategoryLocalization
-#check Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor
-#check Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
-#check Dbounded.metrizableWalkingParallelPairObjectwiseLocalization_inverts
-#check Dbounded.MetrizableWalkingParallelPairFunctorCategoryFixedTargetFields
-#check Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetData
-#check Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs
-#check Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_fixedTargetData
-#check Dbounded.MetrizableWalkingParallelPairStrictPreimageData
-#check Dbounded.MetrizableWalkingParallelPairStrictPreimageData.diagram
-#check Dbounded.MetrizableWalkingParallelPairStrictPreimageData.comparisonIso
-#check Dbounded.MetrizableWalkingParallelPairStrictPreimageMapData
-#check Dbounded.MetrizableWalkingParallelPairStrictPreimageMapData.natTrans
-#check Dbounded.MetrizableWalkingParallelPairLiftBlueprint
-#check Dbounded.MetrizableWalkingParallelPairLiftBlueprint.liftFunctor
-#check Dbounded.MetrizableWalkingParallelPairFixedTargetFacObligation
-#check Dbounded.MetrizableWalkingParallelPairNormalizedLiftBlueprint
-#check Dbounded.MetrizableWalkingParallelPairNormalizedLiftBlueprint.facNatIso
-#check Dbounded.MetrizableWalkingParallelPairNormalizedLiftBlueprint.fac
-#check Dbounded.MetrizableWalkingParallelPairFixedTargetUniqObligation
-#check Dbounded.MetrizableWalkingParallelPairFixedTargetBlueprintInputs
-#check Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
-#check Dbounded.metrizableWalkingParallelPairFixedTargetInputs_of_normalized
-#check Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_normalized
-#check Dbounded.metrizableWalkingParallelPairFixedTargetInputs_of_blueprint
-#check Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_blueprint
-#check Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs
-#check Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromFixedTargets
-#check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_fixedTargets
-#check Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromBlueprint
-#check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_blueprint
-#check Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromNormalized
-#check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_normalized
-#check Dbounded.metrizableHasEqualizersOfWalkingParallelPairTransfer
-#check Dbounded.metrizableHasCoequalizersOfWalkingParallelPairTransfer
-#check Dbounded.metrizableFiniteLimitColimitRemainderOfWalkingParallelPairTransfer
-#check Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
-#check Dbounded.metrizableFiniteLimitsOfLeftCalculusProductsForAvailable
-#check Dbounded.metrizableFiniteColimitsOfLeftCalculusProductsForAvailable
-#check
-  Dbounded.metrizableRemainingStableSemanticFieldsOfFiniteLimitColimitRemainderForAvailable
-#check
-  Dbounded.metrizablePostFiniteLimitColimitRemainingStableSemanticFields_of_wppTransfer
-#check Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransfer
-#check Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferForAvailable
-#check
-  Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferHomotopyIsoClosed
-#check Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer
-#check
-  Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransferHomotopyIsoClosed
-#check Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransfer_ready
-#check Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransferHomotopyIsoClosed_ready
-#check Dbounded.metrizableLeftCalculusFieldsOfKernelCokernelConditionedTopology_w669
-#check
-  Dbounded.metrizableOrdinaryStableSemanticInputOfKernelCokernelConditionedWppTransfer_w669
-#check Dbounded.stableCertificateOfKernelCokernelConditionedWppTransfer_w669_ready
-#check Dbounded.metrizableKernelCokernelConditionedWppTransferStableInputNamesW669
-#check Dbounded.metrizableKernelCokernelConditionedWppTransferStableInputNamesW669_count
-#check Dbounded.metrizableKernelCokernelConditionedWppTransferStableRouteNamesW669
-#check Dbounded.metrizableKernelCokernelConditionedWppTransferStableRouteNamesW669_count
-#check Dbounded.MetrizableKernelCokernelConditionedWppTransferStableRouteStateW669
-#check Dbounded.currentMetrizableKernelCokernelConditionedWppTransferStableRouteSupportStateW669
-#check Dbounded.currentMetrizableKernelCokernelConditionedWppTransferStableRouteStateW669
-#check
-  Dbounded.currentMetrizableKernelCokernelConditionedWppTransferStableRouteStateW669_productSuccess
-#check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames
-#check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames_count
-#check Dbounded.metrizableWppTransferStableSemanticInputNames
-#check Dbounded.metrizableWppTransferStableSemanticInputNames_count
-#check Dbounded.metrizableWppTransferHomotopyIsoClosedStableSemanticInputNames
-#check Dbounded.metrizableWppTransferHomotopyIsoClosedStableSemanticInputNames_count
-#check Dbounded.metrizableWppFunctorCategoryFixedTargetInputNames
-#check Dbounded.metrizableWppFunctorCategoryFixedTargetInputNames_count
-#check Dbounded.metrizableWppFiniteShapeTransferFromFixedTargetsInputNames
-#check Dbounded.metrizableWppFiniteShapeTransferFromFixedTargetsInputNames_count
-#check Dbounded.metrizableWppFunctorCategoryBlueprintInputNames
-#check Dbounded.metrizableWppFunctorCategoryBlueprintInputNames_count
-#check Dbounded.metrizableWppFiniteShapeTransferFromBlueprintInputNames
-#check Dbounded.metrizableWppFiniteShapeTransferFromBlueprintInputNames_count
-#check Dbounded.metrizableWppNormalizedLiftBlueprintInputNames
-#check Dbounded.metrizableWppNormalizedLiftBlueprintInputNames_count
-#check Dbounded.metrizableWppFiniteShapeTransferFromNormalizedInputNames
-#check Dbounded.metrizableWppFiniteShapeTransferFromNormalizedInputNames_count
-
-end DboundedFiniteShapeTransferChecks
 
 end LeanLCAExactChallenge

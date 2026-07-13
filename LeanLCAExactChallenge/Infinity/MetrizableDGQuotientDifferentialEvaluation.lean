@@ -100,16 +100,15 @@ private theorem sigma_castWord_inv_element_eq
   subst hp
   rfl
 
-private theorem sigma_castWord_nilSummand_inv_eq
-    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
-    (h : w = nil X Y) (d : DegreeProfile w n)
+private theorem sigma_nilSummand_inv_eq
+    {X Y : ComplexCategory} {n : ℤ}
+    (d : DegreeProfile (nil X Y) n)
     (e : DegreeProfile (nil X Y) n)
-    (hp : d.castWord h = e) (x : (dgHomZModuleCochainComplex X Y).X n) :
-    (⟨⟨w, d⟩, ULift.up ((summandModuleCastWordIso h d).inv
-      ((nilSummandIsoOriginal X Y (d.castWord h)).inv x))⟩ :
+    (hp : d = e) (x : (dgHomZModuleCochainComplex X Y).X n) :
+    (⟨⟨nil X Y, d⟩,
+      ULift.up ((nilSummandIsoOriginal X Y d).inv x)⟩ :
       Σ s : GradedSummandIndex X Y n, largeSummandModule s) =
     ⟨⟨nil X Y, e⟩, ULift.up ((nilSummandIsoOriginal X Y e).inv x)⟩ := by
-  subst h
   subst hp
   rfl
 
@@ -123,28 +122,32 @@ theorem singletonContractionLargeMap_contractingElement_eq_originalHomInclusion
         (ULift.up (singletonContractingElement A)) =
       (originalHomInclusion A.obj A.obj 0).hom
         (ULift.up (identityCochain A.obj)) := by
+  let i₀ := singletonIndex A.obj A.obj A
+  have hi : i = i₀ := Fin.ext (by simp [i₀])
+  subst i
   rw [singletonContractionLargeMap_contractingElement]
   unfold originalHomInclusion
-  let hs := singletonContractingSummandIndex_eq_nil A i
+  let hs := singletonContractingSummandIndex_eq_nil A i₀
   let z₁ : Σ s : GradedSummandIndex A.obj A.obj (-1 + 1),
       largeSummandModule s :=
-    ⟨⟨eraseIntermediate (singleton A.obj A.obj A) i,
-      (singletonContractingDegreeProfile A).contract i⟩,
+    ⟨⟨eraseIntermediate (singleton A.obj A.obj A) i₀,
+      (singletonContractingDegreeProfile A).contract i₀⟩,
       ULift.up ((singletonContractedSummandIsoOriginal A.obj A.obj A
-        (singletonContractingDegreeProfile A) i).inv (identityCochain A.obj))⟩
+        (singletonContractingDegreeProfile A) i₀).inv (identityCochain A.obj))⟩
   let z₂ : Σ s : GradedSummandIndex A.obj A.obj (-1 + 1),
       largeSummandModule s :=
     ⟨⟨nil A.obj A.obj, nilDegreeProfile A.obj A.obj (-1 + 1)⟩,
       ULift.up ((nilSummandIsoOriginal A.obj A.obj
         (nilDegreeProfile A.obj A.obj (-1 + 1))).inv (identityCochain A.obj))⟩
   have hz : z₁ = z₂ := by
-    let hw := eraseIntermediate_singleton A.obj A.obj A i
-    let d := (singletonContractingDegreeProfile A).contract i
+    let hw := eraseIntermediate_singleton A.obj A.obj A i₀
+    let d := (singletonContractingDegreeProfile A).contract i₀
     let e := nilDegreeProfile A.obj A.obj (-1 + 1)
     have hp : d.castWord hw = e :=
       degreeProfile_nil_eq_nilDegreeProfile _ _ _ _
-    simpa [z₁, z₂, d, e, singletonContractedSummandIsoOriginal] using
-      sigma_castWord_nilSummand_inv_eq hw d e hp (identityCochain A.obj)
+    cases hw
+    simpa [z₁, z₂, d, e, i₀, singletonContractedSummandIsoOriginal] using
+      sigma_nilSummand_inv_eq d e hp (identityCochain A.obj)
   exact congrArg (fun z : Σ s : GradedSummandIndex A.obj A.obj (-1 + 1),
     largeSummandModule s ↦
       (CategoryTheory.Limits.Sigma.ι

@@ -319,13 +319,13 @@ private noncomputable def quasicategoryFill31
   let p₃ : Δ[2] ⟶ Q := SSet.yonedaEquiv.symm f₃.simplex
   have h₁₂ : SSet.stdSimplex.δ 2 ≫ p₀ = SSet.stdSimplex.δ 0 ≫ p₃ := by
     apply SSet.yonedaEquiv.injective
-    simpa [yonedaEquiv_delta_comp, p₀, p₃] using f₀.d₂.trans f₃.d₀.symm
+    simp [yonedaEquiv_delta_comp, p₀, p₃]
   have h₁₃ : SSet.stdSimplex.δ 1 ≫ p₀ = SSet.stdSimplex.δ 0 ≫ p₂ := by
     apply SSet.yonedaEquiv.injective
-    simpa [yonedaEquiv_delta_comp, p₀, p₂] using f₀.d₁.trans f₂.d₀.symm
+    simp [yonedaEquiv_delta_comp, p₀, p₂]
   have h₂₃ : SSet.stdSimplex.δ 2 ≫ p₂ = SSet.stdSimplex.δ 2 ≫ p₃ := by
     apply SSet.yonedaEquiv.injective
-    simpa [yonedaEquiv_delta_comp, p₂, p₃] using f₂.d₂.trans f₃.d₂.symm
+    simp [yonedaEquiv_delta_comp, p₂, p₃]
   let h : (Λ[3, 1] : SSet) ⟶ Q := SSet.horn₃₁.desc p₀ p₂ p₃ h₁₂ h₁₃ h₂₃
   obtain ⟨σ, hσ⟩ := SSet.Quasicategory.hornFilling (by simp) (by simp) h
   let s : Q _⦋3⦌ := SSet.yonedaEquiv σ
@@ -380,13 +380,13 @@ private noncomputable def quasicategoryFill32
   let p₃ : Δ[2] ⟶ Q := SSet.yonedaEquiv.symm f₃.simplex
   have h₀₂ : SSet.stdSimplex.δ 2 ≫ p₁ = SSet.stdSimplex.δ 1 ≫ p₃ := by
     apply SSet.yonedaEquiv.injective
-    simpa [yonedaEquiv_delta_comp, p₁, p₃] using f₁.d₂.trans f₃.d₁.symm
+    simp [yonedaEquiv_delta_comp, p₁, p₃]
   have h₁₂ : SSet.stdSimplex.δ 2 ≫ p₀ = SSet.stdSimplex.δ 0 ≫ p₃ := by
     apply SSet.yonedaEquiv.injective
-    simpa [yonedaEquiv_delta_comp, p₀, p₃] using f₀.d₂.trans f₃.d₀.symm
+    simp [yonedaEquiv_delta_comp, p₀, p₃]
   have h₂₃ : SSet.stdSimplex.δ 0 ≫ p₀ = SSet.stdSimplex.δ 0 ≫ p₁ := by
     apply SSet.yonedaEquiv.injective
-    simpa [yonedaEquiv_delta_comp, p₀, p₁] using f₀.d₀.trans f₁.d₀.symm
+    simp [yonedaEquiv_delta_comp, p₀, p₁]
   let h : (Λ[3, 2] : SSet) ⟶ Q := SSet.horn₃₂.desc p₀ p₁ p₃ h₀₂ h₁₂ h₂₃
   obtain ⟨σ, hσ⟩ := SSet.Quasicategory.hornFilling (by simp) (by simp) h
   let s : Q _⦋3⦌ := SSet.yonedaEquiv σ

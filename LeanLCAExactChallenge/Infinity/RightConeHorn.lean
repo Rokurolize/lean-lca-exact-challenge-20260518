@@ -287,6 +287,7 @@ lemma range_leftConeHornCornerStdMap_eq_sup (n : ℕ) (i : Fin (n + 1)) :
   rw [range_rightConeBaseLeg]
 
 set_option maxHeartbeats 800000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 lemma representableJoinHornInitial_sup_baseFace_eq_shiftedHorn
     (r : ℕ) (i : Fin (r + 2)) :
     representableJoinHornInitial.{u} 0 (r + 1) i ⊔
@@ -309,7 +310,7 @@ lemma representableJoinHornInitial_sup_baseFace_eq_shiftedHorn
           apply hj
           apply Fin.ext
           have hv := congrArg Fin.val h
-          simp only [Fin.val_mk] at hv
+          simp only [] at hv
           omega⟩
     · exact le_iSup (fun q :
         ({(⟨i.val + 1, by omega⟩ : Fin (0 + (r + 1) + 2))}ᶜ :
@@ -318,7 +319,7 @@ lemma representableJoinHornInitial_sup_baseFace_eq_shiftedHorn
           simp only [Set.mem_compl_iff, Set.mem_singleton_iff]
           intro h
           have hv := congrArg Fin.val h
-          simp only [Fin.val_zero, Fin.val_mk] at hv
+          simp only [Fin.val_zero] at hv
           omega⟩
   · apply iSup_le
     rintro ⟨j, hj⟩
@@ -342,7 +343,7 @@ lemma representableJoinHornInitial_sup_baseFace_eq_shiftedHorn
         have hv := congrArg Fin.val h
         have hf := congrArg Fin.val hface
         dsimp [k] at hv hf
-        simp only [Fin.val_mk] at hf ⊢
+        simp only [] at hf ⊢
         omega
       have hle : SSet.stdSimplex.face
           ({(⟨0 + 1 + k.val, by omega⟩ : Fin (0 + (r + 1) + 2))}ᶜ) ≤
@@ -355,7 +356,7 @@ lemma representableJoinHornInitial_sup_baseFace_eq_shiftedHorn
             ({(⟨0 + 1 + q.1.val, by omega⟩ :
               Fin (0 + (r + 1) + 2))}ᶜ)) ⟨k, by simpa using hki⟩)
       convert hle using 1
-      simp only [Subtype.coe_eta]
+      simp only []
       rw [hface]
 
 lemma emptyJoinCell_zero_eq_baseFace (r : ℕ) :
@@ -365,7 +366,9 @@ lemma emptyJoinCell_zero_eq_baseFace (r : ℕ) :
   rw [← joinSigmaOneFace_eq_ofSimplex]
   congr 1
   ext x
-  simp [joinSigmaOneVertices, joinFirstVertices, joinSecondVertices]
+  simp only [joinSigmaOneVertices, joinFirstVertices, joinSecondVertices,
+    Finset.map_empty, Finset.empty_union, Finset.mem_map, Finset.mem_univ, true_and,
+    Finset.mem_compl, Finset.mem_singleton]
   constructor
   · rintro ⟨a, rfl⟩
     simp
@@ -677,9 +680,7 @@ lemma emptyJoinFaceIso_hom_ι (r : ℕ) :
   apply ULift.ext
   apply SimplexCategory.Hom.ext
   ext j
-  simp [emptyJoinFaceIso, joinSigmaOneFaceIso, SSet.stdSimplex.isoOfRepresentableBy,
-    SSet.stdSimplex.faceRepresentableBy, joinSigmaOneVertices,
-    joinFirstVertices, joinSecondVertices, standardJoinRightOperator]
+  simp only [Subfunctor.ι_app, TypeCat.ofHom_apply]
   let e : Fin (r + 2) ↪o Fin (0 + (r + 1) + 2) :=
     { toFun := fun (k : Fin (r + 2)) => ⟨1 + k.val, by omega⟩
       inj' := by
@@ -819,9 +820,10 @@ noncomputable def positiveConeHornTransportedIsPushout
     (positiveJoinHornIsoRange s i)
     (emptyJoinFaceIso (s + 1)) (Iso.refl _) ?_ ?_ ?_ ?_
   all_goals simp [positiveConeHornTransportedLeftLeg,
-    positiveConeHornTransportedRightLeg, sq, Category.assoc]
+    positiveConeHornTransportedRightLeg, Category.assoc]
 
 set_option maxHeartbeats 800000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 noncomputable def smallConeHornStandardIsPushout :
     IsPushout
       (simplicialJoinRightInclusion (Δ[0] : SSet.{u}) Λ[1, (0 : Fin 2)])
@@ -889,7 +891,7 @@ noncomputable def smallConeHornStandardIsPushout :
       (congrArg (fun j ↦ (SSet.horn (0 + (0 + 1)) j : SSet.{u})) hidx)
       U ((normalizedEmptyJoinHornIso 0 (0 : Fin 2)).hom.app U x)
     have ht := hi.trans hn
-    simp only [emptyJoinHornIsoRange, Iso.trans_hom, Category.assoc]
+    simp only []
     have ht' := eq_of_heq ht
     have ht'' := congrArg
       (fun y ↦ (joinSigmaOneHornMap 0 1
@@ -900,15 +902,12 @@ noncomputable def smallConeHornStandardIsPushout :
     refine ht'''.trans ?_
     have hy := congrArg SSet.yonedaEquiv
       hornOneZeroIsoPoint_inv_comp_joinSigmaOneHornMap.{u}
-    simp only [SSet.yonedaEquiv_comp, SSet.yonedaEquiv_map] at hy
+    simp only [SSet.yonedaEquiv_comp] at hy
     have hyval := congrArg
       (fun y ↦ Fin.val ((SimplexCategory.Hom.toOrderHom y.down) (0 : Fin 1))) hy
-    simp only [SSet.stdSimplex.objEquiv_symm_apply] at hyval
-    simp [pointJoinHornOneZeroIso, hornOneZeroIsoPoint,
-      pointJoinHornOneZeroInitialIso, emptyJoinHornIsoRange,
-      normalizedEmptyJoinHornIso, joinSigmaOneHornIsoRange,
-      joinSigmaOneHornRange, joinSigmaOneHornMap,
-      representableJoinHornInitial_zero_one_zero, Category.assoc]
+    simp only [] at hyval
+    simp only [Fin.isValue, Nat.reduceAdd, Subfunctor.ι_app, TypeCat.ofHom_apply,
+      Nat.add_zero]
     have hk : k = 0 := Fin.eq_zero k
     subst k
     let e : Fin 2 ↪o Fin 3 :=
@@ -955,14 +954,10 @@ noncomputable def smallConeHornStandardIsPushout :
             (OrderEmbedding.subtype _) (1 : Fin 2) := by
       rw [← he, ← he']
       rfl
-    simp [emptyJoinHornIsoRange, normalizedEmptyJoinHornIso,
-      joinSigmaOneHornIsoRange, joinSigmaOneHornRange, joinSigmaOneHornMap,
-      pointJoinHornOneZeroInitialIso,
-      joinSigmaOneFaceIso, SSet.stdSimplex.faceSingletonComplIso,
+    simp only [SSet.stdSimplex.faceSingletonComplIso,
       SSet.stdSimplex.isoOfRepresentableBy,
       SSet.stdSimplex.faceRepresentableBy, standardJoinRightOperator,
-      joinSigmaOneVertices, joinFirstVertices, joinSecondVertices,
-      SSet.yonedaEquiv_map, SimplexCategory.eqToHom_toOrderHom]
+      SSet.yonedaEquiv_map]
     convert congrArg Fin.val hv using 1
     · exact hyval.trans (congrArg Fin.val
         (congrArg (fun f ↦ f (0 : Fin 2)) he))
@@ -979,17 +974,13 @@ noncomputable def smallConeHornStandardIsPushout :
         subst k
         rfl
     subst j
-    simp [sq, Category.assoc, emptyJoinHornIsoRange,
-      normalizedEmptyJoinHornIso, emptyJoinFaceIso,
-      joinSigmaOneHornIsoRange, joinSigmaOneHornRange,
-      joinSigmaOneHornMap]
+    simp only [Nat.reduceAdd, Fin.isValue, Category.assoc, Subfunctor.homOfLe_ι,
+      SSet.horn.ι_ι_assoc]
     apply SSet.yonedaEquiv.injective
     apply ULift.ext
     apply SimplexCategory.Hom.ext
     ext k
-    simp [emptyJoinHornIsoRange, normalizedEmptyJoinHornIso,
-      emptyJoinFaceIso, joinSigmaOneHornIsoRange,
-      joinSigmaOneHornRange, joinSigmaOneHornMap, Category.assoc]
+    simp
     have hk : k = 0 := Fin.eq_zero k
     subst k
     rfl
@@ -1177,9 +1168,10 @@ lemma positiveConeHornTransported_compat_of_original
         (positiveJoinHornIsoRange s i).hom ≫ f =
       positiveConeHornTransportedRightLeg s i ≫
         (emptyJoinFaceIso (s + 1)).hom ≫ g := by
-  simp [positiveConeHornTransportedLeftLeg,
-    positiveConeHornTransportedRightLeg, Category.assoc]
-  exact h
+  simp only [positiveConeHornTransportedLeftLeg,
+    positiveConeHornTransportedRightLeg, Category.assoc, Iso.inv_hom_id_assoc]
+  simpa only [Category.assoc] using
+    congrArg (fun q => (emptyJoinHornIsoRange (s + 1) i).hom ≫ q) h
 
 noncomputable def positiveConeHornTransportedDesc
     (s : ℕ) (i : Fin (s + 3)) {Q : SSet.{u}}
@@ -1282,6 +1274,7 @@ noncomputable def positiveCanonicalConeHornLeftComposite
       (leftConeHornCanonicalBicartSq (s + 1) i).le₂₄
 
 set_option maxHeartbeats 800000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 lemma positiveJoinHornIsoRange_hom_initial_ι
     (s : ℕ) (i : Fin (s + 3)) :
     (positiveJoinHornIsoRange.{u} s i).hom ≫
@@ -1386,11 +1379,15 @@ lemma normalizedEmptyJoinAmbientIso_hom_comp_faceIso_ι (r : ℕ) :
   apply ULift.ext
   apply SimplexCategory.Hom.ext
   ext j
-  simp [normalizedEmptyJoinAmbientIso, joinSigmaOneFaceIso,
-    SSet.stdSimplex.isoOfRepresentableBy,
-    SSet.stdSimplex.faceRepresentableBy, joinSigmaOneVertices,
-    joinFirstVertices, joinSecondVertices, standardJoinRightOperator,
-    SSet.yonedaEquiv_map, SimplexCategory.eqToHom_toOrderHom]
+  simp only [joinSigmaOneVertices, joinFirstVertices, Nat.reduceAdd, Finset.map_empty,
+    joinSecondVertices, Finset.card_empty, joinSigmaOneFaceIso,
+    SSet.stdSimplex.isoOfRepresentableBy, SSet.stdSimplex.faceRepresentableBy,
+    Opposite.op_unop, NatTrans.comp_app, NatIso.ofComponents_hom_app,
+    SSet.stdSimplex.objEquiv_toOrderHom_apply, Subfunctor.ι_app, comp_apply,
+    ConcreteCategory.hom_ofHom, normalizedEmptyJoinAmbientIso, Functor.mapIso_hom,
+    eqToIso.hom, SSet.yonedaEquiv_map, Equiv.toIso_hom_hom_apply, Equiv.trans_apply,
+    Equiv.apply_symm_apply, Equiv.coe_fn_mk, SimplexCategory.eqToHom_toOrderHom,
+    TypeCat.Fun.coe_mk, standardJoinRightOperator, SimplexCategory.mkHom, zero_add]
   let e : Fin (r + 2) ↪o Fin (0 + (r + 1) + 2) :=
     { toFun := fun (k : Fin (r + 2)) => ⟨1 + k.val, by omega⟩
       inj' := by
@@ -1424,6 +1421,7 @@ lemma joinSigmaOneHornIsoRange_hom_ι_empty
   exact SSet.Subcomplex.toRange_ι _
 
 set_option maxHeartbeats 800000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 lemma emptyJoinHornIsoRange_hom_ι
     (s : ℕ) (i : Fin (s + 3)) :
     (emptyJoinHornIsoRange.{u} (s + 1) i).hom ≫
@@ -1479,7 +1477,7 @@ lemma emptyJoinHornIsoRange_hom_ι
         hpref').trans (by
           convert congrArg
               (fun k ↦ (SSet.horn ((s + 1) + 1) i).ι ≫ k)
-              (normalizedEmptyJoinAmbientIso_hom_comp_faceIso_ι (s + 1)) using 1 <;>
+              (normalizedEmptyJoinAmbientIso_hom_comp_faceIso_ι (s + 1)) using 1;
             rfl)
 
 lemma positiveConeHornTransportedRightLeg_eq
@@ -1641,7 +1639,9 @@ lemma positiveCanonicalConeHornCornerMap_innerAnodyne
       SSet.stdSimplex.face ({(0 : Fin (0 + (s + 2) + 2))}ᶜ) := by
     congr 1
     ext j
-    simp [joinSigmaOneVertices, joinFirstVertices, joinSecondVertices]
+    simp only [joinSigmaOneVertices, joinFirstVertices, joinSecondVertices,
+      Finset.map_empty, Finset.empty_union, Finset.mem_map, Finset.mem_univ, true_and,
+      Finset.mem_compl, Finset.mem_singleton]
     constructor
     · rintro ⟨a, rfl⟩
       intro h
@@ -1655,7 +1655,7 @@ lemma positiveCanonicalConeHornCornerMap_innerAnodyne
         simpa using h
       use ⟨j.val - 1, by have := j.isLt; omega⟩
       apply Fin.ext
-      simp only [Fin.val_mk]
+      change 1 + (j.val - 1) = j.val
       omega
   have hD : D = SSet.horn (0 + (s + 2) + 1)
       (⟨i.val + 1, by omega⟩ : Fin (0 + (s + 2) + 2)) := by
@@ -1665,7 +1665,7 @@ lemma positiveCanonicalConeHornCornerMap_innerAnodyne
   have hι : SSet.innerAnodyneExtensions D.ι := by
     rw [hD]
     exact SSet.innerAnodyneExtensions.horn_ι (by
-      simpa only [Fin.lt_iff_val_lt_val, Fin.val_zero, Fin.val_mk] using
+      simpa only [Fin.lt_def, Fin.val_zero, Fin.val_mk] using
         Nat.zero_lt_succ i.val) (by
       apply Fin.mk_lt_mk.mpr
       have hi' := Fin.mk_lt_mk.mp hi

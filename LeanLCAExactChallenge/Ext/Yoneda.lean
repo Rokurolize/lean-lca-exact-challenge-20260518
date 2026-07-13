@@ -6860,9 +6860,7 @@ theorem yonedaProduct_baer_sum_left
       baer_sum
         (yonedaProduct (X := X) (Y := Y) (Z := Z) m n a c)
         (yonedaProduct (X := X) (Y := Y) (Z := Z) m n b c) := by
-  simpa [baer_sum] using
-    congrArg (fun f => f c)
-      (yonedaProduct_add_left (X := X) (Y := Y) (Z := Z) (m := m) (n := n) a b)
+  simp [baer_sum]
 
 /-- The public `baer_sum` API is additive in the right Ext variable of the Yoneda product. -/
 theorem yonedaProduct_baer_sum_right
@@ -6873,8 +6871,7 @@ theorem yonedaProduct_baer_sum_right
       baer_sum
         (yonedaProduct (X := X) (Y := Y) (Z := Z) m n a b)
         (yonedaProduct (X := X) (Y := Y) (Z := Z) m n a c) := by
-  simpa [baer_sum] using
-    yonedaProduct_add_right (X := X) (Y := Y) (Z := Z) (m := m) (n := n) a b c
+  simp [baer_sum]
 
 /-- The public `baer_sum` API with a negative right summand is subtraction in the left variable. -/
 theorem yonedaProduct_baer_sum_neg_left

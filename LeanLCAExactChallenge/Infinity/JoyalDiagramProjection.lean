@@ -87,7 +87,9 @@ private theorem simplicialJoinRightInclusion_naturality_right
   rw [← Category.assoc, hpref]
   exact Category.assoc _ _ _
 
-/-- Restricting the fixed-base transpose of a diagram-slice simplex to its right factor is composition with the diagram-under projection. -/
+/--
+Right restriction of the fixed-base transpose composes with the diagram-under projection.
+-/
 theorem diagramUnderProjection_comp_eq_fixedBaseCone
     (Q K L : SSet.{u}) (a : K ⟶ Q)
     (f : L ⟶ diagramUnderSlice Q K a) :
@@ -134,7 +136,9 @@ theorem diagramUnderProjection_comp_eq_fixedBaseCone
     _ = _ := congrArg
       (fun k ↦ simplicialJoinRightInclusion K L ≫ k) hc.symm
 
-/-- A lifting square against a horn in a diagram-under-slice glues its fixed-base horn cone to the prescribed cone-point simplex. -/
+/--
+A diagram-under-slice horn square glues its fixed-base cone to the prescribed cone point.
+-/
 noncomputable def diagramUnderProjectionLiftingCornerTop
     (Q K : SSet.{u}) (a : K ⟶ Q) {n : ℕ} {i : Fin (n + 1)}
     {f : (Λ[n, i] : SSet.{u}) ⟶ diagramUnderSlice Q K a}
@@ -207,7 +211,9 @@ theorem diagramUnderProjectionHornCornerMap_inr
       simplicialJoinRightInclusion K Δ[n] := by
   apply pushout.inr_desc
 
-/-- An extension of the join corner associated to a diagram-under projection square determines a lift in the diagram slice. -/
+/--
+A join-corner extension for a diagram-under projection square determines a diagram-slice lift.
+-/
 theorem diagramUnderProjectionLiftOfCornerExtension
     (Q K : SSet.{u}) (a : K ⟶ Q) {n : ℕ} {i : Fin (n + 1)}
     {f : (Λ[n, i] : SSet.{u}) ⟶ diagramUnderSlice Q K a}
@@ -334,7 +340,9 @@ private lemma projection_innerAnodyne_homOfLE_transport_target
   subst C
   exact hh
 
-/-- A paired join cell attaches along an inner horn whenever its actual distinguished index is positive. -/
+/--
+A paired join cell attaches along an inner horn whenever its actual distinguished index is positive.
+-/
 lemma joinSigmaOneHornRangeToFace_innerAnodyne_of_distinguished_pos
     (m n : ℕ) (T : Finset (Fin (m + 1))) (i : Fin (n + 1))
     (hpos : 0 < T.card + i.val) (hn : i < Fin.last n) :
@@ -345,7 +353,9 @@ lemma joinSigmaOneHornRangeToFace_innerAnodyne_of_distinguished_pos
     (Fin.mk_lt_mk.mpr hpos)
     (joinSigmaOneDistinguishedIndex_lt_last T i hn)
 
-/-- The same positive-index attachment, with the target written as the generated simplex subcomplex. -/
+/--
+The same positive-index attachment, with the target written as the generated simplex subcomplex.
+-/
 lemma joinSigmaOneHornRangeToOfSimplex_innerAnodyne_of_distinguished_pos
     (m n : ℕ) (T : Finset (Fin (m + 1))) (i : Fin (n + 1))
     (hpos : 0 < T.card + i.val) (hn : i < Fin.last n) :
@@ -365,7 +375,9 @@ lemma joinSigmaOneHornRangeToOfSimplex_innerAnodyne_of_distinguished_pos
       m n T i hpos hn
   exact projection_innerAnodyne_homOfLE_transport_target hFG hF hh
 
-/-- Adjoining one positive-cardinality paired cell is inner anodyne even when the omitted right vertex is zero. -/
+/--
+A positive-cardinality paired cell attaches inner anodynely even at right vertex zero.
+-/
 lemma projection_adjoinJoinCellList_cons_innerAnodyne
     (m n r : ℕ) (i : Fin (n + 2)) (T : Finset (Fin (m + 1)))
     (ts : List (Finset (Fin (m + 1))))
@@ -399,7 +411,9 @@ lemma projection_adjoinJoinCellList_cons_innerAnodyne
     hf p hp
   exact sq.isPushout.hasLiftingProperty p
 
-/-- A finite family of positive-cardinality paired cells attaches inner anodynely without a positivity condition on the right-horn index. -/
+/--
+Finite positive-cardinality paired cells attach inner anodynely at every right-horn index.
+-/
 lemma projection_adjoinJoinCellList_innerAnodyne
     (m n r : ℕ) (i : Fin (n + 2))
     (ts : List (Finset (Fin (m + 1)))) (hnd : ts.Nodup)
@@ -430,7 +444,9 @@ lemma projection_adjoinJoinCellList_innerAnodyne
             (representableJoinHornStage m (n + 1) i r) ts).trans le_sup_left))
       exact hComp
 
-/-- Every successor after the pure-right stage of the representable join filtration is inner anodyne for a nonfinal omitted right vertex. -/
+/--
+Each post-pure-right filtration successor is inner anodyne at a nonfinal right vertex.
+-/
 lemma representableJoinHornStage_succ_innerAnodyne_of_nonfinal
     (m n r : ℕ) (i : Fin (n + 2))
     (hn : i < Fin.last (n + 1)) :
@@ -447,7 +463,9 @@ lemma representableJoinHornStage_succ_innerAnodyne_of_nonfinal
       (representableJoinHornStage m (n + 1) i r)
       (joinCellsAtCard m r)) hlist
 
-/-- The pure-right stage grows to every later representable-join stage by inner-anodyne attachments. -/
+/--
+The pure-right stage grows to every later representable-join stage by inner-anodyne attachments.
+-/
 lemma representableJoinHornStage_zero_to_stage_innerAnodyne
     (m n r : ℕ) (i : Fin (n + 2))
     (hn : i < Fin.last (n + 1)) :
@@ -467,7 +485,9 @@ lemma representableJoinHornStage_zero_to_stage_innerAnodyne
       rw [SSet.Subcomplex.homOfLE_comp] at hc
       exact hc
 
-/-- The source range obtained by adjoining the pure right factor to a representable joined horn is inner anodyne in the full join simplex. -/
+/--
+The joined horn with its pure right factor is inner anodyne in the full join simplex.
+-/
 lemma representableJoinHornStage_zero_to_top_innerAnodyne
     (m n : ℕ) (i : Fin (n + 2))
     (hn : i < Fin.last (n + 1)) :
@@ -503,8 +523,11 @@ lemma representableJoinRightInclusion_range_eq_emptyCell
   apply SSet.stdSimplex.objEquiv.injective
   apply SimplexCategory.Hom.ext
   ext j
-  simp [SSet.yonedaEquiv_map, standardJoinRightOperator,
-    joinSigmaOneVertices, joinFirstVertices, joinSecondVertices]
+  simp only [SSet.stdSimplex.objEquiv_toOrderHom_apply,
+    Equiv.apply_symm_apply, SimplexCategory.Hom.toOrderHom_mk,
+    OrderHom.comp_coe, OrderHom.Subtype.val_coe,
+    OrderEmbedding.toOrderHom_coe, OrderIso.coe_toOrderEmbedding,
+    Function.comp_apply, Finset.coe_orderIsoOfFin_apply]
   let e : Fin (n + 2) ↪o Fin (m + (n + 1) + 2) :=
     { toFun := fun k => ⟨m + 1 + k.val, by omega⟩
       inj' := by
@@ -539,11 +562,18 @@ lemma normalizedEmptyJoinAmbientIso_hom_comp_faceIso_ι_general
   apply ULift.ext
   apply SimplexCategory.Hom.ext
   ext j
-  simp [normalizedEmptyJoinAmbientIso, joinSigmaOneFaceIso,
+  simp only [joinSigmaOneVertices, joinFirstVertices, Finset.map_empty,
+    joinSecondVertices, Finset.card_empty, joinSigmaOneFaceIso,
     SSet.stdSimplex.isoOfRepresentableBy,
-    SSet.stdSimplex.faceRepresentableBy, joinSigmaOneVertices,
-    joinFirstVertices, joinSecondVertices, standardJoinRightOperator,
-    SSet.yonedaEquiv_map, SimplexCategory.eqToHom_toOrderHom]
+    SSet.stdSimplex.faceRepresentableBy, op_unop, NatTrans.comp_app,
+    NatIso.ofComponents_hom_app,
+    SSet.stdSimplex.objEquiv_toOrderHom_apply, Subfunctor.ι_app,
+    comp_apply, TypeCat.hom_ofHom, normalizedEmptyJoinAmbientIso,
+    Functor.mapIso_hom, eqToIso.hom, SSet.yonedaEquiv_map,
+    Equiv.toIso_hom_hom_apply, Equiv.trans_apply,
+    Equiv.apply_symm_apply, Equiv.coe_fn_mk,
+    SimplexCategory.eqToHom_toOrderHom, TypeCat.Fun.coe_mk,
+    standardJoinRightOperator, SimplexCategory.mkHom]
   let e : Fin (r + 2) ↪o Fin (m + (r + 1) + 2) :=
     { toFun := fun k => ⟨m + 1 + k.val, by omega⟩
       inj' := by
@@ -583,6 +613,7 @@ noncomputable def generalEmptyJoinHornIsoRange
       (∅ : Finset (Fin (m + 1))) i
 
 set_option maxHeartbeats 800000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 lemma generalEmptyJoinHornIsoRange_hom_ι
     (m r : ℕ) (i : Fin (r + 2)) :
     (generalEmptyJoinHornIsoRange.{u} m r i).hom ≫
@@ -895,8 +926,10 @@ lemma leftFace_image_leftJoinTargetIso_hom_eq_joinCell
       apply Fin.ext
       rw [hval]
       exact heq
-    simp [joinSigmaOneVertices, joinFirstVertices,
-      joinSecondVertices]
+    simp only [joinSigmaOneVertices, joinFirstVertices, Finset.map_erase,
+      Fin.castLEEmb_apply, joinSecondVertices, Finset.mem_union,
+      Finset.mem_erase, ne_eq, Finset.mem_map, Finset.mem_univ,
+      true_and, Function.Embedding.coeFn_mk]
     by_cases hleft : (x k).val < m + 2
     · left
       constructor
@@ -924,8 +957,10 @@ lemma leftFace_image_leftJoinTargetIso_hom_eq_joinCell
       rw [hval] at hv
       simpa only [Fin.val_castLE] using hv
     have hxmem := h k
-    simp [joinSigmaOneVertices, joinFirstVertices,
-      joinSecondVertices] at hxmem
+    simp only [joinSigmaOneVertices, joinFirstVertices, Finset.map_erase,
+      Fin.castLEEmb_apply, joinSecondVertices, Finset.mem_union,
+      Finset.mem_erase, ne_eq, Finset.mem_map, Finset.mem_univ,
+      true_and, Function.Embedding.coeFn_mk] at hxmem
     rcases hxmem with hxmem | hxmem
     · exact hxmem.1 (by
         apply Fin.ext
@@ -970,8 +1005,10 @@ lemma joinSigmaOneCell_le_boundaryProjectionTargetRange
     ← joinSigmaOneFace_eq_ofSimplex]
   apply (SSet.stdSimplex.face_le_face_iff _ _).mpr
   intro x hx
-  simp [joinSigmaOneVertices, joinFirstVertices,
-    joinSecondVertices] at hx ⊢
+  simp only [joinSigmaOneVertices, joinFirstVertices, joinSecondVertices,
+    Finset.mem_union, Finset.mem_map, Fin.castLEEmb_apply,
+    Finset.mem_univ, Function.Embedding.coeFn_mk, true_and,
+    Finset.map_erase, Finset.mem_erase, ne_eq] at hx ⊢
   rcases hx with hx | hx
   · left
     obtain ⟨t, ht, htx⟩ := hx

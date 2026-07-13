@@ -74,7 +74,10 @@ theorem eraseIntermediate_object
   | mk n intermediate =>
       cases n with
       | zero => exact Fin.elim0 i
-      | succ k => rfl
+      | succ k =>
+          cases k with
+          | zero => exact Fin.elim0 j
+          | succ k => rfl
 
 theorem eraseIntermediate_vertex
     {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i : Fin w.length)
@@ -87,35 +90,46 @@ theorem eraseIntermediate_vertex
       cases n with
       | zero => exact Fin.elim0 i
       | succ k =>
-          change Fin (k + 1) at i
-          change Fin (k + 2) at j
-          refine Fin.cases ?_ (fun j ↦ ?_) j
-          · rfl
-          · refine Fin.lastCases ?_ (fun q ↦ ?_) j
-            · have hidx : i.succ.castSucc.succAbove
-                    (Fin.cast (congrArg (fun n ↦ n + 1)
-                      (eraseIntermediate_length
-                        ({ length := k + 1, intermediate := intermediate } :
-                          DrinfeldWord X Y) i)) (Fin.last k).succ) =
-              Fin.last (k + 2) := by
-                convert eraseVertexSuccAbove_last k i <;> apply Fin.ext <;> rfl
-              rw [hidx]
-              rw [show (Fin.last k).succ = Fin.last (k + 1) by
-                apply Fin.ext; rfl]
-              exact (vertex_last (eraseIntermediate
-                  ({ length := k + 1, intermediate := intermediate } :
-                    DrinfeldWord X Y) i)).trans (vertex_last _).symm
-            · have hidx : i.succ.castSucc.succAbove
-                    (Fin.cast (congrArg (fun n ↦ n + 1)
-                      (eraseIntermediate_length
-                        ({ length := k + 1, intermediate := intermediate } :
-                          DrinfeldWord X Y) i)) q.castSucc.succ) =
-                  (i.succAbove q).succ.castSucc := by
-                convert eraseVertexSuccAbove_internal k i q <;> apply Fin.ext <;> rfl
-              rw [hidx]
-              simp [vertex, eraseIntermediate]
-              unfold object
-              rfl
+          cases k with
+          | zero =>
+              change Fin 1 at i
+              change Fin 2 at j
+              fin_cases i
+              fin_cases j <;> rfl
+          | succ k =>
+              change Fin (k + 2) at i
+              change Fin (k + 3) at j
+              refine Fin.cases ?_ (fun j ↦ ?_) j
+              · rfl
+              · refine Fin.lastCases ?_ (fun q ↦ ?_) j
+                · have hidx : i.succ.castSucc.succAbove
+                        (Fin.cast (congrArg (fun n ↦ n + 1)
+                          (eraseIntermediate_length
+                            ({ length := k + 2, intermediate := intermediate } :
+                              DrinfeldWord X Y) i)) (Fin.last (k + 1)).succ) =
+                    Fin.last (k + 3) := by
+                      convert eraseVertexSuccAbove_last (k + 1) i
+                      all_goals apply Fin.ext
+                      all_goals rfl
+                  rw [hidx]
+                  rw [show (Fin.last (k + 1)).succ = Fin.last (k + 2) by
+                    apply Fin.ext; rfl]
+                  exact (vertex_last (eraseIntermediate
+                      ({ length := k + 2, intermediate := intermediate } :
+                        DrinfeldWord X Y) i)).trans (vertex_last _).symm
+                · have hidx : i.succ.castSucc.succAbove
+                        (Fin.cast (congrArg (fun n ↦ n + 1)
+                          (eraseIntermediate_length
+                            ({ length := k + 2, intermediate := intermediate } :
+                              DrinfeldWord X Y) i)) q.castSucc.succ) =
+                      (i.succAbove q).succ.castSucc := by
+                      convert eraseVertexSuccAbove_internal (k + 1) i q
+                      all_goals apply Fin.ext
+                      all_goals rfl
+                  rw [hidx]
+                  simp only [vertex, eraseIntermediate, Fin.castSucc_succ]
+                  unfold object
+                  simp only [Fin.cases_succ, Fin.lastCases_castSucc]
 
 theorem eraseLift_of_before
     {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i : Fin w.length)
@@ -344,16 +358,8 @@ def contractFactorComposition
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) (i : Fin w.length) :
     Quiver.Hom (factorModule d i.castSucc ⊗ factorModule d i.succ)
-      (factorModule (d.contract i) (erasePosition w i)) := by
-  let f : Quiver.Hom (factorModule d i.castSucc ⊗ factorModule d i.succ)
-      ((dgHomZModuleCochainComplex
-        (w.arrowSource i.castSucc) (w.arrowTarget i.succ)).X
-          (d.arrowDegree i.castSucc + d.arrowDegree i.succ)) := by
-    simp only [factorModule]
-    rw [arrowTarget_castSucc_eq_arrowSource_succ]
-    exact dgCochainCompTensor
-      (w.arrowSource i.castSucc) (w.arrowSource i.succ) (w.arrowTarget i.succ) rfl
-  exact f ≫ (contractFactorModuleAtIso d i).inv
+      (factorModule (d.contract i) (erasePosition w i)) :=
+  adjacentFactorComposition d i ≫ (contractFactorModuleAtIso d i).inv
 
 /-- The factor list obtained by replacing the two entries adjacent to `i` by `P`. -/
 def mergedFactor {k : ℕ} (M : Fin (k + 1) → ModuleCat.{0} ℤ)
@@ -398,7 +404,9 @@ def adjacentMergeDataOfFn : {k : ℕ} → (M : Fin (k + 1) → ModuleCat.{0} ℤ
 /-- Regard an old intermediate-object position as a factor position of the erased word. -/
 def uneraseFactorIndex {X Y : ComplexCategory} (w : DrinfeldWord X Y)
     (i j : Fin w.length) : Fin ((eraseIntermediate w i).length + 1) :=
-  Fin.cast (eraseIntermediate_length w i).symm j
+  ⟨j, by
+    rw [eraseIntermediate_length]
+    exact j.isLt⟩
 
 @[simp]
 theorem eraseFactorIndex_uneraseFactorIndex
@@ -420,6 +428,26 @@ def contractedFactorAtOldIndex
     (d : DegreeProfile w n) (i j : Fin w.length) : ModuleCat.{0} ℤ :=
   factorModule (d.contract i) (uneraseFactorIndex w i j)
 
+/-- At the merged old index, the contracted factor is the homogeneous adjacent-composition
+target. -/
+def contractFactorAtOldIndexIso
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    contractedFactorAtOldIndex d i i ≅
+      ((dgHomZModuleCochainComplex
+        (w.arrowSource i.castSucc) (w.arrowTarget i.succ)).X
+          (d.arrowDegree i.castSucc + d.arrowDegree i.succ)) := by
+  simpa only [contractedFactorAtOldIndex, uneraseFactorIndex_self] using
+    contractFactorModuleAtIso d i
+
+/-- Adjacent composition transported only to the merged old-index factor. -/
+def contractionMergeAtOldIndex
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    Quiver.Hom (factorModule d i.castSucc ⊗ factorModule d i.succ)
+      (contractedFactorAtOldIndex d i i) :=
+  adjacentFactorComposition d i ≫ (contractFactorAtOldIndexIso d i).inv
+
 /-- The canonical adjacent merge of the old factor family.  Its target is the contracted
 family indexed through the old finite ordinal, with the non-merged entries still represented
 by their canonically identical old modules. -/
@@ -427,10 +455,9 @@ def contractionAdjacentMergeData
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) (i : Fin w.length) :
     AdjacentMergeData (List.ofFn (factorModule d))
-      (List.ofFn (mergedFactor (factorModule d) i (contractedFactorAtOldIndex d i i))) := by
-  apply adjacentMergeDataOfFn (factorModule d) i (contractedFactorAtOldIndex d i i)
-  simpa only [contractedFactorAtOldIndex, uneraseFactorIndex_self] using
-    contractFactorComposition d i
+      (List.ofFn (mergedFactor (factorModule d) i (contractedFactorAtOldIndex d i i))) :=
+  adjacentMergeDataOfFn (factorModule d) i (contractedFactorAtOldIndex d i i)
+    (contractionMergeAtOldIndex d i)
 
 /-- Pointwise transport from the output of the adjacent merge to the actual contracted
 factor family. -/
@@ -483,7 +510,21 @@ theorem contractedFactorsOldIndex_eq
   | mk k intermediate =>
       cases k with
       | zero => exact Fin.elim0 i
-      | succ k => rfl
+      | succ k =>
+          cases k with
+          | zero =>
+              fin_cases i
+              rfl
+          | succ k => rfl
+
+/-- Canonical tensor-level reindexing from old contraction positions to the contracted
+word's factor family. -/
+def contractedFactorsOldIndexIso
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    tensorModuleList (List.ofFn (contractedFactorAtOldIndex d i)) ≅
+      summandModule (d.contract i) :=
+  eqToIso (congrArg tensorModuleList (contractedFactorsOldIndex_eq d i))
 
 /-- The general contraction map between the actual word summands. -/
 def contractionTensorMap
@@ -491,7 +532,7 @@ def contractionTensorMap
     (d : DegreeProfile w n) (i : Fin w.length) :
     Quiver.Hom (summandModule d) (summandModule (d.contract i)) :=
   contractionTensorMapAtOldIndex d i ≫
-    eqToHom (congrArg tensorModuleList (contractedFactorsOldIndex_eq d i))
+    (contractedFactorsOldIndexIso d i).hom
 
 theorem adjacentMergeData_head_empty_tensorMap
     {M N P : ModuleCat.{0} ℤ} (f : Quiver.Hom (M ⊗ N) P) :
@@ -500,6 +541,30 @@ theorem adjacentMergeData_head_empty_tensorMap
         (ρ_ (M ⊗ N)).hom ≫ f ≫ (ρ_ P).inv := by
   dsimp only [AdjacentMergeData.tensorMap, tensorModuleList]
   simp
+
+/-- The finite-family adjacent merge at the unique position of a two-factor family is the
+head merge with no remaining factors. -/
+theorem adjacentMergeDataOfFn_one_tensorMap
+    (M : Fin 2 → ModuleCat.{0} ℤ) (P : ModuleCat.{0} ℤ)
+    (f : Quiver.Hom (M 0 ⊗ M 1) P) :
+    (adjacentMergeDataOfFn M (0 : Fin 1) P f).tensorMap =
+      (α_ (M 0) (M 1) (𝟙_ (ModuleCat.{0} ℤ))).inv ≫
+        (ρ_ (M 0 ⊗ M 1)).hom ≫ f ≫ (ρ_ P).inv := by
+  change (@AdjacentMergeData.head (M 0) (M 1) P [] f).tensorMap = _
+  exact adjacentMergeData_head_empty_tensorMap f
+
+/-- A pointwise tensor map on a singleton family is conjugated by the right unitors. -/
+theorem tensorMapData_ofFn_one_tensorMap
+    (M N : Fin 1 → ModuleCat.{0} ℤ)
+    (f : (j : Fin 1) → Quiver.Hom (M j) (N j)) :
+    (TensorMapData.ofFn M N f).tensorMap =
+      (ρ_ (M 0)).hom ≫ f 0 ≫ (ρ_ (N 0)).inv := by
+  change f 0 ▷ 𝟙_ (ModuleCat.{0} ℤ) =
+    (ρ_ (M 0)).hom ≫ f 0 ≫ (ρ_ (N 0)).inv
+  rw [← cancel_mono (ρ_ (N 0)).hom]
+  slice_rhs 3 4 => rw [Iso.inv_hom_id]
+  simp only [Category.comp_id]
+  exact MonoidalCategory.rightUnitor_naturality (f 0)
 
 def singletonCompositionFactorMap
     (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory) {n : ℤ}
@@ -524,13 +589,8 @@ def singletonCompositionFactorMapAt
       ((dgHomZModuleCochainComplex
         ((singleton X Y A).arrowSource i.castSucc)
         ((singleton X Y A).arrowTarget i.succ)).X
-        (d.arrowDegree i.castSucc + d.arrowDegree i.succ)) := by
-  simp only [factorModule]
-  rw [arrowTarget_castSucc_eq_arrowSource_succ]
-  exact dgCochainCompTensor
-    ((singleton X Y A).arrowSource i.castSucc)
-    ((singleton X Y A).arrowSource i.succ)
-    ((singleton X Y A).arrowTarget i.succ) rfl
+        (d.arrowDegree i.castSucc + d.arrowDegree i.succ)) :=
+  adjacentFactorComposition d i
 
 theorem contractFactorComposition_singleton
     (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory) {n : ℤ}
@@ -538,10 +598,7 @@ theorem contractFactorComposition_singleton
     (i : Fin (singleton X Y A).length) :
     contractFactorComposition d i =
       singletonCompositionFactorMapAt X Y A d i ≫
-        (contractFactorModuleAtIso d i).inv := by
-  refine Fin.cases ?_ (fun j ↦ Fin.elim0 j) i
-  unfold contractFactorComposition singletonCompositionFactorMapAt
-  rfl
+        (contractFactorModuleAtIso d i).inv := rfl
 
 theorem singletonCompositionFactorMapAt_heq
     (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory) {n : ℤ}
@@ -552,6 +609,40 @@ theorem singletonCompositionFactorMapAt_heq
   refine Fin.cases ?_ (fun j ↦ Fin.elim0 j) i
   unfold singletonCompositionFactorMapAt singletonCompositionFactorMap
   rfl
+
+/-- The all-word contraction map on a one-letter word has the semantic adjacent-composition
+normal form after identifying its target with the adjacent homogeneous Hom module. -/
+theorem contractionTensorMap_singleton_normalized
+    (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory) {n : ℤ}
+    (d : DegreeProfile (singleton X Y A) n)
+    (i : Fin (singleton X Y A).length) :
+    contractionTensorMap d i ≫
+        (singletonContractedSummandIsoAdjacentTarget X Y A d i).hom =
+      (singletonSummandIsoTensorAt X Y A d i).hom ≫
+        adjacentFactorComposition d i := by
+  refine Fin.cases ?_ (fun j ↦ Fin.elim0 j) i
+  unfold contractionTensorMap contractionTensorMapAtOldIndex
+  unfold contractionAdjacentMergeData
+  rw [adjacentMergeDataOfFn_one_tensorMap]
+  unfold contractionMergedFactorsTensorMap
+  rw [tensorMapData_ofFn_one_tensorMap]
+  unfold contractedFactorsOldIndexIso
+  unfold contractedFactorAtOldIndex
+  unfold contractionMergeAtOldIndex contractionMergedFactorMap mergedFactor
+    contractFactorAtOldIndexIso singletonContractedSummandIsoAdjacentTarget
+    singletonSummandIsoTensorAt uneraseFactorIndex erasePosition
+  simp only [singleton_length, Fin.isValue, Fin.castSucc_zero,
+    Fin.succ_zero_eq_one, eraseIntermediate_singleton, Fin.eta,
+    not_lt_zero, ↓dreduceIte, Fin.coe_ofNat_eq_mod, Nat.zero_mod,
+    Fin.zero_eta, Fin.cast_eq_self, eq_mpr_eq_cast, cast_eq, Category.assoc,
+    lt_self_iff_false, ↓reduceDIte, Iso.inv_hom_id_assoc, eqToIso_refl,
+    Iso.refl_hom, Category.comp_id, Iso.trans_hom, eqToIso.hom,
+    Fin.castSucc_succ, Nat.reduceAdd, Fin.cases_zero]
+  slice_lhs 4 6 =>
+    exact (contractFactorModuleAtIso d 0).inv_hom_id
+  exact Category.comp_id
+    ((singletonSummandIsoTensor X Y A d).hom ≫
+      adjacentFactorComposition d 0)
 
 /-- One signed contraction term, included into the degree-`n+1` quotient carrier. -/
 def contractionLargeMap {X Y : ComplexCategory}
@@ -605,7 +696,9 @@ theorem quotientTotalDifferential_inclusion
     Limits.Sigma.ι (fun t : GradedSummandIndex X Y n ↦ largeSummandModule t) s ≫
         quotientTotalDifferential X Y n =
       internalDifferentialFromSummand s.2 + contractionDifferentialFromSummand s.2 := by
-  simp [quotientTotalDifferential, Preadditive.comp_add]
+  rw [quotientTotalDifferential, Preadditive.comp_add,
+    quotientInternalDifferential_inclusion X Y n s,
+    quotientContractionDifferential_inclusion X Y n s]
 
 @[reassoc]
 theorem quotientTotalDifferential_nil_inclusion
@@ -672,7 +765,9 @@ theorem contractionLargeMap_comp_internalDifferential
       d.contractionSign i •
         ((ModuleCat.uliftFunctor.{1} ℤ).map (contractionTensorMap d i) ≫
           internalDifferentialFromSummand (d.contract i)) := by
-  simp [contractionLargeMap, Category.assoc, largeModule_zsmul_comp]
+  unfold contractionLargeMap
+  rw [largeModule_zsmul_comp, Category.assoc,
+    quotientInternalDifferential_inclusion X Y (n + 1) ⟨eraseIntermediate w i, d.contract i⟩]
 
 @[reassoc]
 theorem contractionLargeMap_comp_contractionDifferential
@@ -682,7 +777,9 @@ theorem contractionLargeMap_comp_contractionDifferential
       d.contractionSign i •
         ((ModuleCat.uliftFunctor.{1} ℤ).map (contractionTensorMap d i) ≫
           contractionDifferentialFromSummand (d.contract i)) := by
-  simp [contractionLargeMap, Category.assoc, largeModule_zsmul_comp]
+  unfold contractionLargeMap
+  rw [largeModule_zsmul_comp, Category.assoc,
+    quotientContractionDifferential_inclusion X Y (n + 1) ⟨eraseIntermediate w i, d.contract i⟩]
 
 @[reassoc]
 theorem internalDifferentialLargeMap_comp_contractionDifferential
@@ -692,12 +789,13 @@ theorem internalDifferentialLargeMap_comp_contractionDifferential
         quotientContractionDifferential X Y (n + 1) =
       (ModuleCat.uliftFunctor.{1} ℤ).map (internalDifferentialTensorMap d j) ≫
         contractionDifferentialFromSummand (d.raise j) := by
-  simp [internalDifferentialLargeMap, Category.assoc]
+  simp only [internalDifferentialLargeMap, Category.assoc]
+  rw [quotientContractionDifferential_inclusion X Y (n + 1) ⟨w, d.raise j⟩]
 
 theorem paritySign_add_one (m : ℤ) :
     (if Even (m + 1) then (1 : ℤ) else -1) =
       -(if Even m then (1 : ℤ) else -1) := by
-  by_cases h : Even m <;> simp [Int.even_add_one, h]
+  by_cases h : Even m <;> simp [h]
 
 theorem DegreeProfile.prefixTotal_raise_of_lt
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}

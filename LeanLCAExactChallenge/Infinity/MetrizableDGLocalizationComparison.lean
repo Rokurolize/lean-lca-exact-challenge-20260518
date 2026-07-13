@@ -5,7 +5,9 @@ import LeanLCAExactChallenge.Infinity.MetrizableOrdinaryLocalizationComparison
 /-!
 # Conditional comparison with the localized coherent direct dg carrier
 
-The canonical base-change map forms a strict triangle with the ordinary equivalence-forcing localization map and the localized coherent dg map. Assuming only that this Dwyer--Kan or Drinfeld base-change map is a bicategorical equivalence, the proved ordinary localization property transfers to the coherent dg candidate, and the induced homotopy category is identified with the corrected bounded derived category.
+The canonical base-change map forms a strict triangle with the two localization maps.
+
+A bicategorical base-change equivalence transfers the localization and comparison theorems.
 -/
 
 set_option autoImplicit false
@@ -58,7 +60,7 @@ theorem metrizableOrdinaryToDirectDGBaseChangeQCat_triangle :
   apply ObjectProperty.hom_ext SSet.Quasicategory
   exact metrizableOrdinaryToDirectDGBaseChange_triangle
 
-/-- The Dwyer--Kan or Drinfeld base-change equivalence transfers the full mapping-localization property to the coherent dg candidate. -/
+/-- A base-change equivalence transfers the full mapping-localization property. -/
 theorem metrizableDirectDGMappingLocalizationProperty_of_baseChange
     (hbase : MetrizableOrdinaryToDirectDGBaseChangeIsEquivalence) :
     MetrizableDirectDGMappingLocalizationProperty := by
@@ -80,7 +82,7 @@ def metrizableLocalizedDirectDGRelativeInfinityFunctor :
   map_weakEquivalence f hf :=
     metrizableComplexNerveToLocalizedDirectDGQCat_generatedIsEquivalence f hf
 
-/-- The induced functor from complexes to the homotopy category of the localized direct dg candidate. -/
+/-- The functor from complexes to the homotopy category of the localized direct dg candidate. -/
 def metrizableLocalizedDirectDGQCatHomotopyFunctor :
     CategoryTheory.Functor ComplexCategory
       (SSet.hoFunctor.obj directDGEquivalenceForcingQCat.obj) :=
@@ -107,7 +109,7 @@ def metrizableBaseChangedRelativeInfinityFunctor :
     (metrizableEquivalenceForcingMap_generated f hf).map
       metrizableOrdinaryToDirectDGBaseChangeQCatMap.hom
 
-/-- The exact simplicial triangle identifies the base-changed and direct relative infinity functors. -/
+/-- The simplicial triangle identifies the base-changed and direct relative infinity functors. -/
 theorem metrizableBaseChangedRelativeInfinityFunctor_eq :
     metrizableBaseChangedRelativeInfinityFunctor =
       metrizableLocalizedDirectDGRelativeInfinityFunctor := by
@@ -133,7 +135,7 @@ def metrizableCorrectedDerivedToLocalizedDirectDGHomotopy :
     (SSet.hoFunctor.map
       metrizableOrdinaryToDirectDGBaseChangeQCatMap.hom).toFunctor
 
-/-- Under the base-change theorem, the corrected-derived comparison with the localized coherent dg carrier is an equivalence. -/
+/-- Base change makes the corrected-derived comparison an equivalence. -/
 theorem metrizableCorrectedDerivedToLocalizedDirectDGHomotopy_isEquivalence
     (hbase : MetrizableOrdinaryToDirectDGBaseChangeIsEquivalence) :
     metrizableCorrectedDerivedToLocalizedDirectDGHomotopy.IsEquivalence := by
@@ -145,7 +147,7 @@ theorem metrizableCorrectedDerivedToLocalizedDirectDGHomotopy_isEquivalence
   dsimp only [metrizableCorrectedDerivedToLocalizedDirectDGHomotopy]
   infer_instance
 
-/-- Conditional equivalence between the corrected bounded derived category and the homotopy category of the localized coherent dg carrier. -/
+/-- Conditional equivalence between the corrected derived and localized dg homotopy categories. -/
 noncomputable def metrizableCorrectedDerivedLocalizedDirectDGHomotopyEquivalence
     (hbase : MetrizableOrdinaryToDirectDGBaseChangeIsEquivalence) :
     DboundedWithCycles MetrizableLCA.{0} ≌

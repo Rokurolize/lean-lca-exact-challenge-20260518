@@ -4,7 +4,9 @@ import LeanLCAExactChallenge.Infinity.OrdinaryLocalizationBridge
 /-!
 # Internal homs preserve bicategorical equivalences in the source
 
-A bicategorical equivalence of quasicategories induces a bicategorical equivalence on functor quasicategories by precomposition. Consequently, the full mapping-quasicategory localization property transfers across a bicategorical equivalence of localization carriers.
+A bicategorical equivalence induces equivalences on functor quasicategories.
+
+This transfers mapping localization across equivalent carriers.
 -/
 
 set_option autoImplicit false
@@ -135,7 +137,7 @@ noncomputable def internalHomPrecompTwoIso
     (internalHomPrecompEdgeOfTwoIso a Q)
     (internalHomPrecompEdgeOfTwoIso_isEquivalence a Q)
 
-/-- Precomposition by the forward map of an adjoint equivalence is an adjoint equivalence of functor quasicategories. -/
+/-- Precomposition by an adjoint equivalence is an equivalence. -/
 noncomputable def internalHomPrecompBicategoricalEquivalence
     {X Y : SSet.QCat.{u}} (e : Bicategory.Equivalence X Y)
     (Q : SSet.QCat.{u}) :
@@ -190,7 +192,7 @@ noncomputable def internalHomPrecompBicategoricalEquivalence
       (unitPreIso.symm.trans (eqToIso hpreXId))
   exact Bicategory.Equivalence.mkOfAdjointifyCounit unit counit
 
-/-- Precomposition by a bicategorical equivalence is a bicategorical equivalence of functor quasicategories. -/
+/-- Precomposition preserves bicategorical equivalences. -/
 theorem internalHomPrecomp_isBicategoricalEquivalence
     {X Y : SSet.QCat.{u}} {f : X ⟶ Y}
     (hf : IsBicategoricalEquivalence f) (Q : SSet.QCat.{u}) :
@@ -203,7 +205,122 @@ theorem internalHomPrecomp_isBicategoricalEquivalence
   obtain ⟨e, rfl⟩ := hf
   exact ⟨internalHomPrecompBicategoricalEquivalence e Q, rfl⟩
 
-/-- The full mapping-localization property transfers after postcomposing its carrier map with a bicategorical equivalence. -/
+/-- A self-map acts covariantly on every functor quasicategory by postcomposition. -/
+def internalHomPostcompositionAction (K X : SSet.{u}) :
+    (ihom X).obj X ⟶
+      (ihom ((ihom K).obj X)).obj ((ihom K).obj X) :=
+  MonoidalClosed.curry (MonoidalClosed.comp K X X)
+
+lemma internalHomPostcompositionAction_vertex
+    (K X : SSet.{u}) (f : X ⟶ X) :
+    (internalHomPostcompositionAction K X).app (op (SimplexCategory.mk 0))
+        (SSet.unitHomEquiv ((ihom X).obj X)
+          (MonoidalClosed.curry' f)) =
+      SSet.unitHomEquiv
+        ((ihom ((ihom K).obj X)).obj ((ihom K).obj X))
+        (MonoidalClosed.curry' ((ihom K).map f)) := by
+  apply (SSet.unitHomEquiv
+    ((ihom ((ihom K).obj X)).obj ((ihom K).obj X))).symm.injective
+  rw [Equiv.symm_apply_apply, unitHomEquiv_symm_natural']
+  rw [Equiv.symm_apply_apply]
+  simp only [internalHomPostcompositionAction]
+  rw [← MonoidalClosed.curry_natural_left,
+    MonoidalClosed.whiskerLeft_curry'_comp]
+  rfl
+
+/-- Apply postcomposition to an invertible `2`-cell represented by an internal-hom edge. -/
+noncomputable def internalHomPostcompEdgeOfTwoIso
+    {X : SSet.QCat.{u}} {f g : X ⟶ X} (a : f ≅ g)
+    (K : SSet.{u}) :
+    SSet.Edge
+      (SSet.unitHomEquiv
+        ((ihom ((ihom K).obj X.obj)).obj ((ihom K).obj X.obj))
+        (MonoidalClosed.curry' ((ihom K).map f.hom)))
+      (SSet.unitHomEquiv
+        ((ihom ((ihom K).obj X.obj)).obj ((ihom K).obj X.obj))
+        (MonoidalClosed.curry' ((ihom K).map g.hom))) :=
+  SSet.Edge.castEndpoints
+    (internalHomPostcompositionAction_vertex K X.obj f.hom).symm
+    (internalHomPostcompositionAction_vertex K X.obj g.hom).symm
+    ((internalHomEdgeOfTwoIso a).map
+      (internalHomPostcompositionAction K X.obj))
+
+theorem internalHomPostcompEdgeOfTwoIso_isEquivalence
+    {X : SSet.QCat.{u}} {f g : X ⟶ X} (a : f ≅ g)
+    (K : SSet.{u}) :
+    EdgeIsEquivalence (internalHomPostcompEdgeOfTwoIso a K) :=
+  (internalHomEdgeOfTwoIso_isEquivalence a).map
+      (internalHomPostcompositionAction K X.obj) |>.castEndpoints
+        (internalHomPostcompositionAction_vertex K X.obj f.hom).symm
+        (internalHomPostcompositionAction_vertex K X.obj g.hom).symm
+
+/-- Postcomposition carries an invertible `2`-cell to an invertible `2`-cell. -/
+noncomputable def internalHomPostcompTwoIso
+    {X : SSet.QCat.{u}} {f g : X ⟶ X} (a : f ≅ g)
+    (K : SSet.{u}) :
+    (ObjectProperty.homMk ((ihom K).map f.hom) :
+      internalHomQCat K X.obj
+          (@quasicategory_ihom K X.obj X.property) ⟶
+        internalHomQCat K X.obj
+          (@quasicategory_ihom K X.obj X.property)) ≅
+      ObjectProperty.homMk ((ihom K).map g.hom) :=
+  twoIsoOfInternalHomEquivalenceEdge
+    (internalHomPostcompEdgeOfTwoIso a K)
+    (internalHomPostcompEdgeOfTwoIso_isEquivalence a K)
+
+/-- Postcomposition by an adjoint equivalence is an equivalence. -/
+noncomputable def internalHomPostcompBicategoricalEquivalence
+    {X Y : SSet.QCat.{u}} (e : Bicategory.Equivalence X Y)
+    (K : SSet.{u}) :
+    Bicategory.Equivalence
+      (internalHomQCat K X.obj (@quasicategory_ihom K X.obj X.property))
+      (internalHomQCat K Y.obj (@quasicategory_ihom K Y.obj Y.property)) := by
+  let HX := internalHomQCat K X.obj (@quasicategory_ihom K X.obj X.property)
+  let HY := internalHomQCat K Y.obj (@quasicategory_ihom K Y.obj Y.property)
+  let p : HX ⟶ HY := ObjectProperty.homMk ((ihom K).map e.hom.hom)
+  let s : HY ⟶ HX := ObjectProperty.homMk ((ihom K).map e.inv.hom)
+  let preXId : HX ⟶ HX := ObjectProperty.homMk ((ihom K).map (𝟙 X.obj))
+  let preXUnit : HX ⟶ HX :=
+    ObjectProperty.homMk ((ihom K).map (e.hom ≫ e.inv).hom)
+  let preYId : HY ⟶ HY := ObjectProperty.homMk ((ihom K).map (𝟙 Y.obj))
+  let preYCounit : HY ⟶ HY :=
+    ObjectProperty.homMk ((ihom K).map (e.inv ≫ e.hom).hom)
+  have hp_comp_s : p ≫ s = preXUnit := by
+    apply ObjectProperty.hom_ext SSet.Quasicategory
+    exact ((ihom K).map_comp e.hom.hom e.inv.hom).symm
+  have hs_comp_p : s ≫ p = preYCounit := by
+    apply ObjectProperty.hom_ext SSet.Quasicategory
+    exact ((ihom K).map_comp e.inv.hom e.hom.hom).symm
+  have hpreXId : preXId = 𝟙 HX := by
+    apply ObjectProperty.hom_ext SSet.Quasicategory
+    exact (ihom K).map_id X.obj
+  have hpreYId : preYId = 𝟙 HY := by
+    apply ObjectProperty.hom_ext SSet.Quasicategory
+    exact (ihom K).map_id Y.obj
+  letI : Category (HX ⟶ HX) := SSet.QCat.bicategory.homCategory HX HX
+  letI : Category (HY ⟶ HY) := SSet.QCat.bicategory.homCategory HY HY
+  let unitPreIso : preXId ≅ preXUnit := internalHomPostcompTwoIso e.unit K
+  let counitPreIso : preYCounit ≅ preYId := internalHomPostcompTwoIso e.counit K
+  let unit : 𝟙 HX ≅ p ≫ s :=
+    (eqToIso hpreXId.symm).trans
+      (unitPreIso.trans (eqToIso hp_comp_s.symm))
+  let counit : s ≫ p ≅ 𝟙 HY :=
+    (eqToIso hs_comp_p).trans
+      (counitPreIso.trans (eqToIso hpreYId))
+  exact Bicategory.Equivalence.mkOfAdjointifyCounit unit counit
+
+/-- Postcomposition preserves bicategorical equivalences. -/
+theorem internalHomPostcomp_isBicategoricalEquivalence
+    {X Y : SSet.QCat.{u}} {f : X ⟶ Y}
+    (hf : IsBicategoricalEquivalence f) (K : SSet.{u}) :
+    IsBicategoricalEquivalence
+      (ObjectProperty.homMk ((ihom K).map f.hom) :
+        internalHomQCat K X.obj (@quasicategory_ihom K X.obj X.property) ⟶
+          internalHomQCat K Y.obj (@quasicategory_ihom K Y.obj Y.property)) := by
+  obtain ⟨e, rfl⟩ := hf
+  exact ⟨internalHomPostcompBicategoricalEquivalence e K, rfl⟩
+
+/-- Mapping localization transfers after an equivalent carrier change. -/
 theorem MappingQuasicategoryLocalizationProperty.postcomp_of_bicategoricalEquivalence
     {A L D : SSet.QCat.{u}} (W : EdgeMarking A.obj)
     (ell : A ⟶ L) (b : L ⟶ D)

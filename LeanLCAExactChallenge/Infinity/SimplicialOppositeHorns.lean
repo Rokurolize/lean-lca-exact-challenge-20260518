@@ -32,7 +32,8 @@ def hornOpIso (n : ℕ) (i : Fin (n + 1)) :
       change ((SSet.stdSimplex.opIso (SimplexCategory.mk n)).inv.app d
         ((SSet.stdSimplex.opIso (SimplexCategory.mk n)).hom.app d x)) ∈
           (SSet.horn n i).op.obj d
-      simpa using hx)
+      convert x.property using 1
+      all_goals simp)
   inv := SSet.Subcomplex.lift
     ((SSet.horn n i.rev).ι ≫
       (SSet.stdSimplex.opIso (SimplexCategory.mk n)).inv) (by

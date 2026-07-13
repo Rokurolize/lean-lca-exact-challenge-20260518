@@ -1335,49 +1335,52 @@ theorem aw_target_d_projection_explicit_pq (p q : ℕ) :
   · dsimp only [a, b]
     congr 1
     · rw [alternatingAlexanderWhitneySummand_pair X Y (p + 1) q]
-      have h := congrArg
-        (fun t =>
-          (X.map
-                (SimplexCategory.subinterval
-                  (n := p + q + 1) 0 (p + 1) (by omega)).op ⊗ₘ
-              Y.map
-                (SimplexCategory.subinterval
-                  (n := p + q + 1) (p + 1) q (by omega)).op) ≫ t)
-        (first_inclusion_d_comp_projection_pq X Y p q)
-      rw [Category.assoc]
-      exact h
+      focus
+        have h := congrArg
+          (fun t =>
+            (X.map
+                  (SimplexCategory.subinterval
+                    (n := p + q + 1) 0 (p + 1) (by omega)).op ⊗ₘ
+                Y.map
+                  (SimplexCategory.subinterval
+                    (n := p + q + 1) (p + 1) q (by omega)).op) ≫ t)
+          (first_inclusion_d_comp_projection_pq X Y p q)
+        rw [Category.assoc]
+        exact h
     · rw [alternatingAlexanderWhitneySummand_pair X Y p (q + 1)]
-      have h := congrArg
-        (fun t =>
-          (X.map
-                (SimplexCategory.subinterval
-                  (n := p + q + 1) 0 p (by omega)).op ⊗ₘ
-              Y.map
-                (SimplexCategory.subinterval
-                  (n := p + q + 1) p (q + 1) (by omega)).op) ≫ t)
-        (second_inclusion_d_comp_projection_pq X Y p q)
-      rw [Category.assoc]
-      exact h
+      focus
+        have h := congrArg
+          (fun t =>
+            (X.map
+                  (SimplexCategory.subinterval
+                    (n := p + q + 1) 0 p (by omega)).op ⊗ₘ
+                Y.map
+                  (SimplexCategory.subinterval
+                    (n := p + q + 1) p (q + 1) (by omega)).op) ≫ t)
+          (second_inclusion_d_comp_projection_pq X Y p q)
+        rw [Category.assoc]
+        exact h
   · intro r hra hrb
     rw [alternatingAlexanderWhitneySummand_pair X Y r (p + q + 1 - r)]
-    have hnon := nonadjacent_inclusion_d_comp_projection_pq X Y
-      r (p + q + 1 - r) p q (by omega) (by
-        intro hpair
-        apply hra
-        apply Fin.ext
-        exact congrArg Prod.fst hpair) (by
-        intro hpair
-        apply hrb
-        apply Fin.ext
-        exact congrArg Prod.fst hpair)
-    have hassoc := congrArg
-      (fun t =>
-        (X.map (SimplexCategory.subinterval
-              (n := p + q + 1) 0 r (by omega)).op ⊗ₘ
-          Y.map (SimplexCategory.subinterval
-              (n := p + q + 1) r (p + q + 1 - r) (by omega)).op) ≫ t) hnon
-    simp only [Category.assoc] at hassoc ⊢
-    exact hassoc
+    focus
+      have hnon := nonadjacent_inclusion_d_comp_projection_pq X Y
+        r (p + q + 1 - r) p q (by omega) (by
+          intro hpair
+          apply hra
+          apply Fin.ext
+          exact congrArg Prod.fst hpair) (by
+          intro hpair
+          apply hrb
+          apply Fin.ext
+          exact congrArg Prod.fst hpair)
+      have hassoc := congrArg
+        (fun t =>
+          (X.map (SimplexCategory.subinterval
+                (n := p + q + 1) 0 r (by omega)).op ⊗ₘ
+            Y.map (SimplexCategory.subinterval
+                (n := p + q + 1) r (p + q + 1 - r) (by omega)).op) ≫ t) hnon
+      simp only [Category.assoc] at hassoc ⊢
+      exact hassoc
 
 theorem alternatingAlexanderWhitney_projected_chain (p q : ℕ) :
     (alternatingChains (X ⊗ Y)).d (p + q + 1) (p + q) ≫
@@ -1667,7 +1670,9 @@ def normalizedAlexanderWhitneyUnit :
     ⟨(NormalizedMooreComplex.objX
       (𝟙_ (SimplicialObject (ModuleCat.{0} ℤ))) 0).arrow, ?_⟩
   rw [normalizedMooreComplex_objD]
-  simp [NormalizedMooreComplex.objD, SimplicialObject.δ]
+  simp only [NormalizedMooreComplex.objD, Nat.reduceAdd,
+    Monoidal.tensorUnit_obj, NormalizedMooreComplex.objX_add_one,
+    NormalizedMooreComplex.objX_zero, Fin.isValue]
   have hf := CategoryTheory.Subobject.finset_inf_arrow_factors Finset.univ
     (fun _ : Fin 1 => Limits.kernelSubobject (𝟙 (𝟙_ (ModuleCat ℤ))))
     (0 : Fin 1) (by simp)
@@ -1716,7 +1721,13 @@ theorem pInfty_comp_normalizedAlexanderWhitneyUnit :
       AlternatingFaceMapComplex.ε.app
         (SimplicialObject.Augmented.const.obj (𝟙_ (ModuleCat ℤ))) := by
   apply HomologicalComplex.to_single_hom_ext
-  simp
+  simp only [AlternatingFaceMapComplex.obj_X, Monoidal.tensorUnit_obj,
+    ChainComplex.single₀_obj_zero, HomologicalComplex.comp_f,
+    DoldKan.PInftyToNormalizedMooreComplex_f,
+    NormalizedMooreComplex.objX_zero, DoldKan.PInfty_f_0,
+    normalizedAlexanderWhitneyUnit_f_zero,
+    AlternatingFaceMapComplex.ε_app_f_zero, Functor.id_obj,
+    SimplicialObject.Augmented.const_obj_hom, NatTrans.id_app]
   exact Subobject.factorThru_arrow _ _ _
 
 /-- Naturality of normalized Alexander--Whitney in its left variable. -/

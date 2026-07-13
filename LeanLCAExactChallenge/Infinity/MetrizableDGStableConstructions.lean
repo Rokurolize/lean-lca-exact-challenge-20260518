@@ -426,7 +426,6 @@ theorem dgHomPrecompositionHomotopyCochain_delta
         CochainComplex.HomComplex.Cochain.ofHom (dgHomZModulePrecomposition T g₁) := by
   ext p
   rename_i γ
-  change _ = _
   rw [CochainComplex.HomComplex.δ_neg_one_cochain]
   simp only [CochainComplex.HomComplex.Cochain.ofHom_v]
   rw [Homotopy.nullHomotopicMap'_f
@@ -438,7 +437,7 @@ theorem dgHomPrecompositionHomotopyCochain_delta
     dgHomZModuleCochainComplex, dgHomZModulePrecomposition,
     ModuleCat.hom_comp, ModuleCat.hom_add, ModuleCat.hom_ofHom,
     LinearMap.add_apply, LinearMap.coe_comp, Function.comp_apply,
-    ConcreteCategory.comp_apply]
+    ]
   simp only [CochainComplex.HomComplex.δ_hom_apply]
   dsimp only [LinearMap.coe_mk, AddHom.coe_mk]
   rw [CochainComplex.HomComplex.δ_units_smul]
@@ -448,11 +447,10 @@ theorem dgHomPrecompositionHomotopyCochain_delta
   rw [CochainComplex.HomComplex.δ_comp z γ (by omega) 0 (p + 1) p
     (by omega) (neg_add_cancel 1) rfl]
   rw [hz]
-  simp only [hz', Int.negOnePow_succ, Units.neg_smul,
+  simp only [Int.negOnePow_succ, Units.neg_smul,
     CochainComplex.HomComplex.Cochain.ofHom_v,
-    CochainComplex.HomComplex.Cochain.sub_v,
     CochainComplex.HomComplex.Cochain.sub_comp,
-    dgHomZModulePrecomposition, ModuleCat.hom_sub, ModuleCat.hom_ofHom,
+    ModuleCat.hom_sub, ModuleCat.hom_ofHom,
     LinearMap.sub_apply, smul_add, smul_smul, Int.units_mul_self, one_smul]
   abel
 

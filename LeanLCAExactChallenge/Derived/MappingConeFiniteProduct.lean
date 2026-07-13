@@ -5,7 +5,9 @@ import LeanLCAExactChallenge.Derived.FiniteProductExactness
 /-!
 Finite mapping-cone product comparison for metrizable LCA cochain complexes.
 
-This module packages the Option-index step, the empty-index base case, equivalence transport, and finite induction for the comparison between `mappingCone (Limits.Pi.map f)` and the product of component mapping cones.
+This module packages the Option-index step, empty-index base case, and equivalence transport.
+
+Finite induction then compares `mappingCone (Limits.Pi.map f)` with the componentwise product.
 -/
 
 set_option autoImplicit false
@@ -37,9 +39,9 @@ structure OptionProductMapNaturalityInput : Type (u + 1) where
     [∀ x : Option J, Decidable (x = none)]
     (f : ∀ j, K j ⟶ L j),
       Limits.Pi.map f ≫
-        (OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+        (OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
           MetrizableLCA L).hom =
-      (OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+      (OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
           MetrizableLCA K).hom ≫
         biprod.map (f none) (Limits.Pi.map (fun j : J => f (some j)))
 
@@ -53,23 +55,23 @@ theorem optionProductIsoBiprod_finiteProducts_hom_fst {J : Type u} [Finite J]
     [HasProduct K]
     [HasProduct (fun j : J => K (some j))]
     [∀ x : Option J, Decidable (x = none)] :
-    (OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+    (OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
       MetrizableLCA K).hom ≫ biprod.fst =
-      (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).fst := by
-  unfold OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
-  unfold OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_packaged_of_direct
-  unfold OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_singletonTailDegreeComplement_of_direct
-  unfold OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_tailDegreeComplement_of_direct
-  unfold OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_tailComplement_of_direct
-  unfold OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_of_direct
-  unfold OptionProductDecompositionW151.optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanIsLimit
+      (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA K).fst := by
+  unfold OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
+  unfold OptionProductDecompositionW151.optionProductIsoBiprod_packaged_direct
+  unfold OptionProductDecompositionW151.optionProductIsoBiprod_singletonTailDegree_direct
+  unfold OptionProductDecompositionW151.optionProductIsoBiprod_tailDegree_direct
+  unfold OptionProductDecompositionW151.optionProductIsoBiprod_tail_direct
+  unfold OptionProductDecompositionW151.optionProductIsoBiprod_direct
+  unfold OptionProductDecompositionW151.optionProductIsoBiprod_of_transportedFan
   unfold OptionProductDecompositionW151.optionProductIsoBiprod_of_complexFanIsLimit
   unfold OptionProductDecompositionW151.binaryFanLimitPointIsoBiprod
-  simp only [OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan_pt,
+  simp only [OptionProductDecompositionW151.transportedBinaryFan_pt,
     Iso.trans_hom, eqToIso.hom]
   simpa [BinaryFan.π_app_left, BinaryBicone.toCone_π_app_left] using
     IsLimit.conePointUniqueUpToIso_hom_comp
-      (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFanIsLimit_direct
+      (OptionProductDecompositionW151.transportedBinaryFanIsLimit_direct
         MetrizableLCA K)
       (BinaryBiproduct.isLimit (K none)
         (∏ᶜ OptionProductDecompositionW151.optionTail MetrizableLCA K))
@@ -85,23 +87,23 @@ theorem optionProductIsoBiprod_finiteProducts_hom_snd {J : Type u} [Finite J]
     [HasProduct K]
     [HasProduct (fun j : J => K (some j))]
     [∀ x : Option J, Decidable (x = none)] :
-    (OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+    (OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
       MetrizableLCA K).hom ≫ biprod.snd =
-      (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd := by
-  unfold OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
-  unfold OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_packaged_of_direct
-  unfold OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_singletonTailDegreeComplement_of_direct
-  unfold OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_tailDegreeComplement_of_direct
-  unfold OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_tailComplement_of_direct
-  unfold OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_of_direct
-  unfold OptionProductDecompositionW151.optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanIsLimit
+      (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA K).snd := by
+  unfold OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
+  unfold OptionProductDecompositionW151.optionProductIsoBiprod_packaged_direct
+  unfold OptionProductDecompositionW151.optionProductIsoBiprod_singletonTailDegree_direct
+  unfold OptionProductDecompositionW151.optionProductIsoBiprod_tailDegree_direct
+  unfold OptionProductDecompositionW151.optionProductIsoBiprod_tail_direct
+  unfold OptionProductDecompositionW151.optionProductIsoBiprod_direct
+  unfold OptionProductDecompositionW151.optionProductIsoBiprod_of_transportedFan
   unfold OptionProductDecompositionW151.optionProductIsoBiprod_of_complexFanIsLimit
   unfold OptionProductDecompositionW151.binaryFanLimitPointIsoBiprod
-  simp only [OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan_pt,
+  simp only [OptionProductDecompositionW151.transportedBinaryFan_pt,
     Iso.trans_hom, eqToIso.hom]
   simpa [BinaryFan.π_app_right, BinaryBicone.toCone_π_app_right] using
     IsLimit.conePointUniqueUpToIso_hom_comp
-      (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFanIsLimit_direct
+      (OptionProductDecompositionW151.transportedBinaryFanIsLimit_direct
         MetrizableLCA K)
       (BinaryBiproduct.isLimit (K none)
         (∏ᶜ OptionProductDecompositionW151.optionTail MetrizableLCA K))
@@ -121,8 +123,8 @@ structure OptionTransportedFanMapProjectionNaturalityInput : Type (u + 1) where
     [∀ x : Option J, Decidable (x = none)]
     (f : ∀ j, K j ⟶ L j),
       Limits.Pi.map f ≫
-        (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA L).fst =
-      (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).fst ≫
+        (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA L).fst =
+      (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA K).fst ≫
         f none
   snd_comm : ∀ {J : Type u} [Finite J]
     {K L : Option J → CochainComplex MetrizableLCA.{u} ℤ}
@@ -132,8 +134,8 @@ structure OptionTransportedFanMapProjectionNaturalityInput : Type (u + 1) where
     [∀ x : Option J, Decidable (x = none)]
     (f : ∀ j, K j ⟶ L j),
       Limits.Pi.map f ≫
-        (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA L).snd =
-      (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫
+        (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA L).snd =
+      (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA K).snd ≫
         Limits.Pi.map (fun j : J => f (some j))
 
 /--
@@ -145,13 +147,13 @@ theorem optionTransportedFanMapFstNaturality {J : Type u} [Finite J]
     [HasProduct K] [HasProduct L]
     [HasProduct (fun j : J => K (some j))]
     [HasProduct (fun j : J => L (some j))]
-    [∀ x : Option J, Decidable (x = none)]
     (f : ∀ j, K j ⟶ L j) :
     Limits.Pi.map f ≫
-        (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA L).fst =
-      (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).fst ≫
+        (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA L).fst =
+      (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA K).fst ≫
         f none := by
-  simp only [OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan,
+  classical
+  simp only [OptionProductDecompositionW151.transportedBinaryFan,
     OptionProductDecompositionW151.noneSubproductIso, Limits.Pi.binaryFanOfProp,
     BinaryFan.mk_fst, Limits.productUniqueIso_hom]
   change (Limits.Pi.map f ≫ (Pi.map' Subtype.val fun x => 𝟙 (L ↑x))) ≫
@@ -181,7 +183,7 @@ theorem optionTransportedFanMapFstNaturality {J : Type u} [Finite J]
     have h := Limits.Pi.map'_comp_π (p := Subtype.val)
       (q := fun b : {x : Option J // x = none} => 𝟙 (K b.val))
       (b := ⟨none, rfl⟩)
-    simpa [Category.assoc] using congrArg (fun g => g ≫ f none) h
+    exact congrArg (fun g => g ≫ f none) h
   rw [hleft, hright]
 
 /--
@@ -190,15 +192,16 @@ Projection formula for the tail side of the transported Option-product fan.
 After reindexing the complement by `Option.some`, the `j`-th tail projection is the original
 product projection at `some j`.
 -/
-theorem optionProductComplexTransportedBinaryFan_snd_π {J : Type u} [Finite J]
+theorem transportedBinaryFan_snd_π {J : Type u} [Finite J]
     (K : Option J → CochainComplex MetrizableLCA.{u} ℤ)
     [HasProduct K]
     [HasProduct (fun j : J => K (some j))]
-    [∀ x : Option J, Decidable (x = none)] (j : J) :
-    (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫
+    (j : J) :
+    (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA K).snd ≫
       Pi.π (OptionProductDecompositionW151.optionTail MetrizableLCA K) j =
     Pi.π K (some j) := by
-  simp only [OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan,
+  classical
+  simp only [OptionProductDecompositionW151.transportedBinaryFan,
     OptionProductDecompositionW151.complementSubproductReindexIso, Limits.Pi.binaryFanOfProp,
     BinaryFan.mk_snd, Iso.symm_hom]
   letI : HasProduct
@@ -234,10 +237,10 @@ theorem optionProductComplexTransportedBinaryFan_snd_π {J : Type u} [Finite J]
           Pi.π (fun i : {x : Option J // ¬ x = none} => K i.val)
             ((OptionProductDecompositionW151.optionSomeComplementEquiv J).symm j) =
         Pi.π K ((OptionProductDecompositionW151.optionSomeComplementEquiv J).symm j).val := by
-    simpa [Pi.π] using
-      (Pi.map'_comp_π (p := Subtype.val)
+    exact
+      Pi.map'_comp_π (p := Subtype.val)
         (q := fun x : {x : Option J // ¬ x = none} => 𝟙 (K x.val))
-        (b := (OptionProductDecompositionW151.optionSomeComplementEquiv J).symm j))
+        (b := (OptionProductDecompositionW151.optionSomeComplementEquiv J).symm j)
   exact hraw.trans (by
     simp [OptionProductDecompositionW151.optionSomeComplementEquiv_symm_apply])
 
@@ -252,48 +255,49 @@ theorem optionTransportedFanMapSndNaturality {J : Type u} [Finite J]
     [HasProduct K] [HasProduct L]
     [HasProduct (fun j : J => K (some j))]
     [HasProduct (fun j : J => L (some j))]
-    [∀ x : Option J, Decidable (x = none)]
     (f : ∀ j, K j ⟶ L j) :
     Limits.Pi.map f ≫
-        (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA L).snd =
-      (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫
+        (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA L).snd =
+      (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA K).snd ≫
         Limits.Pi.map (fun j : J => f (some j)) := by
+  classical
   apply Limits.Pi.hom_ext
   intro j
-  have hL := optionProductComplexTransportedBinaryFan_snd_π (K := L) j
-  have hK := optionProductComplexTransportedBinaryFan_snd_π (K := K) j
+  have hL := transportedBinaryFan_snd_π (K := L) j
+  have hK := transportedBinaryFan_snd_π (K := K) j
   calc
     (Limits.Pi.map f ≫
-        (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA L).snd) ≫
+        (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA L).snd) ≫
         Pi.π (OptionProductDecompositionW151.optionTail MetrizableLCA L) j =
       Limits.Pi.map f ≫ Pi.π L (some j) := by
-        simpa [Category.assoc] using congrArg (fun g => Limits.Pi.map f ≫ g) hL
+        rw [Category.assoc, hL]
     _ = Pi.π K (some j) ≫ f (some j) := by
-        simpa using (Pi.map_π f (some j))
+        exact Pi.map_π f (some j)
     _ =
-      ((OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫
+      ((OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA K).snd ≫
         Limits.Pi.map (fun j : J => f (some j))) ≫
         Pi.π (OptionProductDecompositionW151.optionTail MetrizableLCA L) j := by
         have htail := Pi.map_π (fun j : J => f (some j)) j
         calc
           Pi.π K (some j) ≫ f (some j) =
-              ((OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫
-                Pi.π (OptionProductDecompositionW151.optionTail MetrizableLCA K) j) ≫ f (some j) := by
-                simpa [Category.assoc] using congrArg (fun g => g ≫ f (some j)) hK.symm
+              ((OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA K).snd ≫
+                Pi.π
+                  (OptionProductDecompositionW151.optionTail MetrizableLCA K) j) ≫
+              f (some j) := by
+                rw [hK]
           _ =
-              (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫
-                (Pi.π (OptionProductDecompositionW151.optionTail MetrizableLCA K) j ≫ f (some j)) := by
+              (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA K).snd ≫
+                (Pi.π
+                    (OptionProductDecompositionW151.optionTail MetrizableLCA K) j ≫
+                  f (some j)) := by
                 simp [Category.assoc]
           _ =
-              (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫
+              (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA K).snd ≫
                 (Limits.Pi.map (fun j : J => f (some j)) ≫
                   Pi.π (OptionProductDecompositionW151.optionTail MetrizableLCA L) j) := by
-                simpa [Category.assoc, OptionProductDecompositionW151.optionTail] using
-                  congrArg (fun g =>
-                    (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫ g)
-                    htail.symm
+                rw [htail]
           _ =
-              ((OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫
+              ((OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA K).snd ≫
                 Limits.Pi.map (fun j : J => f (some j))) ≫
                 Pi.π (OptionProductDecompositionW151.optionTail MetrizableLCA L) j := by
                 simp [Category.assoc]
@@ -308,8 +312,8 @@ structure OptionTransportedFanMapTailProjectionNaturalityInput : Type (u + 1) wh
     [∀ x : Option J, Decidable (x = none)]
     (f : ∀ j, K j ⟶ L j),
       Limits.Pi.map f ≫
-        (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA L).snd =
-      (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫
+        (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA L).snd =
+      (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA K).snd ≫
         Limits.Pi.map (fun j : J => f (some j))
 
 /--
@@ -348,64 +352,64 @@ def optionProductMapNaturalityInput_of_projectionNaturality
     apply biprod.hom_ext
     · have h₁ :
           (Limits.Pi.map f ≫
-              (OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+              (OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
                 MetrizableLCA L).hom) ≫ biprod.fst =
               Limits.Pi.map f ≫
-                (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA L).fst := by
+                (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA L).fst := by
           simpa [Category.assoc] using
             congrArg (fun g => Limits.Pi.map f ≫ g)
               (optionProductIsoBiprod_finiteProducts_hom_fst L)
       have h₂ :
           Limits.Pi.map f ≫
-              (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA L).fst =
-            (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).fst ≫
+              (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA L).fst =
+            (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA K).fst ≫
               f none :=
         projectionNaturality.fst_comm f
       have h₃ :
-          (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).fst ≫
+          (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA K).fst ≫
               f none =
-            ((OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+            ((OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
                 MetrizableLCA K).hom ≫ biprod.fst) ≫ f none := by
           simpa [Category.assoc] using
             congrArg (fun g => g ≫ f none)
               (optionProductIsoBiprod_finiteProducts_hom_fst K).symm
       have h₄ :
-          ((OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+          ((OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
               MetrizableLCA K).hom ≫ biprod.fst) ≫ f none =
-            ((OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+            ((OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
                 MetrizableLCA K).hom ≫
               biprod.map (f none) (Limits.Pi.map (fun j : J => f (some j)))) ≫ biprod.fst := by
           simp [Category.assoc]
       exact h₁.trans (h₂.trans (h₃.trans h₄))
     · have h₁ :
           (Limits.Pi.map f ≫
-              (OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+              (OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
                 MetrizableLCA L).hom) ≫ biprod.snd =
               Limits.Pi.map f ≫
-                (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA L).snd := by
+                (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA L).snd := by
           simpa [Category.assoc] using
             congrArg (fun g => Limits.Pi.map f ≫ g)
               (optionProductIsoBiprod_finiteProducts_hom_snd L)
       have h₂ :
           Limits.Pi.map f ≫
-              (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA L).snd =
-            (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫
+              (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA L).snd =
+            (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA K).snd ≫
               Limits.Pi.map (fun j : J => f (some j)) :=
         projectionNaturality.snd_comm f
       have h₃ :
-          (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫
+          (OptionProductDecompositionW151.transportedBinaryFan MetrizableLCA K).snd ≫
               Limits.Pi.map (fun j : J => f (some j)) =
-            ((OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+            ((OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
                 MetrizableLCA K).hom ≫ biprod.snd) ≫
               Limits.Pi.map (fun j : J => f (some j)) := by
           simpa [Category.assoc] using
             congrArg (fun g => g ≫ Limits.Pi.map (fun j : J => f (some j)))
               (optionProductIsoBiprod_finiteProducts_hom_snd K).symm
       have h₄ :
-          ((OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+          ((OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
               MetrizableLCA K).hom ≫ biprod.snd) ≫
               Limits.Pi.map (fun j : J => f (some j)) =
-            ((OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+            ((OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
                 MetrizableLCA K).hom ≫
               biprod.map (f none) (Limits.Pi.map (fun j : J => f (some j)))) ≫ biprod.snd := by
           simp [Category.assoc]
@@ -590,9 +594,9 @@ theorem exactAcyclic_optionPiMap_of_naturality_and_tailComparison
     [HasProduct (fun j : J => L (some j))]
     (f : ∀ j, K j ⟶ L j)
     [HasProduct (fun j : J => CochainComplex.mappingCone (f (some j)))]
-    [∀ x : Option J, Decidable (x = none)]
     (hf : ∀ j, exactAcyclic MetrizableLCA (CochainComplex.mappingCone (f j))) :
     exactAcyclic MetrizableLCA (CochainComplex.mappingCone (Limits.Pi.map f)) := by
+  classical
   let tailMap : ∀ j : J, K (some j) ⟶ L (some j) := fun j => f (some j)
   have hTailProduct :
       exactAcyclic MetrizableLCA (∏ᶜ fun j : J => CochainComplex.mappingCone (tailMap j)) :=
@@ -613,10 +617,10 @@ theorem exactAcyclic_optionPiMap_of_naturality_and_tailComparison
         (CochainComplex.mappingCone (Limits.Pi.map tailMap))
         (hf none) hTailCone)
   let eK :=
-    OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+    OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
       MetrizableLCA K
   let eL :=
-    OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+    OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
       MetrizableLCA L
   have hcomm :
       Limits.Pi.map f ≫ eL.hom =
@@ -638,10 +642,10 @@ theorem exactAcyclic_optionPiMap_of_tailComparison
     [HasProduct (fun j : J => L (some j))]
     (f : ∀ j, K j ⟶ L j)
     [HasProduct (fun j : J => CochainComplex.mappingCone (f (some j)))]
-    [∀ x : Option J, Decidable (x = none)]
     (hf : ∀ j, exactAcyclic MetrizableLCA (CochainComplex.mappingCone (f j))) :
-    exactAcyclic MetrizableLCA (CochainComplex.mappingCone (Limits.Pi.map f)) :=
-  exactAcyclic_optionPiMap_of_naturality_and_tailComparison
+    exactAcyclic MetrizableLCA (CochainComplex.mappingCone (Limits.Pi.map f)) := by
+  classical
+  exact exactAcyclic_optionPiMap_of_naturality_and_tailComparison
     optionProductMapNaturalityInput_direct tailComparison f hf
 
 /--
@@ -667,10 +671,10 @@ noncomputable def optionMappingConeProductComparisonIso_of_tailComparison
       ∏ᶜ (fun j : Option J => CochainComplex.mappingCone (f j)) := by
   let tailMap : ∀ j : J, K (some j) ⟶ L (some j) := fun j => f (some j)
   let eK :=
-    OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+    OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
       MetrizableLCA K
   let eL :=
-    OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+    OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
       MetrizableLCA L
   have hcomm :
       Limits.Pi.map f ≫ eL.hom =
@@ -681,10 +685,12 @@ noncomputable def optionMappingConeProductComparisonIso_of_tailComparison
       MappingConeBiprodComparison.binaryMappingConeBiprodIso (f none) (Limits.Pi.map tailMap) ≪≫
         biprod.mapIso (Iso.refl (CochainComplex.mappingCone (f none)))
           (tailComparison.iso tailMap) ≪≫
-          (OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+          (OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
             MetrizableLCA (fun j : Option J => CochainComplex.mappingCone (f j))).symm
 
-/-- The full finite mapping-cone/product comparison from empty base, equivalence, and Option step. -/
+/--
+The full finite mapping-cone/product comparison from empty base, equivalence, and Option step.
+-/
 noncomputable def tailFiniteMappingConeComparisonInput_direct :
     TailFiniteMappingConeComparisonInput.{u} where
   iso := by
@@ -734,13 +740,14 @@ noncomputable def tailFiniteMappingConeComparisonInput_direct :
       · intro α _ hα K L _ _ f _
         letI : HasProduct (fun j : α => K (some j)) := by infer_instance
         letI : HasProduct (fun j : α => L (some j)) := by infer_instance
-        letI : HasProduct (fun j : α => CochainComplex.mappingCone (f (some j))) := by infer_instance
+        letI : HasProduct (fun j : α => CochainComplex.mappingCone (f (some j))) := by
+          infer_instance
         let tailMap : ∀ j : α, K (some j) ⟶ L (some j) := fun j => f (some j)
         let eK :=
-          OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+          OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
             MetrizableLCA K
         let eL :=
-          OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+          OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
             MetrizableLCA L
         have hcomm :
             Limits.Pi.map f ≫ eL.hom =
@@ -752,44 +759,9 @@ noncomputable def tailFiniteMappingConeComparisonInput_direct :
               (Limits.Pi.map tailMap) ≪≫
               biprod.mapIso (Iso.refl (CochainComplex.mappingCone (f none)))
                 (Classical.choice (hα tailMap)) ≪≫
-                (OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+                (OptionProductDecompositionW151.optionProductIsoBiprod_finite_direct
                   MetrizableLCA (fun j : Option α => CochainComplex.mappingCone (f j))).symm⟩
     exact Classical.choice (hP (K := K) (L := L) f)
-
-section Checks
-
-#check OptionProductMapNaturalityInput
-#check optionProductIsoBiprod_finiteProducts_hom_fst
-#check optionProductIsoBiprod_finiteProducts_hom_snd
-#check OptionTransportedFanMapProjectionNaturalityInput
-#check optionTransportedFanMapFstNaturality
-#check optionProductComplexTransportedBinaryFan_snd_π
-#check optionTransportedFanMapSndNaturality
-#check OptionTransportedFanMapTailProjectionNaturalityInput
-#check optionTransportedFanMapProjectionNaturalityInput_of_tailProjection
-#check optionTransportedFanMapProjectionNaturalityInput_direct
-#check optionProductMapNaturalityInput_of_projectionNaturality
-#check optionProductMapNaturalityInput_direct
-#check TailFiniteMappingConeComparisonInput
-#check EmptyMappingConeProductComparisonInput
-#check mappingConeZeroZeroIsoZero
-#check zeroComplexIsoHomologicalZero
-#check emptyProductIsoHomologicalZero
-#check emptyMappingConeProductComparisonInput_direct
-#check piMap_reindex_hom_naturality
-#check mappingConeProductComparisonIso_of_equiv
-#check exactAcyclic_optionPiMap_of_naturality_and_tailComparison
-#check exactAcyclic_optionPiMap_of_tailComparison
-#check optionMappingConeProductComparisonIso_of_tailComparison
-#check tailFiniteMappingConeComparisonInput_direct
-#check OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
-#check MappingConeBiprodComparison.binaryMappingConeBiprodIso
-#check FiniteProductExactness.finiteExactAcyclicProductClosure_of_w151
-#check exactAcyclic_mappingCone_congr_iff
-#check Limits.Pi.map
-#check biprod.map
-
-end Checks
 
 end MappingConeFiniteProduct
 

@@ -24,6 +24,15 @@ noncomputable def leftJoinTargetIso (m n : ℕ) :
     simp
     omega))
 
+/-- Transporting a standard simplex along equality preserves vertex values. -/
+lemma stdSimplex_map_eqToHom_val
+    {a b d : ℕ} (h : SimplexCategory.mk a = SimplexCategory.mk b)
+    (x : (Δ[a] : SSet.{u}).obj (Opposite.op (SimplexCategory.mk d)))
+    (k : Fin (d + 1)) :
+    ((((SSet.stdSimplex.map (eqToHom h)).app _ x) k).val) = (x k).val := by
+  cases h
+  rfl
+
 /-- The left-block coface in an ordinal sum, with its target arithmetic
 transport made explicit. -/
 def leftJoinCoface (m n : ℕ) (i : Fin (m + 2)) :
@@ -151,6 +160,7 @@ lemma ordinaryJoinLeftFaceIso_inv
         (𝟙 (Δ[n] : SSet.{u})) := rfl
 
 set_option maxHeartbeats 800000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 /-- A transported left face of a representable join. -/
 noncomputable def ordinaryJoinTransportedLeftLeg
     (m n : ℕ) (j : Fin (m + 2)) :
@@ -484,7 +494,6 @@ noncomputable def strictSingletonAugmentationBoundaryIsColimit (n : ℕ) :
         exact ConcreteCategory.congr_hom (s.ι.naturality f).symm PUnit.unit
       · ext ⟨⟩
         have hh := h Classical.ofNonempty
-        simp [c] at hh
         change m = s.ι.app Classical.ofNonempty at hh
         exact ConcreteCategory.congr_hom hh PUnit.unit
     exact IsColimit.ofIsoColimit
@@ -738,6 +747,7 @@ lemma leftRepresentableJoinHornRange_eq_iSup_multicoforkRanges
     (leftRepresentableJoinHornMap m n i)
 
 set_option maxHeartbeats 600000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 lemma leftHornFaceJoin_comp
     (m n : ℕ) (i : Fin (m + 2))
     (j : Fin (m + 2)) (hji : j ≠ i) :
@@ -783,6 +793,7 @@ lemma leftHornFaceJoin_comp
   rw [← emptyAugmentation.map_comp]
 
 set_option maxHeartbeats 400000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 lemma rightTensorHornCocone_right_app
     (m n : ℕ) (i : Fin (m + 2))
     (j : ({i}ᶜ : Set (Fin (m + 2)))) :
@@ -880,6 +891,7 @@ lemma leftRepresentableJoinHornRange_eq_iSup_transportedLeftFaces
 
 set_option backward.isDefEq.respectTransparency false in
 set_option maxHeartbeats 1200000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 lemma rightTensorHornCocone_left_comp_eq_doubleLeftCoface
     (r n : ℕ) (i : Fin (r + 3))
     (a : (Limits.MultispanShape.ofLinearOrder
@@ -956,6 +968,7 @@ lemma rightTensorHornCocone_left_comp_eq_doubleLeftCoface
   exact SSet.stdSimplex.facePairComplIso_hom_ι' j.1 k.1 hjk
 
 set_option maxHeartbeats 800000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 noncomputable def leftJoinPairTargetIso (r n : ℕ) :
     (Δ[r + n + 3] : SSet.{u}) ≅ Δ[(r + 2) + n + 1] :=
   SSet.stdSimplex.mapIso (eqToIso (by
@@ -964,6 +977,7 @@ noncomputable def leftJoinPairTargetIso (r n : ℕ) :
     omega))
 
 set_option maxHeartbeats 800000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 lemma doubleLeftCoface_std_map_eq_facePair
     (r n : ℕ) (j k : Fin (r + 3)) (hjk : j < k) :
     let kp := k.pred (Fin.ne_zero_of_lt hjk)
@@ -1179,14 +1193,11 @@ lemma ordinaryJoinTransportedLeftLeg_range_pairNormalized
         ((((leftJoinPairTargetIso r n).hom ≫
           (leftJoinTargetIso (r + 1) n).inv).app _ x) k).val =
             (x k).val := by
-      simp [leftJoinPairTargetIso, leftJoinTargetIso, Functor.mapIso]
-      change (SimplexCategory.Hom.toOrderHom
-        (eqToHom (by
-          apply SimplexCategory.ext
-          simp
-          omega) : SimplexCategory.mk (r + n + 3) ⟶
-            SimplexCategory.mk ((r + 1) + n + 2)) (x k)).val = _
-      simp
+      simp only [leftJoinPairTargetIso, leftJoinTargetIso, Functor.mapIso_hom,
+        Functor.mapIso_inv, eqToIso.hom, eqToIso.inv]
+      rw [← Functor.map_comp]
+      simp only [eqToHom_trans]
+      exact stdSimplex_map_eqToHom_val _ x k
     constructor
     · intro h k hk
       apply h k
@@ -1231,6 +1242,7 @@ lemma rightTensorHornCocone_left_comp_range_pairNormalized
   simp
 
 set_option synthInstance.maxHeartbeats 200000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 noncomputable instance leftRepresentableJoinHornMapPairNormalized_mono
     (r n : ℕ) (i : Fin (r + 3)) :
     Mono (leftRepresentableJoinHornMapPairNormalized.{u} r n i) := by
@@ -1894,8 +1906,10 @@ lemma standardJoinRightOperator_one_range (n : ℕ) :
     congr 1
     apply SimplexCategory.Hom.ext
     ext k
-    simp [i, j, standardJoinRightOperator, SimplexCategory.δ,
-      Fin.succAbove]
+    simp only [eqToIso.hom, SimplexCategory.comp_toOrderHom,
+      SimplexCategory.eqToHom_toOrderHom, OrderHom.comp_coe,
+      OrderEmbedding.toOrderHom_coe, OrderIso.coe_toOrderEmbedding,
+      Function.comp_apply, Fin.castOrderIso_apply, eqToIso.inv, Fin.val_cast]
     let kc : Fin (0 + n + 1) := Fin.cast (by simp) k
     change (if kc.castSucc.succ < 1 then kc.castSucc.succ
       else kc.succ.succ).val = 2 + k.val
@@ -1942,8 +1956,10 @@ lemma standardJoinRightOperator_one_mono (n : ℕ) :
     congr 1
     apply SimplexCategory.Hom.ext
     ext k
-    simp [i, j, standardJoinRightOperator, SimplexCategory.δ,
-      Fin.succAbove]
+    simp only [eqToIso.hom, SimplexCategory.comp_toOrderHom,
+      SimplexCategory.eqToHom_toOrderHom, OrderHom.comp_coe,
+      OrderEmbedding.toOrderHom_coe, OrderIso.coe_toOrderEmbedding,
+      Function.comp_apply, Fin.castOrderIso_apply, eqToIso.inv, Fin.val_cast]
     let kc : Fin (0 + n + 1) := Fin.cast (by simp) k
     change (if kc.castSucc.succ < 1 then kc.castSucc.succ
       else kc.succ.succ).val = 2 + k.val
@@ -1989,6 +2005,7 @@ lemma baseJoinBoundaryOverlap_comp_normalized
   rw [simplicialJoinRightInclusion_stdSimplex]
 
 set_option synthInstance.maxHeartbeats 200000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 lemma baseJoinBoundaryLeft_comp_mono
     (n : ℕ) (a : (Limits.MultispanShape.ofLinearOrder (Fin 2)).L) :
     Mono ((rightTensorBoundaryCocone.{u} 0 n).ι.app (.left a) ≫
@@ -2179,6 +2196,7 @@ lemma baseJoinBoundaryLeft_comp_range
     exact SSet.Subcomplex.image_le_range _ _
 
 set_option synthInstance.maxHeartbeats 200000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 noncomputable instance normalizedJoinBoundaryStandardMap_zero_mono
     (n : ℕ) :
     Mono (normalizedJoinBoundaryStandardMap.{u} 0 n) := by
@@ -2276,7 +2294,7 @@ lemma leftJoinTargetIso_inv_comp_normalizedJoinRightCoface
   apply SimplexCategory.Hom.ext
   ext k
   simp [SimplexCategory.δ, Fin.succAbove]
-  split_ifs <;> simp_all [Fin.lt_def] <;> omega
+  split_ifs <;> simp_all [Fin.lt_def]; omega
 
 set_option backward.isDefEq.respectTransparency false in
 lemma simplicialJoinMap_comp_general
@@ -2717,7 +2735,9 @@ lemma normalizedLeftPairFace_image_normalizedJoinRightCoface
     SSet.stdSimplex.face_inter_face]
   congr 1
   ext x
-  simp [L₀, KP]
+  simp only [Finset.inf_eq_inter, Finset.mem_inter, Finset.mem_compl,
+    Finset.mem_insert, Finset.mem_singleton, not_or]
+  tauto
 
 lemma boundaryJoinHornCocone_left_comp_range
     (m n : ℕ) (i : Fin (n + 3))
@@ -2793,8 +2813,8 @@ lemma normalizedRightFaceRange_iSup_inf
     rw [SSet.stdSimplex.face_inter_face,
       SSet.stdSimplex.face_le_face_iff]
     intro x hx
-    simp only [Finset.mem_inter, Finset.mem_erase,
-      Finset.mem_compl, Finset.mem_singleton] at hx ⊢
+    simp only [
+      Finset.mem_compl] at hx ⊢
     aesop
   · apply iSup_le
     intro l
@@ -2802,14 +2822,14 @@ lemma normalizedRightFaceRange_iSup_inf
     · refine le_iSup_of_le l ?_
       rw [SSet.stdSimplex.face_le_face_iff]
       intro x hx
-      simp only [Finset.mem_erase, Finset.mem_compl,
-        Finset.mem_singleton] at hx ⊢
+      simp only [Finset.mem_compl,
+        ] at hx ⊢
       aesop
     · refine le_iSup_of_le l ?_
       rw [SSet.stdSimplex.face_le_face_iff]
       intro x hx
-      simp only [Finset.mem_erase, Finset.mem_compl,
-        Finset.mem_singleton] at hx ⊢
+      simp only [Finset.mem_compl,
+        ] at hx ⊢
       aesop
 
 lemma boundaryJoinHornCocone_left_comp_range_eq_inf
@@ -3000,6 +3020,7 @@ lemma representableJoinHornInitial_image_leftJoinTargetIso_inv
   exact shiftedRightFace_image_leftJoinTargetIso_inv m n j
 
 set_option maxHeartbeats 800000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 lemma normalizedRightFaces_sup_leftFaces_eq_horn
     (m n : ℕ) (i : Fin (n + 2)) :
     (⨆ j : ({i}ᶜ : Set (Fin (n + 2))), SSet.stdSimplex.face
@@ -3263,7 +3284,9 @@ noncomputable instance normalizedJoinBoundaryHornCornerMap_mono
       rfl
   exact heq.symm ▸ hg
 
-/-- A monic normalized boundary-horn corner is inner anodyne whenever the omitted right vertex is not the last one. -/
+/--
+A monic normalized boundary-horn corner is inner anodyne away from the last right vertex.
+-/
 lemma normalizedJoinBoundaryHornCornerMap_innerAnodyne_of_mono
     (m n : ℕ) (i : Fin (n + 2))
     [Mono (normalizedJoinBoundaryHornCornerMap.{u} m n i)]
@@ -3286,7 +3309,9 @@ lemma normalizedJoinBoundaryHornCornerMap_innerAnodyne_of_mono
     (e.hom ≫ (SSet.Subcomplex.range f).ι) at hc
   simpa [e, f, simplicialSetIsoRangeOfMono] using hc
 
-/-- The normalized boundary-horn corner is inner anodyne whenever the omitted right vertex is not the last one. -/
+/--
+The normalized boundary-horn corner is inner anodyne away from the last right vertex.
+-/
 lemma normalizedJoinBoundaryHornCornerMap_innerAnodyne
     (m n : ℕ) (i : Fin (n + 2))
     (hi : i < Fin.last (n + 1)) :

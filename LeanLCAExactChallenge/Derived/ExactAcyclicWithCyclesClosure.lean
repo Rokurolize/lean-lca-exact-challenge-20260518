@@ -13,7 +13,6 @@ legacy `boundedExactWeakEquivalence` route in `Derived.Bounded`.
 -/
 
 set_option autoImplicit false
-set_option maxHeartbeats 2000000
 set_option backward.defeqAttrib.useBackward true
 set_option backward.isDefEq.respectTransparency false
 

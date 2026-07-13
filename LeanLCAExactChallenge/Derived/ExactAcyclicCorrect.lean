@@ -158,7 +158,7 @@ def shift {K : CochainComplex C ℤ} (h : ExactAcyclicWithCyclesData C K) (n : �
   proj i := n.negOnePow •
     (h.proj (i + n) ≫ eqToHom (congrArg h.Z (show i + n + 1 = i + 1 + n by omega)))
   zero i := by
-    show h.incl (i + n) ≫
+    change h.incl (i + n) ≫
         (n.negOnePow • (h.proj (i + n) ≫
           eqToHom (congrArg h.Z (show i + n + 1 = i + 1 + n by omega)))) = 0
     rw [Linear.comp_units_smul, ← Category.assoc, h.zero (i + n), zero_comp, smul_zero]
@@ -185,7 +185,7 @@ def shift {K : CochainComplex C ℤ} (h : ExactAcyclicWithCyclesData C K) (n : �
           rw [Category.id_comp, Linear.comp_units_smul])
     exact QuillenExactCategory.conflation_iso_transport eiso (h.conflation (i + n))
   d_eq i := by
-    show (n.negOnePow • (h.proj (i + n) ≫
+    change (n.negOnePow • (h.proj (i + n) ≫
         eqToHom (congrArg h.Z (show i + n + 1 = i + 1 + n by omega)))) ≫
           h.incl (i + 1 + n) =
       n.negOnePow • K.d (i + n) (i + 1 + n)
@@ -1177,8 +1177,9 @@ theorem mappingConeCyclesProj_incl
   apply CochainComplex.mappingCone.ext_to f (i + 1) (i + 1 + 1) rfl
   · rw [Category.assoc, mappingConeCyclesIncl_fst,
       mappingConeCyclesProj_fst_assoc, CochainComplex.mappingCone.d_fst_v]
-    rw [← hK.d_eq (i + 1)]
-    simp [Category.assoc]
+    focus
+      rw [← hK.d_eq (i + 1)]
+      simp [Category.assoc]
     rfl
   · rw [Category.assoc, mappingConeCyclesIncl_snd,
       mappingConeCyclesProj_snd, CochainComplex.mappingCone.d_snd_v]

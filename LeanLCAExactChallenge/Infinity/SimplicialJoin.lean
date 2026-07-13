@@ -138,8 +138,12 @@ def terminalAugmentedSSet : SSet.{u} ⥤ SSet.Augmented.{u} where
         apply NatTrans.ext
         funext n
         apply Limits.terminal.hom_ext }
-  map_id _ := by ext <;> rfl
-  map_comp _ _ := by ext <;> rfl
+  map_id _ := by
+    ext
+    rfl
+  map_comp _ _ := by
+    ext
+    rfl
 
 /-- The canonical singleton augmentation, expressed as a presheaf on the
 augmented simplex category. -/
@@ -225,7 +229,6 @@ noncomputable def strictSingletonAugmentationHornIsColimit {n : ℕ}
       (IsColimit.mapCoconeEquiv
         (strictSingletonAugmentationEvalOfIso.{u} j).symm hc)
       (Functor.mapCoconeMapCocone c).symm
-
   · let c := (SSet.horn.multicoequalizerDiagram i).multicofork.toLinearOrder.map
       SSet.Subcomplex.toSSetFunctor
     letI : CategoryTheory.IsConnected
@@ -245,7 +248,6 @@ noncomputable def strictSingletonAugmentationHornIsColimit {n : ℕ}
         exact ConcreteCategory.congr_hom (s.ι.naturality f).symm PUnit.unit
       · ext ⟨⟩
         have hh := h Classical.ofNonempty
-        simp [c] at hh
         change m = s.ι.app Classical.ofNonempty at hh
         exact ConcreteCategory.congr_hom hh PUnit.unit
     exact IsColimit.ofIsoColimit
@@ -383,7 +385,9 @@ def ordinalSumCutRight {U A B : SimplexCategory}
           have hq' :
               (q.toOrderHom ⟨ordinalSumCut q + j.val, by omega⟩).val <
                 A.len + B.len + 2 := by
-            simpa [AugmentedSimplexCategory.tensorObjOf] using hq
+            change (q.toOrderHom
+              ⟨ordinalSumCut q + j.val, by omega⟩).val < A.len + B.len + 2 at hq
+            exact hq
           omega⟩
       monotone' := by
         intro j k hjk
@@ -453,7 +457,7 @@ lemma ordinalSumCut_tensorObj_eq {U A B : SimplexCategory}
   simp only [augmentedSimplexOfCard, AugmentedSimplexCategory.tensorObj]
   congr 2
   apply SimplexCategory.ext
-  simp only [SimplexCategory.len_mk]
+  simp only []
   omega
 
 /-- The canonical ordinal-sum decomposition map determined by the cut. -/
@@ -475,7 +479,7 @@ def ordinalSumCutLeftAugmented {U A B : SimplexCategory}
   | c + 1 => AugmentedSimplexCategory.inclusion.map
       (eqToHom (by
           apply SimplexCategory.ext
-          simp only [SimplexCategory.len_mk]
+          simp only []
           omega) ≫
         ordinalSumCutLeft q (by omega))
 
@@ -490,7 +494,7 @@ def ordinalSumCutRightAugmented {U A B : SimplexCategory}
       (eqToHom (by
           apply SimplexCategory.ext
           have hc := ordinalSumCut_le q
-          simp only [SimplexCategory.len_mk]
+          simp only []
           omega) ≫
         ordinalSumCutRight q (by
           have hc := ordinalSumCut_le q
@@ -1173,7 +1177,7 @@ lemma augmentedInclusion_tensor_rightCoface (m n : ℕ) (j : Fin (n + 2)) :
         omega
       simp [AugmentedSimplexCategory.tensorHomOf, SimplexCategory.δ,
         Fin.addCases, Fin.succAbove, hkm, hsubFin, hb, hlt]
-      simp only [Fin.val_cast, Fin.val_mk, Fin.val_castSucc] at *
+      simp only [Fin.val_cast, Fin.val_castSucc] at *
       omega
     · have hb' : ¬ k.val - (m + 1) < j.val := by
         simpa [b, Fin.lt_def] using hb
@@ -1183,7 +1187,7 @@ lemma augmentedInclusion_tensor_rightCoface (m n : ℕ) (j : Fin (n + 2)) :
         omega
       simp [AugmentedSimplexCategory.tensorHomOf, SimplexCategory.δ,
         Fin.addCases, Fin.succAbove, hkm, hsubFin, hb, hlt]
-      simp only [Fin.val_cast, Fin.val_mk, Fin.val_castSucc] at *
+      simp only [Fin.val_cast, Fin.val_castSucc] at *
       omega
 
 /-- Restriction of an augmented representable at an ordinary simplex is the
@@ -1249,7 +1253,7 @@ theorem simplicialJoinStdSimplexIsoNat_naturality_rightCoface
 lemma stdSimplex_range_map_delta {n : ℕ} (j : Fin (n + 2)) :
     SSet.Subcomplex.range (SSet.stdSimplex.map (SimplexCategory.δ j) :
       (Δ[n] : SSet.{u}) ⟶ Δ[n + 1]) = SSet.stdSimplex.face {j}ᶜ := by
-  rw [SSet.Subcomplex.range_eq_ofSimplex, SSet.stdSimplex.yonedaEquiv_map,
+  rw [SSet.Subcomplex.range_eq_ofSimplex, SSet.yonedaEquiv_map,
     ← SSet.stdSimplex.face_singleton_compl]
 
 lemma representableJoin_rightCoface_range (m n : ℕ) (j : Fin (n + 2)) :
@@ -1645,8 +1649,7 @@ lemma joinSigmaOne_nth_first (m n : ℕ) (T : Finset (Fin (m + 1)))
   simp only [explicitJoinSigmaOneFun, joinSigmaOneFirstIndex, Fin.val_castLE]
   rw [dif_pos]
   · change ↑((T.orderIsoOfFin rfl) ((T.orderIsoOfFin rfl).symm ⟨t, ht⟩)) = t.val
-    simpa using congrArg Subtype.val
-      ((T.orderIsoOfFin rfl).apply_symm_apply ⟨t, ht⟩)
+    rw [OrderIso.apply_symm_apply]
   · exact ((T.orderIsoOfFin rfl).symm ⟨t, ht⟩).isLt
 
 lemma joinSigmaOne_index_eq_first_of_lt_card {m n : ℕ}
@@ -1697,8 +1700,11 @@ lemma joinSigmaOneFaceIso_coface_range (m n : ℕ)
   apply SSet.stdSimplex.objEquiv.injective
   apply SimplexCategory.Hom.ext
   ext k
-  simp [joinSigmaOneFaceIso, SSet.stdSimplex.isoOfRepresentableBy,
-    SSet.stdSimplex.faceRepresentableBy]
+  simp only [Equiv.apply_symm_apply, SimplexCategory.Hom.toOrderHom_mk,
+    OrderHom.comp_coe, OrderHom.Subtype.val_coe, OrderEmbedding.toOrderHom_coe,
+    OrderIso.coe_toOrderEmbedding, Function.comp_apply, Finset.coe_orderIsoOfFin_apply,
+    NatTrans.comp_app, Subfunctor.ι_app, comp_apply, TypeCat.hom_ofHom,
+    TypeCat.Fun.coe_mk, SSet.stdSimplex.objEquiv_toOrderHom_apply]
   let q : Fin (T.card + n + 1) ↪o Fin (m + (n + 1) + 2) :=
     (Fin.succAboveOrderEmb k₀).trans (joinSigmaOne m (n + 1) T)
   have hq : q =
@@ -1764,8 +1770,11 @@ lemma joinSigmaOneFaceIso_rightCoface_range (m n : ℕ)
   apply SSet.stdSimplex.objEquiv.injective
   apply SimplexCategory.Hom.ext
   ext k
-  simp [joinSigmaOneFaceIso, SSet.stdSimplex.isoOfRepresentableBy,
-    SSet.stdSimplex.faceRepresentableBy]
+  simp only [Equiv.apply_symm_apply, SimplexCategory.Hom.toOrderHom_mk,
+    OrderHom.comp_coe, OrderHom.Subtype.val_coe, OrderEmbedding.toOrderHom_coe,
+    OrderIso.coe_toOrderEmbedding, Function.comp_apply, Finset.coe_orderIsoOfFin_apply,
+    Nat.add_eq, NatTrans.comp_app, Subfunctor.ι_app, comp_apply, TypeCat.hom_ofHom,
+    TypeCat.Fun.coe_mk, SSet.stdSimplex.objEquiv_toOrderHom_apply]
   let idx := joinSigmaOneDistinguishedIndex (n + 1) T j
   let q : Fin (T.card + n + 1) ↪o Fin (m + (n + 1) + 2) :=
     (Fin.succAboveOrderEmb idx).trans
@@ -1987,7 +1996,8 @@ def augmentedDayInternalHomStructure (F G : AugmentedSSet.{u}) :
   isLimitWedge c := Limits.ChosenEndsOfShape.isEnd _
   map_comp_π f j := by
     change Limits.chosenEnd.map
-        ((CategoryTheory.MonoidalCategory.dayConvolutionInternalHomDiagramFunctor F).obj G |>.map f) ≫
+        ((CategoryTheory.MonoidalCategory.dayConvolutionInternalHomDiagramFunctor F).obj G |>.map
+          f) ≫
           Limits.chosenEnd.π _ j = _
     rw [Limits.chosenEnd.map_π]
     rfl
@@ -2410,17 +2420,13 @@ lemma simplicialJoinRightInclusion_initial_iso_hom
     change PUnit × G.obj (AugmentedSimplexCategory.inclusion.op.obj j)
     exact (PUnit.unit, y)
   have hy := ConcreteCategory.congr_hom h input
-  simp [input, F, G,
-    MonoidalCategoryStruct.tensorObj,
-    MonoidalCategoryStruct.tensorUnit,
-    CategoryTheory.monoidalCategoryOp,
-    AugmentedSimplexCategory.tensorObj,
-    AugmentedSimplexCategory.tensorUnit,
-    augmentedOp_leftUnitor_inclusion_inv,
-    CategoryTheory.whiskerRight_apply,
-    CategoryTheory.leftUnitor_hom_apply,
-    -CategoryTheory.MonoidalCategory.DayConvolutionUnit.leftUnitor_hom_unit_app,
-    -CategoryTheory.MonoidalCategory.DayConvolutionUnit.leftUnitor_hom_unit_app_assoc] at hy
+  simp only [input, F, G, MonoidalCategoryStruct.tensorObj,
+    MonoidalCategoryStruct.tensorUnit, CategoryTheory.monoidalCategoryOp,
+    AugmentedSimplexCategory.tensorObj, AugmentedSimplexCategory.tensorUnit,
+    augmentedOp_leftUnitor_inclusion_inv, CategoryTheory.whiskerRight_apply,
+    comp_apply] at hy
+  simp only [Opposite.op_unop, id_eq, CategoryTheory.Functor.map_id, id_apply,
+    leftUnitor_hom_apply] at hy
   change ((CategoryTheory.MonoidalCategory.DayConvolutionUnit.leftUnitor F G).hom.app
       (AugmentedSimplexCategory.inclusion.op.obj j))
       ((CategoryTheory.MonoidalCategory.DayConvolution.unit F G).app
@@ -2988,7 +2994,6 @@ lemma representableJoinHornCocone_left_comp_range
     have hface : l ≫ (SSet.horn (n + 2) i).ι =
         (SSet.stdSimplex.face {j.1, k.1}ᶜ).ι := by
       rfl
-
     let F := augmentedDayTensorLeft (emptyAugmentation.{u}.obj (Δ[m] : SSet.{u}))
     have hF : F.map (emptyAugmentation.{u}.map l) ≫
           F.map (emptyAugmentation.{u}.map (SSet.horn (n + 2) i).ι) =
@@ -3238,6 +3243,7 @@ noncomputable def representableJoinHornDiagramComponentIso
     exact simplicialSetIsoRangeOfMono f
 
 set_option maxHeartbeats 2000000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 set_option backward.isDefEq.respectTransparency false in
 noncomputable def representableJoinHornDiagramIso
     (m n : ℕ) (i : Fin (n + 3)) :
@@ -3334,6 +3340,7 @@ noncomputable def representableJoinHornPointIso
 
 set_option backward.isDefEq.respectTransparency false in
 set_option maxHeartbeats 800000 in
+-- This finite combinatorial normalization exceeds the default elaboration budget.
 lemma representableJoinHornPointIso_hom
     (m n : ℕ) (i : Fin (n + 3)) :
     (representableJoinHornPointIso.{u} m n i).hom =
@@ -3383,7 +3390,7 @@ lemma finset_compl_singleton_inf_eq_erase {N : ℕ}
     (S : Finset (Fin N)) (v : Fin N) :
     ({v}ᶜ : Finset (Fin N)) ⊓ S = S.erase v := by
   ext x
-  simp [and_left_comm]
+  simp
 
 lemma subcomplex_iSup_inf_eq {X : SSet.{u}} {ι : Type*}
     (f : ι → X.Subcomplex) (A : X.Subcomplex) :
@@ -3492,8 +3499,7 @@ lemma representableJoinHornStage_inf_joinSigmaOne_le_hornRange
   · exact representableJoinHornInitial_inf_joinSigmaOneFace_le_hornRange m n i T
   · rw [subcomplex_iSup_inf_eq]
     apply iSup_le
-    intro U
-    intro V x hx
+    intro U V x hx
     have hxU' := hx.1
     have hxT := hx.2
     simp only [Subfunctor.iSup_obj, Set.mem_iUnion] at hxU'

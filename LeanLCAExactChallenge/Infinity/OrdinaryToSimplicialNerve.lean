@@ -3,7 +3,9 @@ import Mathlib.AlgebraicTopology.SimplicialNerve
 /-!
 # Ordinary nerves inside homotopy-coherent nerves
 
-An ordinary composable chain in a simplicial category defines a coherent simplex whose hom maps are locally constant. These simplices assemble into a canonical simplicial map from the ordinary nerve to the homotopy-coherent nerve.
+Ordinary composable chains define coherent simplices with locally constant hom maps.
+
+These simplices give a canonical map from the ordinary nerve to the homotopy-coherent nerve.
 -/
 
 set_option autoImplicit false

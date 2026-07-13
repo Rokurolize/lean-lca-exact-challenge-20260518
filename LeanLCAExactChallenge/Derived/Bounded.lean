@@ -351,7 +351,7 @@ noncomputable def exactAcyclicBiprodTransportIso
           (biprod.fst : K ⊞ L ⟶ K) ((ComplexShape.up ℤ).prev i) i]
         rw [metrizable_biprodXIso_inv_fst_assoc]
         rw [metrizable_biprodXIso_inv_fst]
-        simp [strictShortExactBiprodComplex]
+        simp only [biprodObjIsoBiprod_hom_fst, biprodMap_biprodFst]
         rw [← Category.assoc, biprodObjIsoBiprod_hom_fst]
       · simp only [Category.assoc]
         rw [HomologicalComplex.biprodXIso_hom_snd]
@@ -359,7 +359,7 @@ noncomputable def exactAcyclicBiprodTransportIso
           (biprod.snd : K ⊞ L ⟶ L) ((ComplexShape.up ℤ).prev i) i]
         rw [metrizable_biprodXIso_inv_snd_assoc]
         rw [metrizable_biprodXIso_inv_snd]
-        simp [strictShortExactBiprodComplex]
+        simp only [biprodObjIsoBiprod_hom_snd, biprodMap_biprodSnd]
         rw [← Category.assoc, biprodObjIsoBiprod_hom_snd]
     )
     (by
@@ -372,7 +372,7 @@ noncomputable def exactAcyclicBiprodTransportIso
           (biprod.fst : K ⊞ L ⟶ K) i ((ComplexShape.up ℤ).next i)]
         rw [metrizable_biprodXIso_inv_fst_assoc]
         rw [metrizable_biprodXIso_inv_fst]
-        simp [strictShortExactBiprodComplex]
+        simp only [biprodObjIsoBiprod_hom_fst, biprodMap_biprodFst]
         rw [← Category.assoc, biprodObjIsoBiprod_hom_fst]
       · simp only [Category.assoc]
         rw [HomologicalComplex.biprodXIso_hom_snd]
@@ -380,7 +380,7 @@ noncomputable def exactAcyclicBiprodTransportIso
           (biprod.snd : K ⊞ L ⟶ L) i ((ComplexShape.up ℤ).next i)]
         rw [metrizable_biprodXIso_inv_snd_assoc]
         rw [metrizable_biprodXIso_inv_snd]
-        simp [strictShortExactBiprodComplex]
+        simp only [biprodObjIsoBiprod_hom_snd, biprodMap_biprodSnd]
         rw [← Category.assoc, biprodObjIsoBiprod_hom_snd])
 
 /-- Exact acyclic metrizable complexes are closed under binary biproducts. -/
@@ -1135,7 +1135,8 @@ noncomputable instance boundedExactWeakEquivalence_respectsIso [HasBinaryBiprodu
   intro f g e hf
   let eK : (BoundedComplexCategory.ι C).obj f.left ≅ (BoundedComplexCategory.ι C).obj g.left :=
     (BoundedComplexCategory.ι C).mapIso (asIso e.hom.left)
-  let eL : (BoundedComplexCategory.ι C).obj f.right ≅ (BoundedComplexCategory.ι C).obj g.right :=
+  let eL : (BoundedComplexCategory.ι C).obj f.right ≅ (BoundedComplexCategory.ι C).obj
+    g.right :=
     (BoundedComplexCategory.ι C).mapIso (asIso e.hom.right)
   have comm : (BoundedComplexCategory.ι C).map f.hom ≫ eL.hom =
       eK.hom ≫ (BoundedComplexCategory.ι C).map g.hom := by
@@ -3372,7 +3373,7 @@ theorem boundedExactWeakEquivalence_shift_iff [HasBinaryBiproducts C]
     exactAcyclic C (CochainComplex.mappingCone (ι.map f))
   exact (exactAcyclic_mappingCone_congr_iff C ((ι.commShiftIso n).app K)
     ((ι.commShiftIso n).app L) (by
-      simpa using Functor.commShiftIso_hom_naturality ι f n)).trans
+      simp)).trans
     (exactAcyclic_mappingCone_shift_iff C (ι.map f) n)
 
 /-- The exact weak equivalences on bounded complexes are compatible with shifts. -/
@@ -4850,7 +4851,7 @@ theorem exactAcyclic_of_exactAt_metrizableLCA_of_shortExactConditionedTopology
 
 /-- W667 homology detection from global homology plus conditioned endpoint topology. -/
 theorem
-    Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_endpointConditionedTopology
+    Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_endpointConditioned
     (hasHomology :
       ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
     (I : MetrizableExactAtEndpointConditionedTopologyInputs) :
@@ -4868,12 +4869,12 @@ theorem
 
 /-- W667 homology detection from global homology plus conditioned ShortExact topology. -/
 theorem
-    Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_shortExactConditionedTopology
+    Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_shortExactConditioned
     (hasHomology :
       ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
     (I : MetrizableExactAtShortExactConditionedTopologyInputs) :
     ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
-  Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_endpointConditionedTopology
+  Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_endpointConditioned
     hasHomology (endpointConditionedTopologyInputs_of_shortExactConditionedTopology I)
 
 /-- W667 input names for the conditioned endpoint route. -/
@@ -4934,7 +4935,8 @@ shortExactConditionedTopology",
       "Dbounded.metrizableExactAtEndpointConditionedTopologyRouteNamesW667",
       "Dbounded.metrizableExactAtEndpointConditionedTopologyRouteNamesW667_count"]
   endpointResult :=
-    "proved: ExactAt-conditioned endpoint topology recovers strict exact acyclicity without requiring arbitrary differentials to be strict"
+    "proved: ExactAt-conditioned endpoint topology recovers strict exact acyclicity without \
+      requiring arbitrary differentials to be strict"
   shortExactResult :=
     "proved: ExactAt-conditioned ShortExact data supplies the conditioned endpoint epi route"
   homologyDetectionResult :=
@@ -4950,13 +4952,13 @@ shortExactConditionedTopology",
   productSuccessClaimed := false
 
 /-- Short alias used by the checked product-success marker. -/
-abbrev Dbounded.currentMetrizableExactAtEndpointConditionedTopologyRouteStateW667 :
+abbrev Dbounded.currentMetrizableEndpointRouteStateW667 :
     Dbounded.MetrizableExactAtEndpointConditionedTopologyRouteStateW667 :=
   Dbounded.currentMetrizableExactAtEndpointConditionedTopologyRouteSupportStateW667
 
 theorem
-    Dbounded.currentMetrizableExactAtEndpointConditionedTopologyRouteStateW667_productSuccess :
-    Dbounded.currentMetrizableExactAtEndpointConditionedTopologyRouteStateW667.productSuccessClaimed =
+    Dbounded.currentMetrizableEndpointRouteW667_success :
+    Dbounded.currentMetrizableEndpointRouteStateW667.productSuccessClaimed =
       false :=
   rfl
 
@@ -4968,7 +4970,7 @@ theorem homologyDetection_of_endpointConditionedTopology_w667
       ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
     (I : MetrizableExactAtEndpointConditionedTopologyInputs) :
     ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
-  exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_endpointConditionedTopology
+  exactAcyclicHomologyDetectionInput_metrizableLCA_endpointConditioned
     hasHomology I
 
 /-- Short W667 alias for conditioned ShortExact homology detection. -/
@@ -4977,7 +4979,7 @@ theorem homologyDetection_of_shortExactConditionedTopology_w667
       ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
     (I : MetrizableExactAtShortExactConditionedTopologyInputs) :
     ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
-  exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_shortExactConditionedTopology
+  exactAcyclicHomologyDetectionInput_metrizableLCA_shortExactConditioned
     hasHomology I
 
 end Dbounded
@@ -5092,7 +5094,7 @@ theorem exactAcyclic_of_exactAt_metrizableLCA_of_kernelCokernelConditionedTopolo
 
 /-- W668 homology detection from global homology plus kernel/cokernel-conditioned topology. -/
 theorem
-    Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_kernelCokernelConditionedTopology
+    Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_kernelCokernelConditioned
     (hasHomology :
       ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
     (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs) :
@@ -5158,7 +5160,8 @@ kernelCokernelConditionedTopology",
       "Dbounded.metrizableExactAtKernelCokernelConditionedTopologyRouteNamesW668",
       "Dbounded.metrizableExactAtKernelCokernelConditionedTopologyRouteNamesW668_count"]
   topologyResult :=
-    "proved: kernel and cokernel universal properties supply closed-embedding/open-surjection topology"
+    "proved: kernel and cokernel universal properties supply closed-embedding/open-surjection \
+      topology"
   homologyDetectionResult :=
     "proved: homology detection can use ExactAt-conditioned kernel/cokernel data"
   replacedInputs :=
@@ -5171,13 +5174,13 @@ kernelCokernelConditionedTopology",
   productSuccessClaimed := false
 
 /-- Short alias used by the checked product-success marker. -/
-abbrev Dbounded.currentMetrizableExactAtKernelCokernelConditionedTopologyRouteStateW668 :
+abbrev Dbounded.currentMetrizableKernelCokernelRouteStateW668 :
     Dbounded.MetrizableExactAtKernelCokernelConditionedTopologyRouteStateW668 :=
   Dbounded.currentMetrizableExactAtKernelCokernelConditionedTopologyRouteSupportStateW668
 
 theorem
-    Dbounded.currentMetrizableExactAtKernelCokernelConditionedTopologyRouteStateW668_productSuccess :
-    Dbounded.currentMetrizableExactAtKernelCokernelConditionedTopologyRouteStateW668.productSuccessClaimed =
+    Dbounded.currentMetrizableKernelCokernelRouteW668_success :
+    Dbounded.currentMetrizableKernelCokernelRouteStateW668.productSuccessClaimed =
       false :=
   rfl
 
@@ -5189,7 +5192,7 @@ theorem homologyDetection_of_kernelCokernelConditionedTopology_w668
       ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
     (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs) :
     ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
-  exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_kernelCokernelConditionedTopology
+  exactAcyclicHomologyDetectionInput_metrizableLCA_kernelCokernelConditioned
     hasHomology I
 
 end Dbounded

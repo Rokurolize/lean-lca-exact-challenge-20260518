@@ -1599,8 +1599,6 @@ noncomputable abbrev DboundedWithCycles.pretriangulatedOfBoundedVerdierLocalizat
               have hinv_assoc :
                   h' ≫ (F.commShiftIso (1 : ℤ)).inv.app X ≫
                     (F.commShiftIso (1 : ℤ)).hom.app X = h' := by
-                change h' ≫ ((F.commShiftIso (1 : ℤ)).inv.app X ≫
-                  (F.commShiftIso (1 : ℤ)).hom.app X) = h'
                 erw [hinv, Category.comp_id]
               simpa only [Category.assoc] using congrArg (fun k => e.hom ≫ k) hinv_assoc))
       rotate_distinguished_triangle := by

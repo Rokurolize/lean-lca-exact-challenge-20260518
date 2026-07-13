@@ -7,7 +7,11 @@ import LeanLCAExactChallenge.Infinity.OrdinaryToSimplicialNerve
 /-!
 # Comparing the ordinary and coherent direct dg carriers
 
-The ordinary nerve maps canonically into the coherent direct dg nerve. A pushout then adjoins coherent inverses to the images of corrected weak equivalences before inner-fibrant replacement. The resulting quasicategory is a concrete localization candidate; only inversion is proved here, not its localization universal property.
+The ordinary nerve maps canonically into the coherent direct dg nerve.
+
+A pushout adds coherent inverses to corrected weak equivalences before fibrant replacement.
+
+The resulting quasicategory is a candidate whose inversion property is proved here.
 -/
 
 set_option autoImplicit false
@@ -213,7 +217,7 @@ abbrev MetrizableDirectDGMappingLocalizationProperty : Prop :=
     (relativeNerveEdgeMarking relativeCategory)
     metrizableComplexNerveToLocalizedDirectDGQCatMap
 
-/-- Base change from the ordinary equivalence-forcing presentation to the coherent dg presentation. -/
+/-- Base change from the ordinary equivalence-forcing presentation to the coherent dg one. -/
 def metrizableOrdinaryToDirectDGPresentationBaseChange :
     metrizableEquivalenceForcingPresentation ⟶
       directDGEquivalenceForcingPresentation :=

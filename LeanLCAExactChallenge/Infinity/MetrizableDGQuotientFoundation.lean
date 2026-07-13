@@ -49,7 +49,7 @@ def nil (X Y : ComplexCategory) : DrinfeldWord X Y where
   intermediate := Fin.elim0
 
 /-- The one-letter word through a corrected acyclic object. -/
-def singleton (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory) :
+abbrev singleton (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory) :
     DrinfeldWord X Y where
   length := 1
   intermediate := fun _ ↦ A
@@ -67,8 +67,9 @@ terms in the Drinfeld differential. -/
 def eraseIntermediate {X Y : ComplexCategory} :
     (w : DrinfeldWord X Y) → Fin w.length → DrinfeldWord X Y
   | ⟨0, _⟩, i => Fin.elim0 i
-  | ⟨k + 1, intermediate⟩, i =>
-      { length := k
+  | ⟨1, _⟩, _ => nil X Y
+  | ⟨k + 2, intermediate⟩, i =>
+      { length := k + 1
         intermediate := fun j ↦ intermediate (i.succAbove j) }
 
 @[simp]
@@ -79,7 +80,8 @@ theorem eraseIntermediate_length {X Y : ComplexCategory}
   | mk n intermediate =>
       cases n with
       | zero => exact Fin.elim0 i
-      | succ k => rfl
+      | succ k =>
+          cases k <;> rfl
 
 @[simp]
 theorem append_length {X Y Z : ComplexCategory}
@@ -213,6 +215,19 @@ def factorModule {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
   (dgHomZModuleCochainComplex (w.arrowSource i) (w.arrowTarget i)).X
     (d.arrowDegree i)
 
+/-- Homogeneous composition of two adjacent factors before transporting its codomain to
+the factor of the contracted word. -/
+def adjacentFactorComposition {X Y : ComplexCategory}
+    {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n) (i : Fin w.length) :
+    Quiver.Hom (factorModule d i.castSucc ⊗ factorModule d i.succ)
+      ((dgHomZModuleCochainComplex
+        (w.arrowSource i.castSucc) (w.arrowTarget i.succ)).X
+          (d.arrowDegree i.castSucc + d.arrowDegree i.succ)) := by
+  simp only [factorModule]
+  rw [arrowTarget_castSucc_eq_arrowSource_succ]
+  exact dgCochainCompTensor
+    (w.arrowSource i.castSucc) (w.arrowSource i.succ) (w.arrowTarget i.succ) rfl
+
 /-- The pointwise factor map contributing the internal differential at the chosen arrow;
 all other tensor factors are identities. -/
 def factorDifferential {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
@@ -296,7 +311,7 @@ def AdjacentMergeData.tensorMap : {source target : List (ModuleCat.{0} ℤ)} →
         (𝟙 _) f.tensorMap
 
 /-- The tensor-product module belonging to one word and one compatible degree profile. -/
-def summandModule {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+abbrev summandModule {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) : ModuleCat.{0} ℤ :=
   tensorModuleList (List.ofFn (factorModule d))
 
@@ -359,7 +374,7 @@ abbrev GradedSummandIndex (X Y : ComplexCategory) (n : ℤ) :=
   Σ w : DrinfeldWord X Y, DegreeProfile w n
 
 /-- A word summand lifted to the universe in which the family of all acyclic words is small. -/
-def largeSummandModule {X Y : ComplexCategory} {n : ℤ}
+abbrev largeSummandModule {X Y : ComplexCategory} {n : ℤ}
     (s : GradedSummandIndex X Y n) : ModuleCat.{1} ℤ :=
   (ModuleCat.uliftFunctor.{1} ℤ).obj (summandModule s.2)
 
@@ -371,7 +386,7 @@ theorem uliftFunctor_map_up {M N : ModuleCat.{0} ℤ} (f : M ⟶ N) (x : M) :
 /-- The homogeneous carrier of the corrected Drinfeld quotient Hom complex.  This is the
 actual coproduct over all acyclic words and all compatible allocations of ordinary Hom
 degrees. -/
-def quotientGradedModule (X Y : ComplexCategory) (n : ℤ) : ModuleCat.{1} ℤ :=
+abbrev quotientGradedModule (X Y : ComplexCategory) (n : ℤ) : ModuleCat.{1} ℤ :=
   ∐ fun s : GradedSummandIndex X Y n ↦ largeSummandModule s
 
 /-- Inclusion of the original homogeneous Hom module as the zero-word summand of the
@@ -442,6 +457,17 @@ theorem quotientInternalDifferential_inclusion (X Y : ComplexCategory) (n : ℤ)
       internalDifferentialFromSummand s.2 :=
   Limits.Sigma.ι_desc _ s
 
+/-- An internal summand followed by the internal differential expands at the raised profile. -/
+@[reassoc]
+theorem internalDifferentialLargeMap_comp_internalDifferential
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin (w.length + 1)) :
+    internalDifferentialLargeMap d i ≫ quotientInternalDifferential X Y (n + 1) =
+      (ModuleCat.uliftFunctor.{1} ℤ).map (internalDifferentialTensorMap d i) ≫
+        internalDifferentialFromSummand (d.raise i) := by
+  simp only [internalDifferentialLargeMap, Category.assoc]
+  rw [quotientInternalDifferential_inclusion X Y (n + 1) ⟨w, d.raise i⟩]
+
 @[simp]
 theorem singleton_object (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory)
     (i : Fin (singleton X Y A).length) : (singleton X Y A).object i = A.obj :=
@@ -468,20 +494,113 @@ theorem eq_nil_of_length_eq_zero {X Y : ComplexCategory} (w : DrinfeldWord X Y)
 theorem eraseIntermediate_singleton (X Y : ComplexCategory)
     (A : CorrectedAcyclicComplexCategory)
     (i : Fin (singleton X Y A).length) :
-    eraseIntermediate (singleton X Y A) i = nil X Y := by
-  apply eq_nil_of_length_eq_zero
-  rfl
+    eraseIntermediate (singleton X Y A) i = nil X Y := rfl
 
-/-- A contracted one-letter summand is canonically an original Hom summand in degree one
-higher. -/
+/-- The two arrow degrees of a one-letter word add to one more than its quotient degree. -/
+theorem singleton_arrowDegree_sum (X Y : ComplexCategory)
+    (A : CorrectedAcyclicComplexCategory) {n : ℤ}
+    (d : DegreeProfile (singleton X Y A) n) :
+    d.arrowDegree 0 + d.arrowDegree 1 = n + 1 := by
+  have hd := d.totalDegree
+  rw [Fin.sum_univ_succ] at hd
+  have htail : (∑ j : Fin 1, d.arrowDegree j.succ) = d.arrowDegree 1 := by
+    rw [Fin.sum_univ_succ]
+    simp
+  change d.arrowDegree 0 + (∑ j : Fin 1, d.arrowDegree j.succ) - 1 = n at hd
+  rw [htail] at hd
+  omega
+
+/-- Identify a contracted one-letter summand with the exact homogeneous target used by
+adjacent composition. -/
+def singletonContractedSummandIsoAdjacentTarget (X Y : ComplexCategory)
+    (A : CorrectedAcyclicComplexCategory) {n : ℤ}
+    (d : DegreeProfile (singleton X Y A) n)
+    (i : Fin (singleton X Y A).length) :
+    summandModule (d.contract i) ≅
+      ((dgHomZModuleCochainComplex
+        ((singleton X Y A).arrowSource i.castSucc)
+        ((singleton X Y A).arrowTarget i.succ)).X
+          (d.arrowDegree i.castSucc + d.arrowDegree i.succ)) := by
+  let i₀ : Fin (singleton X Y A).length := ⟨0, by simp⟩
+  have hi : i = i₀ := Fin.ext (by simp [i₀])
+  subst i
+  have hfactor : factorModule (d.contract i₀) 0 =
+      ((dgHomZModuleCochainComplex
+        ((singleton X Y A).arrowSource i₀.castSucc)
+        ((singleton X Y A).arrowTarget i₀.succ)).X
+          (d.arrowDegree i₀.castSucc + d.arrowDegree i₀.succ)) := by
+    simp [factorModule, DegreeProfile.contract, contractedArrowDegree,
+      arrowSource, arrowTarget, vertex, singleton, i₀, add_comm]
+    rfl
+  exact (ρ_ (factorModule (d.contract i₀) 0)) ≪≫ eqToIso hfactor
+
+/-- A contracted one-letter summand is canonically the nil-word original Hom summand in
+degree one higher. -/
 def singletonContractedSummandIsoOriginal (X Y : ComplexCategory)
     (A : CorrectedAcyclicComplexCategory) {n : ℤ}
     (d : DegreeProfile (singleton X Y A) n)
     (i : Fin (singleton X Y A).length) :
-    summandModule (d.contract i) ≅ (dgHomZModuleCochainComplex X Y).X (n + 1) :=
-  let h := eraseIntermediate_singleton X Y A i
-  summandModuleCastWordIso h (d.contract i) ≪≫
-    nilSummandIsoOriginal X Y ((d.contract i).castWord h)
+    summandModule (d.contract i) ≅ (dgHomZModuleCochainComplex X Y).X (n + 1) := by
+  refine Fin.cases ?_ (fun j ↦ Fin.elim0 j) i
+  exact nilSummandIsoOriginal X Y (d.contract 0)
+
+/-- Identify the adjacent-composition target with the original Hom module through the
+canonical contracted summand, making the comparison triangle commute by construction. -/
+def singletonAdjacentTargetIsoOriginal (X Y : ComplexCategory)
+    (A : CorrectedAcyclicComplexCategory) {n : ℤ}
+    (d : DegreeProfile (singleton X Y A) n)
+    (i : Fin (singleton X Y A).length) :
+    ((dgHomZModuleCochainComplex
+      ((singleton X Y A).arrowSource i.castSucc)
+      ((singleton X Y A).arrowTarget i.succ)).X
+        (d.arrowDegree i.castSucc + d.arrowDegree i.succ)) ≅
+      (dgHomZModuleCochainComplex X Y).X (n + 1) :=
+  (singletonContractedSummandIsoAdjacentTarget X Y A d i).symm ≪≫
+    singletonContractedSummandIsoOriginal X Y A d i
+
+/-- Direct homogeneous identification of the adjacent target with the original Hom module. -/
+def singletonAdjacentTargetIsoOriginalDirect (X Y : ComplexCategory)
+    (A : CorrectedAcyclicComplexCategory) {n : ℤ}
+    (d : DegreeProfile (singleton X Y A) n)
+    (i : Fin (singleton X Y A).length) :
+    ((dgHomZModuleCochainComplex
+      ((singleton X Y A).arrowSource i.castSucc)
+      ((singleton X Y A).arrowTarget i.succ)).X
+        (d.arrowDegree i.castSucc + d.arrowDegree i.succ)) ≅
+      (dgHomZModuleCochainComplex X Y).X (n + 1) := by
+  let i₀ : Fin (singleton X Y A).length := ⟨0, by simp⟩
+  have hi : i = i₀ := Fin.ext (by simp [i₀])
+  subst i
+  apply eqToIso
+  have hs : (singleton X Y A).arrowSource i₀.castSucc = X := rfl
+  have ht : (singleton X Y A).arrowTarget i₀.succ = Y :=
+    vertex_last (singleton X Y A)
+  rw [hs, ht]
+  exact congrArg (fun z ↦ (dgHomZModuleCochainComplex X Y).X z)
+    (singleton_arrowDegree_sum X Y A d)
+
+theorem singletonAdjacentTargetIsoOriginal_eq_direct (X Y : ComplexCategory)
+    (A : CorrectedAcyclicComplexCategory) {n : ℤ}
+    (d : DegreeProfile (singleton X Y A) n)
+    (i : Fin (singleton X Y A).length) :
+    singletonAdjacentTargetIsoOriginal X Y A d i =
+      singletonAdjacentTargetIsoOriginalDirect X Y A d i := by
+  refine Fin.cases ?_ (fun j ↦ Fin.elim0 j) i
+  apply Iso.ext
+  unfold singletonAdjacentTargetIsoOriginal
+    singletonAdjacentTargetIsoOriginalDirect
+    singletonContractedSummandIsoAdjacentTarget
+    singletonContractedSummandIsoOriginal nilSummandIsoOriginal
+  simp only [singleton_length, Fin.isValue, Fin.castSucc_zero,
+    Fin.succ_zero_eq_one, eraseIntermediate_singleton, Fin.zero_eta,
+    Iso.trans_symm, Fin.cases_zero, Iso.trans_assoc, Iso.trans_hom,
+    Iso.symm_hom, eqToIso.inv, eqToIso.hom]
+  slice_lhs 2 3 =>
+    exact (ρ_ (factorModule (d.contract 0) 0)).inv_hom_id
+  slice_lhs 1 2 =>
+    exact Category.comp_id _
+  slice_lhs 1 2 =>
+    exact eqToHom_trans _ _
 
 /-- Reassociate a one-letter word summand to the binary tensor on which homogeneous
 composition is defined. -/
@@ -493,34 +612,25 @@ def singletonSummandIsoTensor (X Y : ComplexCategory)
   exact (α_ (factorModule d 0) (factorModule d 1) (𝟙_ (ModuleCat.{0} ℤ))).symm ≪≫
     ρ_ (factorModule d 0 ⊗ factorModule d 1)
 
+/-- Reassociate a one-letter word at its actual contraction position. -/
+def singletonSummandIsoTensorAt (X Y : ComplexCategory)
+    (A : CorrectedAcyclicComplexCategory) {n : ℤ}
+    (d : DegreeProfile (singleton X Y A) n)
+    (i : Fin (singleton X Y A).length) :
+    summandModule d ≅ factorModule d i.castSucc ⊗ factorModule d i.succ := by
+  refine Fin.cases ?_ (fun j ↦ Fin.elim0 j) i
+  exact singletonSummandIsoTensor X Y A d
+
 /-- The genuine contraction term for a one-letter word. -/
 def singletonContractionTensorMap (X Y : ComplexCategory)
     (A : CorrectedAcyclicComplexCategory) {n : ℤ}
     (d : DegreeProfile (singleton X Y A) n)
     (i : Fin (singleton X Y A).length) :
     Quiver.Hom (summandModule d) (summandModule (d.contract i)) := by
-  have hdeg : d.arrowDegree 0 + d.arrowDegree 1 = n + 1 := by
-    have hd := d.totalDegree
-    rw [Fin.sum_univ_succ] at hd
-    have htail : (∑ j : Fin 1, d.arrowDegree j.succ) = d.arrowDegree 1 := by
-      rw [Fin.sum_univ_succ]
-      simp
-      rfl
-    change d.arrowDegree 0 + (∑ j : Fin 1, d.arrowDegree j.succ) - 1 = n at hd
-    rw [htail] at hd
-    omega
-  have hs₀ : (singleton X Y A).arrowSource 0 = X := rfl
-  have ht₀ : (singleton X Y A).arrowTarget 0 = A.obj := rfl
-  have hs₁ : (singleton X Y A).arrowSource 1 = A.obj := rfl
-  have ht₁ : (singleton X Y A).arrowTarget 1 = Y := by
-    exact vertex_last (singleton X Y A)
-  let f : Quiver.Hom (factorModule d 0 ⊗ factorModule d 1)
-      ((dgHomZModuleCochainComplex X Y).X (n + 1)) := by
-    simp only [factorModule]
-    rw [hs₀, ht₀, hs₁, ht₁]
-    exact dgCochainCompTensor X A.obj Y hdeg
-  exact (singletonSummandIsoTensor X Y A d).hom ≫ f ≫
-    (singletonContractedSummandIsoOriginal X Y A d i).inv
+  refine Fin.cases ?_ (fun j ↦ Fin.elim0 j) i
+  exact (singletonSummandIsoTensor X Y A d).hom ≫
+    adjacentFactorComposition d 0 ≫
+    (singletonContractedSummandIsoAdjacentTarget X Y A d 0).inv
 
 /-- The signed singleton contraction included into the degree-`n+1` quotient carrier. -/
 def singletonContractionLargeMap (X Y : ComplexCategory)
@@ -562,10 +672,14 @@ theorem singletonContractingDegreeProfile_contractionSign
   rw [hi]
   simp [DegreeProfile.contractionSign, singletonContractingDegreeProfile]
 
+/-- The unique contraction position of a one-letter word. -/
+abbrev singletonIndex (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory) :
+    Fin (singleton X Y A).length := ⟨0, by simp⟩
+
 /-- The formal degree-`-1` contracting element before universe lift and coproduct inclusion. -/
 def singletonContractingElement (A : CorrectedAcyclicComplexCategory) :
-    summandModule (singletonContractingDegreeProfile A) :=
-  (singletonSummandIsoTensor A.obj A.obj A
+    summandModule (singletonContractingDegreeProfile A) := by
+  exact (singletonSummandIsoTensor A.obj A.obj A
     (singletonContractingDegreeProfile A)).inv
       (identityCochain A.obj ⊗ₜ[ℤ] identityCochain A.obj)
 
@@ -577,6 +691,22 @@ def quotientContractingElement (A : CorrectedAcyclicComplexCategory) :
       ⟨singleton A.obj A.obj A, singletonContractingDegreeProfile A⟩
     (ULift.up (singletonContractingElement A))
 
+/-- Reassociating the formal contracting element recovers its defining identity tensor. -/
+theorem singletonSummandIsoTensorAt_contractingElement
+    (A : CorrectedAcyclicComplexCategory) :
+    (singletonSummandIsoTensor A.obj A.obj A
+      (singletonContractingDegreeProfile A)).hom
+        (singletonContractingElement A) =
+      identityCochain A.obj ⊗ₜ[ℤ] identityCochain A.obj := by
+  unfold singletonContractingElement
+  change ((singletonSummandIsoTensor A.obj A.obj A
+      (singletonContractingDegreeProfile A)).inv ≫
+        (singletonSummandIsoTensor A.obj A.obj A
+          (singletonContractingDegreeProfile A)).hom).hom
+      (identityCochain A.obj ⊗ₜ[ℤ] identityCochain A.obj) = _
+  rw [Iso.inv_hom_id]
+  rfl
+
 /-- Contracting the formal one-letter generator gives the identity cochain. -/
 theorem singletonContractionTensorMap_contractingElement
     (A : CorrectedAcyclicComplexCategory)
@@ -586,8 +716,44 @@ theorem singletonContractionTensorMap_contractingElement
       (singletonContractionTensorMap A.obj A.obj A
         (singletonContractingDegreeProfile A) i
         (singletonContractingElement A)) = identityCochain A.obj := by
-  unfold singletonContractionTensorMap singletonContractingElement
-  simp only [ConcreteCategory.comp_apply, Iso.inv_hom_id_apply]
+  let i₀ := singletonIndex A.obj A.obj A
+  have hi : i = i₀ := Fin.ext (by simp [i₀])
+  subst i
+  have hmap : singletonContractionTensorMap A.obj A.obj A
+        (singletonContractingDegreeProfile A) i₀ ≫
+      (singletonContractedSummandIsoOriginal A.obj A.obj A
+        (singletonContractingDegreeProfile A) i₀).hom =
+      (singletonSummandIsoTensor A.obj A.obj A
+        (singletonContractingDegreeProfile A)).hom ≫
+        adjacentFactorComposition (singletonContractingDegreeProfile A) i₀ ≫
+        (singletonAdjacentTargetIsoOriginal A.obj A.obj A
+          (singletonContractingDegreeProfile A) i₀).hom := by
+    simp [i₀, singletonContractionTensorMap,
+      singletonAdjacentTargetIsoOriginal,
+      singletonContractedSummandIsoOriginal,
+      singletonContractedSummandIsoAdjacentTarget]
+  have happ := congrArg (fun f ↦ f.hom (singletonContractingElement A)) hmap
+  change (singletonContractedSummandIsoOriginal A.obj A.obj A
+        (singletonContractingDegreeProfile A) i₀).hom
+      (singletonContractionTensorMap A.obj A.obj A
+        (singletonContractingDegreeProfile A) i₀
+        (singletonContractingElement A)) = _ at happ
+  have hsource : (singletonSummandIsoTensor A.obj A.obj A
+      (singletonContractingDegreeProfile A)).hom (singletonContractingElement A) =
+      identityCochain A.obj ⊗ₜ[ℤ] identityCochain A.obj := by
+    exact singletonSummandIsoTensorAt_contractingElement A
+  rw [happ]
+  change (singletonAdjacentTargetIsoOriginal A.obj A.obj A
+      (singletonContractingDegreeProfile A) i₀).hom
+      (adjacentFactorComposition (singletonContractingDegreeProfile A) i₀
+        ((singletonSummandIsoTensor A.obj A.obj A
+          (singletonContractingDegreeProfile A)).hom
+            (singletonContractingElement A))) = _
+  rw [hsource]
+  rw [singletonAdjacentTargetIsoOriginal_eq_direct]
+  unfold adjacentFactorComposition singletonAdjacentTargetIsoOriginalDirect
+    singletonContractingDegreeProfile
+  simp only [Int.reduceNeg, Int.reduceAdd, singleton_length]
   change (CochainComplex.HomComplex.Cochain.ofHom (𝟙 A.obj.obj)).comp
       (CochainComplex.HomComplex.Cochain.ofHom (𝟙 A.obj.obj)) (by omega) = _
   simp [identityCochain]

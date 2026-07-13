@@ -3,7 +3,9 @@ import LeanLCAExactChallenge.Infinity.CoherentNervePathFiltration
 /-!
 # Kan extension across coherent-nerve path latching objects
 
-The path latching subcomplex determined by a coherent inner horn is a cubical corner. This file uses that identification to prove that its inclusion is anodyne and maps from it into a Kan complex extend over the full path nerve.
+The path latching subcomplex of a coherent inner horn is a cubical corner.
+
+Its inclusion is anodyne, so maps from it into a Kan complex extend over the full path nerve.
 -/
 
 set_option autoImplicit false
@@ -101,7 +103,7 @@ theorem exists_extension_of_anodyne_of_kan
   letI : HasLiftingProperty i (t.from X) := hlift
   exact ⟨sq.lift, sq.fac_left⟩
 
-/-- A coherent-inner-horn latching map into a Kan mapping object extends over its full path nerve. -/
+/-- A coherent latching map into a Kan mapping object extends over its path nerve. -/
 theorem exists_knownPathSubcomplex_extension_of_kan
     {J : Type u} [LinearOrder J] {i j k : J}
     (hik : i < k) (hkj : k < j) (n : ℕ) (e : InteriorVertex i j ≃ Fin n)

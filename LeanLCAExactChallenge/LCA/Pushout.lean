@@ -235,8 +235,6 @@ lemma pushoutInr_injective (hS : strictShortExact S) (a : S.X₁ ⟶ Y)
   have hmem : ((((0 : S.X₂), y₁) : S.X₂ × Y) - ((0 : S.X₂), y₂)) ∈
       pushoutSubgroup a := by
     apply QuotientAddGroup.eq_iff_sub_mem.mp
-    change ((((0 : S.X₂), y₁) : (S.X₂ × Y) ⧸ pushoutSubgroup a) =
-      (((0 : S.X₂), y₂) : (S.X₂ × Y) ⧸ pushoutSubgroup a))
     exact hy
   rcases hmem with ⟨x, hx⟩
   have hfst := congrArg Prod.fst hx
