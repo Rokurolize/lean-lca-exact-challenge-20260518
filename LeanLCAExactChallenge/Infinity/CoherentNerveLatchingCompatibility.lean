@@ -212,6 +212,43 @@ noncomputable def insertVertexPathNerveMap {n : ℕ} {i j : Fin (n + 2)}
         (ThickPath (ULift.up.{u, 0} i) (ULift.up.{u, 0} j)) :=
   CategoryTheory.nerveMap (insertVertexPathFunctor l hli hlj)
 
+/-- Paths with propositionally equal endpoints are heterogeneously equal when their vertex sets
+agree. -/
+theorem path_heq_of_endpoint_eq {J : Type u} [LinearOrder J]
+    {i j i' j' : J} (hi : i = i') (hj : j = j')
+    (p : CategoryTheory.SimplicialThickening.Path i j)
+    (q : CategoryTheory.SimplicialThickening.Path i' j') (hI : p.I = q.I) :
+    HEq p q := by
+  subst i'
+  subst j'
+  exact heq_of_eq (CategoryTheory.SimplicialThickening.Path.ext hI)
+
+/-- Explicit vertex reinsertion agrees heterogeneously with the thickening face functor. -/
+theorem insertVertexPathFunctor_obj_heq {n : ℕ} {i j : Fin (n + 2)}
+    (l : Fin (n + 2)) (hli : i ≠ l) (hlj : j ≠ l)
+    (p : ThickPath
+      (ULift.up.{u, 0} (deleteFinVertex l i hli))
+      (ULift.up.{u, 0} (deleteFinVertex l j hlj))) :
+    HEq ((insertVertexPathFunctor l hli hlj).obj p)
+      ((CategoryTheory.SimplicialThickening.functorMap
+        (SimplexCategory.δ l).toOrderHom.uliftMap
+        (CategoryTheory.SimplicialThickening.mk
+          (ULift.up.{u, 0} (deleteFinVertex l i hli)))
+        (CategoryTheory.SimplicialThickening.mk
+          (ULift.up.{u, 0} (deleteFinVertex l j hlj)))).obj p) := by
+  apply path_heq_of_endpoint_eq
+  · apply ULift.ext
+    exact (succAbove_deleteFinVertex l i hli).symm
+  · apply ULift.ext
+    exact (succAbove_deleteFinVertex l j hlj).symm
+  · ext q
+    simp only [insertVertexPathFunctor, insertPathVertex, Set.mem_image]
+    constructor
+    · rintro ⟨r, hr, rfl⟩
+      exact ⟨r, hr, rfl⟩
+    · rintro ⟨r, hr, rfl⟩
+      exact ⟨r, hr, rfl⟩
+
 /-- Reindex thick paths along deletion of one endpoint-distinct vertex. -/
 noncomputable def deleteVertexPathFunctor {n : ℕ} {i j : Fin (n + 2)}
     (l : Fin (n + 2)) (hli : i ≠ l) (hlj : j ≠ l) :
@@ -282,6 +319,23 @@ theorem innerHornFaceFunctor_pairwise_restrict (C : Type u) [Category.{u} C]
         (j := m) (by simpa using hlm)).symm
   rw [← innerHornFaceFunctor_restrict C σ hlk,
     ← innerHornFaceFunctor_restrict C σ hmk, hface]
+
+/-- Pairwise horn-face compatibility identifies all double-deleted enriched Hom maps. -/
+theorem innerHornFaceFunctor_pairwise_restrict_map_heq
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k l m : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hlk : l ≠ k) (hmk : m ≠ k) (hlm : l < m)
+    (a b : CategoryTheory.SimplicialThickening (ULift.{u, 0} (Fin (n + 1)))) :
+    HEq
+      (((CategoryTheory.SimplicialThickening.functor
+        (SimplexCategory.δ (deleteFinVertex l m (ne_of_gt hlm))).toOrderHom.uliftMap).comp
+          (E := C) SSet (innerHornFaceFunctor C σ hlk)).map a b)
+      (((CategoryTheory.SimplicialThickening.functor
+        (SimplexCategory.δ (deleteFinVertex m l (ne_of_lt hlm))).toOrderHom.uliftMap).comp
+          (E := C) SSet (innerHornFaceFunctor C σ hmk)).map a b) :=
+  congr_arg_heq (fun F ↦ F.map a b)
+    (innerHornFaceFunctor_pairwise_restrict C σ hlk hmk hlm)
 
 /-- Composition lands in paths whose least member contains the middle vertex. -/
 def pathCompositionToKnownPathSubcomplex {J : Type u} [LinearOrder J]
