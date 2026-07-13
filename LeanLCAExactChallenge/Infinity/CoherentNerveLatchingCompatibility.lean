@@ -18,7 +18,7 @@ set_option autoImplicit false
 
 noncomputable section
 
-universe u
+universe u v
 
 namespace LeanLCAExactChallenge.Infinity.CoherentNervePathFiltration
 
@@ -1824,7 +1824,7 @@ theorem fullyKnownPathSubcomplex_eq_through_sup_avoidingKnown
 
 section SubcomplexUnionMap
 
-variable {X Y : SSet.{u}} {I : Type u} (A : I → X.Subcomplex)
+variable {X Y : SSet.{u}} {I : Type v} (A : I → X.Subcomplex)
 
 private noncomputable def iSupSubcomplexWitness
     (U : SimplexCategoryᵒᵖ) (x : (⨆ i, A i : X.Subcomplex).obj U) : I :=
@@ -2644,9 +2644,9 @@ noncomputable def topPathLatchingPieceMap
     (hkZero : missing ≠ 0) (hkLast : missing ≠ Fin.last (n + 2))
     (a : TopPathLatchingIndex n missing) :
     (topPathLatchingPiece a : SSet) ⟶
-      (innerHornObject C σ
+      (innerHornObject.{u, u} C σ
           (CategoryTheory.SimplicialThickening.mk (ULift.up 0)) ⟶[SSet]
-        innerHornObject C σ
+        innerHornObject.{u, u} C σ
           (CategoryTheory.SimplicialThickening.mk
             (ULift.up (Fin.last (n + 2))))) :=
   match a with
@@ -3172,5 +3172,358 @@ theorem pathTripleComposition_second_split
         · intro ht
           exact ⟨Or.inr (Or.inr ht), (x.2.obj a).left_le z ht⟩)
       (h_map := fun _ _ _ ↦ (thickPathHomSubsingleton _ _).elim _ _)
+
+/-- Forced maps for two ordered through pieces agree on their intersection. -/
+theorem topThroughThrough_of_lt
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {missing r s : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) missing : SSet.{u}) ⟶
+      CategoryTheory.SimplicialNerve C)
+    (hkZero : missing ≠ 0) (hkLast : missing ≠ Fin.last (n + 2))
+    (hr0 : 0 < r) (hrs : r < s) (hst : s < Fin.last (n + 2)) :
+    SSet.Subcomplex.homOfLE (inf_le_left :
+        throughPathSubcomplex (ULift.up 0) (ULift.up (Fin.last (n + 2)))
+            (ULift.up r) ⊓
+          throughPathSubcomplex (ULift.up 0) (ULift.up (Fin.last (n + 2)))
+            (ULift.up s) ≤
+          throughPathSubcomplex (ULift.up 0) (ULift.up (Fin.last (n + 2)))
+            (ULift.up r)) ≫
+        forcedThroughPathMap C (innerHornObject C σ)
+          (CategoryTheory.SimplicialThickening.mk (ULift.up 0))
+          (CategoryTheory.SimplicialThickening.mk (ULift.up r))
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (Fin.last (n + 2))))
+          (properPathMap C σ hkZero hkLast (Fin.zero_le r) (by omega))
+          (properPathMap C σ hkZero hkLast (Fin.le_last r) (by omega)) =
+      SSet.Subcomplex.homOfLE (inf_le_right :
+        throughPathSubcomplex (ULift.up 0) (ULift.up (Fin.last (n + 2)))
+            (ULift.up r) ⊓
+          throughPathSubcomplex (ULift.up 0) (ULift.up (Fin.last (n + 2)))
+            (ULift.up s) ≤
+          throughPathSubcomplex (ULift.up 0) (ULift.up (Fin.last (n + 2)))
+            (ULift.up s)) ≫
+        forcedThroughPathMap C (innerHornObject C σ)
+          (CategoryTheory.SimplicialThickening.mk (ULift.up 0))
+          (CategoryTheory.SimplicialThickening.mk (ULift.up s))
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (Fin.last (n + 2))))
+          (properPathMap C σ hkZero hkLast (Fin.zero_le s) (by omega))
+          (properPathMap C σ hkZero hkLast (Fin.le_last s) (by omega)) := by
+  apply (cancel_epi (throughPairSubcomplexTripleIso
+    (CategoryTheory.SimplicialThickening.mk (ULift.up 0))
+    (CategoryTheory.SimplicialThickening.mk (ULift.up r))
+    (CategoryTheory.SimplicialThickening.mk (ULift.up s))
+    (CategoryTheory.SimplicialThickening.mk
+      (ULift.up (Fin.last (n + 2)))) (le_of_lt hrs)).hom).1
+  simp only [forcedThroughPathMap, throughPairSubcomplexTripleIso,
+    throughPathSubcomplexProductIso]
+  rw [pathTripleComposition_first_split_assoc,
+    pathTripleComposition_second_split_assoc]
+  · ext U x
+    let I : CategoryTheory.SimplicialThickening (ULift.{u, 0} (Fin (n + 3))) :=
+      CategoryTheory.SimplicialThickening.mk (ULift.up 0)
+    let R := CategoryTheory.SimplicialThickening.mk (ULift.up.{u, 0} r)
+    let S := CategoryTheory.SimplicialThickening.mk (ULift.up.{u, 0} s)
+    let T := CategoryTheory.SimplicialThickening.mk
+      (ULift.up.{u, 0} (Fin.last (n + 2)))
+    let X := innerHornObject C σ
+    let M0r := properPathMap C σ hkZero hkLast (Fin.zero_le r) (by omega)
+    let Mrs := properPathMap C σ hkZero hkLast (le_of_lt hrs) (by omega)
+    let Mst := properPathMap C σ hkZero hkLast (Fin.le_last s) (by omega)
+    let M0s := properPathMap C σ hkZero hkLast (Fin.zero_le s) (by omega)
+    let Mrt := properPathMap C σ hkZero hkLast (Fin.le_last r) (by omega)
+    have hright := congrArg (fun q ↦ q.app U ⟨x.1.2, x.2⟩)
+      (properPathMap_map_comp C σ hkZero hkLast
+        (le_of_lt hrs) (Fin.le_last s) (by omega))
+    have hleft := congrArg (fun q ↦ q.app U x.1)
+      (properPathMap_map_comp C σ hkZero hkLast
+        (Fin.zero_le r) (le_of_lt hrs) (by omega))
+    change (CategoryTheory.eComp SSet (X I) (X R) (X T)).app U
+        ⟨M0r.app U x.1.1,
+          Mrt.app U ((CategoryTheory.eComp SSet R S T).app U ⟨x.1.2, x.2⟩)⟩ =
+      (CategoryTheory.eComp SSet (X I) (X S) (X T)).app U
+        ⟨M0s.app U ((CategoryTheory.eComp SSet I R S).app U x.1),
+          Mst.app U x.2⟩
+    change Mrt.app U ((CategoryTheory.eComp SSet R S T).app U ⟨x.1.2, x.2⟩) =
+      (CategoryTheory.eComp SSet (X R) (X S) (X T)).app U
+        ⟨Mrs.app U x.1.2, Mst.app U x.2⟩ at hright
+    change M0s.app U ((CategoryTheory.eComp SSet I R S).app U x.1) =
+      (CategoryTheory.eComp SSet (X I) (X R) (X S)).app U
+        ⟨M0r.app U x.1.1, Mrs.app U x.1.2⟩ at hleft
+    rw [hright, hleft]
+    have hassoc := congrArg (fun q ↦ q.app U
+      ⟨⟨M0r.app U x.1.1, Mrs.app U x.1.2⟩, Mst.app U x.2⟩)
+      (CategoryTheory.e_assoc' SSet (X I) (X R) (X S) (X T))
+    exact hassoc
+  · exact le_of_lt hrs
+
+/-- All top through pieces agree on binary intersections. -/
+theorem topPathLatchingThrough_pairwise
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {missing : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) missing : SSet.{u}) ⟶
+      CategoryTheory.SimplicialNerve C)
+    (hkZero : missing ≠ 0) (hkLast : missing ≠ Fin.last (n + 2))
+    (r s : TopInternalVertex n) :
+    SSet.Subcomplex.homOfLE (inf_le_left :
+        topPathLatchingPiece (Sum.inr r) ⊓ topPathLatchingPiece (Sum.inr s) ≤
+          topPathLatchingPiece (Sum.inr r)) ≫
+        topPathLatchingPieceMap C σ hkZero hkLast (.inr r) =
+      SSet.Subcomplex.homOfLE (inf_le_right :
+        topPathLatchingPiece (Sum.inr r) ⊓ topPathLatchingPiece (Sum.inr s) ≤
+          topPathLatchingPiece (Sum.inr s)) ≫
+        topPathLatchingPieceMap C σ hkZero hkLast (.inr s) := by
+  rcases lt_trichotomy r.1 s.1 with hrs | hrs | hsr
+  · exact topThroughThrough_of_lt C σ hkZero hkLast r.2.1 hrs s.2.2
+  · have h : r = s := Subtype.ext hrs
+    subst s
+    rfl
+  · ext U x
+    have h := congrArg (fun q ↦ q.app U ⟨x.1, ⟨x.2.2, x.2.1⟩⟩)
+      (topThroughThrough_of_lt C σ hkZero hkLast s.2.1 hsr r.2.2)
+    exact h.symm
+
+/-- Every pair of top latching pieces carries compatible forced maps. -/
+theorem topPathLatchingPieceMap_pairwise
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {missing : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) missing : SSet.{u}) ⟶
+      CategoryTheory.SimplicialNerve C)
+    (hkZero : missing ≠ 0) (hkLast : missing ≠ Fin.last (n + 2))
+    (a b : TopPathLatchingIndex n missing) :
+    SSet.Subcomplex.homOfLE (inf_le_left :
+        topPathLatchingPiece a ⊓ topPathLatchingPiece b ≤ topPathLatchingPiece a) ≫
+        topPathLatchingPieceMap C σ hkZero hkLast a =
+      SSet.Subcomplex.homOfLE (inf_le_right :
+        topPathLatchingPiece a ⊓ topPathLatchingPiece b ≤ topPathLatchingPiece b) ≫
+        topPathLatchingPieceMap C σ hkZero hkLast b := by
+  rcases a with l | r
+  · rcases b with m | s
+    · exact topPathLatchingFace_pairwise C σ hkZero hkLast l m
+    · ext U x
+      have h := congrArg (fun q ↦ q.app U ⟨x.1, ⟨x.2.2, x.2.1⟩⟩)
+        (topPathLatchingThroughFace C σ hkZero hkLast s l)
+      exact h.symm
+  · rcases b with l | s
+    · exact topPathLatchingThroughFace C σ hkZero hkLast r l
+    · exact topPathLatchingThrough_pairwise C σ hkZero hkLast r s
+
+/-- The compatible top pieces glue over their indexed union. -/
+noncomputable def topPathLatchingUnionMap
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {missing : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) missing : SSet.{u}) ⟶
+      CategoryTheory.SimplicialNerve C)
+    (hkZero : missing ≠ 0) (hkLast : missing ≠ Fin.last (n + 2)) :
+    (⨆ a : TopPathLatchingIndex n missing, topPathLatchingPiece a).toSSet ⟶
+      (innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up 0)) ⟶[SSet]
+        innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (Fin.last (n + 2))))) :=
+  mapFromISupSubcomplex topPathLatchingPiece
+    (topPathLatchingPieceMap C σ hkZero hkLast)
+    (topPathLatchingPieceMap_pairwise C σ hkZero hkLast)
+
+/-- The glued top latching map on the semantic full latching subcomplex. -/
+noncomputable def topPathLatchingMap
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {missing : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) missing : SSet.{u}) ⟶
+      CategoryTheory.SimplicialNerve C)
+    (hkZero : missing ≠ 0) (hkLast : missing ≠ Fin.last (n + 2)) :
+    (fullyKnownPathSubcomplex (ULift.up.{u, 0} 0)
+        (ULift.up (Fin.last (n + 2))) (ULift.up missing) : SSet) ⟶
+      (innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up 0)) ⟶[SSet]
+        innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (Fin.last (n + 2))))) :=
+  SSet.Subcomplex.homOfLE (le_of_eq iSup_topPathLatchingPiece.symm) ≫
+    topPathLatchingUnionMap C σ hkZero hkLast
+
+/-- The semantic top latching map restricts to every indexed piece. -/
+@[reassoc]
+theorem topPathLatchingPiece_topPathLatchingMap
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {missing : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) missing : SSet.{u}) ⟶
+      CategoryTheory.SimplicialNerve C)
+    (hkZero : missing ≠ 0) (hkLast : missing ≠ Fin.last (n + 2))
+    (a : TopPathLatchingIndex n missing) :
+    SSet.Subcomplex.homOfLE (show topPathLatchingPiece a ≤
+        fullyKnownPathSubcomplex (ULift.up.{u, 0} 0)
+          (ULift.up (Fin.last (n + 2))) (ULift.up missing) from
+      (le_iSup topPathLatchingPiece a).trans
+        (le_of_eq iSup_topPathLatchingPiece)) ≫
+      topPathLatchingMap C σ hkZero hkLast =
+        topPathLatchingPieceMap C σ hkZero hkLast a := by
+  simp only [topPathLatchingMap, topPathLatchingUnionMap, ← Category.assoc,
+    SSet.Subcomplex.homOfLE_comp]
+  exact homOfLE_iSup_mapFromISupSubcomplex topPathLatchingPiece
+    (topPathLatchingPieceMap C σ hkZero hkLast)
+    (topPathLatchingPieceMap_pairwise C σ hkZero hkLast) a
+
+/-- The full top latching map extends across the complete top path nerve. -/
+theorem exists_topPathMap
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {missing : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) missing : SSet.{u}) ⟶
+      CategoryTheory.SimplicialNerve C)
+    (hkZero : missing ≠ 0) (hkLast : missing ≠ Fin.last (n + 2))
+    [SSet.KanComplex
+      (innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up 0)) ⟶[SSet]
+        innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (Fin.last (n + 2)))))] :
+    ∃ map : CategoryTheory.nerve
+        (ThickPath (ULift.up.{u, 0} 0)
+          (ULift.up.{u, 0} (Fin.last (n + 2)))) ⟶
+        (innerHornObject.{u, u} C σ
+            (CategoryTheory.SimplicialThickening.mk (ULift.up 0)) ⟶[SSet]
+          innerHornObject.{u, u} C σ
+            (CategoryTheory.SimplicialThickening.mk
+              (ULift.up (Fin.last (n + 2))))),
+      (fullyKnownPathSubcomplex (ULift.up 0)
+          (ULift.up (Fin.last (n + 2))) (ULift.up missing)).ι ≫ map =
+        topPathLatchingMap C σ hkZero hkLast :=
+  exists_fullyKnownPathSubcomplex_extension_of_kan_of_fintype
+    (J := ULift.{u, 0} (Fin (n + 3)))
+    (X := innerHornObject.{u, u} C σ
+        (CategoryTheory.SimplicialThickening.mk (ULift.up 0)) ⟶[SSet]
+      innerHornObject.{u, u} C σ
+        (CategoryTheory.SimplicialThickening.mk
+          (ULift.up (Fin.last (n + 2)))))
+    (show ULift.up 0 < ULift.up missing from Fin.pos_iff_ne_zero.mpr hkZero)
+    (show ULift.up missing < ULift.up (Fin.last (n + 2)) from
+      Fin.lt_last_iff_ne_last.mpr hkLast)
+    (topPathLatchingMap C σ hkZero hkLast)
+
+/-- A chosen top path map extending every latching piece. -/
+noncomputable def topPathMap
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {missing : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) missing : SSet.{u}) ⟶
+      CategoryTheory.SimplicialNerve C)
+    (hkZero : missing ≠ 0) (hkLast : missing ≠ Fin.last (n + 2))
+    [SSet.KanComplex
+      (innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up 0)) ⟶[SSet]
+        innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (Fin.last (n + 2)))))] :
+    CategoryTheory.nerve
+        (ThickPath (ULift.up.{u, 0} 0)
+          (ULift.up.{u, 0} (Fin.last (n + 2)))) ⟶
+      (innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up 0)) ⟶[SSet]
+        innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (Fin.last (n + 2))))) :=
+  Classical.choose (exists_topPathMap C σ hkZero hkLast)
+
+@[reassoc]
+theorem topPathMap_restrict
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {missing : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) missing : SSet.{u}) ⟶
+      CategoryTheory.SimplicialNerve C)
+    (hkZero : missing ≠ 0) (hkLast : missing ≠ Fin.last (n + 2))
+    [SSet.KanComplex
+      (innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up 0)) ⟶[SSet]
+        innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (Fin.last (n + 2)))))] :
+    (fullyKnownPathSubcomplex (ULift.up 0)
+        (ULift.up (Fin.last (n + 2))) (ULift.up missing)).ι ≫
+      topPathMap C σ hkZero hkLast = topPathLatchingMap C σ hkZero hkLast :=
+  Classical.choose_spec (exists_topPathMap C σ hkZero hkLast)
+
+/-- The chosen top map restricts to every forced latching piece. -/
+@[reassoc]
+theorem topPathMap_restrict_piece
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {missing : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) missing : SSet.{u}) ⟶
+      CategoryTheory.SimplicialNerve C)
+    (hkZero : missing ≠ 0) (hkLast : missing ≠ Fin.last (n + 2))
+    [SSet.KanComplex
+      (innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up 0)) ⟶[SSet]
+        innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (Fin.last (n + 2)))))]
+    (a : TopPathLatchingIndex n missing) :
+    (topPathLatchingPiece a).ι ≫ topPathMap C σ hkZero hkLast =
+      topPathLatchingPieceMap C σ hkZero hkLast a := by
+  let hle : topPathLatchingPiece a ≤
+      fullyKnownPathSubcomplex (ULift.up.{u, 0} 0)
+        (ULift.up (Fin.last (n + 2))) (ULift.up missing) :=
+    (le_iSup topPathLatchingPiece a).trans (le_of_eq iSup_topPathLatchingPiece)
+  change (SSet.Subcomplex.homOfLE hle ≫
+      (fullyKnownPathSubcomplex (ULift.up 0)
+        (ULift.up (Fin.last (n + 2))) (ULift.up missing)).ι) ≫
+      topPathMap C σ hkZero hkLast = _
+  rw [Category.assoc, topPathMap_restrict]
+  exact topPathLatchingPiece_topPathLatchingMap C σ hkZero hkLast a
+
+/-- The chosen top map preserves composition through every internal vertex. -/
+theorem topPathMap_map_comp
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {missing : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) missing : SSet.{u}) ⟶
+      CategoryTheory.SimplicialNerve C)
+    (hkZero : missing ≠ 0) (hkLast : missing ≠ Fin.last (n + 2))
+    [SSet.KanComplex
+      (innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up 0)) ⟶[SSet]
+        innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (Fin.last (n + 2)))))]
+    (r : TopInternalVertex n) :
+    CategoryTheory.eComp SSet
+        (CategoryTheory.SimplicialThickening.mk (ULift.up.{u, 0} 0))
+        (CategoryTheory.SimplicialThickening.mk (ULift.up.{u, 0} r.1))
+        (CategoryTheory.SimplicialThickening.mk
+          (ULift.up.{u, 0} (Fin.last (n + 2)))) ≫
+      topPathMap C σ hkZero hkLast =
+    (properPathMap C σ hkZero hkLast (Fin.zero_le r.1) (by omega) ⊗ₘ
+        properPathMap C σ hkZero hkLast (Fin.le_last r.1) (by omega)) ≫
+      CategoryTheory.eComp SSet
+        (innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up 0)))
+        (innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up r.1)))
+        (innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (Fin.last (n + 2))))) := by
+  change (pathCompositionToThroughPathSubcomplex
+      (CategoryTheory.SimplicialThickening.mk (ULift.up 0))
+      (CategoryTheory.SimplicialThickening.mk (ULift.up r.1))
+      (CategoryTheory.SimplicialThickening.mk
+        (ULift.up (Fin.last (n + 2)))) ≫
+    (throughPathSubcomplex (ULift.up 0) (ULift.up (Fin.last (n + 2)))
+      (ULift.up r.1)).ι) ≫ topPathMap C σ hkZero hkLast = _
+  rw [Category.assoc]
+  have hpiece := topPathMap_restrict_piece C σ hkZero hkLast (.inr r)
+  change (throughPathSubcomplex (ULift.up 0) (ULift.up (Fin.last (n + 2)))
+      (ULift.up r.1)).ι ≫ topPathMap C σ hkZero hkLast =
+    forcedThroughPathMap C (innerHornObject C σ)
+      (CategoryTheory.SimplicialThickening.mk (ULift.up 0))
+      (CategoryTheory.SimplicialThickening.mk (ULift.up r.1))
+      (CategoryTheory.SimplicialThickening.mk
+        (ULift.up (Fin.last (n + 2))))
+      (properPathMap C σ hkZero hkLast (Fin.zero_le r.1) (by omega))
+      (properPathMap C σ hkZero hkLast (Fin.le_last r.1) (by omega)) at hpiece
+  rw [hpiece]
+  exact pathCompositionToThrough_forcedThroughPathMap C (innerHornObject C σ)
+    (CategoryTheory.SimplicialThickening.mk (ULift.up 0))
+    (CategoryTheory.SimplicialThickening.mk (ULift.up r.1))
+    (CategoryTheory.SimplicialThickening.mk
+      (ULift.up (Fin.last (n + 2))))
+    (properPathMap C σ hkZero hkLast (Fin.zero_le r.1) (by omega))
+    (properPathMap C σ hkZero hkLast (Fin.le_last r.1) (by omega))
 
 end LeanLCAExactChallenge.Infinity.CoherentNervePathFiltration
