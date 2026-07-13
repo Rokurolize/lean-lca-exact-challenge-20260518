@@ -2948,4 +2948,36 @@ theorem topPathLatchingThroughFace
   · exact topThroughFace_of_right C σ hkZero hkLast
       r.2.1 hrl l.1.2.2 l.2
 
+/-- Split paths through two ordered vertices into three consecutive path chains. -/
+noncomputable def throughPairSubcomplexToTriple
+    {J : Type u} [LinearOrder J]
+    (i r s j : CategoryTheory.SimplicialThickening J) (hrs : r.as ≤ s.as) :
+    (throughPathSubcomplex i.as j.as r.as ⊓
+        throughPathSubcomplex i.as j.as s.as).toSSet ⟶
+      (CategoryTheory.nerve (i ⟶ r) ⊗ CategoryTheory.nerve (r ⟶ s)) ⊗
+        CategoryTheory.nerve (s ⟶ j) where
+  app U := by
+    obtain ⟨⟨d⟩⟩ := U
+    exact ↾fun x ↦
+      let c := ofNerveSimplex x.1
+      let cr := c.afterAt x.2.1
+      let hs : s.as ∈ cr.first.I := ⟨x.2.2, hrs⟩
+      ⟨⟨(c.beforeAt x.2.1).toNerveSimplex,
+          (cr.beforeAt hs).toNerveSimplex⟩,
+        (c.afterAt x.2.2).toNerveSimplex⟩
+  naturality := by
+    rintro ⟨⟨d⟩⟩ ⟨⟨e⟩⟩ f
+    ext x
+    apply Prod.ext
+    · apply Prod.ext
+      · exact CategoryTheory.Functor.ext
+          (h_obj := fun _ ↦ rfl)
+          (h_map := fun _ _ _ ↦ (thickPathHomSubsingleton _ _).elim _ _)
+      · exact CategoryTheory.Functor.ext
+          (h_obj := fun _ ↦ rfl)
+          (h_map := fun _ _ _ ↦ (thickPathHomSubsingleton _ _).elim _ _)
+    · exact CategoryTheory.Functor.ext
+        (h_obj := fun _ ↦ rfl)
+        (h_map := fun _ _ _ ↦ (thickPathHomSubsingleton _ _).elim _ _)
+
 end LeanLCAExactChallenge.Infinity.CoherentNervePathFiltration
