@@ -10,8 +10,8 @@ The through-vertex piece is the product of the two shorter path nerves.
 
 Kan extension preserves the resulting enriched-composition equation.
 
-Pairwise omitted-face overlap and full horn-face composition are established here; the next
-assembly layer compares the omitted union with forced composition on through paths.
+Pairwise omitted-face overlap, full horn-face composition, and through/omitted-union
+compatibility assemble the known-path latching map for every interval spanning the missing vertex.
 -/
 
 set_option autoImplicit false
@@ -1636,6 +1636,51 @@ noncomputable def avoidingKnownPathMapOfInnerHorn
     C σ hil hlj (fun h ↦ hlk (congrArg ULift.up h))
       him hmj (fun h ↦ hmk (congrArg ULift.up h))
 
+/-- The glued omitted-path map restricts to the map supplied by each individual available
+face. -/
+@[reassoc]
+theorem avoidingPathSubcomplex_avoidingKnownPathMapOfInnerHorn
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k i l j : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hil : i < l) (hlj : l < j) (hlk : l ≠ k) :
+    SSet.Subcomplex.homOfLE
+        (show avoidingPathSubcomplex (ULift.up.{u, 0} i) (ULift.up j) (ULift.up l) ≤
+          avoidingKnownPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up k) from
+          le_iSup (fun q : {q : ULift.{u, 0} (Fin (n + 3)) //
+            ULift.up i < q ∧ q < ULift.up j ∧ q ≠ ULift.up k} ↦
+              avoidingPathSubcomplex (ULift.up i) (ULift.up j) q.1)
+            ⟨ULift.up l, hil, hlj, fun h ↦ hlk (ULift.up_injective h)⟩) ≫
+        avoidingKnownPathMapOfInnerHorn C σ i j =
+        avoidingPathMapOfInnerHornFace C σ hil hlj hlk := by
+  let A := fun q : {q : ULift.{u, 0} (Fin (n + 3)) //
+      ULift.up i < q ∧ q < ULift.up j ∧ q ≠ ULift.up k} ↦
+    avoidingPathSubcomplex (ULift.up i) (ULift.up j) q.1
+  let f : (q : {q : ULift.{u, 0} (Fin (n + 3)) //
+      ULift.up i < q ∧ q < ULift.up j ∧ q ≠ ULift.up k}) →
+      (A q : SSet) ⟶
+        (innerHornObject C σ
+            (CategoryTheory.SimplicialThickening.mk (ULift.up i)) ⟶[SSet]
+          innerHornObject C σ
+            (CategoryTheory.SimplicialThickening.mk (ULift.up j))) := fun q ↦
+    match q with
+    | ⟨⟨q⟩, hiq, hqj, hqk⟩ =>
+        avoidingPathMapOfInnerHornFace C σ hiq hqj
+          (fun h ↦ hqk (congrArg ULift.up h))
+  let q : {q : ULift.{u, 0} (Fin (n + 3)) //
+      ULift.up i < q ∧ q < ULift.up j ∧ q ≠ ULift.up k} :=
+    ⟨ULift.up l, hil, hlj, fun h ↦ hlk (ULift.up_injective h)⟩
+  have hcompat : ∀ a b,
+      SSet.Subcomplex.homOfLE (inf_le_left : A a ⊓ A b ≤ A a) ≫ f a =
+        SSet.Subcomplex.homOfLE (inf_le_right : A a ⊓ A b ≤ A b) ≫ f b := by
+    rintro ⟨⟨a⟩, hia, haj, hak⟩ ⟨⟨b⟩, hib, hbj, hbk⟩
+    exact avoidingPathMapOfInnerHornFace_pairwise
+      C σ hia haj (fun h ↦ hak (congrArg ULift.up h))
+        hib hbj (fun h ↦ hbk (congrArg ULift.up h))
+  change SSet.Subcomplex.homOfLE (le_iSup A q) ≫
+      mapFromISupSubcomplex A f hcompat = f q
+  exact homOfLE_iSup_mapFromISupSubcomplex A f hcompat q
+
 /-- The binary through/omitted decomposition of the known-path latching subcomplex. -/
 theorem knownPathSubcomplex_eq_through_sup_avoidingKnown {J : Type u}
     [LinearOrder J] (i j k : J) :
@@ -1784,6 +1829,17 @@ theorem split_pathCompositionToThrough {J : Type u} [LinearOrder J]
     (h_obj := fun a ↦ (ofNerveSimplex x.1).join_beforeAt_afterAt x.2 a)
     (h_map := fun _ _ _ ↦ (thickPathHomSubsingleton _ _).elim _ _)
 
+/-- Splitting a through path and recomposing it gives its ambient path simplex. -/
+@[reassoc]
+theorem throughPathSubcomplexToProduct_eComp {J : Type u} [LinearOrder J]
+    (i k j : CategoryTheory.SimplicialThickening J) :
+    throughPathSubcomplexToProduct i k j ≫ CategoryTheory.eComp SSet i k j =
+      (throughPathSubcomplex i.as j.as k.as).ι := by
+  change throughPathSubcomplexToProduct i k j ≫
+      pathCompositionToThroughPathSubcomplex i k j ≫
+        (throughPathSubcomplex i.as j.as k.as).ι = _
+  rw [← Category.assoc, split_pathCompositionToThrough, Category.id_comp]
+
 /-- The through-vertex latching piece is exactly the product of the two shorter path nerves. -/
 noncomputable def throughPathSubcomplexProductIso {J : Type u} [LinearOrder J]
     (i k j : CategoryTheory.SimplicialThickening J) :
@@ -1831,6 +1887,257 @@ theorem pathCompositionToThrough_forcedThroughPathMap
       (throughPathSubcomplexProductIso i k j).inv) ≫ _) = _
   rw [(throughPathSubcomplexProductIso i k j).hom_inv_id, Category.id_comp]
 
+/-- On the overlap with a face vertex to the left of the missing vertex, the forced through
+map agrees with that face. -/
+theorem through_inf_avoiding_forcedThroughPathMap_of_left
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k i l j : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hkZero : k ≠ 0) (hkLast : k ≠ Fin.last (n + 2))
+    (hil : i < l) (hlk : l < k) (hkj : k < j) :
+    SSet.Subcomplex.homOfLE (inf_le_left :
+        throughPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up k) ⊓
+            avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l) ≤
+          throughPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up k)) ≫
+        forcedThroughPathMap C (innerHornObject C σ)
+          (CategoryTheory.SimplicialThickening.mk (ULift.up i))
+          (CategoryTheory.SimplicialThickening.mk (ULift.up k))
+          (CategoryTheory.SimplicialThickening.mk (ULift.up j))
+          (innerHornLeftPathMap C σ hkLast (lt_trans hil hlk))
+          (innerHornRightPathMap C σ hkZero hkj) =
+      SSet.Subcomplex.homOfLE (inf_le_right :
+        throughPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up k) ⊓
+            avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l) ≤
+          avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l)) ≫
+        avoidingPathMapOfInnerHornFace C σ hil (lt_trans hlk hkj) (ne_of_lt hlk) := by
+  ext U x
+  let c := ofNerveSimplex x.1
+  let pair := (throughPathSubcomplexToProduct
+    (CategoryTheory.SimplicialThickening.mk (ULift.up i))
+    (CategoryTheory.SimplicialThickening.mk (ULift.up k))
+    (CategoryTheory.SimplicialThickening.mk (ULift.up j))).app U
+      ⟨x.1, x.2.1⟩
+  let left := pair.1
+  let right := pair.2
+  have hleftAvoids : ULift.up.{u, 0} l ∉ (ofNerveSimplex left).last.I := by
+    intro hl
+    exact x.2.2 hl.1
+  have hleftMap := avoidingPathSubcomplex_innerHornLeftPathMap C σ hkLast hil hlk
+  rw [← avoidingPathSubcomplex_pathMapOfInnerHornFace] at hleftMap
+  have hleft := congrArg (fun q ↦ q.app U ⟨left, hleftAvoids⟩) hleftMap
+  have hright := congrArg (fun q ↦ q.app U right)
+    (innerHornRightPathMap_eq_pathMapOfInnerHornFace_of_left
+      C σ hkZero (lt_of_le_of_lt (Fin.zero_le i) hil) hlk hkj)
+  have hcomp := congrArg (fun q ↦ q.app U pair)
+    (pathMapOfInnerHornFace_map_comp C σ
+      (ne_of_lt hil) (ne_of_gt hlk) (ne_of_gt (lt_trans hlk hkj)) (ne_of_lt hlk))
+  change (pathMapOfInnerHornFace C σ (ne_of_lt hil)
+      (ne_of_gt (lt_trans hlk hkj)) (ne_of_lt hlk)).app U
+        ((CategoryTheory.eComp SSet
+          (CategoryTheory.SimplicialThickening.mk (ULift.up i))
+          (CategoryTheory.SimplicialThickening.mk (ULift.up k))
+          (CategoryTheory.SimplicialThickening.mk (ULift.up j))).app U pair) =
+    (CategoryTheory.eComp SSet
+      (innerHornObject C σ (CategoryTheory.SimplicialThickening.mk (ULift.up i)))
+      (innerHornObject C σ (CategoryTheory.SimplicialThickening.mk (ULift.up k)))
+      (innerHornObject C σ (CategoryTheory.SimplicialThickening.mk (ULift.up j)))).app U
+        ((pathMapOfInnerHornFace C σ (ne_of_lt hil) (ne_of_gt hlk) (ne_of_lt hlk) ⊗ₘ
+          pathMapOfInnerHornFace C σ (ne_of_gt hlk)
+            (ne_of_gt (lt_trans hlk hkj)) (ne_of_lt hlk)).app U pair) at hcomp
+  change ((CategoryTheory.eComp SSet
+      (innerHornObject C σ (CategoryTheory.SimplicialThickening.mk (ULift.up i)))
+      (innerHornObject C σ (CategoryTheory.SimplicialThickening.mk (ULift.up k)))
+      (innerHornObject C σ (CategoryTheory.SimplicialThickening.mk (ULift.up j)))).app U)
+      (((innerHornLeftPathMap C σ hkLast (lt_trans hil hlk)) ⊗ₘ
+        innerHornRightPathMap C σ hkZero hkj).app U pair) =
+    (pathMapOfInnerHornFace C σ (ne_of_lt hil)
+      (ne_of_gt (lt_trans hlk hkj)) (ne_of_lt hlk)).app U x.1
+  change (innerHornLeftPathMap C σ hkLast (lt_trans hil hlk)).app U left =
+    (pathMapOfInnerHornFace C σ (ne_of_lt hil) (ne_of_gt hlk)
+      (ne_of_lt hlk)).app U left at hleft
+  have hpair : ((innerHornLeftPathMap C σ hkLast (lt_trans hil hlk)) ⊗ₘ
+      innerHornRightPathMap C σ hkZero hkj).app U pair =
+    ((pathMapOfInnerHornFace C σ (ne_of_lt hil) (ne_of_gt hlk) (ne_of_lt hlk)) ⊗ₘ
+      pathMapOfInnerHornFace C σ (ne_of_gt hlk)
+        (ne_of_gt (lt_trans hlk hkj)) (ne_of_lt hlk)).app U pair := by
+    apply Prod.ext
+    · exact hleft
+    · exact hright
+  rw [hpair]
+  rw [← hcomp]
+  have hrecompose := congrArg (fun q ↦ q.app U ⟨x.1, x.2.1⟩)
+    (throughPathSubcomplexToProduct_eComp
+      (CategoryTheory.SimplicialThickening.mk (ULift.up i))
+      (CategoryTheory.SimplicialThickening.mk (ULift.up k))
+      (CategoryTheory.SimplicialThickening.mk (ULift.up j)))
+  change (CategoryTheory.eComp SSet
+      (CategoryTheory.SimplicialThickening.mk (ULift.up i))
+      (CategoryTheory.SimplicialThickening.mk (ULift.up k))
+      (CategoryTheory.SimplicialThickening.mk (ULift.up j))).app U pair = x.1 at hrecompose
+  exact congrArg
+    (fun y ↦ (pathMapOfInnerHornFace C σ (ne_of_lt hil)
+      (ne_of_gt (lt_trans hlk hkj)) (ne_of_lt hlk)).app U y)
+    hrecompose
+
+/-- On the overlap with a face vertex to the right of the missing vertex, the forced through
+map agrees with that face. -/
+theorem through_inf_avoiding_forcedThroughPathMap_of_right
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k i l j : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hkZero : k ≠ 0) (hkLast : k ≠ Fin.last (n + 2))
+    (hik : i < k) (hkl : k < l) (hlj : l < j) :
+    SSet.Subcomplex.homOfLE (inf_le_left :
+        throughPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up k) ⊓
+            avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l) ≤
+          throughPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up k)) ≫
+        forcedThroughPathMap C (innerHornObject C σ)
+          (CategoryTheory.SimplicialThickening.mk (ULift.up i))
+          (CategoryTheory.SimplicialThickening.mk (ULift.up k))
+          (CategoryTheory.SimplicialThickening.mk (ULift.up j))
+          (innerHornLeftPathMap C σ hkLast hik)
+          (innerHornRightPathMap C σ hkZero (lt_trans hkl hlj)) =
+      SSet.Subcomplex.homOfLE (inf_le_right :
+        throughPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up k) ⊓
+            avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l) ≤
+          avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l)) ≫
+        avoidingPathMapOfInnerHornFace C σ (lt_trans hik hkl) hlj (ne_of_gt hkl) := by
+  ext U x
+  let c := ofNerveSimplex x.1
+  let pair := (throughPathSubcomplexToProduct
+    (CategoryTheory.SimplicialThickening.mk (ULift.up i))
+    (CategoryTheory.SimplicialThickening.mk (ULift.up k))
+    (CategoryTheory.SimplicialThickening.mk (ULift.up j))).app U
+      ⟨x.1, x.2.1⟩
+  let left := pair.1
+  let right := pair.2
+  have hrightAvoids : ULift.up.{u, 0} l ∉ (ofNerveSimplex right).last.I := by
+    intro hl
+    exact x.2.2 hl.1
+  have hleft := congrArg (fun q ↦ q.app U left)
+    (innerHornLeftPathMap_eq_pathMapOfInnerHornFace_of_right C σ hkLast hik hkl
+      (lt_of_lt_of_le hlj (Fin.le_last j)))
+  have hrightMap := avoidingPathSubcomplex_innerHornRightPathMap C σ hkZero hkl hlj
+  rw [← avoidingPathSubcomplex_pathMapOfInnerHornFace] at hrightMap
+  have hright := congrArg (fun q ↦ q.app U ⟨right, hrightAvoids⟩) hrightMap
+  have hcomp := congrArg (fun q ↦ q.app U pair)
+    (pathMapOfInnerHornFace_map_comp C σ
+      (ne_of_lt (lt_trans hik hkl)) (ne_of_lt hkl) (ne_of_gt hlj) (ne_of_gt hkl))
+  change (pathMapOfInnerHornFace C σ (ne_of_lt (lt_trans hik hkl))
+      (ne_of_gt hlj) (ne_of_gt hkl)).app U
+        ((CategoryTheory.eComp SSet
+          (CategoryTheory.SimplicialThickening.mk (ULift.up i))
+          (CategoryTheory.SimplicialThickening.mk (ULift.up k))
+          (CategoryTheory.SimplicialThickening.mk (ULift.up j))).app U pair) =
+    (CategoryTheory.eComp SSet
+      (innerHornObject C σ (CategoryTheory.SimplicialThickening.mk (ULift.up i)))
+      (innerHornObject C σ (CategoryTheory.SimplicialThickening.mk (ULift.up k)))
+      (innerHornObject C σ (CategoryTheory.SimplicialThickening.mk (ULift.up j)))).app U
+        ((pathMapOfInnerHornFace C σ (ne_of_lt (lt_trans hik hkl))
+            (ne_of_lt hkl) (ne_of_gt hkl) ⊗ₘ
+          pathMapOfInnerHornFace C σ (ne_of_lt hkl) (ne_of_gt hlj)
+            (ne_of_gt hkl)).app U pair) at hcomp
+  change ((CategoryTheory.eComp SSet
+      (innerHornObject C σ (CategoryTheory.SimplicialThickening.mk (ULift.up i)))
+      (innerHornObject C σ (CategoryTheory.SimplicialThickening.mk (ULift.up k)))
+      (innerHornObject C σ (CategoryTheory.SimplicialThickening.mk (ULift.up j)))).app U)
+      (((innerHornLeftPathMap C σ hkLast hik) ⊗ₘ
+        innerHornRightPathMap C σ hkZero (lt_trans hkl hlj)).app U pair) =
+    (pathMapOfInnerHornFace C σ (ne_of_lt (lt_trans hik hkl))
+      (ne_of_gt hlj) (ne_of_gt hkl)).app U x.1
+  change (innerHornRightPathMap C σ hkZero (lt_trans hkl hlj)).app U right =
+    (pathMapOfInnerHornFace C σ (ne_of_lt hkl) (ne_of_gt hlj)
+      (ne_of_gt hkl)).app U right at hright
+  have hpair : ((innerHornLeftPathMap C σ hkLast hik) ⊗ₘ
+      innerHornRightPathMap C σ hkZero (lt_trans hkl hlj)).app U pair =
+    ((pathMapOfInnerHornFace C σ (ne_of_lt (lt_trans hik hkl))
+        (ne_of_lt hkl) (ne_of_gt hkl) ⊗ₘ
+      pathMapOfInnerHornFace C σ (ne_of_lt hkl) (ne_of_gt hlj)
+        (ne_of_gt hkl)).app U pair) := by
+    apply Prod.ext
+    · exact hleft
+    · exact hright
+  rw [hpair]
+  rw [← hcomp]
+  have hrecompose := congrArg (fun q ↦ q.app U ⟨x.1, x.2.1⟩)
+    (throughPathSubcomplexToProduct_eComp
+      (CategoryTheory.SimplicialThickening.mk (ULift.up i))
+      (CategoryTheory.SimplicialThickening.mk (ULift.up k))
+      (CategoryTheory.SimplicialThickening.mk (ULift.up j)))
+  change (CategoryTheory.eComp SSet
+      (CategoryTheory.SimplicialThickening.mk (ULift.up i))
+      (CategoryTheory.SimplicialThickening.mk (ULift.up k))
+      (CategoryTheory.SimplicialThickening.mk (ULift.up j))).app U pair = x.1 at hrecompose
+  exact congrArg
+    (fun y ↦ (pathMapOfInnerHornFace C σ (ne_of_lt (lt_trans hik hkl))
+      (ne_of_gt hlj) (ne_of_gt hkl)).app U y)
+    hrecompose
+
+/-- The forced through map agrees with every individual available internal horn face on their
+overlap. -/
+theorem through_inf_avoiding_forcedThroughPathMap
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k i l j : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hkZero : k ≠ 0) (hkLast : k ≠ Fin.last (n + 2))
+    (hik : i < k) (hkj : k < j) (hil : i < l) (hlj : l < j) (hlk : l ≠ k) :
+    SSet.Subcomplex.homOfLE (inf_le_left :
+        throughPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up k) ⊓
+            avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l) ≤
+          throughPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up k)) ≫
+        forcedThroughPathMap C (innerHornObject C σ)
+          (CategoryTheory.SimplicialThickening.mk (ULift.up i))
+          (CategoryTheory.SimplicialThickening.mk (ULift.up k))
+          (CategoryTheory.SimplicialThickening.mk (ULift.up j))
+          (innerHornLeftPathMap C σ hkLast hik)
+          (innerHornRightPathMap C σ hkZero hkj) =
+      SSet.Subcomplex.homOfLE (inf_le_right :
+        throughPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up k) ⊓
+            avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l) ≤
+          avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l)) ≫
+        avoidingPathMapOfInnerHornFace C σ hil hlj hlk := by
+  rcases lt_or_gt_of_ne hlk with hlk' | hkl
+  · simpa only using through_inf_avoiding_forcedThroughPathMap_of_left
+      C σ hkZero hkLast hil hlk' hkj
+  · simpa only using through_inf_avoiding_forcedThroughPathMap_of_right
+      C σ hkZero hkLast hik hkl hlj
+
+/-- The forced through map agrees with the glued union of all available omitted horn faces. -/
+theorem through_inf_avoidingKnown_forcedThroughPathMap
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k i j : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hkZero : k ≠ 0) (hkLast : k ≠ Fin.last (n + 2))
+    (hik : i < k) (hkj : k < j) :
+    SSet.Subcomplex.homOfLE (inf_le_left :
+        throughPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up k) ⊓
+            avoidingKnownPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up k) ≤
+          throughPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up k)) ≫
+        forcedThroughPathMap C (innerHornObject C σ)
+          (CategoryTheory.SimplicialThickening.mk (ULift.up i))
+          (CategoryTheory.SimplicialThickening.mk (ULift.up k))
+          (CategoryTheory.SimplicialThickening.mk (ULift.up j))
+          (innerHornLeftPathMap C σ hkLast hik)
+          (innerHornRightPathMap C σ hkZero hkj) =
+      SSet.Subcomplex.homOfLE (inf_le_right :
+        throughPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up k) ⊓
+            avoidingKnownPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up k) ≤
+          avoidingKnownPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up k)) ≫
+        avoidingKnownPathMapOfInnerHorn C σ i j := by
+  ext U x
+  have hx := x.2.2
+  simp only [avoidingKnownPathSubcomplex, Subfunctor.iSup_obj,
+    Set.mem_iUnion] at hx
+  obtain ⟨⟨⟨l⟩, hil, hlj, hlk⟩, havoid⟩ := hx
+  let hlk' : l ≠ k := fun h ↦ hlk (congrArg ULift.up h)
+  have hforced := congrArg (fun q ↦ q.app U ⟨x.1, ⟨x.2.1, havoid⟩⟩)
+    (through_inf_avoiding_forcedThroughPathMap
+      C σ hkZero hkLast hik hkj hil hlj hlk')
+  have hglued := congrArg (fun q ↦ q.app U ⟨x.1, havoid⟩)
+    (avoidingPathSubcomplex_avoidingKnownPathMapOfInnerHorn
+      C σ hil hlj hlk')
+  exact hforced.trans hglued.symm
+
 /-- A compatible latching map agrees with shorter-interval composition. -/
 structure CompatibleKnownPathLatchingMap (C : Type u) [Category.{u} C]
     [CategoryTheory.SimplicialCategory C] {J : Type u} [LinearOrder J]
@@ -1871,6 +2178,30 @@ noncomputable def CompatibleKnownPathLatchingMap.ofAvoidingMap
       throughPathSubcomplexToKnown_knownPathMapOfCompatibleParts]
     exact pathCompositionToThrough_forcedThroughPathMap
       C obj i k j leftMap rightMap
+
+/-- The available horn faces and forced composition assemble into the compatible known-path
+latching map for every interval spanning the missing vertex. -/
+noncomputable def compatibleKnownPathLatchingMapOfInnerHorn
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k i j : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hkZero : k ≠ 0) (hkLast : k ≠ Fin.last (n + 2))
+    (hik : i < k) (hkj : k < j) :
+    CompatibleKnownPathLatchingMap C (innerHornObject C σ)
+      (CategoryTheory.SimplicialThickening.mk (ULift.up i))
+      (CategoryTheory.SimplicialThickening.mk (ULift.up k))
+      (CategoryTheory.SimplicialThickening.mk (ULift.up j))
+      (innerHornLeftPathMap C σ hkLast hik)
+      (innerHornRightPathMap C σ hkZero hkj) :=
+  CompatibleKnownPathLatchingMap.ofAvoidingMap C (innerHornObject C σ)
+    (CategoryTheory.SimplicialThickening.mk (ULift.up i))
+    (CategoryTheory.SimplicialThickening.mk (ULift.up k))
+    (CategoryTheory.SimplicialThickening.mk (ULift.up j))
+    (innerHornLeftPathMap C σ hkLast hik)
+    (innerHornRightPathMap C σ hkZero hkj)
+    (avoidingKnownPathMapOfInnerHorn C σ i j)
+    (through_inf_avoidingKnown_forcedThroughPathMap
+      C σ hkZero hkLast hik hkj)
 
 /-- Kan extension preserves the forced composition equation. -/
 theorem exists_pathMap_extension_preserving_comp
