@@ -498,6 +498,54 @@ theorem insertVertexPathNerveMap_comp_enrichedMap_heq
   · exact insertVertexPathNerveMap_heq l hli hlj
   · exact enrichedFunctor_map_heq_of_obj_eq F ha hb
 
+/-- The canonical-restriction comparison remains valid after an arbitrary precomposition. -/
+theorem precomp_insertVertexPathNerveMap_comp_enrichedMap_heq
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {i j : Fin (n + 2)}
+    (l : Fin (n + 2)) (hli : i ≠ l) (hlj : j ≠ l)
+    (F : CategoryTheory.EnrichedFunctor SSet
+      (CategoryTheory.SimplicialThickening (ULift.{u, 0} (Fin (n + 2)))) C)
+    {X : SSet.{u}}
+    (P : X ⟶ CategoryTheory.nerve
+      (ThickPath
+        (ULift.up.{u, 0} (deleteFinVertex l i hli))
+        (ULift.up.{u, 0} (deleteFinVertex l j hlj)))) :
+    HEq
+      (P ≫ (insertVertexPathNerveMap l hli hlj ≫
+        F.map
+          (CategoryTheory.SimplicialThickening.mk (ULift.up i))
+          (CategoryTheory.SimplicialThickening.mk (ULift.up j))))
+      (P ≫
+        ((CategoryTheory.SimplicialThickening.functor
+          (SimplexCategory.δ l).toOrderHom.uliftMap).comp (E := C) SSet F).map
+            (CategoryTheory.SimplicialThickening.mk
+              (ULift.up (deleteFinVertex l i hli)))
+            (CategoryTheory.SimplicialThickening.mk
+              (ULift.up (deleteFinVertex l j hlj)))) := by
+  let a := CategoryTheory.SimplicialThickening.mk (ULift.up.{u, 0} i)
+  let b := CategoryTheory.SimplicialThickening.mk (ULift.up.{u, 0} j)
+  let a' := CategoryTheory.SimplicialThickening.mk
+    (ULift.up.{u, 0} (deleteFinVertex l i hli))
+  let b' := CategoryTheory.SimplicialThickening.mk
+    (ULift.up.{u, 0} (deleteFinVertex l j hlj))
+  let G := CategoryTheory.SimplicialThickening.functor
+    (SimplexCategory.δ l).toOrderHom.uliftMap
+  have ha : a = G.obj a' := by
+    apply congrArg CategoryTheory.SimplicialThickening.mk
+    apply ULift.ext
+    exact (succAbove_deleteFinVertex l i hli).symm
+  have hb : b = G.obj b' := by
+    apply congrArg CategoryTheory.SimplicialThickening.mk
+    apply ULift.ext
+    exact (succAbove_deleteFinVertex l j hlj).symm
+  apply CategoryTheory.heq_comp
+  · rfl
+  · rfl
+  · exact congrArg₂ (fun A B : C ↦ A ⟶[SSet] B)
+      (congrArg F.obj ha) (congrArg F.obj hb)
+  · rfl
+  · exact insertVertexPathNerveMap_comp_enrichedMap_heq C l hli hlj F
+
 /-- Reindex thick paths along deletion of one endpoint-distinct vertex. -/
 noncomputable def deleteVertexPathFunctor {n : ℕ} {i j : Fin (n + 2)}
     (l : Fin (n + 2)) (hli : i ≠ l) (hlj : j ≠ l) :
@@ -547,6 +595,32 @@ theorem deleteVertexPathNerveMap_comp_comm_heq
   · intro p
     exact deletePathVertex_delete_heq.{u, u, 0, 0}
       (n := n) p hlm hli hlj hmi hmj
+
+/-- Double-deletion commutation is preserved by an arbitrary precomposition. -/
+theorem precomp_deleteVertexPathNerveMap_comp_comm_heq
+    {n : ℕ} {i j l m : Fin (n + 3)}
+    (hlm : l < m) (hli : i ≠ l) (hlj : j ≠ l)
+    (hmi : i ≠ m) (hmj : j ≠ m)
+    {X : SSet.{u}}
+    (P : X ⟶ CategoryTheory.nerve
+      (ThickPath (ULift.up.{u, 0} i) (ULift.up.{u, 0} j))) :
+    HEq
+      (P ≫ (deleteVertexPathNerveMap l hli hlj ≫
+        deleteVertexPathNerveMap (deleteFinVertex l m (ne_of_gt hlm))
+          (deleteFinVertex_ne l i m hli (ne_of_gt hlm) hmi)
+          (deleteFinVertex_ne l j m hlj (ne_of_gt hlm) hmj)))
+      (P ≫ (deleteVertexPathNerveMap m hmi hmj ≫
+        deleteVertexPathNerveMap (deleteFinVertex m l (ne_of_lt hlm))
+          (deleteFinVertex_ne m i l hmi (ne_of_lt hlm) hli)
+          (deleteFinVertex_ne m j l hmj (ne_of_lt hlm) hlj))) := by
+  apply CategoryTheory.heq_comp
+  · rfl
+  · rfl
+  · exact nerve_thickPath_eq_of_endpoint_eq
+      (congrArg ULift.up (deleteFinVertex_delete_comm hlm hli hmi))
+      (congrArg ULift.up (deleteFinVertex_delete_comm hlm hlj hmj))
+  · rfl
+  · exact deleteVertexPathNerveMap_comp_comm_heq hlm hli hlj hmi hmj
 
 /-- Restriction of a horn face agrees with the corresponding face operator. -/
 theorem innerHornFaceFunctor_restrict (C : Type u) [Category.{u} C]
@@ -617,6 +691,83 @@ theorem innerHornFaceFunctor_pairwise_restrict_map_heq
           (E := C) SSet (innerHornFaceFunctor C σ hmk)).map a b) :=
   congr_arg_heq (fun F ↦ F.map a b)
     (innerHornFaceFunctor_pairwise_restrict C σ hlk hmk hlm)
+
+/-- Pairwise restricted horn faces have equal object values at propositionally equal thickening
+objects. -/
+theorem innerHornFaceFunctor_pairwise_restrict_obj_eq
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k l m : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hlk : l ≠ k) (hmk : m ≠ k) (hlm : l < m)
+    (a a' : CategoryTheory.SimplicialThickening
+      (ULift.{u, 0} (Fin (n + 1)))) (ha : a = a') :
+    (((CategoryTheory.SimplicialThickening.functor
+      (SimplexCategory.δ (deleteFinVertex l m (ne_of_gt hlm))).toOrderHom.uliftMap).comp
+        (E := C) SSet (innerHornFaceFunctor C σ hlk)).obj a) =
+      (((CategoryTheory.SimplicialThickening.functor
+      (SimplexCategory.δ (deleteFinVertex m l (ne_of_lt hlm))).toOrderHom.uliftMap).comp
+        (E := C) SSet (innerHornFaceFunctor C σ hmk)).obj a') := by
+  rw [← ha]
+  exact congrArg (fun F ↦ F.obj a)
+    (innerHornFaceFunctor_pairwise_restrict C σ hlk hmk hlm)
+
+/-- Pairwise restricted horn-face Hom maps agree at propositionally equal endpoint objects. -/
+theorem innerHornFaceFunctor_pairwise_restrict_map_endpoint_heq
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k l m : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hlk : l ≠ k) (hmk : m ≠ k) (hlm : l < m)
+    (a b a' b' : CategoryTheory.SimplicialThickening
+      (ULift.{u, 0} (Fin (n + 1)))) (ha : a = a') (hb : b = b') :
+    HEq
+      (((CategoryTheory.SimplicialThickening.functor
+        (SimplexCategory.δ (deleteFinVertex l m (ne_of_gt hlm))).toOrderHom.uliftMap).comp
+          (E := C) SSet (innerHornFaceFunctor C σ hlk)).map a b)
+      (((CategoryTheory.SimplicialThickening.functor
+        (SimplexCategory.δ (deleteFinVertex m l (ne_of_lt hlm))).toOrderHom.uliftMap).comp
+          (E := C) SSet (innerHornFaceFunctor C σ hmk)).map a' b') := by
+  have hsame := innerHornFaceFunctor_pairwise_restrict_map_heq
+    C σ hlk hmk hlm a b
+  have hargs := enrichedFunctor_map_heq_of_obj_eq
+    ((CategoryTheory.SimplicialThickening.functor
+      (SimplexCategory.δ (deleteFinVertex m l (ne_of_lt hlm))).toOrderHom.uliftMap).comp
+        (E := C) SSet (innerHornFaceFunctor C σ hmk)) ha hb
+  exact hsame.trans hargs
+
+/-- Pairwise restricted horn-face Hom maps remain compatible after heterogeneously equal
+precompositions. -/
+theorem precomp_innerHornFaceFunctor_pairwise_restrict_map_endpoint_heq
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k l m : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hlk : l ≠ k) (hmk : m ≠ k) (hlm : l < m)
+    {X X' : SSet.{u}} (hX : X = X')
+    (a b a' b' : CategoryTheory.SimplicialThickening
+      (ULift.{u, 0} (Fin (n + 1)))) (ha : a = a') (hb : b = b')
+    (P : X ⟶ CategoryTheory.nerve (ThickPath a.as b.as))
+    (P' : X' ⟶ CategoryTheory.nerve (ThickPath a'.as b'.as))
+    (hP : HEq P P') :
+    HEq
+      (P ≫
+        ((CategoryTheory.SimplicialThickening.functor
+          (SimplexCategory.δ (deleteFinVertex l m (ne_of_gt hlm))).toOrderHom.uliftMap).comp
+            (E := C) SSet (innerHornFaceFunctor C σ hlk)).map a b)
+      (P' ≫
+        ((CategoryTheory.SimplicialThickening.functor
+          (SimplexCategory.δ (deleteFinVertex m l (ne_of_lt hlm))).toOrderHom.uliftMap).comp
+            (E := C) SSet (innerHornFaceFunctor C σ hmk)).map a' b') := by
+  apply CategoryTheory.heq_comp hX
+  · exact nerve_thickPath_eq_of_endpoint_eq
+      (congrArg CategoryTheory.SimplicialThickening.as ha)
+      (congrArg CategoryTheory.SimplicialThickening.as hb)
+  · exact congrArg₂ (fun A B : C ↦ A ⟶[SSet] B)
+      (innerHornFaceFunctor_pairwise_restrict_obj_eq
+        C σ hlk hmk hlm a a' ha)
+      (innerHornFaceFunctor_pairwise_restrict_obj_eq
+        C σ hlk hmk hlm b b' hb)
+  · exact hP
+  · exact innerHornFaceFunctor_pairwise_restrict_map_endpoint_heq
+      C σ hlk hmk hlm a b a' b' ha hb
 
 /-- Composition lands in paths whose least member contains the middle vertex. -/
 def pathCompositionToKnownPathSubcomplex {J : Type u} [LinearOrder J]
@@ -752,6 +903,172 @@ theorem inf_avoiding_delete_delete_insert
   simp only [Category.assoc]
   rw [avoidingPathSubcomplex_delete_insert]
 
+/-- The preceding factorization with the second member of a fixed ordered intersection deleted
+first. -/
+theorem inf_avoiding_delete_delete_insert_right
+    {n : ℕ} {i j l m : Fin (n + 3)}
+    (hli : i ≠ l) (hlj : j ≠ l) (hml : m ≠ l)
+    (him : i ≠ m) (hjm : j ≠ m) :
+    (avoidingPathSubcomplex (ULift.up.{u, 0} i) (ULift.up.{u, 0} j)
+        (ULift.up.{u, 0} l) ⊓
+      avoidingPathSubcomplex (ULift.up.{u, 0} i) (ULift.up.{u, 0} j)
+        (ULift.up.{u, 0} m)).ι ≫
+        deleteVertexPathNerveMap m him hjm ≫
+        deleteVertexPathNerveMap (deleteFinVertex m l hml.symm)
+          (deleteFinVertex_ne m i l him hml.symm hli)
+          (deleteFinVertex_ne m j l hjm hml.symm hlj) ≫
+        insertVertexPathNerveMap (deleteFinVertex m l hml.symm)
+          (deleteFinVertex_ne m i l him hml.symm hli)
+          (deleteFinVertex_ne m j l hjm hml.symm hlj) =
+      (avoidingPathSubcomplex (ULift.up.{u, 0} i) (ULift.up.{u, 0} j)
+        (ULift.up.{u, 0} l) ⊓
+      avoidingPathSubcomplex (ULift.up.{u, 0} i) (ULift.up.{u, 0} j)
+        (ULift.up.{u, 0} m)).ι ≫
+        deleteVertexPathNerveMap m him hjm := by
+  ext U x a q
+  simp only [NatTrans.comp_app, deleteVertexPathNerveMap,
+    insertVertexPathNerveMap, CategoryTheory.nerveMap_app]
+  change q ∈ (insertPathVertex (deleteFinVertex m l hml.symm)
+      (deleteFinVertex_ne m i l him hml.symm hli)
+      (deleteFinVertex_ne m j l hjm hml.symm hlj)
+      (deletePathVertex (deletePathVertex (x.1.obj a) m him hjm)
+        (deleteFinVertex m l hml.symm)
+        (deleteFinVertex_ne m i l him hml.symm hli)
+        (deleteFinVertex_ne m j l hjm hml.symm hlj))).I ↔
+    q ∈ (deletePathVertex (x.1.obj a) m him hjm).I
+  rw [insert_deletePathVertex]
+  exact deletePathVertex_not_mem.{u, 0} (x.1.obj a) m l him hjm hml.symm
+    ((ofNerveSimplex x.1).not_mem_of_not_mem_last x.2.1 a)
+
+/-- The untransported Hom maps supplied by two ordered horn faces agree on path simplices
+omitting both face vertices. -/
+theorem innerHornFaceFunctor_avoiding_pairwise_core_heq
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k i j l m : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hil : i < l) (hlm : l < m) (hmj : m < j) (hlk : l ≠ k) (hmk : m ≠ k) :
+    HEq
+      ((avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l) ⊓
+            avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up m)).ι ≫
+        (deleteVertexPathNerveMap l (ne_of_lt hil) (ne_of_gt (lt_trans hlm hmj)) ≫
+          (innerHornFaceFunctor C σ hlk).map
+            (CategoryTheory.SimplicialThickening.mk
+              (ULift.up (deleteFinVertex l i (ne_of_lt hil))))
+            (CategoryTheory.SimplicialThickening.mk
+              (ULift.up (deleteFinVertex l j (ne_of_gt (lt_trans hlm hmj)))))))
+      ((avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l) ⊓
+            avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up m)).ι ≫
+        (deleteVertexPathNerveMap m (ne_of_lt (lt_trans hil hlm)) (ne_of_gt hmj) ≫
+          (innerHornFaceFunctor C σ hmk).map
+            (CategoryTheory.SimplicialThickening.mk
+              (ULift.up (deleteFinVertex m i (ne_of_lt (lt_trans hil hlm)))))
+            (CategoryTheory.SimplicialThickening.mk
+              (ULift.up (deleteFinVertex m j (ne_of_gt hmj)))))) := by
+  let D := avoidingPathSubcomplex (ULift.up.{u, 0} i) (ULift.up.{u, 0} j)
+      (ULift.up.{u, 0} l) ⊓
+    avoidingPathSubcomplex (ULift.up.{u, 0} i) (ULift.up.{u, 0} j)
+      (ULift.up.{u, 0} m)
+  let il : i ≠ l := ne_of_lt hil
+  let jl : j ≠ l := ne_of_gt (lt_trans hlm hmj)
+  let im : i ≠ m := ne_of_lt (lt_trans hil hlm)
+  let jm : j ≠ m := ne_of_gt hmj
+  let ml := deleteFinVertex l m (ne_of_gt hlm)
+  let lm := deleteFinVertex m l (ne_of_lt hlm)
+  let ilm := deleteFinVertex_ne l i m il (ne_of_gt hlm) im
+  let jlm := deleteFinVertex_ne l j m jl (ne_of_gt hlm) jm
+  let iml := deleteFinVertex_ne m i l im (ne_of_lt hlm) il
+  let jml := deleteFinVertex_ne m j l jm (ne_of_lt hlm) jl
+  let Fl := innerHornFaceFunctor C σ hlk
+  let Fm := innerHornFaceFunctor C σ hmk
+  let aL := CategoryTheory.SimplicialThickening.mk
+    (ULift.up.{u, 0} (deleteFinVertex ml (deleteFinVertex l i il) ilm))
+  let bL := CategoryTheory.SimplicialThickening.mk
+    (ULift.up.{u, 0} (deleteFinVertex ml (deleteFinVertex l j jl) jlm))
+  let aR := CategoryTheory.SimplicialThickening.mk
+    (ULift.up.{u, 0} (deleteFinVertex lm (deleteFinVertex m i im) iml))
+  let bR := CategoryTheory.SimplicialThickening.mk
+    (ULift.up.{u, 0} (deleteFinVertex lm (deleteFinVertex m j jm) jml))
+  let PL := D.ι ≫ (deleteVertexPathNerveMap l il jl ≫
+    deleteVertexPathNerveMap ml ilm jlm)
+  let PR := D.ι ≫ (deleteVertexPathNerveMap m im jm ≫
+    deleteVertexPathNerveMap lm iml jml)
+  have ha : aL = aR := by
+    apply congrArg CategoryTheory.SimplicialThickening.mk
+    apply ULift.ext
+    exact deleteFinVertex_delete_comm hlm il im
+  have hb : bL = bR := by
+    apply congrArg CategoryTheory.SimplicialThickening.mk
+    apply ULift.ext
+    exact deleteFinVertex_delete_comm hlm jl jm
+  have hfacL := inf_avoiding_delete_delete_insert
+    (n := n) il jl (ne_of_gt hlm) im jm
+  have hfacR := inf_avoiding_delete_delete_insert_right
+    (n := n) il jl (ne_of_gt hlm) im jm
+  have hleft :
+      D.ι ≫ (deleteVertexPathNerveMap l il jl ≫
+        Fl.map
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (deleteFinVertex l i il)))
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (deleteFinVertex l j jl)))) =
+      PL ≫ (insertVertexPathNerveMap ml ilm jlm ≫
+        Fl.map
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (deleteFinVertex l i il)))
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (deleteFinVertex l j jl)))) := by
+    dsimp only [D, PL]
+    exact congrArg (fun q ↦ q ≫
+      Fl.map
+        (CategoryTheory.SimplicialThickening.mk
+          (ULift.up (deleteFinVertex l i il)))
+        (CategoryTheory.SimplicialThickening.mk
+          (ULift.up (deleteFinVertex l j jl)))) hfacL.symm
+  have hright :
+      D.ι ≫ (deleteVertexPathNerveMap m im jm ≫
+        Fm.map
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (deleteFinVertex m i im)))
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (deleteFinVertex m j jm)))) =
+      PR ≫ (insertVertexPathNerveMap lm iml jml ≫
+        Fm.map
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (deleteFinVertex m i im)))
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (deleteFinVertex m j jm)))) := by
+    dsimp only [D, PR]
+    exact congrArg (fun q ↦ q ≫
+      Fm.map
+        (CategoryTheory.SimplicialThickening.mk
+          (ULift.up (deleteFinVertex m i im)))
+        (CategoryTheory.SimplicialThickening.mk
+          (ULift.up (deleteFinVertex m j jm)))) hfacR.symm
+  have hP : HEq PL PR := by
+    exact precomp_deleteVertexPathNerveMap_comp_comm_heq
+      hlm il jl im jm D.ι
+  change HEq
+    (D.ι ≫ (deleteVertexPathNerveMap l il jl ≫
+      Fl.map
+        (CategoryTheory.SimplicialThickening.mk
+          (ULift.up (deleteFinVertex l i il)))
+        (CategoryTheory.SimplicialThickening.mk
+          (ULift.up (deleteFinVertex l j jl)))))
+    (D.ι ≫ (deleteVertexPathNerveMap m im jm ≫
+      Fm.map
+        (CategoryTheory.SimplicialThickening.mk
+          (ULift.up (deleteFinVertex m i im)))
+        (CategoryTheory.SimplicialThickening.mk
+          (ULift.up (deleteFinVertex m j jm)))))
+  exact HEq.trans (heq_of_eq hleft) <| HEq.trans
+    (precomp_insertVertexPathNerveMap_comp_enrichedMap_heq
+      C ml ilm jlm Fl PL) <| HEq.trans
+    (precomp_innerHornFaceFunctor_pairwise_restrict_map_endpoint_heq
+      C σ hlk hmk hlm rfl aL bL aR bR ha hb PL PR hP) <| HEq.trans
+    (precomp_insertVertexPathNerveMap_comp_enrichedMap_heq
+      C lm iml jml Fm PR).symm
+    (heq_of_eq hright.symm)
+
 /-- The mapping-object map carried by an available horn face on paths omitting that face vertex. -/
 noncomputable def avoidingPathMapOfInnerHornFace
     (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
@@ -780,6 +1097,47 @@ noncomputable def avoidingPathMapOfInnerHornFace
     F.map (CategoryTheory.SimplicialThickening.mk (ULift.up i'))
       (CategoryTheory.SimplicialThickening.mk (ULift.up j')) ≫
     eqToHom (congrArg₂ (fun A B : C ↦ A ⟶[SSet] B) hobj_i hobj_j)
+
+/-- Two ordered omitted-vertex face maps agree on paths omitting both vertices. -/
+theorem avoidingPathMapOfInnerHornFace_pairwise_of_lt
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k i j l m : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hil : i < l) (hlm : l < m) (hmj : m < j) (hlk : l ≠ k) (hmk : m ≠ k) :
+    SSet.Subcomplex.homOfLE (inf_le_left :
+        avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l) ⊓
+          avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up m) ≤
+            avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l)) ≫
+        avoidingPathMapOfInnerHornFace C σ hil (lt_trans hlm hmj) hlk =
+      SSet.Subcomplex.homOfLE (inf_le_right :
+        avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l) ⊓
+          avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up m) ≤
+            avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up m)) ≫
+        avoidingPathMapOfInnerHornFace C σ (lt_trans hil hlm) hmj hmk := by
+  apply eq_of_heq
+  simp only [avoidingPathMapOfInnerHornFace]
+  simp only [← Category.assoc]
+  refine (comp_eqToHom_heq (C := SSet) _ _).trans ?_
+  refine HEq.trans ?_ (comp_eqToHom_heq (C := SSet) _ _).symm
+  change HEq
+    ((avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l) ⊓
+          avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up m)).ι ≫
+      (deleteVertexPathNerveMap l (ne_of_lt hil) (ne_of_gt (lt_trans hlm hmj)) ≫
+        (innerHornFaceFunctor C σ hlk).map
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (deleteFinVertex l i (ne_of_lt hil))))
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (deleteFinVertex l j (ne_of_gt (lt_trans hlm hmj)))))))
+    ((avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l) ⊓
+          avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up m)).ι ≫
+      (deleteVertexPathNerveMap m (ne_of_lt (lt_trans hil hlm)) (ne_of_gt hmj) ≫
+        (innerHornFaceFunctor C σ hmk).map
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (deleteFinVertex m i (ne_of_lt (lt_trans hil hlm)))))
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (deleteFinVertex m j (ne_of_gt hmj))))))
+  exact innerHornFaceFunctor_avoiding_pairwise_core_heq
+    C σ hil hlm hmj hlk hmk
 
 /-- Known paths are through paths or omit a nonmissing vertex. -/
 theorem knownPathSubcomplex_eq_through_sup_avoiding {J : Type u} [LinearOrder J]
