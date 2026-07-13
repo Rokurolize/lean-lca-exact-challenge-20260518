@@ -153,7 +153,6 @@ theorem deleteFinVertex_delete_comm {n : ℕ} {l m q : Fin (n + 3)}
     l.succAbove (ml.succAbove
       (deleteFinVertex lm (deleteFinVertex m q hqm) _))
   rw [succAbove_deleteFinVertex, succAbove_deleteFinVertex]
-
   have hins : (fun x ↦ l.succAbove (ml.succAbove x)) =
       fun x ↦ m.succAbove (lm.succAbove x) := by
     funext x
