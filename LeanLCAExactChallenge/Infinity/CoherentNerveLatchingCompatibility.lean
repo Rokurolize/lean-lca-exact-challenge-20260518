@@ -1259,6 +1259,22 @@ theorem avoidingPathSubcomplex_le_avoiding_of_left
   intro U x _ hm
   exact (not_le_of_gt hmi) ((ofNerveSimplex x).last.left_le m hm)
 
+/-- Every path omits a vertex strictly to the right of its interval. -/
+theorem avoidingPathSubcomplex_eq_top_of_right
+    {J : Type u} [LinearOrder J] {i j l : J} (hjl : j < l) :
+    avoidingPathSubcomplex i j l = ⊤ := by
+  apply le_antisymm le_top
+  intro U x _ hl
+  exact (not_le_of_gt hjl) ((ofNerveSimplex x).last.le_right l hl)
+
+/-- Every path omits a vertex strictly to the left of its interval. -/
+theorem avoidingPathSubcomplex_eq_top_of_left
+    {J : Type u} [LinearOrder J] {i j l : J} (hli : l < i) :
+    avoidingPathSubcomplex i j l = ⊤ := by
+  apply le_antisymm le_top
+  intro U x _ hl
+  exact (not_le_of_gt hli) ((ofNerveSimplex x).last.left_le l hl)
+
 /-- If every path omitting the lower face vertex also omits the higher one, the two full face
 path-maps agree on the lower avoiding subcomplex. -/
 theorem pathMapOfInnerHornFace_pairwise_on_avoiding_of_lt
@@ -1546,10 +1562,45 @@ theorem knownPathSubcomplex_eq_through_sup_avoiding {J : Type u} [LinearOrder J]
       obtain ⟨l, hl⟩ := havoid
       exact Or.inr ⟨l.1, l.2.1.le, l.2.2.1.le, l.2.2.2, hl⟩
 
+/-- Full path latching is the union of every through piece and every available face piece. -/
+theorem fullyKnownPathSubcomplex_eq_through_sup_avoiding {J : Type u} [LinearOrder J]
+    (i j k : J) :
+    fullyKnownPathSubcomplex i j k =
+      (⨆ m : InteriorVertex i j, throughPathSubcomplex i j m.1) ⊔
+        ⨆ l : {l : J // i < l ∧ l < j ∧ l ≠ k},
+          avoidingPathSubcomplex i j l.1 := by
+  ext U x
+  change (ofNerveSimplex x).FullyKnownAt k ↔ _
+  constructor
+  · rintro (⟨m, hm⟩ | ⟨l, hlk, hl⟩)
+    · apply Or.inl
+      simp only [Subfunctor.iSup_obj, Set.mem_iUnion]
+      exact ⟨m, hm⟩
+    · apply Or.inr
+      simp only [Subfunctor.iSup_obj, Set.mem_iUnion]
+      exact ⟨⟨l.1, l.2.1, l.2.2, hlk⟩, hl⟩
+  · intro h
+    rcases h with hthrough | havoid
+    · simp only [Subfunctor.iSup_obj, Set.mem_iUnion] at hthrough
+      obtain ⟨m, hm⟩ := hthrough
+      exact Or.inl ⟨m, hm⟩
+    · simp only [Subfunctor.iSup_obj, Set.mem_iUnion] at havoid
+      obtain ⟨l, hl⟩ := havoid
+      exact Or.inr ⟨⟨l.1, l.2.1, l.2.2.1⟩, l.2.2.2, hl⟩
+
 /-- The union of all known-path pieces obtained by omitting a nonmissing vertex. -/
 def avoidingKnownPathSubcomplex {J : Type u} [LinearOrder J] (i j k : J) :
     (CategoryTheory.nerve (ThickPath i j)).Subcomplex :=
   ⨆ (l : {l : J // i < l ∧ l < j ∧ l ≠ k}), avoidingPathSubcomplex i j l.1
+
+/-- The binary decomposition of full latching into factorization and face unions. -/
+theorem fullyKnownPathSubcomplex_eq_through_sup_avoidingKnown
+    {J : Type u} [LinearOrder J] (i j k : J) :
+    fullyKnownPathSubcomplex i j k =
+      (⨆ m : InteriorVertex i j, throughPathSubcomplex i j m.1) ⊔
+        avoidingKnownPathSubcomplex i j k := by
+  simpa only [avoidingKnownPathSubcomplex] using
+    fullyKnownPathSubcomplex_eq_through_sup_avoiding i j k
 
 section SubcomplexUnionMap
 
