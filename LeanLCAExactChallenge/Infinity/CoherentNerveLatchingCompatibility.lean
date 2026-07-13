@@ -3100,4 +3100,77 @@ noncomputable def throughPairSubcomplexTripleIso
   hom_inv_id := pathTripleCompositionToThroughPair_split i r s j hrs
   inv_hom_id := throughPairSubcomplexToTriple_comp i r s j hrs
 
+/-- Splitting triple composition at the first vertex composes the final two factors. -/
+@[reassoc]
+theorem pathTripleComposition_first_split
+    {J : Type u} [LinearOrder J]
+    (i r s j : CategoryTheory.SimplicialThickening J) :
+    pathTripleCompositionToThroughPair i r s j ≫
+        SSet.Subcomplex.homOfLE (inf_le_left :
+          throughPathSubcomplex i.as j.as r.as ⊓
+            throughPathSubcomplex i.as j.as s.as ≤
+              throughPathSubcomplex i.as j.as r.as) ≫
+        throughPathSubcomplexToProduct i r j =
+      (α_ (CategoryTheory.nerve (i ⟶ r)) (CategoryTheory.nerve (r ⟶ s))
+          (CategoryTheory.nerve (s ⟶ j))).hom ≫
+        (CategoryTheory.nerve (i ⟶ r) ◁ CategoryTheory.eComp SSet r s j) := by
+  ext U x
+  · exact CategoryTheory.Functor.ext
+      (h_obj := fun a ↦ congrArg Prod.fst
+        (splitCritical_joinCritical
+          (x.1.1.obj a, x.1.2.obj a ≫ x.2.obj a)))
+      (h_map := fun _ _ _ ↦ (thickPathHomSubsingleton _ _).elim _ _)
+  · exact CategoryTheory.Functor.ext
+      (h_obj := fun a ↦ congrArg Prod.snd
+        (splitCritical_joinCritical
+          (x.1.1.obj a, x.1.2.obj a ≫ x.2.obj a)))
+      (h_map := fun _ _ _ ↦ (thickPathHomSubsingleton _ _).elim _ _)
+
+/-- Splitting triple composition at the second vertex composes the first two factors. -/
+@[reassoc]
+theorem pathTripleComposition_second_split
+    {J : Type u} [LinearOrder J]
+    (i r s j : CategoryTheory.SimplicialThickening J) (hrs : r.as ≤ s.as) :
+    pathTripleCompositionToThroughPair i r s j ≫
+        SSet.Subcomplex.homOfLE (inf_le_right :
+          throughPathSubcomplex i.as j.as r.as ⊓
+            throughPathSubcomplex i.as j.as s.as ≤
+              throughPathSubcomplex i.as j.as s.as) ≫
+        throughPathSubcomplexToProduct i s j =
+      (CategoryTheory.eComp SSet i r s ▷ CategoryTheory.nerve (s ⟶ j)) := by
+  ext U x
+  · exact CategoryTheory.Functor.ext
+      (h_obj := fun a ↦ by
+        apply CategoryTheory.SimplicialThickening.Path.ext
+        ext z
+        change (((z ∈ (x.1.1.obj a).I ∨ z ∈ (x.1.2.obj a).I ∨
+          z ∈ (x.2.obj a).I) ∧ z ≤ s.as) ↔
+            z ∈ (x.1.1.obj a).I ∨ z ∈ (x.1.2.obj a).I)
+        constructor
+        · rintro ⟨hp | hq | ht, hzs⟩
+          · exact Or.inl hp
+          · exact Or.inr hq
+          · have hsz := (x.2.obj a).left_le z ht
+            exact Or.inr ((le_antisymm hzs hsz) ▸ (x.1.2.obj a).right)
+        · rintro (hp | hq)
+          · exact ⟨Or.inl hp, ((x.1.1.obj a).le_right z hp).trans hrs⟩
+          · exact ⟨Or.inr (Or.inl hq), (x.1.2.obj a).le_right z hq⟩)
+      (h_map := fun _ _ _ ↦ (thickPathHomSubsingleton _ _).elim _ _)
+  · exact CategoryTheory.Functor.ext
+      (h_obj := fun a ↦ by
+        apply CategoryTheory.SimplicialThickening.Path.ext
+        ext z
+        change (((z ∈ (x.1.1.obj a).I ∨ z ∈ (x.1.2.obj a).I ∨
+          z ∈ (x.2.obj a).I) ∧ s.as ≤ z) ↔ z ∈ (x.2.obj a).I)
+        constructor
+        · rintro ⟨hp | hq | ht, hsz⟩
+          · have hzs := ((x.1.1.obj a).le_right z hp).trans hrs
+            exact (le_antisymm hzs hsz) ▸ (x.2.obj a).left
+          · have hzs := (x.1.2.obj a).le_right z hq
+            exact (le_antisymm hzs hsz) ▸ (x.2.obj a).left
+          · exact ht
+        · intro ht
+          exact ⟨Or.inr (Or.inr ht), (x.2.obj a).left_le z ht⟩)
+      (h_map := fun _ _ _ ↦ (thickPathHomSubsingleton _ _).elim _ _)
+
 end LeanLCAExactChallenge.Infinity.CoherentNervePathFiltration
