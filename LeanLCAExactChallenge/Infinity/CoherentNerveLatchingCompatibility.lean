@@ -2225,4 +2225,119 @@ theorem exists_pathMap_extension_preserving_comp
   rw [← pathCompositionToKnownPathSubcomplex_ι i k j, Category.assoc, hmap]
   exact latching.map_comp
 
+/-- Every interval spanning the missing horn vertex has a full path map extending all known
+faces and preserving composition through that vertex. -/
+theorem exists_innerHornSpanningPathMap
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k i j : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hkZero : k ≠ 0) (hkLast : k ≠ Fin.last (n + 2))
+    (hik : i < k) (hkj : k < j)
+    [SSet.KanComplex
+      (innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up i)) ⟶[SSet]
+        innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up j)))] :
+    ∃ map : CategoryTheory.nerve
+        (CategoryTheory.SimplicialThickening.mk (ULift.up.{u, 0} i) ⟶
+          CategoryTheory.SimplicialThickening.mk (ULift.up.{u, 0} j)) ⟶
+        (innerHornObject.{u, u} C σ
+            (CategoryTheory.SimplicialThickening.mk (ULift.up i)) ⟶[SSet]
+          innerHornObject.{u, u} C σ
+            (CategoryTheory.SimplicialThickening.mk (ULift.up j))),
+      (knownPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up k)).ι ≫ map =
+          (compatibleKnownPathLatchingMapOfInnerHorn
+            C σ hkZero hkLast hik hkj).map ∧
+        CategoryTheory.eComp SSet
+            (CategoryTheory.SimplicialThickening.mk (ULift.up i))
+            (CategoryTheory.SimplicialThickening.mk (ULift.up k))
+            (CategoryTheory.SimplicialThickening.mk (ULift.up j)) ≫ map =
+          (innerHornLeftPathMap C σ hkLast hik ⊗ₘ
+              innerHornRightPathMap C σ hkZero hkj) ≫
+            CategoryTheory.eComp SSet
+              (innerHornObject.{u, u} C σ
+                (CategoryTheory.SimplicialThickening.mk (ULift.up i)))
+              (innerHornObject.{u, u} C σ
+                (CategoryTheory.SimplicialThickening.mk (ULift.up k)))
+              (innerHornObject.{u, u} C σ
+                (CategoryTheory.SimplicialThickening.mk (ULift.up j))) :=
+  exists_pathMap_extension_preserving_comp (J := ULift.{u, 0} (Fin (n + 3)))
+    C (innerHornObject.{u, u} C σ)
+    (CategoryTheory.SimplicialThickening.mk (ULift.up i))
+    (CategoryTheory.SimplicialThickening.mk (ULift.up k))
+    (CategoryTheory.SimplicialThickening.mk (ULift.up j))
+    hik hkj
+    (innerHornLeftPathMap C σ hkLast hik)
+    (innerHornRightPathMap C σ hkZero hkj)
+    (compatibleKnownPathLatchingMapOfInnerHorn C σ hkZero hkLast hik hkj)
+
+/-- A chosen full path map for an interval spanning the missing horn vertex. -/
+noncomputable def innerHornSpanningPathMap
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k i j : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hkZero : k ≠ 0) (hkLast : k ≠ Fin.last (n + 2))
+    (hik : i < k) (hkj : k < j)
+    [SSet.KanComplex
+      (innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up i)) ⟶[SSet]
+        innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up j)))] :
+    CategoryTheory.nerve
+        (ThickPath (ULift.up.{u, 0} i) (ULift.up.{u, 0} j)) ⟶
+      (innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up i)) ⟶[SSet]
+        innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up j))) :=
+  Classical.choose
+    (exists_innerHornSpanningPathMap.{u} C σ hkZero hkLast hik hkj)
+
+@[reassoc]
+theorem innerHornSpanningPathMap_restrict
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k i j : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hkZero : k ≠ 0) (hkLast : k ≠ Fin.last (n + 2))
+    (hik : i < k) (hkj : k < j)
+    [SSet.KanComplex
+      (innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up i)) ⟶[SSet]
+        innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up j)))] :
+    (knownPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up k)).ι ≫
+        innerHornSpanningPathMap C σ hkZero hkLast hik hkj =
+      (compatibleKnownPathLatchingMapOfInnerHorn
+        C σ hkZero hkLast hik hkj).map :=
+  (Classical.choose_spec
+    (exists_innerHornSpanningPathMap.{u} C σ hkZero hkLast hik hkj)).1
+
+@[reassoc]
+theorem innerHornSpanningPathMap_map_comp
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k i j : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hkZero : k ≠ 0) (hkLast : k ≠ Fin.last (n + 2))
+    (hik : i < k) (hkj : k < j)
+    [SSet.KanComplex
+      (innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up i)) ⟶[SSet]
+        innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up j)))] :
+    CategoryTheory.eComp SSet
+        (CategoryTheory.SimplicialThickening.mk (ULift.up i))
+        (CategoryTheory.SimplicialThickening.mk (ULift.up k))
+        (CategoryTheory.SimplicialThickening.mk (ULift.up j)) ≫
+      innerHornSpanningPathMap C σ hkZero hkLast hik hkj =
+    (innerHornLeftPathMap C σ hkLast hik ⊗ₘ
+        innerHornRightPathMap C σ hkZero hkj) ≫
+      CategoryTheory.eComp SSet
+        (innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up i)))
+        (innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up k)))
+        (innerHornObject.{u, u} C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up j))) :=
+  (Classical.choose_spec
+    (exists_innerHornSpanningPathMap.{u} C σ hkZero hkLast hik hkj)).2
+
 end LeanLCAExactChallenge.Infinity.CoherentNervePathFiltration
