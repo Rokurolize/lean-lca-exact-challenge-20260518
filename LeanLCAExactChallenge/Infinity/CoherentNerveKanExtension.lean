@@ -86,6 +86,50 @@ theorem knownPathSubcomplex_ι_anodyne_of_fintype
   exact knownPathSubcomplex_ι_anodyne hik hkj
     (Fintype.card (InteriorVertex i j)) (Fintype.equivFin (InteriorVertex i j))
 
+/-- The full strict-composition path-latching inclusion is an anodyne extension. -/
+theorem fullyKnownPathSubcomplex_ι_anodyne
+    {J : Type u} [LinearOrder J] {i j k : J}
+    (hik : i < k) (hkj : k < j) (n : ℕ)
+    (e : InteriorVertex i j ≃ Fin (n + 1))
+    (hkLast : e ⟨k, hik, hkj⟩ = Fin.last n) :
+    SSet.anodyneExtensions (fullyKnownPathSubcomplex i j k).ι := by
+  let E := thickPathNerveCubeIsoExplicit
+    (le_trans (le_of_lt hik) (le_of_lt hkj)) (n + 1) e
+  let A := fullyKnownPathSubcomplex i j k
+  let B := liftedIntervalCubeLastHorn n 1
+  have hAB : A.preimage E.inv = B :=
+    fullyKnownPathSubcomplex_preimage_explicit_eq_lastHorn
+      i j k hik hkj n e hkLast
+  have hpre : SSet.anodyneExtensions (A.preimage E.inv).ι := by
+    rw [hAB]
+    exact liftedIntervalCubeLastHorn_anodyne n 1
+  exact (SSet.anodyneExtensions.arrow_mk_iso_iff
+    (Arrow.isoMk (subcomplexPreimageIsoOfIso A E).symm E (by
+      change (subcomplexPreimageIsoOfIso A E).inv ≫
+        (A.preimage E.inv).ι = A.ι ≫ E.hom
+      exact subcomplexPreimageIsoOfIso_inv_ι A E))).2 hpre
+
+/-- Number the finite internal vertices with the missing vertex last. -/
+theorem fullyKnownPathSubcomplex_ι_anodyne_of_fintype
+    {J : Type u} [LinearOrder J] [Finite J] {i j k : J}
+    (hik : i < k) (hkj : k < j) :
+    SSet.anodyneExtensions (fullyKnownPathSubcomplex i j k).ι := by
+  letI := Fintype.ofFinite J
+  let I := InteriorVertex i j
+  let e₀ := Fintype.equivFin I
+  have hcard : Fintype.card I ≠ 0 := by
+    intro h
+    have hk : I := ⟨k, hik, hkj⟩
+    have := Fintype.card_pos_iff.mpr ⟨hk⟩
+    omega
+  obtain ⟨n, hn⟩ := Nat.exists_eq_succ_of_ne_zero hcard
+  let e₁ : I ≃ Fin (n + 1) := e₀.trans (Equiv.cast (congrArg Fin hn))
+  let q := e₁ ⟨k, hik, hkj⟩
+  let e : I ≃ Fin (n + 1) := e₁.trans (Equiv.swap q (Fin.last n))
+  have hkLast : e ⟨k, hik, hkj⟩ = Fin.last n := by
+    simp [e, q]
+  exact fullyKnownPathSubcomplex_ι_anodyne hik hkj n e hkLast
+
 open SSet.modelCategoryQuillen in
 /-- Maps into a Kan complex extend across an arbitrary anodyne extension. -/
 theorem exists_extension_of_anodyne_of_kan
@@ -123,5 +167,15 @@ theorem exists_knownPathSubcomplex_extension_of_kan_of_fintype
       (knownPathSubcomplex i j k).ι ≫ g = f :=
   exists_extension_of_anodyne_of_kan
     (knownPathSubcomplex_ι_anodyne_of_fintype hik hkj) f
+
+/-- A full path-latching map into a Kan complex extends over the path nerve. -/
+theorem exists_fullyKnownPathSubcomplex_extension_of_kan_of_fintype
+    {J : Type u} [LinearOrder J] [Finite J] {i j k : J}
+    (hik : i < k) (hkj : k < j) {X : SSet.{u}} [SSet.KanComplex X]
+    (f : (fullyKnownPathSubcomplex i j k : SSet) ⟶ X) :
+    ∃ g : CategoryTheory.nerve (ThickPath i j) ⟶ X,
+      (fullyKnownPathSubcomplex i j k).ι ≫ g = f :=
+  exists_extension_of_anodyne_of_kan
+    (fullyKnownPathSubcomplex_ι_anodyne_of_fintype hik hkj) f
 
 end LeanLCAExactChallenge.Infinity.CoherentNervePathFiltration

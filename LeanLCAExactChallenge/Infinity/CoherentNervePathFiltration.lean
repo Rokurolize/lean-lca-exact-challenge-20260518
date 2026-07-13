@@ -7,10 +7,7 @@ import Mathlib.AlgebraicTopology.SimplicialSet.AnodyneExtensions.PushoutProduct
 /-!
 # Path combinatorics for the locally-Kan coherent nerve theorem
 
-The mapping objects in the simplicial thickening are nerves of posets of paths.  This file
-isolates the elementary splitting operation at an intermediate vertex.  It is the set-theoretic
-operation used in the cell filtration of an inner horn: a path containing the missing vertex is
-the composite of its beforePath and afterPath there.
+This file develops cubical path-latching objects for coherent-nerve horn filling.
 -/
 
 set_option autoImplicit false
@@ -716,6 +713,75 @@ theorem mem_liftedIntervalCubeCorner_explicit_iff : ∀ (n : ℕ) (ε : Fin n �
             refine ⟨b, ?_⟩
             simpa [SSet.Subcomplex.preimage_obj, liftedPiBitsEval_castSucc] using ha
 
+/-- The explicit cubical boundary consists of simplices constant in some coordinate. -/
+theorem mem_liftedIntervalCubeBoundary_explicit_iff : ∀ (n : ℕ)
+    (U : SimplexCategoryᵒᵖ) (x : (CategoryTheory.nerve (LiftedPiBits.{u} n)).obj U),
+    (liftedPiBitsCubeIsoExplicit n).hom.app U x ∈
+        (liftedIntervalCubeBoundary n).obj U ↔
+      ∃ a : Fin n, (CategoryTheory.nerveMap (liftedPiBitsEval n a)).app U x ∈
+        ((∂Δ[1]).preimage stdSimplexOneIsoNerveFinTwo.inv).obj U
+  | 0, U, x => by simp [liftedIntervalCubeBoundary]
+  | n + 1, U, x => by
+      rw [show liftedIntervalCubeBoundary (n + 1) =
+        (liftedIntervalCubeBoundary n).unionProd ∂Δ[1] from rfl]
+      have hm := SSet.Subcomplex.mem_unionProd_iff
+        (S := liftedIntervalCubeBoundary n) (T := ∂Δ[1])
+        ((liftedPiBitsCubeIsoExplicit (n + 1)).hom.app U x)
+      refine hm.trans ?_
+      rw [liftedPiBitsCubeIsoExplicit_succ_fst,
+        liftedPiBitsCubeIsoExplicit_succ_snd,
+        mem_liftedIntervalCubeBoundary_explicit_iff n]
+      constructor
+      · rintro (hlast | ⟨a, ha⟩)
+        · refine ⟨Fin.last n, ?_⟩
+          simpa [SSet.Subcomplex.preimage_obj, liftedPiBitsEval_last] using hlast
+        · refine ⟨a.castSucc, ?_⟩
+          simpa [SSet.Subcomplex.preimage_obj, liftedPiBitsEval_castSucc] using ha
+      · rintro ⟨a, ha⟩
+        induction a using Fin.lastCases with
+        | last =>
+            left
+            simpa [SSet.Subcomplex.preimage_obj, liftedPiBitsEval_last] using ha
+        | cast b =>
+            right
+            refine ⟨b, ?_⟩
+            simpa [SSet.Subcomplex.preimage_obj, liftedPiBitsEval_castSucc] using ha
+
+/-- The last horn contains earlier boundary faces and one final-coordinate endpoint. -/
+theorem mem_liftedIntervalCubeLastHorn_explicit_iff (n : ℕ) (k : Fin 2)
+    (U : SimplexCategoryᵒᵖ)
+    (x : (CategoryTheory.nerve (LiftedPiBits.{u} (n + 1))).obj U) :
+    (liftedPiBitsCubeIsoExplicit (n + 1)).hom.app U x ∈
+        (liftedIntervalCubeLastHorn n k).obj U ↔
+      (∃ a : Fin n,
+        (CategoryTheory.nerveMap (liftedPiBitsEval (n + 1) a.castSucc)).app U x ∈
+          ((∂Δ[1]).preimage stdSimplexOneIsoNerveFinTwo.inv).obj U) ∨
+        (CategoryTheory.nerveMap
+          (liftedPiBitsEval (n + 1) (Fin.last n))).app U x ∈
+            ((SSet.horn 1 k).preimage stdSimplexOneIsoNerveFinTwo.inv).obj U := by
+  rw [show liftedIntervalCubeLastHorn n k =
+    (liftedIntervalCubeBoundary n).unionProd (SSet.horn 1 k) from rfl]
+  have hm := SSet.Subcomplex.mem_unionProd_iff
+    (S := liftedIntervalCubeBoundary n) (T := SSet.horn 1 k)
+    ((liftedPiBitsCubeIsoExplicit (n + 1)).hom.app U x)
+  refine hm.trans ?_
+  rw [liftedPiBitsCubeIsoExplicit_succ_fst,
+    liftedPiBitsCubeIsoExplicit_succ_snd,
+    mem_liftedIntervalCubeBoundary_explicit_iff n]
+  constructor
+  · rintro (hlast | ⟨a, ha⟩)
+    · right
+      simpa [SSet.Subcomplex.preimage_obj, liftedPiBitsEval_last] using hlast
+    · left
+      exact ⟨a, by simpa [SSet.Subcomplex.preimage_obj,
+        liftedPiBitsEval_castSucc] using ha⟩
+  · rintro (⟨a, ha⟩ | hlast)
+    · right
+      exact ⟨a, by simpa [SSet.Subcomplex.preimage_obj,
+        liftedPiBitsEval_castSucc] using ha⟩
+    · left
+      simpa [SSet.Subcomplex.preimage_obj, liftedPiBitsEval_last] using hlast
+
 
 /-- A numbering of the internal vertices identifies the path poset with the lifted cubical
 bitvector category. -/
@@ -1271,6 +1337,11 @@ vertex of the interval. -/
 def KnownAt (c : PathChain r i j) (k : J) : Prop :=
   k ∈ c.first.I ∨ ∃ l : J, i ≤ l ∧ l ≤ j ∧ l ≠ k ∧ l ∉ c.last.I
 
+/-- The path factors internally or omits an available horn vertex. -/
+def FullyKnownAt (c : PathChain r i j) (k : J) : Prop :=
+  (∃ m : InteriorVertex i j, m.1 ∈ c.first.I) ∨
+    ∃ l : InteriorVertex i j, l.1 ≠ k ∧ l.1 ∉ c.last.I
+
 /-- In Boolean coordinates, the coherent-horn latching condition is a cubical corner:
 the missing coordinate is fixed at `1` on the first path, or one of the other coordinates is
 fixed at `0` on the last path. -/
@@ -1302,6 +1373,27 @@ theorem knownAt_iff_bitvector_corner (c : PathChain r i j) (k : J)
     · right
       refine ⟨x.1, le_of_lt x.2.1, le_of_lt x.2.2, hxk, ?_⟩
       simpa using hx
+
+/-- Boolean coordinates identify the full latching condition with a cubical horn. -/
+theorem fullyKnownAt_iff_bitvector_horn (c : PathChain r i j) (k : J)
+    (hik : i < k) (hkj : k < j) :
+    c.FullyKnownAt k ↔
+      (∃ x : InteriorVertex i j,
+        (thickPathBitvectorOrderIso (le_trans (le_of_lt hik) (le_of_lt hkj)) c.first) x = 1) ∨
+      ∃ x : InteriorVertex i j, x.1 ≠ k ∧
+        (thickPathBitvectorOrderIso (le_trans (le_of_lt hik) (le_of_lt hkj)) c.last) x = 0 := by
+  simp only [FullyKnownAt]
+  constructor
+  · rintro (⟨x, hx⟩ | ⟨x, hxk, hx⟩)
+    · exact Or.inl ⟨x, by simpa [thickPathBitvectorOrderIso, OrderIso.trans_apply,
+        setBitvectorOrderIso, thickPathInteriorOrderIso] using hx⟩
+    · exact Or.inr ⟨x, hxk, by simpa [thickPathBitvectorOrderIso, OrderIso.trans_apply,
+        setBitvectorOrderIso, thickPathInteriorOrderIso] using hx⟩
+  · rintro (⟨x, hx⟩ | ⟨x, hxk, hx⟩)
+    · exact Or.inl ⟨x, by simpa [thickPathBitvectorOrderIso, OrderIso.trans_apply,
+        setBitvectorOrderIso, thickPathInteriorOrderIso] using hx⟩
+    · exact Or.inr ⟨x, hxk, by simpa [thickPathBitvectorOrderIso, OrderIso.trans_apply,
+        setBitvectorOrderIso, thickPathInteriorOrderIso] using hx⟩
 
 /-- A monotone path chain is constantly `1` in one Boolean coordinate exactly when its
 least path is `1` in that coordinate. -/
@@ -1386,6 +1478,41 @@ theorem mem_horn_one_iff_constant {d : ℕ} (s : (Δ[1] : SSet.{u}).obj (Opposit
       rintro ⟨a, ha⟩
       exact Fin.zero_ne_one (ha.symm.trans (h a))
 
+/-- A walking-interval simplex is in the boundary exactly when it is constant. -/
+theorem mem_boundary_one_iff_constant {d : ℕ}
+    (s : (Δ[1] : SSet.{u}).obj (Opposite.op ⦋d⦌)) :
+    s ∈ (∂Δ[1] : (Δ[1] : SSet.{u}).Subcomplex).obj _ ↔
+      (∀ a, s a = 0) ∨ ∀ a, s a = 1 := by
+  rw [SSet.mem_boundary_iff_notMem_range]
+  have eq_one_of_ne_zero (z : Fin 2) (hz : z ≠ 0) : z = 1 := by
+    rcases Fin.eq_zero_or_eq_succ z with rfl | ⟨q, rfl⟩
+    · exact (hz rfl).elim
+    · apply Fin.ext
+      simp
+  have eq_zero_of_ne_one (z : Fin 2) (hz : z ≠ 1) : z = 0 := by
+    rcases Fin.eq_zero_or_eq_succ z with rfl | ⟨q, rfl⟩
+    · rfl
+    · exfalso
+      apply hz
+      apply Fin.ext
+      simp
+  constructor
+  · rintro ⟨j, hj⟩
+    fin_cases j
+    · right
+      intro a
+      exact eq_one_of_ne_zero (s a) (fun h ↦ hj ⟨a, h⟩)
+    · left
+      intro a
+      exact eq_zero_of_ne_one (s a) (fun h ↦ hj ⟨a, h⟩)
+  · rintro (h | h)
+    · refine ⟨1, ?_⟩
+      rintro ⟨a, ha⟩
+      exact Fin.zero_ne_one ((h a).symm.trans ha)
+    · refine ⟨0, ?_⟩
+      rintro ⟨a, ha⟩
+      exact Fin.zero_ne_one (ha.symm.trans (h a))
+
 theorem pathCoordinate_mem_oneHorn_iff_first
     (c : PathChain r i j) (hij : i ≤ j) (n : ℕ)
     (e : InteriorVertex i j ≃ Fin n) (q : Fin n) :
@@ -1461,6 +1588,113 @@ theorem thickPathCube_mem_corner_iff_knownAt
       rw [pathCoordinate_mem_zeroHorn_iff_last c hij n e q]
       simpa [q] using hx
 
+/-- Numbering the missing vertex last identifies full path latching with the last horn. -/
+theorem thickPathCube_mem_lastHorn_iff_fullyKnownAt
+    (c : PathChain r i j) (k : J) (hik : i < k) (hkj : k < j)
+    (n : ℕ) (e : InteriorVertex i j ≃ Fin (n + 1))
+    (hkLast : e ⟨k, hik, hkj⟩ = Fin.last n) :
+    (thickPathNerveCubeIsoExplicit (le_trans (le_of_lt hik) (le_of_lt hkj))
+      (n + 1) e).hom.app (Opposite.op (SimplexCategory.mk r)) c.toNerveSimplex ∈
+        (liftedIntervalCubeLastHorn n 1).obj _ ↔ c.FullyKnownAt k := by
+  let hij := le_trans (le_of_lt hik) (le_of_lt hkj)
+  rw [show (thickPathNerveCubeIsoExplicit hij (n + 1) e).hom.app
+      (Opposite.op (SimplexCategory.mk r)) c.toNerveSimplex =
+      (liftedPiBitsCubeIsoExplicit (n + 1)).hom.app _
+        ((CategoryTheory.nerveMap
+          (thickPathToLiftedPiBitsFunctor hij (n + 1) e)).app _ c.toNerveSimplex) from rfl]
+  rw [mem_liftedIntervalCubeLastHorn_explicit_iff]
+  rw [fullyKnownAt_iff_bitvector_horn c k hik hkj]
+  constructor
+  · rintro (⟨q, hq⟩ | hlast)
+    · let x := e.symm q.castSucc
+      have hxk : x.1 ≠ k := by
+        intro hx
+        have heq : x = ⟨k, hik, hkj⟩ := Subtype.ext hx
+        have he : e x = q.castSucc := by simp [x]
+        rw [heq, hkLast] at he
+        exact Fin.castSucc_ne_last q he.symm
+      change stdSimplexOneIsoNerveFinTwo.inv.app _ _ ∈ (∂Δ[1]).obj _ at hq
+      rw [mem_boundary_one_iff_constant] at hq
+      rcases hq with hzero | hone
+      · right
+        refine ⟨x, hxk, ?_⟩
+        have hz :
+            (CategoryTheory.nerveMap (liftedPiBitsEval (n + 1) q.castSucc)).app _
+                ((CategoryTheory.nerveMap
+                  (thickPathToLiftedPiBitsFunctor hij (n + 1) e)).app _
+                    c.toNerveSimplex) ∈
+              ((SSet.horn 1 (0 : Fin 2)).preimage
+                stdSimplexOneIsoNerveFinTwo.inv).obj _ := by
+          change stdSimplexOneIsoNerveFinTwo.inv.app _ _ ∈ (SSet.horn 1 0).obj _
+          rw [mem_horn_one_iff_constant]
+          exact hzero
+        exact (pathCoordinate_mem_zeroHorn_iff_last c hij (n + 1) e q.castSucc).1 hz
+      · left
+        refine ⟨x, ?_⟩
+        have ho :
+            (CategoryTheory.nerveMap (liftedPiBitsEval (n + 1) q.castSucc)).app _
+                ((CategoryTheory.nerveMap
+                  (thickPathToLiftedPiBitsFunctor hij (n + 1) e)).app _
+                    c.toNerveSimplex) ∈
+              ((SSet.horn 1 (1 : Fin 2)).preimage
+                stdSimplexOneIsoNerveFinTwo.inv).obj _ := by
+          change stdSimplexOneIsoNerveFinTwo.inv.app _ _ ∈ (SSet.horn 1 1).obj _
+          rw [mem_horn_one_iff_constant]
+          exact hone
+        exact (pathCoordinate_mem_oneHorn_iff_first c hij (n + 1) e q.castSucc).1 ho
+    · left
+      refine ⟨⟨k, hik, hkj⟩, ?_⟩
+      have h := (pathCoordinate_mem_oneHorn_iff_first c hij (n + 1) e
+        (Fin.last n)).1 hlast
+      have heLast : e.symm (Fin.last n) = ⟨k, hik, hkj⟩ := by
+        rw [← hkLast, e.symm_apply_apply]
+      rw [heLast] at h
+      exact h
+  · rintro (⟨x, hx⟩ | ⟨x, hxk, hx⟩)
+    · let q := e x
+      by_cases hq : q = Fin.last n
+      · right
+        apply (pathCoordinate_mem_oneHorn_iff_first c hij (n + 1) e
+          (Fin.last n)).2
+        have hx' : x = ⟨k, hik, hkj⟩ := by
+          apply e.injective
+          rw [hkLast, ← hq]
+        have heLast : e.symm (Fin.last n) = ⟨k, hik, hkj⟩ := by
+          rw [← hkLast, e.symm_apply_apply]
+        rw [heLast]
+        rw [hx'] at hx
+        exact hx
+      · obtain ⟨a, ha⟩ := Fin.eq_castSucc_of_ne_last hq
+        left
+        refine ⟨a, ?_⟩
+        have hone := (pathCoordinate_mem_oneHorn_iff_first c hij (n + 1) e q).2
+          (by simpa [q] using hx)
+        rw [← ha] at hone
+        change stdSimplexOneIsoNerveFinTwo.inv.app _ _ ∈ (∂Δ[1]).obj _
+        rw [mem_boundary_one_iff_constant]
+        right
+        change stdSimplexOneIsoNerveFinTwo.inv.app _ _ ∈ (SSet.horn 1 1).obj _ at hone
+        rwa [mem_horn_one_iff_constant] at hone
+    · let q := e x
+      have hq : q ≠ Fin.last n := by
+        intro hq
+        apply hxk
+        have hx' : x = ⟨k, hik, hkj⟩ := by
+          apply e.injective
+          exact hq.trans hkLast.symm
+        exact congrArg Subtype.val hx'
+      obtain ⟨a, ha⟩ := Fin.eq_castSucc_of_ne_last hq
+      left
+      refine ⟨a, ?_⟩
+      have hzero := (pathCoordinate_mem_zeroHorn_iff_last c hij (n + 1) e q).2
+        (by simpa [q] using hx)
+      rw [← ha] at hzero
+      change stdSimplexOneIsoNerveFinTwo.inv.app _ _ ∈ (∂Δ[1]).obj _
+      rw [mem_boundary_one_iff_constant]
+      left
+      change stdSimplexOneIsoNerveFinTwo.inv.app _ _ ∈ (SSet.horn 1 0).obj _ at hzero
+      rwa [mem_horn_one_iff_constant] at hzero
+
 /-- Arbitrary monotone reindexing preserves the known-horn condition. -/
 theorem knownAt_reindex (c : PathChain r i j) (k : J)
     (f : Fin (s + 1) →o Fin (r + 1)) (h : c.KnownAt k) :
@@ -1471,6 +1705,14 @@ theorem knownAt_reindex (c : PathChain r i j) (k : J)
   · right
     exact ⟨l, hil, hlj, hlk, fun hmem ↦ hl (c.le_last _ hmem)⟩
 
+/-- Monotone reindexing preserves the full strict-composition latching condition. -/
+theorem fullyKnownAt_reindex (c : PathChain r i j) (k : J)
+    (f : Fin (s + 1) →o Fin (r + 1)) (h : c.FullyKnownAt k) :
+    (c.reindex f).FullyKnownAt k := by
+  rcases h with ⟨m, hm⟩ | ⟨l, hlk, hl⟩
+  · exact Or.inl ⟨m, c.first_le (f 0) hm⟩
+  · exact Or.inr ⟨l, hlk, fun hmem ↦ hl (c.le_last _ hmem)⟩
+
 /-- The simplicial subcomplex of path chains supplied by an inner horn. -/
 def knownPathSubcomplex (i j k : J) :
     (CategoryTheory.nerve (ThickPath i j)).Subcomplex where
@@ -1478,6 +1720,14 @@ def knownPathSubcomplex (i j k : J) :
   map {U V} f x hx := by
     change (ofNerveSimplex ((CategoryTheory.nerve (ThickPath i j)).map f x)).KnownAt k
     exact knownAt_reindex (c := ofNerveSimplex x) k f.unop.toOrderHom hx
+
+/-- The subcomplex encoding all strict factorizations and available horn faces. -/
+def fullyKnownPathSubcomplex (i j k : J) :
+    (CategoryTheory.nerve (ThickPath i j)).Subcomplex where
+  obj U := {x | (ofNerveSimplex x).FullyKnownAt k}
+  map {U V} f x hx := by
+    change (ofNerveSimplex ((CategoryTheory.nerve (ThickPath i j)).map f x)).FullyKnownAt k
+    exact fullyKnownAt_reindex (c := ofNerveSimplex x) k f.unop.toOrderHom hx
 
 theorem mem_knownPathSubcomplex_iff (i j k : J) (r : ℕ)
     (x : (CategoryTheory.nerve (ThickPath i j)).obj
@@ -1516,6 +1766,41 @@ theorem knownPathSubcomplex_preimage_explicit_eq_corner
   obtain ⟨⟨r⟩⟩ := U
   exact mem_knownPathSubcomplex_preimage_explicit_iff_corner
     i j k hik hkj n e r x
+
+theorem mem_fullyKnownPathSubcomplex_preimage_explicit_iff_lastHorn
+    (i j k : J) (hik : i < k) (hkj : k < j)
+    (n : ℕ) (e : InteriorVertex i j ≃ Fin (n + 1))
+    (hkLast : e ⟨k, hik, hkj⟩ = Fin.last n) (r : ℕ)
+    (x : (liftedIntervalCube (n + 1)).obj
+      (Opposite.op (SimplexCategory.mk r))) :
+    x ∈ ((fullyKnownPathSubcomplex i j k).preimage
+        (thickPathNerveCubeIsoExplicit
+          (le_trans (le_of_lt hik) (le_of_lt hkj)) (n + 1) e).inv).obj _ ↔
+      x ∈ (liftedIntervalCubeLastHorn n 1).obj _ := by
+  let iso := thickPathNerveCubeIsoExplicit
+    (le_trans (le_of_lt hik) (le_of_lt hkj)) (n + 1) e
+  let c := ofNerveSimplex (iso.inv.app _ x)
+  change c.FullyKnownAt k ↔ _
+  rw [← thickPathCube_mem_lastHorn_iff_fullyKnownAt c k hik hkj n e hkLast]
+  have hc : c.toNerveSimplex = iso.inv.app _ x :=
+    toNerveSimplex_ofNerveSimplex _
+  rw [hc]
+  change iso.hom.app _ (iso.inv.app _ x) ∈ _ ↔ x ∈ _
+  rw [Iso.inv_hom_id_app_apply]
+
+/-- The full path-latching subcomplex is the last-coordinate cubical horn. -/
+theorem fullyKnownPathSubcomplex_preimage_explicit_eq_lastHorn
+    (i j k : J) (hik : i < k) (hkj : k < j)
+    (n : ℕ) (e : InteriorVertex i j ≃ Fin (n + 1))
+    (hkLast : e ⟨k, hik, hkj⟩ = Fin.last n) :
+    (fullyKnownPathSubcomplex i j k).preimage
+        (thickPathNerveCubeIsoExplicit
+          (le_trans (le_of_lt hik) (le_of_lt hkj)) (n + 1) e).inv =
+      liftedIntervalCubeLastHorn n 1 := by
+  ext U x
+  obtain ⟨⟨r⟩⟩ := U
+  exact mem_fullyKnownPathSubcomplex_preimage_explicit_iff_lastHorn
+    i j k hik hkj n e hkLast r x
 
 /-- A chain outside the known horn has full greatest path and its least path avoids `k`,
 expressed without choosing a decidable finite enumeration. -/
