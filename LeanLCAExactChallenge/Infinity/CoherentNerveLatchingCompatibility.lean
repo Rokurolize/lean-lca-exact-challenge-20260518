@@ -84,6 +84,18 @@ theorem succAbove_deleteFinVertex {n : ℕ} (l : Fin (n + 2))
   exact congrArg Subtype.val ((Fin.succAboveOrderIso l).apply_symm_apply
     ⟨a, by simpa using hal⟩)
 
+/-- Deleting a lower vertex shifts a higher vertex down by one. -/
+theorem deleteFinVertex_of_lt {n : ℕ} {l a : Fin (n + 2)} (h : l < a) :
+    deleteFinVertex l a (ne_of_gt h) = a.pred (Fin.ne_zero_of_lt h) := by
+  apply l.succAbove_right_injective
+  rw [succAbove_deleteFinVertex, Fin.succAbove_pred_of_lt _ _ h]
+
+/-- Deleting a higher vertex leaves a lower vertex at its cast-pred position. -/
+theorem deleteFinVertex_of_gt {n : ℕ} {l a : Fin (n + 2)} (h : a < l) :
+    deleteFinVertex l a (ne_of_lt h) = a.castPred (Fin.ne_last_of_lt h) := by
+  apply l.succAbove_right_injective
+  rw [succAbove_deleteFinVertex, Fin.succAbove_castPred_of_lt _ _ h]
+
 /-- Delete a vertex omitted by a thick path, reindexing the path in the smaller ordinal. -/
 noncomputable def deletePathVertex
     {n : ℕ} {i j : Fin (n + 2)}
@@ -138,6 +150,47 @@ theorem innerHornFaceFunctor_restrict (C : Type u) [Category.{u} C]
         (SimplexCategory.δ a).toOrderHom.uliftMap).comp
           (E := C) SSet (innerHornFaceFunctor C σ hlk) := by
   exact σ.naturality_apply (SimplexCategory.δ a).op (SSet.horn.face k l hlk)
+
+/-- Two available horn faces have equal enriched-functor restrictions on their common face. -/
+theorem innerHornFaceFunctor_pairwise_restrict (C : Type u) [Category.{u} C]
+    [CategoryTheory.SimplicialCategory C] {n : ℕ} {k l m : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hlk : l ≠ k) (hmk : m ≠ k) (hlm : l < m) :
+    (CategoryTheory.SimplicialThickening.functor
+        (SimplexCategory.δ (deleteFinVertex l m (ne_of_gt hlm))).toOrderHom.uliftMap).comp
+          (E := C) SSet (innerHornFaceFunctor C σ hlk) =
+      (CategoryTheory.SimplicialThickening.functor
+        (SimplexCategory.δ (deleteFinVertex m l (ne_of_lt hlm))).toOrderHom.uliftMap).comp
+          (E := C) SSet (innerHornFaceFunctor C σ hmk) := by
+  have hface :
+      (SSet.horn (n + 2) k : SSet).map
+          (SimplexCategory.δ (deleteFinVertex l m (ne_of_gt hlm))).op
+          (SSet.horn.face k l hlk) =
+        (SSet.horn (n + 2) k : SSet).map
+          (SimplexCategory.δ (deleteFinVertex m l (ne_of_lt hlm))).op
+          (SSet.horn.face k m hmk) := by
+    apply (SSet.yonedaEquiv (X := (SSet.horn (n + 2) k : SSet))).symm.injective
+    rw [← cancel_mono (SSet.horn (n + 2) k).ι]
+    change SSet.stdSimplex.map
+          (SimplexCategory.δ (deleteFinVertex l m (ne_of_gt hlm))) ≫
+          SSet.horn.ι k l hlk ≫ (SSet.horn (n + 2) k).ι =
+      SSet.stdSimplex.map
+          (SimplexCategory.δ (deleteFinVertex m l (ne_of_lt hlm))) ≫
+          SSet.horn.ι k m hmk ≫ (SSet.horn (n + 2) k).ι
+    rw [SSet.horn.ι_ι, SSet.horn.ι_ι]
+    change SSet.stdSimplex.map
+          (SimplexCategory.δ (deleteFinVertex l m (ne_of_gt hlm))) ≫
+          SSet.stdSimplex.map (SimplexCategory.δ l) =
+      SSet.stdSimplex.map
+          (SimplexCategory.δ (deleteFinVertex m l (ne_of_lt hlm))) ≫
+          SSet.stdSimplex.map (SimplexCategory.δ m)
+    rw [← Functor.map_comp, ← Functor.map_comp,
+      deleteFinVertex_of_lt hlm, deleteFinVertex_of_gt hlm]
+    exact congrArg SSet.stdSimplex.map
+      (SimplexCategory.δ_comp_δ' (i := l.castPred (Fin.ne_last_of_lt hlm))
+        (j := m) (by simpa using hlm)).symm
+  rw [← innerHornFaceFunctor_restrict C σ hlk,
+    ← innerHornFaceFunctor_restrict C σ hmk, hface]
 
 /-- Composition lands in paths whose least member contains the middle vertex. -/
 def pathCompositionToKnownPathSubcomplex {J : Type u} [LinearOrder J]
