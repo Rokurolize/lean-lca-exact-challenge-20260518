@@ -1493,6 +1493,66 @@ theorem avoidingPathSubcomplex_properPathMap
           (show ULift.up.{u, 0} j < ULift.up q.face from hjq)]
         exact le_top)).symm
 
+/-- A subinterval with the same left endpoint remains proper. -/
+theorem proper_left_subinterval {n : ℕ} {i r j : Fin (n + 3)}
+    (hrj : r ≤ j)
+    (hproper : ¬ (i = 0 ∧ j = Fin.last (n + 2))) :
+    ¬ (i = 0 ∧ r = Fin.last (n + 2)) := by
+  rintro ⟨hi, hr⟩
+  apply hproper
+  refine ⟨hi, ?_⟩
+  apply le_antisymm (Fin.le_last j)
+  simpa [hr] using hrj
+
+/-- A subinterval with the same right endpoint remains proper. -/
+theorem proper_right_subinterval {n : ℕ} {i r j : Fin (n + 3)}
+    (hir : i ≤ r)
+    (hproper : ¬ (i = 0 ∧ j = Fin.last (n + 2))) :
+    ¬ (r = 0 ∧ j = Fin.last (n + 2)) := by
+  rintro ⟨hr, hj⟩
+  apply hproper
+  refine ⟨?_, hj⟩
+  apply Fin.le_zero_iff.mp
+  simpa [hr] using hir
+
+/-- Proper interval maps preserve every ordered enriched composition. -/
+theorem properPathMap_map_comp
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {missing i r j : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) missing : SSet.{u}) ⟶
+      CategoryTheory.SimplicialNerve C)
+    (hkZero : missing ≠ 0) (hkLast : missing ≠ Fin.last (n + 2))
+    (hir : i ≤ r) (hrj : r ≤ j)
+    (hproper : ¬ (i = 0 ∧ j = Fin.last (n + 2))) :
+    CategoryTheory.eComp SSet
+        (CategoryTheory.SimplicialThickening.mk (ULift.up.{u, 0} i))
+        (CategoryTheory.SimplicialThickening.mk (ULift.up.{u, 0} r))
+        (CategoryTheory.SimplicialThickening.mk (ULift.up.{u, 0} j)) ≫
+      properPathMap C σ hkZero hkLast (hir.trans hrj) hproper =
+    (properPathMap C σ hkZero hkLast hir
+          (proper_left_subinterval hrj hproper) ⊗ₘ
+        properPathMap C σ hkZero hkLast hrj
+          (proper_right_subinterval hir hproper)) ≫
+      CategoryTheory.eComp SSet
+        (innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up i)))
+        (innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up r)))
+        (innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up j))) := by
+  let q := outsideAvailableFace hkZero hkLast (hir.trans hrj) hproper
+  have hqirj : q.face < i ∨ j < q.face := q.outside
+  have hqir : q.face < i ∨ r < q.face := by omega
+  have hqrj : q.face < r ∨ j < q.face := by omega
+  rw [properPathMap_eq_pathMapOf_outsideFace C σ hkZero hkLast
+      (hir.trans hrj) hproper hqirj q.face_ne_missing,
+    properPathMap_eq_pathMapOf_outsideFace C σ hkZero hkLast
+      hir (proper_left_subinterval hrj hproper) hqir q.face_ne_missing,
+    properPathMap_eq_pathMapOf_outsideFace C σ hkZero hkLast
+      hrj (proper_right_subinterval hir hproper) hqrj q.face_ne_missing]
+  exact pathMapOfInnerHornFace_map_comp C σ
+    (by omega) (by omega) (by omega) q.face_ne_missing
+
 /-- The last available face supplies every full path-map ending at the missing inner-horn
 vertex. -/
 noncomputable def innerHornLeftPathMap
