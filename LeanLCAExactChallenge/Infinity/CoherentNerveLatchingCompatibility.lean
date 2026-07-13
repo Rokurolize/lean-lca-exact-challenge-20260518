@@ -105,6 +105,73 @@ theorem deleteFinVertex_of_gt {n : ℕ} {l a : Fin (n + 2)} (h : a < l) :
   apply l.succAbove_right_injective
   rw [succAbove_deleteFinVertex, Fin.succAbove_castPred_of_lt _ _ h]
 
+/-- After deleting the lower of two vertices, the position of the lower vertex after deleting
+the higher one is the corresponding `predAbove` index. -/
+theorem deleteFinVertex_swapIndex {n : ℕ} {l m : Fin (n + 3)} (hlm : l < m) :
+    deleteFinVertex m l (ne_of_lt hlm) =
+      (deleteFinVertex l m (ne_of_gt hlm)).predAbove l := by
+  apply m.succAbove_right_injective
+  rw [succAbove_deleteFinVertex]
+  have hm : l.succAbove (deleteFinVertex l m (ne_of_gt hlm)) = m :=
+    succAbove_deleteFinVertex l m (ne_of_gt hlm)
+  symm
+  calc
+    m.succAbove ((deleteFinVertex l m (ne_of_gt hlm)).predAbove l) =
+        (l.succAbove (deleteFinVertex l m (ne_of_gt hlm))).succAbove
+          ((deleteFinVertex l m (ne_of_gt hlm)).predAbove l) := by rw [hm]
+    _ = l := Fin.succAbove_succAbove_predAbove l _
+
+/-- Reinserting two ordered deleted vertices is independent of the insertion order. -/
+theorem succAbove_deleteFinVertex_comm {n : ℕ} {l m : Fin (n + 3)}
+    (hlm : l < m) (q : Fin (n + 1)) :
+    l.succAbove ((deleteFinVertex l m (ne_of_gt hlm)).succAbove q) =
+      m.succAbove ((deleteFinVertex m l (ne_of_lt hlm)).succAbove q) := by
+  rw [deleteFinVertex_swapIndex hlm]
+  calc
+    l.succAbove ((deleteFinVertex l m (ne_of_gt hlm)).succAbove q) =
+        (l.succAbove (deleteFinVertex l m (ne_of_gt hlm))).succAbove
+          (((deleteFinVertex l m (ne_of_gt hlm)).predAbove l).succAbove q) :=
+      (Fin.succAbove_succAbove_succAbove_predAbove l _ q).symm
+    _ = m.succAbove
+        (((deleteFinVertex l m (ne_of_gt hlm)).predAbove l).succAbove q) := by
+      rw [succAbove_deleteFinVertex]
+
+/-- Deleting two distinct vertices gives the same remaining coordinate in either order. -/
+theorem deleteFinVertex_delete_comm {n : ℕ} {l m q : Fin (n + 3)}
+    (hlm : l < m) (hql : q ≠ l) (hqm : q ≠ m) :
+    deleteFinVertex (deleteFinVertex l m (ne_of_gt hlm))
+        (deleteFinVertex l q hql)
+        (deleteFinVertex_ne l q m hql (ne_of_gt hlm) hqm) =
+      deleteFinVertex (deleteFinVertex m l (ne_of_lt hlm))
+        (deleteFinVertex m q hqm)
+        (deleteFinVertex_ne m q l hqm (ne_of_lt hlm) hql) := by
+  let ml := deleteFinVertex l m (ne_of_gt hlm)
+  let lm := deleteFinVertex m l (ne_of_lt hlm)
+  apply (l.succAbove_right_injective.comp ml.succAbove_right_injective)
+  change l.succAbove (ml.succAbove
+      (deleteFinVertex ml (deleteFinVertex l q hql) _)) =
+    l.succAbove (ml.succAbove
+      (deleteFinVertex lm (deleteFinVertex m q hqm) _))
+  rw [succAbove_deleteFinVertex, succAbove_deleteFinVertex]
+
+  have hins : (fun x ↦ l.succAbove (ml.succAbove x)) =
+      fun x ↦ m.succAbove (lm.succAbove x) := by
+    funext x
+    dsimp only [lm]
+    rw [deleteFinVertex_swapIndex hlm]
+    calc
+      l.succAbove (ml.succAbove x) =
+          (l.succAbove ml).succAbove ((ml.predAbove l).succAbove x) :=
+        (Fin.succAbove_succAbove_succAbove_predAbove l ml x).symm
+      _ = m.succAbove ((ml.predAbove l).succAbove x) := by
+        rw [show l.succAbove ml = m from succAbove_deleteFinVertex l m (ne_of_gt hlm)]
+  change q = (fun x ↦ l.succAbove (ml.succAbove x))
+    (deleteFinVertex lm (deleteFinVertex m q hqm) _)
+  rw [hins]
+  change q = m.succAbove (lm.succAbove
+    (deleteFinVertex lm (deleteFinVertex m q hqm) _))
+  rw [succAbove_deleteFinVertex, succAbove_deleteFinVertex]
+
 /-- Delete a vertex omitted by a thick path, reindexing the path in the smaller ordinal. -/
 noncomputable def deletePathVertex
     {n : ℕ} {i j : Fin (n + 2)}
@@ -231,6 +298,35 @@ theorem path_heq_of_endpoint_eq {J : Type u} [LinearOrder J]
   subst i'
   subst j'
   exact heq_of_eq (CategoryTheory.SimplicialThickening.Path.ext hI)
+
+/-- Deleting two vertices from a thick path is independent of the deletion order, up to the
+propositionally equal double-deleted endpoints. -/
+theorem deletePathVertex_delete_heq
+    {n : ℕ} {i j l m : Fin (n + 3)}
+    (p : CategoryTheory.SimplicialThickening.Path
+      (ULift.up.{u, 0} i) (ULift.up.{u, 0} j))
+    (hlm : l < m) (hli : i ≠ l) (hlj : j ≠ l)
+    (hmi : i ≠ m) (hmj : j ≠ m) :
+    HEq
+      (deletePathVertex (deletePathVertex p l hli hlj)
+        (deleteFinVertex l m (ne_of_gt hlm))
+        (deleteFinVertex_ne l i m hli (ne_of_gt hlm) hmi)
+        (deleteFinVertex_ne l j m hlj (ne_of_gt hlm) hmj))
+      (deletePathVertex (deletePathVertex p m hmi hmj)
+        (deleteFinVertex m l (ne_of_lt hlm))
+        (deleteFinVertex_ne m i l hmi (ne_of_lt hlm) hli)
+        (deleteFinVertex_ne m j l hmj (ne_of_lt hlm) hlj)) := by
+  apply path_heq_of_endpoint_eq
+  · apply ULift.ext
+    exact deleteFinVertex_delete_comm hlm hli hmi
+  · apply ULift.ext
+    exact deleteFinVertex_delete_comm hlm hlj hmj
+  · ext q
+    change ULift.up.{u, 0}
+        (l.succAbove ((deleteFinVertex l m (ne_of_gt hlm)).succAbove q.down)) ∈ p.I ↔
+      ULift.up.{u, 0}
+        (m.succAbove ((deleteFinVertex m l (ne_of_lt hlm)).succAbove q.down)) ∈ p.I
+    rw [succAbove_deleteFinVertex_comm hlm]
 
 /-- The nerves of thick-path categories respect propositional equality of their endpoints. -/
 theorem nerve_thickPath_eq_of_endpoint_eq {J : Type u} [LinearOrder J]
@@ -420,6 +516,38 @@ noncomputable def deleteVertexPathNerveMap {n : ℕ} {i j : Fin (n + 2)}
         (ThickPath (ULift.up (deleteFinVertex l i hli))
           (ULift.up (deleteFinVertex l j hlj))) :=
   CategoryTheory.nerveMap (deleteVertexPathFunctor l hli hlj)
+
+/-- The two double-deletion simplicial maps agree heterogeneously. -/
+theorem deleteVertexPathNerveMap_comp_comm_heq
+    {n : ℕ} {i j l m : Fin (n + 3)}
+    (hlm : l < m) (hli : i ≠ l) (hlj : j ≠ l)
+    (hmi : i ≠ m) (hmj : j ≠ m) :
+    HEq
+      (deleteVertexPathNerveMap.{u} l hli hlj ≫
+        deleteVertexPathNerveMap.{u} (deleteFinVertex l m (ne_of_gt hlm))
+          (deleteFinVertex_ne l i m hli (ne_of_gt hlm) hmi)
+          (deleteFinVertex_ne l j m hlj (ne_of_gt hlm) hmj))
+      (deleteVertexPathNerveMap.{u} m hmi hmj ≫
+        deleteVertexPathNerveMap.{u} (deleteFinVertex m l (ne_of_lt hlm))
+          (deleteFinVertex_ne m i l hmi (ne_of_lt hlm) hli)
+          (deleteFinVertex_ne m j l hmj (ne_of_lt hlm) hlj)) := by
+  let F := deleteVertexPathFunctor.{u} l hli hlj ⋙
+    deleteVertexPathFunctor.{u} (deleteFinVertex l m (ne_of_gt hlm))
+      (deleteFinVertex_ne l i m hli (ne_of_gt hlm) hmi)
+      (deleteFinVertex_ne l j m hlj (ne_of_gt hlm) hmj)
+  let G := deleteVertexPathFunctor.{u} m hmi hmj ⋙
+    deleteVertexPathFunctor.{u} (deleteFinVertex m l (ne_of_lt hlm))
+      (deleteFinVertex_ne m i l hmi (ne_of_lt hlm) hli)
+      (deleteFinVertex_ne m j l hmj (ne_of_lt hlm) hlj)
+  change HEq (CategoryTheory.nerveMap F) (CategoryTheory.nerveMap G)
+  apply nerveMap_heq_of_pathFunctor_obj_heq
+  · apply ULift.ext
+    exact deleteFinVertex_delete_comm hlm hli hmi
+  · apply ULift.ext
+    exact deleteFinVertex_delete_comm hlm hlj hmj
+  · intro p
+    exact deletePathVertex_delete_heq.{u, u, 0, 0}
+      (n := n) p hlm hli hlj hmi hmj
 
 /-- Restriction of a horn face agrees with the corresponding face operator. -/
 theorem innerHornFaceFunctor_restrict (C : Type u) [Category.{u} C]
