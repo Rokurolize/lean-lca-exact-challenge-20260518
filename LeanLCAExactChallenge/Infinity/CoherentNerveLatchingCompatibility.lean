@@ -2611,4 +2611,109 @@ theorem innerHornSpanningPathMap_map_comp
   (Classical.choose_spec
     (exists_innerHornSpanningPathMap.{u} C σ hkZero hkLast hik hkj)).2
 
+/-- A strict internal vertex of the top interval. -/
+abbrev TopInternalVertex (n : ℕ) :=
+  {r : Fin (n + 3) // 0 < r ∧ r < Fin.last (n + 2)}
+
+/-- An available strict internal face of the top horn. -/
+abbrev TopAvailableFace (n : ℕ) (missing : Fin (n + 3)) :=
+  {l : TopInternalVertex n // l.1 ≠ missing}
+
+/-- Face pieces and through-vertex pieces indexing the top latching object. -/
+abbrev TopPathLatchingIndex (n : ℕ) (missing : Fin (n + 3)) :=
+  TopAvailableFace n missing ⊕ TopInternalVertex n
+
+/-- The top latching subcomplex piece selected by an index. -/
+def topPathLatchingPiece {n : ℕ} {missing : Fin (n + 3)}
+    (a : TopPathLatchingIndex n missing) :
+    (CategoryTheory.nerve
+      (ThickPath (ULift.up.{u, 0} 0)
+        (ULift.up.{u, 0} (Fin.last (n + 2))))).Subcomplex :=
+  match a with
+  | .inl l => avoidingPathSubcomplex (ULift.up 0)
+      (ULift.up (Fin.last (n + 2))) (ULift.up l.1.1)
+  | .inr r => throughPathSubcomplex (ULift.up 0)
+      (ULift.up (Fin.last (n + 2))) (ULift.up r.1)
+
+/-- Horn data force the map on each top latching piece. -/
+noncomputable def topPathLatchingPieceMap
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {missing : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) missing : SSet.{u}) ⟶
+      CategoryTheory.SimplicialNerve C)
+    (hkZero : missing ≠ 0) (hkLast : missing ≠ Fin.last (n + 2))
+    (a : TopPathLatchingIndex n missing) :
+    (topPathLatchingPiece a : SSet) ⟶
+      (innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk (ULift.up 0)) ⟶[SSet]
+        innerHornObject C σ
+          (CategoryTheory.SimplicialThickening.mk
+            (ULift.up (Fin.last (n + 2))))) :=
+  match a with
+  | .inl l => avoidingPathMapOfInnerHornFace C σ
+      l.1.2.1 l.1.2.2 l.2
+  | .inr r => forcedThroughPathMap C (innerHornObject C σ)
+      (CategoryTheory.SimplicialThickening.mk (ULift.up 0))
+      (CategoryTheory.SimplicialThickening.mk (ULift.up r.1))
+      (CategoryTheory.SimplicialThickening.mk
+        (ULift.up (Fin.last (n + 2))))
+      (properPathMap C σ hkZero hkLast (Fin.zero_le r.1) (by omega))
+      (properPathMap C σ hkZero hkLast (Fin.le_last r.1) (by omega))
+
+/-- The indexed top pieces have the full path-latching subcomplex as their union. -/
+theorem iSup_topPathLatchingPiece {n : ℕ} {missing : Fin (n + 3)} :
+    ⨆ a : TopPathLatchingIndex n missing, topPathLatchingPiece a =
+      fullyKnownPathSubcomplex (ULift.up.{u, 0} 0)
+        (ULift.up (Fin.last (n + 2))) (ULift.up missing) := by
+  ext U x
+  simp only [Subfunctor.iSup_obj, Set.mem_iUnion, fullyKnownPathSubcomplex]
+  change (∃ a, x ∈ (topPathLatchingPiece a).obj U) ↔
+    (ofNerveSimplex x).FullyKnownAt (ULift.up missing)
+  constructor
+  · rintro ⟨a, ha⟩
+    rcases a with l | r
+    · exact Or.inr ⟨⟨ULift.up l.1.1, by simpa using l.1.2.1,
+          by simpa using l.1.2.2⟩,
+        fun h ↦ l.2 (ULift.up_injective h), ha⟩
+    · exact Or.inl ⟨⟨ULift.up r.1, by simpa using r.2.1,
+        by simpa using r.2.2⟩, ha⟩
+  · rintro (⟨r, hr⟩ | ⟨l, hlk, hl⟩)
+    · let r' := r.1.down
+      have hrange := r.2
+      change 0 < r.1.down ∧ r.1.down < Fin.last (n + 2) at hrange
+      refine ⟨.inr ⟨r', ?_, ?_⟩, ?_⟩
+      · exact hrange.1
+      · exact hrange.2
+      · exact hr
+    · let l' := l.1.down
+      have hlrange := l.2
+      change 0 < l.1.down ∧ l.1.down < Fin.last (n + 2) at hlrange
+      refine ⟨.inl ⟨⟨l', ?_, ?_⟩, ?_⟩, ?_⟩
+      · exact hlrange.1
+      · exact hlrange.2
+      · intro h
+        apply hlk
+        apply ULift.ext
+        exact h
+      · exact hl
+
+/-- Available top face pieces agree on every binary intersection. -/
+theorem topPathLatchingFace_pairwise
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {missing : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) missing : SSet.{u}) ⟶
+      CategoryTheory.SimplicialNerve C)
+    (hkZero : missing ≠ 0) (hkLast : missing ≠ Fin.last (n + 2))
+    (l m : TopAvailableFace n missing) :
+    SSet.Subcomplex.homOfLE (inf_le_left :
+        topPathLatchingPiece (Sum.inl l) ⊓ topPathLatchingPiece (Sum.inl m) ≤
+          topPathLatchingPiece (Sum.inl l)) ≫
+        topPathLatchingPieceMap C σ hkZero hkLast (.inl l) =
+      SSet.Subcomplex.homOfLE (inf_le_right :
+        topPathLatchingPiece (Sum.inl l) ⊓ topPathLatchingPiece (Sum.inl m) ≤
+          topPathLatchingPiece (Sum.inl m)) ≫
+        topPathLatchingPieceMap C σ hkZero hkLast (.inl m) := by
+  exact avoidingPathMapOfInnerHornFace_pairwise C σ
+    l.1.2.1 l.1.2.2 l.2 m.1.2.1 m.1.2.2 m.2
+
 end LeanLCAExactChallenge.Infinity.CoherentNervePathFiltration
