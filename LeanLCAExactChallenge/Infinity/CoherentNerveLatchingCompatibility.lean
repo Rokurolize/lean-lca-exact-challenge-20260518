@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.Infinity.CoherentNerveKanExtension
+import Mathlib.Order.Fin.SuccAboveOrderIso
 
 /-!
 # Compatibility of coherent-nerve path latching maps
@@ -9,7 +10,7 @@ The through-vertex piece is the product of the two shorter path nerves.
 
 Kan extension preserves the resulting enriched-composition equation.
 
-The omitted-vertex map and its overlap equation remain to be constructed.
+The pairwise overlap equation between the constructed omitted-vertex face maps remains to be proved.
 -/
 
 set_option autoImplicit false
@@ -20,9 +21,17 @@ universe u
 
 namespace LeanLCAExactChallenge.Infinity.CoherentNervePathFiltration
 
-open CategoryTheory Simplicial MonoidalCategory
+open CategoryTheory Opposite Simplicial MonoidalCategory
 open CategoryTheory.SimplicialCategory CategoryTheory.EnrichedCategory
 open Path Chain Chain.PathChain
+
+/-- The object of a coherent horn at a vertex, extracted from its constant zero-simplex. -/
+noncomputable def innerHornObject (C : Type u) [Category.{u} C]
+    [CategoryTheory.SimplicialCategory C] {n : ℕ} {k : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (a : CategoryTheory.SimplicialThickening (ULift (Fin (n + 3)))) : C :=
+  (σ.app (op (.mk 0)) (SSet.horn.const n k a.as.down (op (.mk 0)))).obj
+    (CategoryTheory.SimplicialThickening.mk (ULift.up 0))
 
 /-- The enriched functor carried by one available codimension-one face of a coherent horn. -/
 def innerHornFaceFunctor (C : Type u) [Category.{u} C]
@@ -32,6 +41,91 @@ def innerHornFaceFunctor (C : Type u) [Category.{u} C]
     CategoryTheory.EnrichedFunctor SSet
       (CategoryTheory.SimplicialThickening (ULift (Fin (n + 2)))) C :=
   σ.app _ (SSet.horn.face k l hlk)
+
+/-- Every available horn face has the common object assignment extracted from horn vertices. -/
+theorem innerHornFaceFunctor_obj (C : Type u) [Category.{u} C]
+    [CategoryTheory.SimplicialCategory C] {n : ℕ} {k l : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    (hlk : l ≠ k)
+    (a : CategoryTheory.SimplicialThickening (ULift (Fin (n + 2)))) :
+    (innerHornFaceFunctor C σ hlk).obj a =
+      innerHornObject C σ
+        (CategoryTheory.SimplicialThickening.mk
+          (ULift.up (l.succAbove a.as.down))) := by
+  have h := σ.naturality_apply
+    (SimplexCategory.const (.mk 0) (.mk (n + 1)) a.as.down).op
+    (SSet.horn.face k l hlk)
+  have hobj := congrArg
+    (fun F ↦ F.obj (CategoryTheory.SimplicialThickening.mk (ULift.up 0))) h
+  have hface :
+      (SSet.horn (n + 2) k : SSet).map
+          (SimplexCategory.const (.mk 0) (.mk (n + 1)) a.as.down).op
+          (SSet.horn.face k l hlk) =
+        SSet.horn.const n k (l.succAbove a.as.down) (op (.mk 0)) := by
+    apply Subtype.ext
+    ext b
+    rfl
+  rw [hface] at hobj
+  change innerHornObject C σ
+      (CategoryTheory.SimplicialThickening.mk
+        (ULift.up (l.succAbove a.as.down))) =
+    (innerHornFaceFunctor C σ hlk).obj a at hobj
+  exact hobj.symm
+
+/-- Delete a specified vertex from a different finite ordinal vertex. -/
+noncomputable def deleteFinVertex {n : ℕ} (l : Fin (n + 2))
+    (a : Fin (n + 2)) (hal : a ≠ l) : Fin (n + 1) :=
+  (Fin.succAboveOrderIso l).symm ⟨a, by simpa using hal⟩
+
+@[simp]
+theorem succAbove_deleteFinVertex {n : ℕ} (l : Fin (n + 2))
+    (a : Fin (n + 2)) (hal : a ≠ l) :
+    l.succAbove (deleteFinVertex l a hal) = a := by
+  exact congrArg Subtype.val ((Fin.succAboveOrderIso l).apply_symm_apply
+    ⟨a, by simpa using hal⟩)
+
+/-- Delete a vertex omitted by a thick path, reindexing the path in the smaller ordinal. -/
+noncomputable def deletePathVertex
+    {n : ℕ} {i j : Fin (n + 2)}
+    (p : CategoryTheory.SimplicialThickening.Path (ULift.up i) (ULift.up j))
+    (l : Fin (n + 2))
+    (hli : i ≠ l) (hlj : j ≠ l) :
+    CategoryTheory.SimplicialThickening.Path
+      (ULift.up (deleteFinVertex l i hli))
+      (ULift.up (deleteFinVertex l j hlj)) where
+  I := {q | ULift.up (l.succAbove q.down) ∈ p.I}
+  left := by simpa using p.left
+  right := by simpa using p.right
+  left_le q hq := by
+    change deleteFinVertex l i hli ≤ q.down
+    rw [← (Fin.succAboveOrderEmb l).le_iff_le]
+    simp only [Fin.succAboveOrderEmb_apply, succAbove_deleteFinVertex]
+    change i ≤ l.succAbove q.down
+    simpa using p.left_le (ULift.up (l.succAbove q.down)) hq
+  le_right q hq := by
+    change q.down ≤ deleteFinVertex l j hlj
+    rw [← (Fin.succAboveOrderEmb l).le_iff_le]
+    simp only [Fin.succAboveOrderEmb_apply, succAbove_deleteFinVertex]
+    change l.succAbove q.down ≤ j
+    simpa using p.le_right (ULift.up (l.succAbove q.down)) hq
+
+/-- Reindex thick paths along deletion of one endpoint-distinct vertex. -/
+noncomputable def deleteVertexPathFunctor {n : ℕ} {i j : Fin (n + 2)}
+    (l : Fin (n + 2)) (hli : i ≠ l) (hlj : j ≠ l) :
+    ThickPath (ULift.up i) (ULift.up j) ⥤
+      ThickPath (ULift.up (deleteFinVertex l i hli))
+        (ULift.up (deleteFinVertex l j hlj)) where
+  obj p := deletePathVertex p l hli hlj
+  map f := ⟨⟨⟨fun _ hx ↦ f.1.1.1 hx⟩⟩⟩
+
+/-- The path-nerve map induced by deleting a vertex. -/
+noncomputable def deleteVertexPathNerveMap {n : ℕ} {i j : Fin (n + 2)}
+    (l : Fin (n + 2)) (hli : i ≠ l) (hlj : j ≠ l) :
+    CategoryTheory.nerve (ThickPath (ULift.up i) (ULift.up j)) ⟶
+      CategoryTheory.nerve
+        (ThickPath (ULift.up (deleteFinVertex l i hli))
+          (ULift.up (deleteFinVertex l j hlj))) :=
+  CategoryTheory.nerveMap (deleteVertexPathFunctor l hli hlj)
 
 /-- Restriction of a horn face agrees with the corresponding face operator. -/
 theorem innerHornFaceFunctor_restrict (C : Type u) [Category.{u} C]
@@ -93,12 +187,41 @@ def avoidingPathSubcomplex {J : Type u} [LinearOrder J] (i j l : J) :
       exact ofNerveSimplex_map_toNerveSimplex _ _]
     exact (ofNerveSimplex x).not_mem_of_not_mem_last hx _
 
+/-- The mapping-object map carried by an available horn face on paths omitting that face vertex. -/
+noncomputable def avoidingPathMapOfInnerHornFace
+    (C : Type u) [Category.{u} C] [CategoryTheory.SimplicialCategory C]
+    {n : ℕ} {k : Fin (n + 3)}
+    (σ : (SSet.horn (n + 2) k : SSet.{u}) ⟶ CategoryTheory.SimplicialNerve C)
+    {i j l : Fin (n + 3)} (hil : i < l) (hlj : l < j) (hlk : l ≠ k) :
+    (avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l) : SSet) ⟶
+      (innerHornObject C σ (CategoryTheory.SimplicialThickening.mk (ULift.up i))
+        ⟶[SSet]
+      innerHornObject C σ (CategoryTheory.SimplicialThickening.mk (ULift.up j))) := by
+  let hi : i ≠ l := ne_of_lt hil
+  let hj : j ≠ l := ne_of_gt hlj
+  let i' := deleteFinVertex l i hi
+  let j' := deleteFinVertex l j hj
+  let F := innerHornFaceFunctor C σ hlk
+  have hobj_i : F.obj (CategoryTheory.SimplicialThickening.mk (ULift.up i')) =
+      innerHornObject C σ (CategoryTheory.SimplicialThickening.mk (ULift.up i)) := by
+    simpa [F, i'] using innerHornFaceFunctor_obj C σ hlk
+      (CategoryTheory.SimplicialThickening.mk (ULift.up i'))
+  have hobj_j : F.obj (CategoryTheory.SimplicialThickening.mk (ULift.up j')) =
+      innerHornObject C σ (CategoryTheory.SimplicialThickening.mk (ULift.up j)) := by
+    simpa [F, j'] using innerHornFaceFunctor_obj C σ hlk
+      (CategoryTheory.SimplicialThickening.mk (ULift.up j'))
+  exact (avoidingPathSubcomplex (ULift.up i) (ULift.up j) (ULift.up l)).ι ≫
+    deleteVertexPathNerveMap l hi hj ≫
+    F.map (CategoryTheory.SimplicialThickening.mk (ULift.up i'))
+      (CategoryTheory.SimplicialThickening.mk (ULift.up j')) ≫
+    eqToHom (congrArg₂ (fun A B : C ↦ A ⟶[SSet] B) hobj_i hobj_j)
+
 /-- Known paths are through paths or omit a nonmissing vertex. -/
 theorem knownPathSubcomplex_eq_through_sup_avoiding {J : Type u} [LinearOrder J]
     (i j k : J) :
     knownPathSubcomplex i j k =
       throughPathSubcomplex i j k ⊔
-        ⨆ (l : {l : J // i ≤ l ∧ l ≤ j ∧ l ≠ k}),
+        ⨆ (l : {l : J // i < l ∧ l < j ∧ l ≠ k}),
           avoidingPathSubcomplex i j l.1 := by
   ext U x
   constructor
@@ -108,19 +231,82 @@ theorem knownPathSubcomplex_eq_through_sup_avoiding {J : Type u} [LinearOrder J]
     · exact Or.inl hk
     · apply Or.inr
       simp only [Subfunctor.iSup_obj, Set.mem_iUnion]
-      exact ⟨⟨l, hil, hlj, hlk⟩, hl⟩
+      have hli : l ≠ i := fun hli ↦ hl (hli ▸ (ofNerveSimplex x).last.left)
+      have hlj' : l ≠ j := fun hlj' ↦ hl (hlj' ▸ (ofNerveSimplex x).last.right)
+      exact ⟨⟨l, lt_of_le_of_ne hil hli.symm, lt_of_le_of_ne hlj hlj', hlk⟩, hl⟩
   · intro h
     change (ofNerveSimplex x).KnownAt k
     rcases h with hk | havoid
     · exact Or.inl hk
     · simp only [Subfunctor.iSup_obj, Set.mem_iUnion] at havoid
       obtain ⟨l, hl⟩ := havoid
-      exact Or.inr ⟨l.1, l.2.1, l.2.2.1, l.2.2.2, hl⟩
+      exact Or.inr ⟨l.1, l.2.1.le, l.2.2.1.le, l.2.2.2, hl⟩
 
 /-- The union of all known-path pieces obtained by omitting a nonmissing vertex. -/
 def avoidingKnownPathSubcomplex {J : Type u} [LinearOrder J] (i j k : J) :
     (CategoryTheory.nerve (ThickPath i j)).Subcomplex :=
-  ⨆ (l : {l : J // i ≤ l ∧ l ≤ j ∧ l ≠ k}), avoidingPathSubcomplex i j l.1
+  ⨆ (l : {l : J // i < l ∧ l < j ∧ l ≠ k}), avoidingPathSubcomplex i j l.1
+
+section SubcomplexUnionMap
+
+variable {X Y : SSet.{u}} {I : Type u} (A : I → X.Subcomplex)
+
+private noncomputable def iSupSubcomplexWitness
+    (U : SimplexCategoryᵒᵖ) (x : (⨆ i, A i : X.Subcomplex).obj U) : I :=
+  Classical.choose (by
+    simpa only [Subfunctor.iSup_obj, Set.mem_iUnion] using x.2)
+
+private theorem iSupSubcomplexWitness_mem
+    (U : SimplexCategoryᵒᵖ) (x : (⨆ i, A i : X.Subcomplex).obj U) :
+    x.1 ∈ (A (iSupSubcomplexWitness A U x)).obj U :=
+  Classical.choose_spec (by
+    simpa only [Subfunctor.iSup_obj, Set.mem_iUnion] using x.2)
+
+/-- Pairwise-compatible maps from subcomplexes glue over their union. -/
+noncomputable def mapFromISupSubcomplex
+    (f : (i : I) → (A i : SSet) ⟶ Y)
+    (hcompat : ∀ i j,
+      SSet.Subcomplex.homOfLE (inf_le_left : A i ⊓ A j ≤ A i) ≫ f i =
+        SSet.Subcomplex.homOfLE (inf_le_right : A i ⊓ A j ≤ A j) ≫ f j) :
+    ((⨆ i, A i : X.Subcomplex) : SSet) ⟶ Y where
+  app U := ↾fun x ↦
+    f (iSupSubcomplexWitness A U x) |>.app U
+      ⟨x.1, iSupSubcomplexWitness_mem A U x⟩
+  naturality := by
+    intro U V α
+    ext x
+    let i := iSupSubcomplexWitness A U x
+    let y := ((⨆ i, A i : X.Subcomplex) : SSet).map α x
+    let j := iSupSubcomplexWitness A V y
+    have hxi : x.1 ∈ (A i).obj U := iSupSubcomplexWitness_mem A U x
+    have hyi : y.1 ∈ (A i).obj V := (A i).map α hxi
+    have hyj : y.1 ∈ (A j).obj V := iSupSubcomplexWitness_mem A V y
+    have hover := congrArg (fun q ↦ q.app V ⟨y.1, ⟨hyi, hyj⟩⟩) (hcompat i j)
+    change (f i).app V ⟨y.1, hyi⟩ = (f j).app V ⟨y.1, hyj⟩ at hover
+    change (f j).app V ⟨y.1, hyj⟩ = Y.map α ((f i).app U ⟨x.1, hxi⟩)
+    rw [← hover]
+    exact (f i).naturality_apply α ⟨x.1, hxi⟩
+
+/-- The glued map restricts to each member of the compatible family. -/
+@[reassoc]
+theorem homOfLE_iSup_mapFromISupSubcomplex
+    (f : (i : I) → (A i : SSet) ⟶ Y)
+    (hcompat : ∀ i j,
+      SSet.Subcomplex.homOfLE (inf_le_left : A i ⊓ A j ≤ A i) ≫ f i =
+        SSet.Subcomplex.homOfLE (inf_le_right : A i ⊓ A j ≤ A j) ≫ f j)
+    (i : I) :
+    SSet.Subcomplex.homOfLE (le_iSup A i) ≫
+      mapFromISupSubcomplex A f hcompat = f i := by
+  ext U x
+  let j := iSupSubcomplexWitness A U
+    ((SSet.Subcomplex.homOfLE (le_iSup A i)).app U x)
+  have hxj : x.1 ∈ (A j).obj U := iSupSubcomplexWitness_mem A U
+    ((SSet.Subcomplex.homOfLE (le_iSup A i)).app U x)
+  have hover := congrArg (fun q ↦ q.app U ⟨x.1, ⟨x.2, hxj⟩⟩) (hcompat i j)
+  change (f j).app U ⟨x.1, hxj⟩ = (f i).app U x
+  exact hover.symm
+
+end SubcomplexUnionMap
 
 /-- The binary through/omitted decomposition of the known-path latching subcomplex. -/
 theorem knownPathSubcomplex_eq_through_sup_avoidingKnown {J : Type u}
@@ -144,7 +330,7 @@ def avoidingKnownPathSubcomplexToKnown {J : Type u} [LinearOrder J] (i j k : J) 
     intro U x hx
     simp only [avoidingKnownPathSubcomplex, Subfunctor.iSup_obj, Set.mem_iUnion] at hx
     obtain ⟨l, hl⟩ := hx
-    exact Or.inr ⟨l.1, l.2.1, l.2.2.1, l.2.2.2, hl⟩)
+    exact Or.inr ⟨l.1, l.2.1.le, l.2.2.1.le, l.2.2.2, hl⟩)
 
 /-- Glue the through and omitted-vertex maps. -/
 noncomputable def knownPathMapOfCompatibleParts {J : Type u} [LinearOrder J]
