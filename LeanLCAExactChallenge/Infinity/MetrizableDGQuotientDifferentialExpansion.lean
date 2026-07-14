@@ -232,6 +232,217 @@ theorem mixedSurvivingTerms_add_eq_zero
     internalContractionLargeMap_eq_of_surviving d i j hj]
   simp
 
+def mergedRightLargeMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    Quiver.Hom (largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+      (quotientGradedModule X Y ((n + 1) + 1)) :=
+  (ModuleCat.uliftFunctor.{1} ℤ).map
+      (rightInternalContractionToMergedTarget d i) ≫
+    Limits.Sigma.ι
+      (fun s : GradedSummandIndex X Y ((n + 1) + 1) ↦ largeSummandModule s)
+      ⟨eraseIntermediate w i, (d.contract i).raise (erasePosition w i)⟩
+
+def mergedLeftLargeMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    Quiver.Hom (largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+      (quotientGradedModule X Y ((n + 1) + 1)) :=
+  (ModuleCat.uliftFunctor.{1} ℤ).map
+      (leftInternalContractionToMergedTarget d i) ≫
+    Limits.Sigma.ι
+      (fun s : GradedSummandIndex X Y ((n + 1) + 1) ↦ largeSummandModule s)
+      ⟨eraseIntermediate w i, (d.contract i).raise (erasePosition w i)⟩
+
+theorem internalContractionLargeMap_right_eq_merged
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    internalContractionLargeMap d i.succ i = mergedRightLargeMap d i := by
+  let s₁ : GradedSummandIndex X Y ((n + 1) + 1) :=
+    ⟨eraseIntermediate w i, (d.raise i.succ).contract i⟩
+  let s₂ : GradedSummandIndex X Y ((n + 1) + 1) :=
+    ⟨eraseIntermediate w i, (d.contract i).raise (erasePosition w i)⟩
+  have hs : s₁ = s₂ := by
+    apply Sigma.ext
+    · rfl
+    · exact heq_of_eq (DegreeProfile.raise_right_contract d i)
+  have hm : largeSummandModule s₁ = largeSummandModule s₂ :=
+    congrArg largeSummandModule hs
+  unfold internalContractionLargeMap mergedRightLargeMap
+  apply comp_eq_of_middle_eq_heq hm
+  · apply map_heq_of_target_eq (ModuleCat.uliftFunctor.{1} ℤ)
+      (congrArg summandModule (DegreeProfile.raise_right_contract d i))
+    unfold rightInternalContractionToMergedTarget
+    exact (CategoryTheory.comp_eqToHom_heq
+      (internalDifferentialTensorMap d i.succ ≫
+        contractionTensorMap (d.raise i.succ) i)
+      (congrArg summandModule (DegreeProfile.raise_right_contract d i))).symm
+  · exact congr_arg_heq
+      (fun s ↦ Limits.Sigma.ι
+        (fun t : GradedSummandIndex X Y ((n + 1) + 1) ↦ largeSummandModule t) s) hs
+
+theorem internalContractionLargeMap_left_eq_merged
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    internalContractionLargeMap d i.castSucc i = mergedLeftLargeMap d i := by
+  let s₁ : GradedSummandIndex X Y ((n + 1) + 1) :=
+    ⟨eraseIntermediate w i, (d.raise i.castSucc).contract i⟩
+  let s₂ : GradedSummandIndex X Y ((n + 1) + 1) :=
+    ⟨eraseIntermediate w i, (d.contract i).raise (erasePosition w i)⟩
+  have hs : s₁ = s₂ := by
+    apply Sigma.ext
+    · rfl
+    · exact heq_of_eq (DegreeProfile.raise_left_contract d i)
+  have hm : largeSummandModule s₁ = largeSummandModule s₂ :=
+    congrArg largeSummandModule hs
+  unfold internalContractionLargeMap mergedLeftLargeMap
+  apply comp_eq_of_middle_eq_heq hm
+  · apply map_heq_of_target_eq (ModuleCat.uliftFunctor.{1} ℤ)
+      (congrArg summandModule (DegreeProfile.raise_left_contract d i))
+    unfold leftInternalContractionToMergedTarget
+    exact (CategoryTheory.comp_eqToHom_heq
+      (internalDifferentialTensorMap d i.castSucc ≫
+        contractionTensorMap (d.raise i.castSucc) i)
+      (congrArg summandModule (DegreeProfile.raise_left_contract d i))).symm
+  · exact congr_arg_heq
+      (fun s ↦ Limits.Sigma.ι
+        (fun t : GradedSummandIndex X Y ((n + 1) + 1) ↦ largeSummandModule t) s) hs
+
+theorem contractionInternalLargeMap_merged_leibniz
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    contractionInternalLargeMap d i (erasePosition w i) =
+      mergedRightLargeMap d i +
+        ((d.arrowDegree i.succ).negOnePow : ℤ) • mergedLeftLargeMap d i := by
+  unfold contractionInternalLargeMap mergedRightLargeMap mergedLeftLargeMap
+  rw [mergedTensorMap_leibniz, Functor.map_add, Functor.map_zsmul,
+    Preadditive.add_comp]
+  congr 1
+  exact Preadditive.zsmul_comp
+    (f := (ModuleCat.uliftFunctor.{1} ℤ).map
+      (leftInternalContractionToMergedTarget d i))
+    (g := Limits.Sigma.ι
+      (fun s : GradedSummandIndex X Y ((n + 1) + 1) ↦ largeSummandModule s)
+      ⟨eraseIntermediate w i, (d.contract i).raise (erasePosition w i)⟩) _
+
+theorem mixedMergedTerms_add_eq_zero
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    (d.internalSign i.castSucc *
+          (d.raise i.castSucc).contractionSign i) •
+        internalContractionLargeMap d i.castSucc i +
+      (d.internalSign i.succ *
+          (d.raise i.succ).contractionSign i) •
+        internalContractionLargeMap d i.succ i +
+      (d.contractionSign i *
+          (d.contract i).internalSign (erasePosition w i)) •
+        contractionInternalLargeMap d i (erasePosition w i) = 0 := by
+  rw [internalContractionLargeMap_left_eq_merged,
+    internalContractionLargeMap_right_eq_merged,
+    DegreeProfile.mixedCoefficient_left,
+    DegreeProfile.mixedCoefficient_right,
+    contractionInternalLargeMap_merged_leibniz]
+  simp only [smul_add, smul_smul, neg_smul]
+  module
+
+theorem mixedPairSum_eq_mergedPair
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    ∑ j, (
+        (d.internalSign (survivingOldFactorIndex w i j) *
+            (d.raise (survivingOldFactorIndex w i j)).contractionSign i) •
+          internalContractionLargeMap d (survivingOldFactorIndex w i j) i +
+        (d.contractionSign i * (d.contract i).internalSign j) •
+          contractionInternalLargeMap d i j) =
+      (d.internalSign i.succ * (d.raise i.succ).contractionSign i) •
+          internalContractionLargeMap d i.succ i +
+        (d.contractionSign i *
+            (d.contract i).internalSign (erasePosition w i)) •
+          contractionInternalLargeMap d i (erasePosition w i) := by
+  rw [Fintype.sum_eq_single (erasePosition w i)]
+  · rw [(survivingOldFactorIndex_eq_right_iff w i
+      (erasePosition w i)).mpr rfl]
+  · intro j hj
+    exact mixedSurvivingTerms_add_eq_zero d i j hj
+
+theorem mixedTermsForContraction_add_eq_zero
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    (∑ q,
+        (d.internalSign q * (d.raise q).contractionSign i) •
+          internalContractionLargeMap d q i) +
+      ∑ j,
+        (d.contractionSign i * (d.contract i).internalSign j) •
+          contractionInternalLargeMap d i j = 0 := by
+  rw [sum_univ_eq_left_add_sum_survivingOldFactorIndex i
+    (fun q ↦
+      (d.internalSign q * (d.raise q).contractionSign i) •
+        internalContractionLargeMap d q i)]
+  have hsum :
+      (∑ j,
+          (d.internalSign (survivingOldFactorIndex w i j) *
+              (d.raise (survivingOldFactorIndex w i j)).contractionSign i) •
+            internalContractionLargeMap d (survivingOldFactorIndex w i j) i) +
+        ∑ j,
+          (d.contractionSign i * (d.contract i).internalSign j) •
+            contractionInternalLargeMap d i j =
+        ∑ j, (
+          (d.internalSign (survivingOldFactorIndex w i j) *
+              (d.raise (survivingOldFactorIndex w i j)).contractionSign i) •
+            internalContractionLargeMap d (survivingOldFactorIndex w i j) i +
+          (d.contractionSign i * (d.contract i).internalSign j) •
+            contractionInternalLargeMap d i j) :=
+    Finset.sum_add_distrib.symm
+  rw [add_assoc
+    ((d.internalSign i.castSucc *
+        (d.raise i.castSucc).contractionSign i) •
+      internalContractionLargeMap d i.castSucc i)
+    (∑ j,
+      (d.internalSign (survivingOldFactorIndex w i j) *
+          (d.raise (survivingOldFactorIndex w i j)).contractionSign i) •
+        internalContractionLargeMap d (survivingOldFactorIndex w i j) i)
+    (∑ j,
+      (d.contractionSign i * (d.contract i).internalSign j) •
+        contractionInternalLargeMap d i j)]
+  rw [hsum, mixedPairSum_eq_mergedPair]
+  have hmerged := mixedMergedTerms_add_eq_zero d i
+  exact (add_assoc
+    ((d.internalSign i.castSucc *
+        (d.raise i.castSucc).contractionSign i) •
+      internalContractionLargeMap d i.castSucc i)
+    ((d.internalSign i.succ *
+        (d.raise i.succ).contractionSign i) •
+      internalContractionLargeMap d i.succ i)
+    ((d.contractionSign i *
+        (d.contract i).internalSign (erasePosition w i)) •
+      contractionInternalLargeMap d i (erasePosition w i))).symm.trans hmerged
+
+theorem mixedDoubleSums_add_eq_zero
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    (∑ q, ∑ i,
+        (d.internalSign q * (d.raise q).contractionSign i) •
+          internalContractionLargeMap d q i) +
+      ∑ i, ∑ j,
+        (d.contractionSign i * (d.contract i).internalSign j) •
+          contractionInternalLargeMap d i j = 0 := by
+  rw [Finset.sum_comm]
+  rw [← Finset.sum_add_distrib]
+  apply Finset.sum_eq_zero
+  intro i _
+  exact mixedTermsForContraction_add_eq_zero d i
+
+theorem mixedDifferentialFromSummand_eq_zero
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    internalDifferentialFromSummand d ≫
+        quotientContractionDifferential X Y (n + 1) +
+      contractionDifferentialFromSummand d ≫
+        quotientInternalDifferential X Y (n + 1) = 0 := by
+  rw [internalDifferentialFromSummand_comp_contractionDifferential_eq_double_sum,
+    contractionDifferentialFromSummand_comp_internalDifferential_eq_double_sum]
+  exact mixedDoubleSums_add_eq_zero d
+
 /-- Expand the contraction-then-contraction family by its first contracted position. -/
 theorem contractionDifferentialFromSummand_comp_contractionDifferential
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
@@ -604,6 +815,27 @@ theorem quotientInternalDifferential_square
   intro s
   rw [← Category.assoc, quotientInternalDifferential_inclusion, Limits.comp_zero]
   exact internalDifferentialFromSummand_comp_internalDifferential_eq_zero s.2
+
+theorem quotientTotalDifferential_inclusion_square
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    (Limits.Sigma.ι
+        (fun s : GradedSummandIndex X Y n ↦ largeSummandModule s) ⟨w, d⟩ ≫
+      quotientTotalDifferential X Y n) ≫
+        quotientTotalDifferential X Y (n + 1) = 0 := by
+  rw [quotientTotalDifferential_inclusion_square_expansion,
+    internalDifferentialFromSummand_comp_internalDifferential_eq_zero,
+    contractionDifferentialFromSummand_comp_contractionDifferential_eq_zero]
+  simpa only [zero_add, add_zero] using mixedDifferentialFromSummand_eq_zero d
+
+theorem quotientTotalDifferential_square
+    (X Y : ComplexCategory) (n : ℤ) :
+    quotientTotalDifferential X Y n ≫
+      quotientTotalDifferential X Y (n + 1) = 0 := by
+  apply Limits.Sigma.hom_ext
+  intro s
+  rw [← Category.assoc]
+  exact quotientTotalDifferential_inclusion_square s.2
 
 /-- The combined coefficients of all distinct ordered internal-factor pairs sum to zero. -/
 theorem sum_internalPairCoefficient_eq_zero
