@@ -261,6 +261,36 @@ theorem factorDifferential_self_comp {X Y : ComplexCategory}
   exact (dgHomZModuleCochainComplex (w.arrowSource i) (w.arrowTarget i)).d_comp_d
     (d.arrowDegree i) ((d.raise i).arrowDegree i) (((d.raise i).raise i).arrowDegree i)
 
+theorem factorDifferential_comm_heq_of_ne {X Y : ComplexCategory}
+    {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
+    (i j q : Fin (w.length + 1)) (hij : i ≠ j) :
+    HEq (factorDifferential d i q ≫ factorDifferential (d.raise i) j q)
+      (factorDifferential d j q ≫ factorDifferential (d.raise j) i q) := by
+  by_cases hqi : q = i
+  · subst q
+    unfold factorDifferential
+    have hdeg :
+        (d.arrowDegree i + (if i = i then 1 else 0)) + (if i = j then 1 else 0) =
+          (d.arrowDegree i + (if i = j then 1 else 0)) + (if i = i then 1 else 0) := by
+      simp [hij]
+    simpa [DegreeProfile.raise, factorModule, hij] using congr_arg_heq
+      (fun r ↦ (dgHomZModuleCochainComplex
+        (w.arrowSource i) (w.arrowTarget i)).d (d.arrowDegree i) r) hdeg
+  · by_cases hqj : q = j
+    · subst q
+      unfold factorDifferential
+      have hdeg :
+          (d.arrowDegree j + (if j = i then 1 else 0)) + (if j = j then 1 else 0) =
+            (d.arrowDegree j + (if j = j then 1 else 0)) + (if j = i then 1 else 0) := by
+        simp [hqi]
+      simpa [DegreeProfile.raise, factorModule, hqi] using congr_arg_heq
+        (fun r ↦ (dgHomZModuleCochainComplex
+          (w.arrowSource j) (w.arrowTarget j)).d (d.arrowDegree j) r) hdeg
+    · unfold factorDifferential
+      simpa [DegreeProfile.raise, factorModule, hqi, hqj] using
+        ((eqToHom_heq_id_dom _ _ _).trans
+          (eqToHom_heq_id_dom _ _ _).symm)
+
 /-- A definitionally recursive list presentation of a finite family. -/
 @[reducible]
 def finFamilyList {α : Type*} : {k : ℕ} → (Fin k → α) → List α
@@ -366,6 +396,43 @@ theorem TensorMapData.ofFn_tensorMap_comp_eq_zero_of_component
           simp
           rfl
 
+theorem TensorMapData.ofFn_tensorMap_comp_heq_of_pointwise
+    {k : ℕ} (M N₁ P N₂ : Fin k → ModuleCat.{0} ℤ)
+    (f₁ : (i : Fin k) → M i ⟶ N₁ i) (g₁ : (i : Fin k) → N₁ i ⟶ P i)
+    (f₂ : (i : Fin k) → M i ⟶ N₂ i) (g₂ : (i : Fin k) → N₂ i ⟶ P i)
+    (h : ∀ i, HEq (f₁ i ≫ g₁ i) (f₂ i ≫ g₂ i)) :
+    (TensorMapData.ofFn M N₁ f₁).tensorMap ≫
+        (TensorMapData.ofFn N₁ P g₁).tensorMap
+      = (TensorMapData.ofFn M N₂ f₂).tensorMap ≫
+        (TensorMapData.ofFn N₂ P g₂).tensorMap := by
+  simp only [TensorMapData.tensorMap_comp]
+  induction k with
+  | zero => rfl
+  | succ k ih =>
+      simp only [TensorMapData.ofFn, TensorMapData.comp,
+        TensorMapData.tensorMap]
+      have hhead := h 0
+      have htail := ih (fun i : Fin k ↦ M i.succ)
+        (fun i : Fin k ↦ N₁ i.succ) (fun i : Fin k ↦ P i.succ)
+        (fun i : Fin k ↦ N₂ i.succ)
+        (fun i ↦ f₁ i.succ) (fun i ↦ g₁ i.succ)
+        (fun i ↦ f₂ i.succ) (fun i ↦ g₂ i.succ) (fun i ↦ h i.succ)
+      rw [eq_of_heq hhead, htail]
+
+theorem TensorMapData.ofFn_tensorMap_comp_heq_of_pointwise_of_target_eq
+    {k : ℕ} (M N₁ P₁ N₂ P₂ : Fin k → ModuleCat.{0} ℤ)
+    (f₁ : (i : Fin k) → M i ⟶ N₁ i) (g₁ : (i : Fin k) → N₁ i ⟶ P₁ i)
+    (f₂ : (i : Fin k) → M i ⟶ N₂ i) (g₂ : (i : Fin k) → N₂ i ⟶ P₂ i)
+    (hP : P₁ = P₂) (h : ∀ i, HEq (f₁ i ≫ g₁ i) (f₂ i ≫ g₂ i)) :
+    HEq ((TensorMapData.ofFn M N₁ f₁).tensorMap ≫
+        (TensorMapData.ofFn N₁ P₁ g₁).tensorMap)
+      ((TensorMapData.ofFn M N₂ f₂).tensorMap ≫
+        (TensorMapData.ofFn N₂ P₂ g₂).tensorMap) := by
+  subst P₂
+  apply heq_of_eq
+  exact TensorMapData.ofFn_tensorMap_comp_heq_of_pointwise
+    M N₁ P₁ N₂ f₁ g₁ f₂ g₂ h
+
 /-- Data for replacing two adjacent tensor factors by one factor. -/
 inductive AdjacentMergeData :
     (source target : List (ModuleCat.{0} ℤ)) → Type 1
@@ -463,6 +530,18 @@ theorem internalDifferentialTensorMap_self_comp {X Y : ComplexCategory}
       (factorModule ((d.raise i).raise i)) (factorDifferential d i)
         (factorDifferential (d.raise i) i) i
   exact factorDifferential_self_comp d i
+
+theorem internalDifferentialTensorMap_comm_heq_of_ne {X Y : ComplexCategory}
+    {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
+    (i j : Fin (w.length + 1)) (hij : i ≠ j) :
+    HEq (internalDifferentialTensorMap d i ≫
+        internalDifferentialTensorMap (d.raise i) j)
+      (internalDifferentialTensorMap d j ≫
+        internalDifferentialTensorMap (d.raise j) i) := by
+  apply TensorMapData.ofFn_tensorMap_comp_heq_of_pointwise_of_target_eq
+  · exact congrArg (fun e ↦ factorModule e) (d.raise_comm i j)
+  · intro q
+    exact factorDifferential_comm_heq_of_ne d i j q hij
 
 /-- Index of a homogeneous summand of the corrected Drinfeld quotient. -/
 abbrev GradedSummandIndex (X Y : ComplexCategory) (n : ℤ) :=
