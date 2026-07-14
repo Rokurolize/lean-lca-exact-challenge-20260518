@@ -330,6 +330,83 @@ def adjacentFactorComposition {X Y : ComplexCategory}
       (w.arrowSource i.succ) (w.arrowTarget i.succ)
       (arrowTarget_castSucc_eq_arrowSource_succ w i) rfl
 
+theorem adjacentFactorComposition_assoc
+    {X Y : ComplexCategory} {k : ℕ}
+    (intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory)
+    {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (i : Fin (k + 1)) :
+    (α_ (factorModule d i.castSucc.castSucc)
+          (factorModule d i.castSucc.succ)
+          (factorModule d i.succ.succ)).inv ≫
+        (adjacentFactorComposition d i.castSucc ⊗ₘ
+          𝟙 (factorModule d i.succ.succ)) ≫
+        dgCochainCompTensorOfEq
+          (({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord X Y).arrowSource i.castSucc.castSucc)
+          (({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord X Y).arrowTarget i.succ.castSucc)
+          (({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord X Y).arrowSource i.succ.succ)
+          (({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord X Y).arrowTarget i.succ.succ)
+          (arrowTarget_castSucc_eq_arrowSource_succ
+            ({ length := k + 2, intermediate := intermediate } :
+              DrinfeldWord X Y) i.succ)
+          (show
+            (d.arrowDegree i.castSucc.castSucc +
+                d.arrowDegree i.castSucc.succ) +
+              d.arrowDegree i.succ.succ =
+                d.arrowDegree i.castSucc.castSucc +
+                  d.arrowDegree i.castSucc.succ +
+                    d.arrowDegree i.succ.succ by rfl) =
+      (𝟙 (factorModule d i.castSucc.castSucc) ⊗ₘ
+        adjacentFactorComposition d i.succ) ≫
+        dgCochainCompTensorOfEq
+          (({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord X Y).arrowSource i.castSucc.castSucc)
+          (({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord X Y).arrowTarget i.castSucc.castSucc)
+          (({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord X Y).arrowSource i.castSucc.succ)
+          (({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord X Y).arrowTarget i.succ.succ)
+          (arrowTarget_castSucc_eq_arrowSource_succ
+            ({ length := k + 2, intermediate := intermediate } :
+              DrinfeldWord X Y) i.castSucc)
+          (show
+            d.arrowDegree i.castSucc.castSucc +
+                (d.arrowDegree i.castSucc.succ +
+                  d.arrowDegree i.succ.succ) =
+              d.arrowDegree i.castSucc.castSucc +
+                d.arrowDegree i.castSucc.succ +
+                  d.arrowDegree i.succ.succ by omega) := by
+  simpa only [adjacentFactorComposition, factorModule,
+    Fin.castSucc_succ, id_eq] using
+    dgCochainCompTensorOfEq_assoc
+      (({ length := k + 2, intermediate := intermediate } :
+        DrinfeldWord X Y).arrowSource i.castSucc.castSucc)
+      (({ length := k + 2, intermediate := intermediate } :
+        DrinfeldWord X Y).arrowTarget i.castSucc.castSucc)
+      (({ length := k + 2, intermediate := intermediate } :
+        DrinfeldWord X Y).arrowSource i.castSucc.succ)
+      (({ length := k + 2, intermediate := intermediate } :
+        DrinfeldWord X Y).arrowTarget i.succ.castSucc)
+      (({ length := k + 2, intermediate := intermediate } :
+        DrinfeldWord X Y).arrowSource i.succ.succ)
+      (({ length := k + 2, intermediate := intermediate } :
+        DrinfeldWord X Y).arrowTarget i.succ.succ)
+      (arrowTarget_castSucc_eq_arrowSource_succ
+        ({ length := k + 2, intermediate := intermediate } :
+          DrinfeldWord X Y) i.castSucc)
+      (arrowTarget_castSucc_eq_arrowSource_succ
+        ({ length := k + 2, intermediate := intermediate } :
+          DrinfeldWord X Y) i.succ)
+      (d.arrowDegree i.castSucc.castSucc)
+      (d.arrowDegree i.castSucc.succ)
+      (d.arrowDegree i.succ.succ)
+
 def adjacentRightDifferentialPath {X Y : ComplexCategory}
     {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n) (i : Fin w.length) :
     Quiver.Hom (factorModule d i.castSucc ⊗ factorModule d i.succ)
@@ -713,6 +790,76 @@ theorem AdjacentMergeData.tensorMap_head_tail_comm
   simp only [Category.assoc]
   rw [MonoidalCategory.tensorHom_comp_tensorHom]
   simp
+
+inductive AdjacentMergePairCoherence :
+    {source middle₁ middle₂ target : List (ModuleCat.{0} ℤ)} →
+      AdjacentMergeData source middle₁ →
+      AdjacentMergeData middle₁ target →
+      AdjacentMergeData source middle₂ →
+      AdjacentMergeData middle₂ target → Prop
+  | assoc {M N P MN NP Q : ModuleCat.{0} ℤ}
+      {Ms : List (ModuleCat.{0} ℤ)}
+      (f : Quiver.Hom (M ⊗ N) MN) (g : Quiver.Hom (MN ⊗ P) Q)
+      (h : Quiver.Hom (N ⊗ P) NP) (k : Quiver.Hom (M ⊗ NP) Q)
+      (hassoc : (α_ M N P).inv ≫ (f ⊗ₘ 𝟙 P) ≫ g =
+        (𝟙 M ⊗ₘ h) ≫ k) :
+      AdjacentMergePairCoherence
+        (@AdjacentMergeData.head M N MN (P :: Ms) f)
+        (@AdjacentMergeData.head MN P Q Ms g)
+        (@AdjacentMergeData.tail M (N :: P :: Ms) (NP :: Ms)
+          (@AdjacentMergeData.head N P NP Ms h))
+        (@AdjacentMergeData.head M NP Q Ms k)
+  | head_tail {M N P : ModuleCat.{0} ℤ}
+      {Ms Ns : List (ModuleCat.{0} ℤ)}
+      (f : Quiver.Hom (M ⊗ N) P) (g : AdjacentMergeData Ms Ns) :
+      AdjacentMergePairCoherence
+        (@AdjacentMergeData.head M N P Ms f)
+        (@AdjacentMergeData.tail P Ms Ns g)
+        (@AdjacentMergeData.tail M (N :: Ms) (N :: Ns)
+          (@AdjacentMergeData.tail N Ms Ns g))
+        (@AdjacentMergeData.head M N P Ns f)
+  | symm {source middle₁ middle₂ target : List (ModuleCat.{0} ℤ)}
+      {f₁ : AdjacentMergeData source middle₁}
+      {g₁ : AdjacentMergeData middle₁ target}
+      {f₂ : AdjacentMergeData source middle₂}
+      {g₂ : AdjacentMergeData middle₂ target}
+      (h : AdjacentMergePairCoherence f₁ g₁ f₂ g₂) :
+      AdjacentMergePairCoherence f₂ g₂ f₁ g₁
+  | tail {M : ModuleCat.{0} ℤ}
+      {source middle₁ middle₂ target : List (ModuleCat.{0} ℤ)}
+      {f₁ : AdjacentMergeData source middle₁}
+      {g₁ : AdjacentMergeData middle₁ target}
+      {f₂ : AdjacentMergeData source middle₂}
+      {g₂ : AdjacentMergeData middle₂ target}
+      (h : AdjacentMergePairCoherence f₁ g₁ f₂ g₂) :
+      AdjacentMergePairCoherence
+        (@AdjacentMergeData.tail M source middle₁ f₁)
+        (@AdjacentMergeData.tail M middle₁ target g₁)
+        (@AdjacentMergeData.tail M source middle₂ f₂)
+        (@AdjacentMergeData.tail M middle₂ target g₂)
+
+theorem AdjacentMergePairCoherence.tensorMap_eq :
+    {source middle₁ middle₂ target : List (ModuleCat.{0} ℤ)} →
+      {f₁ : AdjacentMergeData source middle₁} →
+      {g₁ : AdjacentMergeData middle₁ target} →
+      {f₂ : AdjacentMergeData source middle₂} →
+      {g₂ : AdjacentMergeData middle₂ target} →
+      AdjacentMergePairCoherence f₁ g₁ f₂ g₂ →
+        f₁.tensorMap ≫ g₁.tensorMap = f₂.tensorMap ≫ g₂.tensorMap
+  | _, _, _, _, _, _, _, _, .assoc f g h k hassoc =>
+      AdjacentMergeData.tensorMap_assoc f g h k hassoc
+  | _, _, _, _, _, _, _, _, .head_tail f g =>
+      AdjacentMergeData.tensorMap_head_tail_comm f g
+  | _, _, _, _, _, _, _, _, .symm h => h.tensorMap_eq.symm
+  | _, _, _, _, _, _, _, _,
+      @AdjacentMergePairCoherence.tail M source middle₁ middle₂ target
+        f₁ g₁ f₂ g₂ h => by
+      change (𝟙 M ⊗ₘ f₁.tensorMap) ≫ (𝟙 M ⊗ₘ g₁.tensorMap) =
+        (𝟙 M ⊗ₘ f₂.tensorMap) ≫ (𝟙 M ⊗ₘ g₂.tensorMap)
+      rw [MonoidalCategory.tensorHom_comp_tensorHom,
+        MonoidalCategory.tensorHom_comp_tensorHom]
+      simpa only [Category.id_comp] using
+        congrArg (fun q ↦ 𝟙 M ⊗ₘ q) h.tensorMap_eq
 
 /-- The tensor-product module belonging to one word and one compatible degree profile. -/
 abbrev summandModule {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
