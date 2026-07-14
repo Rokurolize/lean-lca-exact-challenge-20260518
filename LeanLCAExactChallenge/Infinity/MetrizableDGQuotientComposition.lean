@@ -74,6 +74,38 @@ theorem append_assoc {W X Y Z : ComplexCategory}
             apply Fin.ext
             exact (Nat.sub_sub i.val ulength wlength).symm
 
+def DegreeProfile.castTotal {X Y : ComplexCategory} {w : DrinfeldWord X Y}
+    {n m : ℤ} (h : n = m) (d : DegreeProfile w n) : DegreeProfile w m := by
+  subst h
+  exact d
+
+@[simp]
+theorem DegreeProfile.castTotal_arrowDegree
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n m : ℤ}
+    (h : n = m) (d : DegreeProfile w n) (i : Fin (w.length + 1)) :
+    (d.castTotal h).arrowDegree i = d.arrowDegree i := by
+  subst h
+  rfl
+
+def DegreeProfile.transport {X Y : ComplexCategory} {w v : DrinfeldWord X Y}
+    {n m : ℤ} (hw : w = v) (hn : n = m) (d : DegreeProfile w n) :
+    DegreeProfile v m := by
+  subst hw
+  subst hn
+  exact d
+
+@[simp]
+theorem DegreeProfile.transport_arrowDegree
+    {X Y : ComplexCategory} {w v : DrinfeldWord X Y} {n m : ℤ}
+    (hw : w = v) (hn : n = m) (d : DegreeProfile w n)
+    (i : Fin (v.length + 1)) :
+    (d.transport hw hn).arrowDegree i =
+      d.arrowDegree
+        (Fin.cast (congrArg (fun q : DrinfeldWord X Y ↦ q.length + 1) hw).symm i) := by
+  subst hw
+  subst hn
+  rfl
+
 def appendArrowDegree
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
     {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
@@ -424,6 +456,79 @@ theorem appendArrowDegree_right
     change w.length + 1 + j.val = w.length + (j.val + 1)
     omega
   rw [hindex, Fin.addCases_right, Fin.cases_succ]
+
+theorem DegreeProfile.append_nil_transport
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    (d.append (nilDegreeProfile Y Y 0)).transport
+      (append_nil w) (Int.add_zero n) = d := by
+  apply DegreeProfile.ext
+  funext i
+  rw [DegreeProfile.transport_arrowDegree]
+  induction i using Fin.lastCases with
+  | last =>
+      have hindex :
+          Fin.cast
+              (congrArg (fun q : DrinfeldWord X Y ↦ q.length + 1)
+                (append_nil w)).symm
+              (Fin.last w.length) =
+            appendBoundaryArrowIndex w (nil Y Y) := by
+        apply Fin.ext
+        rfl
+      rw [hindex]
+      change appendArrowDegree d (nilDegreeProfile Y Y 0)
+        (appendBoundaryArrowIndex w (nil Y Y)) = _
+      rw [appendArrowDegree_boundary]
+      simp [nilDegreeProfile]
+  | cast i =>
+      have hindex :
+          Fin.cast
+              (congrArg (fun q : DrinfeldWord X Y ↦ q.length + 1)
+                (append_nil w)).symm i.castSucc =
+            appendLeftArrowIndex (v := nil Y Y) i := by
+        apply Fin.ext
+        rfl
+      rw [hindex]
+      change appendArrowDegree d (nilDegreeProfile Y Y 0)
+        (appendLeftArrowIndex (v := nil Y Y) i) = _
+      rw [appendArrowDegree_left]
+
+theorem DegreeProfile.nil_append_transport
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    ((nilDegreeProfile X X 0).append d).transport
+      (nil_append w) (Int.zero_add n) = d := by
+  apply DegreeProfile.ext
+  funext i
+  rw [DegreeProfile.transport_arrowDegree]
+  induction i using Fin.cases with
+  | zero =>
+      have hindex :
+          Fin.cast
+              (congrArg (fun q : DrinfeldWord X Y ↦ q.length + 1)
+                (nil_append w)).symm 0 =
+            appendBoundaryArrowIndex (nil X X) w := by
+        apply Fin.ext
+        rfl
+      rw [hindex]
+      change appendArrowDegree (nilDegreeProfile X X 0) d
+        (appendBoundaryArrowIndex (nil X X) w) = _
+      rw [appendArrowDegree_boundary]
+      simp [nilDegreeProfile]
+  | succ i =>
+      have hindex :
+          Fin.cast
+              (congrArg (fun q : DrinfeldWord X Y ↦ q.length + 1)
+                (nil_append w)).symm i.succ =
+            appendRightArrowIndex (w := nil X X) i := by
+        apply Fin.ext
+        simp only [Fin.val_cast, Fin.val_succ, appendRightArrowIndex,
+          Fin.val_mk, nil]
+        omega
+      rw [hindex]
+      change appendArrowDegree (nilDegreeProfile X X 0) d
+        (appendRightArrowIndex (w := nil X X) i) = _
+      rw [appendArrowDegree_right]
 
 theorem factorModule_append_left
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
