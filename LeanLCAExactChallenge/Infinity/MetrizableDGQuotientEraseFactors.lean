@@ -884,6 +884,274 @@ def recursiveContractionMergedFactorMap
   rw [recursiveMergedFactor_eq_mergedFactor]
   exact contractionMergedFactorMap d i j
 
+def rawContractionFactor
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) : ModuleCat.{0} ℤ :=
+  (dgHomZModuleCochainComplex
+    (w.arrowSource i.castSucc) (w.arrowTarget i.succ)).X
+      (d.arrowDegree i.castSucc + d.arrowDegree i.succ)
+
+abbrev tailWord
+    {Y : ComplexCategory} {k : ℕ}
+    (intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory) :
+    DrinfeldWord (intermediate 0).obj Y where
+  length := k
+  intermediate := fun i ↦ intermediate i.succ
+
+def tailDegreeProfile
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    DegreeProfile (tailWord (Y := Y) intermediate)
+      (n - d.arrowDegree 0 + 1) where
+  arrowDegree := fun i : Fin (k + 1) ↦ d.arrowDegree i.succ
+  totalDegree := by
+    have hd := d.totalDegree
+    change (∑ i : Fin (k + 2), d.arrowDegree i) - (k + 1) = n at hd
+    rw [Fin.sum_univ_succ] at hd
+    change (∑ i : Fin (k + 1), d.arrowDegree i.succ) - k =
+      n - d.arrowDegree 0 + 1
+    omega
+
+@[simp]
+theorem tailDegreeProfile_arrowDegree
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (i : Fin (k + 1)) :
+    (tailDegreeProfile d).arrowDegree i = d.arrowDegree i.succ := rfl
+
+@[simp]
+theorem tailWord_vertex
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    (i : Fin (k + 2)) :
+    (tailWord (Y := Y) intermediate).vertex i =
+      (({ length := k + 1, intermediate := intermediate } :
+        DrinfeldWord X Y).vertex i.succ) := by
+  refine Fin.cases ?_ (fun i ↦ ?_) i
+  · change (intermediate 0).obj =
+      Fin.lastCases Y (fun i : Fin (k + 1) ↦ (intermediate i).obj) 0
+    have hzero : (0 : Fin (k + 2)) = (0 : Fin (k + 1)).castSucc := rfl
+    rw [hzero, Fin.lastCases_castSucc]
+  · refine Fin.lastCases ?_ (fun i ↦ ?_) i
+    · have htail : (Fin.last k).succ =
+          Fin.last ((tailWord (Y := Y) intermediate).length + 1) := by
+          apply Fin.ext
+          rfl
+      have horiginal : (Fin.last k).succ.succ =
+          Fin.last
+            (({ length := k + 1, intermediate := intermediate } :
+              DrinfeldWord X Y).length + 1) := by
+          apply Fin.ext
+          rfl
+      conv_lhs => rw [htail]
+      conv_rhs => rw [horiginal]
+      rw [vertex_last, vertex_last]
+    · unfold vertex
+      simp only [Fin.cases_succ]
+      rw [show i.castSucc.succ = i.succ.castSucc by
+        apply Fin.ext
+        rfl]
+      unfold object tailWord
+      simp only [Fin.lastCases_castSucc]
+
+@[simp]
+theorem tailWord_arrowSource
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    (i : Fin (k + 1)) :
+    (tailWord (Y := Y) intermediate).arrowSource i =
+      (({ length := k + 1, intermediate := intermediate } :
+        DrinfeldWord X Y).arrowSource i.succ) := by
+  unfold arrowSource
+  simpa only [Fin.castSucc_succ] using
+    (tailWord_vertex (X := X) (Y := Y) (intermediate := intermediate) i.castSucc)
+
+@[simp]
+theorem tailWord_arrowTarget
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    (i : Fin (k + 1)) :
+    (tailWord (Y := Y) intermediate).arrowTarget i =
+      (({ length := k + 1, intermediate := intermediate } :
+        DrinfeldWord X Y).arrowTarget i.succ) := by
+  unfold arrowTarget
+  exact tailWord_vertex (X := X) (Y := Y)
+    (intermediate := intermediate) i.succ
+
+@[simp]
+theorem tailFactorModule
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (i : Fin (k + 1)) :
+    factorModule (tailDegreeProfile d) i = factorModule d i.succ := by
+  unfold factorModule
+  rw [tailWord_arrowSource, tailWord_arrowTarget,
+    tailDegreeProfile_arrowDegree]
+
+@[simp]
+theorem tailRawContractionFactor
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (i : Fin k) :
+    rawContractionFactor (tailDegreeProfile d) i =
+      rawContractionFactor d i.succ := by
+  unfold rawContractionFactor
+  rw [tailWord_arrowSource (X := X) (Y := Y)
+      (intermediate := intermediate) i.castSucc,
+    tailWord_arrowTarget (X := X) (Y := Y)
+      (intermediate := intermediate) i.succ]
+  simp only [tailDegreeProfile_arrowDegree, Fin.castSucc_succ]
+
+def rawTripleContractionFactor
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (j : Fin (k + 1)) : ModuleCat.{0} ℤ :=
+  (dgHomZModuleCochainComplex
+    (({ length := k + 2, intermediate := intermediate } :
+      DrinfeldWord X Y).arrowSource j.castSucc.castSucc)
+    (({ length := k + 2, intermediate := intermediate } :
+      DrinfeldWord X Y).arrowTarget j.succ.succ)).X
+      (d.arrowDegree j.castSucc.castSucc +
+        d.arrowDegree j.castSucc.succ + d.arrowDegree j.succ.succ)
+
+@[simp]
+theorem tailRawTripleContractionFactor
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 3) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 3, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (j : Fin (k + 1)) :
+    rawTripleContractionFactor (tailDegreeProfile d) j =
+      rawTripleContractionFactor d j.succ := by
+  unfold rawTripleContractionFactor
+  simp only [tailWord_arrowSource (X := X) (Y := Y)
+      (intermediate := intermediate) j.castSucc.castSucc,
+    tailWord_arrowTarget (X := X) (Y := Y)
+      (intermediate := intermediate) j.succ.succ]
+  simp only [tailDegreeProfile_arrowDegree, Fin.castSucc_succ]
+
+def rawContractionAdjacentMergeData
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    AdjacentMergeData (finFamilyList (factorModule d))
+      (finFamilyList
+        (recursiveMergedFactor (factorModule d) i (rawContractionFactor d i))) :=
+  recursiveAdjacentMergeDataOfFn (factorModule d) i (rawContractionFactor d i)
+    (adjacentFactorComposition d i)
+
+def rawSecondContractionFactor
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (i : Fin (k + 2)) (j : Fin (k + 1)) : ModuleCat.{0} ℤ :=
+  if i = j.castSucc ∨ i = j.succ then rawTripleContractionFactor d j
+  else rawContractionFactor d (i.succAbove j)
+
+def rawSecondContractionMerge
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (i : Fin (k + 2)) (j : Fin (k + 1)) :
+    Quiver.Hom
+      (recursiveMergedFactor (factorModule d) i (rawContractionFactor d i) j.castSucc ⊗
+        recursiveMergedFactor (factorModule d) i (rawContractionFactor d i) j.succ)
+      (rawSecondContractionFactor d i j) := by
+  rw [recursiveMergedFactor_eq_mergedFactor]
+  by_cases hleft : i = j.castSucc
+  · subst i
+    have hnotlt : ¬ j.succ < j.castSucc :=
+      not_lt_of_ge (Fin.le_of_lt Fin.castSucc_lt_succ)
+    have hne : j.succ ≠ j.castSucc :=
+      (Fin.ne_of_lt Fin.castSucc_lt_succ).symm
+    simp only [mergedFactor, Fin.lt_irrefl, if_false,
+      hnotlt, hne, rawSecondContractionFactor, true_or, if_true]
+    simpa [rawContractionFactor, rawTripleContractionFactor, factorModule,
+      Fin.castSucc_succ] using dgCochainCompTensorOfEq
+      (({ length := k + 2, intermediate := intermediate } :
+        DrinfeldWord X Y).arrowSource j.castSucc.castSucc)
+      (({ length := k + 2, intermediate := intermediate } :
+        DrinfeldWord X Y).arrowTarget j.castSucc.succ)
+      (({ length := k + 2, intermediate := intermediate } :
+        DrinfeldWord X Y).arrowSource j.succ.succ)
+      (({ length := k + 2, intermediate := intermediate } :
+        DrinfeldWord X Y).arrowTarget j.succ.succ)
+      (arrowTarget_castSucc_eq_arrowSource_succ
+        ({ length := k + 2, intermediate := intermediate } :
+          DrinfeldWord X Y) j.succ) rfl
+  · by_cases hright : i = j.succ
+    · subst i
+      simp only [mergedFactor, Fin.castSucc_lt_succ, if_true,
+        Fin.lt_irrefl, if_false,
+        rawSecondContractionFactor, or_true]
+      simpa [rawContractionFactor, rawTripleContractionFactor, factorModule,
+        Fin.castSucc_succ] using dgCochainCompTensorOfEq
+        (({ length := k + 2, intermediate := intermediate } :
+          DrinfeldWord X Y).arrowSource j.castSucc.castSucc)
+        (({ length := k + 2, intermediate := intermediate } :
+          DrinfeldWord X Y).arrowTarget j.castSucc.castSucc)
+        (({ length := k + 2, intermediate := intermediate } :
+          DrinfeldWord X Y).arrowSource j.castSucc.succ)
+        (({ length := k + 2, intermediate := intermediate } :
+          DrinfeldWord X Y).arrowTarget j.succ.succ)
+        (arrowTarget_castSucc_eq_arrowSource_succ
+          ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord X Y) j.castSucc) (by omega)
+    · have hoverlap : ¬ (i = j.castSucc ∨ i = j.succ) := by
+        simp [hleft, hright]
+      by_cases hbefore : j.castSucc < i
+      · have hjnext : j.succ < i := by
+          have hval : j.val < i.val := hbefore
+          have hneval : i.val ≠ j.val + 1 := by
+            intro h
+            apply hright
+            apply Fin.ext
+            simpa using h
+          change j.val + 1 < i.val
+          omega
+        simpa [mergedFactor, hbefore, hjnext, rawSecondContractionFactor,
+          hoverlap, Fin.succAbove_of_castSucc_lt i j hbefore,
+          rawContractionFactor, factorModule, Fin.castSucc_succ] using
+          adjacentFactorComposition d j.castSucc
+      · have hafter : i < j.castSucc := by
+          exact lt_of_le_of_ne (Fin.not_lt.mp hbefore) hleft
+        have hafter' : i < j.succ := lt_trans hafter Fin.castSucc_lt_succ
+        have hnotAfter : ¬ j.succ < i := not_lt_of_ge hafter'.le
+        simpa [mergedFactor, hbefore, Ne.symm hleft, hnotAfter,
+          Ne.symm hright,
+          rawSecondContractionFactor, hoverlap,
+          Fin.succAbove_of_le_castSucc i j hafter.le,
+          rawContractionFactor, factorModule, Fin.castSucc_succ] using
+          adjacentFactorComposition d j.succ
+
+def rawSecondContractionMergeData
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (i : Fin (k + 2)) (j : Fin (k + 1)) :
+    AdjacentMergeData
+      (finFamilyList
+        (recursiveMergedFactor (factorModule d) i (rawContractionFactor d i)))
+      (finFamilyList
+        (recursiveMergedFactor
+          (recursiveMergedFactor (factorModule d) i (rawContractionFactor d i)) j
+          (rawSecondContractionFactor d i j))) :=
+  recursiveAdjacentMergeDataOfFn
+    (recursiveMergedFactor (factorModule d) i (rawContractionFactor d i)) j
+    (rawSecondContractionFactor d i j) (rawSecondContractionMerge d i j)
+
 def transportedSecondContractionMergeAtCanonical
     {X Y : ComplexCategory} {k : ℕ}
     {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory} {n : ℤ}
