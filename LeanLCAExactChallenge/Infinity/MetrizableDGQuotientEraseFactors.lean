@@ -854,65 +854,65 @@ theorem paritySign_add_one (m : ℤ) :
       -(if Even m then (1 : ℤ) else -1) := by
   by_cases h : Even m <;> simp [h]
 
-theorem DegreeProfile.prefixTotal_raise_of_lt
+theorem DegreeProfile.suffixTotal_raise_of_lt
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
-    (d : DegreeProfile w n) (i j : Fin (w.length + 1)) (h : i < j) :
-    (d.raise i).prefixTotal j = d.prefixTotal j + 1 := by
-  simp [DegreeProfile.prefixTotal, DegreeProfile.raise, Finset.sum_add_distrib, h]
+    (d : DegreeProfile w n) (i j : Fin (w.length + 1)) (h : j < i) :
+    (d.raise i).suffixTotal j = d.suffixTotal j + 1 := by
+  simp [DegreeProfile.suffixTotal, DegreeProfile.raise, Finset.sum_add_distrib, h]
   omega
 
-theorem DegreeProfile.prefixTotal_raise_of_le
+theorem DegreeProfile.suffixTotal_raise_of_le
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
-    (d : DegreeProfile w n) (i j : Fin (w.length + 1)) (h : j ≤ i) :
-    (d.raise i).prefixTotal j = d.prefixTotal j := by
-  simp [DegreeProfile.prefixTotal, DegreeProfile.raise, Finset.sum_add_distrib,
+    (d : DegreeProfile w n) (i j : Fin (w.length + 1)) (h : i ≤ j) :
+    (d.raise i).suffixTotal j = d.suffixTotal j := by
+  simp [DegreeProfile.suffixTotal, DegreeProfile.raise, Finset.sum_add_distrib,
     not_lt_of_ge h]
 
 theorem DegreeProfile.internalSign_raise_of_lt
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
-    (d : DegreeProfile w n) (i j : Fin (w.length + 1)) (h : i < j) :
+    (d : DegreeProfile w n) (i j : Fin (w.length + 1)) (h : j < i) :
     (d.raise i).internalSign j = -d.internalSign j := by
   rw [DegreeProfile.internalSign, DegreeProfile.internalSign,
-    d.prefixTotal_raise_of_lt i j h, paritySign_add_one]
+    d.suffixTotal_raise_of_lt i j h, paritySign_add_one]
 
 theorem DegreeProfile.internalSign_raise_of_le
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
-    (d : DegreeProfile w n) (i j : Fin (w.length + 1)) (h : j ≤ i) :
+    (d : DegreeProfile w n) (i j : Fin (w.length + 1)) (h : i ≤ j) :
     (d.raise i).internalSign j = d.internalSign j := by
   rw [DegreeProfile.internalSign, DegreeProfile.internalSign,
-    d.prefixTotal_raise_of_le i j h]
+    d.suffixTotal_raise_of_le i j h]
 
-theorem DegreeProfile.contractionPrefix_raise_of_le
-    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
-    (d : DegreeProfile w n) (j : Fin (w.length + 1)) (i : Fin w.length)
-    (h : j.val ≤ i.val) :
-    (d.raise j).contractionPrefix i = d.contractionPrefix i + 1 := by
-  simp [DegreeProfile.contractionPrefix, DegreeProfile.raise, Finset.sum_add_distrib, h]
-  omega
-
-theorem DegreeProfile.contractionPrefix_raise_of_gt
+theorem DegreeProfile.contractionSuffix_raise_of_gt
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) (j : Fin (w.length + 1)) (i : Fin w.length)
     (h : i.val < j.val) :
-    (d.raise j).contractionPrefix i = d.contractionPrefix i := by
-  simp [DegreeProfile.contractionPrefix, DegreeProfile.raise, Finset.sum_add_distrib,
-    not_le_of_gt h]
+    (d.raise j).contractionSuffix i = d.contractionSuffix i + 1 := by
+  simp [DegreeProfile.contractionSuffix, DegreeProfile.raise, Finset.sum_add_distrib, h]
+  omega
 
-theorem DegreeProfile.contractionSign_raise_of_le
+theorem DegreeProfile.contractionSuffix_raise_of_le
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) (j : Fin (w.length + 1)) (i : Fin w.length)
     (h : j.val ≤ i.val) :
-    (d.raise j).contractionSign i = -d.contractionSign i := by
-  rw [DegreeProfile.contractionSign, DegreeProfile.contractionSign,
-    d.contractionPrefix_raise_of_le j i h, paritySign_add_one]
+    (d.raise j).contractionSuffix i = d.contractionSuffix i := by
+  simp [DegreeProfile.contractionSuffix, DegreeProfile.raise, Finset.sum_add_distrib,
+    not_lt_of_ge h]
 
 theorem DegreeProfile.contractionSign_raise_of_gt
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) (j : Fin (w.length + 1)) (i : Fin w.length)
     (h : i.val < j.val) :
+    (d.raise j).contractionSign i = -d.contractionSign i := by
+  rw [DegreeProfile.contractionSign, DegreeProfile.contractionSign,
+    d.contractionSuffix_raise_of_gt j i h, paritySign_add_one]
+
+theorem DegreeProfile.contractionSign_raise_of_le
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (j : Fin (w.length + 1)) (i : Fin w.length)
+    (h : j.val ≤ i.val) :
     (d.raise j).contractionSign i = d.contractionSign i := by
   rw [DegreeProfile.contractionSign, DegreeProfile.contractionSign,
-    d.contractionPrefix_raise_of_gt j i h]
+    d.contractionSuffix_raise_of_le j i h]
 
 /-- Ordered pairs of distinct contraction positions, represented by the first removed
 position and the position of the second removal in the shortened word. -/

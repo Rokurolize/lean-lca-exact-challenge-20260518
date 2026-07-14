@@ -203,14 +203,14 @@ theorem internalPairCoefficient_swap
   · rw [internalPairCoefficient, internalPairCoefficient,
       internalAllPairCoefficient, internalAllPairCoefficient,
       internalPairSwap_fst, internalPairSwap_snd,
-      d.internalSign_raise_of_le p.1.2 p.1.1 h.le,
-      d.internalSign_raise_of_lt p.1.1 p.1.2 h]
+      d.internalSign_raise_of_lt p.1.2 p.1.1 h,
+      d.internalSign_raise_of_le p.1.1 p.1.2 h.le]
     ring
   · rw [internalPairCoefficient, internalPairCoefficient,
       internalAllPairCoefficient, internalAllPairCoefficient,
       internalPairSwap_fst, internalPairSwap_snd,
-      d.internalSign_raise_of_lt p.1.2 p.1.1 h,
-      d.internalSign_raise_of_le p.1.1 p.1.2 h.le]
+      d.internalSign_raise_of_le p.1.2 p.1.1 h.le,
+      d.internalSign_raise_of_lt p.1.1 p.1.2 h]
     ring
 
 theorem internalAllPairCoefficient_swap_of_ne

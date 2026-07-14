@@ -24,7 +24,17 @@ theorem nil_internalSign
   change Fin 1 at i
   have hi : i = (0 : Fin 1) := Fin.ext (by omega)
   subst i
-  simp [DegreeProfile.internalSign, DegreeProfile.prefixTotal]
+  have hempty : Finset.univ.filter (fun j : Fin 1 ↦ (0 : Fin 1) < j) = ∅ := by
+    ext j
+    have hj : j = (0 : Fin 1) := Fin.ext (by omega)
+    subst j
+    simp
+  rw [DegreeProfile.internalSign]
+  change (if Even
+      ((∑ j ∈ Finset.univ.filter (fun j : Fin 1 ↦ (0 : Fin 1) < j),
+          d.arrowDegree j) - (0 : ℕ)) then 1 else -1) = 1
+  rw [hempty]
+  simp
 
 theorem degreeProfile_nil_eq_nilDegreeProfile
     (X Y : ComplexCategory) (n : ℤ) (d : DegreeProfile (nil X Y) n) :

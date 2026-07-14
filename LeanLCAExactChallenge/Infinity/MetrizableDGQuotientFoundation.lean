@@ -615,31 +615,30 @@ def internalDifferentialLargeMap {X Y : ComplexCategory}
       (fun s : GradedSummandIndex X Y (n + 1) ↦ largeSummandModule s)
       ⟨w, d.raise i⟩
 
-/-- Total degree of the tensor entries strictly preceding an arrow factor, including one
-degree-`-1` contracting symbol for every preceding intermediate object. -/
-def DegreeProfile.prefixTotal {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+/-- Total degree strictly preceding an arrow factor in the target-to-source DG word order. -/
+def DegreeProfile.suffixTotal {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) (i : Fin (w.length + 1)) : ℤ :=
-  (∑ j ∈ Finset.univ.filter (fun j : Fin (w.length + 1) ↦ j < i), d.arrowDegree j) -
-    i.val
+  (∑ j ∈ Finset.univ.filter (fun j : Fin (w.length + 1) ↦ i < j), d.arrowDegree j) -
+    (w.length - i.val)
 
 /-- The Koszul sign of the internal differential on the `i`-th arrow factor. -/
 def DegreeProfile.internalSign {X Y : ComplexCategory}
     {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
     (i : Fin (w.length + 1)) : ℤ :=
-  if Even (d.prefixTotal i) then 1 else -1
+  if Even (d.suffixTotal i) then 1 else -1
 
-def DegreeProfile.contractionPrefix {X Y : ComplexCategory}
+def DegreeProfile.contractionSuffix {X Y : ComplexCategory}
     {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
     (i : Fin w.length) : ℤ :=
   (∑ j ∈ Finset.univ.filter
-      (fun j : Fin (w.length + 1) ↦ j.val ≤ i.val), d.arrowDegree j) - i.val
+      (fun j : Fin (w.length + 1) ↦ i.val < j.val), d.arrowDegree j) -
+    (w.length - (i.val + 1))
 
-/-- Koszul sign of the contraction at the `i`-th degree-`-1` symbol.  The symbol occurs
-after the `i`-th arrow factor and after exactly `i` earlier contracting symbols. -/
+/-- Koszul sign of the contraction at the `i`-th degree-`-1` symbol in target-to-source order. -/
 def DegreeProfile.contractionSign {X Y : ComplexCategory}
     {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
     (i : Fin w.length) : ℤ :=
-  if Even (d.contractionPrefix i) then 1 else -1
+  if Even (d.contractionSuffix i) then 1 else -1
 
 /-- Sum of all signed internal-differential terms leaving one homogeneous word summand. -/
 def internalDifferentialFromSummand {X Y : ComplexCategory}
@@ -875,7 +874,7 @@ theorem singletonContractingDegreeProfile_contractionSign
     have h := i.isLt
     omega
   rw [hi]
-  simp [DegreeProfile.contractionSign, DegreeProfile.contractionPrefix,
+  simp [DegreeProfile.contractionSign, DegreeProfile.contractionSuffix,
     singletonContractingDegreeProfile]
 
 /-- The unique contraction position of a one-letter word. -/
