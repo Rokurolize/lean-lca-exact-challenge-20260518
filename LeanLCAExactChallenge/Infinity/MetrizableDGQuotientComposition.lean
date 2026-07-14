@@ -15,6 +15,28 @@ namespace DrinfeldWord
 open CategoryTheory
 open CategoryTheory.MonoidalCategory
 
+theorem dgCochainCompTensorOfEq_tmul_identity_right
+    (K L : ComplexCategory) (p : ℤ)
+    (x : (dgHomZModuleCochainComplex K L).X p) :
+    (dgCochainCompTensorOfEq K L L L rfl
+      (show p + 0 = p by omega)).hom
+        (x ⊗ₜ[ℤ] identityCochain L) = x := by
+  change x.comp (CochainComplex.HomComplex.Cochain.ofHom (𝟙 L.obj))
+    (Int.add_zero p) = x
+  ext i
+  simp
+
+theorem dgCochainCompTensorOfEq_identity_left_tmul
+    (K L : ComplexCategory) (p : ℤ)
+    (x : (dgHomZModuleCochainComplex K L).X p) :
+    (dgCochainCompTensorOfEq K K K L rfl
+      (show 0 + p = p by omega)).hom
+        (identityCochain K ⊗ₜ[ℤ] x) = x := by
+  change (CochainComplex.HomComplex.Cochain.ofHom (𝟙 K.obj)).comp x
+    (Int.zero_add p) = x
+  ext i
+  simp
+
 theorem append_nil {X Y : ComplexCategory} (w : DrinfeldWord X Y) :
     w.append (nil Y Y) = w := by
   cases w with
