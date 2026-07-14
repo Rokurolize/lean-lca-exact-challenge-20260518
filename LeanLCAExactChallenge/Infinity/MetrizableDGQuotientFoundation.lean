@@ -166,6 +166,14 @@ def DegreeProfile.raise {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     have hd := d.totalDegree
     omega
 
+theorem DegreeProfile.raise_comm {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i j : Fin (w.length + 1)) :
+    (d.raise i).raise j = (d.raise j).raise i := by
+  apply DegreeProfile.ext
+  funext q
+  simp only [DegreeProfile.raise]
+  by_cases hqi : q = i <;> by_cases hqj : q = j <;> simp [hqi, hqj] <;> ring
+
 /-- Merge the two ordinary Hom degrees adjacent to an intermediate object.  The chosen
 `succAbove` enumeration omits the left factor and adds its degree to the surviving right
 factor. -/
@@ -256,6 +264,13 @@ inductive TensorMapData :
       (f : Quiver.Hom M N) (fs : TensorMapData Ms Ns) :
       TensorMapData (M :: Ms) (N :: Ns)
 
+def TensorMapData.comp : {source middle target : List (ModuleCat.{0} ℤ)} →
+    TensorMapData source middle → TensorMapData middle target →
+      TensorMapData source target
+  | [], [], [], .nil, .nil => .nil
+  | _ :: _, _ :: _, _ :: _, .cons f fs, .cons g gs =>
+      .cons (f ≫ g) (TensorMapData.comp fs gs)
+
 /-- Assemble pointwise maps indexed by a finite ordinal into tensor-map data. -/
 def TensorMapData.ofFn : {k : ℕ} →
     (M N : Fin k → ModuleCat.{0} ℤ) →
@@ -281,6 +296,23 @@ def TensorMapData.tensorMap : {source target : List (ModuleCat.{0} ℤ)} →
         (X₁ := M) (Y₁ := N)
         (X₂ := tensorModuleList Ms) (Y₂ := tensorModuleList Ns)
         f fs.tensorMap
+
+@[simp]
+theorem TensorMapData.tensorMap_comp
+    {source middle target : List (ModuleCat.{0} ℤ)}
+    (f : TensorMapData source middle) (g : TensorMapData middle target) :
+    f.tensorMap ≫ g.tensorMap = (f.comp g).tensorMap := by
+  induction f generalizing target with
+  | nil =>
+      cases g
+      simp [TensorMapData.tensorMap, TensorMapData.comp]
+  | cons f fs ih =>
+      cases g with
+      | cons g gs =>
+          simp only [TensorMapData.tensorMap, TensorMapData.comp]
+          change (f ⊗ₘ fs.tensorMap) ≫ (g ⊗ₘ gs.tensorMap) =
+            (f ≫ g) ⊗ₘ (fs.comp gs).tensorMap
+          rw [MonoidalCategory.tensorHom_comp_tensorHom, ih gs]
 
 /-- Data for replacing two adjacent tensor factors by one factor. -/
 inductive AdjacentMergeData :

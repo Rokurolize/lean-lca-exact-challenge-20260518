@@ -175,6 +175,9 @@ noncomputable instance directDGHomotopyCoherentNerve_quasicategory :
   LeanLCAExactChallenge.Infinity.CoherentNervePathFiltration.simplicialNerve_quasicategory
     DirectDGSimplicialCategory
 
+def directDGHomotopyCoherentNerveQCat : SSet.QCat.{1} :=
+  ⟨directDGHomotopyCoherentNerve, inferInstance⟩
+
 /-- A chosen quasicategorical replacement of the direct dg nerve. -/
 def directDGQCat : SSet.QCat.{1} :=
   innerFibrantReplacementQCat directDGHomotopyCoherentNerve
@@ -183,6 +186,10 @@ def directDGQCat : SSet.QCat.{1} :=
 def directDGNerveToQCat :
     directDGHomotopyCoherentNerve ⟶ directDGQCat.obj :=
   toInnerFibrantReplacement directDGHomotopyCoherentNerve
+
+def directDGNerveToQCatMap :
+    directDGHomotopyCoherentNerveQCat ⟶ directDGQCat :=
+  ObjectProperty.homMk directDGNerveToQCat
 
 theorem directDGNerveToQCat_innerAnodyne :
     SSet.innerAnodyneExtensions directDGNerveToQCat :=
