@@ -2276,6 +2276,288 @@ theorem normalizedBoundaryMaps_assoc
       (a.arrowDegree (Fin.last u.length)) (d.arrowDegree 0)
       (e.arrowDegree 0)
 
+theorem tripleCompositionBoundaryModule_eq_left
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q)
+    (e : DegreeProfile v r) :
+    tripleCompositionBoundaryModule a d e =
+      compositionBoundaryModule (a.append d) e := by
+  unfold tripleCompositionBoundaryModule compositionBoundaryModule
+  have hindex : Fin.last (u.append (nil X Y)).length =
+      appendBoundaryArrowIndex u (nil X Y) := by
+    apply Fin.ext
+    change u.length + 0 = u.length
+    omega
+  rw [hindex, arrowSource_append_boundary]
+  change (dgHomZModuleCochainComplex
+      (u.arrowSource (Fin.last u.length)) (v.arrowTarget 0)).X
+        ((a.arrowDegree (Fin.last u.length) + d.arrowDegree 0) +
+          e.arrowDegree 0) =
+    (dgHomZModuleCochainComplex
+      (u.arrowSource (Fin.last u.length)) (v.arrowTarget 0)).X
+        (appendArrowDegree a d (appendBoundaryArrowIndex u (nil X Y)) +
+          e.arrowDegree 0)
+  rw [appendArrowDegree_boundary]
+
+theorem tripleCompositionBoundaryModule_eq_right
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q)
+    (e : DegreeProfile v r) :
+    tripleCompositionBoundaryModule a d e =
+      compositionBoundaryModule a (d.append e) :=
+  (tripleCompositionBoundaryModule_eq_left a d e).trans
+    (compositionBoundaryModule_assoc_of_middle_nil a d e)
+
+theorem leftAssociatedBoundaryMap_heq
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q)
+    (e : DegreeProfile v r) :
+    HEq (leftAssociatedBoundaryMap a d e)
+      (compositionBoundaryMap (a.append d) e) := by
+  unfold leftAssociatedBoundaryMap compositionBoundaryMap
+  have hi : Fin.last (u.append (nil X Y)).length =
+      appendBoundaryArrowIndex u (nil X Y) := by
+    apply Fin.ext
+    change u.length + 0 = u.length
+    omega
+  have hsource : u.arrowSource (Fin.last u.length) =
+      (u.append (nil X Y)).arrowSource
+        (Fin.last (u.append (nil X Y)).length) := by
+    rw [hi, arrowSource_append_boundary]
+  have htarget : (nil X Y).arrowTarget 0 =
+      (u.append (nil X Y)).arrowTarget
+        (Fin.last (u.append (nil X Y)).length) := by
+    rw [hi, arrowTarget_append_boundary]
+  have hdegree : a.arrowDegree (Fin.last u.length) + d.arrowDegree 0 =
+      (a.append d).arrowDegree
+        (Fin.last (u.append (nil X Y)).length) := by
+    rw [hi]
+    change a.arrowDegree (Fin.last u.length) + d.arrowDegree 0 =
+      appendArrowDegree a d (appendBoundaryArrowIndex u (nil X Y))
+    rw [appendArrowDegree_boundary]
+  apply dgCochainCompTensorOfEq_heq
+  · exact hsource
+  · exact htarget
+  · rfl
+  · rfl
+  · exact hdegree
+  · rfl
+  · exact congrArg (fun t ↦ t + e.arrowDegree 0) hdegree
+
+theorem rightAssociatedBoundaryMap_heq
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q)
+    (e : DegreeProfile v r) :
+    HEq (rightAssociatedBoundaryMap a d e)
+      (compositionBoundaryMap a (d.append e)) := by
+  unfold rightAssociatedBoundaryMap compositionBoundaryMap
+  have hi : (0 : Fin (((nil X Y).append v).length + 1)) =
+      appendBoundaryArrowIndex (nil X Y) v := by
+    apply Fin.ext
+    rfl
+  have hsource : (nil X Y).arrowSource 0 =
+      ((nil X Y).append v).arrowSource 0 := by
+    rw [hi, arrowSource_append_boundary]
+    congr 1
+  have htarget : v.arrowTarget 0 =
+      ((nil X Y).append v).arrowTarget 0 := by
+    rw [hi, arrowTarget_append_boundary]
+  have hdegree : d.arrowDegree 0 + e.arrowDegree 0 =
+      (d.append e).arrowDegree 0 := by
+    rw [hi]
+    change d.arrowDegree 0 + e.arrowDegree 0 =
+      appendArrowDegree d e (appendBoundaryArrowIndex (nil X Y) v)
+    rw [appendArrowDegree_boundary]
+    congr 2
+  apply dgCochainCompTensorOfEq_heq
+  · rfl
+  · rfl
+  · exact hsource
+  · exact htarget
+  · rfl
+  · exact hdegree
+  · calc
+      (a.arrowDegree (Fin.last u.length) + d.arrowDegree 0) +
+          e.arrowDegree 0 =
+        a.arrowDegree (Fin.last u.length) +
+          (d.arrowDegree 0 + e.arrowDegree 0) := Int.add_assoc _ _ _
+      _ = a.arrowDegree (Fin.last u.length) +
+          (d.append e).arrowDegree 0 := congrArg
+            (fun t ↦ a.arrowDegree (Fin.last u.length) + t) hdegree
+
+theorem normalizedBoundaryPairCoherence
+    (xs zs : List (ModuleCat.{0} ℤ))
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q)
+    (e : DegreeProfile v r) :
+    AdjacentMergePairHCoherence
+      ((@AdjacentMergeData.head
+        (factorModule a (Fin.last u.length)) (factorModule d 0)
+        (compositionBoundaryModule a d) (factorModule e 0 :: zs)
+        (compositionBoundaryMap a d)).prefix xs)
+      ((@AdjacentMergeData.head
+        (compositionBoundaryModule a d) (factorModule e 0)
+        (tripleCompositionBoundaryModule a d e) zs
+        (leftAssociatedBoundaryMap a d e)).prefix xs)
+      ((@AdjacentMergeData.tail (factorModule a (Fin.last u.length))
+        (factorModule d 0 :: factorModule e 0 :: zs)
+        (zeroMiddleRightBoundaryModule d e :: zs)
+        (@AdjacentMergeData.head (factorModule d 0) (factorModule e 0)
+          (zeroMiddleRightBoundaryModule d e) zs
+          (zeroMiddleRightBoundaryMap d e))).prefix xs)
+      ((@AdjacentMergeData.head
+        (factorModule a (Fin.last u.length))
+        (zeroMiddleRightBoundaryModule d e)
+        (tripleCompositionBoundaryModule a d e) zs
+        (rightAssociatedBoundaryMap a d e)).prefix xs) :=
+  adjacentMergeAfter_pair_assoc xs (compositionBoundaryMap a d)
+    (leftAssociatedBoundaryMap a d e) (zeroMiddleRightBoundaryMap d e)
+    (rightAssociatedBoundaryMap a d e)
+    (normalizedBoundaryMaps_assoc a d e)
+
+theorem normalizedBoundaryPairTensorMap_eq
+    (xs zs : List (ModuleCat.{0} ℤ))
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q)
+    (e : DegreeProfile v r) :
+    ((@AdjacentMergeData.head
+        (factorModule a (Fin.last u.length)) (factorModule d 0)
+        (compositionBoundaryModule a d) (factorModule e 0 :: zs)
+        (compositionBoundaryMap a d)).prefix xs).tensorMap ≫
+      ((@AdjacentMergeData.head
+        (compositionBoundaryModule a d) (factorModule e 0)
+        (tripleCompositionBoundaryModule a d e) zs
+        (leftAssociatedBoundaryMap a d e)).prefix xs).tensorMap =
+    ((@AdjacentMergeData.tail (factorModule a (Fin.last u.length))
+        (factorModule d 0 :: factorModule e 0 :: zs)
+        (zeroMiddleRightBoundaryModule d e :: zs)
+        (@AdjacentMergeData.head (factorModule d 0) (factorModule e 0)
+          (zeroMiddleRightBoundaryModule d e) zs
+          (zeroMiddleRightBoundaryMap d e))).prefix xs).tensorMap ≫
+      ((@AdjacentMergeData.head
+        (factorModule a (Fin.last u.length))
+        (zeroMiddleRightBoundaryModule d e)
+        (tripleCompositionBoundaryModule a d e) zs
+        (rightAssociatedBoundaryMap a d e)).prefix xs).tensorMap := by
+  exact eq_of_heq
+    (normalizedBoundaryPairCoherence xs zs a d e).tensorMap_heq
+
+def compositionMiddleFactors
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory} {q : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) q) :
+    List (ModuleCat.{0} ℤ) :=
+  finFamilyList (fun i : Fin k ↦ factorModule d i.succ.castSucc)
+
+theorem compositionLeftPrefix_succ_eq
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory} {q : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) q) :
+    compositionLeftPrefix d = factorModule d 0 :: compositionMiddleFactors d := by
+  rw [compositionLeftPrefix, compositionMiddleFactors,
+    finFamilyList_eq_ofFn, finFamilyList_eq_ofFn, List.ofFn_succ]
+  congr 2
+
+theorem compositionRightSuffix_succ_eq
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory} {q : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) q) :
+    compositionRightSuffix d =
+      compositionMiddleFactors d ++ [factorModule d (Fin.last (k + 1))] := by
+  rw [compositionRightSuffix, compositionMiddleFactors,
+    finFamilyList_eq_ofFn, finFamilyList_eq_ofFn, List.ofFn_succ_last]
+  congr 1
+
+theorem positiveMiddleBoundaryPairCoherence
+    (xs zs : List (ModuleCat.{0} ℤ))
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p)
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) q)
+    (e : DegreeProfile v r) :
+    AdjacentMergePairHCoherence
+      ((@AdjacentMergeData.head
+        (factorModule a (Fin.last u.length)) (factorModule d 0)
+        (compositionBoundaryModule a d)
+        (compositionMiddleFactors d ++
+          factorModule d (Fin.last (k + 1)) :: factorModule e 0 :: zs)
+        (compositionBoundaryMap a d)).prefix xs)
+      ((@AdjacentMergeData.tail (compositionBoundaryModule a d)
+        (compositionMiddleFactors d ++
+          factorModule d (Fin.last (k + 1)) :: factorModule e 0 :: zs)
+        (compositionMiddleFactors d ++ compositionBoundaryModule d e :: zs)
+        (adjacentMergeAfter (compositionMiddleFactors d) (ys := zs)
+          (compositionBoundaryMap d e))).prefix xs)
+      ((@AdjacentMergeData.tail (factorModule a (Fin.last u.length))
+        (factorModule d 0 :: compositionMiddleFactors d ++
+          factorModule d (Fin.last (k + 1)) :: factorModule e 0 :: zs)
+        (factorModule d 0 :: compositionMiddleFactors d ++
+          compositionBoundaryModule d e :: zs)
+        (@AdjacentMergeData.tail (factorModule d 0)
+          (compositionMiddleFactors d ++
+            factorModule d (Fin.last (k + 1)) :: factorModule e 0 :: zs)
+          (compositionMiddleFactors d ++ compositionBoundaryModule d e :: zs)
+          (adjacentMergeAfter (compositionMiddleFactors d) (ys := zs)
+            (compositionBoundaryMap d e)))).prefix xs)
+      ((@AdjacentMergeData.head
+        (factorModule a (Fin.last u.length)) (factorModule d 0)
+        (compositionBoundaryModule a d)
+        (compositionMiddleFactors d ++ compositionBoundaryModule d e :: zs)
+        (compositionBoundaryMap a d)).prefix xs) :=
+  adjacentMergeAfter_pair_head_tail xs (compositionMiddleFactors d)
+    (compositionBoundaryMap a d) (compositionBoundaryMap d e)
+
+theorem positiveMiddleBoundaryPairTensorMap_eq
+    (xs zs : List (ModuleCat.{0} ℤ))
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p)
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) q)
+    (e : DegreeProfile v r) :
+    (((@AdjacentMergeData.head
+        (factorModule a (Fin.last u.length)) (factorModule d 0)
+        (compositionBoundaryModule a d)
+        (compositionMiddleFactors d ++
+          factorModule d (Fin.last (k + 1)) :: factorModule e 0 :: zs)
+        (compositionBoundaryMap a d)).prefix xs).tensorMap ≫
+      ((@AdjacentMergeData.tail (compositionBoundaryModule a d)
+        (compositionMiddleFactors d ++
+          factorModule d (Fin.last (k + 1)) :: factorModule e 0 :: zs)
+        (compositionMiddleFactors d ++ compositionBoundaryModule d e :: zs)
+        (adjacentMergeAfter (compositionMiddleFactors d) (ys := zs)
+          (compositionBoundaryMap d e))).prefix xs).tensorMap) =
+    (((@AdjacentMergeData.tail (factorModule a (Fin.last u.length))
+        (factorModule d 0 :: compositionMiddleFactors d ++
+          factorModule d (Fin.last (k + 1)) :: factorModule e 0 :: zs)
+        (factorModule d 0 :: compositionMiddleFactors d ++
+          compositionBoundaryModule d e :: zs)
+        (@AdjacentMergeData.tail (factorModule d 0)
+          (compositionMiddleFactors d ++
+            factorModule d (Fin.last (k + 1)) :: factorModule e 0 :: zs)
+          (compositionMiddleFactors d ++ compositionBoundaryModule d e :: zs)
+          (adjacentMergeAfter (compositionMiddleFactors d) (ys := zs)
+            (compositionBoundaryMap d e)))).prefix xs).tensorMap ≫
+      ((@AdjacentMergeData.head
+        (factorModule a (Fin.last u.length)) (factorModule d 0)
+        (compositionBoundaryModule a d)
+        (compositionMiddleFactors d ++ compositionBoundaryModule d e :: zs)
+        (compositionBoundaryMap a d)).prefix xs).tensorMap) := by
+  exact eq_of_heq
+    (positiveMiddleBoundaryPairCoherence xs zs a d e).tensorMap_heq
+
 theorem finFamilyList_factorModule_append_boundary
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
     {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
