@@ -1869,6 +1869,20 @@ theorem quotientGradedModule_eqToHom_ι_of_eq
     exact Limits.Sigma.eqToHom_comp_ι
       (fun q : GradedSummandIndex X Y m ↦ largeSummandModule q) k
 
+theorem largeSummandAssocTransport
+    {W X Y Z : ComplexCategory}
+    {u : DrinfeldWord W X} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {p q r : ℤ} (a : DegreeProfile u p) (d : DegreeProfile w q)
+    (e : DegreeProfile v r) :
+    eqToHom (largeSummandModuleCastTotalEq (Int.add_assoc p q r)
+          (⟨(u.append w).append v, (a.append d).append e⟩ :
+            GradedSummandIndex W Z ((p + q) + r))) ≫
+        eqToHom (congrArg largeSummandModule
+          (gradedSummandIndex_append_assoc a d e)) =
+      (ModuleCat.uliftFunctor.{1} ℤ).map (summandAssocIso a d e).hom := by
+  simp only [summandAssocIso, summandModuleTransportIso,
+    Iso.trans_hom, eqToIso.hom, eqToHom_map, eqToHom_trans]
+
 theorem largeSummandRightUnitTransport
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) :
@@ -1892,6 +1906,42 @@ theorem largeSummandLeftUnitTransport
       (ModuleCat.uliftFunctor.{1} ℤ).map (summandLeftUnitIso d).hom := by
   simp only [summandLeftUnitIso, summandModuleTransportIso,
     Iso.trans_hom, eqToIso.hom, eqToHom_map, eqToHom_trans]
+
+@[reassoc]
+theorem largeSummandAssocInclusion_transport
+    {W X Y Z : ComplexCategory}
+    {u : DrinfeldWord W X} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {p q r : ℤ} (a : DegreeProfile u p) (d : DegreeProfile w q)
+    (e : DegreeProfile v r) :
+    Limits.Sigma.ι
+          (fun t : GradedSummandIndex W Z ((p + q) + r) ↦
+            largeSummandModule t)
+          ⟨(u.append w).append v, (a.append d).append e⟩ ≫
+        eqToHom (congrArg (quotientGradedModule W Z)
+          (Int.add_assoc p q r)) =
+      (ModuleCat.uliftFunctor.{1} ℤ).map (summandAssocIso a d e).hom ≫
+        Limits.Sigma.ι
+          (fun t : GradedSummandIndex W Z (p + (q + r)) ↦
+            largeSummandModule t)
+          ⟨u.append (w.append v), a.append (d.append e)⟩ := by
+  calc
+    _ = eqToHom (largeSummandModuleCastTotalEq (Int.add_assoc p q r)
+          (⟨(u.append w).append v, (a.append d).append e⟩ :
+            GradedSummandIndex W Z ((p + q) + r))) ≫
+        eqToHom (congrArg largeSummandModule
+          (gradedSummandIndex_append_assoc a d e)) ≫
+        Limits.Sigma.ι
+          (fun t : GradedSummandIndex W Z (p + (q + r)) ↦
+            largeSummandModule t)
+          ⟨u.append (w.append v), a.append (d.append e)⟩ :=
+      quotientGradedModule_eqToHom_ι_of_eq (Int.add_assoc p q r)
+        (⟨(u.append w).append v, (a.append d).append e⟩ :
+          GradedSummandIndex W Z ((p + q) + r))
+        (⟨u.append (w.append v), a.append (d.append e)⟩ :
+          GradedSummandIndex W Z (p + (q + r)))
+        (gradedSummandIndex_append_assoc a d e)
+    _ = _ := by
+      rw [← Category.assoc, largeSummandAssocTransport]
 
 @[reassoc]
 theorem largeSummandRightUnitInclusion_transport
