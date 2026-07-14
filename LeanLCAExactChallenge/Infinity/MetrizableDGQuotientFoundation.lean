@@ -1,6 +1,5 @@
 import LeanLCAExactChallenge.Infinity.MetrizableDGMappingZModule
 import Mathlib.Algebra.Category.ModuleCat.Ulift
-import Mathlib.LinearAlgebra.PiTensorProduct
 import Mathlib.Logic.Equiv.Fin.Basic
 
 /-!
@@ -262,6 +261,20 @@ theorem factorDifferential_self_comp {X Y : ComplexCategory}
   exact (dgHomZModuleCochainComplex (w.arrowSource i) (w.arrowTarget i)).d_comp_d
     (d.arrowDegree i) ((d.raise i).arrowDegree i) (((d.raise i).raise i).arrowDegree i)
 
+/-- A definitionally recursive list presentation of a finite family. -/
+@[reducible]
+def finFamilyList {α : Type*} : {k : ℕ} → (Fin k → α) → List α
+  | 0, _ => []
+  | k + 1, M => M 0 :: finFamilyList (fun i : Fin k ↦ M i.succ)
+
+theorem finFamilyList_eq_ofFn {α : Type*} {k : ℕ} (M : Fin k → α) :
+    finFamilyList M = List.ofFn M := by
+  induction k with
+  | zero => rfl
+  | succ k ih =>
+      rw [List.ofFn_succ]
+      exact congrArg (M 0 :: ·) (ih (fun i : Fin k ↦ M i.succ))
+
 /-- Right-associated tensor product of a finite list of modules. -/
 def tensorModuleListOver (R : Type) [CommRing R] :
     List (ModuleCat.{0} R) → ModuleCat.{0} R
@@ -270,109 +283,6 @@ def tensorModuleListOver (R : Type) [CommRing R] :
 
 /-- Right-associated tensor product of a finite list of integer modules. -/
 abbrev tensorModuleList := tensorModuleListOver ℤ
-
-/-- The finite-family tensor product is canonically equivalent to the right-associated tensor
-product used by the quotient carrier. -/
-def piTensorListEquivOver (R : Type) [CommRing R] :
-    {k : ℕ} → (M : Fin k → ModuleCat.{0} R) →
-      (⨂[R] i, M i) ≃ₗ[R] tensorModuleListOver R (List.ofFn M)
-  | 0, M => by
-      change (⨂[R] i : Fin 0, M i) ≃ₗ[R] R
-      exact PiTensorProduct.isEmptyEquiv (Fin 0)
-  | k + 1, M => by
-      rw [List.ofFn_succ]
-      let e : Fin (k + 1) ≃ Fin 1 ⊕ Fin k :=
-        { toFun := Fin.cases (Sum.inl 0) Sum.inr
-          invFun := Sum.elim (fun _ ↦ 0) Fin.succ
-          left_inv := by
-            intro i
-            exact Fin.cases rfl (fun _ ↦ rfl) i
-          right_inv := by
-            intro i
-            rcases i with i | i
-            · change Sum.inl 0 = Sum.inl i
-              rw [Subsingleton.elim i 0]
-            · rfl }
-      let split : (⨂[R] i : Fin (k + 1), M i) ≃ₗ[R]
-          (⨂[R] i : Fin 1, M (e.symm (.inl i))) ⊗[R]
-            (⨂[R] i : Fin k, M (e.symm (.inr i))) :=
-        (PiTensorProduct.reindex R (fun i ↦ M i) e).trans
-          (PiTensorProduct.tmulEquivDep R (fun i ↦ M (e.symm i))).symm
-      let head : (⨂[R] i : Fin 1, M (e.symm (.inl i))) ≃ₗ[R] M 0 := by
-        dsimp [e]
-        letI : ∀ _ : Fin 1, Module R (M 0) := fun _ ↦ (M 0).isModule
-        exact PiTensorProduct.subsingletonEquiv (R := R) (s := fun _ : Fin 1 ↦ M 0) 0
-      let tail : (⨂[R] i : Fin k, M (e.symm (.inr i))) ≃ₗ[R]
-          tensorModuleListOver R (List.ofFn (fun i : Fin k ↦ M i.succ)) := by
-        dsimp [e]
-        exact piTensorListEquivOver R (fun i : Fin k ↦ M i.succ)
-      exact split.trans (TensorProduct.congr head tail)
-
-/-- The finite-family tensor product over the integers in the quotient model. -/
-abbrev piTensorListEquiv {k : ℕ} (M : Fin k → ModuleCat.{0} ℤ) :=
-  piTensorListEquivOver ℤ M
-
-/-- Pointwise maps on a finite family, transported to the right-associated quotient carrier. -/
-def finiteTensorMapOver (R : Type) [CommRing R] {k : ℕ}
-    (M N : Fin k → ModuleCat.{0} R) (f : (i : Fin k) → M i ⟶ N i) :
-    tensorModuleListOver R (List.ofFn M) ⟶ tensorModuleListOver R (List.ofFn N) :=
-  ModuleCat.ofHom <|
-    (piTensorListEquivOver R N).toLinearMap.comp <|
-      (PiTensorProduct.map (fun i ↦ (f i).hom)).comp
-        (piTensorListEquivOver R M).symm.toLinearMap
-
-theorem piTensorMap_eq_zero_of_component_eq_zero (R : Type) [CommRing R]
-    {ι : Type} {M N : ι → Type} [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i)]
-    [∀ i, AddCommGroup (N i)] [∀ i, Module R (N i)]
-    (f : (i : ι) → M i →ₗ[R] N i) (i : ι) (hi : f i = 0) :
-    PiTensorProduct.map f = 0 := by
-  apply LinearMap.ext
-  intro z
-  induction z using PiTensorProduct.induction_on with
-  | smul_tprod r x =>
-      change PiTensorProduct.map f (r • PiTensorProduct.tprod R x) = 0
-      rw [map_smul, PiTensorProduct.map_tprod]
-      have hz : (fun j ↦ f j (x j)) i = 0 := by simp [hi]
-      rw [show PiTensorProduct.tprod R (fun j ↦ f j (x j)) = 0 by
-        rw [PiTensorProduct.tprod_eq_tprodCoeff_one]
-        exact PiTensorProduct.zero_tprodCoeff' 1 _ i hz]
-      simp
-  | add x y hx hy =>
-      change PiTensorProduct.map f (x + y) = 0
-      simp [map_add, hx, hy]
-
-theorem finiteTensorMapOver_eq_zero_of_component_eq_zero
-    (R : Type) [CommRing R] {k : ℕ} (M N : Fin k → ModuleCat.{0} R)
-    (f : (i : Fin k) → M i ⟶ N i) (i : Fin k) (hi : f i = 0) :
-    finiteTensorMapOver R M N f = 0 := by
-  apply ModuleCat.hom_ext
-  change (piTensorListEquivOver R N).toLinearMap.comp
-      ((PiTensorProduct.map (fun j ↦ (f j).hom)).comp
-        (piTensorListEquivOver R M).symm.toLinearMap) = 0
-  rw [piTensorMap_eq_zero_of_component_eq_zero R (fun j ↦ (f j).hom) i]
-  · simp
-  · exact congrArg ModuleCat.Hom.hom hi
-
-theorem finiteTensorMapOver_comp (R : Type) [CommRing R] {k : ℕ}
-    (M N P : Fin k → ModuleCat.{0} R) (f : (i : Fin k) → M i ⟶ N i)
-    (g : (i : Fin k) → N i ⟶ P i) :
-    finiteTensorMapOver R M N f ≫ finiteTensorMapOver R N P g =
-      finiteTensorMapOver R M P (fun i ↦ f i ≫ g i) := by
-  ext x
-  change (piTensorListEquivOver R P)
-      (PiTensorProduct.map (fun i ↦ (g i).hom)
-        ((piTensorListEquivOver R N).symm
-          ((piTensorListEquivOver R N)
-            (PiTensorProduct.map (fun i ↦ (f i).hom)
-              ((piTensorListEquivOver R M).symm x))))) = _
-  rw [LinearEquiv.symm_apply_apply]
-  rw [← LinearMap.comp_apply, ← PiTensorProduct.map_comp]
-  rfl
-
-/-- Integer specialization of the canonical finite-family tensor map. -/
-abbrev finiteTensorMap {k : ℕ} (M N : Fin k → ModuleCat.{0} ℤ)
-    (f : (i : Fin k) → M i ⟶ N i) :=
-  finiteTensorMapOver ℤ M N f
 
 /-- Pointwise morphisms between two lists of tensor factors. -/
 inductive TensorMapData :
@@ -393,13 +303,11 @@ def TensorMapData.comp : {source middle target : List (ModuleCat.{0} ℤ)} →
 def TensorMapData.ofFn : {k : ℕ} →
     (M N : Fin k → ModuleCat.{0} ℤ) →
     ((i : Fin k) → Quiver.Hom (M i) (N i)) →
-    TensorMapData (List.ofFn M) (List.ofFn N)
+    TensorMapData (finFamilyList M) (finFamilyList N)
   | 0, _, _, _ => .nil
-  | k + 1, M, N, f => by
-      rw [List.ofFn_succ, List.ofFn_succ]
-      exact .cons (f 0) (TensorMapData.ofFn
-        (fun i : Fin k ↦ M i.succ) (fun i : Fin k ↦ N i.succ)
-        (fun i ↦ f i.succ))
+  | k + 1, M, N, f => .cons (f 0) (TensorMapData.ofFn
+      (fun i : Fin k ↦ M i.succ) (fun i : Fin k ↦ N i.succ)
+      (fun i ↦ f i.succ))
 
 /-- Tensor a pointwise list of module morphisms. -/
 def TensorMapData.tensorMap : {source target : List (ModuleCat.{0} ℤ)} →
@@ -432,6 +340,32 @@ theorem TensorMapData.tensorMap_comp
             (f ≫ g) ⊗ₘ (fs.comp gs).tensorMap
           rw [MonoidalCategory.tensorHom_comp_tensorHom, ih gs]
 
+theorem TensorMapData.ofFn_tensorMap_comp_eq_zero_of_component
+    {k : ℕ} (M N P : Fin k → ModuleCat.{0} ℤ)
+    (f : (i : Fin k) → M i ⟶ N i) (g : (i : Fin k) → N i ⟶ P i)
+    (i : Fin k) (hi : f i ≫ g i = 0) :
+    (TensorMapData.ofFn M N f).tensorMap ≫
+        (TensorMapData.ofFn N P g).tensorMap = 0 := by
+  rw [TensorMapData.tensorMap_comp]
+  induction k with
+  | zero => exact Fin.elim0 i
+  | succ k ih =>
+      cases i using Fin.cases with
+      | zero =>
+          simp only [TensorMapData.ofFn, TensorMapData.comp,
+            TensorMapData.tensorMap]
+          rw [hi]
+          simp
+          rfl
+      | succ i =>
+          simp only [TensorMapData.ofFn, TensorMapData.comp,
+            TensorMapData.tensorMap]
+          rw [ih (fun j : Fin k ↦ M j.succ) (fun j : Fin k ↦ N j.succ)
+            (fun j : Fin k ↦ P j.succ) (fun j ↦ f j.succ)
+            (fun j ↦ g j.succ) i hi]
+          simp
+          rfl
+
 /-- Data for replacing two adjacent tensor factors by one factor. -/
 inductive AdjacentMergeData :
     (source target : List (ModuleCat.{0} ℤ)) → Type 1
@@ -463,7 +397,7 @@ def AdjacentMergeData.tensorMap : {source target : List (ModuleCat.{0} ℤ)} →
 /-- The tensor-product module belonging to one word and one compatible degree profile. -/
 abbrev summandModule {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) : ModuleCat.{0} ℤ :=
-  tensorModuleList (List.ofFn (factorModule d))
+  tensorModuleList (finFamilyList (factorModule d))
 
 /-- Transport of a word gives the corresponding canonical identification of tensor
 summands. -/
@@ -519,32 +453,15 @@ def internalDifferentialTensorMap {X Y : ComplexCategory}
   (TensorMapData.ofFn (factorModule d) (factorModule (d.raise i))
     (factorDifferential d i)).tensorMap
 
-/-- The internal-differential tensor map in the finite-family proof model. -/
-def internalDifferentialFiniteTensorMap {X Y : ComplexCategory}
+theorem internalDifferentialTensorMap_self_comp {X Y : ComplexCategory}
     {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
     (i : Fin (w.length + 1)) :
-    Quiver.Hom (summandModule d) (summandModule (d.raise i)) :=
-  finiteTensorMap (factorModule d) (factorModule (d.raise i))
-    (factorDifferential d i)
-
-theorem internalDifferentialFiniteTensorMap_comp {X Y : ComplexCategory}
-    {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
-    (i j : Fin (w.length + 1)) :
-    internalDifferentialFiniteTensorMap d i ≫
-        internalDifferentialFiniteTensorMap (d.raise i) j =
-      finiteTensorMap (factorModule d) (factorModule ((d.raise i).raise j))
-        (fun q ↦ factorDifferential d i q ≫ factorDifferential (d.raise i) j q) := by
-  exact finiteTensorMapOver_comp ℤ (factorModule d) (factorModule (d.raise i))
-    (factorModule ((d.raise i).raise j)) (factorDifferential d i)
-      (factorDifferential (d.raise i) j)
-
-theorem internalDifferentialFiniteTensorMap_self_comp {X Y : ComplexCategory}
-    {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
-    (i : Fin (w.length + 1)) :
-    internalDifferentialFiniteTensorMap d i ≫
-      internalDifferentialFiniteTensorMap (d.raise i) i = 0 := by
-  rw [internalDifferentialFiniteTensorMap_comp]
-  apply finiteTensorMapOver_eq_zero_of_component_eq_zero ℤ _ _ _ i
+    internalDifferentialTensorMap d i ≫
+      internalDifferentialTensorMap (d.raise i) i = 0 := by
+  apply TensorMapData.ofFn_tensorMap_comp_eq_zero_of_component
+    (factorModule d) (factorModule (d.raise i))
+      (factorModule ((d.raise i).raise i)) (factorDifferential d i)
+        (factorDifferential (d.raise i) i) i
   exact factorDifferential_self_comp d i
 
 /-- Index of a homogeneous summand of the corrected Drinfeld quotient. -/
