@@ -182,6 +182,31 @@ def tensorModuleListAppendIso :
       α_ M (tensorModuleList Ms) (tensorModuleList Ns) ≪≫
         MonoidalCategory.tensorIso (Iso.refl M) (tensorModuleListAppendIso Ms Ns)
 
+def adjacentMergeAfter : (xs : List (ModuleCat.{0} ℤ)) →
+    {M N P : ModuleCat.{0} ℤ} → {ys : List (ModuleCat.{0} ℤ)} →
+    Quiver.Hom (M ⊗ N) P →
+      AdjacentMergeData (xs ++ M :: N :: ys) (xs ++ P :: ys)
+  | [], _, _, _, _, f => .head f
+  | _ :: xs, M, N, P, ys, f =>
+      .tail (adjacentMergeAfter xs (M := M) (N := N) (P := P)
+        (ys := ys) f)
+
+@[simp]
+theorem adjacentMergeAfter_nil
+    {M N P : ModuleCat.{0} ℤ} {ys : List (ModuleCat.{0} ℤ)}
+    (f : Quiver.Hom (M ⊗ N) P) :
+    adjacentMergeAfter [] (ys := ys) f = AdjacentMergeData.head f :=
+  rfl
+
+@[simp]
+theorem adjacentMergeAfter_cons
+    (Q : ModuleCat.{0} ℤ) (xs : List (ModuleCat.{0} ℤ))
+    {M N P : ModuleCat.{0} ℤ} {ys : List (ModuleCat.{0} ℤ)}
+    (f : Quiver.Hom (M ⊗ N) P) :
+    adjacentMergeAfter (Q :: xs) (ys := ys) f =
+      AdjacentMergeData.tail (adjacentMergeAfter xs (ys := ys) f) :=
+  rfl
+
 def compositionSourceFactor
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
     {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
@@ -210,6 +235,43 @@ theorem finFamilyList_compositionSourceFactor
       List.ofFn_congr h (compositionSourceFactor d e)
     _ = List.ofFn (Fin.append (factorModule d) (factorModule e)) := by
       congr 1
+
+def compositionLeftPrefix
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) : List (ModuleCat.{0} ℤ) :=
+  finFamilyList (fun i : Fin w.length ↦ factorModule d i.castSucc)
+
+def compositionRightSuffix
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) : List (ModuleCat.{0} ℤ) :=
+  finFamilyList (fun i : Fin w.length ↦ factorModule d i.succ)
+
+theorem finFamilyList_factorModule_eq_prefix_last
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    finFamilyList (factorModule d) =
+      compositionLeftPrefix d ++ [factorModule d (Fin.last w.length)] := by
+  rw [finFamilyList_eq_ofFn, compositionLeftPrefix, finFamilyList_eq_ofFn]
+  exact List.ofFn_succ_last
+
+theorem finFamilyList_factorModule_eq_first_suffix
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    finFamilyList (factorModule d) =
+      factorModule d 0 :: compositionRightSuffix d := by
+  rfl
+
+theorem finFamilyList_compositionSourceFactor_boundary
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    finFamilyList (compositionSourceFactor d e) =
+      compositionLeftPrefix d ++
+        factorModule d (Fin.last w.length) :: factorModule e 0 ::
+          compositionRightSuffix e := by
+  rw [finFamilyList_compositionSourceFactor,
+    finFamilyList_factorModule_eq_prefix_last,
+    finFamilyList_factorModule_eq_first_suffix]
+  simp only [List.append_assoc, List.singleton_append]
 
 def compositionSourceLeftIndex
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
@@ -668,6 +730,57 @@ theorem factorModule_append_right
   rw [arrowSource_append_right, arrowTarget_append_right,
     appendArrowDegree_right]
 
+theorem finFamilyList_factorModule_append_boundary
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    finFamilyList (factorModule (d.append e)) =
+      compositionLeftPrefix d ++ compositionBoundaryModule d e ::
+        compositionRightSuffix e := by
+  rw [finFamilyList_eq_ofFn, compositionLeftPrefix, compositionRightSuffix,
+    finFamilyList_eq_ofFn, finFamilyList_eq_ofFn]
+  let h : (w.append v).length + 1 = w.length + (v.length + 1) := by
+    simp [Nat.add_assoc]
+  calc
+    List.ofFn (factorModule (d.append e)) =
+        List.ofFn (fun q : Fin (w.length + (v.length + 1)) ↦
+          factorModule (d.append e) (Fin.cast h.symm q)) :=
+      List.ofFn_congr h (factorModule (d.append e))
+    _ = List.ofFn (Fin.append
+        (fun i : Fin w.length ↦ factorModule d i.castSucc)
+        (Fin.cases (compositionBoundaryModule d e)
+          (fun j : Fin v.length ↦ factorModule e j.succ))) := by
+      congr 1
+      funext q
+      refine Fin.addCases ?_ ?_ q
+      · intro i
+        have hi : Fin.cast h.symm (Fin.castAdd (v.length + 1) i) =
+            appendLeftArrowIndex (v := v) i := by
+          apply Fin.ext
+          rfl
+        rw [hi, factorModule_append_left]
+        simp only [Fin.append_left]
+      · intro j
+        induction j using Fin.cases with
+        | zero =>
+            have hj : Fin.cast h.symm (Fin.natAdd w.length 0) =
+                appendBoundaryArrowIndex w v := by
+              apply Fin.ext
+              rfl
+            rw [hj, factorModule_append_boundary]
+            simp only [Fin.append_right, Fin.cases_zero]
+        | succ j =>
+            have hj : Fin.cast h.symm (Fin.natAdd w.length j.succ) =
+                appendRightArrowIndex (w := w) j := by
+              apply Fin.ext
+              simp only [Fin.val_cast, Fin.val_natAdd, Fin.val_succ,
+                appendRightArrowIndex, Fin.val_mk]
+              omega
+            rw [hj, factorModule_append_right]
+            simp only [Fin.append_right, Fin.cases_succ]
+    _ = _ := by
+      rw [List.ofFn_fin_append, List.ofFn_succ]
+      rfl
+
 def compositionMergedFactor
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
     {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
@@ -762,10 +875,31 @@ def compositionMergeData
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
     {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
     AdjacentMergeData (finFamilyList (compositionSourceFactor d e))
-      (finFamilyList (compositionMergedFactor d e)) :=
-  recursiveAdjacentMergeDataOfFn (compositionSourceFactor d e)
-    (compositionBoundaryIndex w v) (compositionBoundaryModule d e)
-    (compositionBoundaryFactorMap d e)
+      (finFamilyList (compositionMergedFactor d e)) := by
+  have hs := finFamilyList_compositionSourceFactor_boundary d e
+  have ht : finFamilyList (compositionMergedFactor d e) =
+      compositionLeftPrefix d ++ compositionBoundaryModule d e ::
+        compositionRightSuffix e := by
+    rw [congrArg finFamilyList (compositionMergedFactor_eq_target d e),
+      finFamilyList_compositionTargetFactor,
+      finFamilyList_factorModule_append_boundary]
+  have hleft : (compositionBoundaryIndex w v).castSucc =
+      compositionSourceLeftIndex (v := v) (Fin.last w.length) := by
+    apply Fin.ext
+    rfl
+  have hright : (compositionBoundaryIndex w v).succ =
+      compositionSourceRightIndex (w := w) (0 : Fin (v.length + 1)) := by
+    apply Fin.ext
+    rfl
+  have hf : Quiver.Hom
+      (factorModule d (Fin.last w.length) ⊗ factorModule e 0)
+      (compositionBoundaryModule d e) := by
+    rw [← compositionSourceFactor_left d e (Fin.last w.length),
+      ← compositionSourceFactor_right d e 0, ← hleft, ← hright]
+    exact compositionBoundaryFactorMap d e
+  rw [hs, ht]
+  exact adjacentMergeAfter (compositionLeftPrefix d)
+    (ys := compositionRightSuffix e) hf
 
 def summandCompositionMap
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
