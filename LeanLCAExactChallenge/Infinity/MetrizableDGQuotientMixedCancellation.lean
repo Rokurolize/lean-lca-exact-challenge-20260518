@@ -332,6 +332,17 @@ theorem TensorMapData.ofFn_tensorMap_heq_of_pointwise
   subst f₂
   rfl
 
+theorem tensorHom_heq
+    {A B C D A' B' C' D' : ModuleCat.{0} ℤ}
+    {f : A ⟶ B} {g : C ⟶ D} {f' : A' ⟶ B'} {g' : C' ⟶ D'}
+    (hA : A = A') (hB : B = B') (hC : C = C') (hD : D = D')
+    (hf : HEq f f') (hg : HEq g g') : HEq (f ⊗ₘ g) (f' ⊗ₘ g') := by
+  subst A'
+  subst B'
+  subst C'
+  subst D'
+  rw [eq_of_heq hf, eq_of_heq hg]
+
 def contractedInternalTensorMapAtOldIndex
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) (i : Fin w.length)
@@ -501,5 +512,510 @@ theorem DegreeProfile.mixedCoefficient_surviving
       ← uneraseFactorIndex_eraseFactorIndex w i j]
     exact DegreeProfile.mixedCoefficient_of_gt d i
       (eraseFactorIndex w i j) hafter
+
+theorem DegreeProfile.raise_right_contract
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    (d.raise i.succ).contract i =
+      (d.contract i).raise (erasePosition w i) := by
+  have hq : survivingOldFactorIndex w i (erasePosition w i) = i.succ :=
+    (survivingOldFactorIndex_eq_right_iff w i (erasePosition w i)).mpr rfl
+  rw [← hq]
+  exact DegreeProfile.raise_surviving_contract d i (erasePosition w i)
+
+def rightInternalContractionToMergedTarget
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    Quiver.Hom (summandModule d)
+      (summandModule ((d.contract i).raise (erasePosition w i))) :=
+  internalDifferentialTensorMap d i.succ ≫
+    contractionTensorMap (d.raise i.succ) i ≫
+    eqToHom (congrArg summandModule (DegreeProfile.raise_right_contract d i))
+
+def leftInternalContractionToMergedTarget
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    Quiver.Hom (summandModule d)
+      (summandModule ((d.contract i).raise (erasePosition w i))) :=
+  internalDifferentialTensorMap d i.castSucc ≫
+    contractionTensorMap (d.raise i.castSucc) i ≫
+    eqToHom (congrArg summandModule (DegreeProfile.raise_left_contract d i))
+
+theorem AdjacentMergeData.head_tensorMap_add
+    {M N P : ModuleCat.{0} ℤ} {Ms : List (ModuleCat.{0} ℤ)}
+    (f g : Quiver.Hom (M ⊗ N) P) :
+    (@AdjacentMergeData.head M N P Ms (f + g)).tensorMap =
+      (@AdjacentMergeData.head M N P Ms f).tensorMap +
+        (@AdjacentMergeData.head M N P Ms g).tensorMap := by
+  simp [AdjacentMergeData.tensorMap, Preadditive.comp_add]
+
+theorem AdjacentMergeData.head_tensorMap_zsmul
+    {M N P : ModuleCat.{0} ℤ} {Ms : List (ModuleCat.{0} ℤ)}
+    (c : ℤ) (f : Quiver.Hom (M ⊗ N) P) :
+    (@AdjacentMergeData.head M N P Ms (c • f)).tensorMap =
+      c • (@AdjacentMergeData.head M N P Ms f).tensorMap := by
+  change (α_ M N (tensorModuleList Ms)).inv ≫
+      ((tensoringRight (ModuleCat.{0} ℤ)).obj (tensorModuleList Ms)).map (c • f) = _
+  rw [Functor.map_zsmul, Preadditive.comp_zsmul]
+  rfl
+
+def TensorMapData.identity : (Ms : List (ModuleCat.{0} ℤ)) → TensorMapData Ms Ms
+  | [] => .nil
+  | M :: Ms => .cons (𝟙 M) (TensorMapData.identity Ms)
+
+@[simp]
+theorem TensorMapData.identity_tensorMap : (Ms : List (ModuleCat.{0} ℤ)) →
+    (TensorMapData.identity Ms).tensorMap = 𝟙 (tensorModuleList Ms)
+  | [] => rfl
+  | M :: Ms => by
+      simp only [TensorMapData.identity, TensorMapData.tensorMap,
+        TensorMapData.identity_tensorMap Ms]
+      exact MonoidalCategory.id_tensorHom_id
+        (C := ModuleCat.{0} ℤ) M (tensorModuleList Ms)
+
+theorem AdjacentMergeData.head_tensorMap_leibniz
+    {M N M' N' P P' : ModuleCat.{0} ℤ}
+    {Ms : List (ModuleCat.{0} ℤ)}
+    (f : M ⊗ N ⟶ P) (fR : M ⊗ N' ⟶ P') (fL : M' ⊗ N ⟶ P')
+    (a : M ⟶ M') (b : N ⟶ N') (g : P ⟶ P') (c : ℤ)
+    (h : f ≫ g = (𝟙 M ⊗ₘ b) ≫ fR + c • ((a ⊗ₘ 𝟙 N) ≫ fL)) :
+    (@AdjacentMergeData.head M N P Ms f).tensorMap ≫
+        (TensorMapData.cons g (TensorMapData.identity Ms)).tensorMap =
+      (TensorMapData.cons (𝟙 M)
+          (TensorMapData.cons b (TensorMapData.identity Ms))).tensorMap ≫
+          (@AdjacentMergeData.head M N' P' Ms fR).tensorMap +
+        c • ((TensorMapData.cons a
+          (TensorMapData.cons (𝟙 N) (TensorMapData.identity Ms))).tensorMap ≫
+          (@AdjacentMergeData.head M' N P' Ms fL).tensorMap) := by
+  have htarget := (AdjacentMergeNaturality.head f (f ≫ g)
+    (𝟙 M) (𝟙 N) g (TensorMapData.identity Ms) (by simp)).tensorMap_comm
+  have hright := (AdjacentMergeNaturality.head ((𝟙 M ⊗ₘ b) ≫ fR) fR
+    (𝟙 M) b (𝟙 P') (TensorMapData.identity Ms) (by simp)).tensorMap_comm
+  have hleft := (AdjacentMergeNaturality.head ((a ⊗ₘ 𝟙 N) ≫ fL) fL
+    a (𝟙 N) (𝟙 P') (TensorMapData.identity Ms) (by simp)).tensorMap_comm
+  change (TensorMapData.identity (M :: N :: Ms)).tensorMap ≫
+      (@AdjacentMergeData.head M N P' Ms (f ≫ g)).tensorMap = _ at htarget
+  rw [TensorMapData.identity_tensorMap, Category.id_comp] at htarget
+  change _ = (@AdjacentMergeData.head M N P' Ms
+      ((𝟙 M ⊗ₘ b) ≫ fR)).tensorMap ≫
+        (TensorMapData.identity (P' :: Ms)).tensorMap at hright
+  rw [TensorMapData.identity_tensorMap, Category.comp_id] at hright
+  change _ = (@AdjacentMergeData.head M N P' Ms
+      ((a ⊗ₘ 𝟙 N) ≫ fL)).tensorMap ≫
+        (TensorMapData.identity (P' :: Ms)).tensorMap at hleft
+  rw [TensorMapData.identity_tensorMap, Category.comp_id] at hleft
+  have htarget' :
+      (@AdjacentMergeData.head M N P' Ms (f ≫ g)).tensorMap =
+        (@AdjacentMergeData.head M N P Ms f).tensorMap ≫
+          (TensorMapData.cons g (TensorMapData.identity Ms)).tensorMap := by
+    exact htarget
+  have hright' :
+      (TensorMapData.cons (𝟙 M)
+          (TensorMapData.cons b (TensorMapData.identity Ms))).tensorMap ≫
+          (@AdjacentMergeData.head M N' P' Ms fR).tensorMap =
+        (@AdjacentMergeData.head M N P' Ms ((𝟙 M ⊗ₘ b) ≫ fR)).tensorMap := by
+    exact hright
+  have hleft' :
+      (TensorMapData.cons a
+          (TensorMapData.cons (𝟙 N) (TensorMapData.identity Ms))).tensorMap ≫
+          (@AdjacentMergeData.head M' N P' Ms fL).tensorMap =
+        (@AdjacentMergeData.head M N P' Ms ((a ⊗ₘ 𝟙 N) ≫ fL)).tensorMap := by
+    exact hleft
+  have hhead := congrArg
+    (fun z : M ⊗ N ⟶ P' ↦
+      (@AdjacentMergeData.head M N P' Ms z).tensorMap) h
+  rw [AdjacentMergeData.head_tensorMap_add,
+    AdjacentMergeData.head_tensorMap_zsmul] at hhead
+  exact htarget'.symm.trans (hhead.trans
+    (congrArg₂ (· + ·) hright'.symm (congrArg (c • ·) hleft'.symm)))
+
+theorem factorModule_raise_of_ne
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (q r : Fin (w.length + 1)) (h : q ≠ r) :
+    factorModule d r = factorModule (d.raise q) r := by
+  simp [factorModule, DegreeProfile.raise, Ne.symm h]
+
+theorem rawContractionFactor_raiseRight_eq_mergedTarget
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    rawContractionFactor (d.raise i.succ) i =
+      factorModule ((d.contract i).raise (erasePosition w i))
+        (erasePosition w i) :=
+  (rawContractionFactor_eq_contractPosition (d.raise i.succ) i).trans
+    (congrArg (fun e ↦ factorModule e (erasePosition w i))
+      (DegreeProfile.raise_right_contract d i))
+
+theorem rawContractionFactor_raiseLeft_eq_mergedTarget
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    rawContractionFactor (d.raise i.castSucc) i =
+      factorModule ((d.contract i).raise (erasePosition w i))
+        (erasePosition w i) :=
+  (rawContractionFactor_eq_contractPosition (d.raise i.castSucc) i).trans
+    (congrArg (fun e ↦ factorModule e (erasePosition w i))
+      (DegreeProfile.raise_left_contract d i))
+
+def mergedRawFactorDifferential
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    rawContractionFactor d i ⟶
+      factorModule ((d.contract i).raise (erasePosition w i))
+        (erasePosition w i) :=
+  eqToHom (rawContractionFactor_eq_contractPosition d i) ≫
+    factorDifferential (d.contract i) (erasePosition w i) (erasePosition w i)
+
+def rightAdjacentCompositionToMergedTarget
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    factorModule d i.castSucc ⊗ factorModule (d.raise i.succ) i.succ ⟶
+      factorModule ((d.contract i).raise (erasePosition w i))
+        (erasePosition w i) :=
+  (eqToHom (factorModule_raise_of_ne d i.succ i.castSucc
+      (Fin.ne_of_gt i.castSucc_lt_succ)) ⊗ₘ
+      𝟙 (factorModule (d.raise i.succ) i.succ)) ≫
+    adjacentFactorComposition (d.raise i.succ) i ≫
+    eqToHom (rawContractionFactor_raiseRight_eq_mergedTarget d i)
+
+def leftAdjacentCompositionToMergedTarget
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    factorModule (d.raise i.castSucc) i.castSucc ⊗ factorModule d i.succ ⟶
+      factorModule ((d.contract i).raise (erasePosition w i))
+        (erasePosition w i) :=
+  (𝟙 (factorModule (d.raise i.castSucc) i.castSucc) ⊗ₘ
+      eqToHom (factorModule_raise_of_ne d i.castSucc i.succ
+        (Fin.ne_of_lt i.castSucc_lt_succ))) ≫
+    adjacentFactorComposition (d.raise i.castSucc) i ≫
+    eqToHom (rawContractionFactor_raiseLeft_eq_mergedTarget d i)
+
+theorem adjacentDifferentialTarget_eq_mergedTarget
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    (dgHomZModuleCochainComplex
+      (w.arrowSource i.castSucc) (w.arrowTarget i.succ)).X
+        ((d.arrowDegree i.castSucc + d.arrowDegree i.succ) + 1) =
+      factorModule ((d.contract i).raise (erasePosition w i))
+        (erasePosition w i) := by
+  unfold factorModule
+  rw [eraseIntermediate_arrowSource_at w i,
+    eraseIntermediate_arrowTarget_at w i]
+  simp [DegreeProfile.raise, contract_arrowDegree_at]
+
+def adjacentRightDifferentialPathToMergedTarget
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    factorModule d i.castSucc ⊗ factorModule d i.succ ⟶
+      factorModule ((d.contract i).raise (erasePosition w i))
+        (erasePosition w i) :=
+  adjacentRightDifferentialPath d i ≫
+    eqToHom (adjacentDifferentialTarget_eq_mergedTarget d i)
+
+def adjacentLeftDifferentialPathToMergedTarget
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    factorModule d i.castSucc ⊗ factorModule d i.succ ⟶
+      factorModule ((d.contract i).raise (erasePosition w i))
+        (erasePosition w i) :=
+  adjacentLeftDifferentialPath d i ≫
+    eqToHom (adjacentDifferentialTarget_eq_mergedTarget d i)
+
+theorem mergedRawFactorDifferential_heq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    HEq (mergedRawFactorDifferential d i)
+      ((dgHomZModuleCochainComplex
+        (w.arrowSource i.castSucc) (w.arrowTarget i.succ)).d
+          (d.arrowDegree i.castSucc + d.arrowDegree i.succ)
+          ((d.arrowDegree i.castSucc + d.arrowDegree i.succ) + 1)) := by
+  unfold mergedRawFactorDifferential
+  apply (CategoryTheory.eqToHom_comp_heq _ _).trans
+  unfold factorDifferential
+  simp only [eq_self, dif_pos]
+  apply dgHomDifferential_heq
+  · exact eraseIntermediate_arrowSource_at w i
+  · exact eraseIntermediate_arrowTarget_at w i
+  · exact contract_arrowDegree_at d i
+  · simp [DegreeProfile.raise, contract_arrowDegree_at]
+
+def adjacentRightRaisedComposition
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    factorModule d i.castSucc ⊗ factorModule (d.raise i.succ) i.succ ⟶
+      (dgHomZModuleCochainComplex
+        (w.arrowSource i.castSucc) (w.arrowTarget i.succ)).X
+          ((d.arrowDegree i.castSucc + d.arrowDegree i.succ) + 1) := by
+  simp only [factorModule]
+  exact dgCochainCompTensorOfEq
+    (w.arrowSource i.castSucc) (w.arrowTarget i.castSucc)
+    (w.arrowSource i.succ) (w.arrowTarget i.succ)
+    (arrowTarget_castSucc_eq_arrowSource_succ w i) (by
+      simp [DegreeProfile.raise]
+      omega)
+
+def adjacentLeftRaisedComposition
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    factorModule (d.raise i.castSucc) i.castSucc ⊗ factorModule d i.succ ⟶
+      (dgHomZModuleCochainComplex
+        (w.arrowSource i.castSucc) (w.arrowTarget i.succ)).X
+          ((d.arrowDegree i.castSucc + d.arrowDegree i.succ) + 1) := by
+  simp only [factorModule]
+  exact dgCochainCompTensorOfEq
+    (w.arrowSource i.castSucc) (w.arrowTarget i.castSucc)
+    (w.arrowSource i.succ) (w.arrowTarget i.succ)
+    (arrowTarget_castSucc_eq_arrowSource_succ w i) (by
+      simp [DegreeProfile.raise]
+      omega)
+
+theorem adjacentFactorComposition_raiseRight_heq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    HEq (adjacentFactorComposition (d.raise i.succ) i)
+      (adjacentRightRaisedComposition d i) := by
+  have hne : i.castSucc ≠ i.succ := Fin.ne_of_lt i.castSucc_lt_succ
+  unfold adjacentFactorComposition adjacentRightRaisedComposition factorModule
+  apply dgCochainCompTensorOfEq_heq
+  all_goals simp [DegreeProfile.raise, hne] <;> ring
+
+theorem adjacentFactorComposition_raiseLeft_heq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    HEq (adjacentFactorComposition (d.raise i.castSucc) i)
+      (adjacentLeftRaisedComposition d i) := by
+  have hne : i.castSucc ≠ i.succ := Fin.ne_of_lt i.castSucc_lt_succ
+  unfold adjacentFactorComposition adjacentLeftRaisedComposition factorModule
+  apply dgCochainCompTensorOfEq_heq
+  all_goals simp [DegreeProfile.raise, hne.symm] <;> ring
+
+def adjacentRightPathComposition
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    (dgHomZModuleCochainComplex
+        (w.arrowSource i.castSucc) (w.arrowTarget i.castSucc)).X
+          (d.arrowDegree i.castSucc) ⊗
+      (dgHomZModuleCochainComplex
+        (w.arrowSource i.succ) (w.arrowTarget i.succ)).X
+          (d.arrowDegree i.succ + 1) ⟶
+      (dgHomZModuleCochainComplex
+        (w.arrowSource i.castSucc) (w.arrowTarget i.succ)).X
+          ((d.arrowDegree i.castSucc + d.arrowDegree i.succ) + 1) :=
+  dgCochainCompTensorOfEq
+    (w.arrowSource i.castSucc) (w.arrowTarget i.castSucc)
+    (w.arrowSource i.succ) (w.arrowTarget i.succ)
+    (arrowTarget_castSucc_eq_arrowSource_succ w i) (by omega)
+
+def adjacentLeftPathComposition
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    (dgHomZModuleCochainComplex
+        (w.arrowSource i.castSucc) (w.arrowTarget i.castSucc)).X
+          (d.arrowDegree i.castSucc + 1) ⊗
+      (dgHomZModuleCochainComplex
+        (w.arrowSource i.succ) (w.arrowTarget i.succ)).X
+          (d.arrowDegree i.succ) ⟶
+      (dgHomZModuleCochainComplex
+        (w.arrowSource i.castSucc) (w.arrowTarget i.succ)).X
+          ((d.arrowDegree i.castSucc + d.arrowDegree i.succ) + 1) :=
+  dgCochainCompTensorOfEq
+    (w.arrowSource i.castSucc) (w.arrowTarget i.castSucc)
+    (w.arrowSource i.succ) (w.arrowTarget i.succ)
+    (arrowTarget_castSucc_eq_arrowSource_succ w i) (by omega)
+
+theorem adjacentRightRaisedComposition_heq_pathComposition
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    HEq (adjacentRightRaisedComposition d i)
+      (adjacentRightPathComposition d i) := by
+  unfold adjacentRightRaisedComposition adjacentRightPathComposition factorModule
+  apply dgCochainCompTensorOfEq_heq
+  all_goals simp [DegreeProfile.raise]
+
+theorem adjacentLeftRaisedComposition_heq_pathComposition
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    HEq (adjacentLeftRaisedComposition d i)
+      (adjacentLeftPathComposition d i) := by
+  unfold adjacentLeftRaisedComposition adjacentLeftPathComposition factorModule
+  apply dgCochainCompTensorOfEq_heq
+  all_goals simp [DegreeProfile.raise]
+
+theorem rightAdjacentCompositionToMergedTarget_eq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    rightAdjacentCompositionToMergedTarget d i =
+      adjacentRightRaisedComposition d i ≫
+        eqToHom (adjacentDifferentialTarget_eq_mergedTarget d i) := by
+  let hA := factorModule_raise_of_ne d i.succ i.castSucc
+    (Fin.ne_of_gt i.castSucc_lt_succ)
+  let hC := (adjacentDifferentialTarget_eq_mergedTarget d i).trans
+    (rawContractionFactor_raiseRight_eq_mergedTarget d i).symm
+  have hbase := test_tensor_comp_transport_of_heq hA rfl hC
+    (adjacentRightRaisedComposition d i)
+    (adjacentFactorComposition (d.raise i.succ) i)
+    (adjacentFactorComposition_raiseRight_heq d i)
+  have hbase' :
+      (eqToHom hA ⊗ₘ 𝟙 (factorModule (d.raise i.succ) i.succ)) ≫
+          adjacentFactorComposition (d.raise i.succ) i =
+        adjacentRightRaisedComposition d i ≫ eqToHom hC := by
+    simpa using hbase
+  unfold rightAdjacentCompositionToMergedTarget
+  rw [← Category.assoc, hbase', Category.assoc]
+  simp
+
+theorem leftAdjacentCompositionToMergedTarget_eq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    leftAdjacentCompositionToMergedTarget d i =
+      adjacentLeftRaisedComposition d i ≫
+        eqToHom (adjacentDifferentialTarget_eq_mergedTarget d i) := by
+  let hB := factorModule_raise_of_ne d i.castSucc i.succ
+    (Fin.ne_of_lt i.castSucc_lt_succ)
+  let hC := (adjacentDifferentialTarget_eq_mergedTarget d i).trans
+    (rawContractionFactor_raiseLeft_eq_mergedTarget d i).symm
+  have hbase := test_tensor_comp_transport_of_heq rfl hB hC
+    (adjacentLeftRaisedComposition d i)
+    (adjacentFactorComposition (d.raise i.castSucc) i)
+    (adjacentFactorComposition_raiseLeft_heq d i)
+  have hbase' :
+      (𝟙 (factorModule (d.raise i.castSucc) i.castSucc) ⊗ₘ eqToHom hB) ≫
+          adjacentFactorComposition (d.raise i.castSucc) i =
+        adjacentLeftRaisedComposition d i ≫ eqToHom hC := by
+    simpa using hbase
+  unfold leftAdjacentCompositionToMergedTarget
+  rw [← Category.assoc, hbase', Category.assoc]
+  simp
+
+theorem rightAdjacentDifferentialPathToMergedTarget_eq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    (𝟙 (factorModule d i.castSucc) ⊗ₘ
+        factorDifferential d i.succ i.succ) ≫
+        rightAdjacentCompositionToMergedTarget d i =
+      adjacentRightDifferentialPathToMergedTarget d i := by
+  rw [rightAdjacentCompositionToMergedTarget_eq]
+  unfold adjacentRightDifferentialPathToMergedTarget
+  rw [← Category.assoc]
+  congr 1
+  apply eq_of_heq
+  have hfd : HEq (factorDifferential d i.succ i.succ)
+      ((dgHomZModuleCochainComplex
+        (w.arrowSource i.succ) (w.arrowTarget i.succ)).d
+          (d.arrowDegree i.succ) (d.arrowDegree i.succ + 1)) := by
+    unfold factorDifferential
+    simp only [eq_self, dif_pos]
+    apply dgHomDifferential_heq <;> simp [DegreeProfile.raise]
+  have htarget : factorModule (d.raise i.succ) i.succ =
+      (dgHomZModuleCochainComplex
+        (w.arrowSource i.succ) (w.arrowTarget i.succ)).X
+          (d.arrowDegree i.succ + 1) := by
+    unfold factorModule
+    simp [DegreeProfile.raise]
+  have htensor := tensorHom_heq rfl rfl rfl htarget
+    (by rfl : HEq (𝟙 (factorModule d i.castSucc))
+      (𝟙 ((dgHomZModuleCochainComplex
+        (w.arrowSource i.castSucc) (w.arrowTarget i.castSucc)).X
+          (d.arrowDegree i.castSucc)))) hfd
+  have hsource : factorModule d i.castSucc ⊗ factorModule d i.succ =
+      (dgHomZModuleCochainComplex
+          (w.arrowSource i.castSucc) (w.arrowTarget i.castSucc)).X
+            (d.arrowDegree i.castSucc) ⊗
+        (dgHomZModuleCochainComplex
+          (w.arrowSource i.succ) (w.arrowTarget i.succ)).X
+            (d.arrowDegree i.succ) := rfl
+  have hmiddle :
+      factorModule d i.castSucc ⊗ factorModule (d.raise i.succ) i.succ =
+        (dgHomZModuleCochainComplex
+            (w.arrowSource i.castSucc) (w.arrowTarget i.castSucc)).X
+              (d.arrowDegree i.castSucc) ⊗
+          (dgHomZModuleCochainComplex
+            (w.arrowSource i.succ) (w.arrowTarget i.succ)).X
+              (d.arrowDegree i.succ + 1) :=
+    congrArg₂ (· ⊗ ·) rfl htarget
+  have hcomp := CategoryTheory.heq_comp hsource hmiddle rfl htensor
+    (adjacentRightRaisedComposition_heq_pathComposition d i)
+  simpa only [adjacentRightDifferentialPath, adjacentRightRaisedComposition,
+    adjacentRightPathComposition, factorModule, id_eq] using hcomp
+
+theorem leftAdjacentDifferentialPathToMergedTarget_eq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    (factorDifferential d i.castSucc i.castSucc ⊗ₘ
+        𝟙 (factorModule d i.succ)) ≫
+        leftAdjacentCompositionToMergedTarget d i =
+      adjacentLeftDifferentialPathToMergedTarget d i := by
+  rw [leftAdjacentCompositionToMergedTarget_eq]
+  unfold adjacentLeftDifferentialPathToMergedTarget
+  rw [← Category.assoc]
+  congr 1
+  apply eq_of_heq
+  have hfd : HEq (factorDifferential d i.castSucc i.castSucc)
+      ((dgHomZModuleCochainComplex
+        (w.arrowSource i.castSucc) (w.arrowTarget i.castSucc)).d
+          (d.arrowDegree i.castSucc) (d.arrowDegree i.castSucc + 1)) := by
+    unfold factorDifferential
+    simp only [eq_self, dif_pos]
+    apply dgHomDifferential_heq <;> simp [DegreeProfile.raise]
+  have htarget : factorModule (d.raise i.castSucc) i.castSucc =
+      (dgHomZModuleCochainComplex
+        (w.arrowSource i.castSucc) (w.arrowTarget i.castSucc)).X
+          (d.arrowDegree i.castSucc + 1) := by
+    unfold factorModule
+    simp [DegreeProfile.raise]
+  have htensor := tensorHom_heq rfl htarget rfl rfl hfd
+    (by rfl : HEq (𝟙 (factorModule d i.succ))
+      (𝟙 ((dgHomZModuleCochainComplex
+        (w.arrowSource i.succ) (w.arrowTarget i.succ)).X
+          (d.arrowDegree i.succ))))
+  have hsource : factorModule d i.castSucc ⊗ factorModule d i.succ =
+      (dgHomZModuleCochainComplex
+          (w.arrowSource i.castSucc) (w.arrowTarget i.castSucc)).X
+            (d.arrowDegree i.castSucc) ⊗
+        (dgHomZModuleCochainComplex
+          (w.arrowSource i.succ) (w.arrowTarget i.succ)).X
+            (d.arrowDegree i.succ) := rfl
+  have hmiddle :
+      factorModule (d.raise i.castSucc) i.castSucc ⊗ factorModule d i.succ =
+        (dgHomZModuleCochainComplex
+            (w.arrowSource i.castSucc) (w.arrowTarget i.castSucc)).X
+              (d.arrowDegree i.castSucc + 1) ⊗
+          (dgHomZModuleCochainComplex
+            (w.arrowSource i.succ) (w.arrowTarget i.succ)).X
+              (d.arrowDegree i.succ) :=
+    congrArg₂ (· ⊗ ·) htarget rfl
+  have hcomp := CategoryTheory.heq_comp hsource hmiddle rfl htensor
+    (adjacentLeftRaisedComposition_heq_pathComposition d i)
+  simpa only [adjacentLeftDifferentialPath, adjacentLeftRaisedComposition,
+    adjacentLeftPathComposition, factorModule, id_eq] using hcomp
+
+theorem adjacentFactorComposition_merged_leibniz
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    adjacentFactorComposition d i ≫ mergedRawFactorDifferential d i =
+      (𝟙 (factorModule d i.castSucc) ⊗ₘ
+          factorDifferential d i.succ i.succ) ≫
+          rightAdjacentCompositionToMergedTarget d i +
+        (d.arrowDegree i.succ).negOnePow •
+          ((factorDifferential d i.castSucc i.castSucc ⊗ₘ
+            𝟙 (factorModule d i.succ)) ≫
+            leftAdjacentCompositionToMergedTarget d i) := by
+  rw [rightAdjacentDifferentialPathToMergedTarget_eq,
+    leftAdjacentDifferentialPathToMergedTarget_eq]
+  have hmerged : mergedRawFactorDifferential d i =
+      (dgHomZModuleCochainComplex
+          (w.arrowSource i.castSucc) (w.arrowTarget i.succ)).d
+            (d.arrowDegree i.castSucc + d.arrowDegree i.succ)
+            ((d.arrowDegree i.castSucc + d.arrowDegree i.succ) + 1) ≫
+        eqToHom (adjacentDifferentialTarget_eq_mergedTarget d i) := by
+    apply eq_of_heq
+    exact (mergedRawFactorDifferential_heq d i).trans
+      (CategoryTheory.comp_eqToHom_heq _ _).symm
+  rw [hmerged, ← Category.assoc, adjacentFactorComposition_comp_d]
+  unfold adjacentRightDifferentialPathToMergedTarget
+    adjacentLeftDifferentialPathToMergedTarget
+  rw [Preadditive.add_comp]
+  congr 1
+  exact Preadditive.zsmul_comp
+    (f := adjacentLeftDifferentialPath d i)
+    (g := eqToHom (adjacentDifferentialTarget_eq_mergedTarget d i)) _
 
 end LeanLCAExactChallenge.Infinity.MetrizableBoundedComplexes.DrinfeldWord
