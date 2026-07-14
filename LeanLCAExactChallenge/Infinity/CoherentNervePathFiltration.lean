@@ -16,7 +16,7 @@ namespace LeanLCAExactChallenge.Infinity.CoherentNervePathFiltration
 
 open CategoryTheory Simplicial MonoidalCategory
 
-universe u
+universe u v
 
 namespace SSet.Subcomplex
 
@@ -1894,7 +1894,7 @@ open CategoryTheory.SimplicialCategory CategoryTheory.EnrichedCategory
 /-- Global coherent-simplex data, separated out as an interface for the distance induction used
 to extend coherent inner horns.  A later partial variant replaces each full mapping object by its
 already constructed latching subcomplex. -/
-structure PartialCoherentSimplexMap (C : Type u) [Category.{u} C]
+structure PartialCoherentSimplexMap (C : Type v) [Category.{u} C]
     [CategoryTheory.SimplicialCategory C] (J : Type u) [LinearOrder J] where
   obj : CategoryTheory.SimplicialThickening J → C
   map : ∀ i j : CategoryTheory.SimplicialThickening J,
@@ -1908,7 +1908,7 @@ structure PartialCoherentSimplexMap (C : Type u) [Category.{u} C]
 
 /-- The global interface is exactly an enriched functor once every latching map has been
 extended. -/
-def partialCoherentSimplexMapEquiv (C : Type u) [Category.{u} C]
+def partialCoherentSimplexMapEquiv (C : Type v) [Category.{u} C]
     [CategoryTheory.SimplicialCategory C] (J : Type u) [LinearOrder J] :
     PartialCoherentSimplexMap C J ≃
       CategoryTheory.EnrichedFunctor SSet (CategoryTheory.SimplicialThickening J) C where
@@ -1927,7 +1927,7 @@ def partialCoherentSimplexMapEquiv (C : Type u) [Category.{u} C]
 
 /-- In the simplex dimensions used by `SimplicialNerve`, global coherent-simplex data are
 literally its simplices. -/
-def partialCoherentSimplexMapEquivSimplicialNerveObj (C : Type u) [Category.{u} C]
+def partialCoherentSimplexMapEquivSimplicialNerveObj (C : Type v) [Category.{u} C]
     [CategoryTheory.SimplicialCategory C] (n : SimplexCategoryᵒᵖ) :
     PartialCoherentSimplexMap C (ULift (Fin (n.unop.len + 1))) ≃
       (CategoryTheory.SimplicialNerve C).obj n :=

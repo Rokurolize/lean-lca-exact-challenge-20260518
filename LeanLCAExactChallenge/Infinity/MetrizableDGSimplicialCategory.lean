@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.Infinity.AlexanderWhitneyAssociativity
+import LeanLCAExactChallenge.Infinity.CoherentNerveLatchingCompatibility
 import LeanLCAExactChallenge.Infinity.InnerAnodyneMapping
 import LeanLCAExactChallenge.Infinity.InnerFibrantReplacement
 import LeanLCAExactChallenge.Infinity.MetrizableDGMappingZModuleAssociativity
@@ -168,6 +169,11 @@ noncomputable instance directDG_enrichedHom_kanComplex
 /-- The homotopy coherent nerve of the direct dg simplicial category. -/
 def directDGHomotopyCoherentNerve : SSet.{1} :=
   CategoryTheory.SimplicialNerve DirectDGSimplicialCategory
+
+noncomputable instance directDGHomotopyCoherentNerve_quasicategory :
+    SSet.Quasicategory directDGHomotopyCoherentNerve :=
+  LeanLCAExactChallenge.Infinity.CoherentNervePathFiltration.simplicialNerve_quasicategory
+    DirectDGSimplicialCategory
 
 /-- A chosen quasicategorical replacement of the direct dg nerve. -/
 def directDGQCat : SSet.QCat.{1} :=
