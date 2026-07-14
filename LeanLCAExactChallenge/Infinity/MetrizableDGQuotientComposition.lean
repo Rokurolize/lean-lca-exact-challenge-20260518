@@ -1019,6 +1019,34 @@ theorem nilIdentitySummandMap_comp_lastFactorIso
     (identityCochainInclusion K ≫
       (ρ_ (factorModule (nilDegreeProfile K K 0) 0)).inv)
 
+theorem nilFirstFactorIso_inv_comp_nilSummandIsoOriginal
+    (K : ComplexCategory) :
+    (summandFirstFactorIso (nilDegreeProfile K K 0)).inv ≫
+        (nilSummandIsoOriginal K K (nilDegreeProfile K K 0)).hom =
+      (ρ_ (factorModule (nilDegreeProfile K K 0) 0)).hom := by
+  unfold summandFirstFactorIso nilSummandIsoOriginal
+  simp only [Iso.trans_hom, eqToIso.inv, eqToIso.hom]
+  congr 1
+
+theorem nilIdentitySummandMap_comp_nilSummandIsoOriginal
+    (K : ComplexCategory) :
+    nilIdentitySummandMap K ≫
+        (nilSummandIsoOriginal K K (nilDegreeProfile K K 0)).hom =
+      identityCochainInclusion K := by
+  unfold nilIdentitySummandMap
+  simp only [Category.assoc]
+  slice_lhs 3 4 =>
+    exact nilFirstFactorIso_inv_comp_nilSummandIsoOriginal K
+  simp
+
+theorem identityCochainInclusion_comp_nilSummandIsoOriginal_inv
+    (K : ComplexCategory) :
+    identityCochainInclusion K ≫
+        (nilSummandIsoOriginal K K (nilDegreeProfile K K 0)).inv =
+      nilIdentitySummandMap K := by
+  rw [← nilIdentitySummandMap_comp_nilSummandIsoOriginal]
+  simp
+
 @[reassoc]
 theorem summandRightUnitSource_decompose
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
@@ -1460,6 +1488,123 @@ theorem gradedSummandIndex_nil_append
   rw [DegreeProfile.cast_eq_castWord]
   exact hhp
 
+def largeSummandModuleCastTotalEq
+    {X Y : ComplexCategory} {n m : ℤ} (h : n = m)
+    (s : GradedSummandIndex X Y n) :
+    largeSummandModule s =
+      largeSummandModule (GradedSummandIndex.castTotal h s) := by
+  subst m
+  rfl
+
+@[reassoc]
+theorem quotientGradedModule_eqToHom_ι
+    {X Y : ComplexCategory} {n m : ℤ} (h : n = m)
+    (s : GradedSummandIndex X Y n) :
+    Limits.Sigma.ι
+          (fun t : GradedSummandIndex X Y n ↦ largeSummandModule t) s ≫
+        eqToHom (congrArg (quotientGradedModule X Y) h) =
+      eqToHom (largeSummandModuleCastTotalEq h s) ≫
+        Limits.Sigma.ι
+          (fun t : GradedSummandIndex X Y m ↦ largeSummandModule t)
+          (GradedSummandIndex.castTotal h s) := by
+  subst m
+  simp [GradedSummandIndex.castTotal]
+
+@[reassoc]
+theorem quotientGradedModule_eqToHom_ι_of_eq
+    {X Y : ComplexCategory} {n m : ℤ} (h : n = m)
+    (s : GradedSummandIndex X Y n) (t : GradedSummandIndex X Y m)
+    (k : GradedSummandIndex.castTotal h s = t) :
+    Limits.Sigma.ι
+          (fun q : GradedSummandIndex X Y n ↦ largeSummandModule q) s ≫
+        eqToHom (congrArg (quotientGradedModule X Y) h) =
+      eqToHom (largeSummandModuleCastTotalEq h s) ≫
+        eqToHom (congrArg largeSummandModule k) ≫
+        Limits.Sigma.ι
+          (fun q : GradedSummandIndex X Y m ↦ largeSummandModule q) t := by
+  rw [quotientGradedModule_eqToHom_ι]
+  slice_rhs 2 3 =>
+    exact Limits.Sigma.eqToHom_comp_ι
+      (fun q : GradedSummandIndex X Y m ↦ largeSummandModule q) k
+
+theorem largeSummandRightUnitTransport
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    eqToHom (largeSummandModuleCastTotalEq (Int.add_zero n)
+          (⟨w.append (nil Y Y), d.append (nilDegreeProfile Y Y 0)⟩ :
+            GradedSummandIndex X Y (n + 0))) ≫
+        eqToHom (congrArg largeSummandModule
+          (gradedSummandIndex_append_nil d)) =
+      (ModuleCat.uliftFunctor.{1} ℤ).map (summandRightUnitIso d).hom := by
+  simp only [summandRightUnitIso, summandModuleTransportIso,
+    Iso.trans_hom, eqToIso.hom, eqToHom_map, eqToHom_trans]
+
+theorem largeSummandLeftUnitTransport
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    eqToHom (largeSummandModuleCastTotalEq (Int.zero_add n)
+          (⟨(nil X X).append w, (nilDegreeProfile X X 0).append d⟩ :
+            GradedSummandIndex X Y (0 + n))) ≫
+        eqToHom (congrArg largeSummandModule
+          (gradedSummandIndex_nil_append d)) =
+      (ModuleCat.uliftFunctor.{1} ℤ).map (summandLeftUnitIso d).hom := by
+  simp only [summandLeftUnitIso, summandModuleTransportIso,
+    Iso.trans_hom, eqToIso.hom, eqToHom_map, eqToHom_trans]
+
+@[reassoc]
+theorem largeSummandRightUnitInclusion_transport
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    Limits.Sigma.ι
+          (fun q : GradedSummandIndex X Y (n + 0) ↦ largeSummandModule q)
+          ⟨w.append (nil Y Y), d.append (nilDegreeProfile Y Y 0)⟩ ≫
+        eqToHom (congrArg (quotientGradedModule X Y) (Int.add_zero n)) =
+      (ModuleCat.uliftFunctor.{1} ℤ).map (summandRightUnitIso d).hom ≫
+        Limits.Sigma.ι
+          (fun q : GradedSummandIndex X Y n ↦ largeSummandModule q) ⟨w, d⟩ := by
+  calc
+    _ = eqToHom (largeSummandModuleCastTotalEq (Int.add_zero n)
+          (⟨w.append (nil Y Y), d.append (nilDegreeProfile Y Y 0)⟩ :
+            GradedSummandIndex X Y (n + 0))) ≫
+        eqToHom (congrArg largeSummandModule
+          (gradedSummandIndex_append_nil d)) ≫
+        Limits.Sigma.ι
+          (fun q : GradedSummandIndex X Y n ↦ largeSummandModule q) ⟨w, d⟩ :=
+      quotientGradedModule_eqToHom_ι_of_eq (Int.add_zero n)
+        (⟨w.append (nil Y Y), d.append (nilDegreeProfile Y Y 0)⟩ :
+          GradedSummandIndex X Y (n + 0))
+        (⟨w, d⟩ : GradedSummandIndex X Y n)
+        (gradedSummandIndex_append_nil d)
+    _ = _ := by
+      rw [← Category.assoc, largeSummandRightUnitTransport]
+
+@[reassoc]
+theorem largeSummandLeftUnitInclusion_transport
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    Limits.Sigma.ι
+          (fun q : GradedSummandIndex X Y (0 + n) ↦ largeSummandModule q)
+          ⟨(nil X X).append w, (nilDegreeProfile X X 0).append d⟩ ≫
+        eqToHom (congrArg (quotientGradedModule X Y) (Int.zero_add n)) =
+      (ModuleCat.uliftFunctor.{1} ℤ).map (summandLeftUnitIso d).hom ≫
+        Limits.Sigma.ι
+          (fun q : GradedSummandIndex X Y n ↦ largeSummandModule q) ⟨w, d⟩ := by
+  calc
+    _ = eqToHom (largeSummandModuleCastTotalEq (Int.zero_add n)
+          (⟨(nil X X).append w, (nilDegreeProfile X X 0).append d⟩ :
+            GradedSummandIndex X Y (0 + n))) ≫
+        eqToHom (congrArg largeSummandModule
+          (gradedSummandIndex_nil_append d)) ≫
+        Limits.Sigma.ι
+          (fun q : GradedSummandIndex X Y n ↦ largeSummandModule q) ⟨w, d⟩ :=
+      quotientGradedModule_eqToHom_ι_of_eq (Int.zero_add n)
+        (⟨(nil X X).append w, (nilDegreeProfile X X 0).append d⟩ :
+          GradedSummandIndex X Y (0 + n))
+        (⟨w, d⟩ : GradedSummandIndex X Y n)
+        (gradedSummandIndex_nil_append d)
+    _ = _ := by
+      rw [← Category.assoc, largeSummandLeftUnitTransport]
+
 theorem factorModule_append_left
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
     {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
@@ -1768,6 +1913,19 @@ theorem summandCompositionMap_right_unit
   rw [normalizedSummandRightUnit]
   simp
 
+theorem summandCompositionMap_right_unit_apply
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (x : summandModule d) :
+    (summandRightUnitIso d).hom.hom
+        ((summandCompositionMap d (nilDegreeProfile Y Y 0)).hom
+          (x ⊗ₜ[ℤ] (nilIdentitySummandMap Y).hom 1)) = x := by
+  have h := congrArg
+    (fun f : summandModule d ⟶ summandModule d ↦ f.hom x)
+    (summandCompositionMap_right_unit d)
+  simpa only [ModuleCat.comp_apply,
+    ModuleCat.MonoidalCategory.rightUnitor_inv_apply,
+    ModuleCat.MonoidalCategory.tensorHom_tmul, CategoryTheory.id_apply] using h
+
 theorem summandCompositionMap_left_unit
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) :
@@ -1800,6 +1958,19 @@ theorem summandCompositionMap_left_unit
       (summandFirstFactorIso d).inv = 𝟙 (summandModule d)
   rw [normalizedSummandLeftUnit]
   simp
+
+theorem summandCompositionMap_left_unit_apply
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (x : summandModule d) :
+    (summandLeftUnitIso d).hom.hom
+        ((summandCompositionMap (nilDegreeProfile X X 0) d).hom
+          ((nilIdentitySummandMap X).hom 1 ⊗ₜ[ℤ] x)) = x := by
+  have h := congrArg
+    (fun f : summandModule d ⟶ summandModule d ↦ f.hom x)
+    (summandCompositionMap_left_unit d)
+  simpa only [ModuleCat.comp_apply,
+    ModuleCat.MonoidalCategory.leftUnitor_inv_apply,
+    ModuleCat.MonoidalCategory.tensorHom_tmul, CategoryTheory.id_apply] using h
 
 def intLinearMapOfAddHom {A B : Type*} [AddCommGroup A] [AddCommGroup B]
     [Module ℤ A] [Module ℤ B] (f : A →+ B) : A →ₗ[ℤ] B where
@@ -1958,8 +2129,184 @@ theorem quotientCompositionMap_on_summands
   rw [rightCoproductCompositionMap, Limits.Sigma.ι_desc]
   rfl
 
+theorem largeSummandCompositionMap_right_unit_transport
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n)) :
+    (eqToHom (congrArg (quotientGradedModule X Y) (Int.add_zero n))).hom
+        (largeSummandCompositionMap d (nilDegreeProfile Y Y 0) x
+          (ULift.up ((nilIdentitySummandMap Y).hom 1))) =
+      (Limits.Sigma.ι
+        (fun q : GradedSummandIndex X Y n ↦ largeSummandModule q) ⟨w, d⟩).hom x := by
+  rcases x with ⟨x⟩
+  change
+    (Limits.Sigma.ι
+          (fun q : GradedSummandIndex X Y (n + 0) ↦ largeSummandModule q)
+          ⟨w.append (nil Y Y), d.append (nilDegreeProfile Y Y 0)⟩ ≫
+        eqToHom (congrArg (quotientGradedModule X Y) (Int.add_zero n))).hom
+      (ULift.up ((summandCompositionMap d (nilDegreeProfile Y Y 0)).hom
+        (x ⊗ₜ[ℤ] (nilIdentitySummandMap Y).hom 1))) =
+      (Limits.Sigma.ι
+        (fun q : GradedSummandIndex X Y n ↦ largeSummandModule q) ⟨w, d⟩).hom
+          (ULift.up x)
+  rw [largeSummandRightUnitInclusion_transport]
+  simp only [ModuleCat.comp_apply, uliftFunctor_map_up]
+  rw [summandCompositionMap_right_unit_apply]
+
+theorem largeSummandCompositionMap_left_unit_transport
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n)) :
+    (eqToHom (congrArg (quotientGradedModule X Y) (Int.zero_add n))).hom
+        (largeSummandCompositionMap (nilDegreeProfile X X 0) d
+          (ULift.up ((nilIdentitySummandMap X).hom 1)) x) =
+      (Limits.Sigma.ι
+        (fun q : GradedSummandIndex X Y n ↦ largeSummandModule q) ⟨w, d⟩).hom x := by
+  rcases x with ⟨x⟩
+  change
+    (Limits.Sigma.ι
+          (fun q : GradedSummandIndex X Y (0 + n) ↦ largeSummandModule q)
+          ⟨(nil X X).append w, (nilDegreeProfile X X 0).append d⟩ ≫
+        eqToHom (congrArg (quotientGradedModule X Y) (Int.zero_add n))).hom
+      (ULift.up ((summandCompositionMap (nilDegreeProfile X X 0) d).hom
+        ((nilIdentitySummandMap X).hom 1 ⊗ₜ[ℤ] x))) =
+      (Limits.Sigma.ι
+        (fun q : GradedSummandIndex X Y n ↦ largeSummandModule q) ⟨w, d⟩).hom
+          (ULift.up x)
+  rw [largeSummandLeftUnitInclusion_transport]
+  simp only [ModuleCat.comp_apply, uliftFunctor_map_up]
+  rw [summandCompositionMap_left_unit_apply]
+
 def quotientIdentityElement (K : ComplexCategory) : quotientGradedModule K K 0 :=
   (originalHomInclusion K K 0).hom (ULift.up (identityCochain K))
+
+theorem quotientIdentityElement_eq_nil_summand (K : ComplexCategory) :
+    quotientIdentityElement K =
+      (Limits.Sigma.ι
+        (fun s : GradedSummandIndex K K 0 ↦ largeSummandModule s)
+        ⟨nil K K, nilDegreeProfile K K 0⟩).hom
+          (ULift.up ((nilIdentitySummandMap K).hom 1)) := by
+  have h := congrArg
+    (fun f : 𝟙_ (ModuleCat.{0} ℤ) ⟶
+        summandModule (nilDegreeProfile K K 0) ↦ f.hom 1)
+    (identityCochainInclusion_comp_nilSummandIsoOriginal_inv K)
+  have hid : (identityCochainInclusion K).hom 1 = identityCochain K := by
+    exact LinearMap.toSpanSingleton_apply_one ℤ _ (identityCochain K)
+  have hpoint :
+      (nilSummandIsoOriginal K K (nilDegreeProfile K K 0)).inv.hom
+          (identityCochain K) =
+        (nilIdentitySummandMap K).hom 1 := by
+    simpa only [ModuleCat.comp_apply, hid] using h
+  unfold quotientIdentityElement originalHomInclusion
+  simp only [ModuleCat.comp_apply, uliftFunctor_map_up]
+  rw [hpoint]
+
+theorem quotientCompositionMap_right_unit_on_summand
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n)) :
+    (eqToHom (congrArg (quotientGradedModule X Y) (Int.add_zero n))).hom
+        (quotientCompositionMap X Y Y n 0
+          ((Limits.Sigma.ι
+            (fun q : GradedSummandIndex X Y n ↦ largeSummandModule q)
+            ⟨w, d⟩).hom x)
+          (quotientIdentityElement Y)) =
+      (Limits.Sigma.ι
+        (fun q : GradedSummandIndex X Y n ↦ largeSummandModule q) ⟨w, d⟩).hom x := by
+  rw [quotientIdentityElement_eq_nil_summand,
+    quotientCompositionMap_on_summands]
+  exact largeSummandCompositionMap_right_unit_transport d x
+
+theorem quotientCompositionMap_left_unit_on_summand
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n)) :
+    (eqToHom (congrArg (quotientGradedModule X Y) (Int.zero_add n))).hom
+        (quotientCompositionMap X X Y 0 n
+          (quotientIdentityElement X)
+          ((Limits.Sigma.ι
+            (fun q : GradedSummandIndex X Y n ↦ largeSummandModule q)
+            ⟨w, d⟩).hom x)) =
+      (Limits.Sigma.ι
+        (fun q : GradedSummandIndex X Y n ↦ largeSummandModule q) ⟨w, d⟩).hom x := by
+  rw [quotientIdentityElement_eq_nil_summand,
+    quotientCompositionMap_on_summands]
+  exact largeSummandCompositionMap_left_unit_transport d x
+
+def quotientRightUnitLinearMap (X Y : ComplexCategory) (n : ℤ) :
+    quotientGradedModule X Y n →ₗ[ℤ] quotientGradedModule X Y (n + 0) :=
+  intLinearMapOfAddHom ({
+    toFun x := quotientCompositionMap X Y Y n 0 x (quotientIdentityElement Y)
+    map_zero' := by
+      rw [map_zero, LinearMap.zero_apply]
+    map_add' x y := by
+      rw [map_add, LinearMap.add_apply] } :
+        quotientGradedModule X Y n →+
+          quotientGradedModule X Y (n + 0))
+
+def quotientRightUnitMap (X Y : ComplexCategory) (n : ℤ) :
+    Quiver.Hom (quotientGradedModule X Y n) (quotientGradedModule X Y n) :=
+  ModuleCat.ofHom
+    ((eqToHom (congrArg (quotientGradedModule X Y) (Int.add_zero n))).hom.comp
+      (quotientRightUnitLinearMap X Y n))
+
+def quotientLeftUnitMap (X Y : ComplexCategory) (n : ℤ) :
+    Quiver.Hom (quotientGradedModule X Y n) (quotientGradedModule X Y n) :=
+  ModuleCat.ofHom
+    ((eqToHom (congrArg (quotientGradedModule X Y) (Int.zero_add n))).hom.comp
+      (quotientCompositionMap X X Y 0 n (quotientIdentityElement X)))
+
+theorem quotientRightUnitMap_eq_id (X Y : ComplexCategory) (n : ℤ) :
+    quotientRightUnitMap X Y n = 𝟙 (quotientGradedModule X Y n) := by
+  apply Limits.Sigma.hom_ext
+  rintro ⟨w, d⟩
+  apply ModuleCat.hom_ext
+  apply LinearMap.ext
+  intro x
+  change
+    (eqToHom (congrArg (quotientGradedModule X Y) (Int.add_zero n))).hom
+        (quotientCompositionMap X Y Y n 0
+          ((Limits.Sigma.ι
+            (fun q : GradedSummandIndex X Y n ↦ largeSummandModule q)
+            ⟨w, d⟩).hom x)
+          (quotientIdentityElement Y)) =
+      (Limits.Sigma.ι
+        (fun q : GradedSummandIndex X Y n ↦ largeSummandModule q) ⟨w, d⟩).hom x
+  exact quotientCompositionMap_right_unit_on_summand d x
+
+theorem quotientLeftUnitMap_eq_id (X Y : ComplexCategory) (n : ℤ) :
+    quotientLeftUnitMap X Y n = 𝟙 (quotientGradedModule X Y n) := by
+  apply Limits.Sigma.hom_ext
+  rintro ⟨w, d⟩
+  apply ModuleCat.hom_ext
+  apply LinearMap.ext
+  intro x
+  change
+    (eqToHom (congrArg (quotientGradedModule X Y) (Int.zero_add n))).hom
+        (quotientCompositionMap X X Y 0 n
+          (quotientIdentityElement X)
+          ((Limits.Sigma.ι
+            (fun q : GradedSummandIndex X Y n ↦ largeSummandModule q)
+            ⟨w, d⟩).hom x)) =
+      (Limits.Sigma.ι
+        (fun q : GradedSummandIndex X Y n ↦ largeSummandModule q) ⟨w, d⟩).hom x
+  exact quotientCompositionMap_left_unit_on_summand d x
+
+theorem quotientCompositionMap_right_unit
+    (X Y : ComplexCategory) (n : ℤ) (x : quotientGradedModule X Y n) :
+    (eqToHom (congrArg (quotientGradedModule X Y) (Int.add_zero n))).hom
+        (quotientCompositionMap X Y Y n 0 x (quotientIdentityElement Y)) = x := by
+  change (quotientRightUnitMap X Y n).hom x = x
+  rw [quotientRightUnitMap_eq_id]
+  rfl
+
+theorem quotientCompositionMap_left_unit
+    (X Y : ComplexCategory) (n : ℤ) (x : quotientGradedModule X Y n) :
+    (eqToHom (congrArg (quotientGradedModule X Y) (Int.zero_add n))).hom
+        (quotientCompositionMap X X Y 0 n (quotientIdentityElement X) x) = x := by
+  change (quotientLeftUnitMap X Y n).hom x = x
+  rw [quotientLeftUnitMap_eq_id]
+  rfl
 
 theorem quotientIdentityElement_closed (K : ComplexCategory) :
     (quotientTotalDifferential K K 0).hom (quotientIdentityElement K) = 0 := by
