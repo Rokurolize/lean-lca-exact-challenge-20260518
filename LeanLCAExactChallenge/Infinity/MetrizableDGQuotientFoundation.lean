@@ -659,6 +659,61 @@ theorem AdjacentMergeNaturality.tensorMap_comm :
         MonoidalCategory.tensorHom_comp_tensorHom, h.tensorMap_comm]
       simp
 
+theorem AdjacentMergeData.tensorMap_assoc
+    {M N P MN NP Q : ModuleCat.{0} ℤ}
+    {Ms : List (ModuleCat.{0} ℤ)}
+    (f : Quiver.Hom (M ⊗ N) MN) (g : Quiver.Hom (MN ⊗ P) Q)
+    (h : Quiver.Hom (N ⊗ P) NP) (k : Quiver.Hom (M ⊗ NP) Q)
+    (hassoc : (α_ M N P).inv ≫ (f ⊗ₘ 𝟙 P) ≫ g =
+      (𝟙 M ⊗ₘ h) ≫ k) :
+    (@AdjacentMergeData.head M N MN (P :: Ms) f).tensorMap ≫
+        (@AdjacentMergeData.head MN P Q Ms g).tensorMap =
+      (@AdjacentMergeData.tail M (N :: P :: Ms) (NP :: Ms)
+          (@AdjacentMergeData.head N P NP Ms h)).tensorMap ≫
+        (@AdjacentMergeData.head M NP Q Ms k).tensorMap := by
+  change
+    (α_ M N (P ⊗ tensorModuleList Ms)).inv ≫
+          (f ⊗ₘ 𝟙 (P ⊗ tensorModuleList Ms)) ≫
+          (α_ MN P (tensorModuleList Ms)).inv ≫
+          (g ⊗ₘ 𝟙 (tensorModuleList Ms)) =
+      (𝟙 M ⊗ₘ ((α_ N P (tensorModuleList Ms)).inv ≫
+          (h ⊗ₘ 𝟙 (tensorModuleList Ms)))) ≫
+        (α_ M NP (tensorModuleList Ms)).inv ≫
+        (k ⊗ₘ 𝟙 (tensorModuleList Ms))
+  calc
+    _ = (𝟙 M ⊗ₘ (α_ N P (tensorModuleList Ms)).inv) ≫
+        (α_ M (N ⊗ P) (tensorModuleList Ms)).inv ≫
+        (((α_ M N P).inv ≫ (f ⊗ₘ 𝟙 P) ≫ g) ▷
+          tensorModuleList Ms) := by monoidal
+    _ = (𝟙 M ⊗ₘ (α_ N P (tensorModuleList Ms)).inv) ≫
+        (α_ M (N ⊗ P) (tensorModuleList Ms)).inv ≫
+        (((𝟙 M ⊗ₘ h) ≫ k) ▷ tensorModuleList Ms) := by rw [hassoc]
+    _ = _ := by monoidal
+
+theorem AdjacentMergeData.tensorMap_head_tail_comm
+    {M N P : ModuleCat.{0} ℤ}
+    {Ms Ns : List (ModuleCat.{0} ℤ)}
+    (f : Quiver.Hom (M ⊗ N) P) (g : AdjacentMergeData Ms Ns) :
+    (@AdjacentMergeData.head M N P Ms f).tensorMap ≫
+        (@AdjacentMergeData.tail P Ms Ns g).tensorMap =
+      (@AdjacentMergeData.tail M (N :: Ms) (N :: Ns)
+          (@AdjacentMergeData.tail N Ms Ns g)).tensorMap ≫
+        (@AdjacentMergeData.head M N P Ns f).tensorMap := by
+  change
+    (α_ M N (tensorModuleList Ms)).inv ≫
+          (f ⊗ₘ 𝟙 (tensorModuleList Ms)) ≫
+          (𝟙 P ⊗ₘ g.tensorMap) =
+      (𝟙 M ⊗ₘ (𝟙 N ⊗ₘ g.tensorMap)) ≫
+        (α_ M N (tensorModuleList Ns)).inv ≫
+        (f ⊗ₘ 𝟙 (tensorModuleList Ns))
+  rw [MonoidalCategory.tensorHom_comp_tensorHom]
+  simp only [Category.comp_id, Category.id_comp]
+  slice_rhs 1 2 =>
+    rw [MonoidalCategory.associator_inv_naturality]
+  simp only [Category.assoc]
+  rw [MonoidalCategory.tensorHom_comp_tensorHom]
+  simp
+
 /-- The tensor-product module belonging to one word and one compatible degree profile. -/
 abbrev summandModule {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) : ModuleCat.{0} ℤ :=
