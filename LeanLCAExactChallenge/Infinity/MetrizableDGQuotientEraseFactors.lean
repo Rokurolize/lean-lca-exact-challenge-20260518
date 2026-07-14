@@ -470,6 +470,121 @@ def mergedFactorMap {k : ℕ}
       simpa [mergedFactor] using g
     · simpa [mergedFactor, hlt, heq] using a j.succ
 
+def recursiveMergedFactor : {k : ℕ} →
+    (Fin (k + 1) → ModuleCat.{0} ℤ) → Fin k → ModuleCat.{0} ℤ →
+      Fin k → ModuleCat.{0} ℤ
+  | 0, _, i, _ => Fin.elim0 i
+  | k + 1, M, i, P => by
+      cases i using Fin.cases with
+      | zero => exact Fin.cases P (fun j : Fin k ↦ M j.succ.succ)
+      | succ q =>
+          exact Fin.cases (M 0)
+            (recursiveMergedFactor (fun j : Fin (k + 1) ↦ M j.succ) q P)
+
+theorem recursiveMergedFactor_eq_mergedFactor : {k : ℕ} →
+    (M : Fin (k + 1) → ModuleCat.{0} ℤ) → (i : Fin k) →
+    (P : ModuleCat.{0} ℤ) →
+      recursiveMergedFactor M i P = mergedFactor M i P
+  | 0, _, i, _ => Fin.elim0 i
+  | k + 1, M, i, P => by
+      cases i using Fin.cases with
+      | zero =>
+          funext j
+          cases j using Fin.cases with
+          | zero => simp [recursiveMergedFactor, mergedFactor]
+          | succ j => simp [recursiveMergedFactor, mergedFactor]
+      | succ q =>
+          funext j
+          cases j using Fin.cases with
+          | zero => simp [recursiveMergedFactor, mergedFactor]
+          | succ j =>
+              change recursiveMergedFactor
+                  (fun r : Fin (k + 1) ↦ M r.succ) q P j =
+                mergedFactor M q.succ P j.succ
+              rw [congrFun (recursiveMergedFactor_eq_mergedFactor
+                (fun r : Fin (k + 1) ↦ M r.succ) q P) j]
+              by_cases hlt : j < q
+              · simp [mergedFactor, hlt]
+              · by_cases heq : j = q
+                · subst j
+                  simp [mergedFactor]
+                · simp [mergedFactor, hlt, heq]
+
+def recursiveAdjacentMergeDataOfFn : {k : ℕ} →
+    (M : Fin (k + 1) → ModuleCat.{0} ℤ) → (i : Fin k) →
+    (P : ModuleCat.{0} ℤ) → Quiver.Hom (M i.castSucc ⊗ M i.succ) P →
+      AdjacentMergeData (finFamilyList M)
+        (finFamilyList (recursiveMergedFactor M i P))
+  | 0, _, i, _, _ => Fin.elim0 i
+  | k + 1, M, i, P, f => by
+      cases i using Fin.cases with
+      | zero =>
+          simpa [finFamilyList, recursiveMergedFactor] using
+            (AdjacentMergeData.head
+              (Ms := finFamilyList (fun q : Fin k ↦ M q.succ.succ)) f)
+      | succ q =>
+          let tailM : Fin (k + 1) → ModuleCat.{0} ℤ := fun j ↦ M j.succ
+          have ftail : Quiver.Hom (tailM q.castSucc ⊗ tailM q.succ) P := by
+            simpa [tailM] using f
+          simpa [finFamilyList, recursiveMergedFactor, tailM] using
+            AdjacentMergeData.tail
+              (recursiveAdjacentMergeDataOfFn tailM q P ftail)
+
+def recursiveMergedFactorMap : {k : ℕ} →
+    (M N : Fin (k + 1) → ModuleCat.{0} ℤ) → (i : Fin k) →
+    (P P' : ModuleCat.{0} ℤ) →
+    ((j : Fin (k + 1)) → Quiver.Hom (M j) (N j)) → Quiver.Hom P P' →
+      (j : Fin k) →
+        Quiver.Hom (recursiveMergedFactor M i P j)
+          (recursiveMergedFactor N i P' j)
+  | 0, _, _, i, _, _, _, _ => Fin.elim0 i
+  | k + 1, M, N, i, P, P', a, g => by
+      cases i using Fin.cases with
+      | zero => exact Fin.cases g (fun j : Fin k ↦ a j.succ.succ)
+      | succ q =>
+          exact Fin.cases (a 0)
+            (recursiveMergedFactorMap
+              (fun j : Fin (k + 1) ↦ M j.succ)
+              (fun j : Fin (k + 1) ↦ N j.succ) q P P'
+              (fun j ↦ a j.succ) g)
+
+theorem recursiveAdjacentMergeDataOfFn_naturality : {k : ℕ} →
+    (M N : Fin (k + 1) → ModuleCat.{0} ℤ) → (i : Fin k) →
+    (P P' : ModuleCat.{0} ℤ) →
+    (f : Quiver.Hom (M i.castSucc ⊗ M i.succ) P) →
+    (f' : Quiver.Hom (N i.castSucc ⊗ N i.succ) P') →
+    (a : (j : Fin (k + 1)) → Quiver.Hom (M j) (N j)) →
+    (g : Quiver.Hom P P') → ((a i.castSucc ⊗ₘ a i.succ) ≫ f' = f ≫ g) →
+    AdjacentMergeNaturality
+      (recursiveAdjacentMergeDataOfFn M i P f)
+      (recursiveAdjacentMergeDataOfFn N i P' f')
+      (TensorMapData.ofFn M N a)
+      (TensorMapData.ofFn (recursiveMergedFactor M i P)
+        (recursiveMergedFactor N i P')
+        (recursiveMergedFactorMap M N i P P' a g))
+  | 0, _, _, i, _, _, _, _, _, _, _ => Fin.elim0 i
+  | k + 1, M, N, i, P, P', f, f', a, g, h => by
+      cases i using Fin.cases with
+      | zero =>
+          let tailMap := TensorMapData.ofFn
+            (fun j : Fin k ↦ M j.succ.succ)
+            (fun j : Fin k ↦ N j.succ.succ)
+            (fun j ↦ a j.succ.succ)
+          simpa [recursiveAdjacentMergeDataOfFn, recursiveMergedFactor,
+            recursiveMergedFactorMap, TensorMapData.ofFn, finFamilyList, tailMap] using
+              AdjacentMergeNaturality.head f f' (a 0) (a 1) g tailMap h
+      | succ q =>
+          let tailM : Fin (k + 1) → ModuleCat.{0} ℤ := fun j ↦ M j.succ
+          let tailN : Fin (k + 1) → ModuleCat.{0} ℤ := fun j ↦ N j.succ
+          let tailA : (j : Fin (k + 1)) → Quiver.Hom (tailM j) (tailN j) :=
+            fun j ↦ a j.succ
+          have naturality := recursiveAdjacentMergeDataOfFn_naturality
+            tailM tailN q P P' f f' tailA g h
+          simpa [recursiveAdjacentMergeDataOfFn, recursiveMergedFactor,
+            recursiveMergedFactorMap, TensorMapData.ofFn, finFamilyList,
+            tailM, tailN, tailA] using
+              AdjacentMergeNaturality.tail (a 0) naturality
+
 /-- Regard an old intermediate-object position as a factor position of the erased word. -/
 def uneraseFactorIndex {X Y : ComplexCategory} (w : DrinfeldWord X Y)
     (i j : Fin w.length) : Fin ((eraseIntermediate w i).length + 1) :=
@@ -563,6 +678,42 @@ def contractionMergedFactorMap
         exact lt_of_le_of_ne (Fin.not_lt.mp hlt) (Ne.symm heq)
       simpa [mergedFactor, hlt, heq, contractedFactorAtOldIndex] using
         contractFactorAfterTransport d i (uneraseFactorIndex w i j) hafter
+
+def recursiveContractionAdjacentMergeData
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    AdjacentMergeData (finFamilyList (factorModule d))
+      (finFamilyList
+        (recursiveMergedFactor (factorModule d) i (contractedFactorAtOldIndex d i i))) :=
+  recursiveAdjacentMergeDataOfFn (factorModule d) i (contractedFactorAtOldIndex d i i)
+    (contractionMergeAtOldIndex d i)
+
+def recursiveContractionMergedFactorMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i j : Fin w.length) :
+    Quiver.Hom
+      (recursiveMergedFactor (factorModule d) i (contractedFactorAtOldIndex d i i) j)
+      (contractedFactorAtOldIndex d i j) := by
+  rw [recursiveMergedFactor_eq_mergedFactor]
+  exact contractionMergedFactorMap d i j
+
+def recursiveContractionMergedFactorsTensorMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    Quiver.Hom
+      (tensorModuleList
+        (finFamilyList
+          (recursiveMergedFactor (factorModule d) i (contractedFactorAtOldIndex d i i))))
+      (tensorModuleList (finFamilyList (contractedFactorAtOldIndex d i))) :=
+  (TensorMapData.ofFn _ _ (recursiveContractionMergedFactorMap d i)).tensorMap
+
+def recursiveContractionTensorMapAtOldIndex
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    Quiver.Hom (summandModule d)
+      (tensorModuleList (finFamilyList (contractedFactorAtOldIndex d i))) :=
+  (recursiveContractionAdjacentMergeData d i).tensorMap ≫
+    recursiveContractionMergedFactorsTensorMap d i
 
 /-- Tensor the pointwise before/middle/after transports following the adjacent merge. -/
 def contractionMergedFactorsTensorMap
