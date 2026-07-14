@@ -223,6 +223,40 @@ def survivingOldFactorIndex {X Y : ComplexCategory} (w : DrinfeldWord X Y)
     Fin (w.length + 1) :=
   i.castSucc.succAbove (eraseFactorIndex w i j)
 
+theorem sum_univ_eq_left_add_sum_survivingOldFactorIndex
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y}
+    {A : Type*} [AddCommMonoid A] (i : Fin w.length)
+    (f : Fin (w.length + 1) → A) :
+    ∑ q, f q = f i.castSucc +
+      ∑ j, f (survivingOldFactorIndex w i j) := by
+  rw [Fin.sum_univ_succAbove f i.castSucc]
+  congr 1
+  symm
+  apply Fintype.sum_equiv (finCongr (eraseIntermediate_length w i))
+  intro j
+  rfl
+
+theorem survivingOldFactorIndex_ne_left
+    {X Y : ComplexCategory} (w : DrinfeldWord X Y)
+    (i : Fin w.length) (j : Fin ((eraseIntermediate w i).length + 1)) :
+    survivingOldFactorIndex w i j ≠ i.castSucc :=
+  Fin.succAbove_ne i.castSucc (eraseFactorIndex w i j)
+
+theorem survivingOldFactorIndex_eq_right_iff
+    {X Y : ComplexCategory} (w : DrinfeldWord X Y)
+    (i : Fin w.length) (j : Fin ((eraseIntermediate w i).length + 1)) :
+    survivingOldFactorIndex w i j = i.succ ↔ j = erasePosition w i := by
+  unfold survivingOldFactorIndex
+  rw [← Fin.succAbove_castSucc_self i, Fin.succAbove_right_inj]
+  constructor
+  · intro h
+    apply Fin.ext
+    change j.val = i.val
+    exact congrArg Fin.val h
+  · rintro rfl
+    apply Fin.ext
+    rfl
+
 theorem DegreeProfile.raise_surviving_contract
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) (i : Fin w.length)

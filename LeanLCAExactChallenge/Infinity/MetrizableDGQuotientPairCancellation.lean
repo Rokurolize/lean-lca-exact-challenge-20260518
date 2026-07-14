@@ -99,6 +99,12 @@ theorem test_comp_eqToHom
   obtain ⟨hBC, rfl⟩ := hg
   exact ⟨hAB.trans hBC, by simp⟩
 
+theorem test_comp_eqToHom_heq
+    {A B C : ModuleCat.{0} ℤ} (f : A ⟶ B) (h : B = C) :
+    HEq (f ≫ eqToHom h) f := by
+  subst C
+  simp
+
 def test_rawContractionMergedFactorMap
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) (i j : Fin w.length) :
@@ -778,6 +784,77 @@ theorem test_tensorMapData_ofFn_eqToHom
   subst f
   simp
 
+noncomputable def test_rawContractionTarget_eq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    (fun q ↦ recursiveMergedFactor
+      (factorModule d) i (rawContractionFactor d i) q) =
+      contractedFactorAtOldIndex d i :=
+  funext (test_rawToContractedFactor_eq d i)
+
+def test_rawContractionTargetTensorMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :=
+  (TensorMapData.ofFn
+    (fun q ↦ recursiveMergedFactor
+      (factorModule d) i (rawContractionFactor d i) q)
+    (contractedFactorAtOldIndex d i)
+    (test_rawToContractedFactorMap d i)).tensorMap
+
+theorem test_rawContractionTargetTensorMap_eqToHom
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    test_rawContractionTargetTensorMap d i =
+      eqToHom (congrArg tensorModuleList
+        (congrArg finFamilyList (test_rawContractionTarget_eq d i))) := by
+  exact test_tensorMapData_ofFn_eqToHom _ _
+    (test_rawContractionTarget_eq d i) _
+    (test_rawToContractedFactorMap_eqToHom d i)
+
+theorem test_contractionTensorMap_normal_form
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    contractionTensorMap d i =
+      (rawContractionAdjacentMergeData d i).tensorMap ≫
+        test_rawContractionTargetTensorMap d i ≫
+        (contractedFactorsOldIndexIso d i).hom := by
+  have hfirst := (test_rawContractionAdjacentMerge_naturality d i).tensorMap_comm
+  simp only [TensorMapData.ofFn_id_tensorMap, Category.id_comp] at hfirst
+  unfold contractionTensorMap contractionTensorMapAtOldIndex
+    recursiveContractionTensorMapAtOldIndex
+    recursiveContractionMergedFactorsTensorMap
+  rw [hfirst]
+  simp only [test_rawContractionTargetTensorMap,
+    TensorMapData.ofFn_tensorMap_comp, Category.assoc]
+  rfl
+
+theorem test_rawContractionTargetTransport_eqToHom
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    ∃ h : tensorModuleList
+          (finFamilyList fun q ↦ recursiveMergedFactor
+            (factorModule d) i (rawContractionFactor d i) q) =
+        summandModule (d.contract i),
+      test_rawContractionTargetTensorMap d i ≫
+          (contractedFactorsOldIndexIso d i).hom = eqToHom h := by
+  apply test_comp_eqToHom
+  · exact ⟨congrArg tensorModuleList
+        (congrArg finFamilyList (test_rawContractionTarget_eq d i)),
+      test_rawContractionTargetTensorMap_eqToHom d i⟩
+  · exact ⟨congrArg tensorModuleList
+        (contractedFactorsOldIndex_eq d i), rfl⟩
+
+theorem test_contractionTensorMap_raw_heq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    HEq (contractionTensorMap d i)
+      (rawContractionAdjacentMergeData d i).tensorMap := by
+  rw [test_contractionTensorMap_normal_form]
+  obtain ⟨h, hh⟩ := test_rawContractionTargetTransport_eqToHom d i
+  rw [hh]
+  exact test_comp_eqToHom_heq
+    (rawContractionAdjacentMergeData d i).tensorMap h
+
 theorem test_rawSecondContractionFactorIso_inv_eqToHom
     {X Y : ComplexCategory} {k : ℕ}
     {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory} {n : ℤ}
@@ -979,12 +1056,6 @@ theorem test_eqToHom_heq_id {A B : ModuleCat.{0} ℤ} (h : A = B) :
     HEq (eqToHom h) (𝟙 A) := by
   subst B
   rfl
-
-theorem test_comp_eqToHom_heq
-    {A B C : ModuleCat.{0} ℤ} (f : A ⟶ B) (h : B = C) :
-    HEq (f ≫ eqToHom h) f := by
-  subst C
-  simp
 
 theorem test_rawContractionPairTargetTransport_eqToHom
     {X Y : ComplexCategory} {k : ℕ}
