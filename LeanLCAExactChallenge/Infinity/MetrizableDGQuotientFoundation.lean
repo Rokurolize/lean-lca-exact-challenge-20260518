@@ -313,6 +313,26 @@ def finiteTensorMapOver (R : Type) [CommRing R] {k : ℕ}
       (PiTensorProduct.map (fun i ↦ (f i).hom)).comp
         (piTensorListEquivOver R M).symm.toLinearMap
 
+theorem piTensorMap_eq_zero_of_component_eq_zero (R : Type) [CommRing R]
+    {ι : Type} {M N : ι → Type} [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i)]
+    [∀ i, AddCommGroup (N i)] [∀ i, Module R (N i)]
+    (f : (i : ι) → M i →ₗ[R] N i) (i : ι) (hi : f i = 0) :
+    PiTensorProduct.map f = 0 := by
+  apply LinearMap.ext
+  intro z
+  induction z using PiTensorProduct.induction_on with
+  | smul_tprod r x =>
+      change PiTensorProduct.map f (r • PiTensorProduct.tprod R x) = 0
+      rw [map_smul, PiTensorProduct.map_tprod]
+      have hz : (fun j ↦ f j (x j)) i = 0 := by simp [hi]
+      rw [show PiTensorProduct.tprod R (fun j ↦ f j (x j)) = 0 by
+        rw [PiTensorProduct.tprod_eq_tprodCoeff_one]
+        exact PiTensorProduct.zero_tprodCoeff' 1 _ i hz]
+      simp
+  | add x y hx hy =>
+      change PiTensorProduct.map f (x + y) = 0
+      simp [map_add, hx, hy]
+
 theorem finiteTensorMapOver_comp (R : Type) [CommRing R] {k : ℕ}
     (M N P : Fin k → ModuleCat.{0} R) (f : (i : Fin k) → M i ⟶ N i)
     (g : (i : Fin k) → N i ⟶ P i) :
@@ -478,6 +498,25 @@ def internalDifferentialTensorMap {X Y : ComplexCategory}
     Quiver.Hom (summandModule d) (summandModule (d.raise i)) :=
   (TensorMapData.ofFn (factorModule d) (factorModule (d.raise i))
     (factorDifferential d i)).tensorMap
+
+/-- The internal-differential tensor map in the finite-family proof model. -/
+def internalDifferentialFiniteTensorMap {X Y : ComplexCategory}
+    {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
+    (i : Fin (w.length + 1)) :
+    Quiver.Hom (summandModule d) (summandModule (d.raise i)) :=
+  finiteTensorMap (factorModule d) (factorModule (d.raise i))
+    (factorDifferential d i)
+
+theorem internalDifferentialFiniteTensorMap_comp {X Y : ComplexCategory}
+    {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
+    (i j : Fin (w.length + 1)) :
+    internalDifferentialFiniteTensorMap d i ≫
+        internalDifferentialFiniteTensorMap (d.raise i) j =
+      finiteTensorMap (factorModule d) (factorModule ((d.raise i).raise j))
+        (fun q ↦ factorDifferential d i q ≫ factorDifferential (d.raise i) j q) := by
+  exact finiteTensorMapOver_comp ℤ (factorModule d) (factorModule (d.raise i))
+    (factorModule ((d.raise i).raise j)) (factorDifferential d i)
+      (factorDifferential (d.raise i) j)
 
 /-- Index of a homogeneous summand of the corrected Drinfeld quotient. -/
 abbrev GradedSummandIndex (X Y : ComplexCategory) (n : ℤ) :=
