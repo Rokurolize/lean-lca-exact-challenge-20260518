@@ -35,6 +35,183 @@ def eraseLift {X Y : ComplexCategory} (w : DrinfeldWord X Y)
     (i : Fin w.length) (j : Fin (eraseIntermediate w i).length) : Fin w.length :=
   Fin.cast (eraseIntermediate_length w i) ((erasePosition w i).succAbove j)
 
+theorem eraseIntermediate_twice_swap
+    {X Y : ComplexCategory} {k : ℕ}
+    (intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory)
+    (i : Fin (k + 2)) (j : Fin (k + 1)) :
+    eraseIntermediate
+        (eraseIntermediate
+          ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) i) j =
+      eraseIntermediate
+        (eraseIntermediate
+          ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y)
+          (i.succAbove j))
+        (j.predAbove i) := by
+  cases k with
+  | zero => rfl
+  | succ k =>
+      change
+        ({ length := k + 1,
+            intermediate := fun r ↦ intermediate (i.succAbove (j.succAbove r)) } :
+          DrinfeldWord X Y) =
+        { length := k + 1,
+          intermediate := fun r ↦ intermediate
+            ((i.succAbove j).succAbove ((j.predAbove i).succAbove r)) }
+      congr 1
+      funext r
+      rw [Fin.succAbove_succAbove_succAbove_predAbove]
+
+theorem contractedArrowDegree_twice_swap {k : ℕ}
+    (a : Fin (k + 3) → ℤ) (i : Fin (k + 2)) (j : Fin (k + 1)) :
+    contractedArrowDegree (contractedArrowDegree a i) j =
+      contractedArrowDegree (contractedArrowDegree a (i.succAbove j))
+        (j.predAbove i) := by
+  funext r
+  have hmain :
+      i.castSucc.succAbove (j.castSucc.succAbove r) =
+        (i.succAbove j).castSucc.succAbove
+          ((j.predAbove i).castSucc.succAbove r) := by
+    simpa only [Fin.castSucc_succAbove_castSucc,
+      Fin.castSucc_predAbove_castSucc] using
+        (Fin.succAbove_succAbove_succAbove_predAbove
+          i.castSucc j.castSucc r).symm
+  unfold contractedArrowDegree
+  rw [hmain]
+  by_cases hleft : i = j.castSucc
+  · subst i
+    have hiff : j.castSucc.succAbove r = j.succ ↔ r = j := by
+      rw [← Fin.succAbove_castSucc_self j]
+      exact Fin.succAbove_right_inj
+    by_cases hr : r = j
+    · simp [hr, Fin.ne_of_lt j.castSucc_lt_succ,
+        (Fin.ne_of_lt j.castSucc_lt_succ).symm]
+      ring
+    · simp [hr, hiff]
+  · by_cases hright : i = j.succ
+    · subst i
+      have hiff : j.castSucc.succAbove r = j.succ ↔ r = j := by
+        rw [← Fin.succAbove_castSucc_self j]
+        exact Fin.succAbove_right_inj
+      by_cases hr : r = j
+      · simp [hr, Fin.ne_of_lt j.castSucc_lt_succ,
+          (Fin.ne_of_lt j.castSucc_lt_succ).symm]
+        ring
+      · simp [hr, hiff]
+    · have hfirst : j.castSucc.succAbove r = i ↔ r = j.predAbove i := by
+        constructor
+        · intro hr
+          calc
+            r = j.predAbove (j.castSucc.succAbove r) :=
+              (Fin.predAbove_succAbove j r).symm
+            _ = j.predAbove i := congrArg (j.predAbove ·) hr
+        · rintro rfl
+          exact Fin.succAbove_predAbove hleft
+      have hgap : i.succAbove j ≠ (j.predAbove i).castSucc := by
+        intro heq
+        by_cases h : j.castSucc < i
+        · rw [Fin.succAbove_of_castSucc_lt i j h,
+            Fin.predAbove_of_castSucc_lt j i h] at heq
+          have hj : j = i.pred (Fin.ne_zero_of_lt h) :=
+            Fin.castSucc_injective _ heq
+          apply hright
+          rw [hj]
+          exact (Fin.succ_pred i _).symm
+        · have hle : i ≤ j.castSucc := Fin.not_lt.mp h
+          rw [Fin.succAbove_of_le_castSucc i j hle,
+            Fin.predAbove_of_le_castSucc j i hle,
+            Fin.castSucc_castPred] at heq
+          exact hright heq.symm
+      have hsecond :
+          (j.predAbove i).castSucc.succAbove r = i.succAbove j ↔ r = j := by
+        constructor
+        · intro hr
+          calc
+            r = (j.predAbove i).predAbove
+                ((j.predAbove i).castSucc.succAbove r) :=
+              (Fin.predAbove_succAbove (j.predAbove i) r).symm
+            _ = (j.predAbove i).predAbove (i.succAbove j) :=
+              congrArg ((j.predAbove i).predAbove ·) hr
+            _ = j := Fin.predAbove_predAbove_succAbove i j
+        · intro hr
+          subst r
+          have hpred : (j.predAbove i).predAbove (i.succAbove j) = j :=
+            Fin.predAbove_predAbove_succAbove i j
+          calc
+            (j.predAbove i).castSucc.succAbove j =
+                (j.predAbove i).castSucc.succAbove
+                  ((j.predAbove i).predAbove (i.succAbove j)) :=
+              congrArg ((j.predAbove i).castSucc.succAbove ·) hpred.symm
+            _ = i.succAbove j := Fin.succAbove_predAbove hgap
+      have hpositions : j ≠ j.predAbove i := by
+        intro heq
+        by_cases h : j.castSucc < i
+        · rw [Fin.predAbove_of_castSucc_lt j i h] at heq
+          apply hright
+          rw [heq]
+          exact (Fin.succ_pred i _).symm
+        · have hle : i ≤ j.castSucc := Fin.not_lt.mp h
+          rw [Fin.predAbove_of_le_castSucc j i hle] at heq
+          apply hleft
+          rw [heq, Fin.castSucc_castPred]
+      have hmerged :
+          (i.succAbove j).succAbove (j.predAbove i) = i :=
+        Fin.succAbove_succAbove_predAbove i j
+      have hleft' : j.castSucc ≠ i := Ne.symm hleft
+      have hgap' : (j.predAbove i).castSucc ≠ i.succAbove j := Ne.symm hgap
+      by_cases hrj : r = j <;> by_cases hrs : r = j.predAbove i <;>
+        simp_all
+
+theorem DegreeProfile.castWord_arrowDegree
+    {X Y : ComplexCategory} {w v : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (h : w = v) (j : Fin (v.length + 1)) :
+    (d.castWord h).arrowDegree j =
+      d.arrowDegree
+        (Fin.cast (congrArg (fun z : DrinfeldWord X Y ↦ z.length + 1) h).symm j) := by
+  subst v
+  rfl
+
+theorem DegreeProfile.contract_contract_swap
+    {X Y : ComplexCategory} {k : ℕ}
+    (intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory)
+    {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (i : Fin (k + 2)) (j : Fin (k + 1)) :
+    ((d.contract i).contract j).castWord
+        (eraseIntermediate_twice_swap intermediate i j) =
+      (d.contract (i.succAbove j)).contract (j.predAbove i) := by
+  apply DegreeProfile.ext
+  funext r
+  have hfirst := eraseIntermediate_length
+    ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y)
+    (i.succAbove j)
+  change (eraseIntermediate
+    ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y)
+    (i.succAbove j)).length + 1 = k + 2 at hfirst
+  have hsecond := eraseIntermediate_length
+    (eraseIntermediate
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y)
+      (i.succAbove j)) (j.predAbove i)
+  change (eraseIntermediate
+    (eraseIntermediate
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y)
+      (i.succAbove j)) (j.predAbove i)).length + 1 =
+    (eraseIntermediate
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y)
+      (i.succAbove j)).length at hsecond
+  have hlength :
+      ((eraseIntermediate
+        (eraseIntermediate
+          ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y)
+          (i.succAbove j)) (j.predAbove i)).length + 1) = k + 1 := by
+    omega
+  let r' : Fin (k + 1) := Fin.cast hlength r
+  rw [DegreeProfile.castWord_arrowDegree]
+  simp only [DegreeProfile.contract, Fin.cast_eq_self]
+  convert congrFun (contractedArrowDegree_twice_swap d.arrowDegree i j) r' using 1
+  · congr 1
+  · congr 1
+
 /-- The factor of the erased word, viewed as a position among the old intermediate
 objects.  This is also the index of the first old arrow contributing to that factor. -/
 def eraseFactorIndex {X Y : ComplexCategory} (w : DrinfeldWord X Y)
