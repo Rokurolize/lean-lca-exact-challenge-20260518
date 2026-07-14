@@ -994,7 +994,7 @@ theorem adjacentFactorComposition_merged_leibniz
       (𝟙 (factorModule d i.castSucc) ⊗ₘ
           factorDifferential d i.succ i.succ) ≫
           rightAdjacentCompositionToMergedTarget d i +
-        (d.arrowDegree i.succ).negOnePow •
+        ((d.arrowDegree i.succ).negOnePow : ℤ) •
           ((factorDifferential d i.castSucc i.castSucc ⊗ₘ
             𝟙 (factorModule d i.succ)) ≫
             leftAdjacentCompositionToMergedTarget d i) := by
@@ -1017,5 +1017,726 @@ theorem adjacentFactorComposition_merged_leibniz
   exact Preadditive.zsmul_comp
     (f := adjacentLeftDifferentialPath d i)
     (g := eqToHom (adjacentDifferentialTarget_eq_mergedTarget d i)) _
+
+theorem recursiveAdjacentMergeDataOfFn_tensorMap_add : {k : ℕ} →
+    (M : Fin (k + 1) → ModuleCat.{0} ℤ) → (i : Fin k) →
+    (P : ModuleCat.{0} ℤ) → (f g : M i.castSucc ⊗ M i.succ ⟶ P) →
+    (recursiveAdjacentMergeDataOfFn M i P (f + g)).tensorMap =
+      (recursiveAdjacentMergeDataOfFn M i P f).tensorMap +
+        (recursiveAdjacentMergeDataOfFn M i P g).tensorMap
+  | 0, _, i, _, _, _ => Fin.elim0 i
+  | k + 1, M, i, P, f, g => by
+      cases i using Fin.cases with
+      | zero => exact AdjacentMergeData.head_tensorMap_add f g
+      | succ i =>
+          change 𝟙 (M 0) ⊗ₘ
+              (recursiveAdjacentMergeDataOfFn
+                (fun q : Fin (k + 1) ↦ M q.succ) i P (f + g)).tensorMap = _
+          rw [recursiveAdjacentMergeDataOfFn_tensorMap_add]
+          simp
+          rfl
+
+theorem recursiveAdjacentMergeDataOfFn_tensorMap_zsmul : {k : ℕ} →
+    (M : Fin (k + 1) → ModuleCat.{0} ℤ) → (i : Fin k) →
+    (P : ModuleCat.{0} ℤ) → (c : ℤ) → (f : M i.castSucc ⊗ M i.succ ⟶ P) →
+    (recursiveAdjacentMergeDataOfFn M i P (c • f)).tensorMap =
+      c • (recursiveAdjacentMergeDataOfFn M i P f).tensorMap
+  | 0, _, i, _, _, _ => Fin.elim0 i
+  | k + 1, M, i, P, c, f => by
+      cases i using Fin.cases with
+      | zero => exact AdjacentMergeData.head_tensorMap_zsmul c f
+      | succ i =>
+          change 𝟙 (M 0) ⊗ₘ
+              (recursiveAdjacentMergeDataOfFn
+                (fun q : Fin (k + 1) ↦ M q.succ) i P (c • f)).tensorMap = _
+          rw [recursiveAdjacentMergeDataOfFn_tensorMap_zsmul]
+          change ((tensoringLeft (ModuleCat.{0} ℤ)).obj (M 0)).map
+              (c • (recursiveAdjacentMergeDataOfFn
+                (fun q : Fin (k + 1) ↦ M q.succ) i P f).tensorMap) = _
+          rw [Functor.map_zsmul]
+          rfl
+
+theorem recursiveAdjacentMergeDataOfFn_tensorMap_zsmul_comp
+    {k : ℕ} (M : Fin (k + 1) → ModuleCat.{0} ℤ) (i : Fin k)
+    (P Q : ModuleCat.{0} ℤ) (c : ℤ)
+    (f : M i.castSucc ⊗ M i.succ ⟶ Q) (g : Q ⟶ P) :
+    (recursiveAdjacentMergeDataOfFn M i P ((c • f) ≫ g)).tensorMap =
+      c • (recursiveAdjacentMergeDataOfFn M i P (f ≫ g)).tensorMap := by
+  rw [Preadditive.zsmul_comp,
+    recursiveAdjacentMergeDataOfFn_tensorMap_zsmul]
+
+def mergedTotalLocalTensorMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :=
+  (recursiveAdjacentMergeDataOfFn (factorModule d) i
+    (factorModule ((d.contract i).raise (erasePosition w i))
+      (erasePosition w i))
+    (adjacentFactorComposition d i ≫ mergedRawFactorDifferential d i)).tensorMap
+
+def mergedRightLocalTensorMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :=
+  (recursiveAdjacentMergeDataOfFn (factorModule d) i
+    (factorModule ((d.contract i).raise (erasePosition w i))
+      (erasePosition w i))
+    ((𝟙 (factorModule d i.castSucc) ⊗ₘ
+        factorDifferential d i.succ i.succ) ≫
+      rightAdjacentCompositionToMergedTarget d i)).tensorMap
+
+def mergedLeftLocalTensorMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :=
+  (recursiveAdjacentMergeDataOfFn (factorModule d) i
+    (factorModule ((d.contract i).raise (erasePosition w i))
+      (erasePosition w i))
+    ((factorDifferential d i.castSucc i.castSucc ⊗ₘ
+        𝟙 (factorModule d i.succ)) ≫
+      leftAdjacentCompositionToMergedTarget d i)).tensorMap
+
+theorem mergedLocalTensorMap_leibniz
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    mergedTotalLocalTensorMap d i =
+      mergedRightLocalTensorMap d i +
+        ((d.arrowDegree i.succ).negOnePow : ℤ) • mergedLeftLocalTensorMap d i := by
+  unfold mergedTotalLocalTensorMap mergedRightLocalTensorMap
+    mergedLeftLocalTensorMap
+  rw [adjacentFactorComposition_merged_leibniz,
+    recursiveAdjacentMergeDataOfFn_tensorMap_add,
+    recursiveAdjacentMergeDataOfFn_tensorMap_zsmul]
+
+def mergedCanonicalFactor
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) : Fin w.length → ModuleCat.{0} ℤ :=
+  recursiveMergedFactor (factorModule d) i
+    (factorModule ((d.contract i).raise (erasePosition w i))
+      (erasePosition w i))
+
+theorem mergedCanonicalFactor_eq_oldIndexedRaisedContract
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    mergedCanonicalFactor d i =
+      fun r ↦ factorModule ((d.contract i).raise (erasePosition w i))
+        (uneraseFactorIndex w i r) := by
+  unfold mergedCanonicalFactor
+  rw [recursiveMergedFactor_eq_mergedFactor]
+  funext r
+  by_cases hbefore : r < i
+  · have hindex : eraseFactorIndex w i (uneraseFactorIndex w i r) = r := by simp
+    have hne : erasePosition w i ≠ uneraseFactorIndex w i r := by
+      intro h
+      apply (Fin.ne_of_lt hbefore)
+      apply Fin.ext
+      exact congrArg
+        (fun q : Fin ((eraseIntermediate w i).length + 1) ↦ q.val) h.symm
+    rw [mergedFactor]
+    simp only [hbefore, ↓reduceIte]
+    exact (factorModule_contract_before_eq d i (uneraseFactorIndex w i r)
+      (by simpa [hindex] using hbefore)).trans
+      (factorModule_raise_of_ne (d.contract i) (erasePosition w i)
+        (uneraseFactorIndex w i r) hne)
+  · by_cases hat : r = i
+    · subst r
+      simp [mergedFactor]
+    · have hafter : i < r := by omega
+      have hindex : eraseFactorIndex w i (uneraseFactorIndex w i r) = r := by simp
+      have hne : erasePosition w i ≠ uneraseFactorIndex w i r := by
+        intro h
+        apply hat
+        apply Fin.ext
+        exact congrArg
+          (fun q : Fin ((eraseIntermediate w i).length + 1) ↦ q.val) h.symm
+      rw [mergedFactor]
+      simp only [hbefore, hat, ↓reduceIte]
+      exact (factorModule_contract_after_eq d i (uneraseFactorIndex w i r)
+        (by simpa [hindex] using hafter)).trans
+        (factorModule_raise_of_ne (d.contract i) (erasePosition w i)
+          (uneraseFactorIndex w i r) hne)
+
+def mergedCanonicalDifferentialFactorMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    (r : Fin w.length) →
+      recursiveMergedFactor (factorModule d) i (rawContractionFactor d i) r ⟶
+        mergedCanonicalFactor d i r :=
+  recursiveMergedFactorMap (factorModule d) (factorModule d) i
+    (rawContractionFactor d i)
+    (factorModule ((d.contract i).raise (erasePosition w i))
+      (erasePosition w i))
+    (fun r ↦ 𝟙 (factorModule d r)) (mergedRawFactorDifferential d i)
+
+def mergedCanonicalDifferentialTensorMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :=
+  (TensorMapData.ofFn
+    (recursiveMergedFactor (factorModule d) i (rawContractionFactor d i))
+    (mergedCanonicalFactor d i)
+    (mergedCanonicalDifferentialFactorMap d i)).tensorMap
+
+theorem rawContractionAdjacentMerge_comp_mergedCanonicalDifferential
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    (rawContractionAdjacentMergeData d i).tensorMap ≫
+        mergedCanonicalDifferentialTensorMap d i =
+      mergedTotalLocalTensorMap d i := by
+  have hnatural := (recursiveAdjacentMergeDataOfFn_naturality
+    (factorModule d) (factorModule d) i
+    (rawContractionFactor d i)
+    (factorModule ((d.contract i).raise (erasePosition w i))
+      (erasePosition w i))
+    (adjacentFactorComposition d i)
+    (adjacentFactorComposition d i ≫ mergedRawFactorDifferential d i)
+    (fun r ↦ 𝟙 (factorModule d r))
+    (mergedRawFactorDifferential d i) (by simp)).tensorMap_comm
+  simpa only [rawContractionAdjacentMergeData,
+    mergedCanonicalDifferentialTensorMap, mergedCanonicalDifferentialFactorMap,
+    mergedCanonicalFactor, mergedTotalLocalTensorMap,
+    TensorMapData.ofFn_id_tensorMap, Category.id_comp] using hnatural.symm
+
+theorem mergedCanonicalDifferentialFactorMap_internal_heq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i r : Fin w.length) :
+    HEq (mergedCanonicalDifferentialFactorMap d i r)
+      (factorDifferential (d.contract i) (erasePosition w i)
+        (uneraseFactorIndex w i r)) := by
+  apply (recursiveMergedFactorMap_heq_mergedFactorMap
+    (factorModule d) (factorModule d) i
+    (rawContractionFactor d i)
+    (factorModule ((d.contract i).raise (erasePosition w i))
+      (erasePosition w i))
+    (fun q ↦ 𝟙 (factorModule d q)) (mergedRawFactorDifferential d i) r).trans
+  by_cases hbefore : r < i
+  · apply (mergedFactorMap_before_heq
+      (factorModule d) (factorModule d) i
+      (rawContractionFactor d i)
+      (factorModule ((d.contract i).raise (erasePosition w i))
+        (erasePosition w i))
+      (fun q ↦ 𝟙 (factorModule d q)) (mergedRawFactorDifferential d i)
+      r hbefore).trans
+    have hne : erasePosition w i ≠ uneraseFactorIndex w i r := by
+      intro h
+      exact (Fin.ne_of_lt hbefore) (by
+        apply Fin.ext
+        exact congrArg
+          (fun q : Fin ((eraseIntermediate w i).length + 1) ↦ q.val) h.symm)
+    obtain ⟨hCD, htarget⟩ := factorDifferential_eqToHom_of_ne
+      (d.contract i) (erasePosition w i) (uneraseFactorIndex w i r) hne
+    have hsource := factorModule_contract_before_eq d i
+      (uneraseFactorIndex w i r) (by simpa using hbefore)
+    rw [eraseFactorIndex_uneraseFactorIndex] at hsource
+    rw [htarget]
+    simpa using equalityTransport_heq_of_source_eq rfl hCD
+      hsource
+  · by_cases hat : r = i
+    · subst r
+      apply (mergedFactorMap_at_heq
+        (factorModule d) (factorModule d) i
+        (rawContractionFactor d i)
+        (factorModule ((d.contract i).raise (erasePosition w i))
+          (erasePosition w i))
+        (fun q ↦ 𝟙 (factorModule d q))
+        (mergedRawFactorDifferential d i)).trans
+      unfold mergedRawFactorDifferential
+      rw [uneraseFactorIndex_self]
+      exact CategoryTheory.eqToHom_comp_heq
+        (factorDifferential (d.contract i) (erasePosition w i)
+          (erasePosition w i)) (rawContractionFactor_eq_contractPosition d i)
+    · have hafter : i < r := by omega
+      apply (mergedFactorMap_after_heq
+        (factorModule d) (factorModule d) i
+        (rawContractionFactor d i)
+        (factorModule ((d.contract i).raise (erasePosition w i))
+          (erasePosition w i))
+        (fun q ↦ 𝟙 (factorModule d q)) (mergedRawFactorDifferential d i)
+        r hbefore hat).trans
+      have hne : erasePosition w i ≠ uneraseFactorIndex w i r := by
+        intro h
+        exact hat (by
+          apply Fin.ext
+          exact congrArg
+            (fun q : Fin ((eraseIntermediate w i).length + 1) ↦ q.val) h.symm)
+      obtain ⟨hCD, htarget⟩ := factorDifferential_eqToHom_of_ne
+        (d.contract i) (erasePosition w i) (uneraseFactorIndex w i r) hne
+      have hsource := factorModule_contract_after_eq d i
+        (uneraseFactorIndex w i r) (by simpa using hafter)
+      rw [eraseFactorIndex_uneraseFactorIndex] at hsource
+      rw [htarget]
+      simpa using equalityTransport_heq_of_source_eq rfl hCD
+        hsource
+
+theorem oldIndexedFactorList_eq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (i : Fin w.length) (d : DegreeProfile (eraseIntermediate w i) n) :
+    finFamilyList (fun r : Fin w.length ↦
+        factorModule d (uneraseFactorIndex w i r)) =
+      finFamilyList (factorModule d) := by
+  cases w with
+  | mk k intermediate =>
+      cases k with
+      | zero => exact Fin.elim0 i
+      | succ k =>
+          cases k with
+          | zero =>
+              fin_cases i
+              rfl
+          | succ k => rfl
+
+theorem mergedCanonicalSummand_eq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    tensorModuleList (finFamilyList (mergedCanonicalFactor d i)) =
+      summandModule ((d.contract i).raise (erasePosition w i)) :=
+  (congrArg tensorModuleList
+    (congrArg finFamilyList
+      (mergedCanonicalFactor_eq_oldIndexedRaisedContract d i))).trans
+    (congrArg tensorModuleList
+      (oldIndexedFactorList_eq i
+        ((d.contract i).raise (erasePosition w i))))
+
+theorem mergedCanonicalDifferentialTensorMap_internal_heq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    HEq (mergedCanonicalDifferentialTensorMap d i)
+      (internalDifferentialTensorMap (d.contract i) (erasePosition w i)) := by
+  apply (TensorMapData.ofFn_tensorMap_heq_of_pointwise
+    (recursiveMergedFactor (factorModule d) i (rawContractionFactor d i))
+    (mergedCanonicalFactor d i)
+    (contractedFactorAtOldIndex d i)
+    (fun r ↦ factorModule
+      ((d.contract i).raise (erasePosition w i))
+      (uneraseFactorIndex w i r))
+    (mergedCanonicalDifferentialFactorMap d i)
+    (fun r ↦ factorDifferential (d.contract i) (erasePosition w i)
+      (uneraseFactorIndex w i r))
+    (test_rawContractionTarget_eq d i)
+    (mergedCanonicalFactor_eq_oldIndexedRaisedContract d i)
+    (mergedCanonicalDifferentialFactorMap_internal_heq d i)).trans
+  exact contractedInternalTensorMapAtOldIndex_heq d i (erasePosition w i)
+
+theorem contractionInternalMergedTensorMap_heq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    HEq (contractionTensorMap d i ≫
+        internalDifferentialTensorMap (d.contract i) (erasePosition w i))
+      (mergedTotalLocalTensorMap d i) := by
+  apply (CategoryTheory.heq_comp rfl
+    (rawContractionSummand_eq d i).symm
+    (mergedCanonicalSummand_eq d i).symm
+    (test_contractionTensorMap_raw_heq d i)
+    (mergedCanonicalDifferentialTensorMap_internal_heq d i).symm).trans
+  exact heq_of_eq (rawContractionAdjacentMerge_comp_mergedCanonicalDifferential d i)
+
+def rightMergedCanonicalTransportFactorMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    (r : Fin w.length) → mergedCanonicalFactor d i r ⟶
+      recursiveMergedFactor (factorModule (d.raise i.succ)) i
+        (rawContractionFactor (d.raise i.succ) i) r :=
+  recursiveMergedFactorMap (factorModule d) (factorModule (d.raise i.succ)) i
+    (factorModule ((d.contract i).raise (erasePosition w i))
+      (erasePosition w i))
+    (rawContractionFactor (d.raise i.succ) i)
+    (factorDifferential d i.succ)
+    (eqToHom (rawContractionFactor_raiseRight_eq_mergedTarget d i).symm)
+
+def rightMergedCanonicalTransportTensorMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :=
+  (TensorMapData.ofFn (mergedCanonicalFactor d i)
+    (recursiveMergedFactor (factorModule (d.raise i.succ)) i
+      (rawContractionFactor (d.raise i.succ) i))
+    (rightMergedCanonicalTransportFactorMap d i)).tensorMap
+
+theorem mergedRightLocal_naturality
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    AdjacentMergeNaturality
+      (recursiveAdjacentMergeDataOfFn (factorModule d) i
+        (factorModule ((d.contract i).raise (erasePosition w i))
+          (erasePosition w i))
+        ((𝟙 (factorModule d i.castSucc) ⊗ₘ
+            factorDifferential d i.succ i.succ) ≫
+          rightAdjacentCompositionToMergedTarget d i))
+      (rawContractionAdjacentMergeData (d.raise i.succ) i)
+      (TensorMapData.ofFn (factorModule d) (factorModule (d.raise i.succ))
+        (factorDifferential d i.succ))
+      (TensorMapData.ofFn (mergedCanonicalFactor d i)
+        (recursiveMergedFactor (factorModule (d.raise i.succ)) i
+          (rawContractionFactor (d.raise i.succ) i))
+        (rightMergedCanonicalTransportFactorMap d i)) := by
+  apply recursiveAdjacentMergeDataOfFn_naturality
+  obtain ⟨hA, hhA⟩ := factorDifferential_eqToHom_of_ne d i.succ i.castSucc
+    (Fin.ne_of_gt i.castSucc_lt_succ)
+  rw [hhA]
+  unfold rightAdjacentCompositionToMergedTarget
+  simp only [Category.assoc]
+  rw [← Category.assoc, MonoidalCategory.tensorHom_comp_tensorHom]
+  simp
+
+theorem rightRawMergedFactor_eq_canonical
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    (fun r ↦ recursiveMergedFactor (factorModule (d.raise i.succ)) i
+      (rawContractionFactor (d.raise i.succ) i) r) =
+      mergedCanonicalFactor d i := by
+  apply (test_rawContractionTarget_eq (d.raise i.succ) i).trans
+  change contractedFactorAtOldIndex (d.raise i.succ) i = _
+  apply Eq.trans _ (mergedCanonicalFactor_eq_oldIndexedRaisedContract d i).symm
+  unfold contractedFactorAtOldIndex
+  exact congrArg
+    (fun e ↦ fun r ↦ factorModule e (uneraseFactorIndex w i r))
+    (DegreeProfile.raise_right_contract d i)
+
+theorem rightMergedCanonicalTransportFactorMap_eqToHom
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i r : Fin w.length) :
+    rightMergedCanonicalTransportFactorMap d i r =
+      eqToHom (congrFun (rightRawMergedFactor_eq_canonical d i).symm r) := by
+  let hcanonical := congrFun (rightRawMergedFactor_eq_canonical d i).symm r
+  have hbridge := recursiveMergedFactorMap_heq_mergedFactorMap
+    (factorModule d) (factorModule (d.raise i.succ)) i
+    (factorModule ((d.contract i).raise (erasePosition w i))
+      (erasePosition w i))
+    (rawContractionFactor (d.raise i.succ) i)
+    (factorDifferential d i.succ)
+    (eqToHom (rawContractionFactor_raiseRight_eq_mergedTarget d i).symm) r
+  by_cases hbefore : r < i
+  · have hstruct := hbridge.trans (mergedFactorMap_before_heq
+      (factorModule d) (factorModule (d.raise i.succ)) i
+      (factorModule ((d.contract i).raise (erasePosition w i))
+        (erasePosition w i))
+      (rawContractionFactor (d.raise i.succ) i)
+      (factorDifferential d i.succ)
+      (eqToHom (rawContractionFactor_raiseRight_eq_mergedTarget d i).symm)
+      r hbefore)
+    have hne : i.succ ≠ r.castSucc := by
+      intro h
+      have hval := congrArg Fin.val h
+      change i.val + 1 = r.val at hval
+      omega
+    obtain ⟨hAB, hmap⟩ := factorDifferential_eqToHom_of_ne
+      d i.succ r.castSucc hne
+    have hsource : factorModule d r.castSucc = mergedCanonicalFactor d i r := by
+      unfold mergedCanonicalFactor
+      rw [recursiveMergedFactor_eq_mergedFactor]
+      simp [mergedFactor, hbefore]
+    exact eq_of_heq (hstruct.trans (heq_of_eq hmap) |>.trans
+      (equalityTransport_heq_of_source_eq hAB hcanonical hsource))
+  · by_cases hat : r = i
+    · subst r
+      have hstruct := hbridge.trans (mergedFactorMap_at_heq
+        (factorModule d) (factorModule (d.raise i.succ)) i
+        (factorModule ((d.contract i).raise (erasePosition w i))
+          (erasePosition w i))
+        (rawContractionFactor (d.raise i.succ) i)
+        (factorDifferential d i.succ)
+        (eqToHom (rawContractionFactor_raiseRight_eq_mergedTarget d i).symm))
+      have hsource :
+          factorModule ((d.contract i).raise (erasePosition w i))
+              (erasePosition w i) = mergedCanonicalFactor d i i := by
+        unfold mergedCanonicalFactor
+        rw [recursiveMergedFactor_eq_mergedFactor]
+        simp [mergedFactor]
+      exact eq_of_heq (hstruct.trans
+        (equalityTransport_heq_of_source_eq
+          (rawContractionFactor_raiseRight_eq_mergedTarget d i).symm
+          hcanonical hsource))
+    · have hafter : i < r := by omega
+      have hstruct := hbridge.trans (mergedFactorMap_after_heq
+        (factorModule d) (factorModule (d.raise i.succ)) i
+        (factorModule ((d.contract i).raise (erasePosition w i))
+          (erasePosition w i))
+        (rawContractionFactor (d.raise i.succ) i)
+        (factorDifferential d i.succ)
+        (eqToHom (rawContractionFactor_raiseRight_eq_mergedTarget d i).symm)
+        r hbefore hat)
+      have hne : i.succ ≠ r.succ := by
+        exact fun h ↦ hat ((Fin.succ_injective _) h.symm)
+      obtain ⟨hAB, hmap⟩ := factorDifferential_eqToHom_of_ne
+        d i.succ r.succ hne
+      have hsource : factorModule d r.succ = mergedCanonicalFactor d i r := by
+        unfold mergedCanonicalFactor
+        rw [recursiveMergedFactor_eq_mergedFactor]
+        simp [mergedFactor, hbefore, hat]
+      exact eq_of_heq (hstruct.trans (heq_of_eq hmap) |>.trans
+        (equalityTransport_heq_of_source_eq hAB hcanonical hsource))
+
+theorem rightMergedCanonicalTransportTensorMap_eqToHom
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    rightMergedCanonicalTransportTensorMap d i =
+      eqToHom (congrArg tensorModuleList (congrArg finFamilyList
+        (rightRawMergedFactor_eq_canonical d i).symm)) := by
+  exact test_tensorMapData_ofFn_eqToHom _ _
+    (rightRawMergedFactor_eq_canonical d i).symm _
+    (rightMergedCanonicalTransportFactorMap_eqToHom d i)
+
+theorem mergedRightLocal_comp_transport_heq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    HEq (mergedRightLocalTensorMap d i ≫
+        rightMergedCanonicalTransportTensorMap d i)
+      (mergedRightLocalTensorMap d i) := by
+  rw [rightMergedCanonicalTransportTensorMap_eqToHom]
+  exact CategoryTheory.comp_eqToHom_heq _ _
+
+theorem internalRightRawContraction_heq_mergedRightLocal
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    HEq (internalDifferentialTensorMap d i.succ ≫
+        (rawContractionAdjacentMergeData (d.raise i.succ) i).tensorMap)
+      (mergedRightLocalTensorMap d i) := by
+  have hnatural := (mergedRightLocal_naturality d i).tensorMap_comm
+  apply (heq_of_eq (by
+    simpa only [internalDifferentialTensorMap,
+      rawContractionAdjacentMergeData, mergedRightLocalTensorMap,
+      rightMergedCanonicalTransportTensorMap] using hnatural)).trans
+  exact mergedRightLocal_comp_transport_heq d i
+
+theorem rightInternalContractionToMergedTarget_heq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    HEq (rightInternalContractionToMergedTarget d i)
+      (mergedRightLocalTensorMap d i) := by
+  have hstrip : HEq (rightInternalContractionToMergedTarget d i)
+      (internalDifferentialTensorMap d i.succ ≫
+        contractionTensorMap (d.raise i.succ) i) := by
+    unfold rightInternalContractionToMergedTarget
+    simpa only [Category.assoc] using CategoryTheory.comp_eqToHom_heq
+      (internalDifferentialTensorMap d i.succ ≫
+        contractionTensorMap (d.raise i.succ) i)
+      (congrArg summandModule (DegreeProfile.raise_right_contract d i))
+  have hraw : HEq
+      (internalDifferentialTensorMap d i.succ ≫
+        contractionTensorMap (d.raise i.succ) i)
+      (internalDifferentialTensorMap d i.succ ≫
+        (rawContractionAdjacentMergeData (d.raise i.succ) i).tensorMap) := by
+    exact CategoryTheory.heq_comp rfl rfl
+      (rawContractionSummand_eq (d.raise i.succ) i).symm
+      (by rfl) (test_contractionTensorMap_raw_heq (d.raise i.succ) i)
+  exact hstrip.trans hraw |>.trans
+    (internalRightRawContraction_heq_mergedRightLocal d i)
+
+def leftMergedCanonicalTransportFactorMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    (r : Fin w.length) → mergedCanonicalFactor d i r ⟶
+      recursiveMergedFactor (factorModule (d.raise i.castSucc)) i
+        (rawContractionFactor (d.raise i.castSucc) i) r :=
+  recursiveMergedFactorMap (factorModule d) (factorModule (d.raise i.castSucc)) i
+    (factorModule ((d.contract i).raise (erasePosition w i))
+      (erasePosition w i))
+    (rawContractionFactor (d.raise i.castSucc) i)
+    (factorDifferential d i.castSucc)
+    (eqToHom (rawContractionFactor_raiseLeft_eq_mergedTarget d i).symm)
+
+def leftMergedCanonicalTransportTensorMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :=
+  (TensorMapData.ofFn (mergedCanonicalFactor d i)
+    (recursiveMergedFactor (factorModule (d.raise i.castSucc)) i
+      (rawContractionFactor (d.raise i.castSucc) i))
+    (leftMergedCanonicalTransportFactorMap d i)).tensorMap
+
+theorem mergedLeftLocal_naturality
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    AdjacentMergeNaturality
+      (recursiveAdjacentMergeDataOfFn (factorModule d) i
+        (factorModule ((d.contract i).raise (erasePosition w i))
+          (erasePosition w i))
+        ((factorDifferential d i.castSucc i.castSucc ⊗ₘ
+            𝟙 (factorModule d i.succ)) ≫
+          leftAdjacentCompositionToMergedTarget d i))
+      (rawContractionAdjacentMergeData (d.raise i.castSucc) i)
+      (TensorMapData.ofFn (factorModule d) (factorModule (d.raise i.castSucc))
+        (factorDifferential d i.castSucc))
+      (TensorMapData.ofFn (mergedCanonicalFactor d i)
+        (recursiveMergedFactor (factorModule (d.raise i.castSucc)) i
+          (rawContractionFactor (d.raise i.castSucc) i))
+        (leftMergedCanonicalTransportFactorMap d i)) := by
+  apply recursiveAdjacentMergeDataOfFn_naturality
+  obtain ⟨hB, hhB⟩ := factorDifferential_eqToHom_of_ne d i.castSucc i.succ
+    (Fin.ne_of_lt i.castSucc_lt_succ)
+  rw [hhB]
+  unfold leftAdjacentCompositionToMergedTarget
+  simp only [Category.assoc]
+  rw [← Category.assoc, MonoidalCategory.tensorHom_comp_tensorHom]
+  simp
+
+theorem leftRawMergedFactor_eq_canonical
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    (fun r ↦ recursiveMergedFactor (factorModule (d.raise i.castSucc)) i
+      (rawContractionFactor (d.raise i.castSucc) i) r) =
+      mergedCanonicalFactor d i := by
+  apply (test_rawContractionTarget_eq (d.raise i.castSucc) i).trans
+  change contractedFactorAtOldIndex (d.raise i.castSucc) i = _
+  apply Eq.trans _ (mergedCanonicalFactor_eq_oldIndexedRaisedContract d i).symm
+  unfold contractedFactorAtOldIndex
+  exact congrArg
+    (fun e ↦ fun r ↦ factorModule e (uneraseFactorIndex w i r))
+    (DegreeProfile.raise_left_contract d i)
+
+theorem leftMergedCanonicalTransportFactorMap_eqToHom
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i r : Fin w.length) :
+    leftMergedCanonicalTransportFactorMap d i r =
+      eqToHom (congrFun (leftRawMergedFactor_eq_canonical d i).symm r) := by
+  let hcanonical := congrFun (leftRawMergedFactor_eq_canonical d i).symm r
+  have hbridge := recursiveMergedFactorMap_heq_mergedFactorMap
+    (factorModule d) (factorModule (d.raise i.castSucc)) i
+    (factorModule ((d.contract i).raise (erasePosition w i))
+      (erasePosition w i))
+    (rawContractionFactor (d.raise i.castSucc) i)
+    (factorDifferential d i.castSucc)
+    (eqToHom (rawContractionFactor_raiseLeft_eq_mergedTarget d i).symm) r
+  by_cases hbefore : r < i
+  · have hstruct := hbridge.trans (mergedFactorMap_before_heq
+      (factorModule d) (factorModule (d.raise i.castSucc)) i
+      (factorModule ((d.contract i).raise (erasePosition w i))
+        (erasePosition w i))
+      (rawContractionFactor (d.raise i.castSucc) i)
+      (factorDifferential d i.castSucc)
+      (eqToHom (rawContractionFactor_raiseLeft_eq_mergedTarget d i).symm)
+      r hbefore)
+    have hne : i.castSucc ≠ r.castSucc := by
+      intro h
+      have hval := congrArg Fin.val h
+      change i.val = r.val at hval
+      omega
+    obtain ⟨hAB, hmap⟩ := factorDifferential_eqToHom_of_ne
+      d i.castSucc r.castSucc hne
+    have hsource : factorModule d r.castSucc = mergedCanonicalFactor d i r := by
+      unfold mergedCanonicalFactor
+      rw [recursiveMergedFactor_eq_mergedFactor]
+      simp [mergedFactor, hbefore]
+    exact eq_of_heq (hstruct.trans (heq_of_eq hmap) |>.trans
+      (equalityTransport_heq_of_source_eq hAB hcanonical hsource))
+  · by_cases hat : r = i
+    · subst r
+      have hstruct := hbridge.trans (mergedFactorMap_at_heq
+        (factorModule d) (factorModule (d.raise i.castSucc)) i
+        (factorModule ((d.contract i).raise (erasePosition w i))
+          (erasePosition w i))
+        (rawContractionFactor (d.raise i.castSucc) i)
+        (factorDifferential d i.castSucc)
+        (eqToHom (rawContractionFactor_raiseLeft_eq_mergedTarget d i).symm))
+      have hsource :
+          factorModule ((d.contract i).raise (erasePosition w i))
+              (erasePosition w i) = mergedCanonicalFactor d i i := by
+        unfold mergedCanonicalFactor
+        rw [recursiveMergedFactor_eq_mergedFactor]
+        simp [mergedFactor]
+      exact eq_of_heq (hstruct.trans
+        (equalityTransport_heq_of_source_eq
+          (rawContractionFactor_raiseLeft_eq_mergedTarget d i).symm
+          hcanonical hsource))
+    · have hafter : i < r := by omega
+      have hstruct := hbridge.trans (mergedFactorMap_after_heq
+        (factorModule d) (factorModule (d.raise i.castSucc)) i
+        (factorModule ((d.contract i).raise (erasePosition w i))
+          (erasePosition w i))
+        (rawContractionFactor (d.raise i.castSucc) i)
+        (factorDifferential d i.castSucc)
+        (eqToHom (rawContractionFactor_raiseLeft_eq_mergedTarget d i).symm)
+        r hbefore hat)
+      have hne : i.castSucc ≠ r.succ := by
+        intro h
+        have hval := congrArg Fin.val h
+        change i.val = r.val + 1 at hval
+        omega
+      obtain ⟨hAB, hmap⟩ := factorDifferential_eqToHom_of_ne
+        d i.castSucc r.succ hne
+      have hsource : factorModule d r.succ = mergedCanonicalFactor d i r := by
+        unfold mergedCanonicalFactor
+        rw [recursiveMergedFactor_eq_mergedFactor]
+        simp [mergedFactor, hbefore, hat]
+      exact eq_of_heq (hstruct.trans (heq_of_eq hmap) |>.trans
+        (equalityTransport_heq_of_source_eq hAB hcanonical hsource))
+
+theorem leftMergedCanonicalTransportTensorMap_eqToHom
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    leftMergedCanonicalTransportTensorMap d i =
+      eqToHom (congrArg tensorModuleList (congrArg finFamilyList
+        (leftRawMergedFactor_eq_canonical d i).symm)) := by
+  exact test_tensorMapData_ofFn_eqToHom _ _
+    (leftRawMergedFactor_eq_canonical d i).symm _
+    (leftMergedCanonicalTransportFactorMap_eqToHom d i)
+
+theorem mergedLeftLocal_comp_transport_heq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    HEq (mergedLeftLocalTensorMap d i ≫
+        leftMergedCanonicalTransportTensorMap d i)
+      (mergedLeftLocalTensorMap d i) := by
+  rw [leftMergedCanonicalTransportTensorMap_eqToHom]
+  exact CategoryTheory.comp_eqToHom_heq _ _
+
+theorem internalLeftRawContraction_heq_mergedLeftLocal
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    HEq (internalDifferentialTensorMap d i.castSucc ≫
+        (rawContractionAdjacentMergeData (d.raise i.castSucc) i).tensorMap)
+      (mergedLeftLocalTensorMap d i) := by
+  have hnatural := (mergedLeftLocal_naturality d i).tensorMap_comm
+  apply (heq_of_eq (by
+    simpa only [internalDifferentialTensorMap,
+      rawContractionAdjacentMergeData, mergedLeftLocalTensorMap,
+      leftMergedCanonicalTransportTensorMap] using hnatural)).trans
+  exact mergedLeftLocal_comp_transport_heq d i
+
+theorem leftInternalContractionToMergedTarget_heq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    HEq (leftInternalContractionToMergedTarget d i)
+      (mergedLeftLocalTensorMap d i) := by
+  have hstrip : HEq (leftInternalContractionToMergedTarget d i)
+      (internalDifferentialTensorMap d i.castSucc ≫
+        contractionTensorMap (d.raise i.castSucc) i) := by
+    unfold leftInternalContractionToMergedTarget
+    simpa only [Category.assoc] using CategoryTheory.comp_eqToHom_heq
+      (internalDifferentialTensorMap d i.castSucc ≫
+        contractionTensorMap (d.raise i.castSucc) i)
+      (congrArg summandModule (DegreeProfile.raise_left_contract d i))
+  have hraw : HEq
+      (internalDifferentialTensorMap d i.castSucc ≫
+        contractionTensorMap (d.raise i.castSucc) i)
+      (internalDifferentialTensorMap d i.castSucc ≫
+        (rawContractionAdjacentMergeData (d.raise i.castSucc) i).tensorMap) := by
+    exact CategoryTheory.heq_comp rfl rfl
+      (rawContractionSummand_eq (d.raise i.castSucc) i).symm
+      (by rfl) (test_contractionTensorMap_raw_heq (d.raise i.castSucc) i)
+  exact hstrip.trans hraw |>.trans
+    (internalLeftRawContraction_heq_mergedLeftLocal d i)
+
+theorem mergedTensorMap_leibniz
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    contractionTensorMap d i ≫
+        internalDifferentialTensorMap (d.contract i) (erasePosition w i) =
+      rightInternalContractionToMergedTarget d i +
+        ((d.arrowDegree i.succ).negOnePow : ℤ) •
+          leftInternalContractionToMergedTarget d i := by
+  let htarget := mergedCanonicalSummand_eq d i
+  have htotal : contractionTensorMap d i ≫
+      internalDifferentialTensorMap (d.contract i) (erasePosition w i) =
+        mergedTotalLocalTensorMap d i ≫ eqToHom htarget :=
+    eq_of_heq ((contractionInternalMergedTensorMap_heq d i).trans
+      (CategoryTheory.comp_eqToHom_heq _ htarget).symm)
+  have hright : rightInternalContractionToMergedTarget d i =
+      mergedRightLocalTensorMap d i ≫ eqToHom htarget :=
+    eq_of_heq ((rightInternalContractionToMergedTarget_heq d i).trans
+      (CategoryTheory.comp_eqToHom_heq _ htarget).symm)
+  have hleft : leftInternalContractionToMergedTarget d i =
+      mergedLeftLocalTensorMap d i ≫ eqToHom htarget :=
+    eq_of_heq ((leftInternalContractionToMergedTarget_heq d i).trans
+      (CategoryTheory.comp_eqToHom_heq _ htarget).symm)
+  rw [htotal, hright, hleft]
+  rw [mergedLocalTensorMap_leibniz, Preadditive.add_comp]
+  congr 1
+  exact Preadditive.zsmul_comp
+    (f := mergedLeftLocalTensorMap d i) (g := eqToHom htarget) _
 
 end LeanLCAExactChallenge.Infinity.MetrizableBoundedComplexes.DrinfeldWord
