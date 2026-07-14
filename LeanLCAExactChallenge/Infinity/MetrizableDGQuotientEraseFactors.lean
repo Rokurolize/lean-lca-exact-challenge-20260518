@@ -539,7 +539,7 @@ theorem adjacentMergeData_head_empty_tensorMap
     (@AdjacentMergeData.head M N P [] f).tensorMap =
       (α_ M N (𝟙_ (ModuleCat.{0} ℤ))).inv ≫
         (ρ_ (M ⊗ N)).hom ≫ f ≫ (ρ_ P).inv := by
-  dsimp only [AdjacentMergeData.tensorMap, tensorModuleList]
+  dsimp only [AdjacentMergeData.tensorMap, tensorModuleList, tensorModuleListOver]
   simp
 
 /-- The finite-family adjacent merge at the unique position of a two-factor family is the
