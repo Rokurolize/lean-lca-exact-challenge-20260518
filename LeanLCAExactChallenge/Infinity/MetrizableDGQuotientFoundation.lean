@@ -182,6 +182,34 @@ factor. -/
 def contractedArrowDegree {k : ℕ} (a : Fin (k + 1) → ℤ) (i : Fin k) : Fin k → ℤ :=
   fun j ↦ a (i.castSucc.succAbove j) + if j = i then a i.castSucc else 0
 
+theorem contractedArrowDegree_raise_succAbove {k : ℕ}
+    (a : Fin (k + 1) → ℤ) (i q : Fin k) :
+    contractedArrowDegree
+        (fun j ↦ a j + if j = i.castSucc.succAbove q then 1 else 0) i =
+      fun r ↦ contractedArrowDegree a i r + if r = q then 1 else 0 := by
+  funext r
+  by_cases hrq : r = q
+  · subst r
+    simp [contractedArrowDegree, Fin.ne_succAbove]
+    ring
+  · have hsucc : i.castSucc.succAbove r ≠ i.castSucc.succAbove q := by
+      exact fun h ↦ hrq (Fin.succAbove_right_injective h)
+    simp [contractedArrowDegree, hrq, hsucc, Fin.ne_succAbove]
+
+theorem contractedArrowDegree_raise_left {k : ℕ}
+    (a : Fin (k + 1) → ℤ) (i : Fin k) :
+    contractedArrowDegree
+        (fun j ↦ a j + if j = i.castSucc then 1 else 0) i =
+      fun r ↦ contractedArrowDegree a i r + if r = i then 1 else 0 := by
+  funext r
+  by_cases hri : r = i
+  · subst r
+    have hne : i.succ ≠ i.castSucc := by
+      exact (Fin.ne_of_lt i.castSucc_lt_succ).symm
+    simp [contractedArrowDegree, hne]
+    ring
+  · simp [contractedArrowDegree, hri]
+
 theorem sum_contractedArrowDegree {k : ℕ} (a : Fin (k + 1) → ℤ) (i : Fin k) :
     ∑ j, contractedArrowDegree a i j = ∑ j, a j := by
   rw [show (∑ j, contractedArrowDegree a i j) =
@@ -600,15 +628,18 @@ def DegreeProfile.internalSign {X Y : ComplexCategory}
     (i : Fin (w.length + 1)) : ℤ :=
   if Even (d.prefixTotal i) then 1 else -1
 
+def DegreeProfile.contractionPrefix {X Y : ComplexCategory}
+    {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
+    (i : Fin w.length) : ℤ :=
+  (∑ j ∈ Finset.univ.filter
+      (fun j : Fin (w.length + 1) ↦ j.val ≤ i.val), d.arrowDegree j) - i.val
+
 /-- Koszul sign of the contraction at the `i`-th degree-`-1` symbol.  The symbol occurs
 after the `i`-th arrow factor and after exactly `i` earlier contracting symbols. -/
 def DegreeProfile.contractionSign {X Y : ComplexCategory}
     {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
     (i : Fin w.length) : ℤ :=
-  if Even
-      ((∑ j ∈ Finset.univ.filter
-          (fun j : Fin (w.length + 1) ↦ j.val ≤ i.val), d.arrowDegree j) - i.val)
-    then 1 else -1
+  if Even (d.contractionPrefix i) then 1 else -1
 
 /-- Sum of all signed internal-differential terms leaving one homogeneous word summand. -/
 def internalDifferentialFromSummand {X Y : ComplexCategory}
@@ -844,7 +875,8 @@ theorem singletonContractingDegreeProfile_contractionSign
     have h := i.isLt
     omega
   rw [hi]
-  simp [DegreeProfile.contractionSign, singletonContractingDegreeProfile]
+  simp [DegreeProfile.contractionSign, DegreeProfile.contractionPrefix,
+    singletonContractingDegreeProfile]
 
 /-- The unique contraction position of a one-letter word. -/
 abbrev singletonIndex (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory) :

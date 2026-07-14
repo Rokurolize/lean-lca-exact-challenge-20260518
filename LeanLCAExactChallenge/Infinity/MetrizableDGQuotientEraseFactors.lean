@@ -41,6 +41,63 @@ def eraseFactorIndex {X Y : ComplexCategory} (w : DrinfeldWord X Y)
     (i : Fin w.length) (j : Fin ((eraseIntermediate w i).length + 1)) : Fin w.length :=
   Fin.cast (eraseIntermediate_length w i) j
 
+def survivingOldFactorIndex {X Y : ComplexCategory} (w : DrinfeldWord X Y)
+    (i : Fin w.length) (j : Fin ((eraseIntermediate w i).length + 1)) :
+    Fin (w.length + 1) :=
+  i.castSucc.succAbove (eraseFactorIndex w i j)
+
+theorem DegreeProfile.raise_surviving_contract
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1)) :
+    (d.raise (survivingOldFactorIndex w i j)).contract i =
+      (d.contract i).raise j := by
+  apply DegreeProfile.ext
+  funext r
+  change contractedArrowDegree
+      (fun q ↦ d.arrowDegree q +
+        if q = i.castSucc.succAbove (eraseFactorIndex w i j) then 1 else 0) i
+        (Fin.cast (eraseIntermediate_length w i) r) =
+      contractedArrowDegree d.arrowDegree i
+          (Fin.cast (eraseIntermediate_length w i) r) +
+        if r = j then 1 else 0
+  rw [contractedArrowDegree_raise_succAbove]
+  simp [eraseFactorIndex]
+
+theorem DegreeProfile.raise_left_contract
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    (d.raise i.castSucc).contract i =
+      (d.contract i).raise (erasePosition w i) := by
+  apply DegreeProfile.ext
+  funext r
+  change contractedArrowDegree
+      (fun q ↦ d.arrowDegree q + if q = i.castSucc then 1 else 0) i
+        (Fin.cast (eraseIntermediate_length w i) r) =
+      contractedArrowDegree d.arrowDegree i
+          (Fin.cast (eraseIntermediate_length w i) r) +
+        if r = erasePosition w i then 1 else 0
+  rw [contractedArrowDegree_raise_left]
+  change contractedArrowDegree d.arrowDegree i
+        (Fin.cast (eraseIntermediate_length w i) r) +
+      (if Fin.cast (eraseIntermediate_length w i) r = i then 1 else 0) =
+    contractedArrowDegree d.arrowDegree i
+        (Fin.cast (eraseIntermediate_length w i) r) +
+      if r = erasePosition w i then 1 else 0
+  by_cases h : Fin.cast (eraseIntermediate_length w i) r = i
+  · have hr : r = erasePosition w i := by
+      apply Fin.ext
+      change r.val = i.val
+      exact congrArg (fun x : Fin w.length ↦ x.val) h
+    rw [if_pos h, if_pos hr]
+  · have hr : r ≠ erasePosition w i := by
+      intro hr
+      subst r
+      apply h
+      apply Fin.ext
+      rfl
+    rw [if_neg h, if_neg hr]
+
 @[simp]
 theorem eraseFactorIndex_erasePosition
     {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i : Fin w.length) :
@@ -824,6 +881,38 @@ theorem DegreeProfile.internalSign_raise_of_le
     (d.raise i).internalSign j = d.internalSign j := by
   rw [DegreeProfile.internalSign, DegreeProfile.internalSign,
     d.prefixTotal_raise_of_le i j h]
+
+theorem DegreeProfile.contractionPrefix_raise_of_le
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (j : Fin (w.length + 1)) (i : Fin w.length)
+    (h : j.val ≤ i.val) :
+    (d.raise j).contractionPrefix i = d.contractionPrefix i + 1 := by
+  simp [DegreeProfile.contractionPrefix, DegreeProfile.raise, Finset.sum_add_distrib, h]
+  omega
+
+theorem DegreeProfile.contractionPrefix_raise_of_gt
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (j : Fin (w.length + 1)) (i : Fin w.length)
+    (h : i.val < j.val) :
+    (d.raise j).contractionPrefix i = d.contractionPrefix i := by
+  simp [DegreeProfile.contractionPrefix, DegreeProfile.raise, Finset.sum_add_distrib,
+    not_le_of_gt h]
+
+theorem DegreeProfile.contractionSign_raise_of_le
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (j : Fin (w.length + 1)) (i : Fin w.length)
+    (h : j.val ≤ i.val) :
+    (d.raise j).contractionSign i = -d.contractionSign i := by
+  rw [DegreeProfile.contractionSign, DegreeProfile.contractionSign,
+    d.contractionPrefix_raise_of_le j i h, paritySign_add_one]
+
+theorem DegreeProfile.contractionSign_raise_of_gt
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (j : Fin (w.length + 1)) (i : Fin w.length)
+    (h : i.val < j.val) :
+    (d.raise j).contractionSign i = d.contractionSign i := by
+  rw [DegreeProfile.contractionSign, DegreeProfile.contractionSign,
+    d.contractionPrefix_raise_of_gt j i h]
 
 /-- Ordered pairs of distinct contraction positions, represented by the first removed
 position and the position of the second removal in the shortened word. -/
