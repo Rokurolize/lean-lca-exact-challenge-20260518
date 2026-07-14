@@ -307,6 +307,87 @@ def tensorModuleListAppendIso :
       α_ M (tensorModuleList Ms) (tensorModuleList Ns) ≪≫
         MonoidalCategory.tensorIso (Iso.refl M) (tensorModuleListAppendIso Ms Ns)
 
+theorem tensor_obj_eqToHom
+    (M : ModuleCat.{0} ℤ) {N P : ModuleCat.{0} ℤ} (h : N = P) :
+    eqToHom (congrArg (fun Q ↦ M ⊗ Q) h) = 𝟙 M ⊗ₘ eqToHom h := by
+  subst P
+  exact (MonoidalCategory.id_tensorHom_id M N).symm
+
+theorem tensorModuleListAppendIso_assoc
+    (Ms Ns Ps : List (ModuleCat.{0} ℤ)) :
+    (α_ (tensorModuleList Ms) (tensorModuleList Ns)
+          (tensorModuleList Ps)).inv ≫
+        ((tensorModuleListAppendIso Ms Ns).hom ⊗ₘ
+          𝟙 (tensorModuleList Ps)) ≫
+        (tensorModuleListAppendIso (Ms ++ Ns) Ps).hom ≫
+        eqToHom (congrArg tensorModuleList (List.append_assoc Ms Ns Ps)) =
+      (𝟙 (tensorModuleList Ms) ⊗ₘ
+          (tensorModuleListAppendIso Ns Ps).hom) ≫
+        (tensorModuleListAppendIso Ms (Ns ++ Ps)).hom := by
+  induction Ms with
+  | nil =>
+      dsimp [tensorModuleListAppendIso, tensorModuleList, tensorModuleListOver]
+      monoidal
+  | cons M Ms ih =>
+      let a : tensorModuleList Ms ⊗ tensorModuleList Ns ⟶
+          tensorModuleList (Ms ++ Ns) :=
+        (tensorModuleListAppendIso Ms Ns).hom
+      let b : tensorModuleList (Ms ++ Ns) ⊗ tensorModuleList Ps ⟶
+          tensorModuleList ((Ms ++ Ns) ++ Ps) :=
+        (tensorModuleListAppendIso (Ms ++ Ns) Ps).hom
+      let c : tensorModuleList Ns ⊗ tensorModuleList Ps ⟶
+          tensorModuleList (Ns ++ Ps) :=
+        (tensorModuleListAppendIso Ns Ps).hom
+      let q : tensorModuleList Ms ⊗ tensorModuleList (Ns ++ Ps) ⟶
+          tensorModuleList (Ms ++ (Ns ++ Ps)) :=
+        (tensorModuleListAppendIso Ms (Ns ++ Ps)).hom
+      let t : tensorModuleList ((Ms ++ Ns) ++ Ps) ⟶
+          tensorModuleList (Ms ++ (Ns ++ Ps)) :=
+        eqToHom (congrArg tensorModuleList (List.append_assoc Ms Ns Ps))
+      have htransport : eqToHom (congrArg tensorModuleList
+          (List.append_assoc (M :: Ms) Ns Ps)) =
+          𝟙 M ⊗ₘ t := by
+        change eqToHom (congrArg (fun Q : ModuleCat.{0} ℤ ↦ M ⊗ Q)
+            (congrArg tensorModuleList (List.append_assoc Ms Ns Ps))) = _
+        simpa only [t] using tensor_obj_eqToHom M
+          (congrArg tensorModuleList (List.append_assoc Ms Ns Ps))
+      change
+        (α_ (tensorModuleList Ms) (tensorModuleList Ns)
+              (tensorModuleList Ps)).inv ≫
+            (a ⊗ₘ 𝟙 (tensorModuleList Ps)) ≫ b ≫ t =
+          (𝟙 (tensorModuleList Ms) ⊗ₘ c) ≫ q at ih
+      dsimp [tensorModuleListAppendIso, tensorModuleList, tensorModuleListOver]
+      erw [htransport]
+      simp only [Iso.trans_hom, tensorIso_hom, Iso.refl_hom, Category.assoc]
+      change
+        (α_ (M ⊗ tensorModuleList Ms) (tensorModuleList Ns)
+              (tensorModuleList Ps)).inv ≫
+            (((α_ M (tensorModuleList Ms) (tensorModuleList Ns)).hom ≫
+                (𝟙 M ⊗ₘ a)) ⊗ₘ 𝟙 (tensorModuleList Ps)) ≫
+            (α_ M (tensorModuleList (Ms ++ Ns))
+              (tensorModuleList Ps)).hom ≫
+            (𝟙 M ⊗ₘ b) ≫ (𝟙 M ⊗ₘ t) =
+          (𝟙 (M ⊗ tensorModuleList Ms) ⊗ₘ c) ≫
+            (α_ M (tensorModuleList Ms)
+              (tensorModuleList (Ns ++ Ps))).hom ≫
+            (𝟙 M ⊗ₘ q)
+      calc
+        _ = (α_ M (tensorModuleList Ms)
+              (tensorModuleList Ns ⊗ tensorModuleList Ps)).hom ≫
+            (𝟙 M ⊗ₘ
+              ((α_ (tensorModuleList Ms) (tensorModuleList Ns)
+                    (tensorModuleList Ps)).inv ≫
+                (a ⊗ₘ 𝟙 (tensorModuleList Ps)) ≫ b ≫ t)) := by
+            dsimp [tensorModuleList, tensorModuleListOver]
+            monoidal
+        _ = (α_ M (tensorModuleList Ms)
+              (tensorModuleList Ns ⊗ tensorModuleList Ps)).hom ≫
+            (𝟙 M ⊗ₘ
+              ((𝟙 (tensorModuleList Ms) ⊗ₘ c) ≫ q)) := by rw [ih]
+        _ = _ := by
+          dsimp [tensorModuleList, tensorModuleListOver]
+          monoidal
+
 def adjacentMergeAfter : (xs : List (ModuleCat.{0} ℤ)) →
     {M N P : ModuleCat.{0} ℤ} → {ys : List (ModuleCat.{0} ℤ)} →
     Quiver.Hom (M ⊗ N) P →
@@ -315,6 +396,52 @@ def adjacentMergeAfter : (xs : List (ModuleCat.{0} ℤ)) →
   | _ :: xs, M, N, P, ys, f =>
       .tail (adjacentMergeAfter xs (M := M) (N := N) (P := P)
         (ys := ys) f)
+
+def AdjacentMergeData.prefix : (xs : List (ModuleCat.{0} ℤ)) →
+    {source target : List (ModuleCat.{0} ℤ)} →
+      AdjacentMergeData source target →
+        AdjacentMergeData (xs ++ source) (xs ++ target)
+  | [], _, _, f => f
+  | _ :: xs, _, _, f => .tail (f.prefix xs)
+
+theorem AdjacentMergePairCoherence.prefix
+    {source middle₁ middle₂ target : List (ModuleCat.{0} ℤ)}
+    {f₁ : AdjacentMergeData source middle₁}
+    {g₁ : AdjacentMergeData middle₁ target}
+    {f₂ : AdjacentMergeData source middle₂}
+    {g₂ : AdjacentMergeData middle₂ target}
+    (h : AdjacentMergePairCoherence f₁ g₁ f₂ g₂) :
+    (xs : List (ModuleCat.{0} ℤ)) →
+      AdjacentMergePairCoherence
+        (f₁.prefix xs) (g₁.prefix xs) (f₂.prefix xs) (g₂.prefix xs)
+  | [] => h
+  | _ :: xs => .tail (h.prefix xs)
+
+theorem AdjacentMergePairHCoherence.prefix
+    {source middle₁ middle₂ target₁ target₂ : List (ModuleCat.{0} ℤ)}
+    {f₁ : AdjacentMergeData source middle₁}
+    {g₁ : AdjacentMergeData middle₁ target₁}
+    {f₂ : AdjacentMergeData source middle₂}
+    {g₂ : AdjacentMergeData middle₂ target₂}
+    (h : AdjacentMergePairHCoherence f₁ g₁ f₂ g₂) :
+    (xs : List (ModuleCat.{0} ℤ)) →
+      AdjacentMergePairHCoherence
+        (f₁.prefix xs) (g₁.prefix xs) (f₂.prefix xs) (g₂.prefix xs)
+  | [] => h
+  | _ :: xs => .tail (h.prefix xs)
+
+theorem adjacentMergeAfter_eq_prefix_head
+    (xs : List (ModuleCat.{0} ℤ))
+    {M N P : ModuleCat.{0} ℤ} {ys : List (ModuleCat.{0} ℤ)}
+    (f : Quiver.Hom (M ⊗ N) P) :
+    adjacentMergeAfter xs (ys := ys) f =
+      (AdjacentMergeData.head f).prefix xs := by
+  induction xs with
+  | nil => rfl
+  | cons Q xs ih =>
+      change AdjacentMergeData.tail (adjacentMergeAfter xs (ys := ys) f) =
+        AdjacentMergeData.tail ((AdjacentMergeData.head f).prefix xs)
+      rw [ih]
 
 @[simp]
 theorem adjacentMergeAfter_nil
