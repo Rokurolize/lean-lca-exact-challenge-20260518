@@ -558,6 +558,26 @@ theorem tensorModuleListWhiskerLeft_comp
         tensorModuleListWhiskerLeft Qs g := by
   simp [tensorModuleListWhiskerLeft, Category.assoc]
 
+theorem tensorModuleListWhiskerRight_eqToHom
+    {Ms Ns : List (ModuleCat.{0} ℤ)} (Ps : List (ModuleCat.{0} ℤ))
+    (h : Ms = Ns) :
+    tensorModuleListWhiskerRight Ps
+        (eqToHom (congrArg tensorModuleList h)) =
+      eqToHom (congrArg tensorModuleList
+        (congrArg₂ List.append h (rfl : Ps = Ps))) := by
+  subst Ns
+  simp [tensorModuleListWhiskerRight]
+
+theorem tensorModuleListWhiskerLeft_eqToHom
+    (Ps : List (ModuleCat.{0} ℤ)) {Ms Ns : List (ModuleCat.{0} ℤ)}
+    (h : Ms = Ns) :
+    tensorModuleListWhiskerLeft Ps
+        (eqToHom (congrArg tensorModuleList h)) =
+      eqToHom (congrArg tensorModuleList
+        (congrArg₂ List.append (rfl : Ps = Ps) h)) := by
+  subst Ns
+  simp [tensorModuleListWhiskerLeft]
+
 def adjacentMergeAfter : (xs : List (ModuleCat.{0} ℤ)) →
     {M N P : ModuleCat.{0} ℤ} → {ys : List (ModuleCat.{0} ℤ)} →
     Quiver.Hom (M ⊗ N) P →
@@ -2846,6 +2866,34 @@ def normalizedSummandCompositionMap
       (ys := compositionRightSuffix e) (compositionBoundaryMap d e)).tensorMap ≫
     eqToHom (congrArg tensorModuleList
       (finFamilyList_factorModule_append_boundary d e).symm)
+
+def summandCompositionRemainder
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    tensorModuleList
+        (finFamilyList (factorModule d) ++ finFamilyList (factorModule e)) ⟶
+      summandModule (d.append e) :=
+  eqToHom (congrArg tensorModuleList
+      (congrArg₂ List.append
+        (finFamilyList_factorModule_eq_prefix_last d)
+        (finFamilyList_factorModule_eq_first_suffix e))) ≫
+    eqToHom (congrArg tensorModuleList
+      (appendBoundaryListsEq (compositionLeftPrefix d)
+        (factorModule d (Fin.last w.length)) (factorModule e 0)
+        (compositionRightSuffix e))) ≫
+    (adjacentMergeAfter (compositionLeftPrefix d)
+      (ys := compositionRightSuffix e) (compositionBoundaryMap d e)).tensorMap ≫
+    eqToHom (congrArg tensorModuleList
+      (finFamilyList_factorModule_append_boundary d e).symm)
+
+theorem normalizedSummandCompositionMap_eq_append_remainder
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    normalizedSummandCompositionMap d e =
+      (tensorModuleListAppendIso (finFamilyList (factorModule d))
+        (finFamilyList (factorModule e))).hom ≫
+        summandCompositionRemainder d e := by
+  rfl
 
 def summandCompositionMap
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
