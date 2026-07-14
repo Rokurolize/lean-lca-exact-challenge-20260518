@@ -257,6 +257,34 @@ theorem survivingOldFactorIndex_eq_right_iff
     apply Fin.ext
     rfl
 
+theorem survivingOldFactorIndex_injective
+    {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i : Fin w.length) :
+    Function.Injective (survivingOldFactorIndex w i) := by
+  intro j r h
+  unfold survivingOldFactorIndex at h
+  have hi : eraseFactorIndex w i j = eraseFactorIndex w i r :=
+    Fin.succAbove_right_injective h
+  apply Fin.ext
+  exact congrArg (fun x : Fin w.length ↦ x.val) hi
+
+theorem survivingOldFactorIndex_of_before
+    {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1))
+    (h : eraseFactorIndex w i j < i) :
+    survivingOldFactorIndex w i j = (eraseFactorIndex w i j).castSucc := by
+  unfold survivingOldFactorIndex
+  rw [Fin.succAbove_of_castSucc_lt]
+  simpa using h
+
+theorem survivingOldFactorIndex_of_after
+    {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1))
+    (h : i < eraseFactorIndex w i j) :
+    survivingOldFactorIndex w i j = (eraseFactorIndex w i j).succ := by
+  unfold survivingOldFactorIndex
+  rw [Fin.succAbove_of_le_castSucc]
+  exact h.le
+
 theorem DegreeProfile.raise_surviving_contract
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) (i : Fin w.length)
