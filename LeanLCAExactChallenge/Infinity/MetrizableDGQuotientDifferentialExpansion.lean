@@ -5,8 +5,8 @@ import LeanLCAExactChallenge.Infinity.MetrizableDGQuotientPairCancellation
 # Expansion of the corrected Drinfeld differential square
 
 This file decomposes the square of the candidate differential on an arbitrary word summand
-and proves the coefficient cancellation for distinct pairs of internal-factor differentials.
-The remaining structural-map commutation and double-contraction identities are not asserted.
+and proves the internal-factor and double-contraction cancellations. The remaining mixed
+structural-map commutation is isolated by the expansion.
 -/
 
 set_option autoImplicit false
@@ -35,6 +35,26 @@ theorem comp_eq_of_middle_eq_heq {C : Type*} [Category C]
     (hf : HEq f₁ f₂) (hg : HEq g₁ g₂) : f₁ ≫ g₁ = f₂ ≫ g₂ := by
   subst Y₂
   rw [eq_of_heq hf, eq_of_heq hg]
+
+theorem cast_degreeProfile_eq_castWord_expansion
+    {X Y : ComplexCategory} {w v : DrinfeldWord X Y} {n : ℤ}
+    (h : w = v) (d : DegreeProfile w n) :
+    cast (congrArg (fun q : DrinfeldWord X Y ↦ DegreeProfile q n) h) d =
+      d.castWord h := by
+  subst h
+  rfl
+
+theorem gradedSummandIndex_eq_of_castWord_eq
+    {X Y : ComplexCategory} {w v : DrinfeldWord X Y} {n : ℤ}
+    (h : w = v) (d : DegreeProfile w n) (e : DegreeProfile v n)
+    (hd : d.castWord h = e) :
+    (⟨w, d⟩ : GradedSummandIndex X Y n) = ⟨v, e⟩ := by
+  apply Sigma.ext h
+  have hde : d.castWord h ≍ e := heq_of_eq hd
+  let hty := congrArg (fun q : DrinfeldWord X Y ↦ DegreeProfile q n) h
+  apply (cast_heq_iff_heq hty d e).mp
+  convert hde using 1
+  exact cast_degreeProfile_eq_castWord_expansion h d
 
 /-- Four-family expansion of the candidate differential square on one arbitrary summand. -/
 theorem quotientTotalDifferential_inclusion_square_expansion
@@ -104,6 +124,180 @@ theorem contractionDifferentialFromSummand_comp_contractionDifferential
   unfold contractionDifferentialFromSummand
   simp only [Preadditive.sum_comp, contractionLargeMap_comp_contractionDifferential]
   rfl
+
+def contractionPairLargeMap
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (p : ContractionPairIndex (k + 1)) :
+    Quiver.Hom (largeSummandModule
+      (⟨{ length := k + 2, intermediate := intermediate }, d⟩ :
+        GradedSummandIndex X Y n))
+      (quotientGradedModule X Y ((n + 1) + 1)) :=
+  (ModuleCat.uliftFunctor.{1} ℤ).map
+      (contractionTensorMap d p.1 ≫
+        contractionTensorMap (d.contract p.1) p.2) ≫
+    Limits.Sigma.ι
+      (fun s : GradedSummandIndex X Y ((n + 1) + 1) ↦ largeSummandModule s)
+      ⟨eraseIntermediate
+          (eraseIntermediate
+            ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y)
+            p.1) p.2,
+        (d.contract p.1).contract p.2⟩
+
+theorem contractionPairLargeMap_swap
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (p : ContractionPairIndex (k + 1)) :
+    contractionPairLargeMap d (contractionPairSwap p) =
+      contractionPairLargeMap d p := by
+  let s₁ : GradedSummandIndex X Y ((n + 1) + 1) :=
+    ⟨eraseIntermediate
+        (eraseIntermediate
+          ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y)
+          (contractionPairSwap p).1) (contractionPairSwap p).2,
+      (d.contract (contractionPairSwap p).1).contract
+        (contractionPairSwap p).2⟩
+  let s₂ : GradedSummandIndex X Y ((n + 1) + 1) :=
+    ⟨eraseIntermediate
+        (eraseIntermediate
+          ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y)
+          p.1) p.2,
+      (d.contract p.1).contract p.2⟩
+  have hs : s₁ = s₂ := by
+    exact (gradedSummandIndex_eq_of_castWord_eq
+      (eraseIntermediate_twice_swap intermediate p.1 p.2)
+      ((d.contract p.1).contract p.2)
+      ((d.contract (contractionPairSwap p).1).contract
+        (contractionPairSwap p).2)
+      (DegreeProfile.contract_contract_swap intermediate d p.1 p.2)).symm
+  have hm : largeSummandModule s₁ = largeSummandModule s₂ :=
+    congrArg largeSummandModule hs
+  unfold contractionPairLargeMap
+  apply comp_eq_of_middle_eq_heq hm
+  · obtain ⟨htarget, _⟩ := test_contractionPairTargetIso_hom_eqToHom d p.1 p.2
+    apply map_heq_of_target_eq (ModuleCat.uliftFunctor.{1} ℤ) htarget.symm
+    exact (test_contractionPairTensorMap_heq d p.1 p.2).symm
+  · exact congr_arg_heq
+      (fun s ↦ Limits.Sigma.ι
+        (fun t : GradedSummandIndex X Y ((n + 1) + 1) ↦ largeSummandModule t) s) hs
+
+theorem contractionTensorMap_comp_contractionLargeMap
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (i : Fin (k + 2)) (j : Fin (k + 1)) :
+    (ModuleCat.uliftFunctor.{1} ℤ).map (contractionTensorMap d i) ≫
+        contractionLargeMap (d.contract i) j =
+      (d.contract i).contractionSign j • contractionPairLargeMap d (i, j) := by
+  unfold contractionLargeMap contractionPairLargeMap
+  rw [Preadditive.comp_zsmul]
+  rw [← Category.assoc, ← Functor.map_comp]
+
+def contractionPairTerm
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (p : ContractionPairIndex (k + 1)) :
+    Quiver.Hom (largeSummandModule
+      (⟨{ length := k + 2, intermediate := intermediate }, d⟩ :
+        GradedSummandIndex X Y n))
+      (quotientGradedModule X Y ((n + 1) + 1)) :=
+  contractionPairCoefficientFor d.arrowDegree p • contractionPairLargeMap d p
+
+theorem sum_contractionPairTerm_eq_zero
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    ∑ p : ContractionPairIndex (k + 1), contractionPairTerm d p = 0 := by
+  unfold contractionPairTerm
+  exact sum_contractionPairIndex_smul_eq_zero_of_swap
+    (contractionPairCoefficientFor d.arrowDegree) (contractionPairLargeMap d)
+    (contractionPairCoefficientFor_swap d.arrowDegree)
+    (contractionPairLargeMap_swap d)
+
+theorem contractionDifferentialFromSummand_comp_contractionDifferential_eq_pair_sum
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    contractionDifferentialFromSummand d ≫
+        quotientContractionDifferential X Y (n + 1) =
+      ∑ i, ∑ j, contractionPairTerm d (i, j) := by
+  rw [contractionDifferentialFromSummand_comp_contractionDifferential]
+  unfold contractionDifferentialFromSummand
+  apply Finset.sum_congr rfl
+  intro i _
+  rw [Preadditive.comp_sum, Finset.smul_sum]
+  apply Finset.sum_congr rfl
+  intro j _
+  rw [contractionTensorMap_comp_contractionLargeMap, smul_smul]
+  unfold contractionPairTerm contractionPairCoefficientFor
+  rw [DegreeProfile.contractionSign_eq_contractionSignFor,
+    DegreeProfile.contractionSign_eq_contractionSignFor]
+  rfl
+
+theorem contractionDifferentialFromSummand_comp_contractionDifferential_eq_zero_ge_two
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    contractionDifferentialFromSummand d ≫
+        quotientContractionDifferential X Y (n + 1) = 0 := by
+  rw [contractionDifferentialFromSummand_comp_contractionDifferential_eq_pair_sum]
+  rw [← Fintype.sum_prod_type]
+  exact sum_contractionPairTerm_eq_zero d
+
+theorem contractionDifferentialFromSummand_comp_contractionDifferential_eq_zero
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    contractionDifferentialFromSummand d ≫
+        quotientContractionDifferential X Y (n + 1) = 0 := by
+  cases w with
+  | mk k intermediate =>
+      cases k with
+      | zero =>
+          unfold contractionDifferentialFromSummand
+          simp
+      | succ k =>
+          cases k with
+          | zero =>
+              rw [contractionDifferentialFromSummand_comp_contractionDifferential]
+              have hsecond : contractionDifferentialFromSummand (d.contract 0) = 0 := by
+                unfold contractionDifferentialFromSummand
+                apply Finset.sum_eq_zero
+                intro j _
+                have hlength : (eraseIntermediate
+                    ({ length := 0 + 1, intermediate := intermediate } :
+                      DrinfeldWord X Y) 0).length = 0 := by
+                  have h := eraseIntermediate_length
+                    ({ length := 0 + 1, intermediate := intermediate } :
+                      DrinfeldWord X Y) 0
+                  change (eraseIntermediate
+                    ({ length := 0 + 1, intermediate := intermediate } :
+                      DrinfeldWord X Y) 0).length + 1 = 1 at h
+                  omega
+                exact Fin.elim0 (Fin.cast hlength j)
+              rw [Fin.sum_univ_succ, hsecond]
+              simp
+          | succ k =>
+              exact contractionDifferentialFromSummand_comp_contractionDifferential_eq_zero_ge_two d
+
+theorem quotientContractionDifferential_square
+    (X Y : ComplexCategory) (n : ℤ) :
+    quotientContractionDifferential X Y n ≫
+      quotientContractionDifferential X Y (n + 1) = 0 := by
+  apply Limits.Sigma.hom_ext
+  intro s
+  rw [← Category.assoc, quotientContractionDifferential_inclusion,
+    Limits.comp_zero]
+  exact contractionDifferentialFromSummand_comp_contractionDifferential_eq_zero s.2
 
 /-- Ordered pairs of distinct internal-factor positions. -/
 abbrev InternalPairIndex (k : ℕ) := {p : Fin k × Fin k // p.1 ≠ p.2}
