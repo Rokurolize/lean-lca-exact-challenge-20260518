@@ -578,6 +578,20 @@ def TensorMapData.tensorMap : {source target : List (ModuleCat.{0} ℤ)} →
         f fs.tensorMap
 
 @[simp]
+theorem TensorMapData.ofFn_id_tensorMap {k : ℕ}
+    (M : Fin k → ModuleCat.{0} ℤ) :
+    (TensorMapData.ofFn M M (fun i ↦ 𝟙 (M i))).tensorMap =
+      𝟙 (tensorModuleList (finFamilyList M)) := by
+  induction k with
+  | zero => rfl
+  | succ k ih =>
+      simp only [TensorMapData.ofFn, TensorMapData.tensorMap]
+      rw [ih (fun i : Fin k ↦ M i.succ)]
+      exact MonoidalCategory.id_tensorHom_id
+        (C := ModuleCat.{0} ℤ) (M 0)
+          (tensorModuleList (finFamilyList (fun i : Fin k ↦ M i.succ)))
+
+@[simp]
 theorem TensorMapData.tensorMap_comp
     {source middle target : List (ModuleCat.{0} ℤ)}
     (f : TensorMapData source middle) (g : TensorMapData middle target) :
@@ -593,6 +607,23 @@ theorem TensorMapData.tensorMap_comp
           change (f ⊗ₘ fs.tensorMap) ≫ (g ⊗ₘ gs.tensorMap) =
             (f ≫ g) ⊗ₘ (fs.comp gs).tensorMap
           rw [MonoidalCategory.tensorHom_comp_tensorHom, ih gs]
+
+theorem TensorMapData.ofFn_tensorMap_comp
+    {k : ℕ} (M N P : Fin k → ModuleCat.{0} ℤ)
+    (f : (i : Fin k) → Quiver.Hom (M i) (N i))
+    (g : (i : Fin k) → Quiver.Hom (N i) (P i)) :
+    (TensorMapData.ofFn M N f).tensorMap ≫
+        (TensorMapData.ofFn N P g).tensorMap =
+      (TensorMapData.ofFn M P (fun i ↦ f i ≫ g i)).tensorMap := by
+  rw [TensorMapData.tensorMap_comp]
+  induction k with
+  | zero => rfl
+  | succ k ih =>
+      simp only [TensorMapData.ofFn, TensorMapData.comp,
+        TensorMapData.tensorMap]
+      rw [ih (fun i : Fin k ↦ M i.succ)
+        (fun i : Fin k ↦ N i.succ) (fun i : Fin k ↦ P i.succ)
+        (fun i ↦ f i.succ) (fun i ↦ g i.succ)]
 
 theorem TensorMapData.ofFn_tensorMap_comp_eq_zero_of_component
     {k : ℕ} (M N P : Fin k → ModuleCat.{0} ℤ)

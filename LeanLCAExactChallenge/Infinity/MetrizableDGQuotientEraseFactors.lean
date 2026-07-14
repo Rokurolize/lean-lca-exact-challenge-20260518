@@ -803,6 +803,16 @@ def contractedFactorAtOldIndex
     (d : DegreeProfile w n) (i j : Fin w.length) : ModuleCat.{0} ℤ :=
   factorModule (d.contract i) (uneraseFactorIndex w i j)
 
+@[simp]
+theorem contractedFactorAtOldIndex_eq_factorModule
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (i : Fin (k + 2)) :
+    contractedFactorAtOldIndex d i = factorModule (d.contract i) := by
+  rfl
+
 /-- At the merged old index, the contracted factor is the homogeneous adjacent-composition
 target. -/
 def contractFactorAtOldIndexIso
@@ -873,6 +883,75 @@ def recursiveContractionMergedFactorMap
       (contractedFactorAtOldIndex d i j) := by
   rw [recursiveMergedFactor_eq_mergedFactor]
   exact contractionMergedFactorMap d i j
+
+def transportedSecondContractionMergeAtCanonical
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (i : Fin (k + 2)) (j : Fin (k + 1)) :
+    Quiver.Hom
+      (recursiveMergedFactor (factorModule d) i
+          (contractedFactorAtOldIndex d i i) j.castSucc ⊗
+        recursiveMergedFactor (factorModule d) i
+          (contractedFactorAtOldIndex d i i) j.succ)
+      (contractedFactorAtOldIndex (d.contract i) j j) :=
+  (recursiveContractionMergedFactorMap d i j.castSucc ⊗ₘ
+      recursiveContractionMergedFactorMap d i j.succ) ≫
+    contractionMergeAtOldIndex (d.contract i) j
+
+def transportedSecondContractionMergeData
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (i : Fin (k + 2)) (j : Fin (k + 1)) :
+    AdjacentMergeData
+      (finFamilyList
+        (recursiveMergedFactor (factorModule d) i
+          (contractedFactorAtOldIndex d i i)))
+      (finFamilyList
+        (recursiveMergedFactor
+          (recursiveMergedFactor (factorModule d) i
+            (contractedFactorAtOldIndex d i i)) j
+          (contractedFactorAtOldIndex (d.contract i) j j))) :=
+  recursiveAdjacentMergeDataOfFn
+    (recursiveMergedFactor (factorModule d) i
+      (contractedFactorAtOldIndex d i i)) j
+    (contractedFactorAtOldIndex (d.contract i) j j)
+    (transportedSecondContractionMergeAtCanonical d i j)
+
+theorem transportedSecondContractionMerge_naturality
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (i : Fin (k + 2)) (j : Fin (k + 1)) :
+    AdjacentMergeNaturality
+      (transportedSecondContractionMergeData d i j)
+      (recursiveContractionAdjacentMergeData (d.contract i) j)
+      (TensorMapData.ofFn
+        (recursiveMergedFactor (factorModule d) i
+          (contractedFactorAtOldIndex d i i))
+        (factorModule (d.contract i))
+        (recursiveContractionMergedFactorMap d i))
+      (TensorMapData.ofFn
+        (recursiveMergedFactor
+          (recursiveMergedFactor (factorModule d) i
+            (contractedFactorAtOldIndex d i i)) j
+          (contractedFactorAtOldIndex (d.contract i) j j))
+        (recursiveMergedFactor (factorModule (d.contract i)) j
+          (contractedFactorAtOldIndex (d.contract i) j j))
+        (recursiveMergedFactorMap
+          (recursiveMergedFactor (factorModule d) i
+            (contractedFactorAtOldIndex d i i))
+          (factorModule (d.contract i)) j
+          (contractedFactorAtOldIndex (d.contract i) j j)
+          (contractedFactorAtOldIndex (d.contract i) j j)
+          (recursiveContractionMergedFactorMap d i)
+          (𝟙 (contractedFactorAtOldIndex (d.contract i) j j)))) := by
+  apply recursiveAdjacentMergeDataOfFn_naturality
+  simp [transportedSecondContractionMergeAtCanonical]
 
 @[simp]
 theorem recursiveContractionMergedFactorMap_singleton
