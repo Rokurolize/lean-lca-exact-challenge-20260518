@@ -71,6 +71,73 @@ instance thickPathHomSubsingleton {J : Type u} [LinearOrder J] {i j : J}
   congr 1
   exact Subsingleton.elim _ _
 
+/-- A thick path with equal endpoints is uniquely determined. -/
+instance thickPathSelfSubsingleton {J : Type u} [LinearOrder J] (i : J) :
+    Subsingleton (ThickPath i i) := by
+  constructor
+  intro P Q
+  apply CategoryTheory.SimplicialThickening.Path.ext
+  ext x
+  constructor
+  · intro hx
+    have hxi : x = i := le_antisymm (P.le_right x hx) (P.left_le x hx)
+    exact hxi.symm ▸ Q.left
+  · intro hx
+    have hxi : x = i := le_antisymm (Q.le_right x hx) (Q.left_le x hx)
+    exact hxi.symm ▸ P.left
+
+/-- Every simplicial map into the nerve of an equal-endpoint thick-path category is unique. -/
+instance homNerveThickPathSelfSubsingleton {J : Type u} [LinearOrder J]
+    (X : SSet.{u}) (i : J) :
+    Subsingleton (X ⟶ CategoryTheory.nerve (ThickPath i i)) := by
+  constructor
+  intro f g
+  apply CategoryTheory.NatTrans.ext
+  funext U
+  apply ConcreteCategory.hom_ext
+  intro x
+  exact CategoryTheory.Functor.ext
+    (h_obj := fun _ ↦ Subsingleton.elim _ _)
+    (h_map := fun _ _ _ ↦ (thickPathHomSubsingleton _ _).elim _ _)
+
+/-- The enriched identity identifies the unit simplicial set with the equal-endpoint path nerve. -/
+noncomputable def thickPathSelfEIdIso {J : Type u} [LinearOrder J]
+    (i : CategoryTheory.SimplicialThickening J) :
+    𝟙_ SSet ≅ CategoryTheory.nerve (i ⟶ i) where
+  hom := CategoryTheory.eId SSet i
+  inv := CategoryTheory.SemiCartesianMonoidalCategory.toUnit _
+  hom_inv_id :=
+    CategoryTheory.SemiCartesianMonoidalCategory.isTerminalTensorUnit.hom_ext _ _
+  inv_hom_id := (homNerveThickPathSelfSubsingleton
+    (CategoryTheory.nerve (i ⟶ i)) i.as).elim _ _
+
+/-- A thick-path category with reversed endpoints is empty. -/
+theorem thickPathIsEmptyOfNotLE {J : Type u} [LinearOrder J] {i j : J}
+    (hij : ¬ i ≤ j) : IsEmpty (ThickPath i j) :=
+  ⟨fun P ↦ hij P.le⟩
+
+/-- There is a canonical simplicial map from a reversed-endpoint path nerve. -/
+def mapFromNerveThickPathOfNotLE {J : Type u} [LinearOrder J] {i j : J}
+    (hij : ¬ i ≤ j) (Y : SSet.{u}) :
+    CategoryTheory.nerve (ThickPath i j) ⟶ Y where
+  app U := ↾fun x ↦ (hij (x.obj 0).le).elim
+  naturality _ _ _ := by
+    apply ConcreteCategory.hom_ext
+    intro x
+    exact (hij (x.obj 0).le).elim
+
+/-- Every simplicial map from a reversed-endpoint path nerve is the canonical empty map. -/
+theorem homFromNerveThickPathOfNotLESubsingleton {J : Type u} [LinearOrder J]
+    {i j : J} (hij : ¬ i ≤ j) (Y : SSet.{u}) :
+    Subsingleton (CategoryTheory.nerve (ThickPath i j) ⟶ Y) := by
+  constructor
+  intro f g
+  apply CategoryTheory.NatTrans.ext
+  funext U
+  apply ConcreteCategory.hom_ext
+  intro x
+  exact (hij (x.obj 0).le).elim
+
 /-- A path is exactly a choice of internal vertices, once its two compulsory endpoints are
 removed.  This is the Boolean-lattice model underlying the cubical proof of the coherent-nerve
 horn theorem. -/
