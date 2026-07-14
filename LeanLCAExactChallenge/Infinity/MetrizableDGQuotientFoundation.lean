@@ -608,6 +608,57 @@ def AdjacentMergeData.tensorMap : {source target : List (ModuleCat.{0} ℤ)} →
         (X₂ := tensorModuleList Ms) (Y₂ := tensorModuleList Ns)
         (𝟙 _) f.tensorMap
 
+inductive AdjacentMergeNaturality :
+    {source target source' target' : List (ModuleCat.{0} ℤ)} →
+      (f : AdjacentMergeData source target) →
+      (f' : AdjacentMergeData source' target') →
+      TensorMapData source source' → TensorMapData target target' → Prop
+  | head {M N P M' N' P' : ModuleCat.{0} ℤ}
+      {Ms Ms' : List (ModuleCat.{0} ℤ)}
+      (f : Quiver.Hom (M ⊗ N) P) (f' : Quiver.Hom (M' ⊗ N') P')
+      (a : Quiver.Hom M M') (b : Quiver.Hom N N') (c : Quiver.Hom P P')
+      (tail : TensorMapData Ms Ms')
+      (h : (a ⊗ₘ b) ≫ f' = f ≫ c) :
+      AdjacentMergeNaturality (.head f) (.head f')
+        (.cons a (.cons b tail)) (.cons c tail)
+  | tail {M M' : ModuleCat.{0} ℤ}
+      {source target source' target' : List (ModuleCat.{0} ℤ)}
+      {f : AdjacentMergeData source target}
+      {f' : AdjacentMergeData source' target'}
+      {sourceMap : TensorMapData source source'}
+      {targetMap : TensorMapData target target'}
+      (a : Quiver.Hom M M')
+      (h : AdjacentMergeNaturality f f' sourceMap targetMap) :
+      AdjacentMergeNaturality (.tail f) (.tail f')
+        (.cons a sourceMap) (.cons a targetMap)
+
+theorem AdjacentMergeNaturality.tensorMap_comm :
+    {source target source' target' : List (ModuleCat.{0} ℤ)} →
+      {f : AdjacentMergeData source target} →
+      {f' : AdjacentMergeData source' target'} →
+      {sourceMap : TensorMapData source source'} →
+      {targetMap : TensorMapData target target'} →
+      AdjacentMergeNaturality f f' sourceMap targetMap →
+      sourceMap.tensorMap ≫ f'.tensorMap =
+        f.tensorMap ≫ targetMap.tensorMap
+  | _, _, _, _, _, _, _, _, .head f f' a b c tailMap h => by
+      simp only [TensorMapData.tensorMap, AdjacentMergeData.tensorMap,
+        Category.assoc]
+      dsimp only [tensorModuleList, tensorModuleListOver]
+      slice_lhs 1 2 =>
+        exact MonoidalCategory.associator_inv_naturality
+          a b tailMap.tensorMap
+      simp only [Category.assoc]
+      rw [MonoidalCategory.tensorHom_comp_tensorHom,
+        MonoidalCategory.tensorHom_comp_tensorHom, h]
+      simp
+  | _, _, _, _, _, _, _, _, .tail a h => by
+      simp only [TensorMapData.tensorMap, AdjacentMergeData.tensorMap]
+      dsimp only [tensorModuleList, tensorModuleListOver]
+      rw [MonoidalCategory.tensorHom_comp_tensorHom,
+        MonoidalCategory.tensorHom_comp_tensorHom, h.tensorMap_comm]
+      simp
+
 /-- The tensor-product module belonging to one word and one compatible degree profile. -/
 abbrev summandModule {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) : ModuleCat.{0} ℤ :=

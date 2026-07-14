@@ -458,6 +458,18 @@ def adjacentMergeDataOfFn : {k : ℕ} → (M : Fin (k + 1) → ModuleCat.{0} ℤ
           rw [hmerged]
           simpa only [finFamilyList, tailM] using AdjacentMergeData.tail tail
 
+def mergedFactorMap {k : ℕ}
+    (M N : Fin (k + 1) → ModuleCat.{0} ℤ) (i : Fin k)
+    (P P' : ModuleCat.{0} ℤ) (a : (j : Fin (k + 1)) → Quiver.Hom (M j) (N j))
+    (g : Quiver.Hom P P') (j : Fin k) :
+    Quiver.Hom (mergedFactor M i P j) (mergedFactor N i P' j) := by
+  by_cases hlt : j < i
+  · simpa [mergedFactor, hlt] using a j.castSucc
+  · by_cases heq : j = i
+    · subst j
+      simpa [mergedFactor] using g
+    · simpa [mergedFactor, hlt, heq] using a j.succ
+
 /-- Regard an old intermediate-object position as a factor position of the erased word. -/
 def uneraseFactorIndex {X Y : ComplexCategory} (w : DrinfeldWord X Y)
     (i j : Fin w.length) : Fin ((eraseIntermediate w i).length + 1) :=
