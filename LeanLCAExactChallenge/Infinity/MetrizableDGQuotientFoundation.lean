@@ -892,6 +892,90 @@ theorem AdjacentMergePairCoherence.tensorMap_eq :
       simpa only [Category.id_comp] using
         congrArg (fun q ↦ 𝟙 M ⊗ₘ q) h.tensorMap_eq
 
+inductive AdjacentMergePairHCoherence :
+    {source middle₁ middle₂ target₁ target₂ : List (ModuleCat.{0} ℤ)} →
+      AdjacentMergeData source middle₁ →
+      AdjacentMergeData middle₁ target₁ →
+      AdjacentMergeData source middle₂ →
+      AdjacentMergeData middle₂ target₂ → Prop
+  | assoc {M N P MN NP Q : ModuleCat.{0} ℤ}
+      {Ms : List (ModuleCat.{0} ℤ)}
+      (f : Quiver.Hom (M ⊗ N) MN) (g : Quiver.Hom (MN ⊗ P) Q)
+      (h : Quiver.Hom (N ⊗ P) NP) (k : Quiver.Hom (M ⊗ NP) Q)
+      (hassoc : (α_ M N P).inv ≫ (f ⊗ₘ 𝟙 P) ≫ g =
+        (𝟙 M ⊗ₘ h) ≫ k) :
+      AdjacentMergePairHCoherence
+        (@AdjacentMergeData.head M N MN (P :: Ms) f)
+        (@AdjacentMergeData.head MN P Q Ms g)
+        (@AdjacentMergeData.tail M (N :: P :: Ms) (NP :: Ms)
+          (@AdjacentMergeData.head N P NP Ms h))
+        (@AdjacentMergeData.head M NP Q Ms k)
+  | head_tail {M N P : ModuleCat.{0} ℤ}
+      {Ms Ns : List (ModuleCat.{0} ℤ)}
+      (f : Quiver.Hom (M ⊗ N) P) (g : AdjacentMergeData Ms Ns) :
+      AdjacentMergePairHCoherence
+        (@AdjacentMergeData.head M N P Ms f)
+        (@AdjacentMergeData.tail P Ms Ns g)
+        (@AdjacentMergeData.tail M (N :: Ms) (N :: Ns)
+          (@AdjacentMergeData.tail N Ms Ns g))
+        (@AdjacentMergeData.head M N P Ns f)
+  | symm {source middle₁ middle₂ target₁ target₂ : List (ModuleCat.{0} ℤ)}
+      {f₁ : AdjacentMergeData source middle₁}
+      {g₁ : AdjacentMergeData middle₁ target₁}
+      {f₂ : AdjacentMergeData source middle₂}
+      {g₂ : AdjacentMergeData middle₂ target₂}
+      (h : AdjacentMergePairHCoherence f₁ g₁ f₂ g₂) :
+      AdjacentMergePairHCoherence f₂ g₂ f₁ g₁
+  | tail {M : ModuleCat.{0} ℤ}
+      {source middle₁ middle₂ target₁ target₂ : List (ModuleCat.{0} ℤ)}
+      {f₁ : AdjacentMergeData source middle₁}
+      {g₁ : AdjacentMergeData middle₁ target₁}
+      {f₂ : AdjacentMergeData source middle₂}
+      {g₂ : AdjacentMergeData middle₂ target₂}
+      (h : AdjacentMergePairHCoherence f₁ g₁ f₂ g₂) :
+      AdjacentMergePairHCoherence
+        (@AdjacentMergeData.tail M source middle₁ f₁)
+        (@AdjacentMergeData.tail M middle₁ target₁ g₁)
+        (@AdjacentMergeData.tail M source middle₂ f₂)
+        (@AdjacentMergeData.tail M middle₂ target₂ g₂)
+
+theorem AdjacentMergePairHCoherence.target_eq :
+    {source middle₁ middle₂ target₁ target₂ : List (ModuleCat.{0} ℤ)} →
+      {f₁ : AdjacentMergeData source middle₁} →
+      {g₁ : AdjacentMergeData middle₁ target₁} →
+      {f₂ : AdjacentMergeData source middle₂} →
+      {g₂ : AdjacentMergeData middle₂ target₂} →
+      AdjacentMergePairHCoherence f₁ g₁ f₂ g₂ → target₁ = target₂
+  | _, _, _, _, _, _, _, _, _, .assoc _ _ _ _ _ => rfl
+  | _, _, _, _, _, _, _, _, _, .head_tail _ _ => rfl
+  | _, _, _, _, _, _, _, _, _, .symm h => h.target_eq.symm
+  | _, _, _, _, _, _, _, _, _, @AdjacentMergePairHCoherence.tail M _ _ _ _ _ _ _ _ _ h =>
+      congrArg (fun target ↦ M :: target) h.target_eq
+
+theorem AdjacentMergePairHCoherence.tensorMap_heq
+    {source middle₁ middle₂ target₁ target₂ : List (ModuleCat.{0} ℤ)}
+    {f₁ : AdjacentMergeData source middle₁}
+    {g₁ : AdjacentMergeData middle₁ target₁}
+    {f₂ : AdjacentMergeData source middle₂}
+    {g₂ : AdjacentMergeData middle₂ target₂}
+    (h : AdjacentMergePairHCoherence f₁ g₁ f₂ g₂) :
+    HEq (f₁.tensorMap ≫ g₁.tensorMap) (f₂.tensorMap ≫ g₂.tensorMap) := by
+  induction h with
+  | assoc f g h k hassoc =>
+      exact heq_of_eq (AdjacentMergeData.tensorMap_assoc f g h k hassoc)
+  | head_tail f g =>
+      exact heq_of_eq (AdjacentMergeData.tensorMap_head_tail_comm f g)
+  | symm h ih => exact ih.symm
+  | @tail M source middle₁ middle₂ target₁ target₂ f₁ g₁ f₂ g₂ h ih =>
+      have htarget := h.target_eq
+      subst target₂
+      change HEq ((𝟙 M ⊗ₘ f₁.tensorMap) ≫ (𝟙 M ⊗ₘ g₁.tensorMap))
+        ((𝟙 M ⊗ₘ f₂.tensorMap) ≫ (𝟙 M ⊗ₘ g₂.tensorMap))
+      rw [MonoidalCategory.tensorHom_comp_tensorHom,
+        MonoidalCategory.tensorHom_comp_tensorHom]
+      simp only [Category.id_comp]
+      exact heq_of_eq (congrArg (fun q ↦ 𝟙 M ⊗ₘ q) (eq_of_heq ih))
+
 /-- The tensor-product module belonging to one word and one compatible degree profile. -/
 abbrev summandModule {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) : ModuleCat.{0} ℤ :=
