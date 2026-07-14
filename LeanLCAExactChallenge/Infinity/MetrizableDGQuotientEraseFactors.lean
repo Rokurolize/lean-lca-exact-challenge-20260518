@@ -1438,6 +1438,86 @@ theorem DegreeProfile.mixedCoefficient_left
   ring_nf at hc hr ⊢
   rw [hc, hr]
 
+def contractionSuffixFor {k : ℕ} (a : Fin (k + 1) → ℤ) (i : Fin k) : ℤ :=
+  (∑ j ∈ Finset.univ.filter
+      (fun j : Fin (k + 1) ↦ i.val < j.val), a j) -
+    (k - (i.val + 1))
+
+def contractionSignFor {k : ℕ} (a : Fin (k + 1) → ℤ) (i : Fin k) : ℤ :=
+  if Even (contractionSuffixFor a i) then 1 else -1
+
+theorem DegreeProfile.contractionSuffix_eq_contractionSuffixFor
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    d.contractionSuffix i = contractionSuffixFor d.arrowDegree i := rfl
+
+theorem DegreeProfile.contractionSign_eq_contractionSignFor
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    d.contractionSign i = contractionSignFor d.arrowDegree i := rfl
+
+theorem contractionSuffixFor_contract_of_lt {k : ℕ}
+    (a : Fin (k + 2) → ℤ) (i : Fin (k + 1)) (j : Fin k)
+    (h : j.castSucc < i) :
+    contractionSuffixFor (contractedArrowDegree a i) j =
+      contractionSuffixFor a (i.succAbove j) + 1 := by
+  have hsum := sum_filter_contractedArrowDegree_gt_of_lt a i j.castSucc h
+  change (∑ r ∈ Finset.univ.filter
+        (fun r : Fin (k + 1) ↦ j.val < r.val), contractedArrowDegree a i r) =
+      ∑ r ∈ Finset.univ.filter
+        (fun r : Fin (k + 2) ↦ j.castSucc.val < r.val), a r at hsum
+  have hsame :
+      (∑ r ∈ Finset.univ.filter
+          (fun r : Fin (k + 2) ↦ j.castSucc.val < r.val), a r) =
+        ∑ r ∈ Finset.univ.filter
+          (fun r : Fin (k + 2) ↦ j.val < r.val), a r := by
+    congr 1
+  rw [Fin.succAbove_of_castSucc_lt i j h]
+  unfold contractionSuffixFor
+  rw [hsum]
+  rw [hsame]
+  simp only [Fin.val_castSucc]
+  omega
+
+theorem contractionSuffixFor_contract_of_le {k : ℕ}
+    (a : Fin (k + 2) → ℤ) (i : Fin (k + 1)) (j : Fin k)
+    (h : i ≤ j.castSucc) :
+    contractionSuffixFor (contractedArrowDegree a i) j =
+      contractionSuffixFor a (i.succAbove j) := by
+  have hsum := sum_filter_contractedArrowDegree_gt_of_le a i j.castSucc h
+  change (∑ r ∈ Finset.univ.filter
+        (fun r : Fin (k + 1) ↦ j.val < r.val), contractedArrowDegree a i r) =
+      ∑ r ∈ Finset.univ.filter
+        (fun r : Fin (k + 2) ↦ j.succ.val < r.val), a r at hsum
+  have hsame :
+      (∑ r ∈ Finset.univ.filter
+          (fun r : Fin (k + 2) ↦ j.succ.val < r.val), a r) =
+        ∑ r ∈ Finset.univ.filter
+          (fun r : Fin (k + 2) ↦ j.val + 1 < r.val), a r := by
+    congr 1
+  rw [Fin.succAbove_of_le_castSucc i j h]
+  unfold contractionSuffixFor
+  rw [hsum]
+  rw [hsame]
+  simp only [Fin.val_succ]
+  omega
+
+theorem contractionSignFor_contract_of_lt {k : ℕ}
+    (a : Fin (k + 2) → ℤ) (i : Fin (k + 1)) (j : Fin k)
+    (h : j.castSucc < i) :
+    contractionSignFor (contractedArrowDegree a i) j =
+      -contractionSignFor a (i.succAbove j) := by
+  rw [contractionSignFor, contractionSignFor,
+    contractionSuffixFor_contract_of_lt a i j h, paritySign_add_one]
+
+theorem contractionSignFor_contract_of_le {k : ℕ}
+    (a : Fin (k + 2) → ℤ) (i : Fin (k + 1)) (j : Fin k)
+    (h : i ≤ j.castSucc) :
+    contractionSignFor (contractedArrowDegree a i) j =
+      contractionSignFor a (i.succAbove j) := by
+  rw [contractionSignFor, contractionSignFor,
+    contractionSuffixFor_contract_of_le a i j h]
+
 /-- Ordered pairs of distinct contraction positions, represented by the first removed
 position and the position of the second removal in the shortened word. -/
 abbrev ContractionPairIndex (n : ℕ) := Fin (n + 1) × Fin n
@@ -1467,6 +1547,38 @@ theorem contractionPairSwap_involutive {n : ℕ} (p : ContractionPairIndex n) :
   · exact Fin.succAbove_succAbove_predAbove p.1 p.2
   · exact Fin.predAbove_predAbove_succAbove p.1 p.2
 
+def contractionPairCoefficientFor {n : ℕ} (a : Fin (n + 2) → ℤ)
+    (p : ContractionPairIndex n) : ℤ :=
+  contractionSignFor a p.1 *
+    contractionSignFor (contractedArrowDegree a p.1) p.2
+
+theorem contractionPairCoefficientFor_swap {n : ℕ}
+    (a : Fin (n + 2) → ℤ) (p : ContractionPairIndex n) :
+    contractionPairCoefficientFor a (contractionPairSwap p) =
+      -contractionPairCoefficientFor a p := by
+  rcases p with ⟨i, j⟩
+  by_cases h : j.castSucc < i
+  · have hle : i.succAbove j ≤ (j.predAbove i).castSucc := by
+      rw [Fin.succAbove_of_castSucc_lt i j h,
+        Fin.predAbove_of_castSucc_lt j i h]
+      exact (Fin.le_castSucc_pred_iff _).2 h
+    unfold contractionPairCoefficientFor contractionPairSwap
+    rw [contractionSignFor_contract_of_lt a i j h,
+      contractionSignFor_contract_of_le a (i.succAbove j) (j.predAbove i) hle,
+      Fin.succAbove_succAbove_predAbove]
+    ring
+  · have hle : i ≤ j.castSucc := Fin.not_lt.mp h
+    have hlt : (j.predAbove i).castSucc < i.succAbove j := by
+      rw [Fin.succAbove_of_le_castSucc i j hle,
+        Fin.predAbove_of_le_castSucc j i hle]
+      rw [Fin.castSucc_castPred]
+      exact lt_of_le_of_lt hle Fin.castSucc_lt_succ
+    unfold contractionPairCoefficientFor contractionPairSwap
+    rw [contractionSignFor_contract_of_le a i j hle,
+      contractionSignFor_contract_of_lt a (i.succAbove j) (j.predAbove i) hlt,
+      Fin.succAbove_succAbove_predAbove]
+    ring
+
 /-- Any coefficient family negated by exchanging the two contraction orders has zero total
 sum. -/
 theorem sum_contractionPairIndex_eq_zero_of_swap_neg
@@ -1484,6 +1596,12 @@ theorem sum_contractionPairIndex_eq_zero_of_swap_neg
     simp
   · intro p
     exact contractionPairSwap_involutive p
+
+theorem sum_contractionPairCoefficientFor_eq_zero {n : ℕ}
+    (a : Fin (n + 2) → ℤ) :
+    ∑ p : ContractionPairIndex n, contractionPairCoefficientFor a p = 0 := by
+  exact sum_contractionPairIndex_eq_zero_of_swap_neg
+    (contractionPairCoefficientFor a) (contractionPairCoefficientFor_swap a)
 
 /-- Map-valued version of contraction-pair cancellation: the structural maps are invariant
 under exchanging the contraction order, while their integer coefficients change sign. -/
