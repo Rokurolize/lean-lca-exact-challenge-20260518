@@ -502,6 +502,62 @@ theorem tensorModuleListAppendIso_eqToHom
   subst Ns'
   simp
 
+def tensorModuleListWhiskerRight
+    {Ms Ns : List (ModuleCat.{0} ℤ)} (Ps : List (ModuleCat.{0} ℤ))
+    (f : tensorModuleList Ms ⟶ tensorModuleList Ns) :
+    tensorModuleList (Ms ++ Ps) ⟶ tensorModuleList (Ns ++ Ps) :=
+  (tensorModuleListAppendIso Ms Ps).inv ≫
+    (f ⊗ₘ 𝟙 (tensorModuleList Ps)) ≫
+    (tensorModuleListAppendIso Ns Ps).hom
+
+def tensorModuleListWhiskerLeft
+    (Ps : List (ModuleCat.{0} ℤ)) {Ms Ns : List (ModuleCat.{0} ℤ)}
+    (f : tensorModuleList Ms ⟶ tensorModuleList Ns) :
+    tensorModuleList (Ps ++ Ms) ⟶ tensorModuleList (Ps ++ Ns) :=
+  (tensorModuleListAppendIso Ps Ms).inv ≫
+    (𝟙 (tensorModuleList Ps) ⊗ₘ f) ≫
+    (tensorModuleListAppendIso Ps Ns).hom
+
+@[reassoc]
+theorem tensorModuleListAppendIso_whiskerRight
+    {Ms Ns : List (ModuleCat.{0} ℤ)} (Ps : List (ModuleCat.{0} ℤ))
+    (f : tensorModuleList Ms ⟶ tensorModuleList Ns) :
+    (f ⊗ₘ 𝟙 (tensorModuleList Ps)) ≫
+        (tensorModuleListAppendIso Ns Ps).hom =
+      (tensorModuleListAppendIso Ms Ps).hom ≫
+        tensorModuleListWhiskerRight Ps f := by
+  simp [tensorModuleListWhiskerRight]
+
+@[reassoc]
+theorem tensorModuleListAppendIso_whiskerLeft
+    (Ps : List (ModuleCat.{0} ℤ)) {Ms Ns : List (ModuleCat.{0} ℤ)}
+    (f : tensorModuleList Ms ⟶ tensorModuleList Ns) :
+    (𝟙 (tensorModuleList Ps) ⊗ₘ f) ≫
+        (tensorModuleListAppendIso Ps Ns).hom =
+      (tensorModuleListAppendIso Ps Ms).hom ≫
+        tensorModuleListWhiskerLeft Ps f := by
+  simp [tensorModuleListWhiskerLeft]
+
+theorem tensorModuleListWhiskerRight_comp
+    {Ms Ns Ps : List (ModuleCat.{0} ℤ)}
+    (Qs : List (ModuleCat.{0} ℤ))
+    (f : tensorModuleList Ms ⟶ tensorModuleList Ns)
+    (g : tensorModuleList Ns ⟶ tensorModuleList Ps) :
+    tensorModuleListWhiskerRight Qs (f ≫ g) =
+      tensorModuleListWhiskerRight Qs f ≫
+        tensorModuleListWhiskerRight Qs g := by
+  simp [tensorModuleListWhiskerRight, Category.assoc]
+
+theorem tensorModuleListWhiskerLeft_comp
+    (Qs : List (ModuleCat.{0} ℤ))
+    {Ms Ns Ps : List (ModuleCat.{0} ℤ)}
+    (f : tensorModuleList Ms ⟶ tensorModuleList Ns)
+    (g : tensorModuleList Ns ⟶ tensorModuleList Ps) :
+    tensorModuleListWhiskerLeft Qs (f ≫ g) =
+      tensorModuleListWhiskerLeft Qs f ≫
+        tensorModuleListWhiskerLeft Qs g := by
+  simp [tensorModuleListWhiskerLeft, Category.assoc]
+
 def adjacentMergeAfter : (xs : List (ModuleCat.{0} ℤ)) →
     {M N P : ModuleCat.{0} ℤ} → {ys : List (ModuleCat.{0} ℤ)} →
     Quiver.Hom (M ⊗ N) P →
