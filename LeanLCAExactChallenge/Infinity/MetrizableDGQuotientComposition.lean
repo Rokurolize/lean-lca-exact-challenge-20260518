@@ -560,6 +560,39 @@ theorem adjacentMergeAfter_cons
       AdjacentMergeData.tail (adjacentMergeAfter xs (ys := ys) f) :=
   rfl
 
+theorem adjacentMergeAfter_pair_assoc
+    (xs : List (ModuleCat.{0} ℤ))
+    {M N P MN NP Q : ModuleCat.{0} ℤ}
+    {zs : List (ModuleCat.{0} ℤ)}
+    (f : Quiver.Hom (M ⊗ N) MN) (g : Quiver.Hom (MN ⊗ P) Q)
+    (h : Quiver.Hom (N ⊗ P) NP) (k : Quiver.Hom (M ⊗ NP) Q)
+    (hassoc : (α_ M N P).inv ≫ (f ⊗ₘ 𝟙 P) ≫ g =
+      (𝟙 M ⊗ₘ h) ≫ k) :
+    AdjacentMergePairHCoherence
+      ((@AdjacentMergeData.head M N MN (P :: zs) f).prefix xs)
+      ((@AdjacentMergeData.head MN P Q zs g).prefix xs)
+      ((@AdjacentMergeData.tail M (N :: P :: zs) (NP :: zs)
+        (@AdjacentMergeData.head N P NP zs h)).prefix xs)
+      ((@AdjacentMergeData.head M NP Q zs k).prefix xs) :=
+  (AdjacentMergePairHCoherence.assoc f g h k hassoc).prefix xs
+
+theorem adjacentMergeAfter_pair_head_tail
+    (xs ms : List (ModuleCat.{0} ℤ))
+    {M N P A B Q : ModuleCat.{0} ℤ}
+    {zs : List (ModuleCat.{0} ℤ)}
+    (f : Quiver.Hom (M ⊗ N) P) (g : Quiver.Hom (A ⊗ B) Q) :
+    AdjacentMergePairHCoherence
+      ((@AdjacentMergeData.head M N P (ms ++ A :: B :: zs) f).prefix xs)
+      ((@AdjacentMergeData.tail P (ms ++ A :: B :: zs)
+        (ms ++ Q :: zs) (adjacentMergeAfter ms (ys := zs) g)).prefix xs)
+      ((@AdjacentMergeData.tail M (N :: ms ++ A :: B :: zs)
+        (N :: ms ++ Q :: zs)
+        (@AdjacentMergeData.tail N (ms ++ A :: B :: zs)
+          (ms ++ Q :: zs) (adjacentMergeAfter ms (ys := zs) g))).prefix xs)
+      ((@AdjacentMergeData.head M N P (ms ++ Q :: zs) f).prefix xs) :=
+  (AdjacentMergePairHCoherence.head_tail f
+    (adjacentMergeAfter ms (ys := zs) g)).prefix xs
+
 def tensorMapDataId : (xs : List (ModuleCat.{0} ℤ)) → TensorMapData xs xs
   | [] => .nil
   | M :: xs => .cons (𝟙 M) (tensorMapDataId xs)
@@ -2037,6 +2070,66 @@ theorem factorModule_append_right
         (appendArrowDegree d e (appendRightArrowIndex j)) = _
   rw [arrowSource_append_right, arrowTarget_append_right,
     appendArrowDegree_right]
+
+theorem factorModule_append_last_of_right_nil
+    {W X Y : ComplexCategory} {u : DrinfeldWord W X}
+    {p q : ℤ} (a : DegreeProfile u p)
+    (d : DegreeProfile (nil X Y) q) :
+    factorModule (a.append d) (Fin.last (u.append (nil X Y)).length) =
+      compositionBoundaryModule a d := by
+  have hindex : Fin.last (u.append (nil X Y)).length =
+      appendBoundaryArrowIndex u (nil X Y) := by
+    apply Fin.ext
+    change u.length + 0 = u.length
+    omega
+  rw [hindex, factorModule_append_boundary]
+
+theorem factorModule_append_first_of_left_nil
+    {W X Y : ComplexCategory} {v : DrinfeldWord X Y}
+    {p q : ℤ} (a : DegreeProfile (nil W X) p)
+    (d : DegreeProfile v q) :
+    factorModule (a.append d) 0 = compositionBoundaryModule a d := by
+  have hindex : (0 : Fin (((nil W X).append v).length + 1)) =
+      appendBoundaryArrowIndex (nil W X) v := by
+    apply Fin.ext
+    rfl
+  rw [hindex, factorModule_append_boundary]
+
+theorem factorModule_append_last_of_right_succ
+    {W X Y : ComplexCategory} {u : DrinfeldWord W X} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {p q : ℤ} (a : DegreeProfile u p)
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) q) :
+    factorModule (a.append d)
+        (Fin.last (u.append
+          ({ length := k + 1, intermediate := intermediate } :
+            DrinfeldWord X Y)).length) =
+      factorModule d (Fin.last k).succ := by
+  have hindex : Fin.last (u.append
+        ({ length := k + 1, intermediate := intermediate } :
+          DrinfeldWord X Y)).length =
+      appendRightArrowIndex (w := u) (Fin.last k) := by
+    apply Fin.ext
+    change u.length + (k + 1) = u.length + 1 + k
+    omega
+  rw [hindex, factorModule_append_right]
+
+theorem factorModule_append_first_of_left_succ
+    {W X Y : ComplexCategory} {v : DrinfeldWord X Y} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {p q : ℤ}
+    (a : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord W X) p)
+    (d : DegreeProfile v q) :
+    factorModule (a.append d) 0 = factorModule a 0 := by
+  have hindex : (0 : Fin ((({ length := k + 1, intermediate := intermediate } :
+        DrinfeldWord W X).append v).length + 1)) =
+      appendLeftArrowIndex (v := v) (0 : Fin (k + 1)) := by
+    apply Fin.ext
+    rfl
+  rw [hindex, factorModule_append_left]
+  simp only [Fin.castSucc_zero]
 
 theorem finFamilyList_factorModule_append_boundary
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
