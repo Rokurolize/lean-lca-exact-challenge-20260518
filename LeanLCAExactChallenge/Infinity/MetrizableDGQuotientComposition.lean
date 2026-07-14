@@ -37,7 +37,8 @@ theorem nil_append {X Y : ComplexCategory} (w : DrinfeldWord X Y) :
       · trivial
       refine (Fin.heq_fun_iff (Nat.zero_add length)).mpr ?_
       intro i
-      simp [Fin.addCases]
+      simp only [Fin.addCases, not_lt_zero, ↓reduceDIte, Nat.add_zero,
+        Fin.subNat_zero, eq_rec_constant]
       apply congrArg intermediate
       apply Fin.ext
       rfl
@@ -58,18 +59,22 @@ theorem append_assoc {W X Y Z : ComplexCategory}
         intro i
         by_cases hleft : i.val < ulength
         · have houter : i.val < ulength + wlength := by omega
-          simp [Fin.addCases, hleft, houter]
+          simp only [Fin.addCases, houter, ↓reduceDIte, Fin.val_castLT,
+            hleft, Fin.castLT_mk]
           apply congrArg uintermediate
           apply Fin.ext
           rfl
         · by_cases hmiddle : i.val < ulength + wlength
           · have hshift : i.val - ulength < wlength := by omega
-            simp [Fin.addCases, hleft, hmiddle, hshift]
+            simp only [Fin.addCases, hmiddle, ↓reduceDIte, Fin.val_castLT,
+              hleft, Fin.cast_castLT, eq_rec_constant, Fin.cast_mk,
+              Fin.subNat_mk, Fin.natAdd_mk, hshift, Fin.castLT_mk]
             apply congrArg wintermediate
             apply Fin.ext
             rfl
           · have hshift : ¬i.val - ulength < wlength := by omega
-            simp [Fin.addCases, hleft, hmiddle, hshift]
+            simp only [Fin.addCases, hmiddle, ↓reduceDIte, eq_rec_constant,
+              hleft, Fin.cast_mk, Fin.subNat_mk, Fin.natAdd_mk, hshift]
             apply congrArg vintermediate
             apply Fin.ext
             exact (Nat.sub_sub i.val ulength wlength).symm
