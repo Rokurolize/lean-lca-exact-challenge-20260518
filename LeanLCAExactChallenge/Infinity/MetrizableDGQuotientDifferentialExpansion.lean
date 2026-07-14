@@ -1,5 +1,5 @@
 import LeanLCAExactChallenge.Infinity.MetrizableDGQuotientDifferentialEvaluation
-import LeanLCAExactChallenge.Infinity.MetrizableDGQuotientEraseFactors
+import LeanLCAExactChallenge.Infinity.MetrizableDGQuotientPairCoherence
 
 /-!
 # Expansion of the corrected Drinfeld differential square
