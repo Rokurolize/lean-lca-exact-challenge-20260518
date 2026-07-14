@@ -697,6 +697,15 @@ def recursiveContractionMergedFactorMap
   rw [recursiveMergedFactor_eq_mergedFactor]
   exact contractionMergedFactorMap d i j
 
+@[simp]
+theorem recursiveContractionMergedFactorMap_singleton
+    (X Y : ComplexCategory) (A : CorrectedAcyclicComplexCategory) {n : ℤ}
+    (d : DegreeProfile (singleton X Y A) n) :
+    recursiveContractionMergedFactorMap d 0 0 =
+      𝟙 (contractedFactorAtOldIndex d 0 0) := by
+  unfold recursiveContractionMergedFactorMap
+  simp [contractionMergedFactorMap, mergedFactor]
+
 def recursiveContractionMergedFactorsTensorMap
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) (i : Fin w.length) :
@@ -732,8 +741,7 @@ def contractionTensorMapAtOldIndex
     (d : DegreeProfile w n) (i : Fin w.length) :
     Quiver.Hom (summandModule d)
       (tensorModuleList (finFamilyList (contractedFactorAtOldIndex d i))) :=
-  (contractionAdjacentMergeData d i).tensorMap ≫
-    contractionMergedFactorsTensorMap d i
+  recursiveContractionTensorMapAtOldIndex d i
 
 theorem contractedFactorsOldIndex_eq
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
@@ -782,6 +790,15 @@ theorem adjacentMergeDataOfFn_one_tensorMap
     (M : Fin 2 → ModuleCat.{0} ℤ) (P : ModuleCat.{0} ℤ)
     (f : Quiver.Hom (M 0 ⊗ M 1) P) :
     (adjacentMergeDataOfFn M (0 : Fin 1) P f).tensorMap =
+      (α_ (M 0) (M 1) (𝟙_ (ModuleCat.{0} ℤ))).inv ≫
+        (ρ_ (M 0 ⊗ M 1)).hom ≫ f ≫ (ρ_ P).inv := by
+  change (@AdjacentMergeData.head (M 0) (M 1) P [] f).tensorMap = _
+  exact adjacentMergeData_head_empty_tensorMap f
+
+theorem recursiveAdjacentMergeDataOfFn_one_tensorMap
+    (M : Fin 2 → ModuleCat.{0} ℤ) (P : ModuleCat.{0} ℤ)
+    (f : Quiver.Hom (M 0 ⊗ M 1) P) :
+    (recursiveAdjacentMergeDataOfFn M (0 : Fin 1) P f).tensorMap =
       (α_ (M 0) (M 1) (𝟙_ (ModuleCat.{0} ℤ))).inv ≫
         (ρ_ (M 0 ⊗ M 1)).hom ≫ f ≫ (ρ_ P).inv := by
   change (@AdjacentMergeData.head (M 0) (M 1) P [] f).tensorMap = _
@@ -856,20 +873,22 @@ theorem contractionTensorMap_singleton_normalized
         adjacentFactorComposition d i := by
   refine Fin.cases ?_ (fun j ↦ Fin.elim0 j) i
   unfold contractionTensorMap contractionTensorMapAtOldIndex
-  unfold contractionAdjacentMergeData
-  rw [adjacentMergeDataOfFn_one_tensorMap]
-  unfold contractionMergedFactorsTensorMap
+  unfold recursiveContractionTensorMapAtOldIndex
+    recursiveContractionAdjacentMergeData
+  rw [recursiveAdjacentMergeDataOfFn_one_tensorMap]
+  unfold recursiveContractionMergedFactorsTensorMap
   rw [tensorMapData_ofFn_one_tensorMap]
+  rw [recursiveContractionMergedFactorMap_singleton]
   unfold contractedFactorsOldIndexIso
   unfold contractedFactorAtOldIndex
-  unfold contractionMergeAtOldIndex contractionMergedFactorMap mergedFactor
+  unfold contractionMergeAtOldIndex
     contractFactorAtOldIndexIso singletonContractedSummandIsoAdjacentTarget
     singletonSummandIsoTensorAt uneraseFactorIndex erasePosition
   simp only [singleton_length, Fin.isValue, Fin.castSucc_zero,
     Fin.succ_zero_eq_one, eraseIntermediate_singleton, Fin.eta,
-    not_lt_zero, ↓dreduceIte, Fin.coe_ofNat_eq_mod, Nat.zero_mod,
+    recursiveMergedFactor, Fin.coe_ofNat_eq_mod, Nat.zero_mod,
     Fin.zero_eta, Fin.cast_eq_self, eq_mpr_eq_cast, cast_eq, Category.assoc,
-    lt_self_iff_false, ↓reduceDIte, Iso.inv_hom_id_assoc, eqToIso_refl,
+    Iso.inv_hom_id_assoc, eqToIso_refl,
     Iso.refl_hom, Category.comp_id, Iso.trans_hom, eqToIso.hom,
     Fin.castSucc_succ, Nat.reduceAdd, Fin.cases_zero]
   slice_lhs 4 6 =>
