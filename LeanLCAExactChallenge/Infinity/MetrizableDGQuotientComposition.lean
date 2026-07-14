@@ -2847,6 +2847,34 @@ theorem finFamilyList_compositionMergedFactor
   rw [congrArg finFamilyList (compositionMergedFactor_eq_target d e),
     finFamilyList_compositionTargetFactor]
 
+def compositionSourceListEq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    finFamilyList (factorModule d) ++ finFamilyList (factorModule e) =
+      (compositionLeftPrefix d ++ [factorModule d (Fin.last w.length)]) ++
+        factorModule e 0 :: compositionRightSuffix e :=
+  congrArg₂ List.append (finFamilyList_factorModule_eq_prefix_last d)
+    (finFamilyList_factorModule_eq_first_suffix e)
+
+def compositionBoundaryListEq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    (compositionLeftPrefix d ++ [factorModule d (Fin.last w.length)]) ++
+        factorModule e 0 :: compositionRightSuffix e =
+      compositionLeftPrefix d ++ factorModule d (Fin.last w.length) ::
+        factorModule e 0 :: compositionRightSuffix e :=
+  appendBoundaryListsEq (compositionLeftPrefix d)
+    (factorModule d (Fin.last w.length)) (factorModule e 0)
+    (compositionRightSuffix e)
+
+def compositionTargetListEq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    compositionLeftPrefix d ++ compositionBoundaryModule d e ::
+        compositionRightSuffix e =
+      finFamilyList (factorModule (d.append e)) :=
+  (finFamilyList_factorModule_append_boundary d e).symm
+
 def normalizedSummandCompositionMap
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
     {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
@@ -2854,18 +2882,11 @@ def normalizedSummandCompositionMap
       (summandModule (d.append e)) :=
   (tensorModuleListAppendIso (finFamilyList (factorModule d))
       (finFamilyList (factorModule e))).hom ≫
-    eqToHom (congrArg tensorModuleList
-      (congrArg₂ List.append
-        (finFamilyList_factorModule_eq_prefix_last d)
-        (finFamilyList_factorModule_eq_first_suffix e))) ≫
-    eqToHom (congrArg tensorModuleList
-      (appendBoundaryListsEq (compositionLeftPrefix d)
-        (factorModule d (Fin.last w.length)) (factorModule e 0)
-        (compositionRightSuffix e))) ≫
+    eqToHom (congrArg tensorModuleList (compositionSourceListEq d e)) ≫
+    eqToHom (congrArg tensorModuleList (compositionBoundaryListEq d e)) ≫
     (adjacentMergeAfter (compositionLeftPrefix d)
       (ys := compositionRightSuffix e) (compositionBoundaryMap d e)).tensorMap ≫
-    eqToHom (congrArg tensorModuleList
-      (finFamilyList_factorModule_append_boundary d e).symm)
+    eqToHom (congrArg tensorModuleList (compositionTargetListEq d e))
 
 def summandCompositionRemainder
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
@@ -2873,18 +2894,11 @@ def summandCompositionRemainder
     tensorModuleList
         (finFamilyList (factorModule d) ++ finFamilyList (factorModule e)) ⟶
       summandModule (d.append e) :=
-  eqToHom (congrArg tensorModuleList
-      (congrArg₂ List.append
-        (finFamilyList_factorModule_eq_prefix_last d)
-        (finFamilyList_factorModule_eq_first_suffix e))) ≫
-    eqToHom (congrArg tensorModuleList
-      (appendBoundaryListsEq (compositionLeftPrefix d)
-        (factorModule d (Fin.last w.length)) (factorModule e 0)
-        (compositionRightSuffix e))) ≫
+  eqToHom (congrArg tensorModuleList (compositionSourceListEq d e)) ≫
+    eqToHom (congrArg tensorModuleList (compositionBoundaryListEq d e)) ≫
     (adjacentMergeAfter (compositionLeftPrefix d)
       (ys := compositionRightSuffix e) (compositionBoundaryMap d e)).tensorMap ≫
-    eqToHom (congrArg tensorModuleList
-      (finFamilyList_factorModule_append_boundary d e).symm)
+    eqToHom (congrArg tensorModuleList (compositionTargetListEq d e))
 
 theorem normalizedSummandCompositionMap_eq_append_remainder
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
