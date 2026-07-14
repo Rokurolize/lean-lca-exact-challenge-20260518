@@ -220,6 +220,69 @@ theorem sum_contractedArrowDegree {k : ℕ} (a : Fin (k + 1) → ℤ) (i : Fin k
   rw [Fin.sum_univ_succAbove a i.castSucc]
   exact add_comm _ _
 
+theorem sum_filter_contractedArrowDegree_gt_of_lt {k : ℕ}
+    (a : Fin (k + 1) → ℤ) (i q : Fin k) (hqi : q < i) :
+    ∑ r ∈ Finset.univ.filter (fun r : Fin k ↦ q < r), contractedArrowDegree a i r =
+      ∑ j ∈ Finset.univ.filter (fun j : Fin (k + 1) ↦ q.castSucc < j), a j := by
+  let b : Fin (k + 1) → ℤ := fun j ↦ if q.castSucc < j then a j else 0
+  have hsucc (r : Fin k) :
+      q.castSucc < i.castSucc.succAbove r ↔ q < r := by
+    rw [← Fin.succAbove_of_castSucc_lt i.castSucc q hqi]
+    exact Fin.succAbove_lt_succAbove_iff
+  calc
+    ∑ r ∈ Finset.univ.filter (fun r : Fin k ↦ q < r), contractedArrowDegree a i r =
+        ∑ r, if q < r then contractedArrowDegree a i r else 0 := by
+          rw [Finset.sum_filter]
+    _ = ∑ r, contractedArrowDegree b i r := by
+      apply Finset.sum_congr rfl
+      intro r _
+      by_cases hqr : q < r
+      · simp [contractedArrowDegree, b, hqr, (hsucc r).2 hqr, hqi]
+      · have hfirst : ¬q.castSucc < i.castSucc.succAbove r :=
+          fun h ↦ hqr ((hsucc r).1 h)
+        have hri : r ≠ i := by
+          intro hri
+          subst r
+          exact hqr hqi
+        simp [contractedArrowDegree, b, hqr, hfirst, hri]
+    _ = ∑ j, b j := sum_contractedArrowDegree b i
+    _ = ∑ j ∈ Finset.univ.filter
+        (fun j : Fin (k + 1) ↦ q.castSucc < j), a j := by
+      rw [Finset.sum_filter]
+
+theorem sum_filter_contractedArrowDegree_gt_of_le {k : ℕ}
+    (a : Fin (k + 1) → ℤ) (i q : Fin k) (hiq : i ≤ q) :
+    ∑ r ∈ Finset.univ.filter (fun r : Fin k ↦ q < r), contractedArrowDegree a i r =
+      ∑ j ∈ Finset.univ.filter (fun j : Fin (k + 1) ↦ q.succ < j), a j := by
+  let b : Fin (k + 1) → ℤ := fun j ↦ if q.succ < j then a j else 0
+  have hsucc (r : Fin k) : q.succ < i.castSucc.succAbove r ↔ q < r := by
+    rw [← Fin.succAbove_of_le_castSucc i.castSucc q hiq]
+    exact Fin.succAbove_lt_succAbove_iff
+  calc
+    ∑ r ∈ Finset.univ.filter (fun r : Fin k ↦ q < r), contractedArrowDegree a i r =
+        ∑ r, if q < r then contractedArrowDegree a i r else 0 := by
+          rw [Finset.sum_filter]
+    _ = ∑ r, contractedArrowDegree b i r := by
+      apply Finset.sum_congr rfl
+      intro r _
+      by_cases hqr : q < r
+      · have hri : r ≠ i := by
+          intro hri
+          subst r
+          exact (not_lt_of_ge hiq) hqr
+        simp [contractedArrowDegree, b, hqr, (hsucc r).2 hqr, hri]
+      · have hfirst : ¬q.succ < i.castSucc.succAbove r :=
+          fun h ↦ hqr ((hsucc r).1 h)
+        have hleft : ¬q.succ < i.castSucc := by
+          intro h
+          change q.val + 1 < i.val at h
+          omega
+        simp [contractedArrowDegree, b, hqr, hfirst, hleft]
+    _ = ∑ j, b j := sum_contractedArrowDegree b i
+    _ = ∑ j ∈ Finset.univ.filter
+        (fun j : Fin (k + 1) ↦ q.succ < j), a j := by
+      rw [Finset.sum_filter]
+
 /-- At the surviving contraction index, the new arrow degree is the sum of
 the two adjacent original arrow degrees. -/
 theorem contractedArrowDegree_self {k : ℕ} (a : Fin (k + 1) → ℤ) (i : Fin k) :

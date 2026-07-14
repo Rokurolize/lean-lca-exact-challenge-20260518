@@ -479,6 +479,20 @@ theorem uneraseFactorIndex_self
   apply Fin.ext
   rfl
 
+theorem contract_suffix_sum_eq_oldIndex
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i q : Fin w.length) :
+    ∑ j ∈ Finset.univ.filter
+        (fun j : Fin ((eraseIntermediate w i).length + 1) ↦
+          uneraseFactorIndex w i q < j),
+        (d.contract i).arrowDegree j =
+      ∑ r ∈ Finset.univ.filter (fun r : Fin w.length ↦ q < r),
+        contractedArrowDegree d.arrowDegree i r := by
+  rw [Finset.sum_filter, Finset.sum_filter]
+  apply Fintype.sum_equiv (finCongr (eraseIntermediate_length w i))
+  intro j
+  rfl
+
 /-- Contracted factor family, indexed by the original intermediate positions. -/
 def contractedFactorAtOldIndex
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
@@ -854,6 +868,107 @@ theorem paritySign_add_one (m : ℤ) :
       -(if Even m then (1 : ℤ) else -1) := by
   by_cases h : Even m <;> simp [h]
 
+theorem paritySign_eq_negOnePow (m : ℤ) :
+    (if Even m then (1 : ℤ) else -1) = (m.negOnePow : ℤ) := by
+  by_cases h : Even m
+  · rw [if_pos h, Int.negOnePow_even m h]
+    rfl
+  · have ho : Odd m := (Int.not_even_iff_odd).mp h
+    rw [if_neg h, Int.negOnePow_odd m ho]
+    rfl
+
+theorem negOnePow_coe_mul_self (m : ℤ) :
+    (m.negOnePow : ℤ) * m.negOnePow = 1 := by
+  change ((m.negOnePow * m.negOnePow : ℤˣ) : ℤ) = 1
+  rw [Int.units_mul_self]
+  rfl
+
+theorem DegreeProfile.internalSign_eq_negOnePow
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin (w.length + 1)) :
+    d.internalSign i = (d.suffixTotal i).negOnePow := by
+  rw [DegreeProfile.internalSign, paritySign_eq_negOnePow]
+
+theorem DegreeProfile.contractionSign_eq_negOnePow
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    d.contractionSign i = (d.contractionSuffix i).negOnePow := by
+  rw [DegreeProfile.contractionSign, paritySign_eq_negOnePow]
+
+theorem DegreeProfile.suffixTotal_castSucc_add_one
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    d.suffixTotal i.castSucc + 1 = d.contractionSuffix i := by
+  unfold DegreeProfile.suffixTotal DegreeProfile.contractionSuffix
+  simp only [Fin.lt_def, Fin.val_castSucc]
+  omega
+
+theorem DegreeProfile.contractionSuffix_eq_suffixTotal_succ_add
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    d.contractionSuffix i = d.suffixTotal i.succ + d.arrowDegree i.succ := by
+  have hfilter :
+      Finset.univ.filter
+          (fun j : Fin (w.length + 1) ↦ i.val < j.val) =
+        insert i.succ
+          (Finset.univ.filter
+            (fun j : Fin (w.length + 1) ↦ i.succ < j)) := by
+    ext j
+    simp only [Finset.mem_filter, Finset.mem_univ, true_and,
+      Finset.mem_insert]
+    constructor
+    · intro h
+      by_cases hj : j = i.succ
+      · exact Or.inl hj
+      · right
+        change i.val + 1 < j.val
+        have hne : j.val ≠ i.val + 1 := by
+          intro hval
+          apply hj
+          apply Fin.ext
+          simpa using hval
+        omega
+    · rintro (rfl | h)
+      · simp
+      · change i.val + 1 < j.val at h
+        omega
+  unfold DegreeProfile.contractionSuffix DegreeProfile.suffixTotal
+  rw [hfilter, Finset.sum_insert]
+  · simp only [Fin.val_succ]
+    omega
+  · simp
+
+theorem DegreeProfile.internalSign_castSucc_eq_neg_contractionSign
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    d.internalSign i.castSucc = -d.contractionSign i := by
+  rw [d.internalSign_eq_negOnePow, d.contractionSign_eq_negOnePow,
+    ← d.suffixTotal_castSucc_add_one i, Int.negOnePow_succ]
+  simp
+
+theorem DegreeProfile.contractionSign_mul_internalSign_succ
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    d.contractionSign i * d.internalSign i.succ =
+      (d.arrowDegree i.succ).negOnePow := by
+  rw [d.contractionSign_eq_negOnePow, d.internalSign_eq_negOnePow,
+    d.contractionSuffix_eq_suffixTotal_succ_add i,
+    Int.negOnePow_add]
+  change ((d.suffixTotal i.succ).negOnePow : ℤ) *
+      (d.arrowDegree i.succ).negOnePow *
+      (d.suffixTotal i.succ).negOnePow = _
+  have hs : ((d.suffixTotal i.succ).negOnePow : ℤ) *
+      (d.suffixTotal i.succ).negOnePow = 1 := by
+    exact negOnePow_coe_mul_self (d.suffixTotal i.succ)
+  rw [mul_assoc, mul_left_comm, hs, mul_one]
+
+theorem DegreeProfile.contractionSign_mul_self
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    d.contractionSign i * d.contractionSign i = 1 := by
+  rw [d.contractionSign_eq_negOnePow]
+  exact negOnePow_coe_mul_self (d.contractionSuffix i)
+
 theorem DegreeProfile.suffixTotal_raise_of_lt
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) (i j : Fin (w.length + 1)) (h : j < i) :
@@ -913,6 +1028,117 @@ theorem DegreeProfile.contractionSign_raise_of_le
     (d.raise j).contractionSign i = d.contractionSign i := by
   rw [DegreeProfile.contractionSign, DegreeProfile.contractionSign,
     d.contractionSuffix_raise_of_le j i h]
+
+theorem DegreeProfile.contract_suffixTotal_of_lt
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i q : Fin w.length) (hqi : q < i) :
+    (d.contract i).suffixTotal (uneraseFactorIndex w i q) =
+      d.suffixTotal q.castSucc + 1 := by
+  unfold DegreeProfile.suffixTotal
+  rw [contract_suffix_sum_eq_oldIndex,
+    sum_filter_contractedArrowDegree_gt_of_lt d.arrowDegree i q hqi]
+  have hl := eraseIntermediate_length w i
+  simp only [uneraseFactorIndex, Fin.val_castSucc]
+  omega
+
+theorem DegreeProfile.contract_suffixTotal_of_gt
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i q : Fin w.length) (hiq : i < q) :
+    (d.contract i).suffixTotal (uneraseFactorIndex w i q) =
+      d.suffixTotal q.succ := by
+  unfold DegreeProfile.suffixTotal
+  rw [contract_suffix_sum_eq_oldIndex,
+    sum_filter_contractedArrowDegree_gt_of_le d.arrowDegree i q hiq.le]
+  have hl := eraseIntermediate_length w i
+  simp only [uneraseFactorIndex, Fin.val_succ]
+  omega
+
+theorem DegreeProfile.contract_suffixTotal_self
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    (d.contract i).suffixTotal (erasePosition w i) =
+      d.suffixTotal i.succ := by
+  rw [← uneraseFactorIndex_self w i]
+  unfold DegreeProfile.suffixTotal
+  rw [contract_suffix_sum_eq_oldIndex,
+    sum_filter_contractedArrowDegree_gt_of_le d.arrowDegree i i le_rfl]
+  have hl := eraseIntermediate_length w i
+  simp only [uneraseFactorIndex, Fin.val_succ]
+  omega
+
+theorem DegreeProfile.internalSign_contract_of_lt
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i q : Fin w.length) (hqi : q < i) :
+    (d.contract i).internalSign (uneraseFactorIndex w i q) =
+      -d.internalSign q.castSucc := by
+  rw [DegreeProfile.internalSign, DegreeProfile.internalSign,
+    d.contract_suffixTotal_of_lt i q hqi, paritySign_add_one]
+
+theorem DegreeProfile.internalSign_contract_of_gt
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i q : Fin w.length) (hiq : i < q) :
+    (d.contract i).internalSign (uneraseFactorIndex w i q) =
+      d.internalSign q.succ := by
+  rw [DegreeProfile.internalSign, DegreeProfile.internalSign,
+    d.contract_suffixTotal_of_gt i q hiq]
+
+theorem DegreeProfile.internalSign_contract_self
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    (d.contract i).internalSign (erasePosition w i) =
+      d.internalSign i.succ := by
+  rw [DegreeProfile.internalSign, DegreeProfile.internalSign,
+    d.contract_suffixTotal_self i]
+
+theorem DegreeProfile.mixedCoefficient_of_lt
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i q : Fin w.length) (hqi : q < i) :
+    d.internalSign q.castSucc * (d.raise q.castSucc).contractionSign i =
+      -(d.contractionSign i *
+        (d.contract i).internalSign (uneraseFactorIndex w i q)) := by
+  rw [d.contractionSign_raise_of_le q.castSucc i hqi.le,
+    d.internalSign_contract_of_lt i q hqi]
+  ring
+
+theorem DegreeProfile.mixedCoefficient_of_gt
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i q : Fin w.length) (hiq : i < q) :
+    d.internalSign q.succ * (d.raise q.succ).contractionSign i =
+      -(d.contractionSign i *
+        (d.contract i).internalSign (uneraseFactorIndex w i q)) := by
+  have hgt : i.val < q.succ.val := by
+    change i.val < q.val + 1
+    omega
+  rw [d.contractionSign_raise_of_gt q.succ i hgt,
+    d.internalSign_contract_of_gt i q hiq]
+  ring
+
+theorem DegreeProfile.mixedCoefficient_right
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    d.internalSign i.succ * (d.raise i.succ).contractionSign i =
+      -(d.contractionSign i *
+        (d.contract i).internalSign (erasePosition w i)) := by
+  have hgt : i.val < i.succ.val := by simp
+  rw [d.contractionSign_raise_of_gt i.succ i hgt,
+    d.internalSign_contract_self i]
+  ring
+
+theorem DegreeProfile.mixedCoefficient_left
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    d.internalSign i.castSucc * (d.raise i.castSucc).contractionSign i =
+      -(d.contractionSign i *
+        (d.contract i).internalSign (erasePosition w i) *
+          (d.arrowDegree i.succ).negOnePow) := by
+  rw [d.contractionSign_raise_of_le i.castSucc i le_rfl,
+    d.internalSign_contract_self i,
+    d.internalSign_castSucc_eq_neg_contractionSign i,
+    d.contractionSign_mul_internalSign_succ i]
+  have hc := d.contractionSign_mul_self i
+  have hr := negOnePow_coe_mul_self (d.arrowDegree i.succ)
+  ring_nf at hc hr ⊢
+  rw [hc, hr]
 
 /-- Ordered pairs of distinct contraction positions, represented by the first removed
 position and the position of the second removal in the shortened word. -/
