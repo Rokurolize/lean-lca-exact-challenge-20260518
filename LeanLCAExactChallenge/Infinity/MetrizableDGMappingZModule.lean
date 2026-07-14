@@ -388,6 +388,26 @@ theorem dgCochainCompTensor_tmul (K L M : ComplexCategory) {p q r : ℤ}
     dgCochainCompTensor K L M h (x ⊗ₜ[ℤ] y) = x.comp y h := by
   rfl
 
+theorem dgCochainCompTensor_assoc
+    (W X Y Z : ComplexCategory) (p q r : ℤ) :
+    (α_ ((dgHomZModuleCochainComplex W X).X p)
+          ((dgHomZModuleCochainComplex X Y).X q)
+          ((dgHomZModuleCochainComplex Y Z).X r)).inv ≫
+        (dgCochainCompTensor W X Y (show p + q = p + q by rfl) ⊗ₘ
+          𝟙 ((dgHomZModuleCochainComplex Y Z).X r)) ≫
+        dgCochainCompTensor W Y Z
+          (show (p + q) + r = p + q + r by rfl) =
+      (𝟙 ((dgHomZModuleCochainComplex W X).X p) ⊗ₘ
+        dgCochainCompTensor X Y Z (show q + r = q + r by rfl)) ≫
+        dgCochainCompTensor W X Z
+          (show p + (q + r) = p + q + r by omega) := by
+  apply ModuleCat.hom_ext
+  apply TensorProduct.ext_threefold'
+  intro a b c
+  change (a.comp b rfl).comp c (by omega) =
+    a.comp (b.comp c rfl) (by omega)
+  exact CochainComplex.HomComplex.Cochain.comp_assoc a b c rfl rfl rfl
+
 theorem dgCochainCompTensor_comp_d (K L M : ComplexCategory) (p q : ℤ) :
     dgCochainCompTensor K L M (show p + q = p + q by rfl) ≫
         (dgHomZModuleCochainComplex K M).d (p + q) ((p + q) + 1) =
@@ -419,6 +439,26 @@ def dgCochainCompTensorOfEq (K L L' M : ComplexCategory) (hL : L = L')
       (dgHomZModuleCochainComplex K M).X r := by
   subst L'
   exact dgCochainCompTensor K L M h
+
+theorem dgCochainCompTensorOfEq_assoc
+    (W X X' Y Y' Z : ComplexCategory) (hX : X = X') (hY : Y = Y')
+    (p q r : ℤ) :
+    (α_ ((dgHomZModuleCochainComplex W X).X p)
+          ((dgHomZModuleCochainComplex X' Y).X q)
+          ((dgHomZModuleCochainComplex Y' Z).X r)).inv ≫
+        (dgCochainCompTensorOfEq W X X' Y hX
+              (show p + q = p + q by rfl) ⊗ₘ
+          𝟙 ((dgHomZModuleCochainComplex Y' Z).X r)) ≫
+        dgCochainCompTensorOfEq W Y Y' Z hY
+          (show (p + q) + r = p + q + r by rfl) =
+      (𝟙 ((dgHomZModuleCochainComplex W X).X p) ⊗ₘ
+        dgCochainCompTensorOfEq X' Y Y' Z hY
+          (show q + r = q + r by rfl)) ≫
+        dgCochainCompTensorOfEq W X X' Z hX
+          (show p + (q + r) = p + q + r by omega) := by
+  subst X'
+  subst Y'
+  exact dgCochainCompTensor_assoc W X Y Z p q r
 
 theorem dgCochainCompTensorOfEq_comp_d
     (K L L' M : ComplexCategory) (hL : L = L') (p q : ℤ) :
