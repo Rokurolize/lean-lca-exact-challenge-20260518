@@ -535,6 +535,76 @@ theorem DegreeProfile.nil_append_transport
         (appendRightArrowIndex (w := nil X X) i) = _
       rw [appendArrowDegree_right]
 
+def GradedSummandIndex.castTotal {X Y : ComplexCategory} {n m : ℤ}
+    (h : n = m) (s : GradedSummandIndex X Y n) : GradedSummandIndex X Y m := by
+  subst h
+  exact s
+
+theorem GradedSummandIndex.castTotal_sigma
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n m : ℤ}
+    (h : n = m) (d : DegreeProfile w n) :
+    GradedSummandIndex.castTotal h
+        (⟨w, d⟩ : GradedSummandIndex X Y n) =
+      (⟨w, d.castTotal h⟩ : GradedSummandIndex X Y m) := by
+  subst h
+  rfl
+
+theorem DegreeProfile.transport_eq_castTotal_castWord
+    {X Y : ComplexCategory} {w v : DrinfeldWord X Y} {n m : ℤ}
+    (hw : w = v) (hn : n = m) (d : DegreeProfile w n) :
+    d.transport hw hn = (d.castTotal hn).castWord hw := by
+  subst hw
+  subst hn
+  rfl
+
+theorem DegreeProfile.cast_eq_castWord
+    {X Y : ComplexCategory} {w v : DrinfeldWord X Y} {n : ℤ}
+    (h : w = v) (d : DegreeProfile w n) :
+    cast (congrArg (fun q : DrinfeldWord X Y ↦ DegreeProfile q n) h) d =
+      d.castWord h := by
+  subst h
+  rfl
+
+theorem gradedSummandIndex_append_nil
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    GradedSummandIndex.castTotal (Int.add_zero n)
+        (⟨w.append (nil Y Y), d.append (nilDegreeProfile Y Y 0)⟩ :
+          GradedSummandIndex X Y (n + 0)) =
+      (⟨w, d⟩ : GradedSummandIndex X Y n) := by
+  rw [GradedSummandIndex.castTotal_sigma]
+  apply Sigma.ext (append_nil w)
+  let raw := (d.append (nilDegreeProfile Y Y 0)).castTotal (Int.add_zero n)
+  have hp : raw.castWord (append_nil w) = d := by
+    rw [← DegreeProfile.transport_eq_castTotal_castWord]
+    exact DegreeProfile.append_nil_transport d
+  have hhp : raw.castWord (append_nil w) ≍ d := heq_of_eq hp
+  let hty := congrArg
+    (fun q : DrinfeldWord X Y ↦ DegreeProfile q n) (append_nil w)
+  apply (cast_heq_iff_heq hty raw d).mp
+  rw [DegreeProfile.cast_eq_castWord]
+  exact hhp
+
+theorem gradedSummandIndex_nil_append
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    GradedSummandIndex.castTotal (Int.zero_add n)
+        (⟨(nil X X).append w, (nilDegreeProfile X X 0).append d⟩ :
+          GradedSummandIndex X Y (0 + n)) =
+      (⟨w, d⟩ : GradedSummandIndex X Y n) := by
+  rw [GradedSummandIndex.castTotal_sigma]
+  apply Sigma.ext (nil_append w)
+  let raw := ((nilDegreeProfile X X 0).append d).castTotal (Int.zero_add n)
+  have hp : raw.castWord (nil_append w) = d := by
+    rw [← DegreeProfile.transport_eq_castTotal_castWord]
+    exact DegreeProfile.nil_append_transport d
+  have hhp : raw.castWord (nil_append w) ≍ d := heq_of_eq hp
+  let hty := congrArg
+    (fun q : DrinfeldWord X Y ↦ DegreeProfile q n) (nil_append w)
+  apply (cast_heq_iff_heq hty raw d).mp
+  rw [DegreeProfile.cast_eq_castWord]
+  exact hhp
+
 theorem factorModule_append_left
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
     {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
