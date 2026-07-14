@@ -2131,6 +2131,151 @@ theorem factorModule_append_first_of_left_succ
   rw [hindex, factorModule_append_left]
   simp only [Fin.castSucc_zero]
 
+theorem compositionBoundaryModule_assoc_of_middle_nil
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q)
+    (e : DegreeProfile v r) :
+    compositionBoundaryModule (a.append d) e =
+      compositionBoundaryModule a (d.append e) := by
+  unfold compositionBoundaryModule
+  have hleft : Fin.last (u.append (nil X Y)).length =
+      appendBoundaryArrowIndex u (nil X Y) := by
+    apply Fin.ext
+    change u.length + 0 = u.length
+    omega
+  have hright : (0 : Fin (((nil X Y).append v).length + 1)) =
+      appendBoundaryArrowIndex (nil X Y) v := by
+    apply Fin.ext
+    rfl
+  rw [hleft, arrowSource_append_boundary, hright,
+    arrowTarget_append_boundary]
+  change (dgHomZModuleCochainComplex
+      (u.arrowSource (Fin.last u.length)) (v.arrowTarget 0)).X
+        (appendArrowDegree a d (appendBoundaryArrowIndex u (nil X Y)) +
+          e.arrowDegree 0) =
+    (dgHomZModuleCochainComplex
+      (u.arrowSource (Fin.last u.length)) (v.arrowTarget 0)).X
+        (a.arrowDegree (Fin.last u.length) +
+          appendArrowDegree d e (appendBoundaryArrowIndex (nil X Y) v))
+  rw [appendArrowDegree_boundary, appendArrowDegree_boundary]
+  rw [Fin.eq_zero (Fin.last (nil X Y).length)]
+  rw [Int.add_assoc]
+  rfl
+
+def tripleCompositionBoundaryModule
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q)
+    (e : DegreeProfile v r) : ModuleCat.{0} ℤ :=
+  (dgHomZModuleCochainComplex
+      (u.arrowSource (Fin.last u.length)) (v.arrowTarget 0)).X
+    ((a.arrowDegree (Fin.last u.length) + d.arrowDegree 0) +
+      e.arrowDegree 0)
+
+def zeroMiddleRightBoundaryModule
+    {X Y Z : ComplexCategory} {v : DrinfeldWord Y Z} {q r : ℤ}
+    (d : DegreeProfile (nil X Y) q) (e : DegreeProfile v r) :
+    ModuleCat.{0} ℤ :=
+  (dgHomZModuleCochainComplex ((nil X Y).arrowSource 0)
+      (v.arrowTarget 0)).X (d.arrowDegree 0 + e.arrowDegree 0)
+
+def zeroMiddleRightBoundaryMap
+    {X Y Z : ComplexCategory} {v : DrinfeldWord Y Z} {q r : ℤ}
+    (d : DegreeProfile (nil X Y) q) (e : DegreeProfile v r) :
+    factorModule d 0 ⊗ factorModule e 0 ⟶
+      zeroMiddleRightBoundaryModule d e := by
+  have hmiddle : (nil X Y).arrowTarget 0 = v.arrowSource 0 := by
+    change Y = v.arrowSource 0
+    exact (arrowSource_zero_eq_source v).symm
+  exact dgCochainCompTensorOfEq ((nil X Y).arrowSource 0)
+    ((nil X Y).arrowTarget 0) (v.arrowSource 0) (v.arrowTarget 0)
+    hmiddle rfl
+
+theorem zeroMiddleRightBoundaryModule_eq
+    {X Y Z : ComplexCategory} {v : DrinfeldWord Y Z} {q r : ℤ}
+    (d : DegreeProfile (nil X Y) q) (e : DegreeProfile v r) :
+    zeroMiddleRightBoundaryModule d e = compositionBoundaryModule d e := by
+  unfold zeroMiddleRightBoundaryModule compositionBoundaryModule
+  have hi : Fin.last (nil X Y).length = 0 := Fin.eq_zero _
+  rw [hi]
+
+theorem zeroMiddleRightBoundaryMap_heq
+    {X Y Z : ComplexCategory} {v : DrinfeldWord Y Z} {q r : ℤ}
+    (d : DegreeProfile (nil X Y) q) (e : DegreeProfile v r) :
+    HEq (zeroMiddleRightBoundaryMap d e) (compositionBoundaryMap d e) := by
+  unfold zeroMiddleRightBoundaryMap compositionBoundaryMap
+  have hi : Fin.last (nil X Y).length = 0 := Fin.eq_zero _
+  apply dgCochainCompTensorOfEq_heq
+  · exact congrArg (nil X Y).arrowSource hi.symm
+  · exact congrArg (nil X Y).arrowTarget hi.symm
+  · rfl
+  · rfl
+  · exact congrArg d.arrowDegree hi.symm
+  · rfl
+  · exact congrArg (fun t ↦ t + e.arrowDegree 0)
+      (congrArg d.arrowDegree hi.symm)
+
+def leftAssociatedBoundaryMap
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q)
+    (e : DegreeProfile v r) :
+    compositionBoundaryModule a d ⊗ factorModule e 0 ⟶
+      tripleCompositionBoundaryModule a d e := by
+  have hmiddle : (nil X Y).arrowTarget 0 = v.arrowSource 0 := by
+    change Y = v.arrowSource 0
+    exact (arrowSource_zero_eq_source v).symm
+  exact dgCochainCompTensorOfEq
+    (u.arrowSource (Fin.last u.length)) ((nil X Y).arrowTarget 0)
+      (v.arrowSource 0) (v.arrowTarget 0) hmiddle rfl
+
+def rightAssociatedBoundaryMap
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q)
+    (e : DegreeProfile v r) :
+    factorModule a (Fin.last u.length) ⊗ zeroMiddleRightBoundaryModule d e ⟶
+      tripleCompositionBoundaryModule a d e := by
+  have hmiddle : u.arrowTarget (Fin.last u.length) =
+      (nil X Y).arrowSource 0 := by
+    change u.arrowTarget (Fin.last u.length) = X
+    exact arrowTarget_last_eq_target u
+  exact dgCochainCompTensorOfEq
+    (u.arrowSource (Fin.last u.length))
+      (u.arrowTarget (Fin.last u.length)) ((nil X Y).arrowSource 0)
+      (v.arrowTarget 0) hmiddle (by
+        exact (Int.add_assoc _ _ _).symm)
+
+theorem normalizedBoundaryMaps_assoc
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q)
+    (e : DegreeProfile v r) :
+    (α_ (factorModule a (Fin.last u.length)) (factorModule d 0)
+          (factorModule e 0)).inv ≫
+        (compositionBoundaryMap a d ⊗ₘ 𝟙 (factorModule e 0)) ≫
+        leftAssociatedBoundaryMap a d e =
+      (𝟙 (factorModule a (Fin.last u.length)) ⊗ₘ
+          zeroMiddleRightBoundaryMap d e) ≫
+        rightAssociatedBoundaryMap a d e := by
+  simpa only [factorModule, compositionBoundaryModule,
+    tripleCompositionBoundaryModule, zeroMiddleRightBoundaryModule,
+    zeroMiddleRightBoundaryMap, compositionBoundaryMap,
+    leftAssociatedBoundaryMap, rightAssociatedBoundaryMap] using
+    dgCochainCompTensorOfEq_assoc
+      (u.arrowSource (Fin.last u.length))
+      (u.arrowTarget (Fin.last u.length)) ((nil X Y).arrowSource 0)
+      ((nil X Y).arrowTarget 0) (v.arrowSource 0) (v.arrowTarget 0)
+      (by
+        change u.arrowTarget (Fin.last u.length) = X
+        exact arrowTarget_last_eq_target u)
+      (by
+        change Y = v.arrowSource 0
+        exact (arrowSource_zero_eq_source v).symm)
+      (a.arrowDegree (Fin.last u.length)) (d.arrowDegree 0)
+      (e.arrowDegree 0)
+
 theorem finFamilyList_factorModule_append_boundary
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
     {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
