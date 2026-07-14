@@ -1248,6 +1248,122 @@ theorem DegreeProfile.contract_suffixTotal_self
   simp only [uneraseFactorIndex, Fin.val_succ]
   omega
 
+theorem DegreeProfile.contract_contractionSuffix_of_before
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length)
+    (j : Fin (eraseIntermediate w i).length)
+    (h : j.castSucc < erasePosition w i) :
+    (d.contract i).contractionSuffix j =
+      d.contractionSuffix (eraseLift w i j) + 1 := by
+  let q : Fin w.length :=
+    Fin.cast (eraseIntermediate_length w i) j.castSucc
+  have hq : q < i := by
+    change j.val < i.val
+    exact h
+  have hsum :
+      (∑ r ∈ Finset.univ.filter
+          (fun r : Fin ((eraseIntermediate w i).length + 1) ↦ j.val < r.val),
+        (d.contract i).arrowDegree r) =
+        ∑ r ∈ Finset.univ.filter (fun r : Fin w.length ↦ q < r),
+          contractedArrowDegree d.arrowDegree i r := by
+    have hfilter :
+        Finset.univ.filter
+            (fun r : Fin ((eraseIntermediate w i).length + 1) ↦ j.val < r.val) =
+          Finset.univ.filter
+            (fun r : Fin ((eraseIntermediate w i).length + 1) ↦
+              uneraseFactorIndex w i q < r) := by
+      ext r
+      simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+      change j.val < r.val ↔ j.val < r.val
+      rfl
+    rw [hfilter]
+    exact contract_suffix_sum_eq_oldIndex d i q
+  have hl := eraseIntermediate_length w i
+  have holdFilter :
+      Finset.univ.filter
+          (fun r : Fin (w.length + 1) ↦ q.castSucc < r) =
+        Finset.univ.filter
+          (fun r : Fin (w.length + 1) ↦ j.val < r.val) := by
+    ext r
+    simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+    change q.val < r.val ↔ j.val < r.val
+    simp [q]
+  unfold DegreeProfile.contractionSuffix
+  rw [eraseLift_of_before w i j h]
+  rw [hsum,
+    sum_filter_contractedArrowDegree_gt_of_lt d.arrowDegree i q hq]
+  rw [holdFilter]
+  simp only [Fin.val_castSucc, Fin.val_cast]
+  omega
+
+theorem DegreeProfile.contract_contractionSuffix_of_after
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length)
+    (j : Fin (eraseIntermediate w i).length)
+    (h : erasePosition w i ≤ j.castSucc) :
+    (d.contract i).contractionSuffix j =
+      d.contractionSuffix (eraseLift w i j) := by
+  let q : Fin w.length :=
+    Fin.cast (eraseIntermediate_length w i) j.castSucc
+  have hq : i ≤ q := by
+    change i.val ≤ j.val
+    exact h
+  have hsum :
+      (∑ r ∈ Finset.univ.filter
+          (fun r : Fin ((eraseIntermediate w i).length + 1) ↦ j.val < r.val),
+        (d.contract i).arrowDegree r) =
+        ∑ r ∈ Finset.univ.filter (fun r : Fin w.length ↦ q < r),
+          contractedArrowDegree d.arrowDegree i r := by
+    have hfilter :
+        Finset.univ.filter
+            (fun r : Fin ((eraseIntermediate w i).length + 1) ↦ j.val < r.val) =
+          Finset.univ.filter
+            (fun r : Fin ((eraseIntermediate w i).length + 1) ↦
+              uneraseFactorIndex w i q < r) := by
+      ext r
+      simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+      change j.val < r.val ↔ j.val < r.val
+      rfl
+    rw [hfilter]
+    exact contract_suffix_sum_eq_oldIndex d i q
+  have hl := eraseIntermediate_length w i
+  have holdFilter :
+      Finset.univ.filter
+          (fun r : Fin (w.length + 1) ↦ q.succ < r) =
+        Finset.univ.filter
+          (fun r : Fin (w.length + 1) ↦ j.val + 1 < r.val) := by
+    ext r
+    simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+    change q.val + 1 < r.val ↔ j.val + 1 < r.val
+    simp [q]
+  unfold DegreeProfile.contractionSuffix
+  rw [eraseLift_of_after w i j h]
+  rw [hsum,
+    sum_filter_contractedArrowDegree_gt_of_le d.arrowDegree i q hq]
+  rw [holdFilter]
+  simp only [Fin.val_succ, Fin.val_cast]
+  omega
+
+theorem DegreeProfile.contractionSign_contract_of_before
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length)
+    (j : Fin (eraseIntermediate w i).length)
+    (h : j.castSucc < erasePosition w i) :
+    (d.contract i).contractionSign j =
+      -d.contractionSign (eraseLift w i j) := by
+  rw [DegreeProfile.contractionSign, DegreeProfile.contractionSign,
+    d.contract_contractionSuffix_of_before i j h, paritySign_add_one]
+
+theorem DegreeProfile.contractionSign_contract_of_after
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length)
+    (j : Fin (eraseIntermediate w i).length)
+    (h : erasePosition w i ≤ j.castSucc) :
+    (d.contract i).contractionSign j =
+      d.contractionSign (eraseLift w i j) := by
+  rw [DegreeProfile.contractionSign, DegreeProfile.contractionSign,
+    d.contract_contractionSuffix_of_after i j h]
+
 theorem DegreeProfile.internalSign_contract_of_lt
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) (i q : Fin w.length) (hqi : q < i) :
