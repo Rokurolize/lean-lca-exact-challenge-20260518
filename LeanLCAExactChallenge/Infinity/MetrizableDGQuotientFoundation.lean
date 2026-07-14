@@ -262,9 +262,65 @@ def adjacentFactorComposition {X Y : ComplexCategory}
         (w.arrowSource i.castSucc) (w.arrowTarget i.succ)).X
           (d.arrowDegree i.castSucc + d.arrowDegree i.succ)) := by
   simp only [factorModule]
-  rw [arrowTarget_castSucc_eq_arrowSource_succ]
-  exact dgCochainCompTensor
-    (w.arrowSource i.castSucc) (w.arrowSource i.succ) (w.arrowTarget i.succ) rfl
+  exact dgCochainCompTensorOfEq
+    (w.arrowSource i.castSucc) (w.arrowTarget i.castSucc)
+      (w.arrowSource i.succ) (w.arrowTarget i.succ)
+      (arrowTarget_castSucc_eq_arrowSource_succ w i) rfl
+
+def adjacentRightDifferentialPath {X Y : ComplexCategory}
+    {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n) (i : Fin w.length) :
+    Quiver.Hom (factorModule d i.castSucc ⊗ factorModule d i.succ)
+      ((dgHomZModuleCochainComplex
+        (w.arrowSource i.castSucc) (w.arrowTarget i.succ)).X
+          ((d.arrowDegree i.castSucc + d.arrowDegree i.succ) + 1)) := by
+  simp only [factorModule]
+  exact
+    (𝟙 ((dgHomZModuleCochainComplex
+        (w.arrowSource i.castSucc) (w.arrowTarget i.castSucc)).X
+          (d.arrowDegree i.castSucc)) ⊗ₘ
+      (dgHomZModuleCochainComplex
+        (w.arrowSource i.succ) (w.arrowTarget i.succ)).d
+          (d.arrowDegree i.succ) (d.arrowDegree i.succ + 1)) ≫
+    dgCochainCompTensorOfEq
+      (w.arrowSource i.castSucc) (w.arrowTarget i.castSucc)
+      (w.arrowSource i.succ) (w.arrowTarget i.succ)
+      (arrowTarget_castSucc_eq_arrowSource_succ w i) (by omega)
+
+def adjacentLeftDifferentialPath {X Y : ComplexCategory}
+    {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n) (i : Fin w.length) :
+    Quiver.Hom (factorModule d i.castSucc ⊗ factorModule d i.succ)
+      ((dgHomZModuleCochainComplex
+        (w.arrowSource i.castSucc) (w.arrowTarget i.succ)).X
+          ((d.arrowDegree i.castSucc + d.arrowDegree i.succ) + 1)) := by
+  simp only [factorModule]
+  exact
+    ((dgHomZModuleCochainComplex
+        (w.arrowSource i.castSucc) (w.arrowTarget i.castSucc)).d
+          (d.arrowDegree i.castSucc) (d.arrowDegree i.castSucc + 1) ⊗ₘ
+      𝟙 ((dgHomZModuleCochainComplex
+        (w.arrowSource i.succ) (w.arrowTarget i.succ)).X
+          (d.arrowDegree i.succ))) ≫
+    dgCochainCompTensorOfEq
+      (w.arrowSource i.castSucc) (w.arrowTarget i.castSucc)
+      (w.arrowSource i.succ) (w.arrowTarget i.succ)
+      (arrowTarget_castSucc_eq_arrowSource_succ w i) (by omega)
+
+theorem adjacentFactorComposition_comp_d {X Y : ComplexCategory}
+    {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n) (i : Fin w.length) :
+    adjacentFactorComposition d i ≫
+        (dgHomZModuleCochainComplex
+          (w.arrowSource i.castSucc) (w.arrowTarget i.succ)).d
+            (d.arrowDegree i.castSucc + d.arrowDegree i.succ)
+            ((d.arrowDegree i.castSucc + d.arrowDegree i.succ) + 1) =
+      adjacentRightDifferentialPath d i +
+        (d.arrowDegree i.succ).negOnePow • adjacentLeftDifferentialPath d i := by
+  simp only [adjacentFactorComposition, adjacentRightDifferentialPath,
+    adjacentLeftDifferentialPath, factorModule]
+  exact dgCochainCompTensorOfEq_comp_d
+    (w.arrowSource i.castSucc) (w.arrowTarget i.castSucc)
+    (w.arrowSource i.succ) (w.arrowTarget i.succ)
+    (arrowTarget_castSucc_eq_arrowSource_succ w i)
+    (d.arrowDegree i.castSucc) (d.arrowDegree i.succ)
 
 /-- The pointwise factor map contributing the internal differential at the chosen arrow;
 all other tensor factors are identities. -/

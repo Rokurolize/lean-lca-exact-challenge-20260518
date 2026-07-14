@@ -388,6 +388,54 @@ theorem dgCochainCompTensor_tmul (K L M : ComplexCategory) {p q r : ℤ}
     dgCochainCompTensor K L M h (x ⊗ₜ[ℤ] y) = x.comp y h := by
   rfl
 
+theorem dgCochainCompTensor_comp_d (K L M : ComplexCategory) (p q : ℤ) :
+    dgCochainCompTensor K L M (show p + q = p + q by rfl) ≫
+        (dgHomZModuleCochainComplex K M).d (p + q) ((p + q) + 1) =
+      (𝟙 ((dgHomZModuleCochainComplex K L).X p) ⊗ₘ
+          (dgHomZModuleCochainComplex L M).d q (q + 1)) ≫
+          dgCochainCompTensor K L M
+            (show p + (q + 1) = (p + q) + 1 by omega) +
+        q.negOnePow •
+          (((dgHomZModuleCochainComplex K L).d p (p + 1) ⊗ₘ
+              𝟙 ((dgHomZModuleCochainComplex L M).X q)) ≫
+            dgCochainCompTensor K L M
+              (show (p + 1) + q = (p + q) + 1 by omega)) := by
+  apply ModuleCat.hom_ext
+  apply TensorProduct.ext
+  ext x y
+  simp only [LinearMap.compr₂ₛₗ_apply, TensorProduct.mk_apply]
+  change CochainComplex.HomComplex.δ (p + q) ((p + q) + 1)
+      (x.comp y rfl) =
+    x.comp (CochainComplex.HomComplex.δ q (q + 1) y) (by omega) +
+      q.negOnePow •
+        (CochainComplex.HomComplex.δ p (p + 1) x).comp y (by omega)
+  exact CochainComplex.HomComplex.δ_comp x y rfl (p + 1) (q + 1)
+    ((p + q) + 1) rfl rfl rfl
+
+def dgCochainCompTensorOfEq (K L L' M : ComplexCategory) (hL : L = L')
+    {p q r : ℤ} (h : p + q = r) :
+    (dgHomZModuleCochainComplex K L).X p ⊗
+        (dgHomZModuleCochainComplex L' M).X q ⟶
+      (dgHomZModuleCochainComplex K M).X r := by
+  subst L'
+  exact dgCochainCompTensor K L M h
+
+theorem dgCochainCompTensorOfEq_comp_d
+    (K L L' M : ComplexCategory) (hL : L = L') (p q : ℤ) :
+    dgCochainCompTensorOfEq K L L' M hL (show p + q = p + q by rfl) ≫
+        (dgHomZModuleCochainComplex K M).d (p + q) ((p + q) + 1) =
+      (𝟙 ((dgHomZModuleCochainComplex K L).X p) ⊗ₘ
+          (dgHomZModuleCochainComplex L' M).d q (q + 1)) ≫
+          dgCochainCompTensorOfEq K L L' M hL
+            (show p + (q + 1) = (p + q) + 1 by omega) +
+        q.negOnePow •
+          (((dgHomZModuleCochainComplex K L).d p (p + 1) ⊗ₘ
+              𝟙 ((dgHomZModuleCochainComplex L' M).X q)) ≫
+            dgCochainCompTensorOfEq K L L' M hL
+              (show (p + 1) + q = (p + q) + 1 by omega)) := by
+  subst L'
+  exact dgCochainCompTensor_comp_d K L M p q
+
 /-- The reversed homogeneous pairing used by the total-complex sign convention. -/
 def dgCochainCompTensorReversed (K L M : ComplexCategory) {p q r : ℤ}
     (h : p + q = r) :
