@@ -277,6 +277,86 @@ theorem adjacentMergeAfter_cons
       AdjacentMergeData.tail (adjacentMergeAfter xs (ys := ys) f) :=
   rfl
 
+def tensorMapDataId : (xs : List (ModuleCat.{0} ℤ)) → TensorMapData xs xs
+  | [] => .nil
+  | M :: xs => .cons (𝟙 M) (tensorMapDataId xs)
+
+@[simp]
+theorem tensorMapDataId_tensorMap : (xs : List (ModuleCat.{0} ℤ)) →
+    (tensorMapDataId xs).tensorMap = 𝟙 (tensorModuleList xs)
+  | [] => rfl
+  | M :: xs => by
+      change 𝟙 M ⊗ₘ (tensorMapDataId xs).tensorMap =
+        𝟙 (M ⊗ tensorModuleList xs)
+      rw [tensorMapDataId_tensorMap]
+      exact MonoidalCategory.id_tensorHom_id M (tensorModuleList xs)
+
+def tensorMapDataReplaceAfter :
+    (xs : List (ModuleCat.{0} ℤ)) → {P Q : ModuleCat.{0} ℤ} →
+      Quiver.Hom P Q → (ys : List (ModuleCat.{0} ℤ)) →
+      TensorMapData (xs ++ P :: ys) (xs ++ Q :: ys)
+  | [], _, _, c, ys => .cons c (tensorMapDataId ys)
+  | M :: xs, P, Q, c, ys =>
+      .cons (𝟙 M) (tensorMapDataReplaceAfter xs (P := P) (Q := Q) c ys)
+
+@[simp]
+theorem tensorMapDataReplaceAfter_id_tensorMap
+    (xs : List (ModuleCat.{0} ℤ)) (P : ModuleCat.{0} ℤ)
+    (ys : List (ModuleCat.{0} ℤ)) :
+    (tensorMapDataReplaceAfter xs (𝟙 P) ys).tensorMap =
+      𝟙 (tensorModuleList (xs ++ P :: ys)) := by
+  induction xs with
+  | nil =>
+      change 𝟙 P ⊗ₘ (tensorMapDataId ys).tensorMap =
+        𝟙 (P ⊗ tensorModuleList ys)
+      rw [tensorMapDataId_tensorMap]
+      exact MonoidalCategory.id_tensorHom_id P (tensorModuleList ys)
+  | cons M xs ih =>
+      change 𝟙 M ⊗ₘ
+          (tensorMapDataReplaceAfter xs (𝟙 P) ys).tensorMap =
+        𝟙 (M ⊗ tensorModuleList (xs ++ P :: ys))
+      rw [ih]
+      exact MonoidalCategory.id_tensorHom_id M
+        (tensorModuleList (xs ++ P :: ys))
+
+theorem tensorMapDataReplaceAfter_eqToHom
+    (xs : List (ModuleCat.{0} ℤ)) {P Q : ModuleCat.{0} ℤ}
+    (h : P = Q) (ys : List (ModuleCat.{0} ℤ)) :
+    (tensorMapDataReplaceAfter xs (eqToHom h) ys).tensorMap =
+      eqToHom (congrArg tensorModuleList
+        (congrArg (fun T ↦ xs ++ T :: ys) h)) := by
+  cases h
+  exact tensorMapDataReplaceAfter_id_tensorMap xs P ys
+
+def adjacentMergeAfterNaturalityPost
+    (xs : List (ModuleCat.{0} ℤ))
+    {M N P Q : ModuleCat.{0} ℤ}
+    (f : Quiver.Hom (M ⊗ N) P) (c : Quiver.Hom P Q)
+    (ys : List (ModuleCat.{0} ℤ)) :
+    AdjacentMergeNaturality
+      (adjacentMergeAfter xs (ys := ys) f)
+      (adjacentMergeAfter xs (ys := ys) (f ≫ c))
+      (tensorMapDataId (xs ++ M :: N :: ys))
+      (tensorMapDataReplaceAfter xs c ys) := by
+  induction xs with
+  | nil =>
+      exact .head f (f ≫ c) (𝟙 M) (𝟙 N) c
+        (tensorMapDataId ys) (by simp)
+  | cons R xs ih => exact .tail (𝟙 R) ih
+
+@[reassoc]
+theorem adjacentMergeAfter_tensorMap_post
+    (xs : List (ModuleCat.{0} ℤ))
+    {M N P Q : ModuleCat.{0} ℤ}
+    (f : Quiver.Hom (M ⊗ N) P) (c : Quiver.Hom P Q)
+    (ys : List (ModuleCat.{0} ℤ)) :
+    (adjacentMergeAfter xs (ys := ys) f).tensorMap ≫
+        (tensorMapDataReplaceAfter xs c ys).tensorMap =
+      (adjacentMergeAfter xs (ys := ys) (f ≫ c)).tensorMap := by
+  have h := (adjacentMergeAfterNaturalityPost xs f c ys).tensorMap_comm
+  rw [tensorMapDataId_tensorMap, Category.id_comp] at h
+  exact h.symm
+
 def appendSingletonPairEq {α : Type*} (xs : List α) (M N : α) :
     (xs ++ [M]) ++ [N] = xs ++ [M, N] := by
   induction xs with
@@ -289,6 +369,10 @@ def appendBoundaryListsEq {α : Type*} (xs : List α) (M N : α)
   induction xs with
   | nil => rfl
   | cons Q xs ih => exact congrArg (Q :: ·) ih
+
+theorem appendBoundaryListsEq_nil {α : Type*} (xs : List α) (M N : α) :
+    appendBoundaryListsEq xs M N [] = appendSingletonPairEq xs M N :=
+  Subsingleton.elim _ _
 
 @[simp]
 theorem tensorModuleList_eqToHom_cons
@@ -405,6 +489,30 @@ def compositionRightSuffix
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) : List (ModuleCat.{0} ℤ) :=
   finFamilyList (fun i : Fin w.length ↦ factorModule d i.succ)
+
+@[simp]
+theorem compositionRightSuffix_nilDegreeProfile
+    (X Y : ComplexCategory) (n : ℤ) :
+    compositionRightSuffix (nilDegreeProfile X Y n) = [] := by
+  rfl
+
+theorem appendBoundaryListsEq_right_nil_eqToHom
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    eqToHom (congrArg tensorModuleList
+        (appendBoundaryListsEq (compositionLeftPrefix d)
+          (factorModule d (Fin.last w.length))
+          (factorModule (nilDegreeProfile Y Y 0) 0)
+          (compositionRightSuffix (nilDegreeProfile Y Y 0)))) =
+      eqToHom (congrArg tensorModuleList
+        (appendSingletonPairEq (compositionLeftPrefix d)
+          (factorModule d (Fin.last w.length))
+          (factorModule (nilDegreeProfile Y Y 0) 0))) := by
+  change eqToHom (congrArg tensorModuleList
+      (appendBoundaryListsEq (compositionLeftPrefix d)
+        (factorModule d (Fin.last w.length))
+        (factorModule (nilDegreeProfile Y Y 0) 0) [])) = _
+  congr 1
 
 theorem finFamilyList_factorModule_eq_prefix_last
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
@@ -624,10 +732,21 @@ theorem rightUnitCompositionBoundaryMap_unit
       (arrowTarget_last_eq_target w)
       (d.arrowDegree (Fin.last w.length))
 
-def nilIdentitySummandMap (K : ComplexCategory) :
-    𝟙_ (ModuleCat.{0} ℤ) ⟶ summandModule (nilDegreeProfile K K 0) :=
-  identityCochainInclusion K ≫
-    (ρ_ (factorModule (nilDegreeProfile K K 0) 0)).inv
+@[reassoc]
+theorem compositionBoundaryMap_right_nil_tensorMap_post
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    (adjacentMergeAfter (compositionLeftPrefix d) (ys := [])
+        (compositionBoundaryMap d (nilDegreeProfile Y Y 0))).tensorMap ≫
+        (tensorMapDataReplaceAfter (compositionLeftPrefix d)
+          (eqToHom (compositionBoundaryModule_right_nil d)) []).tensorMap =
+      (adjacentMergeAfter (compositionLeftPrefix d) (ys := [])
+        (rightUnitCompositionBoundaryMap d)).tensorMap := by
+  unfold rightUnitCompositionBoundaryMap
+  exact adjacentMergeAfter_tensorMap_post
+    (compositionLeftPrefix d)
+    (compositionBoundaryMap d (nilDegreeProfile Y Y 0))
+    (eqToHom (compositionBoundaryModule_right_nil d)) []
 
 theorem normalizedSummandRightUnit
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
@@ -656,28 +775,99 @@ theorem normalizedSummandRightUnit
     (rightUnitCompositionBoundaryMap d)
     (rightUnitCompositionBoundaryMap_unit d)
 
+def summandModuleTransportEq
+    {X Y : ComplexCategory} {w v : DrinfeldWord X Y} {n m : ℤ}
+    (hw : w = v) (hn : n = m) (d : DegreeProfile w n) :
+    summandModule d = summandModule (d.transport hw hn) := by
+  subst hw
+  subst hn
+  rfl
+
 def summandModuleTransportIso
     {X Y : ComplexCategory} {w v : DrinfeldWord X Y} {n m : ℤ}
     (hw : w = v) (hn : n = m) (d : DegreeProfile w n) :
-    summandModule d ≅ summandModule (d.transport hw hn) := by
-  subst hw
-  subst hn
-  exact Iso.refl _
+    summandModule d ≅ summandModule (d.transport hw hn) :=
+  eqToIso (summandModuleTransportEq hw hn d)
 
-theorem nilIdentitySummandMap_apply_one (K : ComplexCategory) :
-    (nilIdentitySummandMap K).hom 1 =
-      (nilSummandIsoOriginal K K (nilDegreeProfile K K 0)).inv
-        (identityCochain K) := by
-  unfold nilIdentitySummandMap identityCochainInclusion
-  simp only [ModuleCat.comp_apply, nilSummandIsoOriginal, Iso.trans_inv]
-  congr 1
-  change (LinearMap.toSpanSingleton ℤ _ (identityCochain K)) 1 =
-    (eqToIso (factorModule_nilDegreeProfile K K 0)).inv
-      (identityCochain K)
-  rw [LinearMap.toSpanSingleton_apply_one]
-  rw [show factorModule_nilDegreeProfile K K 0 = Eq.refl _ from
-    Subsingleton.elim _ _]
-  rfl
+def summandLastFactorIso
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    summandModule d ≅ tensorModuleList
+      (compositionLeftPrefix d ++
+        [factorModule d (Fin.last w.length)]) :=
+  eqToIso (congrArg tensorModuleList
+    (finFamilyList_factorModule_eq_prefix_last d))
+
+def summandFirstFactorIso
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    summandModule d ≅ tensorModuleList
+      (factorModule d 0 :: compositionRightSuffix d) :=
+  eqToIso (congrArg tensorModuleList
+    (finFamilyList_factorModule_eq_first_suffix d))
+
+def nilIdentitySummandMap (K : ComplexCategory) :
+    𝟙_ (ModuleCat.{0} ℤ) ⟶ summandModule (nilDegreeProfile K K 0) :=
+  identityCochainInclusion K ≫
+    (ρ_ (factorModule (nilDegreeProfile K K 0) 0)).inv ≫
+    (summandFirstFactorIso (nilDegreeProfile K K 0)).inv
+
+theorem nilIdentitySummandMap_comp_firstFactorIso
+    (K : ComplexCategory) :
+    nilIdentitySummandMap K ≫
+        (summandFirstFactorIso (nilDegreeProfile K K 0)).hom =
+      identityCochainInclusion K ≫
+        (ρ_ (factorModule (nilDegreeProfile K K 0) 0)).inv := by
+  unfold nilIdentitySummandMap
+  slice_lhs 3 4 =>
+    exact (summandFirstFactorIso (nilDegreeProfile K K 0)).inv_hom_id
+  exact Category.comp_id
+    (identityCochainInclusion K ≫
+      (ρ_ (factorModule (nilDegreeProfile K K 0) 0)).inv)
+
+@[reassoc]
+theorem summandRightUnitSource_decompose
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    (ρ_ (summandModule d)).inv ≫
+        (𝟙 _ ⊗ₘ nilIdentitySummandMap Y) ≫
+        ((summandLastFactorIso d).hom ⊗ₘ
+          (summandFirstFactorIso (nilDegreeProfile Y Y 0)).hom) =
+      (summandLastFactorIso d).hom ≫
+        (ρ_ (tensorModuleList
+          (compositionLeftPrefix d ++
+            [factorModule d (Fin.last w.length)]))).inv ≫
+        (𝟙 _ ⊗ₘ (identityCochainInclusion Y ≫
+          (ρ_ (factorModule (nilDegreeProfile Y Y 0) 0)).inv)) := by
+  rw [MonoidalCategory.tensorHom_comp_tensorHom,
+    Category.id_comp, nilIdentitySummandMap_comp_firstFactorIso]
+  let r : 𝟙_ (ModuleCat.{0} ℤ) ⟶
+      factorModule (nilDegreeProfile Y Y 0) 0 ⊗
+        𝟙_ (ModuleCat.{0} ℤ) :=
+    identityCochainInclusion Y ≫
+      (ρ_ (factorModule (nilDegreeProfile Y Y 0) 0)).inv
+  calc
+    _ = (ρ_ (summandModule d)).inv ≫
+        (((summandLastFactorIso d).hom ⊗ₘ
+          𝟙 (tensorUnit (ModuleCat.{0} ℤ))) ≫
+        (𝟙 _ ⊗ₘ r)) := by
+      change (ρ_ (summandModule d)).inv ≫
+          ((summandLastFactorIso d).hom ⊗ₘ r) = _
+      congr 1
+      rw [MonoidalCategory.tensorHom_comp_tensorHom]
+      simp
+    _ = ((summandLastFactorIso d).hom ≫
+        (ρ_ (tensorModuleList
+          (compositionLeftPrefix d ++
+            [factorModule d (Fin.last w.length)]))).inv) ≫
+        (𝟙 _ ⊗ₘ r) := by
+      rw [Category.assoc]
+      slice_lhs 1 2 =>
+        rw [MonoidalCategory.tensorHom_id]
+        exact (MonoidalCategory.rightUnitor_inv_naturality
+          (summandLastFactorIso d).hom).symm
+      exact Category.assoc _ _ _
+    _ = _ := Category.assoc _ _ _
 
 def appendLeftArrowIndex
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
@@ -1117,6 +1307,23 @@ theorem finFamilyList_factorModule_append_boundary
       rw [List.ofFn_fin_append, List.ofFn_succ]
       rfl
 
+@[reassoc]
+theorem summandRightUnitTarget_transport
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    eqToHom (congrArg tensorModuleList
+        (finFamilyList_factorModule_append_boundary d
+          (nilDegreeProfile Y Y 0)).symm) ≫
+        (summandRightUnitIso d).hom =
+      (tensorMapDataReplaceAfter (compositionLeftPrefix d)
+          (eqToHom (compositionBoundaryModule_right_nil d)) []).tensorMap ≫
+        (summandLastFactorIso d).inv := by
+  rw [tensorMapDataReplaceAfter_eqToHom]
+  simp only [summandRightUnitIso, summandLastFactorIso,
+    summandModuleTransportIso, Iso.trans_hom, eqToIso.hom,
+    eqToIso.inv, eqToHom_trans]
+  congr 1
+
 def compositionMergedFactor
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
     {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
@@ -1243,6 +1450,60 @@ def summandCompositionMap
       (ys := compositionRightSuffix e) (compositionBoundaryMap d e)).tensorMap ≫
     eqToHom (congrArg tensorModuleList
       (finFamilyList_factorModule_append_boundary d e).symm)
+
+theorem summandCompositionMap_eq_boundary_decomposition
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    summandCompositionMap d e =
+      ((summandLastFactorIso d).hom ⊗ₘ (summandFirstFactorIso e).hom) ≫
+        (tensorModuleListAppendIso
+          (compositionLeftPrefix d ++ [factorModule d (Fin.last w.length)])
+          (factorModule e 0 :: compositionRightSuffix e)).hom ≫
+        eqToHom (congrArg tensorModuleList
+          (appendBoundaryListsEq (compositionLeftPrefix d)
+            (factorModule d (Fin.last w.length)) (factorModule e 0)
+            (compositionRightSuffix e))) ≫
+        (adjacentMergeAfter (compositionLeftPrefix d)
+          (ys := compositionRightSuffix e) (compositionBoundaryMap d e)).tensorMap ≫
+        eqToHom (congrArg tensorModuleList
+          (finFamilyList_factorModule_append_boundary d e).symm) := by
+  rfl
+
+theorem summandCompositionMap_right_unit
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    (ρ_ (summandModule d)).inv ≫
+        (𝟙 _ ⊗ₘ nilIdentitySummandMap Y) ≫
+        summandCompositionMap d (nilDegreeProfile Y Y 0) ≫
+        (summandRightUnitIso d).hom =
+      𝟙 (summandModule d) := by
+  rw [summandCompositionMap_eq_boundary_decomposition]
+  simp only [Category.assoc]
+  rw [summandRightUnitSource_decompose_assoc]
+  rw [summandRightUnitTarget_transport]
+  slice_lhs 4 5 =>
+    exact compositionBoundaryMap_right_nil_tensorMap_post_assoc d
+      (summandLastFactorIso d).inv
+  rw [appendBoundaryListsEq_right_nil_eqToHom]
+  change (summandLastFactorIso d).hom ≫
+      ((ρ_ (tensorModuleList
+          (compositionLeftPrefix d ++
+            [factorModule d (Fin.last w.length)]))).inv ≫
+        (𝟙 _ ⊗ₘ (identityCochainInclusion Y ≫
+          (ρ_ (factorModule (nilDegreeProfile Y Y 0) 0)).inv)) ≫
+        (tensorModuleListAppendIso
+          (compositionLeftPrefix d ++
+            [factorModule d (Fin.last w.length)])
+          [factorModule (nilDegreeProfile Y Y 0) 0]).hom ≫
+        eqToHom (congrArg tensorModuleList
+          (appendSingletonPairEq (compositionLeftPrefix d)
+            (factorModule d (Fin.last w.length))
+            (factorModule (nilDegreeProfile Y Y 0) 0))) ≫
+        (adjacentMergeAfter (compositionLeftPrefix d) (ys := [])
+          (rightUnitCompositionBoundaryMap d)).tensorMap) ≫
+      (summandLastFactorIso d).inv = 𝟙 (summandModule d)
+  rw [normalizedSummandRightUnit]
+  simp
 
 def intLinearMapOfAddHom {A B : Type*} [AddCommGroup A] [AddCommGroup B]
     [Module ℤ A] [Module ℤ B] (f : A →+ B) : A →ₗ[ℤ] B where
