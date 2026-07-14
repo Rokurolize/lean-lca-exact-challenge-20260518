@@ -1,5 +1,5 @@
 import LeanLCAExactChallenge.Infinity.MetrizableDGQuotientDifferentialEvaluation
-import LeanLCAExactChallenge.Infinity.MetrizableDGQuotientPairCancellation
+import LeanLCAExactChallenge.Infinity.MetrizableDGQuotientMixedCancellation
 
 /-!
 # Expansion of the corrected Drinfeld differential square
@@ -56,6 +56,77 @@ theorem gradedSummandIndex_eq_of_castWord_eq
   convert hde using 1
   exact cast_degreeProfile_eq_castWord_expansion h d
 
+def internalContractionLargeMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (q : Fin (w.length + 1)) (i : Fin w.length) :
+    Quiver.Hom (largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+      (quotientGradedModule X Y ((n + 1) + 1)) :=
+  (ModuleCat.uliftFunctor.{1} ℤ).map
+      (internalDifferentialTensorMap d q ≫
+        contractionTensorMap (d.raise q) i) ≫
+    Limits.Sigma.ι
+      (fun s : GradedSummandIndex X Y ((n + 1) + 1) ↦ largeSummandModule s)
+      ⟨eraseIntermediate w i, (d.raise q).contract i⟩
+
+def contractionInternalLargeMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1)) :
+    Quiver.Hom (largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+      (quotientGradedModule X Y ((n + 1) + 1)) :=
+  (ModuleCat.uliftFunctor.{1} ℤ).map
+      (contractionTensorMap d i ≫
+        internalDifferentialTensorMap (d.contract i) j) ≫
+    Limits.Sigma.ι
+      (fun s : GradedSummandIndex X Y ((n + 1) + 1) ↦ largeSummandModule s)
+      ⟨eraseIntermediate w i, (d.contract i).raise j⟩
+
+theorem internalContractionLargeMap_eq_of_surviving
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1))
+    (hj : j ≠ erasePosition w i) :
+    internalContractionLargeMap d (survivingOldFactorIndex w i j) i =
+      contractionInternalLargeMap d i j := by
+  let s₁ : GradedSummandIndex X Y ((n + 1) + 1) :=
+    ⟨eraseIntermediate w i,
+      (d.raise (survivingOldFactorIndex w i j)).contract i⟩
+  let s₂ : GradedSummandIndex X Y ((n + 1) + 1) :=
+    ⟨eraseIntermediate w i, (d.contract i).raise j⟩
+  have hs : s₁ = s₂ := by
+    apply Sigma.ext
+    · rfl
+    · exact heq_of_eq (DegreeProfile.raise_surviving_contract d i j)
+  have hm : largeSummandModule s₁ = largeSummandModule s₂ :=
+    congrArg largeSummandModule hs
+  unfold internalContractionLargeMap contractionInternalLargeMap
+  apply comp_eq_of_middle_eq_heq hm
+  · apply map_heq_of_target_eq (ModuleCat.uliftFunctor.{1} ℤ)
+      (congrArg summandModule (DegreeProfile.raise_surviving_contract d i j))
+    exact internalContractionTensorMap_comm_heq_of_surviving d i j hj
+  · exact congr_arg_heq
+      (fun s ↦ Limits.Sigma.ι
+        (fun t : GradedSummandIndex X Y ((n + 1) + 1) ↦ largeSummandModule t) s) hs
+
+theorem internalDifferentialTensorMap_comp_contractionLargeMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (q : Fin (w.length + 1)) (i : Fin w.length) :
+    (ModuleCat.uliftFunctor.{1} ℤ).map (internalDifferentialTensorMap d q) ≫
+        contractionLargeMap (d.raise q) i =
+      (d.raise q).contractionSign i • internalContractionLargeMap d q i := by
+  unfold contractionLargeMap internalContractionLargeMap
+  rw [Preadditive.comp_zsmul, ← Category.assoc, ← Functor.map_comp]
+
+theorem contractionTensorMap_comp_internalDifferentialLargeMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1)) :
+    (ModuleCat.uliftFunctor.{1} ℤ).map (contractionTensorMap d i) ≫
+        internalDifferentialLargeMap (d.contract i) j =
+      contractionInternalLargeMap d i j := by
+  unfold internalDifferentialLargeMap contractionInternalLargeMap
+  rw [← Category.assoc, ← Functor.map_comp]
+
 /-- Four-family expansion of the candidate differential square on one arbitrary summand. -/
 theorem quotientTotalDifferential_inclusion_square_expansion
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
@@ -111,6 +182,55 @@ theorem contractionDifferentialFromSummand_comp_internalDifferential
           internalDifferentialFromSummand (d.contract i)) := by
   unfold contractionDifferentialFromSummand
   simp only [Preadditive.sum_comp, contractionLargeMap_comp_internalDifferential]
+
+theorem internalDifferentialFromSummand_comp_contractionDifferential_eq_double_sum
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    internalDifferentialFromSummand d ≫
+        quotientContractionDifferential X Y (n + 1) =
+      ∑ q, ∑ i,
+        (d.internalSign q * (d.raise q).contractionSign i) •
+          internalContractionLargeMap d q i := by
+  rw [internalDifferentialFromSummand_comp_contractionDifferential]
+  apply Finset.sum_congr rfl
+  intro q _
+  unfold contractionDifferentialFromSummand
+  rw [Preadditive.comp_sum, Finset.smul_sum]
+  apply Finset.sum_congr rfl
+  intro i _
+  rw [internalDifferentialTensorMap_comp_contractionLargeMap, smul_smul]
+
+theorem contractionDifferentialFromSummand_comp_internalDifferential_eq_double_sum
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    contractionDifferentialFromSummand d ≫
+        quotientInternalDifferential X Y (n + 1) =
+      ∑ i, ∑ j,
+        (d.contractionSign i * (d.contract i).internalSign j) •
+          contractionInternalLargeMap d i j := by
+  rw [contractionDifferentialFromSummand_comp_internalDifferential]
+  apply Finset.sum_congr rfl
+  intro i _
+  unfold internalDifferentialFromSummand
+  rw [Preadditive.comp_sum, Finset.smul_sum]
+  apply Finset.sum_congr rfl
+  intro j _
+  rw [Preadditive.comp_zsmul, smul_smul,
+    contractionTensorMap_comp_internalDifferentialLargeMap]
+
+theorem mixedSurvivingTerms_add_eq_zero
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1))
+    (hj : j ≠ erasePosition w i) :
+    (d.internalSign (survivingOldFactorIndex w i j) *
+          (d.raise (survivingOldFactorIndex w i j)).contractionSign i) •
+        internalContractionLargeMap d (survivingOldFactorIndex w i j) i +
+      (d.contractionSign i * (d.contract i).internalSign j) •
+        contractionInternalLargeMap d i j = 0 := by
+  rw [DegreeProfile.mixedCoefficient_surviving d i j hj,
+    internalContractionLargeMap_eq_of_surviving d i j hj]
+  simp
 
 /-- Expand the contraction-then-contraction family by its first contracted position. -/
 theorem contractionDifferentialFromSummand_comp_contractionDifferential

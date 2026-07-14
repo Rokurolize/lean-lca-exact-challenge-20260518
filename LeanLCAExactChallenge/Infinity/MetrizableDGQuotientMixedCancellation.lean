@@ -478,4 +478,28 @@ theorem internalContractionTensorMap_comm_heq_of_surviving
       (rawContractionMergedDifferentialTensorMap_internal_heq d i j hj)
   exact hleftRaw.trans (heq_of_eq hnatural) |>.trans hrightRaw
 
+theorem DegreeProfile.mixedCoefficient_surviving
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1))
+    (hj : j ≠ erasePosition w i) :
+    d.internalSign (survivingOldFactorIndex w i j) *
+        (d.raise (survivingOldFactorIndex w i j)).contractionSign i =
+      -(d.contractionSign i * (d.contract i).internalSign j) := by
+  by_cases hbefore : eraseFactorIndex w i j < i
+  · rw [survivingOldFactorIndex_of_before w i j hbefore,
+      ← uneraseFactorIndex_eraseFactorIndex w i j]
+    exact DegreeProfile.mixedCoefficient_of_lt d i
+      (eraseFactorIndex w i j) hbefore
+  · have hne : eraseFactorIndex w i j ≠ i := by
+      intro h
+      apply hj
+      apply Fin.ext
+      exact congrArg (fun q : Fin w.length ↦ q.val) h
+    have hafter : i < eraseFactorIndex w i j := by omega
+    rw [survivingOldFactorIndex_of_after w i j hafter,
+      ← uneraseFactorIndex_eraseFactorIndex w i j]
+    exact DegreeProfile.mixedCoefficient_of_gt d i
+      (eraseFactorIndex w i j) hafter
+
 end LeanLCAExactChallenge.Infinity.MetrizableBoundedComplexes.DrinfeldWord

@@ -839,6 +839,14 @@ theorem eraseFactorIndex_uneraseFactorIndex
   rfl
 
 @[simp]
+theorem uneraseFactorIndex_eraseFactorIndex
+    {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i : Fin w.length)
+    (j : Fin ((eraseIntermediate w i).length + 1)) :
+    uneraseFactorIndex w i (eraseFactorIndex w i j) = j := by
+  apply Fin.ext
+  rfl
+
+@[simp]
 theorem uneraseFactorIndex_self
     {X Y : ComplexCategory} (w : DrinfeldWord X Y) (i : Fin w.length) :
     uneraseFactorIndex w i i = erasePosition w i := by
