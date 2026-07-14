@@ -37,6 +37,76 @@ theorem dgCochainCompTensorOfEq_identity_left_tmul
   ext i
   simp
 
+def identityCochainInclusion (K : ComplexCategory) :
+    𝟙_ (ModuleCat.{0} ℤ) ⟶ (dgHomZModuleCochainComplex K K).X 0 :=
+  ModuleCat.ofHom (LinearMap.toSpanSingleton ℤ _ (identityCochain K))
+
+theorem dgCochainCompTensorOfEq_right_unit
+    (K L : ComplexCategory) (p : ℤ) :
+    (ρ_ ((dgHomZModuleCochainComplex K L).X p)).inv ≫
+        (𝟙 _ ⊗ₘ identityCochainInclusion L) ≫
+        dgCochainCompTensorOfEq K L L L rfl
+          (show p + 0 = p by omega) =
+      𝟙 ((dgHomZModuleCochainComplex K L).X p) := by
+  apply ModuleCat.hom_ext
+  apply LinearMap.ext
+  intro x
+  simp only [ModuleCat.comp_apply,
+    ModuleCat.MonoidalCategory.rightUnitor_inv_apply,
+    ModuleCat.MonoidalCategory.tensorHom_tmul, CategoryTheory.id_apply,
+    identityCochainInclusion]
+  change (dgCochainCompTensorOfEq K L L L rfl
+      (show p + 0 = p by omega)).hom
+        (x ⊗ₜ[ℤ] (LinearMap.toSpanSingleton ℤ _
+          (identityCochain L)) 1) = x
+  rw [LinearMap.toSpanSingleton_apply_one]
+  exact dgCochainCompTensorOfEq_tmul_identity_right K L p x
+
+theorem dgCochainCompTensorOfEq_right_unit_of_eq
+    (K L L' : ComplexCategory) (h : L = L') (p : ℤ) :
+    (ρ_ ((dgHomZModuleCochainComplex K L).X p)).inv ≫
+        (𝟙 _ ⊗ₘ identityCochainInclusion L') ≫
+        dgCochainCompTensorOfEq K L L' L' h
+          (show p + 0 = p by omega) ≫
+        eqToHom (congrArg
+          (fun T ↦ (dgHomZModuleCochainComplex K T).X p) h.symm) =
+      𝟙 ((dgHomZModuleCochainComplex K L).X p) := by
+  subst L'
+  simpa using dgCochainCompTensorOfEq_right_unit K L p
+
+def dgCochainCompRightUnitTargetEq
+    (K L L' : ComplexCategory) (h : L = L') (p : ℤ) :
+    (dgHomZModuleCochainComplex K L').X (p + 0) =
+      (dgHomZModuleCochainComplex K L).X p := by
+  subst L'
+  rw [Int.add_zero]
+
+theorem dgCochainCompTensorOfEq_comp_degree_eqToHom
+    (K L L' M : ComplexCategory) (hL : L = L')
+    {p q r s : ℤ} (h : p + q = r) (k : r = s) :
+    dgCochainCompTensorOfEq K L L' M hL h ≫
+        eqToHom (congrArg
+          (fun t ↦ (dgHomZModuleCochainComplex K M).X t) k) =
+      dgCochainCompTensorOfEq K L L' M hL (h.trans k) := by
+  subst s
+  simp
+
+theorem dgCochainCompTensorOfEq_right_unit_raw
+    (K L L' : ComplexCategory) (h : L = L') (p : ℤ) :
+    (ρ_ ((dgHomZModuleCochainComplex K L).X p)).inv ≫
+        (𝟙 _ ⊗ₘ identityCochainInclusion L') ≫
+        dgCochainCompTensorOfEq K L L' L' h
+          (show p + 0 = p + 0 by rfl) ≫
+        eqToHom (dgCochainCompRightUnitTargetEq K L L' h p) =
+      𝟙 ((dgHomZModuleCochainComplex K L).X p) := by
+  subst L'
+  have hk : dgCochainCompRightUnitTargetEq K L L rfl p =
+      congrArg (fun t ↦ (dgHomZModuleCochainComplex K L).X t)
+        (Int.add_zero p) := Subsingleton.elim _ _
+  rw [hk, dgCochainCompTensorOfEq_comp_degree_eqToHom]
+  convert dgCochainCompTensorOfEq_right_unit K L p using 1
+  exact Int.add_zero p
+
 theorem append_nil {X Y : ComplexCategory} (w : DrinfeldWord X Y) :
     w.append (nil Y Y) = w := by
   cases w with
@@ -434,6 +504,139 @@ def compositionBoundaryFactorMap
       (w.arrowSource (Fin.last w.length))
       (w.arrowTarget (Fin.last w.length))
       (v.arrowSource 0) (v.arrowTarget 0) hmiddle rfl
+
+def compositionBoundaryMap
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    factorModule d (Fin.last w.length) ⊗ factorModule e 0 ⟶
+      compositionBoundaryModule d e := by
+  have hmiddle : w.arrowTarget (Fin.last w.length) = v.arrowSource 0 := by
+    change w.vertex (Fin.last w.length).succ = v.vertex (Fin.castSucc 0)
+    calc
+      _ = w.vertex (Fin.last (w.length + 1)) := by congr 1
+      _ = Y := vertex_last w
+      _ = v.vertex 0 := rfl
+      _ = _ := by congr 1
+  exact dgCochainCompTensorOfEq
+    (w.arrowSource (Fin.last w.length))
+    (w.arrowTarget (Fin.last w.length))
+    (v.arrowSource 0) (v.arrowTarget 0) hmiddle rfl
+
+theorem factorModule_nilDegreeProfile
+    (K L : ComplexCategory) (p : ℤ) :
+    factorModule (nilDegreeProfile K L p) 0 =
+      (dgHomZModuleCochainComplex K L).X p := by
+  rfl
+
+@[simp]
+theorem nil_arrowSource_zero (K L : ComplexCategory) :
+    (nil K L).arrowSource 0 = K := by
+  rfl
+
+@[simp]
+theorem nil_arrowTarget_zero (K L : ComplexCategory) :
+    (nil K L).arrowTarget 0 = L := by
+  rfl
+
+theorem arrowTarget_last_eq_target
+    {X Y : ComplexCategory} (w : DrinfeldWord X Y) :
+    w.arrowTarget (Fin.last w.length) = Y := by
+  change w.vertex (Fin.last w.length).succ = Y
+  rw [show (Fin.last w.length).succ =
+    Fin.last (w.length + 1) by ext; rfl]
+  exact vertex_last w
+
+theorem compositionBoundaryMap_right_nil
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    compositionBoundaryMap d (nilDegreeProfile Y Y 0) =
+      dgCochainCompTensorOfEq
+        (w.arrowSource (Fin.last w.length))
+        (w.arrowTarget (Fin.last w.length)) Y Y
+        (arrowTarget_last_eq_target w)
+        (show d.arrowDegree (Fin.last w.length) + 0 =
+          d.arrowDegree (Fin.last w.length) + 0 by rfl) := by
+  rfl
+
+theorem compositionBoundaryModule_right_nil
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    compositionBoundaryModule d (nilDegreeProfile Y Y 0) =
+      factorModule d (Fin.last w.length) := by
+  unfold compositionBoundaryModule factorModule
+  congr 2
+  · change (nil Y Y).arrowTarget 0 = w.arrowTarget (Fin.last w.length)
+    calc
+      _ = Y := by rfl
+      _ = _ := by
+        change Y = w.vertex (Fin.last w.length).succ
+        rw [show (Fin.last w.length).succ =
+          Fin.last (w.length + 1) by ext; rfl]
+        exact (vertex_last w).symm
+  · simp [nilDegreeProfile]
+
+def rightUnitCompositionBoundaryMap
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    factorModule d (Fin.last w.length) ⊗
+        factorModule (nilDegreeProfile Y Y 0) 0 ⟶
+      factorModule d (Fin.last w.length) :=
+  compositionBoundaryMap d (nilDegreeProfile Y Y 0) ≫
+    eqToHom (compositionBoundaryModule_right_nil d)
+
+theorem rightUnitCompositionBoundaryMap_unit
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    (ρ_ (factorModule d (Fin.last w.length))).inv ≫
+        (𝟙 _ ⊗ₘ identityCochainInclusion Y) ≫
+        rightUnitCompositionBoundaryMap d =
+      𝟙 (factorModule d (Fin.last w.length)) := by
+  unfold rightUnitCompositionBoundaryMap
+  rw [compositionBoundaryMap_right_nil]
+  have hk : compositionBoundaryModule_right_nil d =
+      dgCochainCompRightUnitTargetEq
+        (w.arrowSource (Fin.last w.length))
+        (w.arrowTarget (Fin.last w.length)) Y
+        (arrowTarget_last_eq_target w)
+        (d.arrowDegree (Fin.last w.length)) := Subsingleton.elim _ _
+  rw [hk]
+  exact dgCochainCompTensorOfEq_right_unit_raw
+      (w.arrowSource (Fin.last w.length))
+      (w.arrowTarget (Fin.last w.length)) Y
+      (arrowTarget_last_eq_target w)
+      (d.arrowDegree (Fin.last w.length))
+
+def nilIdentitySummandMap (K : ComplexCategory) :
+    𝟙_ (ModuleCat.{0} ℤ) ⟶ summandModule (nilDegreeProfile K K 0) :=
+  identityCochainInclusion K ≫
+    (ρ_ (factorModule (nilDegreeProfile K K 0) 0)).inv
+
+theorem normalizedSummandRightUnit
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) :
+    (ρ_ (tensorModuleList
+        (compositionLeftPrefix d ++
+          [factorModule d (Fin.last w.length)]))).inv ≫
+        (𝟙 _ ⊗ₘ (identityCochainInclusion Y ≫
+          (ρ_ (factorModule (nilDegreeProfile Y Y 0) 0)).inv)) ≫
+        (tensorModuleListAppendIso
+          (compositionLeftPrefix d ++
+            [factorModule d (Fin.last w.length)])
+          [factorModule (nilDegreeProfile Y Y 0) 0]).hom ≫
+        eqToHom (congrArg tensorModuleList
+          (appendSingletonPairEq (compositionLeftPrefix d)
+            (factorModule d (Fin.last w.length))
+            (factorModule (nilDegreeProfile Y Y 0) 0))) ≫
+        (adjacentMergeAfter (compositionLeftPrefix d) (ys := [])
+          (rightUnitCompositionBoundaryMap d)).tensorMap =
+      𝟙 (tensorModuleList
+        (compositionLeftPrefix d ++
+          [factorModule d (Fin.last w.length)])) :=
+  adjacentMergeAfter_tensorMap_right_unit
+    (compositionLeftPrefix d)
+    (identityCochainInclusion Y)
+    (rightUnitCompositionBoundaryMap d)
+    (rightUnitCompositionBoundaryMap_unit d)
 
 def appendLeftArrowIndex
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
@@ -966,23 +1169,9 @@ def compositionMergeData
     rw [congrArg finFamilyList (compositionMergedFactor_eq_target d e),
       finFamilyList_compositionTargetFactor,
       finFamilyList_factorModule_append_boundary]
-  have hleft : (compositionBoundaryIndex w v).castSucc =
-      compositionSourceLeftIndex (v := v) (Fin.last w.length) := by
-    apply Fin.ext
-    rfl
-  have hright : (compositionBoundaryIndex w v).succ =
-      compositionSourceRightIndex (w := w) (0 : Fin (v.length + 1)) := by
-    apply Fin.ext
-    rfl
-  have hf : Quiver.Hom
-      (factorModule d (Fin.last w.length) ⊗ factorModule e 0)
-      (compositionBoundaryModule d e) := by
-    rw [← compositionSourceFactor_left d e (Fin.last w.length),
-      ← compositionSourceFactor_right d e 0, ← hleft, ← hright]
-    exact compositionBoundaryFactorMap d e
   rw [hs, ht]
   exact adjacentMergeAfter (compositionLeftPrefix d)
-    (ys := compositionRightSuffix e) hf
+    (ys := compositionRightSuffix e) (compositionBoundaryMap d e)
 
 def summandCompositionMap
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
