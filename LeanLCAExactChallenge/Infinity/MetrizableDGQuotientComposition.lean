@@ -520,6 +520,163 @@ def summandCompositionMap
     eqToHom (congrArg tensorModuleList
       (finFamilyList_compositionTargetFactor d e))
 
+def intLinearMapOfAddHom {A B : Type*} [AddCommGroup A] [AddCommGroup B]
+    [Module ℤ A] [Module ℤ B] (f : A →+ B) : A →ₗ[ℤ] B where
+  toFun := f
+  map_add' := f.map_add
+  map_smul' n x := by
+    rw [RingHom.id_apply]
+    exact (congrArg f (int_smul_eq_zsmul (inferInstance : Module ℤ A) n x)).trans
+      ((f.map_zsmul n x).trans
+        (int_smul_eq_zsmul (inferInstance : Module ℤ B) n (f x)).symm)
+
+def intBilinearMapPostcomp {A B C D : Type*}
+    [AddCommGroup A] [AddCommGroup B] [AddCommGroup C] [AddCommGroup D]
+    [Module ℤ A] [Module ℤ B] [Module ℤ C] [Module ℤ D]
+    (f : A →ₗ[ℤ] B →ₗ[ℤ] C) (g : C →ₗ[ℤ] D) : A →ₗ[ℤ] B →ₗ[ℤ] D := by
+  let inner (x : A) : B →+ D := g.toAddMonoidHom.comp (f x).toAddMonoidHom
+  exact intLinearMapOfAddHom ({
+    toFun x := intLinearMapOfAddHom (inner x)
+    map_zero' := by
+      ext y
+      change g (f 0 y) = 0
+      rw [map_zero, LinearMap.zero_apply, map_zero]
+    map_add' x₁ x₂ := by
+      ext y
+      change g (f (x₁ + x₂) y) = g (f x₁ y) + g (f x₂ y)
+      rw [map_add, LinearMap.add_apply, map_add] } : A →+ (B →ₗ[ℤ] D))
+
+def uliftBilinearMap {M N P : ModuleCat.{0} ℤ}
+    (f : Quiver.Hom (M ⊗ N) P) :
+    ((ModuleCat.uliftFunctor.{1} ℤ).obj M) →ₗ[ℤ]
+      ((ModuleCat.uliftFunctor.{1} ℤ).obj N) →ₗ[ℤ]
+        ((ModuleCat.uliftFunctor.{1} ℤ).obj P) := by
+  let inner (x : (ModuleCat.uliftFunctor.{1} ℤ).obj M) :
+      ((ModuleCat.uliftFunctor.{1} ℤ).obj N) →+
+        ((ModuleCat.uliftFunctor.{1} ℤ).obj P) := {
+    toFun y := ULift.up (f.hom (x.down ⊗ₜ[ℤ] y.down))
+    map_zero' := by
+      have hzero : (0 : (ModuleCat.uliftFunctor.{1} ℤ).obj N).down = 0 := rfl
+      change ULift.up (f.hom (x.down ⊗ₜ[ℤ] (0 :
+        (ModuleCat.uliftFunctor.{1} ℤ).obj N).down)) = ULift.up 0
+      rw [hzero, TensorProduct.tmul_zero, map_zero]
+    map_add' y₁ y₂ := by
+      have hadd : (y₁ + y₂).down = y₁.down + y₂.down := rfl
+      change ULift.up (f.hom (x.down ⊗ₜ[ℤ] (y₁ + y₂).down)) =
+        ULift.up (f.hom (x.down ⊗ₜ[ℤ] y₁.down) +
+          f.hom (x.down ⊗ₜ[ℤ] y₂.down))
+      rw [hadd, TensorProduct.tmul_add, map_add] }
+  exact intLinearMapOfAddHom ({
+    toFun x := intLinearMapOfAddHom (inner x)
+    map_zero' := by
+      ext y
+      have hzero : (0 : (ModuleCat.uliftFunctor.{1} ℤ).obj M).down = 0 := rfl
+      change ULift.up (f.hom ((0 :
+        (ModuleCat.uliftFunctor.{1} ℤ).obj M).down ⊗ₜ[ℤ] y.down)) = ULift.up 0
+      rw [hzero, TensorProduct.zero_tmul, map_zero]
+    map_add' x₁ x₂ := by
+      ext y
+      have hadd : (x₁ + x₂).down = x₁.down + x₂.down := rfl
+      change ULift.up (f.hom ((x₁ + x₂).down ⊗ₜ[ℤ] y.down)) =
+        ULift.up (f.hom (x₁.down ⊗ₜ[ℤ] y.down) +
+          f.hom (x₂.down ⊗ₜ[ℤ] y.down))
+      rw [hadd, TensorProduct.add_tmul, map_add] } :
+        ((ModuleCat.uliftFunctor.{1} ℤ).obj M) →+
+          (((ModuleCat.uliftFunctor.{1} ℤ).obj N) →ₗ[ℤ]
+            ((ModuleCat.uliftFunctor.{1} ℤ).obj P)))
+
+def largeSummandCompositionMap
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n) →ₗ[ℤ]
+      largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m) →ₗ[ℤ]
+        quotientGradedModule X Z (n + m) :=
+  intBilinearMapPostcomp (uliftBilinearMap (summandCompositionMap d e))
+    (Limits.Sigma.ι
+      (fun s : GradedSummandIndex X Z (n + m) ↦ largeSummandModule s)
+      ⟨w.append v, d.append e⟩).hom
+
+def rightCoproductCompositionMap
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {n m : ℤ}
+    (d : DegreeProfile w n)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n)) :
+    Quiver.Hom (quotientGradedModule Y Z m) (quotientGradedModule X Z (n + m)) :=
+  Limits.Sigma.desc fun s : GradedSummandIndex Y Z m ↦
+    ModuleCat.ofHom (largeSummandCompositionMap d s.2 x)
+
+theorem rightCoproductCompositionMap_zero
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {n m : ℤ}
+    (d : DegreeProfile w n) :
+    rightCoproductCompositionMap (Z := Z) (m := m) d 0 = 0 := by
+  apply Limits.Sigma.hom_ext
+  intro s
+  rw [rightCoproductCompositionMap, Limits.Sigma.ι_desc]
+  change ModuleCat.ofHom (largeSummandCompositionMap d s.2 0) = 0
+  rw [map_zero]
+  rfl
+
+theorem rightCoproductCompositionMap_add
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {n m : ℤ}
+    (d : DegreeProfile w n)
+    (x₁ x₂ : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n)) :
+    rightCoproductCompositionMap (Z := Z) (m := m) d (x₁ + x₂) =
+      rightCoproductCompositionMap d x₁ + rightCoproductCompositionMap d x₂ := by
+  apply Limits.Sigma.hom_ext
+  intro s
+  rw [rightCoproductCompositionMap, Limits.Sigma.ι_desc]
+  change ModuleCat.ofHom (largeSummandCompositionMap d s.2 (x₁ + x₂)) =
+    Limits.Sigma.ι (fun t : GradedSummandIndex Y Z m ↦ largeSummandModule t) s ≫
+      (rightCoproductCompositionMap d x₁ + rightCoproductCompositionMap d x₂)
+  rw [map_add, Preadditive.comp_add, rightCoproductCompositionMap,
+    rightCoproductCompositionMap, Limits.Sigma.ι_desc, Limits.Sigma.ι_desc]
+  rfl
+
+def leftSummandCompositionMap
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {n m : ℤ}
+    (d : DegreeProfile w n) :
+    largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n) →ₗ[ℤ]
+      quotientGradedModule Y Z m →ₗ[ℤ] quotientGradedModule X Z (n + m) :=
+  intLinearMapOfAddHom ({
+    toFun x := (rightCoproductCompositionMap (Z := Z) (m := m) d x).hom
+    map_zero' := congrArg ModuleCat.Hom.hom (rightCoproductCompositionMap_zero d)
+    map_add' x₁ x₂ := congrArg ModuleCat.Hom.hom
+      (rightCoproductCompositionMap_add d x₁ x₂) } :
+        largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n) →+
+          (quotientGradedModule Y Z m →ₗ[ℤ] quotientGradedModule X Z (n + m)))
+
+def quotientCompositionMap (X Y Z : ComplexCategory) (n m : ℤ) :
+    quotientGradedModule X Y n →ₗ[ℤ]
+      quotientGradedModule Y Z m →ₗ[ℤ] quotientGradedModule X Z (n + m) :=
+  (Limits.Sigma.desc fun s : GradedSummandIndex X Y n ↦
+    ModuleCat.ofHom (leftSummandCompositionMap (Z := Z) (m := m) s.2)).hom
+
+theorem quotientCompositionMap_on_summands
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m)) :
+    quotientCompositionMap X Y Z n m
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex X Y n ↦ largeSummandModule s) ⟨w, d⟩).hom x)
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex Y Z m ↦ largeSummandModule s) ⟨v, e⟩).hom y) =
+      largeSummandCompositionMap d e x y := by
+  change ((Limits.Sigma.ι
+      (fun s : GradedSummandIndex X Y n ↦ largeSummandModule s) ⟨w, d⟩ ≫
+        Limits.Sigma.desc (fun s : GradedSummandIndex X Y n ↦
+          ModuleCat.ofHom (leftSummandCompositionMap (Z := Z) (m := m) s.2))).hom x)
+      ((Limits.Sigma.ι
+        (fun s : GradedSummandIndex Y Z m ↦ largeSummandModule s) ⟨v, e⟩).hom y) = _
+  rw [Limits.Sigma.ι_desc]
+  change (rightCoproductCompositionMap d x).hom
+      ((Limits.Sigma.ι
+        (fun s : GradedSummandIndex Y Z m ↦ largeSummandModule s) ⟨v, e⟩).hom y) = _
+  change (Limits.Sigma.ι
+      (fun s : GradedSummandIndex Y Z m ↦ largeSummandModule s) ⟨v, e⟩ ≫
+        rightCoproductCompositionMap d x).hom y = _
+  rw [rightCoproductCompositionMap, Limits.Sigma.ι_desc]
+  rfl
+
 end DrinfeldWord
 end MetrizableBoundedComplexes
 end Infinity
