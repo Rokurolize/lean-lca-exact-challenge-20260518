@@ -105,7 +105,7 @@ theorem dgCochainCompTensorOfEq_right_unit_raw
         (Int.add_zero p) := Subsingleton.elim _ _
   rw [hk, dgCochainCompTensorOfEq_comp_degree_eqToHom]
   convert dgCochainCompTensorOfEq_right_unit K L p using 1
-  exact Int.add_zero p
+  · exact Int.add_zero p
 
 theorem dgCochainCompTensorOfEq_left_unit
     (K L : ComplexCategory) (p : ℤ) :
@@ -160,7 +160,7 @@ theorem dgCochainCompTensorOfEq_left_unit_raw
         (Int.zero_add p) := Subsingleton.elim _ _
   rw [hk, dgCochainCompTensorOfEq_comp_degree_eqToHom]
   convert dgCochainCompTensorOfEq_left_unit K L p using 1
-  exact Int.zero_add p
+  · exact Int.zero_add p
 
 theorem append_nil {X Y : ComplexCategory} (w : DrinfeldWord X Y) :
     w.append (nil Y Y) = w := by
@@ -352,11 +352,13 @@ theorem degreeBoundaryMerge_assoc
               cases zs with
               | nil => exact False.elim (hzs rfl)
               | cons z zs =>
-                  have hmerge := degreeBoundaryMerge_ne_nil (x' :: xs) (y :: ys) (by simp) (by simp)
+                  have hmerge := degreeBoundaryMerge_ne_nil
+                    (x' :: xs) (y :: ys) (by simp) (by simp)
                   cases h : degreeBoundaryMerge (x' :: xs) (y :: ys) with
                   | nil => exact False.elim (hmerge h)
                   | cons a as =>
-                      have hright := degreeBoundaryMerge_ne_nil (y :: ys) (z :: zs) (by simp) (by simp)
+                      have hright := degreeBoundaryMerge_ne_nil
+                        (y :: ys) (z :: zs) (by simp) (by simp)
                       cases hr : degreeBoundaryMerge (y :: ys) (z :: zs) with
                       | nil => exact False.elim (hright hr)
                       | cons b bs =>
