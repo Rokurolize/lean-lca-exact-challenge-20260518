@@ -299,6 +299,105 @@ def DegreeProfile.append
     simp only [append_length]
     omega
 
+def degreeBoundaryMerge : List ℤ → List ℤ → List ℤ
+  | [], ys => ys
+  | xs, [] => xs
+  | [x], y :: ys => (x + y) :: ys
+  | x :: x' :: xs, y :: ys =>
+      x :: degreeBoundaryMerge (x' :: xs) (y :: ys)
+
+theorem degreeBoundaryMerge_ne_nil
+    (xs ys : List ℤ) (hxs : xs ≠ []) (hys : ys ≠ []) :
+    degreeBoundaryMerge xs ys ≠ [] := by
+  cases xs with
+  | nil => exact False.elim (hxs rfl)
+  | cons x xs =>
+      cases xs with
+      | nil =>
+          cases ys with
+          | nil => exact False.elim (hys rfl)
+          | cons y ys => simp [degreeBoundaryMerge]
+      | cons x' xs =>
+          cases ys with
+          | nil => exact False.elim (hys rfl)
+          | cons y ys => simp [degreeBoundaryMerge]
+
+theorem degreeBoundaryMerge_assoc
+    (xs ys zs : List ℤ) (hxs : xs ≠ []) (hys : ys ≠ []) (hzs : zs ≠ []) :
+    degreeBoundaryMerge (degreeBoundaryMerge xs ys) zs =
+      degreeBoundaryMerge xs (degreeBoundaryMerge ys zs) := by
+  induction xs with
+  | nil => exact False.elim (hxs rfl)
+  | cons x xs ih =>
+      cases xs with
+      | nil =>
+          cases ys with
+          | nil => exact False.elim (hys rfl)
+          | cons y ys =>
+              cases ys with
+              | nil =>
+                  cases zs with
+                  | nil => exact False.elim (hzs rfl)
+                  | cons z zs =>
+                      simp [degreeBoundaryMerge, Int.add_assoc]
+              | cons y' ys =>
+                  cases zs with
+                  | nil => exact False.elim (hzs rfl)
+                  | cons z zs =>
+                      simp [degreeBoundaryMerge]
+      | cons x' xs =>
+          cases ys with
+          | nil => exact False.elim (hys rfl)
+          | cons y ys =>
+              cases zs with
+              | nil => exact False.elim (hzs rfl)
+              | cons z zs =>
+                  have hmerge := degreeBoundaryMerge_ne_nil (x' :: xs) (y :: ys) (by simp) (by simp)
+                  cases h : degreeBoundaryMerge (x' :: xs) (y :: ys) with
+                  | nil => exact False.elim (hmerge h)
+                  | cons a as =>
+                      have hright := degreeBoundaryMerge_ne_nil (y :: ys) (z :: zs) (by simp) (by simp)
+                      cases hr : degreeBoundaryMerge (y :: ys) (z :: zs) with
+                      | nil => exact False.elim (hright hr)
+                      | cons b bs =>
+                          simp only [degreeBoundaryMerge, h]
+                          exact congrArg (List.cons x) (by simpa [h, hr] using ih (by simp))
+
+theorem degreeBoundaryMerge_cons_of_ne_nil
+    (x : ℤ) (xs : List ℤ) (hxs : xs ≠ []) (y : ℤ) (ys : List ℤ) :
+    degreeBoundaryMerge (x :: xs) (y :: ys) =
+      x :: degreeBoundaryMerge xs (y :: ys) := by
+  cases xs with
+  | nil => exact False.elim (hxs rfl)
+  | cons x' xs => rfl
+
+theorem degreeBoundaryMerge_ofFn
+    (k l : ℕ) (f : Fin (k + 1) → ℤ) (g : Fin (l + 1) → ℤ) :
+    degreeBoundaryMerge (List.ofFn f) (List.ofFn g) =
+      List.ofFn (fun i : Fin k ↦ f i.castSucc) ++
+        (f (Fin.last k) + g 0) :: List.ofFn (fun j : Fin l ↦ g j.succ) := by
+  induction k with
+  | zero => simp [List.ofFn_succ, degreeBoundaryMerge]
+  | succ k ih =>
+      rw [List.ofFn_succ (f := f), List.ofFn_succ (f := g),
+        degreeBoundaryMerge_cons_of_ne_nil]
+      · conv_rhs => rw [List.ofFn_succ]
+        apply congrArg (List.cons (f 0))
+        rw [← List.ofFn_succ (f := g)]
+        have hprefix :
+            (fun i : Fin k ↦ f i.succ.castSucc) =
+              (fun i : Fin k ↦ f i.castSucc.succ) := by
+          funext i
+          apply congrArg f
+          apply Fin.ext
+          rfl
+        have hlast : (Fin.last k).succ = Fin.last (k + 1) := by
+          apply Fin.ext
+          rfl
+        rw [hprefix, ← hlast]
+        exact ih (fun i : Fin (k + 1) ↦ f i.succ)
+      · simp
+
 def tensorModuleListAppendIso :
     (Ms Ns : List (ModuleCat.{0} ℤ)) →
       tensorModuleList Ms ⊗ tensorModuleList Ns ≅ tensorModuleList (Ms ++ Ns)
@@ -1453,6 +1552,82 @@ theorem appendArrowDegree_right
     change w.length + 1 + j.val = w.length + (j.val + 1)
     omega
   rw [hindex, Fin.addCases_right, Fin.cases_succ]
+
+def DegreeProfile.degreeList
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) : List ℤ :=
+  finFamilyList d.arrowDegree
+
+theorem DegreeProfile.degreeList_ne_nil
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) : d.degreeList ≠ [] := by
+  rw [DegreeProfile.degreeList, finFamilyList_eq_ofFn]
+  simp
+
+theorem DegreeProfile.degreeList_transport
+    {X Y : ComplexCategory} {w v : DrinfeldWord X Y} {n m : ℤ}
+    (hw : w = v) (hn : n = m) (d : DegreeProfile w n) :
+    (d.transport hw hn).degreeList = d.degreeList := by
+  subst hw
+  subst hn
+  rfl
+
+theorem DegreeProfile.degreeList_append
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    (d.append e).degreeList = degreeBoundaryMerge d.degreeList e.degreeList := by
+  rw [DegreeProfile.degreeList, DegreeProfile.degreeList,
+    DegreeProfile.degreeList, finFamilyList_eq_ofFn, finFamilyList_eq_ofFn,
+    finFamilyList_eq_ofFn, degreeBoundaryMerge_ofFn]
+  let h : (w.append v).length + 1 = w.length + (v.length + 1) := by
+    simp [Nat.add_assoc]
+  calc
+    List.ofFn (d.append e).arrowDegree =
+        List.ofFn (fun q : Fin (w.length + (v.length + 1)) ↦
+          (d.append e).arrowDegree (Fin.cast h.symm q)) :=
+      List.ofFn_congr h (d.append e).arrowDegree
+    _ = List.ofFn (Fin.append
+        (fun i : Fin w.length ↦ d.arrowDegree i.castSucc)
+        (Fin.cases (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0)
+          (fun j : Fin v.length ↦ e.arrowDegree j.succ))) := by
+      rfl
+    _ = _ := by
+      rw [List.ofFn_fin_append, List.ofFn_succ]
+      simp only [Fin.cases_zero, Fin.cases_succ]
+
+theorem DegreeProfile.eq_of_degreeList_eq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    {d e : DegreeProfile w n} (h : d.degreeList = e.degreeList) : d = e := by
+  apply DegreeProfile.ext
+  apply List.ofFn_injective
+  rw [DegreeProfile.degreeList, DegreeProfile.degreeList,
+    finFamilyList_eq_ofFn, finFamilyList_eq_ofFn] at h
+  exact h
+
+theorem DegreeProfile.append_assoc_transport
+    {W X Y Z : ComplexCategory}
+    {u : DrinfeldWord W X} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {p q r : ℤ} (a : DegreeProfile u p) (d : DegreeProfile w q)
+    (e : DegreeProfile v r) :
+    ((a.append d).append e).transport (append_assoc u w v)
+        (Int.add_assoc p q r) =
+      a.append (d.append e) := by
+  apply DegreeProfile.eq_of_degreeList_eq
+  calc
+    (((a.append d).append e).transport (append_assoc u w v)
+        (Int.add_assoc p q r)).degreeList =
+        ((a.append d).append e).degreeList :=
+      DegreeProfile.degreeList_transport (append_assoc u w v)
+        (Int.add_assoc p q r) ((a.append d).append e)
+    _ = degreeBoundaryMerge
+          (degreeBoundaryMerge a.degreeList d.degreeList) e.degreeList := by
+      rw [DegreeProfile.degreeList_append, DegreeProfile.degreeList_append]
+    _ = degreeBoundaryMerge a.degreeList
+          (degreeBoundaryMerge d.degreeList e.degreeList) :=
+      degreeBoundaryMerge_assoc a.degreeList d.degreeList e.degreeList
+        a.degreeList_ne_nil d.degreeList_ne_nil e.degreeList_ne_nil
+    _ = (a.append (d.append e)).degreeList := by
+      rw [DegreeProfile.degreeList_append, DegreeProfile.degreeList_append]
 
 theorem DegreeProfile.append_nil_transport
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
