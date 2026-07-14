@@ -207,6 +207,89 @@ theorem adjacentMergeAfter_cons
       AdjacentMergeData.tail (adjacentMergeAfter xs (ys := ys) f) :=
   rfl
 
+def appendSingletonPairEq {α : Type*} (xs : List α) (M N : α) :
+    (xs ++ [M]) ++ [N] = xs ++ [M, N] := by
+  induction xs with
+  | nil => rfl
+  | cons Q xs ih => exact congrArg (Q :: ·) ih
+
+@[simp]
+theorem tensorModuleList_eqToHom_cons
+    (Q : ModuleCat.{0} ℤ) {xs ys : List (ModuleCat.{0} ℤ)} (h : xs = ys) :
+    eqToHom (congrArg tensorModuleList (congrArg (Q :: ·) h)) =
+      𝟙 Q ⊗ₘ eqToHom (congrArg tensorModuleList h) := by
+  subst h
+  change 𝟙 (Q ⊗ tensorModuleList xs) =
+    𝟙 Q ⊗ₘ 𝟙 (tensorModuleList xs)
+  exact (MonoidalCategory.id_tensorHom_id Q (tensorModuleList xs)).symm
+
+@[simp]
+theorem appendSingletonPair_eqToHom_cons
+    (Q : ModuleCat.{0} ℤ) (xs : List (ModuleCat.{0} ℤ))
+    (M N : ModuleCat.{0} ℤ) :
+    eqToHom (congrArg tensorModuleList
+      (appendSingletonPairEq (Q :: xs) M N)) =
+      𝟙 Q ⊗ₘ eqToHom (congrArg tensorModuleList
+        (appendSingletonPairEq xs M N)) := by
+  change eqToHom (congrArg tensorModuleList
+      (congrArg (Q :: ·) (appendSingletonPairEq xs M N))) = _
+  exact tensorModuleList_eqToHom_cons Q (appendSingletonPairEq xs M N)
+
+theorem adjacentMergeAfter_tensorMap_right_unit
+    (xs : List (ModuleCat.{0} ℤ)) {M N : ModuleCat.{0} ℤ}
+    (u : 𝟙_ (ModuleCat.{0} ℤ) ⟶ N) (f : M ⊗ N ⟶ M)
+    (hunit : (ρ_ M).inv ≫ (𝟙 M ⊗ₘ u) ≫ f = 𝟙 M) :
+    (ρ_ (tensorModuleList (xs ++ [M]))).inv ≫
+        (𝟙 (tensorModuleList (xs ++ [M])) ⊗ₘ (u ≫ (ρ_ N).inv)) ≫
+        (tensorModuleListAppendIso (xs ++ [M]) [N]).hom ≫
+        eqToHom (congrArg tensorModuleList (appendSingletonPairEq xs M N)) ≫
+        (adjacentMergeAfter xs (ys := []) f).tensorMap =
+      𝟙 (tensorModuleList (xs ++ [M])) := by
+  induction xs with
+  | nil =>
+      dsimp only [List.nil_append, List.cons_append, List.append_nil,
+        tensorModuleList, tensorModuleListOver, tensorModuleListAppendIso,
+        adjacentMergeAfter, appendSingletonPairEq, AdjacentMergeData.tensorMap]
+      change (ρ_ (M ⊗ 𝟙_ (ModuleCat.{0} ℤ))).inv ≫
+          (𝟙 (M ⊗ 𝟙_ (ModuleCat.{0} ℤ)) ⊗ₘ (u ≫ (ρ_ N).inv)) ≫
+          (α_ M (𝟙_ (ModuleCat.{0} ℤ)) (N ⊗ 𝟙_ (ModuleCat.{0} ℤ))).hom ≫
+          (𝟙 M ⊗ₘ (λ_ (N ⊗ 𝟙_ (ModuleCat.{0} ℤ))).hom) ≫
+          (α_ M N (𝟙_ (ModuleCat.{0} ℤ))).inv ≫
+          (f ⊗ₘ 𝟙 (𝟙_ (ModuleCat.{0} ℤ))) =
+        𝟙 (M ⊗ 𝟙_ (ModuleCat.{0} ℤ))
+      calc
+        _ = ((ρ_ M).inv ≫ (𝟙 M ⊗ₘ u) ≫ f) ⊗ₘ
+            𝟙 (𝟙_ (ModuleCat.{0} ℤ)) := by monoidal
+        _ = 𝟙 M ⊗ₘ 𝟙 (𝟙_ (ModuleCat.{0} ℤ)) := by rw [hunit]
+        _ = _ := MonoidalCategory.id_tensorHom_id M (𝟙_ (ModuleCat.{0} ℤ))
+  | cons Q xs ih =>
+      rw [appendSingletonPair_eqToHom_cons]
+      dsimp only [List.cons_append, tensorModuleList, tensorModuleListOver,
+        tensorModuleListAppendIso, adjacentMergeAfter,
+        AdjacentMergeData.tensorMap]
+      let A := tensorModuleList (xs ++ [M])
+      let r : 𝟙_ (ModuleCat.{0} ℤ) ⟶ N ⊗ 𝟙_ (ModuleCat.{0} ℤ) :=
+        u ≫ (ρ_ N).inv
+      let a : A ⊗ (N ⊗ 𝟙_ (ModuleCat.{0} ℤ)) ⟶
+          tensorModuleList ((xs ++ [M]) ++ [N]) :=
+        (tensorModuleListAppendIso (xs ++ [M]) [N]).hom
+      let e : tensorModuleList ((xs ++ [M]) ++ [N]) ⟶
+          tensorModuleList (xs ++ [M, N]) :=
+        eqToHom (congrArg tensorModuleList (appendSingletonPairEq xs M N))
+      let g : tensorModuleList (xs ++ [M, N]) ⟶
+          tensorModuleList (xs ++ [M]) :=
+        (adjacentMergeAfter xs (ys := []) f).tensorMap
+      change (ρ_ (Q ⊗ A)).inv ≫ (𝟙 (Q ⊗ A) ⊗ₘ r) ≫
+          (α_ Q A (N ⊗ 𝟙_ (ModuleCat.{0} ℤ))).hom ≫
+          (𝟙 Q ⊗ₘ a) ≫ (𝟙 Q ⊗ₘ e) ≫ (𝟙 Q ⊗ₘ g) =
+        𝟙 (Q ⊗ A)
+      calc
+        _ = 𝟙 Q ⊗ₘ ((ρ_ A).inv ≫ (𝟙 A ⊗ₘ r) ≫ a ≫ e ≫ g) := by
+          monoidal
+        _ = 𝟙 Q ⊗ₘ 𝟙 (tensorModuleList (xs ++ [M])) := by rw [ih]
+        _ = _ := MonoidalCategory.id_tensorHom_id Q
+          (tensorModuleList (xs ++ [M]))
+
 def compositionSourceFactor
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
     {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
