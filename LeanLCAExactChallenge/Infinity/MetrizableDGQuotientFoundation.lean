@@ -246,13 +246,21 @@ def factorDifferential {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     Quiver.Hom (factorModule d j) (factorModule (d.raise i) j) := by
   by_cases h : j = i
   · subst j
-    simpa [factorModule, DegreeProfile.raise] using
-      (dgHomZModuleCochainComplex (w.arrowSource i) (w.arrowTarget i)).d
-        (d.arrowDegree i) (d.arrowDegree i + 1)
+    exact (dgHomZModuleCochainComplex (w.arrowSource i) (w.arrowTarget i)).d
+      (d.arrowDegree i) ((d.raise i).arrowDegree i)
   · have hdeg : (d.raise i).arrowDegree j = d.arrowDegree j := by
       simp [DegreeProfile.raise, h]
     rw [factorModule, factorModule, hdeg]
     exact 𝟙 _
+
+theorem factorDifferential_self_comp {X Y : ComplexCategory}
+    {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
+    (i : Fin (w.length + 1)) :
+    factorDifferential d i i ≫ factorDifferential (d.raise i) i i = 0 := by
+  unfold factorDifferential
+  simp only [eq_self, dif_pos]
+  exact (dgHomZModuleCochainComplex (w.arrowSource i) (w.arrowTarget i)).d_comp_d
+    (d.arrowDegree i) ((d.raise i).arrowDegree i) (((d.raise i).raise i).arrowDegree i)
 
 /-- Right-associated tensor product of a finite list of modules. -/
 def tensorModuleListOver (R : Type) [CommRing R] :
@@ -332,6 +340,18 @@ theorem piTensorMap_eq_zero_of_component_eq_zero (R : Type) [CommRing R]
   | add x y hx hy =>
       change PiTensorProduct.map f (x + y) = 0
       simp [map_add, hx, hy]
+
+theorem finiteTensorMapOver_eq_zero_of_component_eq_zero
+    (R : Type) [CommRing R] {k : ℕ} (M N : Fin k → ModuleCat.{0} R)
+    (f : (i : Fin k) → M i ⟶ N i) (i : Fin k) (hi : f i = 0) :
+    finiteTensorMapOver R M N f = 0 := by
+  apply ModuleCat.hom_ext
+  change (piTensorListEquivOver R N).toLinearMap.comp
+      ((PiTensorProduct.map (fun j ↦ (f j).hom)).comp
+        (piTensorListEquivOver R M).symm.toLinearMap) = 0
+  rw [piTensorMap_eq_zero_of_component_eq_zero R (fun j ↦ (f j).hom) i]
+  · simp
+  · exact congrArg ModuleCat.Hom.hom hi
 
 theorem finiteTensorMapOver_comp (R : Type) [CommRing R] {k : ℕ}
     (M N P : Fin k → ModuleCat.{0} R) (f : (i : Fin k) → M i ⟶ N i)
@@ -517,6 +537,15 @@ theorem internalDifferentialFiniteTensorMap_comp {X Y : ComplexCategory}
   exact finiteTensorMapOver_comp ℤ (factorModule d) (factorModule (d.raise i))
     (factorModule ((d.raise i).raise j)) (factorDifferential d i)
       (factorDifferential (d.raise i) j)
+
+theorem internalDifferentialFiniteTensorMap_self_comp {X Y : ComplexCategory}
+    {w : DrinfeldWord X Y} {n : ℤ} (d : DegreeProfile w n)
+    (i : Fin (w.length + 1)) :
+    internalDifferentialFiniteTensorMap d i ≫
+      internalDifferentialFiniteTensorMap (d.raise i) i = 0 := by
+  rw [internalDifferentialFiniteTensorMap_comp]
+  apply finiteTensorMapOver_eq_zero_of_component_eq_zero ℤ _ _ _ i
+  exact factorDifferential_self_comp d i
 
 /-- Index of a homogeneous summand of the corrected Drinfeld quotient. -/
 abbrev GradedSummandIndex (X Y : ComplexCategory) (n : ℤ) :=
