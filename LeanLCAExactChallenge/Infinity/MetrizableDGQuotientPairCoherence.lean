@@ -505,6 +505,37 @@ theorem rawContractionAdjacentMerge_pair_coherence
                 exact (rawSecondContractionMergeData_tail_heq d
                   (i.succAbove j) (j.predAbove i)).symm
 
+theorem rawContractionPair_target_eq
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (i : Fin (k + 2)) (j : Fin (k + 1)) :
+    finFamilyList
+        (recursiveMergedFactor
+          (recursiveMergedFactor (factorModule d) i (rawContractionFactor d i)) j
+          (rawSecondContractionFactor d i j)) =
+      finFamilyList
+        (recursiveMergedFactor
+          (recursiveMergedFactor (factorModule d) (i.succAbove j)
+            (rawContractionFactor d (i.succAbove j))) (j.predAbove i)
+          (rawSecondContractionFactor d (i.succAbove j) (j.predAbove i))) :=
+  (rawContractionAdjacentMerge_pair_coherence d i j).target_eq
+
+theorem rawContractionPair_tensorMap_heq
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (i : Fin (k + 2)) (j : Fin (k + 1)) :
+    HEq
+      ((rawContractionAdjacentMergeData d i).tensorMap ≫
+        (rawSecondContractionMergeData d i j).tensorMap)
+      ((rawContractionAdjacentMergeData d (i.succAbove j)).tensorMap ≫
+        (rawSecondContractionMergeData d (i.succAbove j)
+          (j.predAbove i)).tensorMap) :=
+  (rawContractionAdjacentMerge_pair_coherence d i j).tensorMap_heq
+
 
 end DrinfeldWord
 end MetrizableBoundedComplexes

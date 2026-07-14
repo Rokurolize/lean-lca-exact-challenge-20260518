@@ -875,14 +875,50 @@ def recursiveContractionAdjacentMergeData
   recursiveAdjacentMergeDataOfFn (factorModule d) i (contractedFactorAtOldIndex d i i)
     (contractionMergeAtOldIndex d i)
 
+theorem recursiveContractionMergedFactor_eq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i q : Fin w.length) :
+    recursiveMergedFactor (factorModule d) i
+        (contractedFactorAtOldIndex d i i) q =
+      contractedFactorAtOldIndex d i q := by
+  rw [recursiveMergedFactor_eq_mergedFactor]
+  by_cases hlt : q < i
+  · have hbefore :
+        eraseFactorIndex w i (uneraseFactorIndex w i q) < i := by
+      simpa using hlt
+    simp only [mergedFactor, hlt, if_true, contractedFactorAtOldIndex,
+      factorModule]
+    rw [eraseIntermediate_arrowSource_of_before w i
+        (uneraseFactorIndex w i q) hbefore,
+      eraseIntermediate_arrowTarget_of_before w i
+        (uneraseFactorIndex w i q) hbefore,
+      contract_arrowDegree_of_before d i
+        (uneraseFactorIndex w i q) hbefore,
+      eraseFactorIndex_uneraseFactorIndex]
+  · by_cases heq : q = i
+    · subst q
+      simp [mergedFactor]
+    · have hafter :
+          i < eraseFactorIndex w i (uneraseFactorIndex w i q) := by
+        rw [eraseFactorIndex_uneraseFactorIndex]
+        exact lt_of_le_of_ne (Fin.not_lt.mp hlt) (Ne.symm heq)
+      simp only [mergedFactor, hlt, heq, if_false,
+        contractedFactorAtOldIndex, factorModule]
+      rw [eraseIntermediate_arrowSource_of_after w i
+          (uneraseFactorIndex w i q) hafter,
+        eraseIntermediate_arrowTarget_of_after w i
+          (uneraseFactorIndex w i q) hafter,
+        contract_arrowDegree_of_after d i
+          (uneraseFactorIndex w i q) hafter,
+        eraseFactorIndex_uneraseFactorIndex]
+
 def recursiveContractionMergedFactorMap
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) (i j : Fin w.length) :
     Quiver.Hom
       (recursiveMergedFactor (factorModule d) i (contractedFactorAtOldIndex d i i) j)
-      (contractedFactorAtOldIndex d i j) := by
-  rw [recursiveMergedFactor_eq_mergedFactor]
-  exact contractionMergedFactorMap d i j
+      (contractedFactorAtOldIndex d i j) :=
+  eqToHom (recursiveContractionMergedFactor_eq d i j)
 
 def rawContractionFactor
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
@@ -1228,7 +1264,11 @@ theorem recursiveContractionMergedFactorMap_singleton
     recursiveContractionMergedFactorMap d 0 0 =
       𝟙 (contractedFactorAtOldIndex d 0 0) := by
   unfold recursiveContractionMergedFactorMap
-  simp [contractionMergedFactorMap, mergedFactor]
+  have h : recursiveMergedFactor (factorModule d) 0
+      (contractedFactorAtOldIndex d 0 0) 0 =
+        contractedFactorAtOldIndex d 0 0 := rfl
+  rw [Subsingleton.elim (recursiveContractionMergedFactor_eq d 0 0) h]
+  rfl
 
 def recursiveContractionMergedFactorsTensorMap
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
