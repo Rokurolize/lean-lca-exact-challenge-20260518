@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.Infinity.MetrizableDGQuotientComplex
+import LeanLCAExactChallenge.Infinity.MetrizableDGQuotientDifferentialCancellation
 
 /-! # Composition in the corrected Drinfeld quotient -/
 
@@ -13,6 +14,65 @@ namespace DrinfeldWord
 
 open CategoryTheory
 open CategoryTheory.MonoidalCategory
+
+theorem append_nil {X Y : ComplexCategory} (w : DrinfeldWord X Y) :
+    w.append (nil Y Y) = w := by
+  cases w with
+  | mk length intermediate =>
+      simp only [append, nil, Nat.add_zero, DrinfeldWord.mk.injEq, heq_eq_eq]
+      constructor
+      · trivial
+      funext i
+      simpa using (Fin.addCases_left
+        (motive := fun _ ↦ CorrectedAcyclicComplexCategory)
+        (m := length) (n := 0) (left := intermediate)
+        (right := fun i ↦ Fin.elim0 i) i)
+
+theorem nil_append {X Y : ComplexCategory} (w : DrinfeldWord X Y) :
+    (nil X X).append w = w := by
+  cases w with
+  | mk length intermediate =>
+      simp only [append, nil, Nat.zero_add, DrinfeldWord.mk.injEq]
+      constructor
+      · trivial
+      refine (Fin.heq_fun_iff (Nat.zero_add length)).mpr ?_
+      intro i
+      simp [Fin.addCases]
+      apply congrArg intermediate
+      apply Fin.ext
+      rfl
+
+theorem append_assoc {W X Y Z : ComplexCategory}
+    (u : DrinfeldWord W X) (w : DrinfeldWord X Y) (v : DrinfeldWord Y Z) :
+    (u.append w).append v = u.append (w.append v) := by
+  cases u with
+  | mk ulength uintermediate =>
+    cases w with
+    | mk wlength wintermediate =>
+      cases v with
+      | mk vlength vintermediate =>
+        simp only [append, Nat.add_assoc, DrinfeldWord.mk.injEq]
+        constructor
+        · trivial
+        refine (Fin.heq_fun_iff (Nat.add_assoc ulength wlength vlength)).mpr ?_
+        intro i
+        by_cases hleft : i.val < ulength
+        · have houter : i.val < ulength + wlength := by omega
+          simp [Fin.addCases, hleft, houter]
+          apply congrArg uintermediate
+          apply Fin.ext
+          rfl
+        · by_cases hmiddle : i.val < ulength + wlength
+          · have hshift : i.val - ulength < wlength := by omega
+            simp [Fin.addCases, hleft, hmiddle, hshift]
+            apply congrArg wintermediate
+            apply Fin.ext
+            rfl
+          · have hshift : ¬i.val - ulength < wlength := by omega
+            simp [Fin.addCases, hleft, hmiddle, hshift]
+            apply congrArg vintermediate
+            apply Fin.ext
+            exact (Nat.sub_sub i.val ulength wlength).symm
 
 def appendArrowDegree
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
@@ -676,6 +736,21 @@ theorem quotientCompositionMap_on_summands
         rightCoproductCompositionMap d x).hom y = _
   rw [rightCoproductCompositionMap, Limits.Sigma.ι_desc]
   rfl
+
+def quotientIdentityElement (K : ComplexCategory) : quotientGradedModule K K 0 :=
+  (originalHomInclusion K K 0).hom (ULift.up (identityCochain K))
+
+theorem quotientIdentityElement_closed (K : ComplexCategory) :
+    (quotientTotalDifferential K K 0).hom (quotientIdentityElement K) = 0 := by
+  have h := originalHomInclusion_comp_totalDifferential K K 0
+  have happ := congrArg (fun f ↦ f.hom (ULift.up (identityCochain K))) h
+  change (quotientTotalDifferential K K 0).hom (quotientIdentityElement K) =
+    (originalHomInclusion K K 1).hom
+      (((ModuleCat.uliftFunctor.{1} ℤ).map
+        ((dgHomZModuleCochainComplex K K).d 0 1)).hom
+          (ULift.up (identityCochain K))) at happ
+  rw [uliftFunctor_map_up, identityCochain_d] at happ
+  exact happ.trans (map_zero _)
 
 end DrinfeldWord
 end MetrizableBoundedComplexes
