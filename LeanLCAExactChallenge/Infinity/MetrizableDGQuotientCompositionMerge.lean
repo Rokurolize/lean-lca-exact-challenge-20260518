@@ -1195,6 +1195,27 @@ theorem internalSign_append_boundary_mul
 
 
 
+theorem contractionSign_append_left
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (i : Fin w.length) :
+    (d.append e).contractionSign (appendLeftContractionIndex i) =
+      d.contractionSign i * (m.negOnePow : ℤ) := by
+  rw [(d.append e).contractionSign_eq_negOnePow, d.contractionSign_eq_negOnePow,
+    contractionSuffix_append_left, Int.negOnePow_add]
+  rfl
+
+theorem contractionSign_append_right
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (j : Fin v.length) :
+    (d.append e).contractionSign (appendRightContractionIndex j) =
+      e.contractionSign j := by
+  rw [(d.append e).contractionSign_eq_negOnePow, e.contractionSign_eq_negOnePow,
+    contractionSuffix_append_right]
+
+
+
 end DrinfeldWord
 end MetrizableBoundedComplexes
 end Infinity
