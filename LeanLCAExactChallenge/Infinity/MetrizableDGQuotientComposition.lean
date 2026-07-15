@@ -364,6 +364,294 @@ theorem quotientCompositionMap_on_summands
   rw [rightCoproductCompositionMap, Limits.Sigma.ι_desc]
   rfl
 
+theorem largeSummandCompositionMap_assoc_transport
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile w q)
+    (e : DegreeProfile v r)
+    (x : largeSummandModule
+      (⟨u, a⟩ : GradedSummandIndex W X p))
+    (y : largeSummandModule
+      (⟨w, d⟩ : GradedSummandIndex X Y q))
+    (z : largeSummandModule
+      (⟨v, e⟩ : GradedSummandIndex Y Z r)) :
+    (eqToHom (congrArg (quotientGradedModule W Z)
+        (Int.add_assoc p q r))).hom
+      (quotientCompositionMap W Y Z (p + q) r
+        (largeSummandCompositionMap a d x y)
+        ((Limits.Sigma.ι
+          (fun t : GradedSummandIndex Y Z r ↦ largeSummandModule t)
+          ⟨v, e⟩).hom z)) =
+      quotientCompositionMap W X Z p (q + r)
+        ((Limits.Sigma.ι
+          (fun t : GradedSummandIndex W X p ↦ largeSummandModule t)
+          ⟨u, a⟩).hom x)
+        (largeSummandCompositionMap d e y z) := by
+  rcases x with ⟨x⟩
+  rcases y with ⟨y⟩
+  rcases z with ⟨z⟩
+  change
+    (eqToHom (congrArg (quotientGradedModule W Z)
+        (Int.add_assoc p q r))).hom
+      (quotientCompositionMap W Y Z (p + q) r
+        ((Limits.Sigma.ι
+          (fun t : GradedSummandIndex W Y (p + q) ↦ largeSummandModule t)
+          ⟨u.append w, a.append d⟩).hom
+            (ULift.up ((summandCompositionMap a d).hom (x ⊗ₜ[ℤ] y))))
+        ((Limits.Sigma.ι
+          (fun t : GradedSummandIndex Y Z r ↦ largeSummandModule t)
+          ⟨v, e⟩).hom (ULift.up z))) =
+      quotientCompositionMap W X Z p (q + r)
+        ((Limits.Sigma.ι
+          (fun t : GradedSummandIndex W X p ↦ largeSummandModule t)
+          ⟨u, a⟩).hom (ULift.up x))
+        ((Limits.Sigma.ι
+          (fun t : GradedSummandIndex X Z (q + r) ↦ largeSummandModule t)
+          ⟨w.append v, d.append e⟩).hom
+            (ULift.up ((summandCompositionMap d e).hom (y ⊗ₜ[ℤ] z))))
+  rw [quotientCompositionMap_on_summands,
+    quotientCompositionMap_on_summands]
+  change
+    (Limits.Sigma.ι
+          (fun t : GradedSummandIndex W Z ((p + q) + r) ↦
+            largeSummandModule t)
+          ⟨(u.append w).append v, (a.append d).append e⟩ ≫
+        eqToHom (congrArg (quotientGradedModule W Z)
+          (Int.add_assoc p q r))).hom
+      (ULift.up ((summandCompositionMap (a.append d) e).hom
+        ((summandCompositionMap a d).hom (x ⊗ₜ[ℤ] y) ⊗ₜ[ℤ] z))) =
+      (Limits.Sigma.ι
+        (fun t : GradedSummandIndex W Z (p + (q + r)) ↦
+          largeSummandModule t)
+        ⟨u.append (w.append v), a.append (d.append e)⟩).hom
+      (ULift.up ((summandCompositionMap a (d.append e)).hom
+        (x ⊗ₜ[ℤ] (summandCompositionMap d e).hom (y ⊗ₜ[ℤ] z))))
+  rw [largeSummandAssocInclusion_transport]
+  simp only [ModuleCat.comp_apply, uliftFunctor_map_up]
+  have h := congrArg
+    (fun f : Quiver.Hom
+        (summandModule a ⊗ (summandModule d ⊗ summandModule e))
+        (summandModule (a.append (d.append e))) ↦
+      f.hom (x ⊗ₜ[ℤ] (y ⊗ₜ[ℤ] z)))
+    (summandCompositionMap_assoc a d e)
+  simp only [ModuleCat.comp_apply,
+    ModuleCat.MonoidalCategory.associator_inv_apply] at h
+  have h' :
+      (summandAssocIso a d e).hom.hom
+          ((summandCompositionMap (a.append d) e).hom
+            ((summandCompositionMap a d).hom (x ⊗ₜ[ℤ] y) ⊗ₜ[ℤ] z)) =
+        (summandCompositionMap a (d.append e)).hom
+          (x ⊗ₜ[ℤ] (summandCompositionMap d e).hom (y ⊗ₜ[ℤ] z)) := by
+    change
+      (summandAssocIso a d e).hom.hom
+          ((summandCompositionMap (a.append d) e).hom
+            ((summandCompositionMap a d).hom (x ⊗ₜ[ℤ] y) ⊗ₜ[ℤ] z)) =
+        (summandCompositionMap a (d.append e)).hom
+          (x ⊗ₜ[ℤ] (summandCompositionMap d e).hom (y ⊗ₜ[ℤ] z)) at h
+    exact h
+  exact congrArg
+    (fun t : summandModule (a.append (d.append e)) ↦
+      (Limits.Sigma.ι
+        (fun s : GradedSummandIndex W Z (p + (q + r)) ↦
+          largeSummandModule s)
+        ⟨u.append (w.append v), a.append (d.append e)⟩).hom (ULift.up t)) h'
+
+def quotientCompositionLeftAssociatedMap
+    (W X Y Z : ComplexCategory) (p q r : ℤ) :
+    quotientGradedModule W X p →ₗ[ℤ]
+      quotientGradedModule X Y q →ₗ[ℤ]
+        quotientGradedModule Y Z r →ₗ[ℤ]
+          quotientGradedModule W Z (p + (q + r)) := by
+  let transport :=
+    (eqToHom (congrArg (quotientGradedModule W Z)
+      (Int.add_assoc p q r))).hom
+  exact intLinearMapOfAddHom ({
+    toFun x := intLinearMapOfAddHom ({
+      toFun y := transport.comp
+        (quotientCompositionMap W Y Z (p + q) r
+          (quotientCompositionMap W X Y p q x y))
+      map_zero' := by
+        ext z
+        simp
+      map_add' y₁ y₂ := by
+        ext z
+        simp } : quotientGradedModule X Y q →+
+          (quotientGradedModule Y Z r →ₗ[ℤ]
+            quotientGradedModule W Z (p + (q + r))))
+    map_zero' := by
+      ext y z
+      change transport
+        (quotientCompositionMap W Y Z (p + q) r
+          (quotientCompositionMap W X Y p q 0 y) z) = 0
+      simp
+    map_add' x₁ x₂ := by
+      ext y z
+      change transport
+        (quotientCompositionMap W Y Z (p + q) r
+          (quotientCompositionMap W X Y p q (x₁ + x₂) y) z) =
+        transport
+            (quotientCompositionMap W Y Z (p + q) r
+              (quotientCompositionMap W X Y p q x₁ y) z) +
+          transport
+            (quotientCompositionMap W Y Z (p + q) r
+              (quotientCompositionMap W X Y p q x₂ y) z)
+      simp } : quotientGradedModule W X p →+
+        (quotientGradedModule X Y q →ₗ[ℤ]
+          quotientGradedModule Y Z r →ₗ[ℤ]
+            quotientGradedModule W Z (p + (q + r))))
+
+def quotientCompositionRightAssociatedMap
+    (W X Y Z : ComplexCategory) (p q r : ℤ) :
+    quotientGradedModule W X p →ₗ[ℤ]
+      quotientGradedModule X Y q →ₗ[ℤ]
+        quotientGradedModule Y Z r →ₗ[ℤ]
+          quotientGradedModule W Z (p + (q + r)) := by
+  exact intLinearMapOfAddHom ({
+    toFun x := intLinearMapOfAddHom ({
+      toFun y := (quotientCompositionMap W X Z p (q + r) x).comp
+        (quotientCompositionMap X Y Z q r y)
+      map_zero' := by
+        ext z
+        simp
+      map_add' y₁ y₂ := by
+        ext z
+        simp } : quotientGradedModule X Y q →+
+          (quotientGradedModule Y Z r →ₗ[ℤ]
+            quotientGradedModule W Z (p + (q + r))))
+    map_zero' := by
+      ext y z
+      change quotientCompositionMap W X Z p (q + r) 0
+        (quotientCompositionMap X Y Z q r y z) = 0
+      simp
+    map_add' x₁ x₂ := by
+      ext y z
+      change quotientCompositionMap W X Z p (q + r) (x₁ + x₂)
+          (quotientCompositionMap X Y Z q r y z) =
+        quotientCompositionMap W X Z p (q + r) x₁
+            (quotientCompositionMap X Y Z q r y z) +
+          quotientCompositionMap W X Z p (q + r) x₂
+            (quotientCompositionMap X Y Z q r y z)
+      simp } : quotientGradedModule W X p →+
+        (quotientGradedModule X Y q →ₗ[ℤ]
+          quotientGradedModule Y Z r →ₗ[ℤ]
+            quotientGradedModule W Z (p + (q + r))))
+
+@[simp]
+theorem quotientCompositionLeftAssociatedMap_apply
+    (W X Y Z : ComplexCategory) (p q r : ℤ)
+    (x : quotientGradedModule W X p)
+    (y : quotientGradedModule X Y q)
+    (z : quotientGradedModule Y Z r) :
+    quotientCompositionLeftAssociatedMap W X Y Z p q r x y z =
+      (eqToHom (congrArg (quotientGradedModule W Z)
+        (Int.add_assoc p q r))).hom
+        (quotientCompositionMap W Y Z (p + q) r
+          (quotientCompositionMap W X Y p q x y) z) := rfl
+
+@[simp]
+theorem quotientCompositionRightAssociatedMap_apply
+    (W X Y Z : ComplexCategory) (p q r : ℤ)
+    (x : quotientGradedModule W X p)
+    (y : quotientGradedModule X Y q)
+    (z : quotientGradedModule Y Z r) :
+    quotientCompositionRightAssociatedMap W X Y Z p q r x y z =
+      quotientCompositionMap W X Z p (q + r) x
+        (quotientCompositionMap X Y Z q r y z) := rfl
+
+theorem quotientCompositionAssociatedMaps_eq
+    (W X Y Z : ComplexCategory) (p q r : ℤ) :
+    quotientCompositionLeftAssociatedMap W X Y Z p q r =
+      quotientCompositionRightAssociatedMap W X Y Z p q r := by
+  let left := quotientCompositionLeftAssociatedMap W X Y Z p q r
+  let right := quotientCompositionRightAssociatedMap W X Y Z p q r
+  have hx : ModuleCat.ofHom left = ModuleCat.ofHom right := by
+    apply Limits.Sigma.hom_ext
+    rintro ⟨u, a⟩
+    apply ModuleCat.hom_ext
+    apply LinearMap.ext
+    intro x
+    have hy : ModuleCat.ofHom
+          (left ((Limits.Sigma.ι
+            (fun s : GradedSummandIndex W X p ↦ largeSummandModule s)
+            ⟨u, a⟩).hom x)) =
+        ModuleCat.ofHom
+          (right ((Limits.Sigma.ι
+            (fun s : GradedSummandIndex W X p ↦ largeSummandModule s)
+            ⟨u, a⟩).hom x)) := by
+      apply Limits.Sigma.hom_ext
+      rintro ⟨w, d⟩
+      apply ModuleCat.hom_ext
+      apply LinearMap.ext
+      intro y
+      have hz : ModuleCat.ofHom
+            (left ((Limits.Sigma.ι
+              (fun s : GradedSummandIndex W X p ↦ largeSummandModule s)
+              ⟨u, a⟩).hom x)
+              ((Limits.Sigma.ι
+                (fun s : GradedSummandIndex X Y q ↦ largeSummandModule s)
+                ⟨w, d⟩).hom y)) =
+          ModuleCat.ofHom
+            (right ((Limits.Sigma.ι
+              (fun s : GradedSummandIndex W X p ↦ largeSummandModule s)
+              ⟨u, a⟩).hom x)
+              ((Limits.Sigma.ι
+                (fun s : GradedSummandIndex X Y q ↦ largeSummandModule s)
+                ⟨w, d⟩).hom y)) := by
+        apply Limits.Sigma.hom_ext
+        rintro ⟨v, e⟩
+        apply ModuleCat.hom_ext
+        apply LinearMap.ext
+        intro z
+        change left
+            ((Limits.Sigma.ι
+              (fun s : GradedSummandIndex W X p ↦ largeSummandModule s)
+              ⟨u, a⟩).hom x)
+            ((Limits.Sigma.ι
+              (fun s : GradedSummandIndex X Y q ↦ largeSummandModule s)
+              ⟨w, d⟩).hom y)
+            ((Limits.Sigma.ι
+              (fun s : GradedSummandIndex Y Z r ↦ largeSummandModule s)
+              ⟨v, e⟩).hom z) =
+          right
+            ((Limits.Sigma.ι
+              (fun s : GradedSummandIndex W X p ↦ largeSummandModule s)
+              ⟨u, a⟩).hom x)
+            ((Limits.Sigma.ι
+              (fun s : GradedSummandIndex X Y q ↦ largeSummandModule s)
+              ⟨w, d⟩).hom y)
+            ((Limits.Sigma.ι
+              (fun s : GradedSummandIndex Y Z r ↦ largeSummandModule s)
+              ⟨v, e⟩).hom z)
+        simp only [left, right,
+          quotientCompositionLeftAssociatedMap_apply,
+          quotientCompositionRightAssociatedMap_apply]
+        rw [quotientCompositionMap_on_summands a d x y,
+          quotientCompositionMap_on_summands d e y z]
+        exact largeSummandCompositionMap_assoc_transport a d e x y z
+      exact congrArg ModuleCat.Hom.hom hz
+    exact congrArg ModuleCat.Hom.hom hy
+  exact congrArg ModuleCat.Hom.hom hx
+
+theorem quotientCompositionMap_assoc
+    (W X Y Z : ComplexCategory) (p q r : ℤ)
+    (x : quotientGradedModule W X p)
+    (y : quotientGradedModule X Y q)
+    (z : quotientGradedModule Y Z r) :
+    (eqToHom (congrArg (quotientGradedModule W Z)
+        (Int.add_assoc p q r))).hom
+      (quotientCompositionMap W Y Z (p + q) r
+        (quotientCompositionMap W X Y p q x y) z) =
+      quotientCompositionMap W X Z p (q + r) x
+        (quotientCompositionMap X Y Z q r y z) := by
+  have h := congrArg
+    (fun f : quotientGradedModule W X p →ₗ[ℤ]
+        quotientGradedModule X Y q →ₗ[ℤ]
+          quotientGradedModule Y Z r →ₗ[ℤ]
+            quotientGradedModule W Z (p + (q + r)) ↦ f x y z)
+    (quotientCompositionAssociatedMaps_eq W X Y Z p q r)
+  simpa only [quotientCompositionLeftAssociatedMap_apply,
+    quotientCompositionRightAssociatedMap_apply] using h
+
 theorem largeSummandCompositionMap_right_unit_transport
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n)
