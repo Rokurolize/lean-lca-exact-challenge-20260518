@@ -172,6 +172,102 @@ def compositionBoundaryRawLeftDifferentialPath
         (show (d.arrowDegree (Fin.last w.length) + 1) + e.arrowDegree 0 =
             (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1 by omega))
 
+theorem compositionBoundaryRightDifferentialPath_eq_raw
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    compositionBoundaryRightDifferentialPath d e =
+      compositionBoundaryRawRightDifferentialPath d e := by
+  unfold compositionBoundaryRightDifferentialPath
+  rw [compositionBoundaryMap_raise_right_transport]
+  rfl
+
+theorem compositionBoundaryLeftDifferentialPath_eq_raw
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    compositionBoundaryLeftDifferentialPath d e =
+      compositionBoundaryRawLeftDifferentialPath d e := by
+  unfold compositionBoundaryLeftDifferentialPath
+  rw [compositionBoundaryMap_raise_left_transport]
+  unfold compositionBoundaryRawLeftDifferentialPath
+  apply eq_of_heq
+  have hfd : HEq (factorDifferential d (Fin.last w.length) (Fin.last w.length))
+      ((dgHomZModuleCochainComplex
+        (w.arrowSource (Fin.last w.length)) (w.arrowTarget (Fin.last w.length))).d
+          (d.arrowDegree (Fin.last w.length))
+          (d.arrowDegree (Fin.last w.length) + 1)) := by
+    unfold factorDifferential
+    simp only [eq_self, dif_pos]
+    apply dgHomDifferential_heq <;> simp [DegreeProfile.raise]
+  have htarget : factorModule (d.raise (Fin.last w.length)) (Fin.last w.length) =
+      (dgHomZModuleCochainComplex
+        (w.arrowSource (Fin.last w.length)) (w.arrowTarget (Fin.last w.length))).X
+          (d.arrowDegree (Fin.last w.length) + 1) := by
+    unfold factorModule
+    simp [DegreeProfile.raise]
+  have htensor := tensorHom_heq rfl htarget rfl rfl hfd
+    (by rfl : HEq (𝟙 (factorModule e 0))
+      (𝟙 ((dgHomZModuleCochainComplex
+        (v.arrowSource 0) (v.arrowTarget 0)).X (e.arrowDegree 0))))
+  have hsource : factorModule d (Fin.last w.length) ⊗ factorModule e 0 =
+      (dgHomZModuleCochainComplex
+          (w.arrowSource (Fin.last w.length)) (w.arrowTarget (Fin.last w.length))).X
+            (d.arrowDegree (Fin.last w.length)) ⊗
+        (dgHomZModuleCochainComplex
+          (v.arrowSource 0) (v.arrowTarget 0)).X (e.arrowDegree 0) := rfl
+  have hmiddle : factorModule (d.raise (Fin.last w.length)) (Fin.last w.length) ⊗
+        factorModule e 0 =
+      (dgHomZModuleCochainComplex
+          (w.arrowSource (Fin.last w.length)) (w.arrowTarget (Fin.last w.length))).X
+            (d.arrowDegree (Fin.last w.length) + 1) ⊗
+        (dgHomZModuleCochainComplex
+          (v.arrowSource 0) (v.arrowTarget 0)).X (e.arrowDegree 0) :=
+    congrArg₂ (· ⊗ ·) htarget rfl
+  have hboundary : w.arrowTarget (Fin.last w.length) = v.arrowSource 0 := by
+    change w.vertex (Fin.last w.length).succ =
+      v.vertex (0 : Fin (v.length + 1)).castSucc
+    rw [show (Fin.last w.length).succ = Fin.last (w.length + 1) by ext; rfl]
+    rw [vertex_last]
+    rfl
+  have hdegree : d.arrowDegree (Fin.last w.length) + 1 + e.arrowDegree 0 =
+      (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1 := by omega
+  have hdegreeRaised :
+      (d.raise (Fin.last w.length)).arrowDegree (Fin.last w.length) + e.arrowDegree 0 =
+        (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1 := by
+    simp [DegreeProfile.raise]
+    omega
+  have hcomp := CategoryTheory.heq_comp
+    (f := factorDifferential d (Fin.last w.length) (Fin.last w.length) ⊗ₘ
+      𝟙 (factorModule e 0))
+    (g := dgCochainCompTensorOfEq
+      (w.arrowSource (Fin.last w.length)) (w.arrowTarget (Fin.last w.length))
+      (v.arrowSource 0) (v.arrowTarget 0) hboundary hdegreeRaised)
+    (f' := (dgHomZModuleCochainComplex
+      (w.arrowSource (Fin.last w.length)) (w.arrowTarget (Fin.last w.length))).d
+        (d.arrowDegree (Fin.last w.length))
+        (d.arrowDegree (Fin.last w.length) + 1) ⊗ₘ
+      𝟙 ((dgHomZModuleCochainComplex
+        (v.arrowSource 0) (v.arrowTarget 0)).X (e.arrowDegree 0)))
+    (g' := dgCochainCompTensorOfEq
+      (w.arrowSource (Fin.last w.length)) (w.arrowTarget (Fin.last w.length))
+      (v.arrowSource 0) (v.arrowTarget 0) hboundary hdegree)
+    hsource hmiddle rfl htensor (by
+      exact dgCochainCompTensorOfEq_heq
+        (K₁ := w.arrowSource (Fin.last w.length))
+        (L₁ := w.arrowTarget (Fin.last w.length))
+        (L₁' := v.arrowSource 0) (M₁ := v.arrowTarget 0)
+        (K₂ := w.arrowSource (Fin.last w.length))
+        (L₂ := w.arrowTarget (Fin.last w.length))
+        (L₂' := v.arrowSource 0) (M₂ := v.arrowTarget 0)
+        (p₁ := (d.raise (Fin.last w.length)).arrowDegree (Fin.last w.length))
+        (q₁ := e.arrowDegree 0)
+        (r₁ := (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1)
+        (p₂ := d.arrowDegree (Fin.last w.length) + 1)
+        (q₂ := e.arrowDegree 0)
+        (r₂ := (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1)
+        rfl rfl rfl rfl hboundary hboundary
+        (by simp [DegreeProfile.raise]) rfl rfl hdegreeRaised hdegree)
+  exact hcomp
+
 theorem compositionBoundaryMap_comp_d_raw
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
     {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
@@ -194,6 +290,20 @@ theorem compositionBoundaryMap_comp_d_raw
       rw [vertex_last]
       rfl)
     (d.arrowDegree (Fin.last w.length)) (e.arrowDegree 0)
+
+theorem compositionBoundaryMap_comp_d
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    compositionBoundaryMap d e ≫
+        (dgHomZModuleCochainComplex
+          (w.arrowSource (Fin.last w.length)) (v.arrowTarget 0)).d
+          (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0)
+          ((d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1) =
+      compositionBoundaryRightDifferentialPath d e +
+        (e.arrowDegree 0).negOnePow • compositionBoundaryLeftDifferentialPath d e := by
+  rw [compositionBoundaryMap_comp_d_raw,
+    compositionBoundaryRightDifferentialPath_eq_raw,
+    compositionBoundaryLeftDifferentialPath_eq_raw]
 
 
 theorem normalizedSummandCompositionMap_assoc
