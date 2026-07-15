@@ -1140,6 +1140,61 @@ theorem contractionSuffix_append_right
 
 
 
+theorem internalSign_append_left
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (i : Fin w.length) :
+    (d.append e).internalSign (appendLeftArrowIndex i) =
+      d.internalSign i.castSucc * (m.negOnePow : ℤ) := by
+  rw [(d.append e).internalSign_eq_negOnePow, d.internalSign_eq_negOnePow,
+    suffixTotal_append_left, Int.negOnePow_add]
+  rfl
+
+theorem internalSign_append_boundary
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    (d.append e).internalSign (appendBoundaryArrowIndex w v) =
+      e.internalSign 0 := by
+  rw [(d.append e).internalSign_eq_negOnePow, e.internalSign_eq_negOnePow,
+    suffixTotal_append_boundary]
+
+theorem internalSign_append_right
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (j : Fin v.length) :
+    (d.append e).internalSign (appendRightArrowIndex j) =
+      e.internalSign j.succ := by
+  rw [(d.append e).internalSign_eq_negOnePow, e.internalSign_eq_negOnePow,
+    suffixTotal_append_right]
+
+theorem internalSign_append_boundary_mul
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    (d.append e).internalSign (appendBoundaryArrowIndex w v) *
+        (e.arrowDegree 0).negOnePow = m.negOnePow := by
+  rw [internalSign_append_boundary, e.internalSign_eq_negOnePow]
+  have hdegree : e.suffixTotal 0 + e.arrowDegree 0 = m := by
+    unfold DegreeProfile.suffixTotal
+    have hsum : (∑ j with (0 : Fin (v.length + 1)) < j, e.arrowDegree j) =
+        ∑ i : Fin v.length, e.arrowDegree i.succ := by
+      rw [show (∑ j with (0 : Fin (v.length + 1)) < j, e.arrowDegree j) =
+          ∑ j, if (0 : Fin (v.length + 1)) < j then e.arrowDegree j else 0 from
+        Finset.sum_filter _ _]
+      rw [Fin.sum_univ_succ]
+      simp
+    rw [hsum]
+    have he := e.totalDegree
+    rw [Fin.sum_univ_succ] at he
+    simp
+    omega
+  calc
+    _ = ((e.suffixTotal 0 + e.arrowDegree 0).negOnePow : ℤ) :=
+      congrArg (fun u : ℤˣ ↦ (u : ℤ))
+        (Int.negOnePow_add (e.suffixTotal 0) (e.arrowDegree 0)).symm
+    _ = _ := congrArg (fun z : ℤ ↦ (z.negOnePow : ℤ)) hdegree
+
+
+
 end DrinfeldWord
 end MetrizableBoundedComplexes
 end Infinity
