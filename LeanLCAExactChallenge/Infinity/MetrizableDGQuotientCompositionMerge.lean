@@ -945,6 +945,170 @@ theorem sum_filter_fin_castSucc {A : ℕ} (a : Fin (A + 1) → ℤ) (i : Fin A) 
 
 
 
+theorem suffixTotal_append_right
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (j : Fin v.length) :
+    (d.append e).suffixTotal (appendRightArrowIndex j) =
+      e.suffixTotal j.succ := by
+  unfold DegreeProfile.suffixTotal
+  let hlen : (w.append v).length + 1 = w.length + (v.length + 1) := by
+    rw [append_length]
+    omega
+  change (∑ q with appendRightArrowIndex j < q, appendArrowDegree d e q) - _ = _
+  rw [sum_filter_fin_cast hlen (appendArrowDegree d e)
+    (appendRightArrowIndex j)]
+  have hindex : Fin.cast hlen (appendRightArrowIndex j) =
+      Fin.natAdd w.length j.succ := by
+    apply Fin.ext
+    simp only [Fin.val_cast, appendRightArrowIndex,
+      Fin.val_natAdd, Fin.val_succ]
+    omega
+  rw [hindex]
+  have hfun :
+      (fun q ↦ appendArrowDegree d e (Fin.cast hlen.symm q)) =
+      Fin.addCases
+        (fun i : Fin w.length ↦ d.arrowDegree i.castSucc)
+        (Fin.cases (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0)
+          (fun k : Fin v.length ↦ e.arrowDegree k.succ)) := by
+    funext q
+    unfold appendArrowDegree
+    congr 1
+  rw [hfun]
+  rw [sum_filter_fin_addCases_right]
+  rw [show (∑ k with j.succ < k,
+      Fin.cases (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0)
+        (fun q : Fin v.length ↦ e.arrowDegree q.succ) k) =
+      ∑ k with j.succ < k, e.arrowDegree k by
+    apply Finset.sum_congr rfl
+    intro k hk
+    have hjk := (Finset.mem_filter.mp hk).2
+    induction k using Fin.cases with
+    | zero => simp at hjk
+    | succ k => rfl]
+  congr 1
+  simp only [append_length, appendRightArrowIndex, Fin.val_mk, Fin.val_succ]
+  omega
+
+theorem suffixTotal_append_left
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (i : Fin w.length) :
+    (d.append e).suffixTotal (appendLeftArrowIndex i) =
+      d.suffixTotal i.castSucc + m := by
+  unfold DegreeProfile.suffixTotal
+  let hlen : (w.append v).length + 1 = w.length + (v.length + 1) := by
+    rw [append_length]
+    omega
+  change (∑ q with appendLeftArrowIndex i < q, appendArrowDegree d e q) - _ = _
+  rw [sum_filter_fin_cast hlen (appendArrowDegree d e)
+    (appendLeftArrowIndex i)]
+  have hindex : Fin.cast hlen (appendLeftArrowIndex i) =
+      Fin.castAdd (v.length + 1) i := by
+    apply Fin.ext
+    rfl
+  rw [hindex]
+  have hfun :
+      (fun q ↦ appendArrowDegree d e (Fin.cast hlen.symm q)) =
+      Fin.addCases
+        (fun k : Fin w.length ↦ d.arrowDegree k.castSucc)
+        (Fin.cases (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0)
+          (fun k : Fin v.length ↦ e.arrowDegree k.succ)) := by
+    funext q
+    unfold appendArrowDegree
+    congr 1
+  rw [hfun]
+  rw [sum_filter_fin_addCases_left]
+  rw [sum_filter_fin_castSucc]
+  rw [Fin.sum_univ_succ]
+  simp only [Fin.cases_zero, Fin.cases_succ]
+  have he := e.totalDegree
+  rw [Fin.sum_univ_succ] at he
+  simp only [append_length, appendLeftArrowIndex, Fin.val_mk, Fin.val_castSucc]
+  omega
+
+theorem suffixTotal_append_boundary
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    (d.append e).suffixTotal (appendBoundaryArrowIndex w v) =
+      e.suffixTotal 0 := by
+  unfold DegreeProfile.suffixTotal
+  let hlen : (w.append v).length + 1 = w.length + (v.length + 1) := by
+    rw [append_length]
+    omega
+  change (∑ q with appendBoundaryArrowIndex w v < q, appendArrowDegree d e q) - _ = _
+  rw [sum_filter_fin_cast hlen (appendArrowDegree d e)
+    (appendBoundaryArrowIndex w v)]
+  have hindex : Fin.cast hlen (appendBoundaryArrowIndex w v) =
+      Fin.natAdd w.length (0 : Fin (v.length + 1)) := by
+    apply Fin.ext
+    rfl
+  rw [hindex]
+  have hfun :
+      (fun q ↦ appendArrowDegree d e (Fin.cast hlen.symm q)) =
+      Fin.addCases
+        (fun i : Fin w.length ↦ d.arrowDegree i.castSucc)
+        (Fin.cases (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0)
+          (fun k : Fin v.length ↦ e.arrowDegree k.succ)) := by
+    funext q
+    unfold appendArrowDegree
+    congr 1
+  rw [hfun]
+  rw [sum_filter_fin_addCases_right]
+  rw [show (∑ k with (0 : Fin (v.length + 1)) < k,
+      Fin.cases (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0)
+        (fun q : Fin v.length ↦ e.arrowDegree q.succ) k) =
+      ∑ k with (0 : Fin (v.length + 1)) < k, e.arrowDegree k by
+    apply Finset.sum_congr rfl
+    intro k hk
+    have hk0 := (Finset.mem_filter.mp hk).2
+    induction k using Fin.cases with
+    | zero => simp at hk0
+    | succ k => rfl]
+  congr 1
+  simp only [append_length, appendBoundaryArrowIndex, Fin.val_mk]
+  simp
+
+def appendRightSuffixIndex
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    (j : Fin (v.length + 1)) : Fin ((w.append v).length + 1) :=
+  ⟨w.length + j.val, by simp [append_length]; omega⟩
+
+theorem suffixTotal_append_right'
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (j : Fin (v.length + 1)) :
+    (d.append e).suffixTotal (appendRightSuffixIndex j) =
+      e.suffixTotal j := by
+  induction j using Fin.cases with
+  | zero =>
+      have hindex : appendRightSuffixIndex (w := w) (v := v) 0 =
+          appendBoundaryArrowIndex w v := by
+        apply Fin.ext
+        rfl
+      rw [hindex]
+      exact suffixTotal_append_boundary d e
+  | succ j =>
+      convert suffixTotal_append_right d e j using 1
+      congr 1
+      apply Fin.ext
+      simp only [appendRightSuffixIndex, Fin.val_mk, Fin.val_succ,
+        appendRightArrowIndex]
+      omega
+
+def appendLeftContractionIndex
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    (i : Fin w.length) : Fin (w.append v).length :=
+  ⟨i.val, by simp; omega⟩
+
+def appendRightContractionIndex
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    (j : Fin v.length) : Fin (w.append v).length :=
+  ⟨w.length + j.val, by
+    simpa only [append_length] using (Nat.add_lt_add_left j.isLt w.length)⟩
+
+
+
 end DrinfeldWord
 end MetrizableBoundedComplexes
 end Infinity
