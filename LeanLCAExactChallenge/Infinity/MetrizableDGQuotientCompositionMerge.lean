@@ -1832,6 +1832,21 @@ def quotientLinearMapChangeScalars {M N : ModuleCat.{1} ℤ} (f : M →ₗ[ℤ] 
     apply ULift.down_injective
     exact map_zsmul f r.down x.down
 
+@[simp]
+theorem quotientLinearMapChangeScalars_id (M : ModuleCat.{1} ℤ) :
+    quotientLinearMapChangeScalars (LinearMap.id : M →ₗ[ℤ] M) =
+      LinearMap.id := by
+  ext x
+  rfl
+
+theorem quotientLinearMapChangeScalars_comp
+    {M N P : ModuleCat.{1} ℤ} (f : M →ₗ[ℤ] N) (g : N →ₗ[ℤ] P) :
+    quotientLinearMapChangeScalars (g.comp f) =
+      (quotientLinearMapChangeScalars g).comp
+        (quotientLinearMapChangeScalars f) := by
+  ext x
+  rfl
+
 /-- Change large integer modules to the universe-matched coefficient category. -/
 def quotientCoefficientChange : ModuleCat.{1} ℤ ⥤
     ModuleCat.{1} QuotientCoefficientRing where
