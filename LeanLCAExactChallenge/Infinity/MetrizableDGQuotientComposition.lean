@@ -594,6 +594,111 @@ def AdjacentMergeData.prefix : (xs : List (ModuleCat.{0} ℤ)) →
   | [], _, _, f => f
   | _ :: xs, _, _, f => .tail (f.prefix xs)
 
+def AdjacentMergeData.suffix :
+    {source target : List (ModuleCat.{0} ℤ)} →
+      AdjacentMergeData source target →
+      (Ps : List (ModuleCat.{0} ℤ)) →
+        AdjacentMergeData (source ++ Ps) (target ++ Ps)
+  | _, _, @AdjacentMergeData.head M N P Ms f, Ps =>
+      @AdjacentMergeData.head M N P (Ms ++ Ps) f
+  | _, _, @AdjacentMergeData.tail M Ms Ns f, Ps =>
+      @AdjacentMergeData.tail M (Ms ++ Ps) (Ns ++ Ps) (f.suffix Ps)
+
+theorem AdjacentMergeData.suffix_tensorMap_naturality
+    {source target : List (ModuleCat.{0} ℤ)}
+    (f : AdjacentMergeData source target) (Ps : List (ModuleCat.{0} ℤ)) :
+    (tensorModuleListAppendIso source Ps).hom ≫ (f.suffix Ps).tensorMap =
+      (f.tensorMap ⊗ₘ 𝟙 (tensorModuleList Ps)) ≫
+        (tensorModuleListAppendIso target Ps).hom := by
+  induction f with
+  | @head M N P Ms f =>
+      dsimp [AdjacentMergeData.suffix, AdjacentMergeData.tensorMap,
+        tensorModuleListAppendIso]
+      dsimp only [tensorModuleList, tensorModuleListOver]
+      let t := (tensorModuleListAppendIso Ms Ps).hom
+      change (α_ M (N ⊗ tensorModuleList Ms) (tensorModuleList Ps)).hom ≫
+          (𝟙 M ⊗ₘ ((α_ N (tensorModuleList Ms)
+            (tensorModuleList Ps)).hom ≫ (𝟙 N ⊗ₘ t))) ≫
+          (α_ M N (tensorModuleList (Ms ++ Ps))).inv ≫
+          (f ⊗ₘ 𝟙 (tensorModuleList (Ms ++ Ps))) =
+        (((α_ M N (tensorModuleList Ms)).inv ≫
+            (f ⊗ₘ 𝟙 (tensorModuleList Ms))) ⊗ₘ
+              𝟙 (tensorModuleList Ps)) ≫
+          (α_ P (tensorModuleList Ms) (tensorModuleList Ps)).hom ≫
+          (𝟙 P ⊗ₘ t)
+      simp only [MonoidalCategory.id_tensorHom,
+        MonoidalCategory.whiskerLeft_comp,
+        MonoidalCategory.tensorHom_id, Category.assoc,
+        MonoidalCategory.comp_whiskerRight]
+      rw [MonoidalCategory.associator_inv_naturality_right_assoc]
+      rw [MonoidalCategory.whisker_exchange]
+      have hcoherence :
+          (α_ M (N ⊗ tensorModuleList Ms)
+                (tensorModuleList Ps)).hom ≫
+              M ◁ (α_ N (tensorModuleList Ms)
+                (tensorModuleList Ps)).hom ≫
+              (α_ M N (tensorModuleList Ms ⊗
+                tensorModuleList Ps)).inv =
+            (α_ M N (tensorModuleList Ms)).inv ▷
+                tensorModuleList Ps ≫
+              (α_ (M ⊗ N) (tensorModuleList Ms)
+                (tensorModuleList Ps)).hom := by
+        monoidal
+      slice_lhs 1 3 => rw [hcoherence]
+      simp only [Category.assoc]
+      rw [← MonoidalCategory.associator_naturality_left_assoc]
+  | @tail M Ms Ns f ih =>
+      dsimp [AdjacentMergeData.suffix, AdjacentMergeData.tensorMap,
+        tensorModuleListAppendIso]
+      dsimp only [tensorModuleList, tensorModuleListOver]
+      simp only [Iso.trans_hom, MonoidalCategory.tensorIso_hom,
+        Iso.refl_hom, Category.assoc]
+      slice_lhs 2 3 =>
+        rw [← MonoidalCategory.id_tensor_comp, ih,
+          MonoidalCategory.id_tensor_comp]
+      monoidal
+
+theorem AdjacentMergeData.suffix_tensorMap
+    {source target : List (ModuleCat.{0} ℤ)}
+    (f : AdjacentMergeData source target) (Ps : List (ModuleCat.{0} ℤ)) :
+    (f.suffix Ps).tensorMap =
+      tensorModuleListWhiskerRight Ps f.tensorMap := by
+  apply (cancel_epi (tensorModuleListAppendIso source Ps).hom).mp
+  rw [f.suffix_tensorMap_naturality]
+  simp [tensorModuleListWhiskerRight]
+
+theorem AdjacentMergeData.prefix_tensorMap_naturality
+    {source target : List (ModuleCat.{0} ℤ)}
+    (f : AdjacentMergeData source target) (Ps : List (ModuleCat.{0} ℤ)) :
+    (tensorModuleListAppendIso Ps source).hom ≫ (f.prefix Ps).tensorMap =
+      (𝟙 (tensorModuleList Ps) ⊗ₘ f.tensorMap) ≫
+        (tensorModuleListAppendIso Ps target).hom := by
+  induction Ps with
+  | nil =>
+      dsimp [AdjacentMergeData.prefix, tensorModuleListAppendIso]
+      change (λ_ (tensorModuleList source)).hom ≫ f.tensorMap =
+        (𝟙_ (ModuleCat.{0} ℤ) ◁ f.tensorMap) ≫
+          (λ_ (tensorModuleList target)).hom
+      exact (MonoidalCategory.leftUnitor_naturality f.tensorMap).symm
+  | cons P Ps ih =>
+      dsimp [AdjacentMergeData.prefix, AdjacentMergeData.tensorMap,
+        tensorModuleListAppendIso]
+      dsimp only [tensorModuleList, tensorModuleListOver]
+      simp only [Iso.trans_hom, MonoidalCategory.tensorIso_hom,
+        Iso.refl_hom, Category.assoc]
+      slice_lhs 2 3 =>
+        rw [← MonoidalCategory.id_tensor_comp, ih,
+          MonoidalCategory.id_tensor_comp]
+      monoidal
+
+theorem AdjacentMergeData.prefix_tensorMap
+    {source target : List (ModuleCat.{0} ℤ)}
+    (f : AdjacentMergeData source target) (Ps : List (ModuleCat.{0} ℤ)) :
+    (f.prefix Ps).tensorMap = tensorModuleListWhiskerLeft Ps f.tensorMap := by
+  apply (cancel_epi (tensorModuleListAppendIso Ps source).hom).mp
+  rw [f.prefix_tensorMap_naturality]
+  simp [tensorModuleListWhiskerLeft]
+
 theorem AdjacentMergePairCoherence.prefix
     {source middle₁ middle₂ target : List (ModuleCat.{0} ℤ)}
     {f₁ : AdjacentMergeData source middle₁}
@@ -632,6 +737,50 @@ theorem adjacentMergeAfter_eq_prefix_head
       change AdjacentMergeData.tail (adjacentMergeAfter xs (ys := ys) f) =
         AdjacentMergeData.tail ((AdjacentMergeData.head f).prefix xs)
       rw [ih]
+
+theorem adjacentMergeData_tail_heq
+    {M M' : ModuleCat.{0} ℤ} (hM : M = M')
+    {source target source' target' : List (ModuleCat.{0} ℤ)}
+    {f : AdjacentMergeData source target}
+    {g : AdjacentMergeData source' target'}
+    (hsource : source = source') (htarget : target = target')
+    (h : HEq f g) :
+    HEq (@AdjacentMergeData.tail M source target f)
+      (@AdjacentMergeData.tail M' source' target' g) := by
+  subst M'
+  subst source'
+  subst target'
+  have hfg : f = g := eq_of_heq h
+  subst g
+  rfl
+
+theorem adjacentMergeAfter_prefix_heq
+    (xs Ps : List (ModuleCat.{0} ℤ))
+    {M N P : ModuleCat.{0} ℤ} {ys : List (ModuleCat.{0} ℤ)}
+    (f : Quiver.Hom (M ⊗ N) P) :
+    HEq ((adjacentMergeAfter xs (ys := ys) f).prefix Ps)
+      (adjacentMergeAfter (Ps ++ xs) (ys := ys) f) := by
+  induction Ps with
+  | nil => rfl
+  | cons Q Ps ih =>
+      apply adjacentMergeData_tail_heq rfl
+      · exact (List.append_assoc Ps xs (M :: N :: ys)).symm
+      · exact (List.append_assoc Ps xs (P :: ys)).symm
+      · exact ih
+
+theorem adjacentMergeAfter_suffix_heq
+    (xs : List (ModuleCat.{0} ℤ))
+    {M N P : ModuleCat.{0} ℤ} {ys : List (ModuleCat.{0} ℤ)}
+    (f : Quiver.Hom (M ⊗ N) P) (Ps : List (ModuleCat.{0} ℤ)) :
+    HEq ((adjacentMergeAfter xs (ys := ys) f).suffix Ps)
+      (adjacentMergeAfter xs (ys := ys ++ Ps) f) := by
+  induction xs with
+  | nil => rfl
+  | cons Q xs ih =>
+      apply adjacentMergeData_tail_heq rfl
+      · exact List.append_assoc xs (M :: N :: ys) Ps
+      · exact List.append_assoc xs (P :: ys) Ps
+      · exact ih
 
 @[simp]
 theorem adjacentMergeAfter_nil
@@ -2899,6 +3048,54 @@ def summandCompositionRemainder
     (adjacentMergeAfter (compositionLeftPrefix d)
       (ys := compositionRightSuffix e) (compositionBoundaryMap d e)).tensorMap ≫
     eqToHom (congrArg tensorModuleList (compositionTargetListEq d e))
+
+theorem summandCompositionRemainder_whiskerRight
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (Ps : List (ModuleCat.{0} ℤ)) :
+    tensorModuleListWhiskerRight Ps (summandCompositionRemainder d e) =
+      eqToHom (congrArg tensorModuleList
+          (congrArg₂ List.append (compositionSourceListEq d e)
+            (rfl : Ps = Ps))) ≫
+        eqToHom (congrArg tensorModuleList
+          (congrArg₂ List.append (compositionBoundaryListEq d e)
+            (rfl : Ps = Ps))) ≫
+        tensorModuleListWhiskerRight Ps
+          (adjacentMergeAfter (compositionLeftPrefix d)
+            (ys := compositionRightSuffix e)
+            (compositionBoundaryMap d e)).tensorMap ≫
+        eqToHom (congrArg tensorModuleList
+          (congrArg₂ List.append (compositionTargetListEq d e)
+            (rfl : Ps = Ps))) := by
+  unfold summandCompositionRemainder
+  simp only [tensorModuleListWhiskerRight_comp]
+  rw [tensorModuleListWhiskerRight_eqToHom Ps (compositionSourceListEq d e),
+    tensorModuleListWhiskerRight_eqToHom Ps (compositionBoundaryListEq d e),
+    tensorModuleListWhiskerRight_eqToHom Ps (compositionTargetListEq d e)]
+
+theorem summandCompositionRemainder_whiskerLeft
+    (Ps : List (ModuleCat.{0} ℤ))
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    tensorModuleListWhiskerLeft Ps (summandCompositionRemainder d e) =
+      eqToHom (congrArg tensorModuleList
+          (congrArg₂ List.append (rfl : Ps = Ps)
+            (compositionSourceListEq d e))) ≫
+        eqToHom (congrArg tensorModuleList
+          (congrArg₂ List.append (rfl : Ps = Ps)
+            (compositionBoundaryListEq d e))) ≫
+        tensorModuleListWhiskerLeft Ps
+          (adjacentMergeAfter (compositionLeftPrefix d)
+            (ys := compositionRightSuffix e)
+            (compositionBoundaryMap d e)).tensorMap ≫
+        eqToHom (congrArg tensorModuleList
+          (congrArg₂ List.append (rfl : Ps = Ps)
+            (compositionTargetListEq d e))) := by
+  unfold summandCompositionRemainder
+  simp only [tensorModuleListWhiskerLeft_comp]
+  rw [tensorModuleListWhiskerLeft_eqToHom Ps (compositionSourceListEq d e),
+    tensorModuleListWhiskerLeft_eqToHom Ps (compositionBoundaryListEq d e),
+    tensorModuleListWhiskerLeft_eqToHom Ps (compositionTargetListEq d e)]
 
 theorem normalizedSummandCompositionMap_eq_append_remainder
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
