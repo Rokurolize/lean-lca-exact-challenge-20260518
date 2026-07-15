@@ -788,6 +788,17 @@ theorem transportedPair₂_heq
   rw [ep, ef, em, eg, eq₁, eq₂]
   simp
 
+theorem transportedPairAssembler_heq
+    {S T U V A B C D E F : ModuleCat.{0} ℤ}
+    {left : S ⟶ T} {right : U ⟶ V}
+    {f₁ : A ⟶ B} {g₁ : B ⟶ C}
+    {f₂ : D ⟶ E} {g₂ : E ⟶ F}
+    (hleft : HEq left (f₁ ≫ g₁))
+    (hmiddle : HEq (f₁ ≫ g₁) (f₂ ≫ g₂))
+    (hright : HEq right (f₂ ≫ g₂)) :
+    HEq left right :=
+  hleft.trans (hmiddle.trans hright.symm)
+
 theorem AdjacentMergePairCoherence.prefix
     {source middle₁ middle₂ target : List (ModuleCat.{0} ℤ)}
     {f₁ : AdjacentMergeData source middle₁}
@@ -4552,10 +4563,11 @@ theorem summandCompositionRemainder_assoc_of_middle_nil
   rw [← AdjacentMergeData.suffix_tensorMap,
     ← AdjacentMergeData.prefix_tensorMap]
   apply eq_of_heq
-  exact (zeroLeftTransportedPair_heq a d e).trans
-    ((heq_of_eq (normalizedBoundaryPairTensorMap_eq
-      (compositionLeftPrefix a) (compositionRightSuffix e) a d e)).trans
-      (zeroRightTransportedPair_heq a d e).symm)
+  exact transportedPairAssembler_heq
+    (zeroLeftTransportedPair_heq a d e)
+    (heq_of_eq (normalizedBoundaryPairTensorMap_eq
+      (compositionLeftPrefix a) (compositionRightSuffix e) a d e))
+    (zeroRightTransportedPair_heq a d e)
 
 theorem summandCompositionRemainder_assoc_of_middle_succ
     {W X Y Z : ComplexCategory} {u : DrinfeldWord W X} {k : ℕ}
@@ -4581,10 +4593,11 @@ theorem summandCompositionRemainder_assoc_of_middle_succ
   rw [← AdjacentMergeData.suffix_tensorMap,
     ← AdjacentMergeData.prefix_tensorMap]
   apply eq_of_heq
-  exact (positiveLeftTransportedPair_heq a d e).trans
-    ((heq_of_eq (positiveMiddleBoundaryPairTensorMap_eq
-      (compositionLeftPrefix a) (compositionRightSuffix e) a d e)).trans
-      (positiveRightTransportedPair_heq a d e).symm)
+  exact transportedPairAssembler_heq
+    (positiveLeftTransportedPair_heq a d e)
+    (heq_of_eq (positiveMiddleBoundaryPairTensorMap_eq
+      (compositionLeftPrefix a) (compositionRightSuffix e) a d e))
+    (positiveRightTransportedPair_heq a d e)
 
 theorem summandCompositionRemainder_assoc
     {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
