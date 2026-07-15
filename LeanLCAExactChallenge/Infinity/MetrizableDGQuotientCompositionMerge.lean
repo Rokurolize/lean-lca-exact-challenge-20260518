@@ -1702,6 +1702,105 @@ theorem factorDifferential_append_right_heq
     rw [appendArrowDegree_right]
     simp [DegreeProfile.raise]
 
+theorem compositionBoundaryMap_raise_right_internal_heq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (j : Fin v.length) :
+    HEq (compositionBoundaryMap d (e.raise j.succ))
+      (compositionBoundaryMap d e) := by
+  unfold compositionBoundaryMap
+  apply dgCochainCompTensorOfEq_heq
+  · rfl
+  · rfl
+  · rfl
+  · rfl
+  · rfl
+  · have hj : (0 : Fin (v.length + 1)) ≠ j.succ := (Fin.succ_ne_zero j).symm
+    simp [DegreeProfile.raise, hj]
+  · have hj : (0 : Fin (v.length + 1)) ≠ j.succ := (Fin.succ_ne_zero j).symm
+    simp [DegreeProfile.raise, hj]
+
+theorem compositionBoundaryMap_raise_left_internal_heq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (i : Fin w.length) :
+    HEq (compositionBoundaryMap (d.raise i.castSucc) e)
+      (compositionBoundaryMap d e) := by
+  have hi : (i.castSucc : Fin (w.length + 1)) ≠ Fin.last w.length :=
+    Fin.castSucc_ne_last i
+  have hlast : (Fin.last w.length : Fin (w.length + 1)) ≠ i.castSucc := hi.symm
+  unfold compositionBoundaryMap
+  apply dgCochainCompTensorOfEq_heq
+  · rfl
+  · rfl
+  · rfl
+  · rfl
+  · simp [DegreeProfile.raise, hlast]
+  · rfl
+  · simp [DegreeProfile.raise, hlast]
+
+def tensorMapDataPrefixId
+    (xs : List (ModuleCat.{0} ℤ))
+    {source target : List (ModuleCat.{0} ℤ)}
+    (f : TensorMapData source target) :
+    TensorMapData (xs ++ source) (xs ++ target) := by
+  induction xs with
+  | nil => exact f
+  | cons M xs ih => exact .cons (𝟙 M) ih
+
+theorem tensorMapDataPrefixId_tensorMap
+    (xs : List (ModuleCat.{0} ℤ))
+    {source target : List (ModuleCat.{0} ℤ)}
+    (f : TensorMapData source target) :
+    (tensorMapDataPrefixId xs f).tensorMap = tensorModuleListWhiskerLeft xs f.tensorMap := by
+  induction xs with
+  | nil =>
+      change f.tensorMap =
+        (λ_ (tensorModuleList source)).inv ≫
+          (𝟙_ (ModuleCat.{0} ℤ) ◁ f.tensorMap) ≫
+            (λ_ (tensorModuleList target)).hom
+      apply (cancel_epi (λ_ (tensorModuleList source)).hom).mp
+      rw [Iso.hom_inv_id_assoc]
+      exact (MonoidalCategory.leftUnitor_naturality f.tensorMap).symm
+  | cons M xs ih =>
+      change (𝟙 M ⊗ₘ (tensorMapDataPrefixId xs f).tensorMap) = _
+      dsimp [tensorModuleListWhiskerLeft, tensorModuleListAppendIso]
+      dsimp only [tensorModuleList, tensorModuleListOver]
+      simp only [Iso.trans_hom, MonoidalCategory.tensorIso_hom,
+        Iso.refl_hom]
+      rw [ih]
+      simp [tensorModuleListWhiskerLeft, Category.assoc]
+
+theorem adjacentMergeAfter_naturality
+    (xs : List (ModuleCat.{0} ℤ))
+    {M N P M' N' P' : ModuleCat.{0} ℤ}
+    {ys ys' : List (ModuleCat.{0} ℤ)}
+    (f : Quiver.Hom (M ⊗ N) P) (f' : Quiver.Hom (M' ⊗ N') P')
+    (a : Quiver.Hom M M') (b : Quiver.Hom N N') (c : Quiver.Hom P P')
+    (tailMap : TensorMapData ys ys')
+    (h : (a ⊗ₘ b) ≫ f' = f ≫ c) :
+    AdjacentMergeNaturality
+      (adjacentMergeAfter xs f) (adjacentMergeAfter xs f')
+      (tensorMapDataPrefixId xs (.cons a (.cons b tailMap)))
+      (tensorMapDataPrefixId xs (.cons c tailMap)) := by
+  induction xs with
+  | nil =>
+      exact .head f f' a b c tailMap h
+  | cons R xs ih =>
+      exact .tail (𝟙 R) ih
+
+theorem factorDifferential_eqToHom_of_ne_comp
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (q r : Fin (w.length + 1)) (h : q ≠ r) :
+    ∃ hM : factorModule d r = factorModule (d.raise q) r,
+      factorDifferential d q r = eqToHom hM := by
+  have hM : factorModule d r = factorModule (d.raise q) r := by
+    simp [factorModule, DegreeProfile.raise, Ne.symm h]
+  have hfd : HEq (factorDifferential d q r) (𝟙 (factorModule d r)) := by
+    simpa [factorDifferential, DegreeProfile.raise, factorModule, Ne.symm h] using
+      (eqToHom_heq_id_dom (factorModule d r) (factorModule (d.raise q) r) hM)
+  exact ⟨hM, eq_of_heq (hfd.trans (test_eqToHom_heq_id hM).symm)⟩
+
 end DrinfeldWord
 end MetrizableBoundedComplexes
 end Infinity
