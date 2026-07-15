@@ -1631,6 +1631,77 @@ theorem DegreeProfile.raise_append_boundary_right
           simp only [DegreeProfile.raise, DegreeProfile.castTotal_arrowDegree,
             DegreeProfile.append, appendArrowDegree]
           simp [appendBoundaryArrowIndex, Fin.ext_iff]
+
+theorem factorDifferential_append_boundary_heq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    HEq (factorDifferential (d.append e)
+        (appendBoundaryArrowIndex w v) (appendBoundaryArrowIndex w v))
+      ((dgHomZModuleCochainComplex
+        (w.arrowSource (Fin.last w.length)) (v.arrowTarget 0)).d
+          (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0)
+          ((d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1)) := by
+  unfold factorDifferential
+  simp only [eq_self, dif_pos]
+  apply dgHomDifferential_heq
+  · rw [arrowSource_append_boundary]
+  · rw [arrowTarget_append_boundary]
+  · change appendArrowDegree d e (appendBoundaryArrowIndex w v) = _
+    rw [appendArrowDegree_boundary]
+  · rw [DegreeProfile.raise_append_boundary_left]
+    simp only [DegreeProfile.castTotal_arrowDegree]
+    change appendArrowDegree (d.raise (Fin.last w.length)) e
+      (appendBoundaryArrowIndex w v) = _
+    rw [appendArrowDegree_boundary]
+    simp [DegreeProfile.raise]
+    omega
+
+theorem factorDifferential_append_left_heq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (i : Fin w.length) :
+    HEq (factorDifferential (d.append e)
+        (appendLeftArrowIndex i) (appendLeftArrowIndex i))
+      ((dgHomZModuleCochainComplex
+        (w.arrowSource i.castSucc) (w.arrowTarget i.castSucc)).d
+          (d.arrowDegree i.castSucc) (d.arrowDegree i.castSucc + 1)) := by
+  unfold factorDifferential
+  simp only [eq_self, dif_pos]
+  apply dgHomDifferential_heq
+  · rw [arrowSource_append_left]
+  · rw [arrowTarget_append_left]
+  · change appendArrowDegree d e (appendLeftArrowIndex i) = _
+    rw [appendArrowDegree_left]
+  · rw [DegreeProfile.raise_append_left]
+    simp only [DegreeProfile.castTotal_arrowDegree]
+    change appendArrowDegree (d.raise i.castSucc) e
+      (appendLeftArrowIndex i) = _
+    rw [appendArrowDegree_left]
+    simp [DegreeProfile.raise]
+
+theorem factorDifferential_append_right_heq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (j : Fin v.length) :
+    HEq (factorDifferential (d.append e)
+        (appendRightArrowIndex j) (appendRightArrowIndex j))
+      ((dgHomZModuleCochainComplex
+        (v.arrowSource j.succ) (v.arrowTarget j.succ)).d
+          (e.arrowDegree j.succ) (e.arrowDegree j.succ + 1)) := by
+  unfold factorDifferential
+  simp only [eq_self, dif_pos]
+  apply dgHomDifferential_heq
+  · rw [arrowSource_append_right]
+  · rw [arrowTarget_append_right]
+  · change appendArrowDegree d e (appendRightArrowIndex j) = _
+    rw [appendArrowDegree_right]
+  · rw [DegreeProfile.raise_append_right]
+    simp only [DegreeProfile.castTotal_arrowDegree]
+    change appendArrowDegree d (e.raise j.succ)
+      (appendRightArrowIndex j) = _
+    rw [appendArrowDegree_right]
+    simp [DegreeProfile.raise]
+
 end DrinfeldWord
 end MetrizableBoundedComplexes
 end Infinity
