@@ -20,6 +20,31 @@ namespace DrinfeldWord
 open CategoryTheory
 open CategoryTheory.MonoidalCategory
 
+theorem normalizedSummandCompositionMap_assoc
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile w q)
+    (e : DegreeProfile v r) :
+    (α_ (summandModule a) (summandModule d) (summandModule e)).inv ≫
+        (normalizedSummandCompositionMap a d ⊗ₘ 𝟙 (summandModule e)) ≫
+        normalizedSummandCompositionMap (a.append d) e ≫
+        (summandAssocIso a d e).hom =
+      (𝟙 (summandModule a) ⊗ₘ normalizedSummandCompositionMap d e) ≫
+        normalizedSummandCompositionMap a (d.append e) := by
+  rw [normalizedSummandCompositionMap_eq_append_remainder,
+    normalizedSummandCompositionMap_eq_append_remainder,
+    normalizedSummandCompositionMap_eq_append_remainder,
+    normalizedSummandCompositionMap_eq_append_remainder]
+  dsimp only [summandModule]
+  rw [MonoidalCategory.comp_tensor_id, MonoidalCategory.id_tensor_comp]
+  simp only [Category.assoc]
+  rw [tensorModuleListAppendIso_whiskerRight_assoc,
+    tensorModuleListAppendIso_whiskerLeft_assoc]
+  slice_lhs 1 3 =>
+    rw [tensorModuleListAppendIso_assoc_inv_transport]
+  simp only [Category.assoc]
+  rw [summandCompositionRemainder_assoc]
+
 def summandCompositionMap
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
     {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
@@ -51,6 +76,23 @@ theorem summandCompositionMap_eq_normalized
       (finFamilyList_factorModule_eq_prefix_last d)
       (finFamilyList_factorModule_eq_first_suffix e)]
   simp only [Category.assoc]
+
+theorem summandCompositionMap_assoc
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile w q)
+    (e : DegreeProfile v r) :
+    (α_ (summandModule a) (summandModule d) (summandModule e)).inv ≫
+        (summandCompositionMap a d ⊗ₘ 𝟙 (summandModule e)) ≫
+        summandCompositionMap (a.append d) e ≫
+        (summandAssocIso a d e).hom =
+      (𝟙 (summandModule a) ⊗ₘ summandCompositionMap d e) ≫
+        summandCompositionMap a (d.append e) := by
+  rw [summandCompositionMap_eq_normalized,
+    summandCompositionMap_eq_normalized,
+    summandCompositionMap_eq_normalized,
+    summandCompositionMap_eq_normalized]
+  exact normalizedSummandCompositionMap_assoc a d e
 
 theorem summandCompositionMap_eq_boundary_decomposition
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
