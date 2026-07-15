@@ -30,6 +30,7 @@ import LeanLCAExactChallenge.Infinity.InnerAnodyneMapping
 import LeanLCAExactChallenge.Infinity.Limits
 import LeanLCAExactChallenge.Infinity.Stable
 import LeanLCAExactChallenge.Infinity.StableSquareCalculus
+import LeanLCAExactChallenge.Infinity.StableSquareCalculusConstruction
 import LeanLCAExactChallenge.Infinity.StableEquivalenceTransfer
 import LeanLCAExactChallenge.Infinity.SimplicialAdditiveKan
 import LeanLCAExactChallenge.Infinity.CoherentNervePathFiltration
