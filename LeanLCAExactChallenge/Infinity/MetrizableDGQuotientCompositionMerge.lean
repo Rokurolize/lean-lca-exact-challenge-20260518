@@ -1216,6 +1216,135 @@ theorem contractionSign_append_right
 
 
 
+theorem DegreeProfile.raise_append_left
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (i : Fin w.length) :
+    (d.append e).raise (appendLeftArrowIndex i) =
+      ((d.raise i.castSucc).append e).castTotal (by omega) := by
+  apply DegreeProfile.ext
+  funext q
+  let hlen : (w.append v).length + 1 = w.length + (v.length + 1) := by
+    rw [append_length]
+    omega
+  let q' : Fin (w.length + (v.length + 1)) := Fin.cast hlen q
+  have hq : q = Fin.cast hlen.symm q' := by
+    simp [q']
+  rw [hq]
+  induction q' using Fin.addCases with
+  | left j =>
+      simp only [DegreeProfile.raise, DegreeProfile.castTotal_arrowDegree,
+        DegreeProfile.append, appendArrowDegree]
+      simp [appendLeftArrowIndex, Fin.ext_iff]
+  | right j =>
+      induction j using Fin.cases with
+      | zero =>
+          simp only [DegreeProfile.raise, DegreeProfile.castTotal_arrowDegree,
+            DegreeProfile.append, appendArrowDegree]
+          simp [appendLeftArrowIndex, Fin.ext_iff, add_comm]
+          omega
+      | succ j =>
+          simp only [DegreeProfile.raise, DegreeProfile.castTotal_arrowDegree,
+            DegreeProfile.append, appendArrowDegree]
+          simp [appendLeftArrowIndex, Fin.ext_iff]
+          omega
+
+theorem DegreeProfile.raise_append_boundary_left
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    (d.append e).raise (appendBoundaryArrowIndex w v) =
+      ((d.raise (Fin.last w.length)).append e).castTotal (by omega) := by
+  apply DegreeProfile.ext
+  funext q
+  let hlen : (w.append v).length + 1 = w.length + (v.length + 1) := by
+    rw [append_length]
+    omega
+  let q' : Fin (w.length + (v.length + 1)) := Fin.cast hlen q
+  have hq : q = Fin.cast hlen.symm q' := by
+    simp [q']
+  rw [hq]
+  induction q' using Fin.addCases with
+  | left j =>
+      simp only [DegreeProfile.raise, DegreeProfile.castTotal_arrowDegree,
+        DegreeProfile.append, appendArrowDegree]
+      simp [appendBoundaryArrowIndex, Fin.ext_iff]
+  | right j =>
+      induction j using Fin.cases with
+      | zero =>
+          simp only [DegreeProfile.raise, DegreeProfile.castTotal_arrowDegree,
+            DegreeProfile.append, appendArrowDegree]
+          simp [appendBoundaryArrowIndex, Fin.ext_iff, add_comm]
+          omega
+      | succ j =>
+          simp only [DegreeProfile.raise, DegreeProfile.castTotal_arrowDegree,
+            DegreeProfile.append, appendArrowDegree]
+          simp [appendBoundaryArrowIndex, Fin.ext_iff]
+
+theorem DegreeProfile.raise_append_right
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (j : Fin v.length) :
+    (d.append e).raise (appendRightArrowIndex j) =
+      (d.append (e.raise j.succ)).castTotal (by omega) := by
+  apply DegreeProfile.ext
+  funext q
+  let hlen : (w.append v).length + 1 = w.length + (v.length + 1) := by
+    rw [append_length]
+    omega
+  let q' : Fin (w.length + (v.length + 1)) := Fin.cast hlen q
+  have hq : q = Fin.cast hlen.symm q' := by
+    simp [q']
+  rw [hq]
+  induction q' using Fin.addCases with
+  | left k =>
+      simp only [DegreeProfile.raise, DegreeProfile.castTotal_arrowDegree,
+        DegreeProfile.append, appendArrowDegree]
+      simp [appendRightArrowIndex, Fin.ext_iff]
+      omega
+  | right k =>
+      induction k using Fin.cases with
+      | zero =>
+          simp only [DegreeProfile.raise, DegreeProfile.castTotal_arrowDegree,
+            DegreeProfile.append, appendArrowDegree]
+          simp [appendRightArrowIndex, Fin.ext_iff]
+          omega
+      | succ k =>
+          simp only [DegreeProfile.raise, DegreeProfile.castTotal_arrowDegree,
+            DegreeProfile.append, appendArrowDegree]
+          simp [appendRightArrowIndex, Fin.ext_iff]
+          omega
+
+theorem DegreeProfile.raise_append_boundary_right
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    (d.append e).raise (appendBoundaryArrowIndex w v) =
+      (d.append (e.raise 0)).castTotal (by omega) := by
+  apply DegreeProfile.ext
+  funext q
+  let hlen : (w.append v).length + 1 = w.length + (v.length + 1) := by
+    rw [append_length]
+    omega
+  let q' : Fin (w.length + (v.length + 1)) := Fin.cast hlen q
+  have hq : q = Fin.cast hlen.symm q' := by
+    simp [q']
+  rw [hq]
+  induction q' using Fin.addCases with
+  | left j =>
+      simp only [DegreeProfile.raise, DegreeProfile.castTotal_arrowDegree,
+        DegreeProfile.append, appendArrowDegree]
+      simp [appendBoundaryArrowIndex, Fin.ext_iff]
+      omega
+  | right j =>
+      induction j using Fin.cases with
+      | zero =>
+          simp only [DegreeProfile.raise, DegreeProfile.castTotal_arrowDegree,
+            DegreeProfile.append, appendArrowDegree]
+          simp [appendBoundaryArrowIndex, Fin.ext_iff, add_comm]
+          omega
+      | succ j =>
+          simp only [DegreeProfile.raise, DegreeProfile.castTotal_arrowDegree,
+            DegreeProfile.append, appendArrowDegree]
+          simp [appendBoundaryArrowIndex, Fin.ext_iff]
 end DrinfeldWord
 end MetrizableBoundedComplexes
 end Infinity
