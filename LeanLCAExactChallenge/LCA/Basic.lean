@@ -1,3 +1,9 @@
+/-
+Copyright (c) 2026 Rokurolize. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Rokurolize
+-/
+
 import Mathlib.Algebra.Category.Grp.Preadditive
 import Mathlib.CategoryTheory.Limits.Constructions.FiniteProductsOfBinaryProducts
 import Mathlib.CategoryTheory.Limits.Shapes.BinaryBiproducts

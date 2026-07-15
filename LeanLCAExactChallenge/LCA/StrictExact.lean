@@ -1,3 +1,9 @@
+/-
+Copyright (c) 2026 Rokurolize. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Rokurolize
+-/
+
 import LeanLCAExactChallenge.LCA.Cokernel
 import Mathlib.Algebra.Homology.ShortComplex.Ab
 import Mathlib.Algebra.Homology.ShortComplex.ConcreteCategory
