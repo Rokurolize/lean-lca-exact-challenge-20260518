@@ -20,6 +20,150 @@ namespace DrinfeldWord
 open CategoryTheory
 open CategoryTheory.MonoidalCategory
 
+def compositionBoundaryRightDifferentialPath
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    Quiver.Hom
+      (factorModule d (Fin.last w.length) ⊗ factorModule e 0)
+      ((dgHomZModuleCochainComplex
+        (w.arrowSource (Fin.last w.length)) (v.arrowTarget 0)).X
+        ((d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1)) :=
+  (𝟙 _ ⊗ₘ factorDifferential e 0 0) ≫ compositionBoundaryMap d (e.raise 0) ≫
+    eqToHom (show compositionBoundaryModule d (e.raise 0) = _ from by
+      let hdeg : d.arrowDegree (Fin.last w.length) +
+          (e.raise 0).arrowDegree 0 =
+          (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1 := by
+        simp [DegreeProfile.raise]
+        omega
+      exact congrArg (fun t ↦
+        (dgHomZModuleCochainComplex
+          (w.arrowSource (Fin.last w.length)) (v.arrowTarget 0)).X t) hdeg)
+
+def compositionBoundaryLeftDifferentialPath
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    Quiver.Hom
+      (factorModule d (Fin.last w.length) ⊗ factorModule e 0)
+      ((dgHomZModuleCochainComplex
+        (w.arrowSource (Fin.last w.length)) (v.arrowTarget 0)).X
+        ((d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1)) :=
+  (factorDifferential d (Fin.last w.length) (Fin.last w.length) ⊗ₘ 𝟙 _) ≫
+    compositionBoundaryMap (d.raise (Fin.last w.length)) e ≫
+      eqToHom (show compositionBoundaryModule (d.raise (Fin.last w.length)) e = _ from by
+        let hdeg : (d.raise (Fin.last w.length)).arrowDegree (Fin.last w.length) +
+            e.arrowDegree 0 =
+            (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1 := by
+          simp [DegreeProfile.raise]
+          omega
+        exact congrArg (fun t ↦
+          (dgHomZModuleCochainComplex
+          (w.arrowSource (Fin.last w.length)) (v.arrowTarget 0)).X t) hdeg)
+
+theorem compositionBoundaryMap_raise_right_transport
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    compositionBoundaryMap d (e.raise 0) ≫
+        eqToHom (show compositionBoundaryModule d (e.raise 0) = _ from by
+          let hdeg : d.arrowDegree (Fin.last w.length) +
+              (e.raise 0).arrowDegree 0 =
+              (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1 := by
+            simp [DegreeProfile.raise]
+            omega
+          exact congrArg (fun t ↦
+            (dgHomZModuleCochainComplex
+              (w.arrowSource (Fin.last w.length)) (v.arrowTarget 0)).X t) hdeg) =
+      dgCochainCompTensorOfEq
+        (w.arrowSource (Fin.last w.length)) (w.arrowTarget (Fin.last w.length))
+        (v.arrowSource 0) (v.arrowTarget 0)
+        (by
+          change w.vertex (Fin.last w.length).succ =
+            v.vertex (0 : Fin (v.length + 1)).castSucc
+          rw [show (Fin.last w.length).succ = Fin.last (w.length + 1) by ext; rfl]
+          rw [vertex_last]
+          rfl)
+        (show d.arrowDegree (Fin.last w.length) +
+            (e.arrowDegree 0 + 1) =
+            (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1 by omega) := by
+  unfold compositionBoundaryMap
+  apply dgCochainCompTensorOfEq_comp_degree_eqToHom
+  simp [DegreeProfile.raise]
+  omega
+
+def compositionBoundaryRawRightDifferentialPath
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    Quiver.Hom
+      (factorModule d (Fin.last w.length) ⊗ factorModule e 0)
+      ((dgHomZModuleCochainComplex
+        (w.arrowSource (Fin.last w.length)) (v.arrowTarget 0)).X
+        ((d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1)) := by
+  simp only [factorModule]
+  exact
+    ((𝟙 _ ⊗ₘ (dgHomZModuleCochainComplex
+      (v.arrowSource 0) (v.arrowTarget 0)).d
+        (e.arrowDegree 0) (e.arrowDegree 0 + 1)) ≫
+      dgCochainCompTensorOfEq
+        (w.arrowSource (Fin.last w.length)) (w.arrowTarget (Fin.last w.length))
+        (v.arrowSource 0) (v.arrowTarget 0)
+        (by
+          change w.vertex (Fin.last w.length).succ =
+            v.vertex (0 : Fin (v.length + 1)).castSucc
+          rw [show (Fin.last w.length).succ = Fin.last (w.length + 1) by ext; rfl]
+          rw [vertex_last]
+          rfl)
+        (show d.arrowDegree (Fin.last w.length) + (e.arrowDegree 0 + 1) =
+            (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1 by omega))
+
+def compositionBoundaryRawLeftDifferentialPath
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    Quiver.Hom
+      (factorModule d (Fin.last w.length) ⊗ factorModule e 0)
+      ((dgHomZModuleCochainComplex
+        (w.arrowSource (Fin.last w.length)) (v.arrowTarget 0)).X
+        ((d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1)) := by
+  simp only [factorModule]
+  exact
+    (((dgHomZModuleCochainComplex
+        (w.arrowSource (Fin.last w.length)) (w.arrowTarget (Fin.last w.length))).d
+      (d.arrowDegree (Fin.last w.length))
+      (d.arrowDegree (Fin.last w.length) + 1) ⊗ₘ 𝟙 _) ≫
+      dgCochainCompTensorOfEq
+        (w.arrowSource (Fin.last w.length)) (w.arrowTarget (Fin.last w.length))
+        (v.arrowSource 0) (v.arrowTarget 0)
+        (by
+          change w.vertex (Fin.last w.length).succ =
+            v.vertex (0 : Fin (v.length + 1)).castSucc
+          rw [show (Fin.last w.length).succ = Fin.last (w.length + 1) by ext; rfl]
+          rw [vertex_last]
+          rfl)
+        (show (d.arrowDegree (Fin.last w.length) + 1) + e.arrowDegree 0 =
+            (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1 by omega))
+
+theorem compositionBoundaryMap_comp_d_raw
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    compositionBoundaryMap d e ≫
+        (dgHomZModuleCochainComplex
+          (w.arrowSource (Fin.last w.length)) (v.arrowTarget 0)).d
+          (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0)
+          ((d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1) =
+      compositionBoundaryRawRightDifferentialPath d e +
+        (e.arrowDegree 0).negOnePow • compositionBoundaryRawLeftDifferentialPath d e := by
+  simp only [compositionBoundaryMap, compositionBoundaryRawRightDifferentialPath,
+    compositionBoundaryRawLeftDifferentialPath, factorModule]
+  exact dgCochainCompTensorOfEq_comp_d
+    (w.arrowSource (Fin.last w.length)) (w.arrowTarget (Fin.last w.length))
+    (v.arrowSource 0) (v.arrowTarget 0)
+    (by
+      change w.vertex (Fin.last w.length).succ =
+        v.vertex (0 : Fin (v.length + 1)).castSucc
+      rw [show (Fin.last w.length).succ = Fin.last (w.length + 1) by ext; rfl]
+      rw [vertex_last]
+      rfl)
+    (d.arrowDegree (Fin.last w.length)) (e.arrowDegree 0)
+
+
 theorem normalizedSummandCompositionMap_assoc
     {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
     {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z} {p q r : ℤ}
