@@ -843,6 +843,108 @@ theorem quotientIdentityElement_closed (K : ComplexCategory) :
   rw [uliftFunctor_map_up, identityCochain_d] at happ
   exact happ.trans (map_zero _)
 
+theorem sum_filter_fin_addCases_right
+    {A B : ℕ} (a : Fin A → ℤ) (b : Fin B → ℤ) (j : Fin B) :
+    ∑ x with Fin.natAdd A j < x, Fin.addCases a b x =
+      ∑ k with j < k, b k := by
+  classical
+  calc
+    _ = ∑ x : Fin (A + B), if Fin.natAdd A j < x then Fin.addCases a b x else 0 := by
+      exact Finset.sum_filter _ _
+    _ = (∑ i : Fin A,
+          if Fin.natAdd A j < Fin.castAdd B i then a i else 0) +
+        ∑ k : Fin B, if Fin.natAdd A j < Fin.natAdd A k then b k else 0 := by
+      rw [Fin.sum_univ_add]
+      simp only [Fin.addCases_left, Fin.addCases_right]
+    _ = _ := by
+      rw [show (∑ i : Fin A,
+          if Fin.natAdd A j < Fin.castAdd B i then a i else 0) = 0 by
+        apply Finset.sum_eq_zero
+        intro i _
+        have hnot : ¬Fin.natAdd A j < Fin.castAdd B i := by
+          change ¬A + j.val < i.val
+          omega
+        rw [if_neg hnot]]
+      rw [zero_add]
+      calc
+        (∑ k : Fin B, if Fin.natAdd A j < Fin.natAdd A k then b k else 0) =
+            ∑ k : Fin B, if j < k then b k else 0 := by
+          apply Finset.sum_congr rfl
+          intro k _
+          by_cases h : j < k
+          · rw [if_pos h, if_pos (by
+              change A + j.val < A + k.val
+              omega)]
+          · rw [if_neg h, if_neg (by
+              change ¬A + j.val < A + k.val
+              omega)]
+        _ = _ := (Finset.sum_filter _ _).symm
+
+theorem sum_filter_fin_addCases_left
+    {A B : ℕ} (a : Fin A → ℤ) (b : Fin B → ℤ) (i : Fin A) :
+    ∑ x with Fin.castAdd B i < x, Fin.addCases a b x =
+      (∑ k with i < k, a k) + ∑ k, b k := by
+  classical
+  calc
+    _ = ∑ x : Fin (A + B), if Fin.castAdd B i < x then Fin.addCases a b x else 0 := by
+      exact Finset.sum_filter _ _
+    _ = (∑ k : Fin A, if Fin.castAdd B i < Fin.castAdd B k then a k else 0) +
+        ∑ k : Fin B, if Fin.castAdd B i < Fin.natAdd A k then b k else 0 := by
+      rw [Fin.sum_univ_add]
+      simp only [Fin.addCases_left, Fin.addCases_right]
+    _ = _ := by
+      congr 1
+      · calc
+          (∑ k : Fin A, if Fin.castAdd B i < Fin.castAdd B k then a k else 0) =
+              ∑ k : Fin A, if i < k then a k else 0 := by
+            apply Finset.sum_congr rfl
+            intro k _
+            by_cases h : i < k
+            · rw [if_pos h, if_pos (by
+                change i.val < k.val
+                exact h)]
+            · rw [if_neg h, if_neg (by
+                change ¬i.val < k.val
+                exact h)]
+          _ = _ := (Finset.sum_filter _ _).symm
+      · apply Finset.sum_congr rfl
+        intro k _
+        rw [if_pos]
+        change i.val < A + k.val
+        omega
+
+theorem sum_filter_fin_cast {A B : ℕ} (h : A = B)
+    (a : Fin A → ℤ) (i : Fin A) :
+    ∑ x with i < x, a x =
+      ∑ y with Fin.cast h i < y, a (Fin.cast h.symm y) := by
+  subst B
+  rfl
+
+theorem sum_filter_fin_castSucc {A : ℕ} (a : Fin (A + 1) → ℤ) (i : Fin A) :
+    ∑ q with i.castSucc < q, a q =
+      (∑ k with i < k, a k.castSucc) + a (Fin.last A) := by
+  classical
+  calc
+    _ = ∑ q : Fin (A + 1), if i.castSucc < q then a q else 0 := by
+      exact Finset.sum_filter _ _
+    _ = (∑ k : Fin A, if i.castSucc < k.castSucc then a k.castSucc else 0) +
+        (if i.castSucc < Fin.last A then a (Fin.last A) else 0) := by
+      rw [Fin.sum_univ_castSucc]
+    _ = _ := by
+      rw [if_pos (by
+        change i.val < A
+        exact i.isLt)]
+      congr 1
+      calc
+        (∑ k : Fin A, if i.castSucc < k.castSucc then a k.castSucc else 0) =
+            ∑ k : Fin A, if i < k then a k.castSucc else 0 := by
+          apply Finset.sum_congr rfl
+          intro k _
+          congr 1
+        _ = _ := (Finset.sum_filter _ _).symm
+
+
+
 end DrinfeldWord
 end MetrizableBoundedComplexes
 end Infinity
