@@ -89,6 +89,38 @@ theorem compositionBoundaryMap_raise_right_transport
   simp [DegreeProfile.raise]
   omega
 
+theorem compositionBoundaryMap_raise_left_transport
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    compositionBoundaryMap (d.raise (Fin.last w.length)) e ≫
+        eqToHom (show compositionBoundaryModule (d.raise (Fin.last w.length)) e = _ from by
+          let hdeg : (d.raise (Fin.last w.length)).arrowDegree (Fin.last w.length) +
+              e.arrowDegree 0 =
+              (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1 := by
+            simp [DegreeProfile.raise]
+            omega
+          exact congrArg (fun t ↦
+            (dgHomZModuleCochainComplex
+              (w.arrowSource (Fin.last w.length)) (v.arrowTarget 0)).X t) hdeg) =
+      dgCochainCompTensorOfEq
+        (w.arrowSource (Fin.last w.length)) (w.arrowTarget (Fin.last w.length))
+        (v.arrowSource 0) (v.arrowTarget 0)
+        (by
+          change w.vertex (Fin.last w.length).succ =
+            v.vertex (0 : Fin (v.length + 1)).castSucc
+          rw [show (Fin.last w.length).succ = Fin.last (w.length + 1) by ext; rfl]
+          rw [vertex_last]
+          rfl)
+        (show (d.raise (Fin.last w.length)).arrowDegree (Fin.last w.length) +
+            e.arrowDegree 0 =
+            (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1 by
+          simp [DegreeProfile.raise]
+          omega) := by
+  unfold compositionBoundaryMap
+  apply dgCochainCompTensorOfEq_comp_degree_eqToHom
+  simp [DegreeProfile.raise]
+  omega
+
 def compositionBoundaryRawRightDifferentialPath
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
     {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
