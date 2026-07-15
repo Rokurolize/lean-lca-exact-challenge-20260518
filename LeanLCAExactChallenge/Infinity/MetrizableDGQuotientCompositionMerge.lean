@@ -1109,6 +1109,37 @@ def appendRightContractionIndex
 
 
 
+theorem contractionSuffix_append_left
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (i : Fin w.length) :
+    (d.append e).contractionSuffix (appendLeftContractionIndex i) =
+      d.contractionSuffix i + m := by
+  rw [← (d.append e).suffixTotal_castSucc_add_one (appendLeftContractionIndex i)]
+  have hindex : (appendLeftContractionIndex (v := v) i).castSucc =
+      appendLeftArrowIndex i := by
+    apply Fin.ext
+    rfl
+  rw [hindex, suffixTotal_append_left]
+  have hd := d.suffixTotal_castSucc_add_one i
+  omega
+
+theorem contractionSuffix_append_right
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (j : Fin v.length) :
+    (d.append e).contractionSuffix (appendRightContractionIndex j) =
+      e.contractionSuffix j := by
+  rw [← (d.append e).suffixTotal_castSucc_add_one (appendRightContractionIndex j)]
+  have hindex : (appendRightContractionIndex (w := w) j).castSucc =
+      appendRightSuffixIndex (w := w) (v := v) j.castSucc := by
+    apply Fin.ext
+    rfl
+  rw [hindex, suffixTotal_append_right']
+  exact e.suffixTotal_castSucc_add_one j
+
+
+
 end DrinfeldWord
 end MetrizableBoundedComplexes
 end Infinity
