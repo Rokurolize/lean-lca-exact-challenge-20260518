@@ -699,6 +699,71 @@ theorem AdjacentMergeData.prefix_tensorMap
   rw [f.prefix_tensorMap_naturality]
   simp [tensorModuleListWhiskerLeft]
 
+theorem eqToHom_comp_heq_id
+    {A B C : ModuleCat.{0} ℤ} (hAB : A = B) (hBC : B = C) :
+    HEq (eqToHom hAB ≫ eqToHom hBC) (𝟙 A) := by
+  subst B
+  subst C
+  rfl
+
+theorem eqToHom_comp₃_heq_id
+    {A B C D : ModuleCat.{0} ℤ}
+    (hAB : A = B) (hBC : B = C) (hCD : C = D) :
+    HEq (eqToHom hAB ≫ eqToHom hBC ≫ eqToHom hCD) (𝟙 A) := by
+  subst B
+  subst C
+  subst D
+  rfl
+
+theorem transportedPair_heq
+    {S A B C D T U V : ModuleCat.{0} ℤ}
+    (hA : S = A) (hB : B = U) (hC : C = U)
+    (hD : D = V) (hT : T = V)
+    (p : S ⟶ A) (f : A ⟶ B) (m : B ⟶ C)
+    (g : C ⟶ D) (q : D ⟶ T) (F : S ⟶ U) (G : U ⟶ V)
+    (hp : HEq p (𝟙 S)) (hf : HEq f F) (hm : HEq m (𝟙 B))
+    (hg : HEq g G) (hq : HEq q (𝟙 V)) :
+    HEq (p ≫ f ≫ m ≫ g ≫ q) (F ≫ G) := by
+  subst A
+  subst B
+  subst C
+  subst D
+  subst T
+  have ep : p = 𝟙 S := eq_of_heq hp
+  have ef : f = F := eq_of_heq hf
+  have em : m = 𝟙 U := eq_of_heq hm
+  have eg : g = G := eq_of_heq hg
+  have eq : q = 𝟙 V := eq_of_heq hq
+  rw [ep, ef, em, eg, eq]
+  simp
+
+theorem transportedPair₂_heq
+    {S A B C D E T R U V : ModuleCat.{0} ℤ}
+    (hS : S = R) (hA : S = A) (hB : B = U) (hC : C = U)
+    (hD : D = V) (hE : E = V) (hT : T = V)
+    (p : S ⟶ A) (f : A ⟶ B) (m : B ⟶ C)
+    (g : C ⟶ D) (q₁ : D ⟶ E) (q₂ : E ⟶ T)
+    (F : R ⟶ U) (G : U ⟶ V)
+    (hp : HEq p (𝟙 S)) (hf : HEq f F) (hm : HEq m (𝟙 B))
+    (hg : HEq g G) (hq₁ : HEq q₁ (𝟙 D))
+    (hq₂ : HEq q₂ (𝟙 E)) :
+    HEq (p ≫ f ≫ m ≫ g ≫ q₁ ≫ q₂) (F ≫ G) := by
+  subst R
+  subst A
+  subst B
+  subst C
+  subst D
+  subst E
+  subst T
+  have ep : p = 𝟙 S := eq_of_heq hp
+  have ef : f = F := eq_of_heq hf
+  have em : m = 𝟙 U := eq_of_heq hm
+  have eg : g = G := eq_of_heq hg
+  have eq₁ : q₁ = 𝟙 V := eq_of_heq hq₁
+  have eq₂ : q₂ = 𝟙 V := eq_of_heq hq₂
+  rw [ep, ef, em, eg, eq₁, eq₂]
+  simp
+
 theorem AdjacentMergePairCoherence.prefix
     {source middle₁ middle₂ target : List (ModuleCat.{0} ℤ)}
     {f₁ : AdjacentMergeData source middle₁}
@@ -754,6 +819,36 @@ theorem adjacentMergeData_tail_heq
   subst g
   rfl
 
+theorem AdjacentMergeData.tensorMap_heq
+    {source target source' target' : List (ModuleCat.{0} ℤ)}
+    (hsource : source = source') (htarget : target = target')
+    {f : AdjacentMergeData source target}
+    {g : AdjacentMergeData source' target'} (h : HEq f g) :
+    HEq f.tensorMap g.tensorMap := by
+  subst source'
+  subst target'
+  have hfg : f = g := eq_of_heq h
+  subst g
+  rfl
+
+theorem adjacentMergeAfter_congr
+    {xs xs' : List (ModuleCat.{0} ℤ)} (hxs : xs = xs')
+    {M N P M' N' P' : ModuleCat.{0} ℤ}
+    (hM : M = M') (hN : N = N') (hP : P = P')
+    {ys ys' : List (ModuleCat.{0} ℤ)} (hys : ys = ys')
+    {f : Quiver.Hom (M ⊗ N) P} {g : Quiver.Hom (M' ⊗ N') P'}
+    (h : HEq f g) :
+    HEq (adjacentMergeAfter xs (ys := ys) f)
+      (adjacentMergeAfter xs' (ys := ys') g) := by
+  subst xs'
+  subst M'
+  subst N'
+  subst P'
+  subst ys'
+  have hfg : f = g := eq_of_heq h
+  subst g
+  rfl
+
 theorem adjacentMergeAfter_prefix_heq
     (xs Ps : List (ModuleCat.{0} ℤ))
     {M N P : ModuleCat.{0} ℤ} {ys : List (ModuleCat.{0} ℤ)}
@@ -780,6 +875,19 @@ theorem adjacentMergeAfter_suffix_heq
       apply adjacentMergeData_tail_heq rfl
       · exact List.append_assoc xs (M :: N :: ys) Ps
       · exact List.append_assoc xs (P :: ys) Ps
+      · exact ih
+
+theorem AdjacentMergeData.prefix_prefix_heq
+    {source target : List (ModuleCat.{0} ℤ)}
+    (f : AdjacentMergeData source target)
+    (xs ys : List (ModuleCat.{0} ℤ)) :
+    HEq ((f.prefix xs).prefix ys) (f.prefix (ys ++ xs)) := by
+  induction ys with
+  | nil => rfl
+  | cons M ys ih =>
+      apply adjacentMergeData_tail_heq rfl
+      · exact (List.append_assoc ys xs source).symm
+      · exact (List.append_assoc ys xs target).symm
       · exact ih
 
 @[simp]
@@ -920,6 +1028,18 @@ def appendSingletonPairEq {α : Type*} (xs : List α) (M N : α) :
 def appendBoundaryListsEq {α : Type*} (xs : List α) (M N : α)
     (ys : List α) :
     (xs ++ [M]) ++ N :: ys = xs ++ M :: N :: ys := by
+  induction xs with
+  | nil => rfl
+  | cons Q xs ih => exact congrArg (Q :: ·) ih
+
+theorem appendSingletonTailEq {α : Type*} (xs : List α) (M : α) (ys : List α) :
+    xs ++ M :: ys = (xs ++ [M]) ++ ys := by
+  induction xs with
+  | nil => rfl
+  | cons Q xs ih => exact congrArg (Q :: ·) ih
+
+theorem appendPairTailEq {α : Type*} (xs : List α) (M N : α) (ys : List α) :
+    xs ++ M :: N :: ys = (xs ++ [M, N]) ++ ys := by
   induction xs with
   | nil => rfl
   | cons Q xs ih => exact congrArg (Q :: ·) ih
@@ -1914,6 +2034,28 @@ def summandAssocIso
     eqToIso (congrArg summandModule
       (DegreeProfile.append_assoc_transport a d e))
 
+def summandAssocModuleEq
+    {W X Y Z : ComplexCategory}
+    {u : DrinfeldWord W X} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {p q r : ℤ} (a : DegreeProfile u p) (d : DegreeProfile w q)
+    (e : DegreeProfile v r) :
+    summandModule ((a.append d).append e) =
+      summandModule (a.append (d.append e)) :=
+  (summandModuleTransportEq (append_assoc u w v) (Int.add_assoc p q r)
+    ((a.append d).append e)).trans
+      (congrArg summandModule (DegreeProfile.append_assoc_transport a d e))
+
+theorem summandAssocIso_hom_heq_id
+    {W X Y Z : ComplexCategory}
+    {u : DrinfeldWord W X} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {p q r : ℤ} (a : DegreeProfile u p) (d : DegreeProfile w q)
+    (e : DegreeProfile v r) :
+    HEq (summandAssocIso a d e).hom
+      (𝟙 (summandModule ((a.append d).append e))) := by
+  unfold summandAssocIso summandModuleTransportIso
+  simp only [Iso.trans_hom, eqToIso.hom]
+  exact eqToHom_comp_heq_id _ _
+
 theorem DegreeProfile.append_nil_transport
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) :
@@ -2847,6 +2989,299 @@ theorem finFamilyList_factorModule_append_boundary
       rw [List.ofFn_fin_append, List.ofFn_succ]
       rfl
 
+theorem compositionLeftPrefix_append_eq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    compositionLeftPrefix (d.append e) =
+      (compositionLeftPrefix d ++ compositionBoundaryModule d e ::
+        compositionRightSuffix e).dropLast := by
+  calc
+    compositionLeftPrefix (d.append e) =
+        (finFamilyList (factorModule (d.append e))).dropLast := by
+      rw [finFamilyList_factorModule_eq_prefix_last]
+      simp
+    _ = _ := congrArg List.dropLast (finFamilyList_factorModule_append_boundary d e)
+
+theorem compositionRightSuffix_append_eq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    compositionRightSuffix (d.append e) =
+      (compositionLeftPrefix d ++ compositionBoundaryModule d e ::
+        compositionRightSuffix e).tail := by
+  calc
+    compositionRightSuffix (d.append e) =
+        (finFamilyList (factorModule (d.append e))).tail := by
+      rw [finFamilyList_factorModule_eq_first_suffix]
+      rfl
+    _ = _ := congrArg List.tail (finFamilyList_factorModule_append_boundary d e)
+
+@[simp]
+theorem compositionLeftPrefix_nil
+    {X Y : ComplexCategory} {q : ℤ} (d : DegreeProfile (nil X Y) q) :
+    compositionLeftPrefix d = [] := by
+  rw [compositionLeftPrefix, finFamilyList_eq_ofFn]
+  rfl
+
+@[simp]
+theorem compositionRightSuffix_nil
+    {X Y : ComplexCategory} {q : ℤ} (d : DegreeProfile (nil X Y) q) :
+    compositionRightSuffix d = [] := by
+  rw [compositionRightSuffix, finFamilyList_eq_ofFn]
+  rfl
+
+theorem compositionLeftPrefix_append_zero_eq
+    {W X Y : ComplexCategory} {u : DrinfeldWord W X} {p q : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q) :
+    compositionLeftPrefix (a.append d) = compositionLeftPrefix a := by
+  rw [compositionLeftPrefix_append_eq, compositionRightSuffix_nil,
+    List.dropLast_concat]
+
+theorem compositionRightSuffix_zero_append_eq
+    {X Y Z : ComplexCategory} {v : DrinfeldWord Y Z} {q r : ℤ}
+    (d : DegreeProfile (nil X Y) q) (e : DegreeProfile v r) :
+    compositionRightSuffix (d.append e) = compositionRightSuffix e := by
+  rw [compositionRightSuffix_append_eq, compositionLeftPrefix_nil]
+  simp only [List.nil_append, List.tail_cons]
+
+theorem compositionLeftPrefix_append_succ_eq
+    {W X Y : ComplexCategory} {u : DrinfeldWord W X} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {p q : ℤ} (a : DegreeProfile u p)
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) q) :
+    compositionLeftPrefix (a.append d) =
+      compositionLeftPrefix a ++ compositionBoundaryModule a d ::
+        compositionMiddleFactors d := by
+  rw [compositionLeftPrefix_append_eq, compositionRightSuffix_succ_eq]
+  rw [List.dropLast_append_cons,
+    List.dropLast_cons_of_ne_nil (by simp), List.dropLast_concat]
+
+theorem compositionRightSuffix_succ_append_eq
+    {X Y Z : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {v : DrinfeldWord Y Z} {q r : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) q)
+    (e : DegreeProfile v r) :
+    compositionRightSuffix (d.append e) =
+      compositionMiddleFactors d ++ compositionBoundaryModule d e ::
+        compositionRightSuffix e := by
+  rw [compositionRightSuffix_append_eq, compositionLeftPrefix_succ_eq]
+  rfl
+
+theorem zeroLeftFirstMergeData_heq
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q)
+    (e : DegreeProfile v r) :
+    HEq
+      ((adjacentMergeAfter (compositionLeftPrefix a)
+          (ys := compositionRightSuffix d)
+          (compositionBoundaryMap a d)).suffix
+        (finFamilyList (factorModule e)))
+      ((@AdjacentMergeData.head
+        (factorModule a (Fin.last u.length)) (factorModule d 0)
+        (compositionBoundaryModule a d)
+        (factorModule e 0 :: compositionRightSuffix e)
+        (compositionBoundaryMap a d)).prefix (compositionLeftPrefix a)) := by
+  apply HEq.trans (adjacentMergeAfter_suffix_heq
+    (compositionLeftPrefix a) (compositionBoundaryMap a d)
+    (finFamilyList (factorModule e)))
+  have hys : compositionRightSuffix d ++ finFamilyList (factorModule e) =
+      factorModule e 0 :: compositionRightSuffix e := by
+    rw [compositionRightSuffix_nil, List.nil_append,
+      finFamilyList_factorModule_eq_first_suffix]
+  apply HEq.trans (adjacentMergeAfter_congr
+    (f := compositionBoundaryMap a d) (g := compositionBoundaryMap a d)
+    rfl rfl rfl rfl hys HEq.rfl)
+  exact heq_of_eq (adjacentMergeAfter_eq_prefix_head
+    (compositionLeftPrefix a) (compositionBoundaryMap a d))
+
+theorem zeroRightFirstMergeData_heq
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q)
+    (e : DegreeProfile v r) :
+    HEq
+      ((adjacentMergeAfter (compositionLeftPrefix d)
+          (ys := compositionRightSuffix e)
+          (compositionBoundaryMap d e)).prefix
+        (finFamilyList (factorModule a)))
+      ((@AdjacentMergeData.tail (factorModule a (Fin.last u.length))
+        (factorModule d 0 :: factorModule e 0 :: compositionRightSuffix e)
+        (zeroMiddleRightBoundaryModule d e :: compositionRightSuffix e)
+        (@AdjacentMergeData.head (factorModule d 0) (factorModule e 0)
+          (zeroMiddleRightBoundaryModule d e) (compositionRightSuffix e)
+          (zeroMiddleRightBoundaryMap d e))).prefix
+        (compositionLeftPrefix a)) := by
+  apply HEq.trans (adjacentMergeAfter_prefix_heq
+    (compositionLeftPrefix d) (finFamilyList (factorModule a))
+    (compositionBoundaryMap d e))
+  have hxs : finFamilyList (factorModule a) ++ compositionLeftPrefix d =
+      compositionLeftPrefix a ++ [factorModule a (Fin.last u.length)] := by
+    rw [compositionLeftPrefix_nil, List.append_nil,
+      finFamilyList_factorModule_eq_prefix_last]
+  apply HEq.trans (adjacentMergeAfter_congr
+    (f := compositionBoundaryMap d e) (g := zeroMiddleRightBoundaryMap d e)
+    hxs rfl rfl (zeroMiddleRightBoundaryModule_eq d e).symm rfl
+    (zeroMiddleRightBoundaryMap_heq d e).symm)
+  apply HEq.trans (heq_of_eq (adjacentMergeAfter_eq_prefix_head
+    (compositionLeftPrefix a ++ [factorModule a (Fin.last u.length)])
+    (zeroMiddleRightBoundaryMap d e)))
+  exact (AdjacentMergeData.prefix_prefix_heq
+    (@AdjacentMergeData.head (factorModule d 0) (factorModule e 0)
+      (zeroMiddleRightBoundaryModule d e) (compositionRightSuffix e)
+      (zeroMiddleRightBoundaryMap d e))
+    [factorModule a (Fin.last u.length)] (compositionLeftPrefix a)).symm
+
+theorem zeroLeftSecondMergeData_heq
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q)
+    (e : DegreeProfile v r) :
+    HEq
+      (adjacentMergeAfter (compositionLeftPrefix (a.append d))
+        (ys := compositionRightSuffix e)
+        (compositionBoundaryMap (a.append d) e))
+      ((@AdjacentMergeData.head
+        (compositionBoundaryModule a d) (factorModule e 0)
+        (tripleCompositionBoundaryModule a d e) (compositionRightSuffix e)
+        (leftAssociatedBoundaryMap a d e)).prefix (compositionLeftPrefix a)) := by
+  apply HEq.trans (adjacentMergeAfter_congr
+    (f := compositionBoundaryMap (a.append d) e)
+    (g := leftAssociatedBoundaryMap a d e)
+    (compositionLeftPrefix_append_zero_eq a d)
+    (factorModule_append_last_of_right_nil a d) rfl
+    (tripleCompositionBoundaryModule_eq_left a d e).symm rfl
+    (leftAssociatedBoundaryMap_heq a d e).symm)
+  exact heq_of_eq (adjacentMergeAfter_eq_prefix_head
+    (compositionLeftPrefix a) (leftAssociatedBoundaryMap a d e))
+
+theorem zeroRightSecondMergeData_heq
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q)
+    (e : DegreeProfile v r) :
+    HEq
+      (adjacentMergeAfter (compositionLeftPrefix a)
+        (ys := compositionRightSuffix (d.append e))
+        (compositionBoundaryMap a (d.append e)))
+      ((@AdjacentMergeData.head
+        (factorModule a (Fin.last u.length))
+        (zeroMiddleRightBoundaryModule d e)
+        (tripleCompositionBoundaryModule a d e) (compositionRightSuffix e)
+        (rightAssociatedBoundaryMap a d e)).prefix (compositionLeftPrefix a)) := by
+  have hmiddle : factorModule (d.append e) 0 =
+      zeroMiddleRightBoundaryModule d e :=
+    (factorModule_append_first_of_left_nil d e).trans
+      (zeroMiddleRightBoundaryModule_eq d e).symm
+  apply HEq.trans (adjacentMergeAfter_congr
+    (f := compositionBoundaryMap a (d.append e))
+    (g := rightAssociatedBoundaryMap a d e)
+    rfl rfl hmiddle (tripleCompositionBoundaryModule_eq_right a d e).symm
+    (compositionRightSuffix_zero_append_eq d e)
+    (rightAssociatedBoundaryMap_heq a d e).symm)
+  exact heq_of_eq (adjacentMergeAfter_eq_prefix_head
+    (compositionLeftPrefix a) (rightAssociatedBoundaryMap a d e))
+
+theorem zeroLeftFirstMergeTensorMap_heq
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q)
+    (e : DegreeProfile v r) :
+    HEq
+      ((adjacentMergeAfter (compositionLeftPrefix a)
+          (ys := compositionRightSuffix d)
+          (compositionBoundaryMap a d)).suffix
+        (finFamilyList (factorModule e))).tensorMap
+      (((@AdjacentMergeData.head
+        (factorModule a (Fin.last u.length)) (factorModule d 0)
+        (compositionBoundaryModule a d)
+        (factorModule e 0 :: compositionRightSuffix e)
+        (compositionBoundaryMap a d)).prefix
+          (compositionLeftPrefix a)).tensorMap) := by
+  apply AdjacentMergeData.tensorMap_heq
+  · simp only [compositionRightSuffix_nil]
+    rw [finFamilyList_factorModule_eq_first_suffix]
+    simp only [List.append_assoc, List.cons_append, List.nil_append]
+  · simp only [compositionRightSuffix_nil]
+    rw [finFamilyList_factorModule_eq_first_suffix]
+    simp only [List.append_assoc, List.cons_append, List.nil_append]
+  · exact zeroLeftFirstMergeData_heq a d e
+
+theorem zeroRightFirstMergeTensorMap_heq
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q)
+    (e : DegreeProfile v r) :
+    HEq
+      ((adjacentMergeAfter (compositionLeftPrefix d)
+          (ys := compositionRightSuffix e)
+          (compositionBoundaryMap d e)).prefix
+        (finFamilyList (factorModule a))).tensorMap
+      (((@AdjacentMergeData.tail (factorModule a (Fin.last u.length))
+        (factorModule d 0 :: factorModule e 0 :: compositionRightSuffix e)
+        (zeroMiddleRightBoundaryModule d e :: compositionRightSuffix e)
+        (@AdjacentMergeData.head (factorModule d 0) (factorModule e 0)
+          (zeroMiddleRightBoundaryModule d e) (compositionRightSuffix e)
+          (zeroMiddleRightBoundaryMap d e))).prefix
+      (compositionLeftPrefix a)).tensorMap) := by
+  have hlast : factorModule d (Fin.last (nil X Y).length) = factorModule d 0 := by
+    congr 1
+  apply AdjacentMergeData.tensorMap_heq
+  · simp only [compositionLeftPrefix_nil]
+    rw [finFamilyList_factorModule_eq_prefix_last]
+    simp only [List.append_assoc, List.cons_append, List.nil_append, hlast]
+  · simp only [compositionLeftPrefix_nil]
+    rw [finFamilyList_factorModule_eq_prefix_last,
+      zeroMiddleRightBoundaryModule_eq]
+    simp only [List.append_assoc, List.cons_append, List.nil_append]
+  · exact zeroRightFirstMergeData_heq a d e
+
+theorem zeroLeftSecondMergeTensorMap_heq
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q)
+    (e : DegreeProfile v r) :
+    HEq
+      (adjacentMergeAfter (compositionLeftPrefix (a.append d))
+        (ys := compositionRightSuffix e)
+        (compositionBoundaryMap (a.append d) e)).tensorMap
+      (((@AdjacentMergeData.head
+        (compositionBoundaryModule a d) (factorModule e 0)
+        (tripleCompositionBoundaryModule a d e) (compositionRightSuffix e)
+        (leftAssociatedBoundaryMap a d e)).prefix
+          (compositionLeftPrefix a)).tensorMap) := by
+  apply AdjacentMergeData.tensorMap_heq
+  · rw [compositionLeftPrefix_append_zero_eq,
+      factorModule_append_last_of_right_nil]
+  · rw [compositionLeftPrefix_append_zero_eq,
+      ← tripleCompositionBoundaryModule_eq_left]
+  · exact zeroLeftSecondMergeData_heq a d e
+
+theorem zeroRightSecondMergeTensorMap_heq
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q)
+    (e : DegreeProfile v r) :
+    HEq
+      (adjacentMergeAfter (compositionLeftPrefix a)
+        (ys := compositionRightSuffix (d.append e))
+        (compositionBoundaryMap a (d.append e))).tensorMap
+      (((@AdjacentMergeData.head
+        (factorModule a (Fin.last u.length))
+        (zeroMiddleRightBoundaryModule d e)
+        (tripleCompositionBoundaryModule a d e) (compositionRightSuffix e)
+        (rightAssociatedBoundaryMap a d e)).prefix
+          (compositionLeftPrefix a)).tensorMap) := by
+  apply AdjacentMergeData.tensorMap_heq
+  · rw [compositionRightSuffix_zero_append_eq,
+      factorModule_append_first_of_left_nil,
+      ← zeroMiddleRightBoundaryModule_eq]
+  · rw [compositionRightSuffix_zero_append_eq,
+      ← tripleCompositionBoundaryModule_eq_right]
+  · exact zeroRightSecondMergeData_heq a d e
+
 @[reassoc]
 theorem summandRightUnitTarget_transport
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
@@ -3023,6 +3458,139 @@ def compositionTargetListEq
         compositionRightSuffix e =
       finFamilyList (factorModule (d.append e)) :=
   (finFamilyList_factorModule_append_boundary d e).symm
+
+theorem zeroLeftTransportedPair_heq
+    {W X Y Z : ComplexCategory} {u : DrinfeldWord W X}
+    {v : DrinfeldWord Y Z} {p q r : ℤ}
+    (a : DegreeProfile u p) (d : DegreeProfile (nil X Y) q)
+    (e : DegreeProfile v r) :
+    HEq
+      ((eqToHom (congrArg tensorModuleList
+            (List.append_assoc (finFamilyList (factorModule a))
+              (finFamilyList (factorModule d))
+              (finFamilyList (factorModule e))).symm) ≫
+          eqToHom (congrArg tensorModuleList
+            (congrArg₂ List.append (compositionSourceListEq a d) rfl)) ≫
+          eqToHom (congrArg tensorModuleList
+            (congrArg₂ List.append (compositionBoundaryListEq a d) rfl))) ≫
+        ((adjacentMergeAfter (compositionLeftPrefix a)
+            (ys := compositionRightSuffix d)
+            (compositionBoundaryMap a d)).suffix
+          (finFamilyList (factorModule e))).tensorMap ≫
+        (eqToHom (congrArg tensorModuleList
+            (congrArg₂ List.append (compositionTargetListEq a d) rfl)) ≫
+          eqToHom (congrArg tensorModuleList
+            (compositionSourceListEq (a.append d) e)) ≫
+          eqToHom (congrArg tensorModuleList
+            (compositionBoundaryListEq (a.append d) e))) ≫
+        (adjacentMergeAfter (compositionLeftPrefix (a.append d))
+          (ys := compositionRightSuffix e)
+          (compositionBoundaryMap (a.append d) e)).tensorMap ≫
+        (eqToHom (congrArg tensorModuleList
+            (compositionTargetListEq (a.append d) e)) ≫
+          (summandAssocIso a d e).hom))
+      (((@AdjacentMergeData.head
+          (factorModule a (Fin.last u.length)) (factorModule d 0)
+          (compositionBoundaryModule a d)
+          (factorModule e 0 :: compositionRightSuffix e)
+          (compositionBoundaryMap a d)).prefix
+            (compositionLeftPrefix a)).tensorMap ≫
+        ((@AdjacentMergeData.head
+          (compositionBoundaryModule a d) (factorModule e 0)
+          (tripleCompositionBoundaryModule a d e) (compositionRightSuffix e)
+            (leftAssociatedBoundaryMap a d e)).prefix
+            (compositionLeftPrefix a)).tensorMap) := by
+  let pL := eqToHom (congrArg tensorModuleList
+      (List.append_assoc (finFamilyList (factorModule a))
+        (finFamilyList (factorModule d))
+        (finFamilyList (factorModule e))).symm) ≫
+    eqToHom (congrArg tensorModuleList
+      (congrArg₂ List.append (compositionSourceListEq a d) rfl)) ≫
+    eqToHom (congrArg tensorModuleList
+      (congrArg₂ List.append (compositionBoundaryListEq a d) rfl))
+  let fL := ((adjacentMergeAfter (compositionLeftPrefix a)
+      (ys := compositionRightSuffix d)
+      (compositionBoundaryMap a d)).suffix
+    (finFamilyList (factorModule e))).tensorMap
+  let mL := eqToHom (congrArg tensorModuleList
+      (congrArg₂ List.append (compositionTargetListEq a d) rfl)) ≫
+    eqToHom (congrArg tensorModuleList
+      (compositionSourceListEq (a.append d) e)) ≫
+    eqToHom (congrArg tensorModuleList
+      (compositionBoundaryListEq (a.append d) e))
+  let gL := (adjacentMergeAfter (compositionLeftPrefix (a.append d))
+    (ys := compositionRightSuffix e)
+    (compositionBoundaryMap (a.append d) e)).tensorMap
+  let q₁L := eqToHom (congrArg tensorModuleList
+    (compositionTargetListEq (a.append d) e))
+  let q₂L := (summandAssocIso a d e).hom
+  let FL := ((@AdjacentMergeData.head
+    (factorModule a (Fin.last u.length)) (factorModule d 0)
+    (compositionBoundaryModule a d)
+    (factorModule e 0 :: compositionRightSuffix e)
+    (compositionBoundaryMap a d)).prefix (compositionLeftPrefix a)).tensorMap
+  let GL := ((@AdjacentMergeData.head
+    (compositionBoundaryModule a d) (factorModule e 0)
+    (tripleCompositionBoundaryModule a d e) (compositionRightSuffix e)
+    (leftAssociatedBoundaryMap a d e)).prefix
+      (compositionLeftPrefix a)).tensorMap
+  have h := transportedPair₂_heq
+    (p := pL) (f := fL) (m := mL) (g := gL)
+    (q₁ := q₁L) (q₂ := q₂L) (F := FL) (G := GL)
+    (hS := by
+      apply congrArg tensorModuleList
+      rw [finFamilyList_factorModule_eq_prefix_last a,
+        finFamilyList_factorModule_eq_first_suffix d,
+        compositionRightSuffix_nil,
+        finFamilyList_factorModule_eq_first_suffix e]
+      exact appendBoundaryListsEq (compositionLeftPrefix a)
+        (factorModule a (Fin.last u.length)) (factorModule d 0)
+        (factorModule e 0 :: compositionRightSuffix e))
+    (hA := by
+      apply congrArg tensorModuleList
+      rw [finFamilyList_factorModule_eq_prefix_last a,
+        finFamilyList_factorModule_eq_first_suffix d,
+        compositionRightSuffix_nil,
+        finFamilyList_factorModule_eq_first_suffix e]
+      exact (appendBoundaryListsEq (compositionLeftPrefix a)
+        (factorModule a (Fin.last u.length)) (factorModule d 0)
+        (factorModule e 0 :: compositionRightSuffix e)).trans
+          (appendPairTailEq (compositionLeftPrefix a)
+            (factorModule a (Fin.last u.length)) (factorModule d 0)
+            (factorModule e 0 :: compositionRightSuffix e)))
+    (hB := by
+      apply congrArg tensorModuleList
+      rw [compositionRightSuffix_nil,
+        finFamilyList_factorModule_eq_first_suffix e]
+      exact (appendSingletonTailEq (compositionLeftPrefix a)
+        (compositionBoundaryModule a d)
+        (factorModule e 0 :: compositionRightSuffix e)).symm)
+    (hC := by
+      apply congrArg tensorModuleList
+      rw [compositionLeftPrefix_append_zero_eq,
+        factorModule_append_last_of_right_nil])
+    (hD := by
+      apply congrArg tensorModuleList
+      rw [compositionTargetListEq, finFamilyList_factorModule_append_boundary,
+        compositionLeftPrefix_append_zero_eq,
+        ← tripleCompositionBoundaryModule_eq_left])
+    (hE := by
+      apply congrArg tensorModuleList
+      rw [finFamilyList_factorModule_append_boundary,
+        compositionLeftPrefix_append_zero_eq,
+        ← tripleCompositionBoundaryModule_eq_left])
+    (hT := (summandAssocModuleEq a d e).symm.trans
+      (congrArg tensorModuleList (by
+        rw [finFamilyList_factorModule_append_boundary,
+          compositionLeftPrefix_append_zero_eq,
+          ← tripleCompositionBoundaryModule_eq_left])))
+    (hp := eqToHom_comp₃_heq_id _ _ _)
+    (hf := zeroLeftFirstMergeTensorMap_heq a d e)
+    (hm := eqToHom_comp₃_heq_id _ _ _)
+    (hg := zeroLeftSecondMergeTensorMap_heq a d e)
+    (hq₁ := test_eqToHom_heq_id _)
+    (hq₂ := summandAssocIso_hom_heq_id a d e)
+  simpa only [pL, fL, mL, gL, q₁L, q₂L, FL, GL, Category.assoc] using h
 
 def normalizedSummandCompositionMap
     {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
