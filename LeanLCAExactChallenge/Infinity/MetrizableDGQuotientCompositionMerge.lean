@@ -3554,6 +3554,212 @@ theorem quotientCompositionMap_internalLargeMap_left
   simp only [ModuleCat.comp_apply]
   rw [quotientCompositionMap_on_summands]
 
+theorem summandCompositionMap_internalDifferential_append_left_heq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (i : Fin w.length) :
+    HEq
+      (summandCompositionMap d e ≫
+        internalDifferentialTensorMap (d.append e) (appendLeftArrowIndex i))
+      ((internalDifferentialTensorMap d i.castSucc ⊗ₘ 𝟙 (summandModule e)) ≫
+        summandCompositionMap (d.raise i.castSucc) e) := by
+  rw [summandCompositionMap_eq_normalized,
+    summandCompositionMap_eq_normalized]
+  rw [normalizedSummandCompositionMap_eq_append_remainder,
+    normalizedSummandCompositionMap_eq_append_remainder]
+  dsimp only [summandModule]
+  let A := (tensorModuleListAppendIso (finFamilyList (factorModule d))
+    (finFamilyList (factorModule e))).hom
+  let A' := (tensorModuleListAppendIso
+    (finFamilyList (factorModule (d.raise i.castSucc)))
+    (finFamilyList (factorModule e))).hom
+  let R := summandCompositionRemainder d e
+  let D := internalDifferentialTensorMap (d.append e) (appendLeftArrowIndex i)
+  let W := internalDifferentialTensorMap d i.castSucc ⊗ₘ
+    𝟙 (tensorModuleList (finFamilyList (factorModule e)))
+  let R' := summandCompositionRemainder (d.raise i.castSucc) e
+  change HEq ((A ≫ R) ≫ D) ((W ≫ A') ≫ R')
+  have htot : (n + 1) + m = (n + m) + 1 := by omega
+  have hraise := DegreeProfile.raise_append_left d e i
+  have hfactor :
+      finFamilyList (factorModule (((d.raise i.castSucc).append e).castTotal htot)) =
+        finFamilyList (factorModule ((d.raise i.castSucc).append e)) := by
+    rw [finFamilyList_eq_ofFn, finFamilyList_eq_ofFn]
+    apply (List.ofFn_inj).2
+    funext q
+    unfold factorModule
+    rw [DegreeProfile.castTotal_arrowDegree]
+  have hcast : summandModule (((d.raise i.castSucc).append e).castTotal htot) =
+      summandModule ((d.raise i.castSucc).append e) :=
+    congrArg tensorModuleList hfactor
+  have ht := (congrArg summandModule hraise).trans hcast
+  dsimp [R, R', summandCompositionRemainder]
+  have hne : (i.castSucc : Fin (w.length + 1)) ≠ Fin.last w.length :=
+    Fin.castSucc_ne_last i
+  obtain ⟨hA, _⟩ := factorDifferential_eqToHom_of_ne_comp d i.castSucc
+    (Fin.last w.length) hne
+  have hC : compositionBoundaryModule d e =
+      compositionBoundaryModule (d.raise i.castSucc) e := by
+    unfold compositionBoundaryModule
+    congr 1
+    simp [DegreeProfile.raise, Ne.symm hne]
+  let Mleft := fun q : Fin w.length ↦ factorModule d q.castSucc
+  let Nleft := fun q : Fin w.length ↦
+    factorModule (d.raise i.castSucc) q.castSucc
+  let fleft := fun q : Fin w.length ↦
+    factorDifferential d i.castSucc q.castSucc
+  let Mright := fun r : Fin v.length ↦ factorModule e r.succ
+  let fright := fun r : Fin v.length ↦ 𝟙 (Mright r)
+  let tailId := TensorMapData.ofFn Mright Mright fright
+  let sourceData := tensorMapDataPrefixOfFn Mleft Nleft fleft
+    (.cons (eqToHom hA) (.cons (𝟙 (factorModule e 0)) tailId))
+  let targetData := tensorMapDataPrefixOfFn Mleft Nleft fleft
+    (.cons (eqToHom hC) tailId)
+  have hboundary :
+      (eqToHom hA ⊗ₘ 𝟙 (factorModule e 0)) ≫
+          compositionBoundaryMap (d.raise i.castSucc) e =
+        compositionBoundaryMap d e ≫ eqToHom hC := by
+    exact test_tensor_comp_transport_of_heq hA rfl hC
+      (compositionBoundaryMap d e)
+      (compositionBoundaryMap (d.raise i.castSucc) e)
+      (compositionBoundaryMap_raise_left_internal_heq d e i)
+  have hnatural := adjacentMergeAfter_naturality_ofFn Mleft Nleft
+    (factorModule d (Fin.last w.length))
+    (factorModule (d.raise i.castSucc) (Fin.last w.length))
+    (factorModule e 0) (factorModule e 0)
+    (compositionBoundaryModule d e)
+    (compositionBoundaryModule (d.raise i.castSucc) e)
+    Mright Mright
+    (compositionBoundaryMap d e)
+    (compositionBoundaryMap (d.raise i.castSucc) e)
+    fleft (eqToHom hA) (𝟙 _) (eqToHom hC) fright hboundary
+  have hcomm := hnatural.tensorMap_comm
+  let hS := congrArg tensorModuleList (compositionSourceListEq d e)
+  let hBdy := congrArg tensorModuleList (compositionBoundaryListEq d e)
+  let hT := congrArg tensorModuleList (compositionTargetListEq d e)
+  let hS' := congrArg tensorModuleList
+    (compositionSourceListEq (d.raise i.castSucc) e)
+  let hBdy' := congrArg tensorModuleList
+    (compositionBoundaryListEq (d.raise i.castSucc) e)
+  let hT' := congrArg tensorModuleList
+    (compositionTargetListEq (d.raise i.castSucc) e)
+  have hsourceTransport := appendLeftSourceTransport_heq d e i hA
+  have htargetTransport := appendLeftTargetTransport_heq d e i hC
+  let mergeMap :=
+    (adjacentMergeAfter (compositionLeftPrefix d)
+      (ys := compositionRightSuffix e)
+      (compositionBoundaryMap d e)).tensorMap
+  let mergeMap' :=
+    (adjacentMergeAfter (compositionLeftPrefix (d.raise i.castSucc))
+      (ys := compositionRightSuffix e)
+      (compositionBoundaryMap (d.raise i.castSucc) e)).tensorMap
+  have hcomm' : sourceData.tensorMap ≫ mergeMap' =
+      mergeMap ≫ targetData.tensorMap := by
+    simpa [sourceData, targetData, mergeMap, mergeMap', tailId, fright,
+      Mleft, Nleft, fleft, Mright, compositionLeftPrefix,
+      compositionRightSuffix] using hcomm
+  let pre := A ≫ eqToHom hS ≫ eqToHom hBdy
+  let pre' := W ≫ A' ≫ eqToHom hS' ≫ eqToHom hBdy'
+  have htargetWhisker : HEq
+      ((pre ≫ mergeMap) ≫ (eqToHom hT ≫ D))
+      ((pre ≫ mergeMap) ≫ (targetData.tensorMap ≫ eqToHom hT')) := by
+    exact CategoryTheory.heq_comp rfl rfl ht HEq.rfl htargetTransport
+  have hmiddle :
+      pre ≫ (mergeMap ≫ targetData.tensorMap) ≫ eqToHom hT' =
+        pre ≫ (sourceData.tensorMap ≫ mergeMap') ≫ eqToHom hT' :=
+    congrArg (fun z ↦ pre ≫ z ≫ eqToHom hT') hcomm'.symm
+  have hsourceWhisker : HEq
+      ((pre ≫ sourceData.tensorMap) ≫ (mergeMap' ≫ eqToHom hT'))
+      (pre' ≫ (mergeMap' ≫ eqToHom hT')) := by
+    exact CategoryTheory.heq_comp rfl rfl rfl hsourceTransport.symm HEq.rfl
+  change HEq
+    (A ≫ eqToHom hS ≫ eqToHom hBdy ≫ mergeMap ≫ eqToHom hT ≫ D)
+    (W ≫ A' ≫ eqToHom hS' ≫ eqToHom hBdy' ≫ mergeMap' ≫ eqToHom hT')
+  simpa only [Category.assoc, pre, pre'] using
+    htargetWhisker.trans (heq_of_eq hmiddle) |>.trans hsourceWhisker
+
+theorem quotientCompositionMap_contractionLargeMap_right
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m))
+    (j : Fin v.length) :
+    quotientCompositionMap X Y Z n (m + 1)
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex X Y n ↦ largeSummandModule s) ⟨w, d⟩).hom x)
+        ((contractionLargeMap e j).hom y) =
+      e.contractionSign j •
+        largeSummandCompositionMap d (e.contract j) x
+          (((ModuleCat.uliftFunctor.{1} ℤ).map
+            (contractionTensorMap e j)).hom y) := by
+  unfold contractionLargeMap
+  simp only [ModuleCat.hom_smul, LinearMap.smul_apply]
+  rw [map_zsmul]
+  simp only [ModuleCat.comp_apply]
+  rw [quotientCompositionMap_on_summands]
+
+theorem quotientCompositionMap_contractionLargeMap_left
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m))
+    (i : Fin w.length) :
+    quotientCompositionMap X Y Z (n + 1) m
+        ((contractionLargeMap d i).hom x)
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex Y Z m ↦ largeSummandModule s) ⟨v, e⟩).hom y) =
+      d.contractionSign i •
+        largeSummandCompositionMap (d.contract i) e
+          (((ModuleCat.uliftFunctor.{1} ℤ).map
+            (contractionTensorMap d i)).hom x) y := by
+  unfold contractionLargeMap
+  simp only [ModuleCat.hom_smul, LinearMap.smul_apply]
+  rw [map_zsmul]
+  change d.contractionSign i •
+      quotientCompositionMap X Y Z (n + 1) m
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex X Y (n + 1) ↦ largeSummandModule s)
+          ⟨eraseIntermediate w i, d.contract i⟩).hom
+          (((ModuleCat.uliftFunctor.{1} ℤ).map
+            (contractionTensorMap d i)).hom x))
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex Y Z m ↦ largeSummandModule s) ⟨v, e⟩).hom y) = _
+  rw [quotientCompositionMap_on_summands]
+
+theorem transported_totalDifferentialComposition_right_sum
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m k : ℤ} (h : n + (m + 1) = k)
+    (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m)) :
+    (eqToHom (congrArg (quotientGradedModule X Z) h)).hom
+        (quotientCompositionMap X Y Z n (m + 1)
+          ((Limits.Sigma.ι
+            (fun s : GradedSummandIndex X Y n ↦ largeSummandModule s) ⟨w, d⟩).hom x)
+          ((internalDifferentialFromSummand e +
+            contractionDifferentialFromSummand e).hom y)) =
+      (∑ j, e.internalSign j •
+        (eqToHom (congrArg (quotientGradedModule X Z) h)).hom
+          (largeSummandCompositionMap d (e.raise j) x
+            (((ModuleCat.uliftFunctor.{1} ℤ).map
+              (internalDifferentialTensorMap e j)).hom y))) +
+        ∑ j, e.contractionSign j •
+          (eqToHom (congrArg (quotientGradedModule X Z) h)).hom
+            (largeSummandCompositionMap d (e.contract j) x
+              (((ModuleCat.uliftFunctor.{1} ℤ).map
+                (contractionTensorMap e j)).hom y)) := by
+  simp only [ModuleCat.hom_add, LinearMap.add_apply, map_add]
+  rw [quotientCompositionMap_internalDifferentialFromSummand_right_sum,
+    quotientCompositionMap_contractionDifferentialFromSummand_right_sum]
+  simp only [map_sum, map_zsmul]
+  congr 1
+  · apply Finset.sum_congr rfl
+    intro j _
+    rw [quotientCompositionMap_internalLargeMap_right]
+  · apply Finset.sum_congr rfl
+    intro j _
+    rw [quotientCompositionMap_contractionLargeMap_right, map_zsmul]
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
