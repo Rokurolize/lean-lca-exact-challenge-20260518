@@ -8348,6 +8348,45 @@ theorem summandCompositionMap_contraction_append_left_castSucc_heq
       (summandModule_contract_append_left_castSucc_case d e i) hA hrem
   exact hpre
 
+theorem summandCompositionMap_contraction_append_left_heq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (i : Fin w.length) :
+    HEq
+      (summandCompositionMap d e ≫
+        contractionTensorMap (d.append e) (appendLeftContractionIndex i))
+      ((contractionTensorMap d i ⊗ₘ 𝟙 (summandModule e)) ≫
+        summandCompositionMap (d.contract i) e) := by
+  cases w with
+  | mk length intermediate =>
+      cases length with
+      | zero => exact Fin.elim0 i
+      | succ k =>
+          cases k with
+          | zero =>
+              have hi : i = Fin.last 0 := by
+                have hiLt : i.val < 1 := by
+                  exact i.isLt
+                apply Fin.ext
+                change i.val = 0
+                omega
+              subst i
+              exact summandCompositionMap_contraction_append_left_last_heq d e
+          | succ k =>
+              refine Fin.lastCases ?_ (fun j ↦ ?_) i
+              · exact summandCompositionMap_contraction_append_left_last_heq d e
+              · exact
+                  summandCompositionMap_contraction_append_left_castSucc_heq
+                    d e j
+def rawContractionTargetListEq_right_zero_assembly
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    finFamilyList (factorModule (d.contract i)) =
+      finFamilyList (recursiveMergedFactor (factorModule d) i
+        (rawContractionFactor d i)) :=
+  ((congrArg finFamilyList (test_rawContractionTarget_eq d i)).trans
+    (contractedFactorsOldIndex_eq d i)).symm
+
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
 abbrev QuotientCoefficientRing := ULift.{1} ℤ
 
