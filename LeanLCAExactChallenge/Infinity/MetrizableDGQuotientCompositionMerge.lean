@@ -6823,6 +6823,64 @@ def leftLastHeadDegreeProfile
   arrowDegree _ := d.arrowDegree (Fin.last k).castSucc
   totalDegree := by simp [nil]
 
+def leftLastTailDegreeProfile
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    DegreeProfile
+      (nil
+        (arrowTarget
+          ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y)
+          (Fin.last k).castSucc) Y)
+      (d.arrowDegree (Fin.last k).succ) where
+  arrowDegree _ := d.arrowDegree (Fin.last k).succ
+  totalDegree := by simp [nil]
+
+theorem compositionLeftPrefix_eq_leftLastCommonPrefix_append
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    compositionLeftPrefix d = leftLastCommonPrefix d ++
+      [factorModule (leftLastHeadDegreeProfile d) 0] := by
+  unfold compositionLeftPrefix leftLastCommonPrefix
+  rw [finFamilyList_eq_ofFn, finFamilyList_eq_ofFn, List.ofFn_succ_last]
+  congr 2
+
+theorem factorModule_eq_leftLastTailDegreeProfile
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    factorModule d (Fin.last (k + 1)) =
+      factorModule (leftLastTailDegreeProfile d) 0 := by
+  let w := ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y)
+  let i : Fin (k + 1) := Fin.last k
+  have hi : (Fin.last k).succ = Fin.last (k + 1) := Fin.ext rfl
+  have hsource : w.arrowSource (Fin.last (k + 1)) = w.arrowTarget i.castSucc := by
+    rw [← hi, ← arrowTarget_castSucc_eq_arrowSource_succ w i]
+  have htarget : w.arrowTarget (Fin.last (k + 1)) = Y :=
+    arrowTarget_last_eq_target w
+  unfold factorModule leftLastTailDegreeProfile
+  rw [hsource, htarget, ← hi]
+  rfl
+
+theorem finFamilyList_factorModule_eq_leftLast
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    finFamilyList (factorModule d) = leftLastCommonPrefix d ++
+      [factorModule (leftLastHeadDegreeProfile d) 0,
+        factorModule (leftLastTailDegreeProfile d) 0] := by
+  rw [finFamilyList_factorModule_eq_prefix_last,
+    compositionLeftPrefix_eq_leftLastCommonPrefix_append,
+    factorModule_eq_leftLastTailDegreeProfile]
+  rw [List.append_assoc]
+  rfl
+
+
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
 abbrev QuotientCoefficientRing := ULift.{1} ℤ
 
