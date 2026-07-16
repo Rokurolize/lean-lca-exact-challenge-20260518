@@ -3075,6 +3075,242 @@ theorem appendLeftTargetTransport_heq
     (hcore.symm.trans
       (CategoryTheory.comp_eqToHom_heq targetData.tensorMap hT').symm)
 
+theorem tensorMapDataPrefixOfFn_id_tensorMap
+    {k l : ℕ} (M N : Fin k → ModuleCat.{0} ℤ)
+    (f : (q : Fin k) → M q ⟶ N q)
+    (P : Fin l → ModuleCat.{0} ℤ) :
+    (tensorMapDataPrefixOfFn M N f
+      (TensorMapData.ofFn P P (fun q ↦ 𝟙 (P q)))).tensorMap =
+      tensorModuleListWhiskerRight (finFamilyList P)
+        (TensorMapData.ofFn M N f).tensorMap := by
+  induction k with
+  | zero =>
+      change (TensorMapData.ofFn P P (fun q ↦ 𝟙 (P q))).tensorMap =
+        tensorModuleListWhiskerRight (finFamilyList P)
+          (𝟙 (tensorModuleList []))
+      rw [TensorMapData.ofFn_id_tensorMap]
+      simp [tensorModuleListWhiskerRight]
+  | succ k ih =>
+      let fTail := (TensorMapData.ofFn
+        (fun q : Fin k ↦ M q.succ) (fun q : Fin k ↦ N q.succ)
+        (fun q ↦ f q.succ)).tensorMap
+      change f 0 ⊗ₘ
+          (tensorMapDataPrefixOfFn
+            (fun q : Fin k ↦ M q.succ) (fun q : Fin k ↦ N q.succ)
+            (fun q ↦ f q.succ)
+            (TensorMapData.ofFn P P (fun q ↦ 𝟙 (P q)))).tensorMap = _
+      rw [ih (fun q : Fin k ↦ M q.succ) (fun q : Fin k ↦ N q.succ)
+        (fun q ↦ f q.succ)]
+      change f 0 ⊗ₘ
+          tensorModuleListWhiskerRight (finFamilyList P) fTail =
+        tensorModuleListWhiskerRight (finFamilyList P)
+          (TensorMapData.ofFn M N f).tensorMap
+      dsimp [tensorModuleListWhiskerRight, tensorModuleListAppendIso,
+        tensorModuleList, tensorModuleListOver]
+      simp only [Iso.trans_hom, MonoidalCategory.tensorIso_hom,
+        Iso.refl_hom]
+      dsimp only [TensorMapData.ofFn, TensorMapData.tensorMap]
+      simp only [TensorMapData.tensorMap]
+      change _ = _ ≫ ((f 0 ⊗ₘ fTail) ⊗ₘ 𝟙 _) ≫ _
+      suffices
+          f 0 ▷ tensorModuleListOver ℤ
+              (finFamilyList (fun q ↦ M q.succ) ++ finFamilyList P) ≫
+            N 0 ◁ (tensorModuleListAppendIso
+              (finFamilyList (fun q ↦ M q.succ)) (finFamilyList P)).inv ≫
+            N 0 ◁ fTail ▷ tensorModuleListOver ℤ (finFamilyList P) ≫
+            N 0 ◁ (tensorModuleListAppendIso
+              (finFamilyList (fun q ↦ N q.succ)) (finFamilyList P)).hom =
+          M 0 ◁ (tensorModuleListAppendIso
+              (finFamilyList (fun q ↦ M q.succ)) (finFamilyList P)).inv ≫
+            (α_ (M 0) (tensorModuleListOver ℤ
+                (finFamilyList (fun i ↦ M i.succ)))
+              (tensorModuleListOver ℤ (finFamilyList P))).inv ≫
+            f 0 ▷ tensorModuleList (finFamilyList (fun q ↦ M q.succ)) ▷
+              tensorModuleListOver ℤ (finFamilyList P) ≫
+            (α_ (N 0) (tensorModuleList
+                (finFamilyList (fun q ↦ M q.succ)))
+              (tensorModuleListOver ℤ (finFamilyList P))).hom ≫
+            N 0 ◁ fTail ▷ tensorModuleListOver ℤ (finFamilyList P) ≫
+            N 0 ◁ (tensorModuleListAppendIso
+              (finFamilyList (fun q ↦ N q.succ)) (finFamilyList P)).hom by
+        simpa [tensorHom_def, Category.assoc]
+      rw [← MonoidalCategory.whisker_exchange_assoc]
+      rw [MonoidalCategory.whiskerRight_tensor_assoc]
+
+theorem tensorMapDataPrefixOfFn_castSucc_last_heq
+    {k : ℕ} (M N : Fin (k + 1) → ModuleCat.{0} ℤ)
+    (f : (q : Fin (k + 1)) → M q ⟶ N q)
+    {source target : List (ModuleCat.{0} ℤ)}
+    (tail : TensorMapData source target)
+    (g : M (Fin.last k) ⟶ N (Fin.last k))
+    (hg : HEq g (f (Fin.last k))) :
+    HEq
+      (tensorMapDataPrefixOfFn
+        (fun q : Fin k ↦ M q.castSucc) (fun q : Fin k ↦ N q.castSucc)
+        (fun q ↦ f q.castSucc) (.cons g tail))
+      (tensorMapDataPrefixOfFn M N f tail) := by
+  induction k with
+  | zero =>
+      change HEq (TensorMapData.cons g tail) (TensorMapData.cons (f 0) tail)
+      exact tensorMapData_cons_heq rfl rfl rfl rfl hg HEq.rfl
+  | succ k ih =>
+      change HEq
+        (TensorMapData.cons (f 0)
+          (tensorMapDataPrefixOfFn
+            (fun q : Fin k ↦ M q.succ.castSucc)
+            (fun q : Fin k ↦ N q.succ.castSucc)
+            (fun q ↦ f q.succ.castSucc) (.cons g tail)))
+        (TensorMapData.cons (f 0)
+          (tensorMapDataPrefixOfFn
+            (fun q : Fin (k + 1) ↦ M q.succ)
+            (fun q : Fin (k + 1) ↦ N q.succ)
+            (fun q ↦ f q.succ) tail))
+      have hs :
+          (finFamilyList fun q : Fin k ↦ M q.succ.castSucc) ++
+              M (Fin.last (k + 1)) :: source =
+            (finFamilyList fun q : Fin (k + 1) ↦ M q.succ) ++ source := by
+        have hcastSucc :
+            (fun q : Fin k ↦ M q.succ.castSucc) =
+              fun q : Fin k ↦ M q.castSucc.succ := by
+          funext q
+          congr 1
+        have hlast : (Fin.last (k + 1) : Fin (k + 2)) =
+            (Fin.last k).succ := by
+          apply Fin.ext
+          rfl
+        rw [finFamilyList_eq_ofFn, finFamilyList_eq_ofFn, List.ofFn_succ_last]
+        rw [hcastSucc, congrArg M hlast]
+        simp only [List.singleton_append, List.append_assoc]
+      have ht :
+          (finFamilyList fun q : Fin k ↦ N q.succ.castSucc) ++
+              N (Fin.last (k + 1)) :: target =
+            (finFamilyList fun q : Fin (k + 1) ↦ N q.succ) ++ target := by
+        have hcastSucc :
+            (fun q : Fin k ↦ N q.succ.castSucc) =
+              fun q : Fin k ↦ N q.castSucc.succ := by
+          funext q
+          congr 1
+        have hlast : (Fin.last (k + 1) : Fin (k + 2)) =
+            (Fin.last k).succ := by
+          apply Fin.ext
+          rfl
+        rw [finFamilyList_eq_ofFn, finFamilyList_eq_ofFn, List.ofFn_succ_last]
+        rw [hcastSucc, congrArg N hlast]
+        simp only [List.singleton_append, List.append_assoc]
+      exact tensorMapData_cons_heq rfl rfl hs ht HEq.rfl
+        (ih (fun q : Fin (k + 1) ↦ M q.succ)
+          (fun q : Fin (k + 1) ↦ N q.succ) (fun q ↦ f q.succ) g hg)
+
+theorem appendLeftSourceTransport_heq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (i : Fin w.length)
+    (hA : factorModule d (Fin.last w.length) =
+      factorModule (d.raise i.castSucc) (Fin.last w.length)) :
+  let Mleft := fun q : Fin w.length ↦ factorModule d q.castSucc
+  let Nleft := fun q : Fin w.length ↦ factorModule (d.raise i.castSucc) q.castSucc
+  let fleft := fun q : Fin w.length ↦ factorDifferential d i.castSucc q.castSucc
+  let Mright := fun r : Fin v.length ↦ factorModule e r.succ
+  let tailId := TensorMapData.ofFn Mright Mright (fun r ↦ 𝟙 (Mright r))
+  let sourceData := tensorMapDataPrefixOfFn Mleft Nleft fleft
+    (.cons (eqToHom hA) (.cons (𝟙 (factorModule e 0)) tailId))
+  HEq
+    ((internalDifferentialTensorMap d i.castSucc ⊗ₘ 𝟙 (summandModule e)) ≫
+      (tensorModuleListAppendIso (finFamilyList (factorModule (d.raise i.castSucc)))
+        (finFamilyList (factorModule e))).hom ≫
+      eqToHom (congrArg tensorModuleList
+        (compositionSourceListEq (d.raise i.castSucc) e)) ≫
+      eqToHom (congrArg tensorModuleList
+        (compositionBoundaryListEq (d.raise i.castSucc) e)))
+    ((tensorModuleListAppendIso (finFamilyList (factorModule d))
+        (finFamilyList (factorModule e))).hom ≫
+      eqToHom (congrArg tensorModuleList (compositionSourceListEq d e)) ≫
+      eqToHom (congrArg tensorModuleList (compositionBoundaryListEq d e)) ≫
+      sourceData.tensorMap) := by
+  dsimp only
+  rw [tensorModuleListAppendIso_whiskerRight_assoc]
+  let Mleft := fun q : Fin w.length ↦ factorModule d q.castSucc
+  let Nleft := fun q : Fin w.length ↦
+    factorModule (d.raise i.castSucc) q.castSucc
+  let fleft := fun q : Fin w.length ↦
+    factorDifferential d i.castSucc q.castSucc
+  let Mright := fun r : Fin v.length ↦ factorModule e r.succ
+  let tailId := TensorMapData.ofFn Mright Mright (fun r ↦ 𝟙 (Mright r))
+  let sourceData := tensorMapDataPrefixOfFn Mleft Nleft fleft
+    (.cons (eqToHom hA) (.cons (𝟙 (factorModule e 0)) tailId))
+  let fullData := tensorMapDataPrefixOfFn (factorModule d)
+    (factorModule (d.raise i.castSucc))
+    (factorDifferential d i.castSucc)
+    (TensorMapData.ofFn (factorModule e) (factorModule e)
+      (fun q ↦ 𝟙 (factorModule e q)))
+  have hne : (i.castSucc : Fin (w.length + 1)) ≠ Fin.last w.length :=
+    Fin.castSucc_ne_last i
+  obtain ⟨hA', hmap⟩ := factorDifferential_eqToHom_of_ne_comp d i.castSucc
+    (Fin.last w.length) hne
+  have hlast : HEq (eqToHom hA)
+      (factorDifferential d i.castSucc (Fin.last w.length)) := by
+    rw [hmap]
+  have hdata : HEq sourceData fullData := by
+    exact tensorMapDataPrefixOfFn_castSucc_last_heq
+      (factorModule d) (factorModule (d.raise i.castSucc))
+      (factorDifferential d i.castSucc)
+      (TensorMapData.ofFn (factorModule e) (factorModule e)
+        (fun q ↦ 𝟙 (factorModule e q)))
+      (eqToHom hA) hlast
+  have hsource :
+      finFamilyList Mleft ++
+          factorModule d (Fin.last w.length) :: finFamilyList (factorModule e) =
+        finFamilyList (factorModule d) ++ finFamilyList (factorModule e) := by
+    simpa [Mleft, compositionLeftPrefix, List.append_assoc] using
+      congrArg (fun xs ↦ xs ++ finFamilyList (factorModule e))
+        (finFamilyList_factorModule_eq_prefix_last d).symm
+  have htarget :
+      finFamilyList Nleft ++
+          factorModule (d.raise i.castSucc) (Fin.last w.length) ::
+            finFamilyList (factorModule e) =
+        finFamilyList (factorModule (d.raise i.castSucc)) ++
+          finFamilyList (factorModule e) := by
+    simpa [Nleft, compositionLeftPrefix, List.append_assoc] using
+      congrArg (fun xs ↦ xs ++ finFamilyList (factorModule e))
+        (finFamilyList_factorModule_eq_prefix_last (d.raise i.castSucc)).symm
+  have hdataMap : HEq sourceData.tensorMap fullData.tensorMap :=
+    tensorMapData_tensorMap_heq hsource htarget hdata
+  have hfull : fullData.tensorMap =
+      tensorModuleListWhiskerRight (finFamilyList (factorModule e))
+        (internalDifferentialTensorMap d i.castSucc) := by
+    simpa [fullData, internalDifferentialTensorMap] using
+      tensorMapDataPrefixOfFn_id_tensorMap
+        (factorModule d) (factorModule (d.raise i.castSucc))
+        (factorDifferential d i.castSucc) (factorModule e)
+  have hsourceCore : HEq sourceData.tensorMap
+      (tensorModuleListWhiskerRight (finFamilyList (factorModule e))
+        (internalDifferentialTensorMap d i.castSucc)) :=
+    hdataMap.trans (heq_of_eq hfull)
+  let hS := congrArg tensorModuleList (compositionSourceListEq d e)
+  let hBdy := congrArg tensorModuleList (compositionBoundaryListEq d e)
+  let hS' := congrArg tensorModuleList
+    (compositionSourceListEq (d.raise i.castSucc) e)
+  let hBdy' := congrArg tensorModuleList
+    (compositionBoundaryListEq (d.raise i.castSucc) e)
+  let W := tensorModuleListWhiskerRight (finFamilyList (factorModule e))
+    (internalDifferentialTensorMap d i.castSucc)
+  let pre := eqToHom hS ≫ eqToHom hBdy
+  let pre' := eqToHom hS' ≫ eqToHom hBdy'
+  have hpre : HEq (pre ≫ sourceData.tensorMap) W := by
+    exact CategoryTheory.heq_comp
+      (f := pre) (g := sourceData.tensorMap) (f' := 𝟙 _) (g' := W)
+      rfl (hS.trans hBdy).symm (hS'.trans hBdy').symm
+      (eqToHom_comp_heq_id hS hBdy) hsourceCore
+  have hpost : HEq W (W ≫ pre') := by
+    simpa only [Category.comp_id] using
+      (CategoryTheory.heq_comp
+        (f := W) (g := 𝟙 _) (f' := W) (g' := pre')
+        rfl rfl (hS'.trans hBdy') HEq.rfl
+        (eqToHom_comp_heq_id hS' hBdy').symm)
+  have htransport : HEq (W ≫ pre') (pre ≫ sourceData.tensorMap) :=
+    hpost.symm.trans hpre.symm
+  exact CategoryTheory.heq_comp rfl rfl rfl HEq.rfl htransport
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
