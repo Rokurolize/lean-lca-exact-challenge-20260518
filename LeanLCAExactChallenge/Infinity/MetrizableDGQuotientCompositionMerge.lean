@@ -5647,6 +5647,207 @@ theorem recursiveMergeSuffix_append_right_succ_at_index_core
   exact recursiveMergeSuffix_append_right_succ_core d e j
 
 
+theorem rawContractionFactor_append_right_succ_core
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {n m : ℤ} (d : DegreeProfile w n)
+    (e : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord Y Z) m)
+    (j : Fin (k + 1)) :
+    rawContractionFactor (d.append e) (appendRightContractionIndex j.succ) =
+      rawContractionFactor e j.succ := by
+  have hleft :
+      (appendRightContractionIndex (w := w) j.succ).castSucc =
+        appendRightArrowIndex (w := w)
+          (v := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord Y Z)) j.castSucc := by
+    apply Fin.ext
+    change w.length + (j.val + 1) = w.length + 1 + j.val
+    omega
+  have hright :
+      (appendRightContractionIndex (w := w) j.succ).succ =
+        appendRightArrowIndex (w := w)
+          (v := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord Y Z)) j.succ := by
+    apply Fin.ext
+    change w.length + (j.val + 1) + 1 = w.length + 1 + (j.val + 1)
+    omega
+  unfold rawContractionFactor
+  change (dgHomZModuleCochainComplex
+      ((w.append _).arrowSource
+        (appendRightContractionIndex (w := w)
+          (v := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord Y Z)) j.succ).castSucc)
+      ((w.append _).arrowTarget
+        (appendRightContractionIndex (w := w)
+          (v := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord Y Z)) j.succ).succ)).X
+      (appendArrowDegree d e
+          (appendRightContractionIndex (w := w)
+            (v := ({ length := k + 2, intermediate := intermediate } :
+              DrinfeldWord Y Z)) j.succ).castSucc +
+        appendArrowDegree d e
+          (appendRightContractionIndex (w := w)
+            (v := ({ length := k + 2, intermediate := intermediate } :
+              DrinfeldWord Y Z)) j.succ).succ) = _
+  rw [hleft, hright, arrowSource_append_right, arrowTarget_append_right,
+    appendArrowDegree_right, appendArrowDegree_right]
+  congr 2
+
+theorem adjacentFactorComposition_append_right_succ_heq_core
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {n m : ℤ} (d : DegreeProfile w n)
+    (e : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord Y Z) m)
+    (j : Fin (k + 1)) :
+    HEq (adjacentFactorComposition (d.append e)
+        (appendRightContractionIndex (w := w)
+          (v := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord Y Z)) j.succ))
+      (adjacentFactorComposition e j.succ) := by
+  have hleft :
+      (appendRightContractionIndex (w := w) j.succ).castSucc =
+        appendRightArrowIndex (w := w)
+          (v := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord Y Z)) j.castSucc := by
+    apply Fin.ext
+    change w.length + (j.val + 1) = w.length + 1 + j.val
+    omega
+  have hright :
+      (appendRightContractionIndex (w := w) j.succ).succ =
+        appendRightArrowIndex (w := w)
+          (v := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord Y Z)) j.succ := by
+    apply Fin.ext
+    change w.length + (j.val + 1) + 1 = w.length + 1 + (j.val + 1)
+    omega
+  have hindex : j.castSucc.succ = j.succ.castSucc := by
+    apply Fin.ext
+    rfl
+  unfold adjacentFactorComposition
+  simp only [factorModule]
+  apply dgCochainCompTensorOfEq_heq
+  · rw [hleft, arrowSource_append_right]
+    exact congrArg _ hindex
+  · rw [hleft, arrowTarget_append_right]
+    exact congrArg _ hindex
+  · rw [hright, arrowSource_append_right]
+  · rw [hright, arrowTarget_append_right]
+  · rw [hleft]
+    change appendArrowDegree d e (appendRightArrowIndex (w := w) j.castSucc) = _
+    simpa only [hindex] using appendArrowDegree_right d e j.castSucc
+  · rw [hright]
+    change appendArrowDegree d e (appendRightArrowIndex (w := w) j.succ) = _
+    exact appendArrowDegree_right d e j.succ
+  · rw [hleft, hright]
+    change appendArrowDegree d e (appendRightArrowIndex (w := w) j.castSucc) +
+      appendArrowDegree d e (appendRightArrowIndex (w := w) j.succ) = _
+    exact congrArg₂ (· + ·) (by
+      simpa only [hindex] using appendArrowDegree_right d e j.castSucc)
+      (appendArrowDegree_right d e j.succ)
+
+theorem rawContractionAdjacentMergeData_append_right_succ_heq_core
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {n m : ℤ} (d : DegreeProfile w n)
+    (e : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord Y Z) m)
+    (j : Fin (k + 1)) :
+    let M := fun r : Fin (k + 2) ↦ factorModule e r.succ
+    let ms := recursiveMergePrefix_right_succ_core M j
+    let zs := recursiveMergeSuffix_right_succ_core M j
+    HEq (rawContractionAdjacentMergeData (d.append e)
+        (appendRightContractionIndex j.succ))
+      (((@AdjacentMergeData.tail (compositionBoundaryModule d e)
+        (ms ++ factorModule e j.succ.castSucc ::
+          factorModule e j.succ.succ :: zs)
+        (ms ++ rawContractionFactor e j.succ :: zs)
+        (adjacentMergeAfter ms (ys := zs)
+          (adjacentFactorComposition e j.succ))).prefix
+            (compositionLeftPrefix d))) := by
+  dsimp only
+  unfold rawContractionAdjacentMergeData
+  apply HEq.trans
+    (recursiveAdjacentMergeDataOfFn_eq_after_right_succ_core
+      (k := w.length + k + 1)
+      (factorModule (d.append e))
+      (appendRightContractionIndex (w := w)
+        (v := ({ length := k + 2, intermediate := intermediate } :
+          DrinfeldWord Y Z)) j.succ)
+      (rawContractionFactor (d.append e)
+        (appendRightContractionIndex j.succ))
+      (adjacentFactorComposition (d.append e)
+        (appendRightContractionIndex j.succ)))
+  have hidxLeft :
+      (appendRightContractionIndex (w := w) j.succ).castSucc =
+        appendRightArrowIndex (w := w)
+          (v := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord Y Z)) j.castSucc := by
+    apply Fin.ext
+    change w.length + (j.val + 1) = w.length + 1 + j.val
+    omega
+  have hidxRight :
+      (appendRightContractionIndex (w := w) j.succ).succ =
+        appendRightArrowIndex (w := w)
+          (v := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord Y Z)) j.succ := by
+    apply Fin.ext
+    change w.length + (j.val + 1) + 1 = w.length + 1 + (j.val + 1)
+    omega
+  have hfactorLeft :
+      factorModule (d.append e)
+          (appendRightContractionIndex (w := w) j.succ).castSucc =
+        factorModule e j.succ.castSucc := by
+    rw [hidxLeft, factorModule_append_right]
+    congr 1
+  have hfactorRight :
+      factorModule (d.append e)
+          (appendRightContractionIndex (w := w) j.succ).succ =
+        factorModule e j.succ.succ := by
+    rw [hidxRight, factorModule_append_right]
+  apply HEq.trans (adjacentMergeAfter_congr
+    (f := adjacentFactorComposition (d.append e)
+      (appendRightContractionIndex j.succ))
+    (g := adjacentFactorComposition e j.succ)
+    (recursiveMergePrefix_append_right_succ_at_index_core d e j)
+    hfactorLeft hfactorRight
+    (rawContractionFactor_append_right_succ_core d e j)
+    (recursiveMergeSuffix_append_right_succ_at_index_core d e j)
+    (adjacentFactorComposition_append_right_succ_heq_core d e j))
+  apply HEq.trans (adjacentMergeAfter_prefix_heq
+    (compositionBoundaryModule d e ::
+      recursiveMergePrefix_right_succ_core
+        (fun r : Fin (k + 2) ↦ factorModule e r.succ) j)
+    (compositionLeftPrefix d) (adjacentFactorComposition e j.succ)).symm
+  exact HEq.rfl
+
+theorem rawContractionAdjacentMergeData_right_succ_heq_core
+    {Y Z : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {m : ℤ}
+    (e : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord Y Z) m)
+    (j : Fin (k + 1)) :
+    let M := fun r : Fin (k + 2) ↦ factorModule e r.succ
+    let ms := recursiveMergePrefix_right_succ_core M j
+    let zs := recursiveMergeSuffix_right_succ_core M j
+    HEq (rawContractionAdjacentMergeData e j.succ)
+      (@AdjacentMergeData.tail (factorModule e 0)
+        (ms ++ factorModule e j.succ.castSucc ::
+          factorModule e j.succ.succ :: zs)
+        (ms ++ rawContractionFactor e j.succ :: zs)
+        (adjacentMergeAfter ms (ys := zs)
+          (adjacentFactorComposition e j.succ))) := by
+  dsimp only
+  unfold rawContractionAdjacentMergeData
+  apply HEq.trans
+    (recursiveAdjacentMergeDataOfFn_eq_after_right_succ_core
+      (factorModule e) j.succ (rawContractionFactor e j.succ)
+        (adjacentFactorComposition e j.succ))
+  exact HEq.rfl
+
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
