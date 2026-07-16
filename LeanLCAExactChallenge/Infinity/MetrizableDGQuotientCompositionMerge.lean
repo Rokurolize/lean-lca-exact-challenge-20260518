@@ -7931,6 +7931,87 @@ theorem AdjacentMergeData.suffix_suffix_left_castSucc_case
         (List.append_assoc source xs ys)
         (List.append_assoc target xs ys) ih
 
+theorem factorModule_contract_left_castSucc_last_case
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (i : Fin (k + 1)) :
+    factorModule (d.contract i.castSucc) (Fin.last (k + 1)) =
+      factorModule d (Fin.last (k + 2)) := by
+  let w : DrinfeldWord X Y :=
+    { length := k + 2, intermediate := intermediate }
+  let j : Fin ((eraseIntermediate w i.castSucc).length + 1) :=
+    Fin.last (k + 1)
+  have hafter : i.castSucc < eraseFactorIndex w i.castSucc j := by
+    change i.val < k + 1
+    exact i.isLt
+  have hold : (eraseFactorIndex w i.castSucc j).succ =
+      Fin.last (k + 2) := Fin.ext rfl
+  exact (factorModule_contract_after_eq d i.castSucc j hafter).symm.trans
+    (congrArg (factorModule d) hold)
+
+theorem compositionBoundaryModule_contract_left_castSucc_case
+    {X Y Z : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {v : DrinfeldWord Y Z} {n m : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (e : DegreeProfile v m) (i : Fin (k + 1)) :
+    compositionBoundaryModule (d.contract i.castSucc) e =
+      compositionBoundaryModule d e := by
+  let w : DrinfeldWord X Y :=
+    { length := k + 2, intermediate := intermediate }
+  let j : Fin ((eraseIntermediate w i.castSucc).length + 1) :=
+    Fin.last (k + 1)
+  have hafter : i.castSucc < eraseFactorIndex w i.castSucc j := by
+    change i.val < k + 1
+    exact i.isLt
+  have hold : (eraseFactorIndex w i.castSucc j).succ =
+      Fin.last (k + 2) := Fin.ext rfl
+  unfold compositionBoundaryModule
+  change
+    (dgHomZModuleCochainComplex
+      ((eraseIntermediate w i.castSucc).arrowSource j)
+      (v.arrowTarget 0)).X
+        ((d.contract i.castSucc).arrowDegree j + e.arrowDegree 0) = _
+  rw [eraseIntermediate_arrowSource_of_after w i.castSucc j hafter,
+    contract_arrowDegree_of_after d i.castSucc j hafter, hold]
+
+theorem compositionBoundaryMap_contract_left_castSucc_case
+    {X Y Z : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {v : DrinfeldWord Y Z} {n m : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (e : DegreeProfile v m) (i : Fin (k + 1)) :
+    HEq (compositionBoundaryMap (d.contract i.castSucc) e)
+      (compositionBoundaryMap d e) := by
+  let w : DrinfeldWord X Y :=
+    { length := k + 2, intermediate := intermediate }
+  let j : Fin ((eraseIntermediate w i.castSucc).length + 1) :=
+    Fin.last (k + 1)
+  have hafter : i.castSucc < eraseFactorIndex w i.castSucc j := by
+    change i.val < k + 1
+    exact i.isLt
+  have hold : (eraseFactorIndex w i.castSucc j).succ =
+      Fin.last (k + 2) := Fin.ext rfl
+  unfold compositionBoundaryMap
+  apply dgCochainCompTensorOfEq_heq
+  · exact (eraseIntermediate_arrowSource_of_after w i.castSucc j hafter).trans
+      (congrArg w.arrowSource hold)
+  · exact (eraseIntermediate_arrowTarget_of_after w i.castSucc j hafter).trans
+      (congrArg w.arrowTarget hold)
+  · rfl
+  · rfl
+  · exact (contract_arrowDegree_of_after d i.castSucc j hafter).trans
+      (congrArg d.arrowDegree hold)
+  · rfl
+  · exact congrArg (· + e.arrowDegree 0)
+      ((contract_arrowDegree_of_after d i.castSucc j hafter).trans
+        (congrArg d.arrowDegree hold))
+
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
 abbrev QuotientCoefficientRing := ULift.{1} ℤ
 
