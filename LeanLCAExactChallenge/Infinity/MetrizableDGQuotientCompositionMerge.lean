@@ -9570,6 +9570,76 @@ theorem quotientCompositionTensorMap_changeScalars_right_cast_tmul
   exact quotientCoefficient_eqToHom_apply_up h _
 
 
+theorem quotientCompositionTensorMap_changeScalars_left_cast_tmul
+    {X Y Z : ComplexCategory} {n m k p : ℤ} (h : k + m = p)
+    (f : quotientGradedModule X Y n →ₗ[ℤ] quotientGradedModule X Y k)
+    (x : quotientGradedModule X Y n) (y : quotientGradedModule Y Z m) :
+    ((ModuleCat.ofHom (quotientLinearMapChangeScalars f) ⊗ₘ 𝟙 _) ≫
+        quotientCompositionTensorMap X Y Z k m ≫
+        eqToHom (congrArg
+          (fun q ↦ quotientCoefficientModule (quotientGradedModule X Z q)) h)).hom
+        (ULift.up x ⊗ₜ[QuotientCoefficientRing] ULift.up y) =
+      ULift.up ((eqToHom (congrArg (quotientGradedModule X Z) h)).hom
+        (quotientCompositionMap X Y Z k m (f x) y)) := by
+  rw [ModuleCat.comp_apply, ModuleCat.comp_apply]
+  change (eqToHom (congrArg
+    (fun q ↦ quotientCoefficientModule (quotientGradedModule X Z q)) h)).hom
+      (ULift.up (quotientCompositionMap X Y Z k m (f x) y)) = _
+  exact quotientCoefficient_eqToHom_apply_up h _
+
+theorem quotientCoefficientTensorMap_ext
+    {M N P : ModuleCat.{1} ℤ}
+    (f g : quotientCoefficientModule M ⊗ quotientCoefficientModule N ⟶
+      quotientCoefficientModule P)
+    (h : ∀ (x : M) (y : N),
+      f.hom (ULift.up x ⊗ₜ[QuotientCoefficientRing] ULift.up y) =
+        g.hom (ULift.up x ⊗ₜ[QuotientCoefficientRing] ULift.up y)) :
+    f = g := by
+  apply ModuleCat.hom_ext
+  apply TensorProduct.ext
+  ext x y
+  rcases x with ⟨x⟩
+  rcases y with ⟨y⟩
+  exact congrArg ULift.down (h x y)
+
+def quotientCoefficientTensorMapDownRightAdd
+    {M N P : ModuleCat.{1} ℤ}
+    (f : quotientCoefficientModule M ⊗ quotientCoefficientModule N ⟶
+      quotientCoefficientModule P) (x : M) :
+    N →+ P where
+  toFun y := (f.hom
+    (ULift.up x ⊗ₜ[QuotientCoefficientRing] ULift.up y)).down
+  map_zero' := by
+    change (f.hom (ULift.up x ⊗ₜ[QuotientCoefficientRing] 0)).down = 0
+    rw [TensorProduct.tmul_zero, map_zero]
+    rfl
+  map_add' y₁ y₂ := by
+    change (f.hom (ULift.up x ⊗ₜ[QuotientCoefficientRing]
+      (ULift.up y₁ + ULift.up y₂))).down = _
+    rw [TensorProduct.tmul_add, map_add]
+    rfl
+
+def quotientCoefficientTensorMapDownAdd
+    {M N P : ModuleCat.{1} ℤ}
+    (f : quotientCoefficientModule M ⊗ quotientCoefficientModule N ⟶
+      quotientCoefficientModule P) :
+    M →+ (N →ₗ[ℤ] P) where
+  toFun x := intLinearMapOfAddHom (quotientCoefficientTensorMapDownRightAdd f x)
+  map_zero' := by
+    apply LinearMap.ext
+    intro y
+    change (f.hom (0 ⊗ₜ[QuotientCoefficientRing] ULift.up y)).down = 0
+    rw [TensorProduct.zero_tmul, map_zero]
+    rfl
+  map_add' x₁ x₂ := by
+    apply LinearMap.ext
+    intro y
+    change (f.hom ((ULift.up x₁ + ULift.up x₂) ⊗ₜ[QuotientCoefficientRing]
+      ULift.up y)).down = _
+    rw [TensorProduct.add_tmul, map_add]
+    rfl
+
+
 end QuotientCoefficient
 
 end DrinfeldWord
