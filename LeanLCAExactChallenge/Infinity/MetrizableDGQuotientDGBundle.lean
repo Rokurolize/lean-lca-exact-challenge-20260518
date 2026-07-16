@@ -33,6 +33,60 @@ def quotientCoefficientDifferential
   ModuleCat.ofHom
     (quotientLinearMapChangeScalars (quotientTotalDifferential X Y n).hom)
 
+/-- Quotient composition satisfies the cochain Leibniz identity after coefficient change. -/
+theorem quotientCompositionTensorMap_leibniz
+    (X Y Z : ComplexCategory) (n m : ℤ) :
+  quotientCompositionTensorMap X Y Z n m ≫
+      quotientCoefficientDifferential X Z (n + m) =
+    ((𝟙 _ ⊗ₘ quotientCoefficientDifferential Y Z m) ≫
+        quotientCompositionTensorMap X Y Z n (m + 1) ≫
+        eqToHom (congrArg
+          (fun k ↦ quotientCoefficientModule (quotientGradedModule X Z k))
+          (rightLeibnizDegreeEq n m))) +
+      m.negOnePow •
+        ((quotientCoefficientDifferential X Y n ⊗ₘ 𝟙 _) ≫
+          quotientCompositionTensorMap X Y Z (n + 1) m ≫
+          eqToHom (congrArg
+            (fun k ↦ quotientCoefficientModule (quotientGradedModule X Z k))
+            (leftLeibnizDegreeEq n m))) := by
+  apply quotientCoefficientTensorMap_ext_on_summands
+  rintro ⟨w, d⟩ ⟨v, e⟩ x y
+  have hright :
+      (quotientTotalDifferential Y Z m).hom
+          ((Limits.Sigma.ι
+            (fun u : GradedSummandIndex Y Z m ↦ largeSummandModule u)
+            ⟨v, e⟩).hom y) =
+        (internalDifferentialFromSummand e +
+          contractionDifferentialFromSummand e).hom y := by
+    change
+      (Limits.Sigma.ι
+        (fun u : GradedSummandIndex Y Z m ↦ largeSummandModule u)
+        ⟨v, e⟩ ≫ quotientTotalDifferential Y Z m).hom y = _
+    rw [quotientTotalDifferential_inclusion]
+  have hleft :
+      (quotientTotalDifferential X Y n).hom
+          ((Limits.Sigma.ι
+            (fun u : GradedSummandIndex X Y n ↦ largeSummandModule u)
+            ⟨w, d⟩).hom x) =
+        (internalDifferentialFromSummand d +
+          contractionDifferentialFromSummand d).hom x := by
+    change
+      (Limits.Sigma.ι
+        (fun u : GradedSummandIndex X Y n ↦ largeSummandModule u)
+        ⟨w, d⟩ ≫ quotientTotalDifferential X Y n).hom x = _
+    rw [quotientTotalDifferential_inclusion]
+  unfold quotientCoefficientDifferential
+  rw [quotientCompositionTensorMap_comp_changeScalars_tmul]
+  simp only [ModuleCat.hom_add, LinearMap.add_apply]
+  rw [quotientCompositionTensorMap_changeScalars_right_cast_tmul] <;> try omega
+  rw [Units.smul_def]
+  simp only [ModuleCat.hom_smul, LinearMap.smul_apply]
+  rw [quotientCompositionTensorMap_changeScalars_left_cast_tmul] <;> try omega
+  apply ULift.down_injective
+  rw [quotientCompositionMap_on_summands, hright, hleft]
+  change _ = _ + (m.negOnePow : ℤ) • _
+  simpa only [Units.smul_def] using largeSummandCompositionMap_leibniz d e x y
+
 /-- The coefficient-module span-singleton morphism at the quotient identity element. -/
 def quotientIdentitySpan (K : ComplexCategory) :
     𝟙_ (ModuleCat.{1} QuotientCoefficientRing) ⟶
