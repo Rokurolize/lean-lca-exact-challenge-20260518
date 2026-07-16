@@ -9640,6 +9640,83 @@ def quotientCoefficientTensorMapDownAdd
     rfl
 
 
+def quotientCoefficientTensorMapDown
+    {M N P : ModuleCat.{1} ℤ}
+    (f : quotientCoefficientModule M ⊗ quotientCoefficientModule N ⟶
+      quotientCoefficientModule P) :
+    M →ₗ[ℤ] N →ₗ[ℤ] P :=
+  intLinearMapOfAddHom (quotientCoefficientTensorMapDownAdd f)
+
+theorem quotientGradedBilinearMap_ext
+    {X Y Z : ComplexCategory} {n m : ℤ} {P : ModuleCat.{1} ℤ}
+    (f g : quotientGradedModule X Y n →ₗ[ℤ]
+      quotientGradedModule Y Z m →ₗ[ℤ] P)
+    (h : ∀ (s : GradedSummandIndex X Y n) (t : GradedSummandIndex Y Z m)
+      (x : largeSummandModule s) (y : largeSummandModule t),
+      f ((Limits.Sigma.ι
+          (fun u : GradedSummandIndex X Y n ↦ largeSummandModule u) s).hom x)
+          ((Limits.Sigma.ι
+            (fun u : GradedSummandIndex Y Z m ↦ largeSummandModule u) t).hom y) =
+        g ((Limits.Sigma.ι
+          (fun u : GradedSummandIndex X Y n ↦ largeSummandModule u) s).hom x)
+          ((Limits.Sigma.ι
+            (fun u : GradedSummandIndex Y Z m ↦ largeSummandModule u) t).hom y)) :
+    f = g := by
+  have houter : ModuleCat.ofHom f = ModuleCat.ofHom g := by
+    apply Limits.Sigma.hom_ext
+    intro s
+    apply ModuleCat.hom_ext
+    apply LinearMap.ext
+    intro x
+    change f ((Limits.Sigma.ι
+        (fun u : GradedSummandIndex X Y n ↦ largeSummandModule u) s).hom x) =
+      g ((Limits.Sigma.ι
+        (fun u : GradedSummandIndex X Y n ↦ largeSummandModule u) s).hom x)
+    have hinner : ModuleCat.ofHom
+        (f ((Limits.Sigma.ι
+          (fun u : GradedSummandIndex X Y n ↦ largeSummandModule u) s).hom x)) =
+      ModuleCat.ofHom
+        (g ((Limits.Sigma.ι
+          (fun u : GradedSummandIndex X Y n ↦ largeSummandModule u) s).hom x)) := by
+      apply Limits.Sigma.hom_ext
+      intro t
+      apply ModuleCat.hom_ext
+      apply LinearMap.ext
+      intro y
+      exact h s t x y
+    exact congrArg ModuleCat.Hom.hom hinner
+  exact congrArg ModuleCat.Hom.hom houter
+
+theorem quotientCoefficientTensorMap_ext_on_summands
+    {X Y Z : ComplexCategory} {n m : ℤ} {P : ModuleCat.{1} ℤ}
+    (f g : quotientCoefficientModule (quotientGradedModule X Y n) ⊗
+        quotientCoefficientModule (quotientGradedModule Y Z m) ⟶
+      quotientCoefficientModule P)
+    (h : ∀ (s : GradedSummandIndex X Y n) (t : GradedSummandIndex Y Z m)
+      (x : largeSummandModule s) (y : largeSummandModule t),
+      f.hom
+          (ULift.up ((Limits.Sigma.ι
+              (fun u : GradedSummandIndex X Y n ↦ largeSummandModule u) s).hom x)
+            ⊗ₜ[QuotientCoefficientRing]
+            ULift.up ((Limits.Sigma.ι
+              (fun u : GradedSummandIndex Y Z m ↦ largeSummandModule u) t).hom y)) =
+        g.hom
+          (ULift.up ((Limits.Sigma.ι
+              (fun u : GradedSummandIndex X Y n ↦ largeSummandModule u) s).hom x)
+            ⊗ₜ[QuotientCoefficientRing]
+            ULift.up ((Limits.Sigma.ι
+              (fun u : GradedSummandIndex Y Z m ↦ largeSummandModule u) t).hom y))) :
+    f = g := by
+  apply quotientCoefficientTensorMap_ext f g
+  intro x y
+  apply ULift.down_injective
+  have hdown : quotientCoefficientTensorMapDown f =
+      quotientCoefficientTensorMapDown g := by
+    apply quotientGradedBilinearMap_ext
+    intro s t a b
+    exact congrArg ULift.down (h s t a b)
+  exact DFunLike.congr_fun (DFunLike.congr_fun hdown x) y
+
 end QuotientCoefficient
 
 end DrinfeldWord
