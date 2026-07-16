@@ -6510,6 +6510,220 @@ theorem rawContractionFactor_append_left_castSucc
     appendArrowDegree_left, appendArrowDegree_left]
   rw [show i.succ.castSucc = i.castSucc.succ by apply Fin.ext; rfl]
 
+theorem adjacentFactorComposition_append_left_castSucc
+    {X Y Z : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {v : DrinfeldWord Y Z} {n m : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (e : DegreeProfile v m) (i : Fin (k + 1)) :
+    HEq (adjacentFactorComposition (d.append e)
+        (appendLeftContractionIndex i.castSucc))
+      (adjacentFactorComposition d i.castSucc) := by
+  have hleft :
+      (appendLeftContractionIndex
+          (w := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord X Y)) (v := v) i.castSucc).castSucc =
+        appendLeftArrowIndex
+          (w := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord X Y)) (v := v) i.castSucc := by
+    apply Fin.ext
+    rfl
+  have hright :
+      (appendLeftContractionIndex
+          (w := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord X Y)) (v := v) i.castSucc).succ =
+        appendLeftArrowIndex
+          (w := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord X Y)) (v := v) i.succ := Fin.ext rfl
+  unfold adjacentFactorComposition
+  apply dgCochainCompTensorOfEq_heq
+  · rw [hleft, arrowSource_append_left]
+  · rw [hleft, arrowTarget_append_left]
+  · rw [hright, arrowSource_append_left]
+    congr 1
+  · rw [hright, arrowTarget_append_left]
+    congr 1
+  · simp only [DegreeProfile.append, hleft, appendArrowDegree_left]
+  · simp only [DegreeProfile.append, hright, appendArrowDegree_left]
+    congr 1
+  · simp only [DegreeProfile.append, hleft, hright,
+      appendArrowDegree_left]
+    congr 2
+
+theorem rawContractionAdjacentMergeData_append_left_castSucc
+    {X Y Z : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {v : DrinfeldWord Y Z} {n m : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (e : DegreeProfile v m) (i : Fin (k + 1)) :
+    let Mleft : Fin (k + 2) → ModuleCat.{0} ℤ :=
+      fun q ↦ factorModule d q.castSucc
+    let F := recursiveAdjacentMergeDataOfFn Mleft i
+      (rawContractionFactor d i.castSucc) (by
+        exact adjacentFactorComposition d i.castSucc)
+    HEq (rawContractionAdjacentMergeData (d.append e)
+        (appendLeftContractionIndex i.castSucc))
+      (F.suffix
+        (compositionBoundaryModule d e :: compositionRightSuffix e)) := by
+  dsimp only
+  let Mleft : Fin (k + 2) → ModuleCat.{0} ℤ :=
+    fun q ↦ factorModule d q.castSucc
+  let F := recursiveAdjacentMergeDataOfFn Mleft i
+    (rawContractionFactor d i.castSucc) (by
+      exact adjacentFactorComposition d i.castSucc)
+  let j := appendLeftContractionIndex
+    (w := ({ length := k + 2, intermediate := intermediate } :
+      DrinfeldWord X Y)) (v := v) i.castSucc
+  let tail := compositionBoundaryModule d e :: compositionRightSuffix e
+  have hlist : finFamilyList (factorModule (d.append e)) =
+      finFamilyList Mleft ++ tail := by
+    simpa only [Mleft, tail, compositionLeftPrefix] using
+      finFamilyList_factorModule_append_boundary d e
+  have hprefix :
+      (finFamilyList (factorModule (d.append e))).take j.val =
+        (finFamilyList Mleft).take i.val := by
+    rw [hlist]
+    rw [List.take_append_of_le_length]
+    · simp only [j, appendLeftContractionIndex, Fin.val_mk,
+        Fin.val_castSucc]
+    · rw [finFamilyList_eq_ofFn, List.length_ofFn]
+      have hi := i.isLt
+      simp only [j, appendLeftContractionIndex, Fin.val_mk,
+        Fin.val_castSucc]
+      omega
+  have hsuffix :
+      (finFamilyList (factorModule (d.append e))).drop (j.val + 2) =
+        (finFamilyList Mleft).drop (i.val + 2) ++ tail := by
+    rw [hlist]
+    rw [List.drop_append_of_le_length]
+    · simp only [j, appendLeftContractionIndex, Fin.val_mk,
+        Fin.val_castSucc]
+    · rw [finFamilyList_eq_ofFn, List.length_ofFn]
+      have hi := i.isLt
+      simp only [j, appendLeftContractionIndex, Fin.val_mk,
+        Fin.val_castSucc]
+      omega
+  have hP := rawContractionFactor_append_left_castSucc d e i
+  have hf := adjacentFactorComposition_append_left_castSucc d e i
+  have hfull := recursiveAdjacentMergeDataOfFn_eq_after
+    (factorModule (d.append e)) j
+      (rawContractionFactor (d.append e) j)
+      (adjacentFactorComposition (d.append e) j)
+  have hF := recursiveAdjacentMergeDataOfFn_eq_after
+    Mleft i (rawContractionFactor d i.castSucc)
+      (adjacentFactorComposition d i.castSucc)
+  have hFSuffix := adjacentMergeData_suffix_heq
+    (finFamilyList_recursiveMerge_source Mleft i)
+    (finFamilyList_recursiveMerge_target Mleft i
+      (rawContractionFactor d i.castSucc)) hF tail
+  have hAfterSuffix := adjacentMergeAfter_suffix_heq
+    ((finFamilyList Mleft).take i.val)
+    (ys := (finFamilyList Mleft).drop (i.val + 2))
+    (adjacentFactorComposition d i.castSucc) tail
+  have hcanonical := adjacentMergeAfter_congr hprefix
+    (factorModule_append_left d e i.castSucc)
+    (factorModule_append_left d e i.succ) hP hsuffix hf
+  unfold rawContractionAdjacentMergeData
+  change HEq (recursiveAdjacentMergeDataOfFn
+      (factorModule (d.append e)) j
+      (rawContractionFactor (d.append e) j)
+      (adjacentFactorComposition (d.append e) j)) (F.suffix tail)
+  exact hfull.trans (hcanonical.trans
+    (hAfterSuffix.symm.trans hFSuffix.symm))
+
+theorem rawContractionTargetList_append_left_castSucc
+    {X Y Z : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {v : DrinfeldWord Y Z} {n m : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (e : DegreeProfile v m) (i : Fin (k + 1)) :
+    let Mleft : Fin (k + 2) → ModuleCat.{0} ℤ :=
+      fun q ↦ factorModule d q.castSucc
+    finFamilyList (recursiveMergedFactor (factorModule (d.append e))
+        (appendLeftContractionIndex i.castSucc)
+        (rawContractionFactor (d.append e)
+          (appendLeftContractionIndex i.castSucc))) =
+      finFamilyList (recursiveMergedFactor Mleft i
+          (rawContractionFactor d i.castSucc)) ++
+        compositionBoundaryModule d e :: compositionRightSuffix e := by
+  dsimp only
+  let Mleft : Fin (k + 2) → ModuleCat.{0} ℤ :=
+    fun q ↦ factorModule d q.castSucc
+  let j := appendLeftContractionIndex
+    (w := ({ length := k + 2, intermediate := intermediate } :
+      DrinfeldWord X Y)) (v := v) i.castSucc
+  let tail := compositionBoundaryModule d e :: compositionRightSuffix e
+  have hlist : finFamilyList (factorModule (d.append e)) =
+      finFamilyList Mleft ++ tail := by
+    simpa only [Mleft, tail, compositionLeftPrefix] using
+      finFamilyList_factorModule_append_boundary d e
+  have hprefix : (finFamilyList (factorModule (d.append e))).take j.val =
+      (finFamilyList Mleft).take i.val := by
+    rw [hlist, List.take_append_of_le_length]
+    · simp only [j, appendLeftContractionIndex, Fin.val_mk,
+        Fin.val_castSucc]
+    · rw [finFamilyList_eq_ofFn, List.length_ofFn]
+      have hi := i.isLt
+      simp only [j, appendLeftContractionIndex, Fin.val_mk,
+        Fin.val_castSucc]
+      omega
+  have hsuffix : (finFamilyList (factorModule (d.append e))).drop (j.val + 2) =
+      (finFamilyList Mleft).drop (i.val + 2) ++ tail := by
+    rw [hlist, List.drop_append_of_le_length]
+    · simp only [j, appendLeftContractionIndex, Fin.val_mk,
+        Fin.val_castSucc]
+    · rw [finFamilyList_eq_ofFn, List.length_ofFn]
+      have hi := i.isLt
+      simp only [j, appendLeftContractionIndex, Fin.val_mk,
+        Fin.val_castSucc]
+      omega
+  exact recursiveMergedFactorList_append_of_normal_form tail hprefix
+    (rawContractionFactor_append_left_castSucc d e i) hsuffix
+
+theorem rawContractionTargetList_castSucc_append_last
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (i : Fin (k + 1)) :
+    let Mleft : Fin (k + 2) → ModuleCat.{0} ℤ :=
+      fun q ↦ factorModule d q.castSucc
+    finFamilyList (recursiveMergedFactor (factorModule d) i.castSucc
+        (rawContractionFactor d i.castSucc)) =
+      finFamilyList (recursiveMergedFactor Mleft i
+          (rawContractionFactor d i.castSucc)) ++
+        [factorModule d (Fin.last (k + 2))] := by
+  dsimp only
+  let Mleft : Fin (k + 2) → ModuleCat.{0} ℤ :=
+    fun q ↦ factorModule d q.castSucc
+  let tail := [factorModule d (Fin.last (k + 2))]
+  have hlist : finFamilyList (factorModule d) =
+      finFamilyList Mleft ++ tail := by
+    simpa only [Mleft, tail, compositionLeftPrefix] using
+      finFamilyList_factorModule_eq_prefix_last d
+  have hprefix : (finFamilyList (factorModule d)).take i.castSucc.val =
+      (finFamilyList Mleft).take i.val := by
+    rw [hlist, List.take_append_of_le_length]
+    · simp only [Fin.val_castSucc]
+    · rw [finFamilyList_eq_ofFn, List.length_ofFn]
+      simp only [Fin.val_castSucc]
+      have hi := i.isLt
+      omega
+  have hsuffix : (finFamilyList (factorModule d)).drop (i.castSucc.val + 2) =
+      (finFamilyList Mleft).drop (i.val + 2) ++ tail := by
+    rw [hlist, List.drop_append_of_le_length]
+    · simp only [Fin.val_castSucc]
+    · rw [finFamilyList_eq_ofFn, List.length_ofFn]
+      simp only [Fin.val_castSucc]
+      have hi := i.isLt
+      omega
+  exact recursiveMergedFactorList_append_of_normal_form tail hprefix rfl
+    hsuffix
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
