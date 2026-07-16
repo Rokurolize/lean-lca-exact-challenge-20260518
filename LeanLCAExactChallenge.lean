@@ -27,6 +27,8 @@ import LeanLCAExactChallenge.Infinity.SimplicialJoin
 import LeanLCAExactChallenge.Infinity.MarkedRelativeLifting
 import LeanLCAExactChallenge.Infinity.OrdinaryLocalizationBridge
 import LeanLCAExactChallenge.Infinity.InnerAnodyneMapping
+import LeanLCAExactChallenge.Infinity.EndpointMappingSpaces
+import LeanLCAExactChallenge.Infinity.QuasicategoryAllEdgesKan
 import LeanLCAExactChallenge.Infinity.Limits
 import LeanLCAExactChallenge.Infinity.Stable
 import LeanLCAExactChallenge.Infinity.StableSquareCalculus
