@@ -7766,6 +7766,117 @@ theorem leftLastActualLeftPair_heq
     summandModule] using htrim
 
 
+theorem summandCompositionRemainder_contraction_append_left_last_heq
+    {X Y Z : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {v : DrinfeldWord Y Z} {n m : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (e : DegreeProfile v m) :
+    HEq
+      (summandCompositionRemainder d e ≫
+        contractionTensorMap (d.append e)
+          (appendLeftContractionIndex (v := v) (Fin.last k)))
+      (tensorModuleListWhiskerRight (finFamilyList (factorModule e))
+          (contractionTensorMap d (Fin.last k)) ≫
+        summandCompositionRemainder (d.contract (Fin.last k)) e) := by
+  let R := summandCompositionRemainder d e
+  let C := contractionTensorMap (d.append e)
+    (appendLeftContractionIndex (v := v) (Fin.last k))
+  let C₀ := (rawContractionAdjacentMergeData (d.append e)
+    (appendLeftContractionIndex (v := v) (Fin.last k))).tensorMap
+  let D := contractionTensorMap d (Fin.last k)
+  let D₀ := (rawContractionAdjacentMergeData d (Fin.last k)).tensorMap
+  let R' := summandCompositionRemainder (d.contract (Fin.last k)) e
+  let hAppendTargetList := rawContractionTargetListEq_left_last_assembly
+    (d.append e) (appendLeftContractionIndex (v := v) (Fin.last k))
+  let hAppendTarget := congrArg tensorModuleList hAppendTargetList
+  let hDTargetList := rawContractionTargetListEq_left_last_assembly d (Fin.last k)
+  let C₁ := C₀ ≫ eqToHom hAppendTarget.symm
+  let D₁ := D₀ ≫ eqToHom (congrArg tensorModuleList hDTargetList.symm)
+  let W := tensorModuleListWhiskerRight (finFamilyList (factorModule e)) D
+  let W₁ := tensorModuleListWhiskerRight (finFamilyList (factorModule e)) D₁
+  have hC : HEq C C₀ := by
+    have hrecursive := contractionTensorMap_recursive_heq
+      (d.append e) (appendLeftContractionIndex (v := v) (Fin.last k))
+    exact hrecursive.trans
+      (hrecursive.symm.trans (test_contractionTensorMap_raw_heq _ _))
+  have hD : HEq D D₀ := by
+    have hrecursive := contractionTensorMap_recursive_heq d (Fin.last k)
+    exact hrecursive.trans
+      (hrecursive.symm.trans (test_contractionTensorMap_raw_heq d (Fin.last k)))
+  have hC₁ : C = C₁ := eq_of_heq
+    (hC.trans (CategoryTheory.comp_eqToHom_heq C₀ hAppendTarget.symm).symm)
+  have hD₁ : D = D₁ := eq_of_heq
+    (hD.trans (CategoryTheory.comp_eqToHom_heq D₀
+      (congrArg tensorModuleList hDTargetList.symm)).symm)
+  have hW₁ : W = W₁ := congrArg
+    (tensorModuleListWhiskerRight (finFamilyList (factorModule e))) hD₁
+  change HEq (R ≫ C) (W ≫ R')
+  rw [hC₁, hW₁]
+  have hmiddle := (leftLastNormalizedPairTensorMap_heq d e).symm
+  apply transportedPairAssembler_heq (hmiddle := hmiddle)
+  · simpa only [R, C₁, C₀, rawContractionAdjacentMergeData,
+      Category.assoc] using leftLastActualRightPair_heq d e
+  · simpa only [W₁, D₁, D₀, R', rawContractionAdjacentMergeData,
+      Category.assoc] using leftLastActualLeftPair_heq d e
+
+theorem leftLastContractAppendSummandModule_eq
+    {X Y Z : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {v : DrinfeldWord Y Z} {n m : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (e : DegreeProfile v m) :
+    summandModule
+        ((d.append e).contract (appendLeftContractionIndex (v := v) (Fin.last k))) =
+      summandModule ((d.contract (Fin.last k)).append e) := by
+  unfold summandModule
+  apply congrArg tensorModuleList
+  exact
+    ((rawContractionTargetListEq_left_last_assembly (d.append e)
+      (appendLeftContractionIndex (v := v) (Fin.last k))).trans
+        (leftLastRawContractionAppendTargetList_eq d e)).trans
+      ((finFamilyList_factorModule_append_boundary
+        (d.contract (Fin.last k)) e).trans
+          (leftLastContractedCompositionBoundaryList_eq d e)).symm
+
+theorem summandCompositionMap_contraction_append_left_last_heq
+    {X Y Z : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {v : DrinfeldWord Y Z} {n m : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (e : DegreeProfile v m) :
+    HEq
+      (summandCompositionMap d e ≫
+        contractionTensorMap (d.append e)
+          (appendLeftContractionIndex (v := v) (Fin.last k)))
+      ((contractionTensorMap d (Fin.last k) ⊗ₘ 𝟙 (summandModule e)) ≫
+        summandCompositionMap (d.contract (Fin.last k)) e) := by
+  rw [summandCompositionMap_eq_normalized,
+    summandCompositionMap_eq_normalized]
+  rw [normalizedSummandCompositionMap_eq_append_remainder,
+    normalizedSummandCompositionMap_eq_append_remainder]
+  dsimp only [summandModule]
+  simp only [Category.assoc]
+  rw [tensorModuleListAppendIso_whiskerRight_assoc]
+  let A := (tensorModuleListAppendIso (finFamilyList (factorModule d))
+    (finFamilyList (factorModule e))).hom
+  let R := summandCompositionRemainder d e
+  let C := contractionTensorMap (d.append e)
+    (appendLeftContractionIndex (v := v) (Fin.last k))
+  let W := tensorModuleListWhiskerRight (finFamilyList (factorModule e))
+    (contractionTensorMap d (Fin.last k))
+  let R' := summandCompositionRemainder (d.contract (Fin.last k)) e
+  change HEq (A ≫ R ≫ C) (A ≫ W ≫ R')
+  have hrem := summandCompositionRemainder_contraction_append_left_last_heq d e
+  have hA : HEq A A := HEq.rfl
+  have hpre : HEq (A ≫ (R ≫ C)) (A ≫ (W ≫ R')) :=
+    CategoryTheory.heq_comp rfl rfl
+      (leftLastContractAppendSummandModule_eq d e) hA hrem
+  simpa only [Category.assoc] using hpre
+
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
 abbrev QuotientCoefficientRing := ULift.{1} ℤ
 
