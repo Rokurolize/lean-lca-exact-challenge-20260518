@@ -5314,6 +5314,51 @@ theorem summandCompositionMap_internalDifferential_append_boundary
   congr 1
 
 
+def rawContractionTargetListEq_right_succ_core
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    finFamilyList (recursiveMergedFactor (factorModule d) i
+        (rawContractionFactor d i)) =
+      finFamilyList (factorModule (d.contract i)) :=
+  (congrArg finFamilyList (test_rawContractionTarget_eq d i)).trans
+    (contractedFactorsOldIndex_eq d i)
+
+theorem tensorModuleListWhiskerLeft_heq_right_succ_core
+    {Ms Ns Ms' Ns' : List (ModuleCat.{0} ℤ)}
+    (Ps : List (ModuleCat.{0} ℤ)) (hMs : Ms = Ms') (hNs : Ns = Ns')
+    {f : tensorModuleList Ms ⟶ tensorModuleList Ns}
+    {f' : tensorModuleList Ms' ⟶ tensorModuleList Ns'} (h : HEq f f') :
+    HEq (tensorModuleListWhiskerLeft Ps f)
+      (tensorModuleListWhiskerLeft Ps f') := by
+  subst Ms'
+  subst Ns'
+  have hff : f = f' := eq_of_heq h
+  subst f'
+  rfl
+
+theorem adjacentMergeData_prefix_heq_right_succ_core
+    {source target source' target' : List (ModuleCat.{0} ℤ)}
+    {f : AdjacentMergeData source target}
+    {g : AdjacentMergeData source' target'}
+    (hsource : source = source') (htarget : target = target')
+    (h : HEq f g) (Ps : List (ModuleCat.{0} ℤ)) :
+    HEq (f.prefix Ps) (g.prefix Ps) := by
+  induction Ps with
+  | nil => exact h
+  | cons P Ps ih =>
+      exact adjacentMergeData_tail_heq rfl
+        (congrArg (Ps ++ ·) hsource)
+        (congrArg (Ps ++ ·) htarget) ih
+
+def recursiveMergePrefix_right_succ_core : {k : ℕ} →
+    (Fin (k + 2) → ModuleCat.{0} ℤ) → Fin (k + 1) →
+      List (ModuleCat.{0} ℤ)
+  | 0, _, _ => []
+  | k + 1, M, i => Fin.cases []
+      (fun q ↦ M 0 :: recursiveMergePrefix_right_succ_core
+        (fun r : Fin (k + 2) ↦ M r.succ) q) i
+
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
