@@ -6724,6 +6724,57 @@ theorem rawContractionTargetList_castSucc_append_last
   exact recursiveMergedFactorList_append_of_normal_form tail hprefix rfl
     hsuffix
 
+theorem summandCompositionMap_contraction_append_right_of_remainder
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (j : Fin v.length)
+    (hremainder :
+      HEq
+        (summandCompositionRemainder d e ≫
+          contractionTensorMap (d.append e) (appendRightContractionIndex j))
+        (tensorModuleListWhiskerLeft (finFamilyList (factorModule d))
+            (contractionTensorMap e j) ≫
+          summandCompositionRemainder d (e.contract j))) :
+    HEq
+      (summandCompositionMap d e ≫
+        contractionTensorMap (d.append e) (appendRightContractionIndex j))
+      ((𝟙 (summandModule d) ⊗ₘ contractionTensorMap e j) ≫
+        summandCompositionMap d (e.contract j)) := by
+  rw [summandCompositionMap_eq_normalized,
+    summandCompositionMap_eq_normalized]
+  rw [normalizedSummandCompositionMap_eq_append_remainder,
+    normalizedSummandCompositionMap_eq_append_remainder]
+  dsimp only [summandModule]
+  simp only [Category.assoc]
+  rw [tensorModuleListAppendIso_whiskerLeft_assoc]
+  let A := (tensorModuleListAppendIso (finFamilyList (factorModule d))
+    (finFamilyList (factorModule e))).hom
+  let R := summandCompositionRemainder d e
+  let C := contractionTensorMap (d.append e) (appendRightContractionIndex j)
+  let W := tensorModuleListWhiskerLeft (finFamilyList (factorModule d))
+    (contractionTensorMap e j)
+  let R' := summandCompositionRemainder d (e.contract j)
+  change HEq (A ≫ (R ≫ C)) (A ≫ (W ≫ R'))
+  exact CategoryTheory.heq_comp rfl rfl
+    (eq_of_heq (summandModule_contract_append_right_heq d e j))
+    HEq.rfl hremainder
+
+theorem summandCompositionMap_contraction_append_right_succ_heq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {n m : ℤ} (d : DegreeProfile w n)
+    (e : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord Y Z) m)
+    (j : Fin (k + 1)) :
+    HEq
+      (summandCompositionMap d e ≫
+        contractionTensorMap (d.append e)
+          (appendRightContractionIndex j.succ))
+      ((𝟙 (summandModule d) ⊗ₘ contractionTensorMap e j.succ) ≫
+        summandCompositionMap d (e.contract j.succ)) :=
+  summandCompositionMap_contraction_append_right_of_remainder d e j.succ
+    (summandCompositionRemainder_contraction_append_right_succ_heq d e j)
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
