@@ -5848,6 +5848,485 @@ theorem rawContractionAdjacentMergeData_right_succ_heq_core
   exact HEq.rfl
 
 
+theorem compositionBoundaryMap_contract_right_succ_heq_core
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {n m : ℤ} (d : DegreeProfile w n)
+    (e : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord Y Z) m)
+    (j : Fin (k + 1)) :
+    HEq (compositionBoundaryMap d (e.contract j.succ))
+      (compositionBoundaryMap d e) := by
+  let v : DrinfeldWord Y Z :=
+    { length := k + 2, intermediate := intermediate }
+  have hindex : eraseFactorIndex v j.succ 0 = 0 := rfl
+  have hbefore : eraseFactorIndex v j.succ 0 < j.succ := by
+    change 0 < j.val + 1
+    omega
+  have hcast : (eraseFactorIndex v j.succ 0).castSucc = 0 := by
+    rw [hindex]
+    rfl
+  have hdegree : (e.contract j.succ).arrowDegree 0 = e.arrowDegree 0 :=
+    (contract_arrowDegree_of_before e j.succ 0 hbefore).trans
+      (congrArg e.arrowDegree hcast)
+  unfold compositionBoundaryMap
+  apply dgCochainCompTensorOfEq_heq
+  · rfl
+  · rfl
+  · exact eraseIntermediate_arrowSource_of_before v j.succ 0 hbefore
+  · exact eraseIntermediate_arrowTarget_of_before v j.succ 0 hbefore
+  · rfl
+  · exact hdegree
+  · exact congrArg (d.arrowDegree (Fin.last w.length) + ·) (by
+      exact hdegree)
+
+theorem compositionBoundaryModule_contract_right_succ_core
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {n m : ℤ} (d : DegreeProfile w n)
+    (e : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord Y Z) m)
+    (j : Fin (k + 1)) :
+    compositionBoundaryModule d (e.contract j.succ) =
+      compositionBoundaryModule d e := by
+  let v : DrinfeldWord Y Z :=
+    { length := k + 2, intermediate := intermediate }
+  have hindex : eraseFactorIndex v j.succ 0 = 0 := rfl
+  have hbefore : eraseFactorIndex v j.succ 0 < j.succ := by
+    change 0 < j.val + 1
+    omega
+  have hcast : (eraseFactorIndex v j.succ 0).castSucc = 0 := by
+    rw [hindex]
+    rfl
+  have hdegree : (e.contract j.succ).arrowDegree 0 = e.arrowDegree 0 :=
+    (contract_arrowDegree_of_before e j.succ 0 hbefore).trans
+      (congrArg e.arrowDegree hcast)
+  unfold compositionBoundaryModule
+  rw [eraseIntermediate_arrowTarget_of_before v j.succ 0 hbefore, hcast,
+    hdegree]
+
+theorem summandCompositionRemainder_contraction_append_right_succ_heq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {n m : ℤ} (d : DegreeProfile w n)
+    (e : DegreeProfile ({ length := k + 2, intermediate := intermediate } : DrinfeldWord Y Z) m)
+    (j : Fin (k + 1)) :
+  HEq
+    (summandCompositionRemainder d e ≫
+      contractionTensorMap (d.append e) (appendRightContractionIndex j.succ))
+    (tensorModuleListWhiskerLeft (finFamilyList (factorModule d))
+        (contractionTensorMap e j.succ) ≫
+      summandCompositionRemainder d (e.contract j.succ)) := by
+  let R := summandCompositionRemainder d e
+  let C := contractionTensorMap (d.append e) (appendRightContractionIndex j.succ)
+  let C₀ := (rawContractionAdjacentMergeData (d.append e)
+    (appendRightContractionIndex j.succ)).tensorMap
+  let W := tensorModuleListWhiskerLeft (finFamilyList (factorModule d))
+    (contractionTensorMap e j.succ)
+  let W₀ := tensorModuleListWhiskerLeft (finFamilyList (factorModule d))
+    (rawContractionAdjacentMergeData e j.succ).tensorMap
+  let R' := summandCompositionRemainder d (e.contract j.succ)
+  let hCList := rawContractionTargetListEq_right_succ_core
+    (d.append e) (appendRightContractionIndex j.succ)
+  let hWList := rawContractionTargetListEq_right_succ_core e j.succ
+  let hWAppend := congrArg (finFamilyList (factorModule d) ++ ·) hWList
+  let T := eqToHom (congrArg tensorModuleList hWAppend)
+  have hC : HEq C C₀ := test_contractionTensorMap_raw_heq _ _
+  have hW : HEq W W₀ := tensorModuleListWhiskerLeft_heq_right_succ_core
+    _ rfl hWList.symm (test_contractionTensorMap_raw_heq e j.succ)
+  have hleft : HEq (R ≫ C) (R ≫ C₀) :=
+    CategoryTheory.heq_comp rfl rfl
+      (congrArg tensorModuleList hCList).symm HEq.rfl hC
+  have hright : HEq (W ≫ R') (W₀ ≫ T ≫ R') := by
+    apply CategoryTheory.heq_comp rfl
+      (congrArg tensorModuleList hWAppend).symm rfl hW
+    exact (CategoryTheory.eqToHom_comp_heq R'
+      (congrArg tensorModuleList hWAppend)).symm
+  refine hleft.trans ?_ |>.trans hright.symm
+  dsimp [R, C₀, W₀, T, R', summandCompositionRemainder]
+  rw [← AdjacentMergeData.prefix_tensorMap]
+  let M := fun r : Fin (k + 2) ↦ factorModule e r.succ
+  let ms := recursiveMergePrefix_right_succ_core M j
+  let zs := recursiveMergeSuffix_right_succ_core M j
+  let F₁ := (@AdjacentMergeData.head
+    (factorModule d (Fin.last w.length)) (factorModule e 0)
+    (compositionBoundaryModule d e)
+    (ms ++ factorModule e j.succ.castSucc ::
+      factorModule e j.succ.succ :: zs)
+    (compositionBoundaryMap d e)).prefix (compositionLeftPrefix d)
+  let G₁ := (@AdjacentMergeData.tail (compositionBoundaryModule d e)
+    (ms ++ factorModule e j.succ.castSucc ::
+      factorModule e j.succ.succ :: zs)
+    (ms ++ rawContractionFactor e j.succ :: zs)
+    (adjacentMergeAfter ms (ys := zs)
+      (adjacentFactorComposition e j.succ))).prefix (compositionLeftPrefix d)
+  let F₂ := (@AdjacentMergeData.tail (factorModule d (Fin.last w.length))
+    (factorModule e 0 :: ms ++ factorModule e j.succ.castSucc ::
+      factorModule e j.succ.succ :: zs)
+    (factorModule e 0 :: ms ++ rawContractionFactor e j.succ :: zs)
+    (@AdjacentMergeData.tail (factorModule e 0)
+      (ms ++ factorModule e j.succ.castSucc ::
+        factorModule e j.succ.succ :: zs)
+      (ms ++ rawContractionFactor e j.succ :: zs)
+      (adjacentMergeAfter ms (ys := zs)
+        (adjacentFactorComposition e j.succ)))).prefix
+          (compositionLeftPrefix d)
+  let G₂ := (@AdjacentMergeData.head
+    (factorModule d (Fin.last w.length)) (factorModule e 0)
+    (compositionBoundaryModule d e)
+    (ms ++ rawContractionFactor e j.succ :: zs)
+    (compositionBoundaryMap d e)).prefix (compositionLeftPrefix d)
+  have hmiddle : HEq (F₁.tensorMap ≫ G₁.tensorMap)
+      (F₂.tensorMap ≫ G₂.tensorMap) := by
+    exact (adjacentMergeAfter_pair_head_tail (compositionLeftPrefix d) ms
+      (zs := zs) (compositionBoundaryMap d e)
+      (adjacentFactorComposition e j.succ)).tensorMap_heq
+  have hF₁Data : HEq
+      (adjacentMergeAfter (compositionLeftPrefix d)
+        (ys := compositionRightSuffix e) (compositionBoundaryMap d e)) F₁ := by
+    apply HEq.trans (adjacentMergeAfter_congr
+      (f := compositionBoundaryMap d e) (g := compositionBoundaryMap d e)
+      rfl rfl rfl rfl (compositionRightSuffix_split_right_succ_core e j)
+      HEq.rfl)
+    exact heq_of_eq (adjacentMergeAfter_eq_prefix_head
+      (compositionLeftPrefix d) (compositionBoundaryMap d e))
+  have hG₁Data : HEq
+      (rawContractionAdjacentMergeData (d.append e)
+        (appendRightContractionIndex j.succ)) G₁ := by
+    exact rawContractionAdjacentMergeData_append_right_succ_heq_core d e j
+  have hrawE := rawContractionAdjacentMergeData_right_succ_heq_core e j
+  have hF₂Data : HEq
+      ((rawContractionAdjacentMergeData e j.succ).prefix
+        (finFamilyList (factorModule d))) F₂ := by
+    have hs : finFamilyList (factorModule e) =
+        factorModule e 0 ::
+          (ms ++ factorModule e j.succ.castSucc ::
+            factorModule e j.succ.succ :: zs) := by
+      rw [finFamilyList_factorModule_eq_first_suffix,
+        compositionRightSuffix_split_right_succ_core e j]
+    have ht : finFamilyList (recursiveMergedFactor (factorModule e) j.succ
+          (rawContractionFactor e j.succ)) =
+        factorModule e 0 ::
+          (ms ++ rawContractionFactor e j.succ :: zs) := by
+      change factorModule e 0 ::
+          finFamilyList (recursiveMergedFactor M j
+            (rawContractionFactor e j.succ)) = _
+      exact congrArg (List.cons (factorModule e 0))
+        (finFamilyList_recursiveMerge_target_right_succ_core M j
+          (rawContractionFactor e j.succ))
+    have hp := adjacentMergeData_prefix_heq_right_succ_core
+      hs ht hrawE
+      (finFamilyList (factorModule d))
+    apply HEq.trans hp
+    rw [finFamilyList_factorModule_eq_prefix_last]
+    exact (AdjacentMergeData.prefix_prefix_heq
+      (@AdjacentMergeData.tail (factorModule e 0)
+        (ms ++ factorModule e j.succ.castSucc ::
+          factorModule e j.succ.succ :: zs)
+        (ms ++ rawContractionFactor e j.succ :: zs)
+        (adjacentMergeAfter ms (ys := zs)
+          (adjacentFactorComposition e j.succ)))
+      [factorModule d (Fin.last w.length)] (compositionLeftPrefix d)).symm
+  have hrawTarget :
+      finFamilyList (recursiveMergedFactor (factorModule e) j.succ
+        (rawContractionFactor e j.succ)) =
+        factorModule e 0 ::
+          (ms ++ rawContractionFactor e j.succ :: zs) := by
+    change factorModule e 0 ::
+        finFamilyList (recursiveMergedFactor M j
+          (rawContractionFactor e j.succ)) = _
+    exact congrArg (List.cons (factorModule e 0))
+      (finFamilyList_recursiveMerge_target_right_succ_core M j
+        (rawContractionFactor e j.succ))
+  have hcontractList : finFamilyList (factorModule (e.contract j.succ)) =
+      factorModule e 0 ::
+        (ms ++ rawContractionFactor e j.succ :: zs) :=
+    hWList.symm.trans hrawTarget
+  have hcontractCons :
+      factorModule (e.contract j.succ) 0 ::
+          compositionRightSuffix (e.contract j.succ) =
+        factorModule e 0 ::
+          (ms ++ rawContractionFactor e j.succ :: zs) :=
+    (finFamilyList_factorModule_eq_first_suffix (e.contract j.succ)).symm.trans
+      hcontractList
+  have hfirst : factorModule (e.contract j.succ) 0 = factorModule e 0 :=
+    (List.cons.inj hcontractCons).1
+  have hsuffix : compositionRightSuffix (e.contract j.succ) =
+      ms ++ rawContractionFactor e j.succ :: zs :=
+    (List.cons.inj hcontractCons).2
+  have hG₂Data : HEq
+      (adjacentMergeAfter (compositionLeftPrefix d)
+        (ys := compositionRightSuffix (e.contract j.succ))
+        (compositionBoundaryMap d (e.contract j.succ))) G₂ := by
+    apply HEq.trans (adjacentMergeAfter_congr
+      (f := compositionBoundaryMap d (e.contract j.succ))
+      (g := compositionBoundaryMap d e)
+      rfl rfl hfirst
+      (compositionBoundaryModule_contract_right_succ_core d e j)
+      hsuffix (compositionBoundaryMap_contract_right_succ_heq_core d e j))
+    exact heq_of_eq (adjacentMergeAfter_eq_prefix_head
+      (compositionLeftPrefix d) (compositionBoundaryMap d e))
+  have hF₁Map : HEq
+      (adjacentMergeAfter (compositionLeftPrefix d)
+        (ys := compositionRightSuffix e)
+        (compositionBoundaryMap d e)).tensorMap F₁.tensorMap := by
+    apply AdjacentMergeData.tensorMap_heq
+    · exact congrArg (fun s ↦ compositionLeftPrefix d ++
+        factorModule d (Fin.last w.length) :: factorModule e 0 :: s)
+        (compositionRightSuffix_split_right_succ_core e j)
+    · exact congrArg (fun s ↦ compositionLeftPrefix d ++
+        compositionBoundaryModule d e :: s)
+        (compositionRightSuffix_split_right_succ_core e j)
+    · exact hF₁Data
+  have hG₁Map : HEq
+      (rawContractionAdjacentMergeData (d.append e)
+        (appendRightContractionIndex j.succ)).tensorMap G₁.tensorMap := by
+    apply AdjacentMergeData.tensorMap_heq
+    · exact (finFamilyList_factorModule_append_boundary d e).trans
+        (congrArg (fun s ↦ compositionLeftPrefix d ++
+          compositionBoundaryModule d e :: s)
+          (compositionRightSuffix_split_right_succ_core e j))
+    · calc
+        finFamilyList (recursiveMergedFactor (factorModule (d.append e))
+            (appendRightContractionIndex (w := w)
+              (v := ({ length := k + 2, intermediate := intermediate } :
+                DrinfeldWord Y Z)) j.succ)
+            (rawContractionFactor (d.append e)
+              (appendRightContractionIndex (w := w)
+                (v := ({ length := k + 2, intermediate := intermediate } :
+                  DrinfeldWord Y Z)) j.succ))) =
+            recursiveMergePrefix_right_succ_core (factorModule (d.append e))
+                (appendRightContractionIndex (w := w)
+                  (v := ({ length := k + 2, intermediate := intermediate } :
+                    DrinfeldWord Y Z)) j.succ) ++
+              rawContractionFactor (d.append e)
+                  (appendRightContractionIndex (w := w)
+                    (v := ({ length := k + 2, intermediate := intermediate } :
+                      DrinfeldWord Y Z)) j.succ) ::
+                recursiveMergeSuffix_right_succ_core (factorModule (d.append e))
+                  (appendRightContractionIndex (w := w)
+                    (v := ({ length := k + 2, intermediate := intermediate } :
+                      DrinfeldWord Y Z)) j.succ) :=
+          finFamilyList_recursiveMerge_target_right_succ_core
+            (k := w.length + k + 1) (factorModule (d.append e))
+            (appendRightContractionIndex (w := w)
+              (v := ({ length := k + 2, intermediate := intermediate } :
+                DrinfeldWord Y Z)) j.succ)
+            (rawContractionFactor (d.append e)
+              (appendRightContractionIndex (w := w)
+                (v := ({ length := k + 2, intermediate := intermediate } :
+                  DrinfeldWord Y Z)) j.succ))
+        _ = compositionLeftPrefix d ++ compositionBoundaryModule d e ::
+            (ms ++ rawContractionFactor e j.succ :: zs) := by
+          rw [recursiveMergePrefix_append_right_succ_at_index_core d e j,
+            recursiveMergeSuffix_append_right_succ_at_index_core d e j,
+            rawContractionFactor_append_right_succ_core d e j]
+          simp only [ms, zs, M, List.append_assoc, List.cons_append]
+    · exact hG₁Data
+  have hF₂Map : HEq
+      (((rawContractionAdjacentMergeData e j.succ).prefix
+        (finFamilyList (factorModule d))).tensorMap) F₂.tensorMap := by
+    apply AdjacentMergeData.tensorMap_heq
+    · exact (congrArg (finFamilyList (factorModule d) ++ ·)
+        (finFamilyList_factorModule_eq_first_suffix e)).trans
+        ((congrArg (fun s ↦ finFamilyList (factorModule d) ++
+          factorModule e 0 :: s)
+          (compositionRightSuffix_split_right_succ_core e j)).trans
+        (by rw [finFamilyList_factorModule_eq_prefix_last d]
+            simp only [ms, zs, M, List.append_assoc, List.cons_append,
+              List.nil_append]))
+    · exact (congrArg (finFamilyList (factorModule d) ++ ·) hrawTarget).trans
+        (by rw [finFamilyList_factorModule_eq_prefix_last d]
+            simp only [ms, zs, M, List.append_assoc, List.cons_append,
+              List.nil_append])
+    · exact hF₂Data
+  have hG₂Map : HEq
+      (adjacentMergeAfter (compositionLeftPrefix d)
+        (ys := compositionRightSuffix (e.contract j.succ))
+        (compositionBoundaryMap d (e.contract j.succ))).tensorMap G₂.tensorMap := by
+    apply AdjacentMergeData.tensorMap_heq
+    · exact congrArg (fun s ↦ compositionLeftPrefix d ++
+        factorModule d (Fin.last w.length) :: s)
+        (congrArg₂ List.cons hfirst hsuffix)
+    · exact congrArg (fun s ↦ compositionLeftPrefix d ++ s)
+        (congrArg₂ List.cons
+          (compositionBoundaryModule_contract_right_succ_core d e j) hsuffix)
+    · exact hG₂Data
+  let hS := congrArg tensorModuleList (compositionSourceListEq d e)
+  let hBdy := congrArg tensorModuleList (compositionBoundaryListEq d e)
+  let hTgt := congrArg tensorModuleList (compositionTargetListEq d e)
+  have hF₁Target :
+      compositionLeftPrefix d ++ compositionBoundaryModule d e ::
+          compositionRightSuffix e =
+        compositionLeftPrefix d ++ compositionBoundaryModule d e ::
+          (ms ++ factorModule e j.succ.castSucc ::
+            factorModule e j.succ.succ :: zs) :=
+    congrArg (fun s ↦ compositionLeftPrefix d ++
+      compositionBoundaryModule d e :: s)
+      (compositionRightSuffix_split_right_succ_core e j)
+  have hF₁Source :
+      finFamilyList (factorModule d) ++ finFamilyList (factorModule e) =
+        compositionLeftPrefix d ++ factorModule d (Fin.last w.length) ::
+          factorModule e 0 ::
+            (ms ++ factorModule e j.succ.castSucc ::
+              factorModule e j.succ.succ :: zs) :=
+    (finFamilyList_factorModule_pair_boundary d e).trans
+      (congrArg (fun s ↦ compositionLeftPrefix d ++
+        factorModule d (Fin.last w.length) :: factorModule e 0 :: s)
+        (compositionRightSuffix_split_right_succ_core e j))
+  have hG₁Source : finFamilyList (factorModule (d.append e)) =
+      compositionLeftPrefix d ++ compositionBoundaryModule d e ::
+        (ms ++ factorModule e j.succ.castSucc ::
+          factorModule e j.succ.succ :: zs) :=
+    (finFamilyList_factorModule_append_boundary d e).trans hF₁Target
+  have hG₁Target :
+      finFamilyList (recursiveMergedFactor (factorModule (d.append e))
+        (appendRightContractionIndex (w := w)
+          (v := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord Y Z)) j.succ)
+        (rawContractionFactor (d.append e)
+          (appendRightContractionIndex (w := w)
+            (v := ({ length := k + 2, intermediate := intermediate } :
+              DrinfeldWord Y Z)) j.succ))) =
+      compositionLeftPrefix d ++ compositionBoundaryModule d e ::
+        (ms ++ rawContractionFactor e j.succ :: zs) := by
+    calc
+      _ = recursiveMergePrefix_right_succ_core (factorModule (d.append e))
+              (appendRightContractionIndex (w := w)
+                (v := ({ length := k + 2, intermediate := intermediate } :
+                  DrinfeldWord Y Z)) j.succ) ++
+            rawContractionFactor (d.append e)
+                (appendRightContractionIndex (w := w)
+                  (v := ({ length := k + 2, intermediate := intermediate } :
+                    DrinfeldWord Y Z)) j.succ) ::
+              recursiveMergeSuffix_right_succ_core (factorModule (d.append e))
+                (appendRightContractionIndex (w := w)
+                  (v := ({ length := k + 2, intermediate := intermediate } :
+                    DrinfeldWord Y Z)) j.succ) :=
+        finFamilyList_recursiveMerge_target_right_succ_core
+          (k := w.length + k + 1) (factorModule (d.append e))
+          (appendRightContractionIndex (w := w)
+            (v := ({ length := k + 2, intermediate := intermediate } :
+              DrinfeldWord Y Z)) j.succ)
+          (rawContractionFactor (d.append e)
+            (appendRightContractionIndex (w := w)
+              (v := ({ length := k + 2, intermediate := intermediate } :
+                DrinfeldWord Y Z)) j.succ))
+      _ = _ := by
+        rw [recursiveMergePrefix_append_right_succ_at_index_core d e j,
+          recursiveMergeSuffix_append_right_succ_at_index_core d e j,
+          rawContractionFactor_append_right_succ_core d e j]
+        simp only [ms, zs, M, List.append_assoc, List.cons_append]
+  have hcanonicalLeft : HEq
+      ((eqToHom hS ≫ eqToHom hBdy ≫
+          (adjacentMergeAfter (compositionLeftPrefix d)
+            (ys := compositionRightSuffix e)
+            (compositionBoundaryMap d e)).tensorMap ≫ eqToHom hTgt) ≫
+        (rawContractionAdjacentMergeData (d.append e)
+          (appendRightContractionIndex j.succ)).tensorMap)
+      (F₁.tensorMap ≫ G₁.tensorMap) := by
+    simpa only [Category.assoc, Category.comp_id] using
+      (transportedPair₂_heq
+        (congrArg tensorModuleList hF₁Source)
+        (hS.trans hBdy)
+        (congrArg tensorModuleList hF₁Target)
+        (congrArg tensorModuleList hG₁Source)
+        (congrArg tensorModuleList hG₁Target)
+        (congrArg tensorModuleList hG₁Target)
+        (congrArg tensorModuleList hG₁Target)
+        (eqToHom hS ≫ eqToHom hBdy)
+        (adjacentMergeAfter (compositionLeftPrefix d)
+          (ys := compositionRightSuffix e)
+          (compositionBoundaryMap d e)).tensorMap
+        (eqToHom hTgt)
+        (rawContractionAdjacentMergeData (d.append e)
+          (appendRightContractionIndex j.succ)).tensorMap
+        (𝟙 _)
+        (𝟙 _)
+        F₁.tensorMap G₁.tensorMap
+        (eqToHom_comp_heq_id hS hBdy) hF₁Map
+        (test_eqToHom_heq_id hTgt) hG₁Map HEq.rfl HEq.rfl)
+  have hF₂Source :
+      finFamilyList (factorModule d) ++ finFamilyList (factorModule e) =
+        compositionLeftPrefix d ++ factorModule d (Fin.last w.length) ::
+          (factorModule e 0 :: ms ++ factorModule e j.succ.castSucc ::
+            factorModule e j.succ.succ :: zs) :=
+    (congrArg (finFamilyList (factorModule d) ++ ·)
+      (finFamilyList_factorModule_eq_first_suffix e)).trans
+      ((congrArg (fun s ↦ finFamilyList (factorModule d) ++
+        factorModule e 0 :: s)
+        (compositionRightSuffix_split_right_succ_core e j)).trans
+      (by rw [finFamilyList_factorModule_eq_prefix_last d]
+          simp only [ms, zs, M, List.append_assoc, List.cons_append,
+            List.nil_append]))
+  have hF₂Target : finFamilyList (factorModule d) ++
+        finFamilyList (recursiveMergedFactor (factorModule e) j.succ
+          (rawContractionFactor e j.succ)) =
+      compositionLeftPrefix d ++ factorModule d (Fin.last w.length) ::
+        (factorModule e 0 :: ms ++ rawContractionFactor e j.succ :: zs) :=
+    (congrArg (finFamilyList (factorModule d) ++ ·) hrawTarget).trans
+      (by rw [finFamilyList_factorModule_eq_prefix_last d]
+          simp only [ms, zs, M, List.append_assoc, List.cons_append,
+            List.nil_append])
+  have hG₂Source :
+      compositionLeftPrefix d ++ factorModule d (Fin.last w.length) ::
+          factorModule (e.contract j.succ) 0 ::
+            compositionRightSuffix (e.contract j.succ) =
+        compositionLeftPrefix d ++ factorModule d (Fin.last w.length) ::
+          factorModule e 0 :: (ms ++ rawContractionFactor e j.succ :: zs) :=
+    congrArg (fun s ↦ compositionLeftPrefix d ++
+      factorModule d (Fin.last w.length) :: s)
+      (congrArg₂ List.cons hfirst hsuffix)
+  have hG₂BoundaryTarget :
+      compositionLeftPrefix d ++ compositionBoundaryModule d (e.contract j.succ) ::
+          compositionRightSuffix (e.contract j.succ) =
+        compositionLeftPrefix d ++ compositionBoundaryModule d e ::
+          (ms ++ rawContractionFactor e j.succ :: zs) :=
+    congrArg (compositionLeftPrefix d ++ ·)
+      (congrArg₂ List.cons
+        (compositionBoundaryModule_contract_right_succ_core d e j) hsuffix)
+  have hG₂AppendTarget : finFamilyList (factorModule (d.append (e.contract j.succ))) =
+      compositionLeftPrefix d ++ compositionBoundaryModule d e ::
+        (ms ++ rawContractionFactor e j.succ :: zs) :=
+    (finFamilyList_factorModule_append_boundary d (e.contract j.succ)).trans
+      hG₂BoundaryTarget
+  let hS' := congrArg tensorModuleList
+    (compositionSourceListEq d (e.contract j.succ))
+  let hBdy' := congrArg tensorModuleList
+    (compositionBoundaryListEq d (e.contract j.succ))
+  let hTgt' := congrArg tensorModuleList
+    (compositionTargetListEq d (e.contract j.succ))
+  let hW' := congrArg tensorModuleList hWAppend
+  have hcanonicalRight : HEq
+      (((rawContractionAdjacentMergeData e j.succ).prefix
+          (finFamilyList (factorModule d))).tensorMap ≫
+        eqToHom hW' ≫ eqToHom hS' ≫ eqToHom hBdy' ≫
+        (adjacentMergeAfter (compositionLeftPrefix d)
+          (ys := compositionRightSuffix (e.contract j.succ))
+          (compositionBoundaryMap d (e.contract j.succ))).tensorMap ≫
+        eqToHom hTgt')
+      (F₂.tensorMap ≫ G₂.tensorMap) := by
+    simpa only [Category.assoc, Category.id_comp, Category.comp_id] using
+      (transportedPair₂_heq
+        (congrArg tensorModuleList hF₂Source) rfl
+        (congrArg tensorModuleList hF₂Target)
+        (congrArg tensorModuleList hG₂Source)
+        (congrArg tensorModuleList hG₂BoundaryTarget)
+        (congrArg tensorModuleList hG₂AppendTarget)
+        (congrArg tensorModuleList hG₂AppendTarget)
+        (𝟙 _)
+        ((rawContractionAdjacentMergeData e j.succ).prefix
+          (finFamilyList (factorModule d))).tensorMap
+        (eqToHom hW' ≫ eqToHom hS' ≫ eqToHom hBdy')
+        (adjacentMergeAfter (compositionLeftPrefix d)
+          (ys := compositionRightSuffix (e.contract j.succ))
+          (compositionBoundaryMap d (e.contract j.succ))).tensorMap
+        (eqToHom hTgt') (𝟙 _)
+        F₂.tensorMap G₂.tensorMap HEq.rfl hF₂Map
+        (eqToHom_comp₃_heq_id hW' hS' hBdy') hG₂Map
+        (test_eqToHom_heq_id hTgt') HEq.rfl)
+  exact hcanonicalLeft.trans hmiddle |>.trans hcanonicalRight.symm
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
