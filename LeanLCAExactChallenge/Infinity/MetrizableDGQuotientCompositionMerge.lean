@@ -5359,6 +5359,102 @@ def recursiveMergePrefix_right_succ_core : {k : ℕ} →
         (fun r : Fin (k + 2) ↦ M r.succ) q) i
 
 
+def recursiveMergeSuffix_right_succ_core : {k : ℕ} →
+    (Fin (k + 2) → ModuleCat.{0} ℤ) → Fin (k + 1) →
+      List (ModuleCat.{0} ℤ)
+  | 0, _, _ => []
+  | k + 1, M, i => Fin.cases
+      (finFamilyList (fun q : Fin (k + 1) ↦ M q.succ.succ))
+      (fun q ↦ recursiveMergeSuffix_right_succ_core
+        (fun r : Fin (k + 2) ↦ M r.succ) q) i
+
+theorem finFamilyList_recursiveMerge_source_right_succ_core :
+    {k : ℕ} → (M : Fin (k + 2) → ModuleCat.{0} ℤ) →
+    (i : Fin (k + 1)) →
+    finFamilyList M =
+      recursiveMergePrefix_right_succ_core M i ++
+        M i.castSucc :: M i.succ :: recursiveMergeSuffix_right_succ_core M i := by
+  intro k
+  induction k with
+  | zero =>
+      intro M i
+      have hi : i = 0 := Fin.eq_zero i
+      subst i
+      rfl
+  | succ k ih =>
+      intro M i
+      cases i using Fin.cases with
+      | zero => rfl
+      | succ i =>
+          change M 0 :: finFamilyList (fun r : Fin (k + 2) ↦ M r.succ) =
+            M 0 :: (recursiveMergePrefix_right_succ_core
+              (fun r : Fin (k + 2) ↦ M r.succ) i ++
+                M i.castSucc.succ :: M i.succ.succ ::
+                  recursiveMergeSuffix_right_succ_core
+                    (fun r : Fin (k + 2) ↦ M r.succ) i)
+          exact congrArg (List.cons (M 0))
+            (ih (fun r : Fin (k + 2) ↦ M r.succ) i)
+
+theorem finFamilyList_recursiveMerge_target_right_succ_core :
+    {k : ℕ} → (M : Fin (k + 2) → ModuleCat.{0} ℤ) →
+    (i : Fin (k + 1)) → (P : ModuleCat.{0} ℤ) →
+    finFamilyList (recursiveMergedFactor M i P) =
+      recursiveMergePrefix_right_succ_core M i ++
+        P :: recursiveMergeSuffix_right_succ_core M i := by
+  intro k
+  induction k with
+  | zero =>
+      intro M i P
+      have hi : i = 0 := Fin.eq_zero i
+      subst i
+      rfl
+  | succ k ih =>
+      intro M i P
+      cases i using Fin.cases with
+      | zero => rfl
+      | succ i =>
+          change M 0 :: finFamilyList
+              (recursiveMergedFactor (fun r : Fin (k + 2) ↦ M r.succ) i P) =
+            M 0 :: (recursiveMergePrefix_right_succ_core
+              (fun r : Fin (k + 2) ↦ M r.succ) i ++
+                P :: recursiveMergeSuffix_right_succ_core
+                  (fun r : Fin (k + 2) ↦ M r.succ) i)
+          exact congrArg (List.cons (M 0))
+            (ih (fun r : Fin (k + 2) ↦ M r.succ) i P)
+
+theorem recursiveAdjacentMergeDataOfFn_eq_after_right_succ_core :
+    {k : ℕ} → (M : Fin (k + 2) → ModuleCat.{0} ℤ) →
+    (i : Fin (k + 1)) → (P : ModuleCat.{0} ℤ) →
+    (f : M i.castSucc ⊗ M i.succ ⟶ P) →
+    HEq (recursiveAdjacentMergeDataOfFn M i P f)
+      (adjacentMergeAfter (recursiveMergePrefix_right_succ_core M i)
+        (ys := recursiveMergeSuffix_right_succ_core M i) f) := by
+  intro k
+  induction k with
+  | zero =>
+      intro M i P f
+      have hi : i = 0 := Fin.eq_zero i
+      subst i
+      change HEq (AdjacentMergeData.head f) (AdjacentMergeData.head f)
+      exact HEq.rfl
+  | succ k ih =>
+      intro M i P f
+      cases i using Fin.cases with
+      | zero =>
+          change HEq (AdjacentMergeData.head f) (AdjacentMergeData.head f)
+          exact HEq.rfl
+      | succ i =>
+          apply HEq.trans (recursiveAdjacentMergeDataOfFn_succ_heq M i P f)
+          dsimp only [recursiveMergePrefix_right_succ_core,
+            recursiveMergeSuffix_right_succ_core, adjacentMergeAfter]
+          exact adjacentMergeData_tail_heq rfl
+            (finFamilyList_recursiveMerge_source_right_succ_core
+              (fun r : Fin (k + 2) ↦ M r.succ) i)
+            (finFamilyList_recursiveMerge_target_right_succ_core
+              (fun r : Fin (k + 2) ↦ M r.succ) i P)
+            (ih (fun r : Fin (k + 2) ↦ M r.succ) i P (by simpa using f))
+
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
