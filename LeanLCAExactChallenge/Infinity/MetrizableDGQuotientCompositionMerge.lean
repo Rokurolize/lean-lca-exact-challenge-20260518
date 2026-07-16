@@ -3311,6 +3311,119 @@ theorem appendLeftSourceTransport_heq
     hpost.symm.trans hpre.symm
   exact CategoryTheory.heq_comp rfl rfl rfl HEq.rfl htransport
 
+theorem sum_append_arrow_partition
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {A : Type*} [AddCommMonoid A]
+    (f : Fin ((w.append v).length + 1) → A) :
+    ∑ q, f q =
+      (∑ i, f (appendLeftArrowIndex (v := v) i)) +
+        f (appendBoundaryArrowIndex w v) +
+        ∑ j, f (appendRightArrowIndex (w := w) j) := by
+  let hlen : (w.append v).length + 1 = w.length + (v.length + 1) := by
+    rw [append_length]
+    omega
+  calc
+    ∑ q, f q = ∑ q : Fin (w.length + (v.length + 1)), f (Fin.cast hlen.symm q) := by
+      exact ((Fin.castOrderIso hlen).toEquiv.symm.sum_comp f).symm
+    _ = (∑ i : Fin w.length, f (Fin.cast hlen.symm (Fin.castAdd (v.length + 1) i))) +
+        ∑ j : Fin (v.length + 1), f (Fin.cast hlen.symm (Fin.natAdd w.length j)) := by
+      rw [Fin.sum_univ_add]
+    _ = _ := by
+      rw [Fin.sum_univ_succ]
+      have hleft :
+          (∑ i : Fin w.length, f (Fin.cast hlen.symm (Fin.castAdd (v.length + 1) i))) =
+            ∑ i, f (appendLeftArrowIndex (v := v) i) := by
+        apply Finset.sum_congr rfl
+        intro i _
+        congr 1
+      have hboundary : f (Fin.cast hlen.symm (Fin.natAdd w.length 0)) =
+          f (appendBoundaryArrowIndex w v) := by
+        congr 1
+      have hright :
+          (∑ j : Fin v.length, f (Fin.cast hlen.symm (Fin.natAdd w.length j.succ))) =
+            ∑ j, f (appendRightArrowIndex (w := w) j) := by
+        apply Finset.sum_congr rfl
+        intro j _
+        apply congrArg f
+        apply Fin.ext
+        change w.length + j.succ.val = w.length + 1 + j.val
+        simp only [Fin.val_succ]
+        omega
+      rw [hleft, hboundary, hright, ← add_assoc]
+
+theorem sum_append_contraction_partition
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {A : Type*} [AddCommMonoid A]
+    (f : Fin (w.append v).length → A) :
+    ∑ q, f q =
+      (∑ i, f (appendLeftContractionIndex (v := v) i)) +
+        ∑ j, f (appendRightContractionIndex (w := w) j) := by
+  let hlen : (w.append v).length = w.length + v.length := append_length w v
+  calc
+    ∑ q, f q = ∑ q : Fin (w.length + v.length), f (Fin.cast hlen.symm q) := by
+      exact ((Fin.castOrderIso hlen).toEquiv.symm.sum_comp f).symm
+    _ = (∑ i : Fin w.length, f (Fin.cast hlen.symm (Fin.castAdd v.length i))) +
+        ∑ j : Fin v.length, f (Fin.cast hlen.symm (Fin.natAdd w.length j)) := by
+      rw [Fin.sum_univ_add]
+    _ = _ := by
+      have hleft : (∑ i : Fin w.length, f (Fin.cast hlen.symm (Fin.castAdd v.length i))) =
+          ∑ i, f (appendLeftContractionIndex (v := v) i) := by
+        apply Finset.sum_congr rfl
+        intro i _
+        congr 1
+      have hright : (∑ j : Fin v.length, f (Fin.cast hlen.symm (Fin.natAdd w.length j))) =
+          ∑ j, f (appendRightContractionIndex (w := w) j) := by
+        apply Finset.sum_congr rfl
+        intro j _
+        congr 1
+      rw [hleft, hright]
+
+theorem internalSign_sum_append_partition
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    {A : Type*} [AddCommGroup A] [Module ℤ A]
+    (f : Fin ((w.append v).length + 1) → A) :
+    ∑ q, (d.append e).internalSign q • f q =
+      m.negOnePow •
+          (∑ i, d.internalSign i.castSucc • f (appendLeftArrowIndex (v := v) i)) +
+        e.internalSign 0 • f (appendBoundaryArrowIndex w v) +
+        ∑ j, e.internalSign j.succ • f (appendRightArrowIndex (w := w) j) := by
+  have hleft :
+      (∑ i, (d.internalSign i.castSucc * (m.negOnePow : ℤ)) •
+        f (appendLeftArrowIndex (v := v) i)) =
+        (m.negOnePow : ℤ) •
+          ∑ i, d.internalSign i.castSucc • f (appendLeftArrowIndex (v := v) i) := by
+    rw [← Finset.sum_zsmul]
+    apply Finset.sum_congr rfl
+    intro i _
+    rw [mul_comm, mul_zsmul]
+  rw [sum_append_arrow_partition]
+  simp_rw [internalSign_append_left, internalSign_append_boundary,
+    internalSign_append_right]
+  rw [Units.smul_def, hleft]
+
+theorem contractionSign_sum_append_partition
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    {A : Type*} [AddCommGroup A] [Module ℤ A]
+    (f : Fin (w.append v).length → A) :
+    ∑ q, (d.append e).contractionSign q • f q =
+      m.negOnePow •
+          (∑ i, d.contractionSign i • f (appendLeftContractionIndex (v := v) i)) +
+        ∑ j, e.contractionSign j • f (appendRightContractionIndex (w := w) j) := by
+  have hleft :
+      (∑ i, (d.contractionSign i * (m.negOnePow : ℤ)) •
+        f (appendLeftContractionIndex (v := v) i)) =
+        (m.negOnePow : ℤ) •
+          ∑ i, d.contractionSign i • f (appendLeftContractionIndex (v := v) i) := by
+    rw [← Finset.sum_zsmul]
+    apply Finset.sum_congr rfl
+    intro i _
+    rw [mul_comm, mul_zsmul]
+  rw [sum_append_contraction_partition]
+  simp_rw [contractionSign_append_left, contractionSign_append_right]
+  rw [Units.smul_def, hleft]
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
