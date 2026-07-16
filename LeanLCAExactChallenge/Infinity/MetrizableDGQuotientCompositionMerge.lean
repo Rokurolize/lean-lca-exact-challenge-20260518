@@ -4003,6 +4003,479 @@ theorem rightZeroNormalizedPairTensorMap_heq
     (compositionRightSuffix (tailDegreeProfile e)) d
     (rightZeroHeadDegreeProfile e) (tailDegreeProfile e)).tensorMap_heq
 
+theorem finAddCases_succAbove_append_left
+    {α : Type*} (k l : ℕ) (f : Fin (k + 1) → α) (g : Fin l → α)
+    (i : Fin (k + 1)) :
+    let htotal : (k + 1) + l = (k + l) + 1 := by omega
+    let itotal : Fin ((k + l) + 1) := ⟨i.val, by omega⟩
+    (fun q : Fin (k + l) =>
+      Fin.addCases (motive := fun _ => α) f g
+        (Fin.cast htotal.symm (itotal.succAbove q))) =
+    fun q => Fin.addCases (motive := fun _ => α)
+      (fun r : Fin k => f (i.succAbove r)) g q := by
+  dsimp only
+  funext q
+  induction q using Fin.addCases with
+  | left r =>
+      rw [Fin.addCases_left]
+      have hindex :
+          Fin.cast (show (k + l) + 1 = (k + 1) + l by omega)
+              ((⟨i.val, by omega⟩ : Fin ((k + l) + 1)).succAbove
+                (Fin.castAdd l r)) =
+            Fin.castAdd l (i.succAbove r) := by
+        ext
+        simp [Fin.succAbove, Fin.lt_def]
+        split_ifs <;> rfl
+      rw [hindex, Fin.addCases_left]
+  | right s =>
+      rw [Fin.addCases_right]
+      have hindex :
+          Fin.cast (show (k + l) + 1 = (k + 1) + l by omega)
+              ((⟨i.val, by omega⟩ : Fin ((k + l) + 1)).succAbove
+                (Fin.natAdd k s)) =
+            Fin.natAdd (k + 1) s := by
+        have hle :
+            (⟨i.val, by omega⟩ : Fin ((k + l) + 1)) ≤
+              (Fin.natAdd k s).castSucc := by
+          change i.val ≤ k + s.val
+          omega
+        rw [Fin.succAbove_of_le_castSucc _ _ hle]
+        ext
+        simp only [Fin.val_cast, Fin.val_succ, Fin.val_natAdd]
+        omega
+      rw [hindex, Fin.addCases_right]
+
+theorem eraseIntermediate_append_right
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    (j : Fin v.length) :
+    eraseIntermediate (w.append v) (appendRightContractionIndex j) =
+      w.append (eraseIntermediate v j) := by
+  cases w with
+  | mk wl wi =>
+      cases v with
+      | mk vl vi =>
+          cases vl with
+          | zero => exact Fin.elim0 j
+          | succ vk =>
+              cases wl with
+              | zero =>
+                  cases vk with
+                  | zero =>
+                      apply (eq_nil_of_length_eq_zero _ rfl).symm
+                  | succ vk =>
+                      simp only [append, eraseIntermediate,
+                        appendRightContractionIndex, DrinfeldWord.mk.injEq]
+                      let hlen : Nat.add 0 vk + 1 = 0 + (vk + 1) := by simp
+                      constructor
+                      · exact hlen
+                      · refine (Fin.heq_fun_iff hlen).mpr ?_
+                        intro q
+                        simp only [Fin.addCases, Fin.succAbove, not_lt_zero,
+                          ↓reduceDIte, Nat.add_zero, Fin.subNat_zero,
+                          eq_rec_constant]
+                        apply congrArg vi
+                        apply Fin.ext
+                        simp only [Fin.val_cast]
+                        split <;> rename_i hleft
+                        · split <;> rename_i hright
+                          · rfl
+                          · change q.val < 0 + j.val at hleft
+                            change ¬q.val < j.val at hright
+                            omega
+                        · split <;> rename_i hright
+                          · change ¬q.val < 0 + j.val at hleft
+                            change q.val < j.val at hright
+                            omega
+                          · rfl
+              | succ wl =>
+                  cases vk with
+                  | zero =>
+                      simp only [append, eraseIntermediate,
+                        appendRightContractionIndex, DrinfeldWord.mk.injEq]
+                      let hlen : wl + 1 = wl + 1 + (nil Y Z).length := by simp [nil]
+                      constructor
+                      · exact hlen
+                      · refine (Fin.heq_fun_iff hlen).mpr ?_
+                        intro q
+                        have hj : j = 0 := Fin.eq_zero j
+                        subst j
+                        simp only [Fin.succAbove]
+                        split
+                        · have hq : q.val ≤ wl := by omega
+                          suffices wi q = wi (q.castLT (by omega)) by
+                            simpa [Fin.addCases, nil, hq]
+                          apply congrArg wi
+                          apply Fin.ext
+                          rfl
+                        · rename_i hsucc
+                          exfalso
+                          apply hsucc
+                          exact q.isLt
+                  | succ vk =>
+                      simp only [append, eraseIntermediate,
+                        appendRightContractionIndex, DrinfeldWord.mk.injEq]
+                      let hlen : (wl + 1).add vk + 1 =
+                          wl + 1 + (vk + 1) := by simp [Nat.add_assoc]
+                      constructor
+                      · exact hlen
+                      · refine (Fin.heq_fun_iff hlen).mpr ?_
+                        intro q
+                        by_cases hq : q.val < wl + 1
+                        · simp only [Fin.succAbove]
+                          split
+                          · simp [Fin.addCases, hq]
+                            congr 1
+                          · rename_i hsucc
+                            exfalso
+                            apply hsucc
+                            change q.val < wl + 1 + j.val
+                            omega
+                        · simp only [Fin.succAbove]
+                          split <;> rename_i hsucc
+                          · change q.val < wl + 1 + j.val at hsucc
+                            let r : Fin (vk + 1) :=
+                              ⟨q.val - (wl + 1), by omega⟩
+                            suffices vi r.castSucc =
+                                vi (if r.castSucc < j then r.castSucc else r.succ) by
+                              simpa [r, Fin.addCases, hq]
+                            apply congrArg vi
+                            split <;> rename_i hinner
+                            · rfl
+                            · change ¬q.val - (wl + 1) < j.val at hinner
+                              exfalso
+                              omega
+                          · have hq0 : ¬q.val < wl := by omega
+                            change ¬q.val < wl + 1 + j.val at hsucc
+                            let r : Fin (vk + 1) :=
+                              ⟨q.val - (wl + 1), by omega⟩
+                            let qbase : Fin ((vk + 1) + (wl + 1)) :=
+                              Fin.cast (by omega) q
+                            have hqbase : wl + 1 ≤ qbase.val := by
+                              dsimp only [qbase]
+                              simp only [Fin.val_cast]
+                              omega
+                            let base : Fin (vk + 1) :=
+                              Fin.subNat (wl + 1) qbase hqbase
+                            let qhead : Fin ((vk + 1 + 1) + (wl + 1)) :=
+                              Fin.cast (by omega) qbase.succ
+                            have hqhead : wl + 1 ≤ qhead.val := by
+                              dsimp only [qhead, qbase]
+                              simp only [Fin.val_cast, Fin.val_succ]
+                              omega
+                            suffices
+                                vi (Fin.subNat (wl + 1) qhead hqhead) =
+                                  vi (if base.castSucc < j then base.castSucc
+                                    else base.succ) by
+                              simpa [Fin.addCases, hq, hq0, qbase, base, qhead]
+                            have hhead : Fin.subNat (wl + 1) qhead hqhead =
+                                r.succ := by
+                              apply Fin.ext
+                              dsimp only [qhead, qbase, r]
+                              simp only [Fin.val_subNat, Fin.val_succ, Fin.val_cast]
+                              omega
+                            have hbase : base = r := by
+                              apply Fin.ext
+                              rfl
+                            rw [hhead, hbase]
+                            apply congrArg vi
+                            split <;> rename_i hinner
+                            · change q.val - (wl + 1) < j.val at hinner
+                              exfalso
+                              omega
+                            · rfl
+
+theorem DegreeProfile.contract_append_right_heq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (j : Fin v.length) :
+    HEq ((d.append e).contract (appendRightContractionIndex j))
+      (d.append (e.contract j)) := by
+  have hword := eraseIntermediate_append_right (w := w) j
+  have htotal : n + m + 1 = n + (m + 1) := by omega
+  let rhs' := (d.append (e.contract j)).transport hword.symm htotal.symm
+  have heq : (d.append e).contract (appendRightContractionIndex j) = rhs' := by
+    apply DegreeProfile.ext
+    funext q
+    rw [DegreeProfile.transport_arrowDegree]
+    let hlen : (eraseIntermediate (w.append v)
+        (appendRightContractionIndex j)).length + 1 =
+          w.length + v.length := by simp
+    let q' : Fin (w.length + v.length) := Fin.cast hlen q
+    have hq : q = Fin.cast hlen.symm q' := by simp [q']
+    rw [hq]
+    have hindex : (appendRightContractionIndex (w := w) j).val =
+        w.length + j.val := rfl
+    induction q' using Fin.addCases with
+    | left k =>
+        let qleft := Fin.cast hlen.symm (Fin.castAdd v.length k)
+        have hold : Fin.cast (eraseIntermediate_length (w.append v)
+              (appendRightContractionIndex j)) qleft =
+            appendLeftContractionIndex (v := v) k := by
+          apply Fin.ext
+          rfl
+        have htarget : Fin.cast
+              (congrArg (fun u : DrinfeldWord X Z ↦ u.length + 1)
+                hword.symm).symm qleft =
+            appendLeftArrowIndex (v := eraseIntermediate v j) k := by
+          apply Fin.ext
+          rfl
+        change contractedArrowDegree (appendArrowDegree d e)
+            (appendRightContractionIndex j)
+              (Fin.cast (eraseIntermediate_length (w.append v)
+                (appendRightContractionIndex j)) qleft) =
+          appendArrowDegree d (e.contract j)
+            (Fin.cast (congrArg
+              (fun u : DrinfeldWord X Z ↦ u.length + 1)
+                hword.symm).symm qleft)
+        rw [hold, htarget]
+        unfold contractedArrowDegree
+        have hbefore : (appendLeftContractionIndex (v := v) k).castSucc <
+            (appendRightContractionIndex j).castSucc := by
+          change k.val < w.length + j.val
+          omega
+        rw [Fin.succAbove_of_castSucc_lt _ _ hbefore]
+        have harrow : (appendLeftContractionIndex (v := v) k).castSucc =
+            appendLeftArrowIndex (v := v) k := by
+          apply Fin.ext
+          rfl
+        rw [harrow, appendArrowDegree_left, appendArrowDegree_left]
+        have hne : appendLeftContractionIndex (v := v) k ≠
+            appendRightContractionIndex j := by
+          intro heq
+          have hval := congrArg Fin.val heq
+          change k.val = w.length + j.val at hval
+          omega
+        split
+        · rename_i heq
+          exact (hne heq).elim
+        · simp
+    | right k =>
+        let qright := Fin.cast hlen.symm (Fin.natAdd w.length k)
+        have hold : Fin.cast (eraseIntermediate_length (w.append v)
+              (appendRightContractionIndex j)) qright =
+            appendRightContractionIndex (w := w) k := by
+          apply Fin.ext
+          rfl
+        let qtarget : Fin ((w.append (eraseIntermediate v j)).length + 1) :=
+          ⟨w.length + k.val, by
+            rw [append_length]
+            have herase := eraseIntermediate_length v j
+            omega⟩
+        have htarget : Fin.cast
+              (congrArg (fun u : DrinfeldWord X Z ↦ u.length + 1)
+                hword.symm).symm qright = qtarget := by
+          apply Fin.ext
+          rfl
+        change contractedArrowDegree (appendArrowDegree d e)
+            (appendRightContractionIndex j)
+              (Fin.cast (eraseIntermediate_length (w.append v)
+                (appendRightContractionIndex j)) qright) =
+          appendArrowDegree d (e.contract j)
+            (Fin.cast (congrArg
+              (fun u : DrinfeldWord X Z ↦ u.length + 1)
+                hword.symm).symm qright)
+        rw [hold, htarget]
+        by_cases hk0 : k.val = 0
+        · have hboundary : qtarget =
+              appendBoundaryArrowIndex w (eraseIntermediate v j) := by
+            apply Fin.ext
+            dsimp [qtarget, appendBoundaryArrowIndex]
+            omega
+          rw [hboundary, appendArrowDegree_boundary]
+          by_cases hj0 : j.val = 0
+          · have hkj : appendRightContractionIndex (w := w) k =
+                appendRightContractionIndex j := by
+              apply Fin.ext
+              change w.length + k.val = w.length + j.val
+              omega
+            rw [hkj, contractedArrowDegree_self]
+            have hright : (appendRightContractionIndex j).succ =
+                appendRightArrowIndex (w := w) j := by
+              apply Fin.ext
+              dsimp [appendRightContractionIndex, appendRightArrowIndex]
+              omega
+            have hbound : (appendRightContractionIndex j).castSucc =
+                appendBoundaryArrowIndex w v := by
+              apply Fin.ext
+              change w.length + j.val = w.length
+              omega
+            rw [hright, hbound, appendArrowDegree_right,
+              appendArrowDegree_boundary]
+            change e.arrowDegree j.succ +
+                (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) =
+              d.arrowDegree (Fin.last w.length) +
+                contractedArrowDegree e.arrowDegree j
+                  (Fin.cast (eraseIntermediate_length v j) 0)
+            have hout : Fin.cast (eraseIntermediate_length v j) 0 = j := by
+              apply Fin.ext
+              simpa using hj0.symm
+            rw [hout, contractedArrowDegree_self]
+            have hjcast : j.castSucc = (0 : Fin (v.length + 1)) := by
+              apply Fin.ext
+              exact hj0
+            rw [hjcast]
+            ring
+          · have hbefore :
+                (appendRightContractionIndex (w := w) k).castSucc <
+                  (appendRightContractionIndex j).castSucc := by
+              change w.length + k.val < w.length + j.val
+              omega
+            unfold contractedArrowDegree
+            rw [Fin.succAbove_of_castSucc_lt _ _ hbefore]
+            have hbound :
+                (appendRightContractionIndex (w := w) k).castSucc =
+                  appendBoundaryArrowIndex w v := by
+              apply Fin.ext
+              change w.length + k.val = w.length
+              omega
+            have hne : appendRightContractionIndex (w := w) k ≠
+                appendRightContractionIndex j := by
+              intro heq
+              have hval := congrArg Fin.val heq
+              change w.length + k.val = w.length + j.val at hval
+              omega
+            rw [hbound, appendArrowDegree_boundary]
+            simp only [if_neg hne]
+            change d.arrowDegree (Fin.last w.length) + e.arrowDegree 0 + 0 =
+              d.arrowDegree (Fin.last w.length) +
+                contractedArrowDegree e.arrowDegree j
+                  (Fin.cast (eraseIntermediate_length v j) 0)
+            let z : Fin v.length := ⟨0, by omega⟩
+            have hout : Fin.cast (eraseIntermediate_length v j) 0 =
+                z := by
+              apply Fin.ext
+              rfl
+            rw [hout]
+            unfold contractedArrowDegree
+            have hzbefore : z.castSucc < j.castSucc := by
+              change 0 < j.val
+              omega
+            rw [Fin.succAbove_of_castSucc_lt _ _ hzbefore]
+            have hzne : z ≠ j := by
+              intro heq
+              have hval := congrArg Fin.val heq
+              exact hj0 hval.symm
+            simp only [if_neg hzne, add_zero]
+            congr 1
+        · let kp : Fin (eraseIntermediate v j).length :=
+              ⟨k.val - 1, by
+                have hklt := k.isLt
+                have herase := eraseIntermediate_length v j
+                omega⟩
+          have hrightTarget : qtarget =
+              appendRightArrowIndex (w := w) kp := by
+            apply Fin.ext
+            dsimp [qtarget, kp, appendRightArrowIndex]
+            omega
+          rw [hrightTarget, appendArrowDegree_right]
+          change contractedArrowDegree (appendArrowDegree d e)
+              (appendRightContractionIndex j)
+                (appendRightContractionIndex (w := w) k) =
+            contractedArrowDegree e.arrowDegree j
+              (Fin.cast (eraseIntermediate_length v j) kp.succ)
+          have hout : Fin.cast (eraseIntermediate_length v j) kp.succ = k := by
+            apply Fin.ext
+            change k.val - 1 + 1 = k.val
+            omega
+          rw [hout]
+          unfold contractedArrowDegree
+          by_cases hkj : k < j
+          · have hbefore :
+                (appendRightContractionIndex (w := w) k).castSucc <
+                  (appendRightContractionIndex j).castSucc := by
+              change w.length + k.val < w.length + j.val
+              omega
+            rw [Fin.succAbove_of_castSucc_lt _ _ hbefore,
+              Fin.succAbove_of_castSucc_lt _ _ hkj]
+            let kpred : Fin v.length :=
+              ⟨k.val - 1, by omega⟩
+            have holdArrow :
+                (appendRightContractionIndex (w := w) k).castSucc =
+                  appendRightArrowIndex (w := w) kpred := by
+              apply Fin.ext
+              dsimp [appendRightContractionIndex, appendRightArrowIndex, kpred]
+              omega
+            have hkpred : kpred.succ = k.castSucc := by
+              apply Fin.ext
+              change k.val - 1 + 1 = k.val
+              omega
+            rw [holdArrow, appendArrowDegree_right, hkpred]
+            have hne : appendRightContractionIndex (w := w) k ≠
+                appendRightContractionIndex j := by
+              intro heq
+              have hval := congrArg Fin.val heq
+              change w.length + k.val = w.length + j.val at hval
+              omega
+            rw [if_neg hne, if_neg (Fin.ne_of_lt hkj)]
+          · have hjk : j ≤ k := Fin.le_iff_val_le_val.mpr (by omega)
+            have hafter : (appendRightContractionIndex j).castSucc ≤
+                (appendRightContractionIndex (w := w) k).castSucc := by
+              change w.length + j.val ≤ w.length + k.val
+              omega
+            rw [Fin.succAbove_of_le_castSucc _ _ hafter,
+              Fin.succAbove_of_le_castSucc _ _ hjk]
+            have holdArrow : (appendRightContractionIndex (w := w) k).succ =
+                appendRightArrowIndex (w := w) k := by
+              apply Fin.ext
+              dsimp [appendRightContractionIndex, appendRightArrowIndex]
+              omega
+            rw [holdArrow, appendArrowDegree_right]
+            have heq : appendRightContractionIndex (w := w) k =
+                appendRightContractionIndex j ↔ k = j := by
+              constructor
+              · intro h
+                apply Fin.ext
+                have hval := congrArg Fin.val h
+                change w.length + k.val = w.length + j.val at hval
+                omega
+              · intro h
+                exact congrArg
+                  (fun r ↦ appendRightContractionIndex (w := w) r) h
+            by_cases hEq : k = j
+            · have hFull : appendRightContractionIndex (w := w) k =
+                  appendRightContractionIndex j := heq.mpr hEq
+              rw [if_pos hFull, if_pos hEq]
+              let jpred : Fin v.length := ⟨j.val - 1, by omega⟩
+              have hleftArrow : (appendRightContractionIndex (w := w) j).castSucc =
+                  appendRightArrowIndex (w := w) jpred := by
+                apply Fin.ext
+                dsimp [appendRightContractionIndex, appendRightArrowIndex, jpred]
+                omega
+              rw [hleftArrow, appendArrowDegree_right]
+              apply congrArg (fun x : ℤ ↦ e.arrowDegree k.succ + x)
+              apply congrArg e.arrowDegree
+              apply Fin.ext
+              dsimp [jpred]
+              have hval := congrArg Fin.val hEq
+              omega
+            · have hFull : appendRightContractionIndex (w := w) k ≠
+                  appendRightContractionIndex j := fun h ↦ hEq (heq.mp h)
+              rw [if_neg hFull, if_neg hEq]
+  exact (heq_of_eq heq).trans (by
+    unfold rhs' DegreeProfile.transport
+    simp only [eqRec_heq_iff_heq]
+    exact HEq.rfl)
+
+theorem summandModule_contract_append_right_heq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (j : Fin v.length) :
+    HEq (summandModule ((d.append e).contract (appendRightContractionIndex j)))
+      (summandModule (d.append (e.contract j))) := by
+  have hword := eraseIntermediate_append_right (w := w) j
+  have htotal : n + m + 1 = n + (m + 1) := by omega
+  let rhs' := (d.append (e.contract j)).transport hword.symm htotal.symm
+  have htransport : HEq rhs' (d.append (e.contract j)) := by
+    unfold rhs' DegreeProfile.transport
+    simp only [eqRec_heq_iff_heq]
+    exact HEq.rfl
+  have hprofile : (d.append e).contract (appendRightContractionIndex j) =
+      rhs' := eq_of_heq ((DegreeProfile.contract_append_right_heq d e j).trans
+        htransport.symm)
+  exact heq_of_eq ((congrArg summandModule hprofile).trans
+    (summandModuleTransportEq hword.symm htotal.symm
+      (d.append (e.contract j))).symm)
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
