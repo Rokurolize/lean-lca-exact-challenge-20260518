@@ -3852,6 +3852,34 @@ theorem quotientTotalDifferential_largeSummandCompositionMap_partition
   rw [sum_append_arrow_partition, sum_append_contraction_partition]
   simp only [ModuleCat.hom_smul, LinearMap.smul_apply]
 
+theorem quotientGradedModule_eqToHom_inclusion_apply
+    {X Y : ComplexCategory} {p q : ℤ} (h : p = q)
+    (s : GradedSummandIndex X Y p) (t : GradedSummandIndex X Y q)
+    (hst : HEq s t) (a : largeSummandModule s) (b : largeSummandModule t)
+    (hab : HEq a b) :
+    (eqToHom (congrArg (quotientGradedModule X Y) h)).hom
+        ((Limits.Sigma.ι
+          (fun u : GradedSummandIndex X Y p ↦ largeSummandModule u) s).hom a) =
+      (Limits.Sigma.ι
+        (fun u : GradedSummandIndex X Y q ↦ largeSummandModule u) t).hom b := by
+  subst q
+  have hst' : s = t := eq_of_heq hst
+  subst t
+  have hab' : a = b := eq_of_heq hab
+  subst b
+  rfl
+
+theorem moduleCatHom_apply_heq
+    {M N N' : ModuleCat.{0} ℤ} {f : M ⟶ N} {g : M ⟶ N'}
+    (hN : N = N') (hfg : HEq f g) (a : M) : HEq (f.hom a) (g.hom a) := by
+  subst N'
+  rw [eq_of_heq hfg]
+
+theorem uliftUp_heq {A B : Type} {a : A} {b : B} (hab : HEq a b) :
+    HEq (ULift.up a) (ULift.up b) := by
+  cases hab
+  rfl
+
 theorem recursiveContractionTarget_eq_left_last
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) (i : Fin w.length) :
