@@ -3760,6 +3760,98 @@ theorem transported_totalDifferentialComposition_right_sum
     intro j _
     rw [quotientCompositionMap_contractionLargeMap_right, map_zsmul]
 
+theorem transported_totalDifferentialComposition_left_sum
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m k : ℤ} (h : (n + 1) + m = k)
+    (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m)) :
+    (eqToHom (congrArg (quotientGradedModule X Z) h)).hom
+        (quotientCompositionMap X Y Z (n + 1) m
+          ((internalDifferentialFromSummand d +
+            contractionDifferentialFromSummand d).hom x)
+          ((Limits.Sigma.ι
+            (fun s : GradedSummandIndex Y Z m ↦ largeSummandModule s) ⟨v, e⟩).hom y)) =
+      (∑ i, d.internalSign i •
+        (eqToHom (congrArg (quotientGradedModule X Z) h)).hom
+          (largeSummandCompositionMap (d.raise i) e
+            (((ModuleCat.uliftFunctor.{1} ℤ).map
+              (internalDifferentialTensorMap d i)).hom x) y)) +
+        ∑ i, d.contractionSign i •
+          (eqToHom (congrArg (quotientGradedModule X Z) h)).hom
+            (largeSummandCompositionMap (d.contract i) e
+              (((ModuleCat.uliftFunctor.{1} ℤ).map
+                (contractionTensorMap d i)).hom x) y) := by
+  simp only [ModuleCat.hom_add, LinearMap.add_apply, map_add]
+  rw [quotientCompositionMap_internalDifferentialFromSummand_left_sum,
+    quotientCompositionMap_contractionDifferentialFromSummand_left_sum]
+  simp only [map_sum, map_zsmul]
+  congr 1
+  · apply Finset.sum_congr rfl
+    intro i _
+    rw [quotientCompositionMap_internalLargeMap_left]
+  · apply Finset.sum_congr rfl
+    intro i _
+    rw [quotientCompositionMap_contractionLargeMap_left, map_zsmul]
+
+def largeSummandCompositionValue
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m)) :
+    largeSummandModule
+      (⟨w.append v, d.append e⟩ : GradedSummandIndex X Z (n + m)) :=
+  ULift.up ((summandCompositionMap d e).hom (x.down ⊗ₜ[ℤ] y.down))
+
+theorem largeSummandCompositionMap_eq_inclusion
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m)) :
+    largeSummandCompositionMap d e x y =
+      (Limits.Sigma.ι
+        (fun s : GradedSummandIndex X Z (n + m) ↦ largeSummandModule s)
+        ⟨w.append v, d.append e⟩).hom
+        (largeSummandCompositionValue d e x y) := by
+  rfl
+
+theorem quotientTotalDifferential_largeSummandCompositionMap_partition
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m)) :
+    (quotientTotalDifferential X Z (n + m)).hom
+        (largeSummandCompositionMap d e x y) =
+      ((∑ i, (d.append e).internalSign (appendLeftArrowIndex (v := v) i) •
+          (internalDifferentialLargeMap (d.append e)
+            (appendLeftArrowIndex (v := v) i)).hom
+            (largeSummandCompositionValue d e x y)) +
+        (d.append e).internalSign (appendBoundaryArrowIndex w v) •
+          (internalDifferentialLargeMap (d.append e)
+            (appendBoundaryArrowIndex w v)).hom
+            (largeSummandCompositionValue d e x y) +
+        ∑ j, (d.append e).internalSign (appendRightArrowIndex (w := w) j) •
+          (internalDifferentialLargeMap (d.append e)
+            (appendRightArrowIndex (w := w) j)).hom
+            (largeSummandCompositionValue d e x y)) +
+      ((∑ i, (contractionLargeMap (d.append e)
+          (appendLeftContractionIndex (v := v) i)).hom
+          (largeSummandCompositionValue d e x y)) +
+        ∑ j, (contractionLargeMap (d.append e)
+          (appendRightContractionIndex (w := w) j)).hom
+          (largeSummandCompositionValue d e x y)) := by
+  rw [largeSummandCompositionMap_eq_inclusion]
+  change (Limits.Sigma.ι
+      (fun s : GradedSummandIndex X Z (n + m) ↦ largeSummandModule s)
+      ⟨w.append v, d.append e⟩ ≫ quotientTotalDifferential X Z (n + m)).hom
+      (largeSummandCompositionValue d e x y) = _
+  rw [quotientTotalDifferential_inclusion]
+  simp only [ModuleCat.hom_add, LinearMap.add_apply]
+  unfold internalDifferentialFromSummand contractionDifferentialFromSummand
+  simp only [ModuleCat.hom_sum, LinearMap.sum_apply]
+  rw [sum_append_arrow_partition, sum_append_contraction_partition]
+  simp only [ModuleCat.hom_smul, LinearMap.smul_apply]
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
