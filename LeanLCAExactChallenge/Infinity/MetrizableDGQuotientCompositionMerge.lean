@@ -1740,6 +1740,54 @@ theorem compositionBoundaryMap_raise_left_internal_heq
   · rfl
   · simp [DegreeProfile.raise, hlast]
 
+theorem tensorMapData_ofFn_eqToHom_of_family_eq
+    {k : ℕ} (M N : Fin k → ModuleCat.{0} ℤ) (h : M = N)
+    (f : (q : Fin k) → M q ⟶ N q)
+    (hf : ∀ q, f q = eqToHom (congrFun h q)) :
+    (TensorMapData.ofFn M N f).tensorMap =
+      eqToHom (congrArg tensorModuleList (congrArg finFamilyList h)) := by
+  cases h
+  have hfun : f = fun q ↦ 𝟙 (M q) := by
+    funext q
+    simpa using hf q
+  subst f
+  simp
+
+theorem comp_eqToHom_heq_left
+    {A B C : ModuleCat.{0} ℤ} (f : A ⟶ B) (h : B = C) :
+    HEq (f ≫ eqToHom h) f := by
+  subst C
+  simp
+
+theorem contractionTensorMap_recursive_heq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    HEq (contractionTensorMap d i)
+      (recursiveContractionAdjacentMergeData d i).tensorMap := by
+  let hfamily :
+      (fun q ↦ recursiveMergedFactor (factorModule d) i
+        (contractedFactorAtOldIndex d i i) q) =
+        contractedFactorAtOldIndex d i :=
+    funext (recursiveContractionMergedFactor_eq d i)
+  have hmap : recursiveContractionMergedFactorsTensorMap d i =
+      eqToHom (congrArg tensorModuleList (congrArg finFamilyList hfamily)) := by
+    unfold recursiveContractionMergedFactorsTensorMap
+    exact tensorMapData_ofFn_eqToHom_of_family_eq _ _ hfamily _ (fun q ↦ by
+      unfold recursiveContractionMergedFactorMap
+      rw [Subsingleton.elim (recursiveContractionMergedFactor_eq d i q)
+        (congrFun hfamily q)])
+  unfold contractionTensorMap contractionTensorMapAtOldIndex
+    recursiveContractionTensorMapAtOldIndex contractedFactorsOldIndexIso
+  rw [hmap]
+  let hmerged := congrArg tensorModuleList (congrArg finFamilyList hfamily)
+  let hcontract := congrArg tensorModuleList (contractedFactorsOldIndex_eq d i)
+  change HEq
+    (((recursiveContractionAdjacentMergeData d i).tensorMap ≫ eqToHom hmerged) ≫
+      eqToHom hcontract)
+    (recursiveContractionAdjacentMergeData d i).tensorMap
+  rw [Category.assoc, eqToHom_trans]
+  exact comp_eqToHom_heq_left _ _
+
 theorem tensorMapData_cons_heq
     {M M' N N' : ModuleCat.{0} ℤ}
     {Ms Ms' Ns Ns' : List (ModuleCat.{0} ℤ)}
