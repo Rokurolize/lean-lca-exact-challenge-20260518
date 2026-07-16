@@ -3424,6 +3424,55 @@ theorem contractionSign_sum_append_partition
   simp_rw [contractionSign_append_left, contractionSign_append_right]
   rw [Units.smul_def, hleft]
 
+theorem internalBoundaryKoszul_assembly
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    {A : Type*} [AddCommGroup A] [Module ℤ A] (a b : A) :
+    (d.append e).internalSign (appendBoundaryArrowIndex w v) •
+        (a + (e.arrowDegree 0).negOnePow • b) =
+      e.internalSign 0 • a + m.negOnePow • b := by
+  rw [Units.smul_def, Units.smul_def]
+  calc
+    _ = (d.append e).internalSign (appendBoundaryArrowIndex w v) • a +
+        (d.append e).internalSign (appendBoundaryArrowIndex w v) •
+          ((e.arrowDegree 0).negOnePow : ℤ) • b := zsmul_add _ _ _
+    _ = (d.append e).internalSign (appendBoundaryArrowIndex w v) • a +
+        ((d.append e).internalSign (appendBoundaryArrowIndex w v) *
+          (e.arrowDegree 0).negOnePow) • b := by rw [mul_zsmul]
+    _ = _ := by
+      rw [internalSign_append_boundary_mul, internalSign_append_boundary]
+
+theorem quotientCompositionMap_internalDifferentialFromSummand_right_sum
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m)) :
+    quotientCompositionMap X Y Z n (m + 1)
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex X Y n ↦ largeSummandModule s) ⟨w, d⟩).hom x)
+        ((internalDifferentialFromSummand e).hom y) =
+      ∑ j, e.internalSign j •
+        quotientCompositionMap X Y Z n (m + 1)
+          ((Limits.Sigma.ι
+            (fun s : GradedSummandIndex X Y n ↦ largeSummandModule s) ⟨w, d⟩).hom x)
+          ((internalDifferentialLargeMap e j).hom y) := by
+  simp [internalDifferentialFromSummand, Pi.smul_apply]
+
+theorem quotientCompositionMap_contractionDifferentialFromSummand_right_sum
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m)) :
+    quotientCompositionMap X Y Z n (m + 1)
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex X Y n ↦ largeSummandModule s) ⟨w, d⟩).hom x)
+        ((contractionDifferentialFromSummand e).hom y) =
+      ∑ j, quotientCompositionMap X Y Z n (m + 1)
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex X Y n ↦ largeSummandModule s) ⟨w, d⟩).hom x)
+        ((contractionLargeMap e j).hom y) := by
+  simp [contractionDifferentialFromSummand]
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
