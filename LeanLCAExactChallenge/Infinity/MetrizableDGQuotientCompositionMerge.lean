@@ -1887,6 +1887,43 @@ theorem adjacentMergeAfter_naturality
   | cons R xs ih =>
       exact .tail (𝟙 R) ih
 
+def tensorMapDataPrefixOfFn : {k : ℕ} →
+    (M N : Fin k → ModuleCat.{0} ℤ) → ((i : Fin k) → M i ⟶ N i) →
+    {source target : List (ModuleCat.{0} ℤ)} → TensorMapData source target →
+      TensorMapData (finFamilyList M ++ source) (finFamilyList N ++ target)
+  | 0, _, _, _, _, _, tail => tail
+  | k + 1, M, N, f, _, _, tail => .cons (f 0)
+      (tensorMapDataPrefixOfFn (fun i : Fin k ↦ M i.succ)
+        (fun i : Fin k ↦ N i.succ) (fun i ↦ f i.succ) tail)
+
+theorem adjacentMergeAfter_naturality_ofFn
+    {k l : ℕ} (Mleft Nleft : Fin k → ModuleCat.{0} ℤ)
+    (Mboundary Mboundary' Nboundary Nboundary' Pboundary Pboundary' :
+      ModuleCat.{0} ℤ)
+    (Mright Nright : Fin l → ModuleCat.{0} ℤ)
+    (f : Mboundary ⊗ Nboundary ⟶ Pboundary)
+    (f' : Mboundary' ⊗ Nboundary' ⟶ Pboundary')
+    (fleft : (i : Fin k) → Mleft i ⟶ Nleft i)
+    (a : Mboundary ⟶ Mboundary') (b : Nboundary ⟶ Nboundary')
+    (c : Pboundary ⟶ Pboundary')
+    (fright : (i : Fin l) → Mright i ⟶ Nright i)
+    (h : (a ⊗ₘ b) ≫ f' = f ≫ c) :
+    AdjacentMergeNaturality
+      (adjacentMergeAfter (finFamilyList Mleft) f)
+      (adjacentMergeAfter (finFamilyList Nleft) f')
+      (tensorMapDataPrefixOfFn Mleft Nleft fleft
+        (.cons a (.cons b (TensorMapData.ofFn Mright Nright fright))))
+      (tensorMapDataPrefixOfFn Mleft Nleft fleft
+        (.cons c (TensorMapData.ofFn Mright Nright fright))) := by
+  induction k with
+  | zero =>
+      exact AdjacentMergeNaturality.head f f' a b c
+        (TensorMapData.ofFn Mright Nright fright) h
+  | succ k ih =>
+      exact AdjacentMergeNaturality.tail (fleft 0)
+        (ih (fun q : Fin k ↦ Mleft q.succ) (fun q : Fin k ↦ Nleft q.succ)
+          (fun q ↦ fleft q.succ))
+
 theorem factorDifferential_eqToHom_of_ne_comp
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) (q r : Fin (w.length + 1)) (h : q ≠ r) :
