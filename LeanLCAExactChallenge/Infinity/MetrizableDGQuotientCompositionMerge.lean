@@ -3852,6 +3852,87 @@ theorem quotientTotalDifferential_largeSummandCompositionMap_partition
   rw [sum_append_arrow_partition, sum_append_contraction_partition]
   simp only [ModuleCat.hom_smul, LinearMap.smul_apply]
 
+theorem recursiveContractionTarget_eq_left_last
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    tensorModuleList
+        (finFamilyList
+          (recursiveMergedFactor (factorModule d) i
+            (contractedFactorAtOldIndex d i i))) =
+      summandModule (d.contract i) := by
+  apply congrArg tensorModuleList
+  calc
+    _ = finFamilyList (contractedFactorAtOldIndex d i) := by
+      exact congrArg finFamilyList
+        (funext (recursiveContractionMergedFactor_eq d i))
+    _ = _ := contractedFactorsOldIndex_eq d i
+
+def leftLastZeroHeadDegreeProfile
+    {X Y : ComplexCategory}
+    {intermediate : Fin 1 → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    DegreeProfile (nil X (intermediate 0).obj) (d.arrowDegree 0) where
+  arrowDegree _ := d.arrowDegree 0
+  totalDegree := by simp [nil]
+
+def leftLastZeroTailDegreeProfile
+    {X Y : ComplexCategory}
+    {intermediate : Fin 1 → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    DegreeProfile (nil (intermediate 0).obj Y) (d.arrowDegree 1) where
+  arrowDegree _ := d.arrowDegree 1
+  totalDegree := by simp [nil]
+
+theorem leftLastZeroNormalizedPairTensorMap_heq
+    {X Y Z : ComplexCategory}
+    {intermediate : Fin 1 → CorrectedAcyclicComplexCategory}
+    {v : DrinfeldWord Y Z} {n m : ℤ}
+    (d : DegreeProfile
+      ({ length := 1, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (e : DegreeProfile v m) :
+    HEq
+      ((@AdjacentMergeData.head
+          (factorModule (leftLastZeroHeadDegreeProfile d) 0)
+          (factorModule (leftLastZeroTailDegreeProfile d) 0)
+          (compositionBoundaryModule (leftLastZeroHeadDegreeProfile d)
+            (leftLastZeroTailDegreeProfile d))
+          (factorModule e 0 :: compositionRightSuffix e)
+          (compositionBoundaryMap (leftLastZeroHeadDegreeProfile d)
+            (leftLastZeroTailDegreeProfile d))).tensorMap ≫
+        (@AdjacentMergeData.head
+          (compositionBoundaryModule (leftLastZeroHeadDegreeProfile d)
+            (leftLastZeroTailDegreeProfile d))
+          (factorModule e 0)
+          (tripleCompositionBoundaryModule (leftLastZeroHeadDegreeProfile d)
+            (leftLastZeroTailDegreeProfile d) e)
+          (compositionRightSuffix e)
+          (leftAssociatedBoundaryMap (leftLastZeroHeadDegreeProfile d)
+            (leftLastZeroTailDegreeProfile d) e)).tensorMap)
+      ((@AdjacentMergeData.tail
+          (factorModule (leftLastZeroHeadDegreeProfile d) 0)
+          (factorModule (leftLastZeroTailDegreeProfile d) 0 ::
+            factorModule e 0 :: compositionRightSuffix e)
+          (zeroMiddleRightBoundaryModule (leftLastZeroTailDegreeProfile d) e ::
+            compositionRightSuffix e)
+          (@AdjacentMergeData.head
+            (factorModule (leftLastZeroTailDegreeProfile d) 0)
+            (factorModule e 0)
+            (zeroMiddleRightBoundaryModule (leftLastZeroTailDegreeProfile d) e)
+            (compositionRightSuffix e)
+            (zeroMiddleRightBoundaryMap (leftLastZeroTailDegreeProfile d) e))).tensorMap ≫
+        (@AdjacentMergeData.head
+          (factorModule (leftLastZeroHeadDegreeProfile d) 0)
+          (zeroMiddleRightBoundaryModule (leftLastZeroTailDegreeProfile d) e)
+          (tripleCompositionBoundaryModule (leftLastZeroHeadDegreeProfile d)
+            (leftLastZeroTailDegreeProfile d) e)
+          (compositionRightSuffix e)
+          (rightAssociatedBoundaryMap (leftLastZeroHeadDegreeProfile d)
+            (leftLastZeroTailDegreeProfile d) e)).tensorMap) := by
+  exact (normalizedBoundaryPairCoherence [] (compositionRightSuffix e)
+    (leftLastZeroHeadDegreeProfile d) (leftLastZeroTailDegreeProfile d) e).tensorMap_heq
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
