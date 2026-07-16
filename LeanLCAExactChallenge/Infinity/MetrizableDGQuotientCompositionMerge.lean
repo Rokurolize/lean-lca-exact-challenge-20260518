@@ -9389,6 +9389,12 @@ theorem summandCompositionMap_contraction_append_right_heq
               · exact summandCompositionMap_contraction_append_right_zero_heq d e
               · exact summandCompositionMap_contraction_append_right_succ_heq d e i
 
+def rightLeibnizDegreeEq (n m : ℤ) :
+    n + (m + 1) = (n + m) + 1 := by omega
+
+def leftLeibnizDegreeEq (n m : ℤ) :
+    (n + 1) + m = (n + m) + 1 := by omega
+
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
 abbrev QuotientCoefficientRing := ULift.{1} ℤ
 
