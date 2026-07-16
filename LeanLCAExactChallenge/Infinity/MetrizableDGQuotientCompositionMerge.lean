@@ -8459,6 +8459,71 @@ theorem rightZeroRawContractionFactor_eq
   rw [hsource, htarget]
   rfl
 
+theorem rightZeroRawContractionTargetList_eq
+    {Y Z : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory} {m : ℤ}
+    (e : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord Y Z) m) :
+    finFamilyList
+        (recursiveMergedFactor (factorModule e) 0 (rawContractionFactor e 0)) =
+      zeroMiddleRightBoundaryModule (rightZeroHeadDegreeProfile e)
+          (tailDegreeProfile e) ::
+        compositionRightSuffix (tailDegreeProfile e) := by
+  rw [finFamilyList_recursiveMerge_target, rightZeroFactorList_eq,
+    rightZeroRawContractionFactor_eq]
+  rfl
+
+theorem rightZeroCompositionBoundaryModule_eq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {n m : ℤ} (d : DegreeProfile w n)
+    (e : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord Y Z) m) :
+    compositionBoundaryModule d e =
+      compositionBoundaryModule d (rightZeroHeadDegreeProfile e) := by
+  unfold compositionBoundaryModule
+  have htarget :
+      ({ length := k + 1, intermediate := intermediate } :
+        DrinfeldWord Y Z).arrowTarget 0 =
+        (nil Y (intermediate 0).obj).arrowTarget 0 := by
+    rw [nil_arrowTarget_zero]
+    unfold arrowTarget vertex
+    rw [Fin.cases_succ]
+    have hzero : (0 : Fin (k + 2)) = (0 : Fin (k + 1)).castSucc := rfl
+    rw [hzero, Fin.lastCases_castSucc]
+    rfl
+  rw [htarget]
+  rfl
+
+theorem rightZeroCompositionTargetList_eq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {n m : ℤ} (d : DegreeProfile w n)
+    (e : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord Y Z) m) :
+    compositionLeftPrefix d ++ compositionBoundaryModule d e ::
+        compositionRightSuffix e =
+      compositionLeftPrefix d ++
+        compositionBoundaryModule d (rightZeroHeadDegreeProfile e) ::
+          factorModule (tailDegreeProfile e) 0 ::
+            compositionRightSuffix (tailDegreeProfile e) := by
+  rw [rightZeroCompositionBoundaryModule_eq, rightZeroRightSuffix_eq]
+
+theorem rightZeroCompositionSourceList_eq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {n m : ℤ} (d : DegreeProfile w n)
+    (e : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord Y Z) m) :
+    finFamilyList (factorModule d) ++ finFamilyList (factorModule e) =
+      compositionLeftPrefix d ++ factorModule d (Fin.last w.length) ::
+        factorModule (rightZeroHeadDegreeProfile e) 0 ::
+          factorModule (tailDegreeProfile e) 0 ::
+            compositionRightSuffix (tailDegreeProfile e) := by
+  rw [finFamilyList_factorModule_eq_prefix_last, rightZeroFactorList_eq]
+  simp only [List.append_assoc, List.cons_append, List.nil_append]
+
+
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
 abbrev QuotientCoefficientRing := ULift.{1} ℤ
 
