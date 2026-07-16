@@ -3962,6 +3962,140 @@ theorem internalDifferentialLargeMap_append_left_apply
       (summandCompositionMap_internalDifferential_append_left_heq d e i).symm
       (x.down ⊗ₜ[ℤ] y.down)
 
+theorem internalDifferentialLargeMap_append_right_apply
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m))
+    (j : Fin v.length) :
+    (internalDifferentialLargeMap (d.append e)
+        (appendRightArrowIndex (w := w) j)).hom
+        (largeSummandCompositionValue d e x y) =
+      (eqToHom (congrArg (quotientGradedModule X Z)
+        (rightLeibnizDegreeEq n m))).hom
+        (largeSummandCompositionMap d (e.raise j.succ) x
+          (((ModuleCat.uliftFunctor.{1} ℤ).map
+            (internalDifferentialTensorMap e j.succ)).hom y)) := by
+  change
+    (Limits.Sigma.ι
+      (fun s : GradedSummandIndex X Z ((n + m) + 1) ↦ largeSummandModule s)
+      ⟨w.append v, (d.append e).raise (appendRightArrowIndex j)⟩).hom
+        (ULift.up ((summandCompositionMap d e ≫
+          internalDifferentialTensorMap (d.append e)
+            (appendRightArrowIndex j)).hom (x.down ⊗ₜ[ℤ] y.down))) =
+      (eqToHom (congrArg (quotientGradedModule X Z)
+        (rightLeibnizDegreeEq n m))).hom
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex X Z (n + (m + 1)) ↦ largeSummandModule s)
+          ⟨w.append v, d.append (e.raise j.succ)⟩).hom
+            (ULift.up (((𝟙 (summandModule d) ⊗ₘ
+              internalDifferentialTensorMap e j.succ) ≫
+                summandCompositionMap d (e.raise j.succ)).hom
+                  (x.down ⊗ₜ[ℤ] y.down))))
+  apply (quotientGradedModule_eqToHom_inclusion_apply
+    (rightLeibnizDegreeEq n m)
+    (⟨w.append v, d.append (e.raise j.succ)⟩ :
+      GradedSummandIndex X Z (n + (m + 1)))
+    (⟨w.append v, (d.append e).raise (appendRightArrowIndex j)⟩ :
+      GradedSummandIndex X Z ((n + m) + 1)) ?_ _ _ ?_).symm
+  · apply gradedSummandIndex_mk_heq_of_eq (rightLeibnizDegreeEq n m) rfl
+    exact (degreeProfile_castTotal_heq (rightLeibnizDegreeEq n m)
+      (d.append (e.raise j.succ))).trans
+        (heq_of_eq (DegreeProfile.raise_append_right d e j).symm)
+  · apply uliftUp_heq
+    have htarget :
+        summandModule (d.append (e.raise j.succ)) =
+          summandModule ((d.append e).raise (appendRightArrowIndex j)) := by
+      exact (summandModule_castTotal_eq (rightLeibnizDegreeEq n m)
+        (d.append (e.raise j.succ))).symm.trans
+          (congrArg summandModule
+            (DegreeProfile.raise_append_right d e j).symm)
+    exact moduleCatHom_apply_heq htarget
+      (summandCompositionMap_internalDifferential_append_right_heq d e j).symm
+      (x.down ⊗ₜ[ℤ] y.down)
+
+theorem transported_boundary_internal_right_apply
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m)) :
+    (eqToHom (congrArg (quotientGradedModule X Z)
+      (rightLeibnizDegreeEq n m))).hom
+        (largeSummandCompositionMap d (e.raise 0) x
+          (((ModuleCat.uliftFunctor.{1} ℤ).map
+            (internalDifferentialTensorMap e 0)).hom y)) =
+      (Limits.Sigma.ι
+        (fun s : GradedSummandIndex X Z ((n + m) + 1) ↦ largeSummandModule s)
+        ⟨w.append v, (d.append e).raise (appendBoundaryArrowIndex w v)⟩).hom
+          (ULift.up (((𝟙 (summandModule d) ⊗ₘ
+              internalDifferentialTensorMap e 0) ≫
+            summandCompositionMap d (e.raise 0) ≫
+            eqToHom (appendBoundaryRightSummandModuleEq d e)).hom
+              (x.down ⊗ₜ[ℤ] y.down))) := by
+  change
+    (eqToHom (congrArg (quotientGradedModule X Z)
+      (rightLeibnizDegreeEq n m))).hom
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex X Z (n + (m + 1)) ↦ largeSummandModule s)
+          ⟨w.append v, d.append (e.raise 0)⟩).hom
+            (ULift.up (((𝟙 (summandModule d) ⊗ₘ
+              internalDifferentialTensorMap e 0) ≫
+                summandCompositionMap d (e.raise 0)).hom
+                  (x.down ⊗ₜ[ℤ] y.down)))) = _
+  apply quotientGradedModule_eqToHom_inclusion_apply (rightLeibnizDegreeEq n m)
+  · apply gradedSummandIndex_mk_heq_of_eq (rightLeibnizDegreeEq n m) rfl
+    exact (degreeProfile_castTotal_heq (rightLeibnizDegreeEq n m)
+      (d.append (e.raise 0))).trans
+        (heq_of_eq (DegreeProfile.raise_append_boundary_right d e).symm)
+  · let z := ((𝟙 (summandModule d) ⊗ₘ internalDifferentialTensorMap e 0) ≫
+      summandCompositionMap d (e.raise 0)).hom (x.down ⊗ₜ[ℤ] y.down)
+    change HEq (ULift.up z)
+      (ULift.up ((eqToHom (appendBoundaryRightSummandModuleEq d e)).hom z))
+    exact uliftUp_heq
+      (moduleCat_eqToHom_apply_heq (appendBoundaryRightSummandModuleEq d e) z)
+
+theorem transported_boundary_internal_left_apply
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m)) :
+    (eqToHom (congrArg (quotientGradedModule X Z)
+      (leftLeibnizDegreeEq n m))).hom
+        (largeSummandCompositionMap (d.raise (Fin.last w.length)) e
+          (((ModuleCat.uliftFunctor.{1} ℤ).map
+            (internalDifferentialTensorMap d (Fin.last w.length))).hom x) y) =
+      (Limits.Sigma.ι
+        (fun s : GradedSummandIndex X Z ((n + m) + 1) ↦ largeSummandModule s)
+        ⟨w.append v, (d.append e).raise (appendBoundaryArrowIndex w v)⟩).hom
+          (ULift.up (((internalDifferentialTensorMap d (Fin.last w.length) ⊗ₘ
+              𝟙 (summandModule e)) ≫
+            summandCompositionMap (d.raise (Fin.last w.length)) e ≫
+            eqToHom (appendBoundaryLeftSummandModuleEq d e)).hom
+              (x.down ⊗ₜ[ℤ] y.down))) := by
+  change
+    (eqToHom (congrArg (quotientGradedModule X Z)
+      (leftLeibnizDegreeEq n m))).hom
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex X Z ((n + 1) + m) ↦ largeSummandModule s)
+          ⟨w.append v, (d.raise (Fin.last w.length)).append e⟩).hom
+            (ULift.up (((internalDifferentialTensorMap d (Fin.last w.length) ⊗ₘ
+              𝟙 (summandModule e)) ≫
+                summandCompositionMap (d.raise (Fin.last w.length)) e).hom
+                  (x.down ⊗ₜ[ℤ] y.down)))) = _
+  apply quotientGradedModule_eqToHom_inclusion_apply (leftLeibnizDegreeEq n m)
+  · apply gradedSummandIndex_mk_heq_of_eq (leftLeibnizDegreeEq n m) rfl
+    exact (degreeProfile_castTotal_heq (leftLeibnizDegreeEq n m)
+      ((d.raise (Fin.last w.length)).append e)).trans
+        (heq_of_eq (DegreeProfile.raise_append_boundary_left d e).symm)
+  · let z := ((internalDifferentialTensorMap d (Fin.last w.length) ⊗ₘ
+      𝟙 (summandModule e)) ≫
+        summandCompositionMap (d.raise (Fin.last w.length)) e).hom
+          (x.down ⊗ₜ[ℤ] y.down)
+    change HEq (ULift.up z)
+      (ULift.up ((eqToHom (appendBoundaryLeftSummandModuleEq d e)).hom z))
+    exact uliftUp_heq
+      (moduleCat_eqToHom_apply_heq (appendBoundaryLeftSummandModuleEq d e) z)
+
 theorem recursiveContractionTarget_eq_left_last
     {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
     (d : DegreeProfile w n) (i : Fin w.length) :
