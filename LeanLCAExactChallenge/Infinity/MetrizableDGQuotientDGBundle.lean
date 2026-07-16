@@ -87,6 +87,115 @@ theorem quotientCompositionTensorMap_leibniz
   change _ = _ + (m.negOnePow : ℤ) • _
   simpa only [Units.smul_def] using largeSummandCompositionMap_leibniz d e x y
 
+private lemma quotientCoefficientCast_comp_d
+    (X Y : ComplexCategory) {a b c : ℤ} (hab : a = b)
+    (hbc : b + 1 = c) (hac : a + 1 = c) :
+    eqToHom (congrArg
+        (fun k ↦ quotientCoefficientModule (quotientGradedModule X Y k)) hab) ≫
+        (quotientCoefficientCochainComplex X Y).d b c =
+      quotientCoefficientDifferential X Y a ≫
+        eqToHom (congrArg
+          (fun k ↦ quotientCoefficientModule (quotientGradedModule X Y k)) hac) := by
+  subst b
+  subst c
+  rw [quotientCoefficientCochainComplex_d_succ]
+  simp only [quotientCoefficientDifferential, eqToHom_refl, Category.comp_id,
+    Category.id_comp]
+
+/-- Composition of corrected quotient morphism cochain complexes. -/
+def quotientDGComposition (K L M : ComplexCategory) :
+    HomologicalComplex.tensorObj
+        (quotientCoefficientCochainComplex L M)
+        (quotientCoefficientCochainComplex K L) ⟶
+      quotientCoefficientCochainComplex K M where
+  f n := HomologicalComplex.mapBifunctorDesc fun p q h ↦
+    (β_ _ _).hom ≫ quotientCompositionTensorMap K L M q p ≫
+      eqToHom (congrArg
+        (fun k ↦ quotientCoefficientModule (quotientGradedModule K M k))
+        ((Int.add_comm q p).trans h))
+  comm' n m hnm := by
+    apply HomologicalComplex.mapBifunctor.hom_ext
+    intro p q hpq
+    rw [HomologicalComplex.ι_mapBifunctorDesc_assoc]
+    rw [HomologicalComplex.mapBifunctor.d_eq]
+    simp only [← Category.assoc, Preadditive.comp_add, Preadditive.add_comp,
+      HomologicalComplex.mapBifunctor.ι_D₁, HomologicalComplex.mapBifunctor.ι_D₂]
+    change p + q = n at hpq
+    change n + 1 = m at hnm
+    rw [HomologicalComplex.mapBifunctor.d₁_eq _ _ _ _
+      (show p + 1 = p + 1 by rfl) q m (by change p + 1 + q = m; omega)]
+    rw [HomologicalComplex.mapBifunctor.d₂_eq _ _ _ _ p
+      (show q + 1 = q + 1 by rfl) m (by change p + (q + 1) = m; omega)]
+    simp only [Linear.units_smul_comp, Category.assoc,
+      HomologicalComplex.ι_mapBifunctorDesc]
+    rw [Units.smul_def, Units.smul_def]
+    change _ = (1 : ℤ) • _ + (p.negOnePow : ℤ) • _
+    rw [one_smul]
+    simp only [quotientCoefficientCochainComplex_X]
+    rw [quotientCoefficientCochainComplex_d_succ L M p,
+      quotientCoefficientCochainComplex_d_succ K L q]
+    have hqp : q + p = n := by omega
+    have hnext : (q + p) + 1 = m := by omega
+    have hleibniz := quotientCompositionTensorMap_leibniz K L M q p
+    have hcast := quotientCoefficientCast_comp_d K M hqp hnm hnext
+    erw [hcast]
+    have hright (W : ModuleCat.{1} QuotientCoefficientRing)
+        (g : quotientCoefficientModule (quotientGradedModule K M (q + (p + 1))) ⟶ W) :
+        (quotientCoefficientDifferential L M p ▷
+            quotientCoefficientModule (quotientGradedModule K L q)) ≫
+              (β_ _ _).hom ≫ quotientCompositionTensorMap K L M q (p + 1) ≫ g =
+          (β_ _ _).hom ≫
+            (quotientCoefficientModule (quotientGradedModule K L q) ◁
+              quotientCoefficientDifferential L M p) ≫
+                quotientCompositionTensorMap K L M q (p + 1) ≫ g := by
+      simpa only [Category.assoc] using
+        BraidedCategory.braiding_naturality_left_assoc
+          (quotientCoefficientDifferential L M p)
+          (quotientCoefficientModule (quotientGradedModule K L q))
+          (quotientCompositionTensorMap K L M q (p + 1) ≫ g)
+    have hleft (W : ModuleCat.{1} QuotientCoefficientRing)
+        (g : quotientCoefficientModule (quotientGradedModule K M ((q + 1) + p)) ⟶ W) :
+        (quotientCoefficientModule (quotientGradedModule L M p) ◁
+            quotientCoefficientDifferential K L q) ≫
+              (β_ _ _).hom ≫ quotientCompositionTensorMap K L M (q + 1) p ≫ g =
+          (β_ _ _).hom ≫
+            (quotientCoefficientDifferential K L q ▷
+              quotientCoefficientModule (quotientGradedModule L M p)) ≫
+                quotientCompositionTensorMap K L M (q + 1) p ≫ g := by
+      simpa only [Category.assoc] using
+        BraidedCategory.braiding_naturality_right_assoc
+          (quotientCoefficientModule (quotientGradedModule L M p))
+          (quotientCoefficientDifferential K L q)
+          (quotientCompositionTensorMap K L M (q + 1) p ≫ g)
+    simp only [quotientCoefficientDifferential] at hright hleft
+    simp only [curriedTensor_map_app, curriedTensor_obj_map]
+    erw [hright, hleft]
+    have h := congrArg
+      (fun f ↦ (β_ _ _).hom ≫ f ≫
+        eqToHom (congrArg
+          (fun k ↦ quotientCoefficientModule (quotientGradedModule K M k)) hnext))
+      hleibniz
+    change @Eq
+      (quotientCoefficientModule (quotientGradedModule L M p) ⊗
+          quotientCoefficientModule (quotientGradedModule K L q) ⟶
+        quotientCoefficientModule (quotientGradedModule K M m)) _ _
+    convert h using 1 <;> simp only [Category.assoc, Preadditive.comp_add,
+      Preadditive.add_comp,
+      Linear.comp_smul, Linear.smul_comp, quotientCoefficientDifferential,
+      MonoidalCategory.tensorHom_def, MonoidalCategory.whiskerLeft_id,
+      MonoidalCategory.id_whiskerRight, Category.comp_id, Category.id_comp,
+      Units.smul_def, eqToHom_trans] <;> rfl
+
+@[simp]
+theorem quotientDGComposition_f (K L M : ComplexCategory) (n : ℤ) :
+    (quotientDGComposition K L M).f n =
+      HomologicalComplex.mapBifunctorDesc fun p q h ↦
+        (β_ _ _).hom ≫ quotientCompositionTensorMap K L M q p ≫
+          eqToHom (congrArg
+            (fun k ↦ quotientCoefficientModule (quotientGradedModule K M k))
+            ((Int.add_comm q p).trans h)) :=
+  rfl
+
 /-- The coefficient-module span-singleton morphism at the quotient identity element. -/
 def quotientIdentitySpan (K : ComplexCategory) :
     𝟙_ (ModuleCat.{1} QuotientCoefficientRing) ⟶
