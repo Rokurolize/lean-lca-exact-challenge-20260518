@@ -4951,6 +4951,369 @@ theorem compositionRemainder_internalDifferential_boundary_right_heq
     hsourceTransport htargetTransport
 
 
+theorem compositionRemainder_internalDifferential_boundary_left_heq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    HEq
+      (tensorModuleListWhiskerRight (finFamilyList (factorModule e))
+          (internalDifferentialTensorMap d (Fin.last w.length)) ≫
+        summandCompositionRemainder (d.raise (Fin.last w.length)) e ≫
+        eqToHom (appendBoundaryLeftSummandModuleEq d e))
+      ((tensorMapDataPrefixId (compositionLeftPrefix d)
+        (TensorMapData.cons
+          (factorDifferential d (Fin.last w.length) (Fin.last w.length))
+          (TensorMapData.cons (𝟙 (factorModule e 0))
+            (TensorMapData.identity (compositionRightSuffix e))))).tensorMap ≫
+        (adjacentMergeAfter (compositionLeftPrefix d)
+          (ys := compositionRightSuffix e)
+          (compositionBoundaryMap (d.raise (Fin.last w.length)) e ≫
+            eqToHom (show compositionBoundaryModule
+                (d.raise (Fin.last w.length)) e = _ from by
+              exact (compositionBoundaryTarget_raise_last_eq d e).symm))).tensorMap) := by
+  let q := Fin.last w.length
+  let d' := d.raise q
+  let Mleft := fun i : Fin w.length ↦ factorModule d i.castSucc
+  let Nleft := fun i : Fin w.length ↦ factorModule d' i.castSucc
+  let fleft := fun i : Fin w.length ↦ factorDifferential d q i.castSucc
+  have hMN : Mleft = Nleft := by
+    funext i
+    unfold Mleft Nleft d' factorModule
+    have hne : (i.castSucc : Fin (w.length + 1)) ≠ q :=
+      Fin.castSucc_ne_last i
+    simp [DegreeProfile.raise, hne, q]
+  have hfleft : ∀ i, HEq (fleft i) (𝟙 (Mleft i)) := by
+    intro i
+    have hne : q ≠ (i.castSucc : Fin (w.length + 1)) :=
+      (Fin.castSucc_ne_last i).symm
+    obtain ⟨hL, hmap⟩ := factorDifferential_eqToHom_of_ne_comp d q i.castSucc hne
+    dsimp [fleft, Mleft]
+    rw [hmap]
+    exact test_eqToHom_heq_id hL
+  let tailFull := TensorMapData.ofFn (factorModule e) (factorModule e)
+    (fun i ↦ 𝟙 (factorModule e i))
+  let tailBoundary := TensorMapData.cons (𝟙 (factorModule e 0))
+    (TensorMapData.identity (compositionRightSuffix e))
+  have htail : HEq tailFull tailBoundary := by
+    let Mright := fun i : Fin v.length ↦ factorModule e i.succ
+    change HEq
+      (TensorMapData.cons (𝟙 (factorModule e 0))
+        (TensorMapData.ofFn Mright Mright (fun i ↦ 𝟙 (Mright i))))
+      tailBoundary
+    apply tensorMapData_cons_heq rfl rfl rfl rfl HEq.rfl
+    simpa [Mright, compositionRightSuffix] using
+      TensorMapData.ofFn_heq_identity_of_pointwise Mright Mright
+        (fun i ↦ 𝟙 (Mright i)) rfl (fun i ↦ HEq.rfl)
+  let g := factorDifferential d q q
+  let actualData := tensorMapDataPrefixOfFn Mleft Nleft fleft
+    (TensorMapData.cons g tailFull)
+  let sourceData := tensorMapDataPrefixId (compositionLeftPrefix d)
+    (TensorMapData.cons g tailBoundary)
+  let fullData := tensorMapDataPrefixOfFn (factorModule d) (factorModule d')
+    (factorDifferential d q) tailFull
+  have hactualFull : HEq actualData fullData := by
+    exact tensorMapDataPrefixOfFn_castSucc_last_heq
+      (factorModule d) (factorModule d') (factorDifferential d q) tailFull g HEq.rfl
+  have hactualPrefix : HEq actualData
+      (tensorMapDataPrefixId (compositionLeftPrefix d)
+        (TensorMapData.cons g tailFull)) := by
+    simpa [actualData, Mleft, Nleft, fleft, compositionLeftPrefix] using
+      tensorMapDataPrefixOfFn_heq_prefixId_of_pointwise Mleft Nleft fleft hMN
+        hfleft (TensorMapData.cons g tailFull)
+  have htailCons : HEq (TensorMapData.cons g tailFull)
+      (TensorMapData.cons g tailBoundary) := by
+    have hfirst := finFamilyList_factorModule_eq_first_suffix e
+    exact tensorMapData_cons_heq rfl rfl
+      hfirst hfirst HEq.rfl htail
+  have hprefixTail : HEq
+      (tensorMapDataPrefixId (compositionLeftPrefix d)
+        (TensorMapData.cons g tailFull)) sourceData := by
+    have hfirst := finFamilyList_factorModule_eq_first_suffix e
+    exact tensorMapDataPrefixId_heq_boundary (compositionLeftPrefix d)
+      (congrArg (factorModule d q :: ·) hfirst)
+      (congrArg (factorModule d' q :: ·) hfirst) htailCons
+  have hsourceData : HEq sourceData fullData :=
+    (hactualPrefix.trans hprefixTail).symm.trans hactualFull
+  have hsourceList :
+      compositionLeftPrefix d ++ factorModule d q ::
+          factorModule e 0 :: compositionRightSuffix e =
+        finFamilyList (factorModule d) ++ finFamilyList (factorModule e) :=
+    ((compositionSourceListEq d e).trans (compositionBoundaryListEq d e)).symm
+  have hprefix := compositionLeftPrefix_raise_last_eq d
+  have htargetList :
+      compositionLeftPrefix d ++ factorModule d' q ::
+          factorModule e 0 :: compositionRightSuffix e =
+        finFamilyList (factorModule d') ++ finFamilyList (factorModule e) := by
+    exact (congrArg
+      (fun xs ↦ xs ++ factorModule d' q ::
+        factorModule e 0 :: compositionRightSuffix e) hprefix).trans
+      (((compositionSourceListEq d' e).trans (compositionBoundaryListEq d' e)).symm)
+  have hdataMap : HEq sourceData.tensorMap fullData.tensorMap :=
+    tensorMapData_tensorMap_heq hsourceList htargetList hsourceData
+  have hfullMap := tensorMapDataPrefixOfFn_id_tensorMap
+    (factorModule d) (factorModule d') (factorDifferential d q) (factorModule e)
+  have hsourceCore : HEq sourceData.tensorMap
+      (tensorModuleListWhiskerRight (finFamilyList (factorModule e))
+        (internalDifferentialTensorMap d q)) := by
+    exact hdataMap.trans (heq_of_eq (by
+      simpa [fullData, tailFull, d', internalDifferentialTensorMap] using hfullMap))
+  let hS' := congrArg tensorModuleList (compositionSourceListEq d' e)
+  let hBdy' := congrArg tensorModuleList (compositionBoundaryListEq d' e)
+  let W := tensorModuleListWhiskerRight (finFamilyList (factorModule e))
+    (internalDifferentialTensorMap d q)
+  have hsourceTransport : HEq (W ≫ eqToHom hS' ≫ eqToHom hBdy')
+      sourceData.tensorMap := by
+    have hcollapse : W ≫ eqToHom hS' ≫ eqToHom hBdy' =
+        W ≫ eqToHom (hS'.trans hBdy') := by
+      simp only [eqToHom_trans]
+    rw [hcollapse]
+    exact (CategoryTheory.comp_eqToHom_heq W (hS'.trans hBdy')).trans
+      hsourceCore.symm
+  unfold summandCompositionRemainder
+  change HEq
+    ((W ≫ eqToHom hS' ≫ eqToHom hBdy') ≫
+      (adjacentMergeAfter (compositionLeftPrefix d')
+        (compositionBoundaryMap d' e)).tensorMap ≫
+      eqToHom (congrArg tensorModuleList (compositionTargetListEq d' e)) ≫
+      eqToHom (appendBoundaryLeftSummandModuleEq d e))
+    (sourceData.tensorMap ≫
+      (adjacentMergeAfter (compositionLeftPrefix d)
+        (compositionBoundaryMap d' e ≫
+          eqToHom (compositionBoundaryTarget_raise_last_eq d e).symm)).tensorMap)
+  let mergeRaised := (adjacentMergeAfter (compositionLeftPrefix d')
+    (ys := compositionRightSuffix e) (compositionBoundaryMap d' e)).tensorMap
+  let mergePost := (adjacentMergeAfter (compositionLeftPrefix d)
+    (ys := compositionRightSuffix e)
+    (compositionBoundaryMap d' e ≫
+      eqToHom (compositionBoundaryTarget_raise_last_eq d e).symm)).tensorMap
+  let hT' := congrArg tensorModuleList (compositionTargetListEq d' e)
+  let hL := appendBoundaryLeftSummandModuleEq d e
+  have hleftTarget : HEq (mergeRaised ≫ eqToHom hT' ≫ eqToHom hL) mergeRaised :=
+    (CategoryTheory.comp_eqToHom_heq (mergeRaised ≫ eqToHom hT') hL).trans
+      (CategoryTheory.comp_eqToHom_heq mergeRaised hT')
+  have hboundaryPost : HEq
+      (compositionBoundaryMap d' e ≫
+        eqToHom (compositionBoundaryTarget_raise_last_eq d e).symm)
+      (compositionBoundaryMap d' e) :=
+    CategoryTheory.comp_eqToHom_heq _ _
+  have hmergePost : HEq mergePost mergeRaised := by
+    dsimp [mergePost, mergeRaised]
+    let hP := compositionBoundaryTarget_raise_last_eq d e
+    have hdata := adjacentMergeAfter_congr
+      (xs := compositionLeftPrefix d) (xs' := compositionLeftPrefix d') hprefix
+      (M := factorModule d' q) (M' := factorModule d' q) rfl
+      (N := factorModule e 0) (N' := factorModule e 0) rfl
+      (P := (dgHomZModuleCochainComplex
+        (w.arrowSource (Fin.last w.length)) (v.arrowTarget 0)).X
+          ((d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1))
+      (P' := compositionBoundaryModule d' e) hP
+      (ys := compositionRightSuffix e) (ys' := compositionRightSuffix e) rfl
+      hboundaryPost
+    exact AdjacentMergeData.tensorMap_heq
+      (congrArg
+        (fun xs ↦ xs ++ factorModule d' q :: factorModule e 0 ::
+          compositionRightSuffix e) hprefix)
+      (congrArg₂
+        (fun xs P ↦ xs ++ P :: compositionRightSuffix e) hprefix hP)
+      hdata
+  have htargetTransport : HEq
+      (mergeRaised ≫ eqToHom hT' ≫ eqToHom hL) mergePost :=
+    hleftTarget.trans hmergePost.symm
+  exact CategoryTheory.heq_comp (congrArg tensorModuleList hsourceList.symm)
+    (congrArg tensorModuleList (congrArg
+      (fun xs ↦ xs ++ factorModule d' q :: factorModule e 0 ::
+        compositionRightSuffix e) hprefix.symm))
+    (compositionBoundaryCanonicalTarget_eq d e).symm
+    hsourceTransport htargetTransport
+
+theorem summandCompositionRemainder_internalDifferential_boundary
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    summandCompositionRemainder d e ≫
+        internalDifferentialTensorMap (d.append e) (appendBoundaryArrowIndex w v) =
+      (tensorModuleListWhiskerLeft (finFamilyList (factorModule d))
+          (internalDifferentialTensorMap e 0) ≫
+        summandCompositionRemainder d (e.raise 0) ≫
+        eqToHom (appendBoundaryRightSummandModuleEq d e)) +
+      (e.arrowDegree 0).negOnePow •
+        (tensorModuleListWhiskerRight (finFamilyList (factorModule e))
+            (internalDifferentialTensorMap d (Fin.last w.length)) ≫
+          summandCompositionRemainder (d.raise (Fin.last w.length)) e ≫
+          eqToHom (appendBoundaryLeftSummandModuleEq d e)) := by
+  let P' := (dgHomZModuleCochainComplex
+    (w.arrowSource (Fin.last w.length)) (v.arrowTarget 0)).X
+      ((d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1)
+  let g := (dgHomZModuleCochainComplex
+    (w.arrowSource (Fin.last w.length)) (v.arrowTarget 0)).d
+      (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0)
+      ((d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1)
+  let sourceR := (tensorMapDataPrefixId (compositionLeftPrefix d)
+    (TensorMapData.cons (𝟙 (factorModule d (Fin.last w.length)))
+      (TensorMapData.cons (factorDifferential e 0 0)
+        (TensorMapData.identity (compositionRightSuffix e))))).tensorMap
+  let sourceL := (tensorMapDataPrefixId (compositionLeftPrefix d)
+    (TensorMapData.cons
+      (factorDifferential d (Fin.last w.length) (Fin.last w.length))
+      (TensorMapData.cons (𝟙 (factorModule e 0))
+        (TensorMapData.identity (compositionRightSuffix e))))).tensorMap
+  let hRdeg := (compositionBoundaryTarget_raise_zero_eq d e).symm
+  let hLdeg := (compositionBoundaryTarget_raise_last_eq d e).symm
+  let merge := (adjacentMergeAfter (compositionLeftPrefix d)
+    (ys := compositionRightSuffix e) (compositionBoundaryMap d e)).tensorMap
+  let mergeR := (adjacentMergeAfter (compositionLeftPrefix d)
+    (ys := compositionRightSuffix e)
+    (compositionBoundaryMap d (e.raise 0) ≫ eqToHom hRdeg)).tensorMap
+  let mergeL := (adjacentMergeAfter (compositionLeftPrefix d)
+    (ys := compositionRightSuffix e)
+    (compositionBoundaryMap (d.raise (Fin.last w.length)) e ≫
+      eqToHom hLdeg)).tensorMap
+  let gMap := (tensorMapDataPrefixId (compositionLeftPrefix d)
+    (TensorMapData.cons g
+      (TensorMapData.identity (compositionRightSuffix e)))).tensorMap
+  have hboundary :
+      compositionBoundaryMap d e ≫ g =
+        (𝟙 (factorModule d (Fin.last w.length)) ⊗ₘ
+            factorDifferential e 0 0) ≫
+            (compositionBoundaryMap d (e.raise 0) ≫ eqToHom hRdeg) +
+          (e.arrowDegree 0).negOnePow •
+            ((factorDifferential d (Fin.last w.length) (Fin.last w.length) ⊗ₘ
+                𝟙 (factorModule e 0)) ≫
+              (compositionBoundaryMap (d.raise (Fin.last w.length)) e ≫
+                eqToHom hLdeg)) := by
+    simpa [g, hRdeg, hLdeg, compositionBoundaryRightDifferentialPath,
+      compositionBoundaryLeftDifferentialPath] using
+      compositionBoundaryMap_comp_d d e
+  have hhead := AdjacentMergeData.head_tensorMap_leibniz_prefix
+    (compositionLeftPrefix d) (compositionRightSuffix e)
+    (compositionBoundaryMap d e)
+    (compositionBoundaryMap d (e.raise 0) ≫ eqToHom hRdeg)
+    (compositionBoundaryMap (d.raise (Fin.last w.length)) e ≫ eqToHom hLdeg)
+    (factorDifferential d (Fin.last w.length) (Fin.last w.length))
+    (factorDifferential e 0 0) g (e.arrowDegree 0).negOnePow hboundary
+  have hcanonical : merge ≫ gMap =
+      sourceR ≫ mergeR + (e.arrowDegree 0).negOnePow • (sourceL ≫ mergeL) := by
+    dsimp [merge, gMap, sourceR, sourceL, mergeR, mergeL]
+    change (adjacentMergeAfter (compositionLeftPrefix d)
+        (compositionBoundaryMap d e)).tensorMap ≫
+          (tensorMapDataPrefixId (compositionLeftPrefix d)
+            (TensorMapData.cons g
+              (TensorMapData.identity (compositionRightSuffix e)))).tensorMap =
+      _ at hhead
+    exact hhead
+  let hS := congrArg tensorModuleList (compositionSourceListEq d e)
+  let hBdy := congrArg tensorModuleList (compositionBoundaryListEq d e)
+  let pre := eqToHom hS ≫ eqToHom hBdy
+  let hQ := compositionBoundaryCanonicalTarget_eq d e
+  let post := eqToHom hQ
+  have hcanonicalWhiskered : pre ≫ merge ≫ gMap ≫ post =
+      pre ≫ sourceR ≫ mergeR ≫ post +
+        (e.arrowDegree 0).negOnePow •
+          (pre ≫ sourceL ≫ mergeL ≫ post) := by
+    have hc := congrArg (fun z ↦ pre ≫ z ≫ post) hcanonical
+    have hz : pre ≫ ((e.arrowDegree 0).negOnePow •
+          (sourceL ≫ mergeL)) ≫ post =
+        (e.arrowDegree 0).negOnePow •
+          (pre ≫ sourceL ≫ mergeL ≫ post) := by
+      rw [Units.smul_def, Units.smul_def]
+      simp only [Preadditive.comp_zsmul, Preadditive.zsmul_comp, Category.assoc]
+    simpa only [Category.assoc, Preadditive.comp_add, Preadditive.add_comp, hz] using hc
+  have htarget := compositionTargetInternalDifferential_append_boundary_heq d e
+  have htargetPost : HEq
+      (eqToHom (congrArg tensorModuleList (compositionTargetListEq d e)) ≫
+        internalDifferentialTensorMap (d.append e) (appendBoundaryArrowIndex w v))
+      (gMap ≫ post) :=
+    htarget.trans (CategoryTheory.comp_eqToHom_heq gMap hQ).symm
+  have hlhs :
+      summandCompositionRemainder d e ≫
+          internalDifferentialTensorMap (d.append e) (appendBoundaryArrowIndex w v) =
+        pre ≫ merge ≫ gMap ≫ post := by
+    unfold summandCompositionRemainder
+    apply eq_of_heq
+    simpa only [Category.assoc, pre, merge] using
+      CategoryTheory.heq_comp
+        (f := pre ≫ merge)
+        (g := eqToHom (congrArg tensorModuleList (compositionTargetListEq d e)) ≫
+          internalDifferentialTensorMap (d.append e) (appendBoundaryArrowIndex w v))
+        (f' := pre ≫ merge) (g' := gMap ≫ post)
+        rfl rfl rfl HEq.rfl htargetPost
+  have hright := compositionRemainder_internalDifferential_boundary_right_heq d e
+  have hleft := compositionRemainder_internalDifferential_boundary_left_heq d e
+  have hpost : HEq post (𝟙 _) := test_eqToHom_heq_id hQ
+  let hSourceObj := congrArg tensorModuleList
+    ((compositionSourceListEq d e).trans (compositionBoundaryListEq d e))
+  have hrightCanonical : HEq (pre ≫ sourceR ≫ mergeR ≫ post)
+      (sourceR ≫ mergeR) := by
+    have hfirst : HEq (pre ≫ sourceR) sourceR := by
+      dsimp [pre]
+      rw [eqToHom_trans]
+      exact CategoryTheory.eqToHom_comp_heq sourceR (hS.trans hBdy)
+    have hsecond : HEq ((pre ≫ sourceR) ≫ mergeR)
+        (sourceR ≫ mergeR) :=
+      CategoryTheory.heq_comp hSourceObj rfl rfl hfirst HEq.rfl
+    have hthird := CategoryTheory.heq_comp
+      (f := (pre ≫ sourceR) ≫ mergeR) (g := post)
+      (f' := sourceR ≫ mergeR) (g' := 𝟙 _)
+      hSourceObj rfl hQ.symm hsecond hpost
+    simpa only [Category.assoc, Category.comp_id] using hthird
+  have hleftCanonical : HEq (pre ≫ sourceL ≫ mergeL ≫ post)
+      (sourceL ≫ mergeL) := by
+    have hfirst : HEq (pre ≫ sourceL) sourceL := by
+      dsimp [pre]
+      rw [eqToHom_trans]
+      exact CategoryTheory.eqToHom_comp_heq sourceL (hS.trans hBdy)
+    have hsecond : HEq ((pre ≫ sourceL) ≫ mergeL)
+        (sourceL ≫ mergeL) :=
+      CategoryTheory.heq_comp hSourceObj rfl rfl hfirst HEq.rfl
+    have hthird := CategoryTheory.heq_comp
+      (f := (pre ≫ sourceL) ≫ mergeL) (g := post)
+      (f' := sourceL ≫ mergeL) (g' := 𝟙 _)
+      hSourceObj rfl hQ.symm hsecond hpost
+    simpa only [Category.assoc, Category.comp_id] using hthird
+  have hrightEq :
+      tensorModuleListWhiskerLeft (finFamilyList (factorModule d))
+            (internalDifferentialTensorMap e 0) ≫
+          summandCompositionRemainder d (e.raise 0) ≫
+          eqToHom (appendBoundaryRightSummandModuleEq d e) =
+        pre ≫ sourceR ≫ mergeR ≫ post := by
+    exact eq_of_heq (hright.trans hrightCanonical.symm)
+  have hleftEq :
+      tensorModuleListWhiskerRight (finFamilyList (factorModule e))
+            (internalDifferentialTensorMap d (Fin.last w.length)) ≫
+          summandCompositionRemainder (d.raise (Fin.last w.length)) e ≫
+          eqToHom (appendBoundaryLeftSummandModuleEq d e) =
+        pre ≫ sourceL ≫ mergeL ≫ post := by
+    exact eq_of_heq (hleft.trans hleftCanonical.symm)
+  rw [hlhs, hrightEq, hleftEq]
+  exact hcanonicalWhiskered
+
+theorem summandCompositionMap_internalDifferential_append_boundary
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+  summandCompositionMap d e ≫
+      internalDifferentialTensorMap (d.append e)
+        (appendBoundaryArrowIndex w v) =
+    ((𝟙 (summandModule d) ⊗ₘ internalDifferentialTensorMap e 0) ≫
+        summandCompositionMap d (e.raise 0) ≫
+        eqToHom (appendBoundaryRightSummandModuleEq d e)) +
+      (e.arrowDegree 0).negOnePow •
+        ((internalDifferentialTensorMap d (Fin.last w.length) ⊗ₘ
+              𝟙 (summandModule e)) ≫
+          summandCompositionMap (d.raise (Fin.last w.length)) e ≫
+          eqToHom (appendBoundaryLeftSummandModuleEq d e)) := by
+  rw [summandCompositionMap_eq_normalized,
+    summandCompositionMap_eq_normalized,
+    summandCompositionMap_eq_normalized]
+  rw [normalizedSummandCompositionMap_eq_append_remainder,
+    normalizedSummandCompositionMap_eq_append_remainder,
+    normalizedSummandCompositionMap_eq_append_remainder]
+  dsimp only [summandModule]
+  simp only [Category.assoc]
+  rw [tensorModuleListAppendIso_whiskerLeft_assoc,
+    tensorModuleListAppendIso_whiskerRight_assoc]
+  rw [summandCompositionRemainder_internalDifferential_boundary]
+  rw [Preadditive.comp_add]
+  congr 1
+
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
