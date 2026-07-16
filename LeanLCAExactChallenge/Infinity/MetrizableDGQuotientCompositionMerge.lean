@@ -6327,6 +6327,52 @@ theorem summandCompositionRemainder_contraction_append_right_succ_heq
         (test_eqToHom_heq_id hTgt') HEq.rfl)
   exact hcanonicalLeft.trans hmiddle |>.trans hcanonicalRight.symm
 
+theorem adjacentMergeData_suffix_heq
+    {source target source' target' : List (ModuleCat.{0} ℤ)}
+    (hsource : source = source') (htarget : target = target')
+    {f : AdjacentMergeData source target}
+    {g : AdjacentMergeData source' target'} (h : HEq f g)
+    (Ps : List (ModuleCat.{0} ℤ)) : HEq (f.suffix Ps) (g.suffix Ps) := by
+  subst source'
+  subst target'
+  have hfg : f = g := eq_of_heq h
+  subst g
+  rfl
+
+theorem finFamilyList_castSucc_append_last
+    {k : ℕ} (M : Fin (k + 2) → ModuleCat.{0} ℤ) :
+    finFamilyList M =
+      finFamilyList (fun q : Fin (k + 1) ↦ M q.castSucc) ++
+        [M (Fin.last (k + 1))] := by
+  rw [finFamilyList_eq_ofFn, finFamilyList_eq_ofFn]
+  exact List.ofFn_succ_last
+
+theorem recursiveAdjacentMergeDataOfFn_eq_after
+    {K : ℕ} (M : Fin (K + 1) → ModuleCat.{0} ℤ) (i : Fin K)
+    (P : ModuleCat.{0} ℤ) (f : M i.castSucc ⊗ M i.succ ⟶ P) :
+    HEq (recursiveAdjacentMergeDataOfFn M i P f)
+      (adjacentMergeAfter ((finFamilyList M).take i.val)
+        (ys := (finFamilyList M).drop (i.val + 2)) f) := by
+  cases K with
+  | zero => exact Fin.elim0 i
+  | succ k =>
+      have h := recursiveAdjacentMergeDataOfFn_eq_after_right_succ_core M i P f
+      rw [recursiveMergePrefix_eq_take_right_succ_core,
+        recursiveMergeSuffix_eq_drop_right_succ_core] at h
+      exact h
+
+theorem finFamilyList_recursiveMerge_source
+    {K : ℕ} (M : Fin (K + 1) → ModuleCat.{0} ℤ) (i : Fin K) :
+    finFamilyList M = (finFamilyList M).take i.val ++
+      M i.castSucc :: M i.succ :: (finFamilyList M).drop (i.val + 2) := by
+  cases K with
+  | zero => exact Fin.elim0 i
+  | succ k =>
+      have h := finFamilyList_recursiveMerge_source_right_succ_core M i
+      rw [recursiveMergePrefix_eq_take_right_succ_core,
+        recursiveMergeSuffix_eq_drop_right_succ_core] at h
+      exact h
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
