@@ -3933,6 +3933,76 @@ theorem leftLastZeroNormalizedPairTensorMap_heq
   exact (normalizedBoundaryPairCoherence [] (compositionRightSuffix e)
     (leftLastZeroHeadDegreeProfile d) (leftLastZeroTailDegreeProfile d) e).tensorMap_heq
 
+def contractionRecursiveTargetListEq_right_zero_core
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    finFamilyList (factorModule (d.contract i)) =
+      finFamilyList (recursiveMergedFactor (factorModule d) i
+        (contractedFactorAtOldIndex d i i)) :=
+  (contractedFactorsOldIndex_eq d i).symm.trans
+    (congrArg finFamilyList
+      (funext (recursiveContractionMergedFactor_eq d i))).symm
+
+def rightZeroHeadDegreeProfile
+    {Y Z : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory} {m : ℤ}
+    (e : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord Y Z) m) :
+    DegreeProfile (nil Y (intermediate 0).obj) (e.arrowDegree 0) where
+  arrowDegree := fun _ ↦ e.arrowDegree 0
+  totalDegree := by
+    simp [nil]
+
+theorem rightZeroNormalizedPairTensorMap_heq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {n m : ℤ} (d : DegreeProfile w n)
+    (e : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord Y Z) m) :
+    HEq
+      (((@AdjacentMergeData.head
+          (factorModule d (Fin.last w.length))
+          (factorModule (rightZeroHeadDegreeProfile e) 0)
+          (compositionBoundaryModule d (rightZeroHeadDegreeProfile e))
+          (factorModule (tailDegreeProfile e) 0 ::
+            compositionRightSuffix (tailDegreeProfile e))
+          (compositionBoundaryMap d (rightZeroHeadDegreeProfile e))).prefix
+            (compositionLeftPrefix d)).tensorMap ≫
+        ((@AdjacentMergeData.head
+          (compositionBoundaryModule d (rightZeroHeadDegreeProfile e))
+          (factorModule (tailDegreeProfile e) 0)
+          (tripleCompositionBoundaryModule d (rightZeroHeadDegreeProfile e)
+            (tailDegreeProfile e))
+          (compositionRightSuffix (tailDegreeProfile e))
+          (leftAssociatedBoundaryMap d (rightZeroHeadDegreeProfile e)
+            (tailDegreeProfile e))).prefix (compositionLeftPrefix d)).tensorMap)
+      (((@AdjacentMergeData.tail (factorModule d (Fin.last w.length))
+          (factorModule (rightZeroHeadDegreeProfile e) 0 ::
+            factorModule (tailDegreeProfile e) 0 ::
+              compositionRightSuffix (tailDegreeProfile e))
+          (zeroMiddleRightBoundaryModule (rightZeroHeadDegreeProfile e)
+              (tailDegreeProfile e) :: compositionRightSuffix (tailDegreeProfile e))
+          (@AdjacentMergeData.head
+            (factorModule (rightZeroHeadDegreeProfile e) 0)
+            (factorModule (tailDegreeProfile e) 0)
+            (zeroMiddleRightBoundaryModule (rightZeroHeadDegreeProfile e)
+              (tailDegreeProfile e))
+            (compositionRightSuffix (tailDegreeProfile e))
+            (zeroMiddleRightBoundaryMap (rightZeroHeadDegreeProfile e)
+              (tailDegreeProfile e)))).prefix (compositionLeftPrefix d)).tensorMap ≫
+        ((@AdjacentMergeData.head
+          (factorModule d (Fin.last w.length))
+          (zeroMiddleRightBoundaryModule (rightZeroHeadDegreeProfile e)
+            (tailDegreeProfile e))
+          (tripleCompositionBoundaryModule d (rightZeroHeadDegreeProfile e)
+            (tailDegreeProfile e))
+          (compositionRightSuffix (tailDegreeProfile e))
+          (rightAssociatedBoundaryMap d (rightZeroHeadDegreeProfile e)
+            (tailDegreeProfile e))).prefix (compositionLeftPrefix d)).tensorMap) := by
+  exact (normalizedBoundaryPairCoherence (compositionLeftPrefix d)
+    (compositionRightSuffix (tailDegreeProfile e)) d
+    (rightZeroHeadDegreeProfile e) (tailDegreeProfile e)).tensorMap_heq
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
