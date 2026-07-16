@@ -3473,6 +3473,87 @@ theorem quotientCompositionMap_contractionDifferentialFromSummand_right_sum
         ((contractionLargeMap e j).hom y) := by
   simp [contractionDifferentialFromSummand]
 
+theorem quotientCompositionMap_internalDifferentialFromSummand_left_sum
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m)) :
+    quotientCompositionMap X Y Z (n + 1) m
+        ((internalDifferentialFromSummand d).hom x)
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex Y Z m ↦ largeSummandModule s) ⟨v, e⟩).hom y) =
+      ∑ i, d.internalSign i •
+        quotientCompositionMap X Y Z (n + 1) m
+          ((internalDifferentialLargeMap d i).hom x)
+          ((Limits.Sigma.ι
+            (fun s : GradedSummandIndex Y Z m ↦ largeSummandModule s) ⟨v, e⟩).hom y) := by
+  suffices
+      (∑ c, (d.internalSign c •
+          quotientCompositionMap X Y Z (n + 1) m
+            ((internalDifferentialLargeMap d c).hom x))
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex Y Z m ↦ largeSummandModule s)
+          ⟨v, e⟩).hom y)) =
+      ∑ i, d.internalSign i •
+        quotientCompositionMap X Y Z (n + 1) m
+          ((internalDifferentialLargeMap d i).hom x)
+          ((Limits.Sigma.ι
+            (fun s : GradedSummandIndex Y Z m ↦ largeSummandModule s)
+            ⟨v, e⟩).hom y) by
+    simpa [internalDifferentialFromSummand, Pi.smul_apply]
+  apply Finset.sum_congr rfl
+  intro i _
+  rfl
+
+theorem quotientCompositionMap_contractionDifferentialFromSummand_left_sum
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m)) :
+    quotientCompositionMap X Y Z (n + 1) m
+        ((contractionDifferentialFromSummand d).hom x)
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex Y Z m ↦ largeSummandModule s) ⟨v, e⟩).hom y) =
+      ∑ i, quotientCompositionMap X Y Z (n + 1) m
+        ((contractionLargeMap d i).hom x)
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex Y Z m ↦ largeSummandModule s) ⟨v, e⟩).hom y) := by
+  simp [contractionDifferentialFromSummand]
+
+theorem quotientCompositionMap_internalLargeMap_right
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m))
+    (j : Fin (v.length + 1)) :
+    quotientCompositionMap X Y Z n (m + 1)
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex X Y n ↦ largeSummandModule s) ⟨w, d⟩).hom x)
+        ((internalDifferentialLargeMap e j).hom y) =
+      largeSummandCompositionMap d (e.raise j) x
+        (((ModuleCat.uliftFunctor.{1} ℤ).map
+          (internalDifferentialTensorMap e j)).hom y) := by
+  unfold internalDifferentialLargeMap
+  simp only [ModuleCat.comp_apply]
+  rw [quotientCompositionMap_on_summands]
+
+theorem quotientCompositionMap_internalLargeMap_left
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m))
+    (i : Fin (w.length + 1)) :
+    quotientCompositionMap X Y Z (n + 1) m
+        ((internalDifferentialLargeMap d i).hom x)
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex Y Z m ↦ largeSummandModule s) ⟨v, e⟩).hom y) =
+      largeSummandCompositionMap (d.raise i) e
+        (((ModuleCat.uliftFunctor.{1} ℤ).map
+          (internalDifferentialTensorMap d i)).hom x) y := by
+  unfold internalDifferentialLargeMap
+  simp only [ModuleCat.comp_apply]
+  rw [quotientCompositionMap_on_summands]
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
