@@ -7877,6 +7877,60 @@ theorem summandCompositionMap_contraction_append_left_last_heq
       (leftLastContractAppendSummandModule_eq d e) hA hrem
   simpa only [Category.assoc] using hpre
 
+def rawContractionTargetListEq_left_castSucc_case
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    finFamilyList (recursiveMergedFactor (factorModule d) i
+        (rawContractionFactor d i)) =
+      finFamilyList (factorModule (d.contract i)) :=
+  (congrArg finFamilyList (test_rawContractionTarget_eq d i)).trans
+    (contractedFactorsOldIndex_eq d i)
+
+theorem tensorModuleListWhiskerRight_heq_left_castSucc_case
+    {Ms Ns Ms' Ns' : List (ModuleCat.{0} ℤ)}
+    (hMs : Ms = Ms') (hNs : Ns = Ns') (Ps : List (ModuleCat.{0} ℤ))
+    {f : tensorModuleList Ms ⟶ tensorModuleList Ns}
+    {f' : tensorModuleList Ms' ⟶ tensorModuleList Ns'} (h : HEq f f') :
+    HEq (tensorModuleListWhiskerRight Ps f)
+      (tensorModuleListWhiskerRight Ps f') := by
+  subst Ms'
+  subst Ns'
+  have hff : f = f' := eq_of_heq h
+  subst f'
+  rfl
+
+theorem AdjacentMergePairHCoherence.suffix_head_left_castSucc_case
+    {source target : List (ModuleCat.{0} ℤ)}
+    (f : AdjacentMergeData source target)
+    {A B Q : ModuleCat.{0} ℤ} {zs : List (ModuleCat.{0} ℤ)}
+    (g : A ⊗ B ⟶ Q) :
+    AdjacentMergePairHCoherence
+      (f.suffix (A :: B :: zs))
+      (adjacentMergeAfter target (ys := zs) g)
+      (adjacentMergeAfter source (ys := zs) g)
+      (f.suffix (Q :: zs)) := by
+  induction f with
+  | @head M N P Ms h =>
+      simpa [AdjacentMergeData.suffix] using
+        (AdjacentMergePairHCoherence.head_tail h
+          (adjacentMergeAfter Ms (ys := zs) g))
+  | @tail M source target f ih =>
+      exact AdjacentMergePairHCoherence.tail ih
+
+theorem AdjacentMergeData.suffix_suffix_left_castSucc_case
+    {source target : List (ModuleCat.{0} ℤ)}
+    (f : AdjacentMergeData source target)
+    (xs ys : List (ModuleCat.{0} ℤ)) :
+    HEq ((f.suffix xs).suffix ys) (f.suffix (xs ++ ys)) := by
+  induction f with
+  | @head M N P Ms h =>
+      exact adjacentMergeAfter_congr (xs := []) (xs' := [])
+        rfl rfl rfl rfl (List.append_assoc Ms xs ys) HEq.rfl
+  | @tail M source target f ih =>
+      exact adjacentMergeData_tail_heq rfl
+        (List.append_assoc source xs ys)
+        (List.append_assoc target xs ys) ih
+
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
 abbrev QuotientCoefficientRing := ULift.{1} ℤ
 
