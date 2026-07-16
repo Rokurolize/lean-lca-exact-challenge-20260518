@@ -9525,6 +9525,51 @@ theorem quotientCompositionTensorMap_tmul
       ULift.up (quotientCompositionMap X Y Z n m x y) :=
   rfl
 
+theorem quotientCoefficient_eqToHom_apply_up
+    {X Y : ComplexCategory} {p q : ℤ} (h : p = q)
+    (x : quotientGradedModule X Y p) :
+    (eqToHom (congrArg
+      (fun k ↦ quotientCoefficientModule (quotientGradedModule X Y k)) h)).hom
+        (ULift.up x) =
+      ULift.up ((eqToHom (congrArg (quotientGradedModule X Y) h)).hom x) := by
+  subst q
+  rfl
+
+@[simp]
+theorem quotientCoefficient_zsmul_up
+    {M : ModuleCat.{1} ℤ} (r : ℤ) (x : M) :
+    r • (ULift.up x : quotientCoefficientModule M) = ULift.up (r • x) :=
+  rfl
+
+@[simp]
+theorem quotientCompositionTensorMap_comp_changeScalars_tmul
+    {X Y Z : ComplexCategory} {n m : ℤ} {P : ModuleCat.{1} ℤ}
+    (f : quotientGradedModule X Z (n + m) →ₗ[ℤ] P)
+    (x : quotientGradedModule X Y n) (y : quotientGradedModule Y Z m) :
+    (quotientCompositionTensorMap X Y Z n m ≫
+        ModuleCat.ofHom (quotientLinearMapChangeScalars f)).hom
+        (ULift.up x ⊗ₜ[QuotientCoefficientRing] ULift.up y) =
+      ULift.up (f (quotientCompositionMap X Y Z n m x y)) :=
+  rfl
+
+theorem quotientCompositionTensorMap_changeScalars_right_cast_tmul
+    {X Y Z : ComplexCategory} {n m k p : ℤ} (h : n + k = p)
+    (f : quotientGradedModule Y Z m →ₗ[ℤ] quotientGradedModule Y Z k)
+    (x : quotientGradedModule X Y n) (y : quotientGradedModule Y Z m) :
+    ((𝟙 _ ⊗ₘ ModuleCat.ofHom (quotientLinearMapChangeScalars f)) ≫
+        quotientCompositionTensorMap X Y Z n k ≫
+        eqToHom (congrArg
+          (fun q ↦ quotientCoefficientModule (quotientGradedModule X Z q)) h)).hom
+        (ULift.up x ⊗ₜ[QuotientCoefficientRing] ULift.up y) =
+      ULift.up ((eqToHom (congrArg (quotientGradedModule X Z) h)).hom
+        (quotientCompositionMap X Y Z n k x (f y))) := by
+  rw [ModuleCat.comp_apply, ModuleCat.comp_apply]
+  change (eqToHom (congrArg
+    (fun q ↦ quotientCoefficientModule (quotientGradedModule X Z q)) h)).hom
+      (ULift.up (quotientCompositionMap X Y Z n k x (f y))) = _
+  exact quotientCoefficient_eqToHom_apply_up h _
+
+
 end QuotientCoefficient
 
 end DrinfeldWord
