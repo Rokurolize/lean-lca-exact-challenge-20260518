@@ -6777,6 +6777,52 @@ theorem summandCompositionMap_contraction_append_right_succ_heq
 
 section QuotientCoefficient
 
+theorem adjacentMergeData_suffix_heq_left_last
+    {source target source' target' : List (ModuleCat.{0} ℤ)}
+    (hsource : source = source') (htarget : target = target')
+    {f : AdjacentMergeData source target}
+    {g : AdjacentMergeData source' target'} (h : HEq f g)
+    (Ps : List (ModuleCat.{0} ℤ)) : HEq (f.suffix Ps) (g.suffix Ps) := by
+  subst source'
+  subst target'
+  have hfg : f = g := eq_of_heq h
+  subst g
+  rfl
+
+def rawContractionTargetListEq_left_last_assembly
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n : ℤ}
+    (d : DegreeProfile w n) (i : Fin w.length) :
+    finFamilyList (factorModule (d.contract i)) =
+      finFamilyList (recursiveMergedFactor (factorModule d) i
+        (rawContractionFactor d i)) :=
+  ((congrArg finFamilyList (test_rawContractionTarget_eq d i)).trans
+    (contractedFactorsOldIndex_eq d i)).symm
+
+def leftLastCommonPrefix
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    List (ModuleCat.{0} ℤ) :=
+  finFamilyList (fun q : Fin k ↦ factorModule d q.castSucc.castSucc)
+
+def leftLastHeadDegreeProfile
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    DegreeProfile
+      (nil
+        (arrowSource
+          ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y)
+          (Fin.last k).castSucc)
+        (arrowTarget
+          ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y)
+          (Fin.last k).castSucc))
+      (d.arrowDegree (Fin.last k).castSucc) where
+  arrowDegree _ := d.arrowDegree (Fin.last k).castSucc
+  totalDegree := by simp [nil]
+
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
 abbrev QuotientCoefficientRing := ULift.{1} ℤ
 
