@@ -1775,6 +1775,56 @@ def appendBoundaryLeftSummandModuleEq
     ((d.raise (Fin.last w.length)).append e)
   exact (hraise.trans hcast).symm
 
+theorem compositionRightSuffix_raise_zero_eq
+    {Y Z : ComplexCategory} {v : DrinfeldWord Y Z} {m : ℤ}
+    (e : DegreeProfile v m) :
+    compositionRightSuffix e = compositionRightSuffix (e.raise 0) := by
+  unfold compositionRightSuffix
+  rw [finFamilyList_eq_ofFn, finFamilyList_eq_ofFn]
+  apply (List.ofFn_inj).2
+  funext i
+  unfold factorModule
+  simp [DegreeProfile.raise]
+
+theorem compositionBoundaryTarget_raise_zero_eq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    (dgHomZModuleCochainComplex
+      (w.arrowSource (Fin.last w.length)) (v.arrowTarget 0)).X
+        ((d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1) =
+      compositionBoundaryModule d (e.raise 0) := by
+  unfold compositionBoundaryModule
+  congr 1
+  simp [DegreeProfile.raise]
+  omega
+
+theorem compositionBoundaryCanonicalTarget_eq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    tensorModuleList
+        (compositionLeftPrefix d ++
+          (dgHomZModuleCochainComplex
+            (w.arrowSource (Fin.last w.length)) (v.arrowTarget 0)).X
+              ((d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1) ::
+            compositionRightSuffix e) =
+      summandModule ((d.append e).raise (appendBoundaryArrowIndex w v)) := by
+  have htot : n + (m + 1) = (n + m) + 1 := by omega
+  have hcast := summandModule_castTotal_eq htot (d.append (e.raise 0))
+  have hlist :
+      compositionLeftPrefix d ++
+          (dgHomZModuleCochainComplex
+            (w.arrowSource (Fin.last w.length)) (v.arrowTarget 0)).X
+              ((d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1) ::
+            compositionRightSuffix e =
+        finFamilyList (factorModule (d.append (e.raise 0))) := by
+    rw [compositionBoundaryTarget_raise_zero_eq,
+      compositionRightSuffix_raise_zero_eq,
+      finFamilyList_factorModule_append_boundary]
+  exact (congrArg tensorModuleList hlist).trans
+    (hcast.symm.trans
+      (congrArg summandModule
+        (DegreeProfile.raise_append_boundary_right d e)).symm)
+
 theorem tensorMapData_ofFn_eqToHom_of_family_eq
     {k : ℕ} (M N : Fin k → ModuleCat.{0} ℤ) (h : M = N)
     (f : (q : Fin k) → M q ⟶ N q)
@@ -1921,6 +1971,54 @@ theorem adjacentMergeAfter_naturality
       exact .head f f' a b c tailMap h
   | cons R xs ih =>
       exact .tail (𝟙 R) ih
+
+theorem AdjacentMergeData.head_tensorMap_leibniz_prefix
+    {M N M' N' P P' : ModuleCat.{0} ℤ}
+    (xs Ms : List (ModuleCat.{0} ℤ))
+    (f : M ⊗ N ⟶ P) (fR : M ⊗ N' ⟶ P') (fL : M' ⊗ N ⟶ P')
+    (a : M ⟶ M') (b : N ⟶ N') (g : P ⟶ P') (c : ℤ)
+    (h : f ≫ g = (𝟙 M ⊗ₘ b) ≫ fR + c • ((a ⊗ₘ 𝟙 N) ≫ fL)) :
+    (adjacentMergeAfter xs (ys := Ms) f).tensorMap ≫
+        (tensorMapDataPrefixId xs
+          (TensorMapData.cons g (TensorMapData.identity Ms))).tensorMap =
+      (tensorMapDataPrefixId xs
+          (TensorMapData.cons (𝟙 M)
+            (TensorMapData.cons b (TensorMapData.identity Ms)))).tensorMap ≫
+          (adjacentMergeAfter xs (ys := Ms) fR).tensorMap +
+        c • ((tensorMapDataPrefixId xs
+          (TensorMapData.cons a
+            (TensorMapData.cons (𝟙 N) (TensorMapData.identity Ms)))).tensorMap ≫
+          (adjacentMergeAfter xs (ys := Ms) fL).tensorMap) := by
+  induction xs with
+  | nil =>
+      exact AdjacentMergeData.head_tensorMap_leibniz f fR fL a b g c h
+  | cons Q xs ih =>
+      simp only [adjacentMergeAfter, tensorMapDataPrefixId]
+      change (𝟙 Q ⊗ₘ (adjacentMergeAfter xs f).tensorMap) ≫
+            (𝟙 Q ⊗ₘ (tensorMapDataPrefixId xs
+              (TensorMapData.cons g (TensorMapData.identity Ms))).tensorMap) =
+        (𝟙 Q ⊗ₘ (tensorMapDataPrefixId xs
+              (TensorMapData.cons (𝟙 M)
+                (TensorMapData.cons b (TensorMapData.identity Ms)))).tensorMap) ≫
+            (𝟙 Q ⊗ₘ (adjacentMergeAfter xs fR).tensorMap) +
+          c • ((𝟙 Q ⊗ₘ (tensorMapDataPrefixId xs
+              (TensorMapData.cons a
+                (TensorMapData.cons (𝟙 N)
+                  (TensorMapData.identity Ms)))).tensorMap) ≫
+            (𝟙 Q ⊗ₘ (adjacentMergeAfter xs fL).tensorMap))
+      rw [MonoidalCategory.tensorHom_comp_tensorHom, ih]
+      simp only [Category.comp_id, id_tensorHom,
+        MonoidalPreadditive.whiskerLeft_add, whiskerLeft_comp, add_right_inj]
+      let l := (tensorMapDataPrefixId xs
+        (TensorMapData.cons a
+          (TensorMapData.cons (𝟙 N) (TensorMapData.identity Ms)))).tensorMap
+      let r := (adjacentMergeAfter xs (ys := Ms) fL).tensorMap
+      have hz : ((tensoringLeft (ModuleCat.{0} ℤ)).obj Q).map
+          (c • (l ≫ r)) =
+          c • ((tensoringLeft (ModuleCat.{0} ℤ)).obj Q).map (l ≫ r) :=
+        Functor.map_zsmul ((tensoringLeft (ModuleCat.{0} ℤ)).obj Q)
+      exact hz.trans (congrArg (c • ·)
+        (((tensoringLeft (ModuleCat.{0} ℤ)).obj Q).map_comp l r))
 
 def tensorMapDataPrefixOfFn : {k : ℕ} →
     (M N : Fin k → ModuleCat.{0} ℤ) → ((i : Fin k) → M i ⟶ N i) →
