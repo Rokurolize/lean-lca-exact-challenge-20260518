@@ -9361,6 +9361,34 @@ theorem summandCompositionMap_contraction_append_right_zero_heq
   summandCompositionMap_contraction_append_right_of_remainder d e 0
     (summandCompositionRemainder_contraction_append_right_zero_heq d e)
 
+theorem summandCompositionMap_contraction_append_right_heq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (j : Fin v.length) :
+    HEq
+      (summandCompositionMap d e ≫
+        contractionTensorMap (d.append e) (appendRightContractionIndex j))
+      ((𝟙 (summandModule d) ⊗ₘ contractionTensorMap e j) ≫
+        summandCompositionMap d (e.contract j)) := by
+  cases v with
+  | mk length intermediate =>
+      cases length with
+      | zero => exact Fin.elim0 j
+      | succ k =>
+          cases k with
+          | zero =>
+              have hj : j = 0 := by
+                have hjLt : j.val < 1 := j.isLt
+                apply Fin.ext
+                change j.val = 0
+                omega
+              subst j
+              exact summandCompositionMap_contraction_append_right_zero_heq d e
+          | succ k =>
+              refine Fin.cases ?_ (fun i ↦ ?_) j
+              · exact summandCompositionMap_contraction_append_right_zero_heq d e
+              · exact summandCompositionMap_contraction_append_right_succ_heq d e i
+
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
 abbrev QuotientCoefficientRing := ULift.{1} ℤ
 
@@ -9388,6 +9416,12 @@ def quotientLinearMapChangeScalars {M N : ModuleCat.{1} ℤ} (f : M →ₗ[ℤ] 
   map_smul' r x := by
     apply ULift.down_injective
     exact map_zsmul f r.down x.down
+
+@[simp]
+theorem quotientLinearMapChangeScalars_apply_up
+    {M N : ModuleCat.{1} ℤ} (f : M →ₗ[ℤ] N) (x : M) :
+    quotientLinearMapChangeScalars f (ULift.up x) = ULift.up (f x) :=
+  rfl
 
 @[simp]
 theorem quotientLinearMapChangeScalars_id (M : ModuleCat.{1} ℤ) :
