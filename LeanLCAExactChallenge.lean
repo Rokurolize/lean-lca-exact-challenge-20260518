@@ -31,6 +31,7 @@ import LeanLCAExactChallenge.Infinity.Limits
 import LeanLCAExactChallenge.Infinity.Stable
 import LeanLCAExactChallenge.Infinity.StableSquareCalculus
 import LeanLCAExactChallenge.Infinity.StableSquareCalculusConstruction
+import LeanLCAExactChallenge.Infinity.StableFiniteShapeGluing
 import LeanLCAExactChallenge.Infinity.StableEquivalenceTransfer
 import LeanLCAExactChallenge.Infinity.StableEquivalenceTransferFull
 import LeanLCAExactChallenge.Infinity.StableCornerExtensionTransfer
