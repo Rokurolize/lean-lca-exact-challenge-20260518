@@ -5455,6 +5455,89 @@ theorem recursiveAdjacentMergeDataOfFn_eq_after_right_succ_core :
             (ih (fun r : Fin (k + 2) ↦ M r.succ) i P (by simpa using f))
 
 
+theorem recursiveMergePrefix_eq_take_right_succ_core :
+    {k : ℕ} → (M : Fin (k + 2) → ModuleCat.{0} ℤ) →
+    (i : Fin (k + 1)) →
+    recursiveMergePrefix_right_succ_core M i =
+      (finFamilyList M).take i.val := by
+  intro k
+  induction k with
+  | zero =>
+      intro M i
+      have hi : i = 0 := Fin.eq_zero i
+      subst i
+      rfl
+  | succ k ih =>
+      intro M i
+      cases i using Fin.cases with
+      | zero => rfl
+      | succ i =>
+          change M 0 :: recursiveMergePrefix_right_succ_core
+              (fun r : Fin (k + 2) ↦ M r.succ) i =
+            M 0 :: (finFamilyList (fun r : Fin (k + 2) ↦ M r.succ)).take i.val
+          exact congrArg (List.cons (M 0))
+            (ih (fun r : Fin (k + 2) ↦ M r.succ) i)
+
+theorem length_recursiveMergePrefix_right_succ_core :
+    {k : ℕ} → (M : Fin (k + 2) → ModuleCat.{0} ℤ) →
+    (i : Fin (k + 1)) →
+    (recursiveMergePrefix_right_succ_core M i).length = i.val := by
+  intro k
+  induction k with
+  | zero =>
+      intro M i
+      have hi : i = 0 := Fin.eq_zero i
+      subst i
+      rfl
+  | succ k ih =>
+      intro M i
+      cases i using Fin.cases with
+      | zero => rfl
+      | succ i =>
+          change (M 0 :: recursiveMergePrefix_right_succ_core
+            (fun r : Fin (k + 2) ↦ M r.succ) i).length = i.val + 1
+          simp only [List.length_cons, ih]
+
+theorem recursiveMergeSuffix_eq_drop_right_succ_core :
+    {k : ℕ} → (M : Fin (k + 2) → ModuleCat.{0} ℤ) →
+    (i : Fin (k + 1)) →
+    recursiveMergeSuffix_right_succ_core M i =
+      (finFamilyList M).drop (i.val + 2) := by
+  intro k
+  induction k with
+  | zero =>
+      intro M i
+      have hi : i = 0 := Fin.eq_zero i
+      subst i
+      rfl
+  | succ k ih =>
+      intro M i
+      cases i using Fin.cases with
+      | zero => rfl
+      | succ i =>
+          change recursiveMergeSuffix_right_succ_core
+              (fun r : Fin (k + 2) ↦ M r.succ) i =
+            (finFamilyList (fun r : Fin (k + 2) ↦ M r.succ)).drop (i.val + 2)
+          exact ih (fun r : Fin (k + 2) ↦ M r.succ) i
+
+theorem compositionRightSuffix_split_right_succ_core
+    {Y Z : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {m : ℤ}
+    (e : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord Y Z) m)
+    (j : Fin (k + 1)) :
+    compositionRightSuffix e =
+      recursiveMergePrefix_right_succ_core
+          (fun r : Fin (k + 2) ↦ factorModule e r.succ) j ++
+        factorModule e j.succ.castSucc :: factorModule e j.succ.succ ::
+          recursiveMergeSuffix_right_succ_core
+            (fun r : Fin (k + 2) ↦ factorModule e r.succ) j := by
+  simpa only [compositionRightSuffix, Fin.castSucc_succ] using
+    (finFamilyList_recursiveMerge_source_right_succ_core
+      (fun r : Fin (k + 2) ↦ factorModule e r.succ) j)
+
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
