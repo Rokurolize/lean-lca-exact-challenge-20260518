@@ -4476,6 +4476,289 @@ theorem summandModule_contract_append_right_heq
     (summandModuleTransportEq hword.symm htotal.symm
       (d.append (e.contract j))).symm)
 
+theorem compositionTargetInternalDifferential_append_boundary_heq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    HEq
+      (eqToHom (congrArg tensorModuleList (compositionTargetListEq d e)) ≫
+        internalDifferentialTensorMap (d.append e) (appendBoundaryArrowIndex w v))
+      ((tensorMapDataPrefixId (compositionLeftPrefix d)
+        (TensorMapData.cons
+          ((dgHomZModuleCochainComplex
+            (w.arrowSource (Fin.last w.length)) (v.arrowTarget 0)).d
+              (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0)
+              ((d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1))
+          (TensorMapData.identity (compositionRightSuffix e)))).tensorMap) := by
+  let Mleft := fun i : Fin w.length ↦ factorModule d i.castSucc
+  let Mright := fun r : Fin v.length ↦ factorModule e r.succ
+  let P := compositionBoundaryModule d e
+  let P' := (dgHomZModuleCochainComplex
+    (w.arrowSource (Fin.last w.length)) (v.arrowTarget 0)).X
+      ((d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1)
+  let g := (dgHomZModuleCochainComplex
+    (w.arrowSource (Fin.last w.length)) (v.arrowTarget 0)).d
+      (d.arrowDegree (Fin.last w.length) + e.arrowDegree 0)
+      ((d.arrowDegree (Fin.last w.length) + e.arrowDegree 0) + 1)
+  let explicitSource := finiteFamilyPrefixBoundarySuffix Mleft P Mright
+  let explicitTarget := finiteFamilyPrefixBoundarySuffix Mleft P' Mright
+  let explicitMap := finiteFamilyPrefixBoundarySuffixMap Mleft Mleft P P' Mright Mright
+    (fun i ↦ 𝟙 (Mleft i)) g (fun r ↦ 𝟙 (Mright r))
+  have hdata := tensorMapDataPrefixId_cons_ofFn_heq Mleft P P' Mright Mright g
+    (fun r ↦ 𝟙 (Mright r))
+  have hdataMap := tensorMapData_tensorMap_heq
+    (finFamilyList_finiteFamilyPrefixBoundarySuffix Mleft P Mright).symm
+    (finFamilyList_finiteFamilyPrefixBoundarySuffix Mleft P' Mright).symm hdata
+  let tailOfFn : TensorMapData (compositionRightSuffix e) (compositionRightSuffix e) := by
+    unfold compositionRightSuffix
+    exact TensorMapData.ofFn Mright Mright (fun r ↦ 𝟙 (Mright r))
+  have htail : (TensorMapData.identity (compositionRightSuffix e)).tensorMap =
+      tailOfFn.tensorMap := by
+    rw [TensorMapData.identity_tensorMap]
+    simp [tailOfFn, Mright, compositionRightSuffix,
+      TensorMapData.ofFn_id_tensorMap]
+  have hcons :
+      (TensorMapData.cons g
+        (TensorMapData.identity (compositionRightSuffix e))).tensorMap =
+      (TensorMapData.cons g tailOfFn).tensorMap := by
+    change g ⊗ₘ (TensorMapData.identity (compositionRightSuffix e)).tensorMap =
+      g ⊗ₘ tailOfFn.tensorMap
+    rw [htail]
+  have hprefix :
+      (tensorMapDataPrefixId (compositionLeftPrefix d)
+        (TensorMapData.cons g
+          (TensorMapData.identity (compositionRightSuffix e)))).tensorMap =
+      (tensorMapDataPrefixId (compositionLeftPrefix d)
+        (TensorMapData.cons g tailOfFn)).tensorMap := by
+    calc
+      _ = tensorModuleListWhiskerLeft (compositionLeftPrefix d)
+          (TensorMapData.cons g
+            (TensorMapData.identity (compositionRightSuffix e))).tensorMap :=
+        tensorMapDataPrefixId_tensorMap _ _
+      _ = tensorModuleListWhiskerLeft (compositionLeftPrefix d)
+          (TensorMapData.cons g tailOfFn).tensorMap :=
+        congrArg (tensorModuleListWhiskerLeft (compositionLeftPrefix d)) hcons
+      _ = _ := (tensorMapDataPrefixId_tensorMap _ _).symm
+  have hleftExplicit : HEq
+      (tensorMapDataPrefixId (compositionLeftPrefix d)
+        (TensorMapData.cons g (TensorMapData.identity (compositionRightSuffix e)))).tensorMap
+      (TensorMapData.ofFn explicitSource explicitTarget explicitMap).tensorMap := by
+    refine (heq_of_eq hprefix).trans ?_
+    simpa [Mleft, Mright, P, P', g, tailOfFn, explicitSource, explicitTarget,
+      explicitMap, compositionLeftPrefix, compositionRightSuffix,
+      compositionBoundaryModule] using hdataMap
+  have hlen : (v.length + w.length) + 1 = (w.append v).length + 1 := by
+    rw [append_length]
+    omega
+  let appendIndex := fun q : Fin ((v.length + w.length) + 1) ↦ Fin.cast hlen q
+  let appendSource := fun q : Fin ((v.length + w.length) + 1) ↦
+    factorModule (d.append e) (appendIndex q)
+  let appendTarget := fun q : Fin ((v.length + w.length) + 1) ↦
+    factorModule ((d.append e).raise (appendBoundaryArrowIndex w v)) (appendIndex q)
+  let appendMap := fun q : Fin ((v.length + w.length) + 1) ↦
+    factorDifferential (d.append e) (appendBoundaryArrowIndex w v) (appendIndex q)
+  have hsourceList : finFamilyList explicitSource = finFamilyList appendSource := by
+    calc
+      _ = compositionLeftPrefix d ++ compositionBoundaryModule d e ::
+          compositionRightSuffix e := by
+        simpa [explicitSource, Mleft, Mright, P, compositionLeftPrefix,
+          compositionRightSuffix] using
+            finFamilyList_finiteFamilyPrefixBoundarySuffix Mleft P Mright
+      _ = finFamilyList (factorModule (d.append e)) :=
+        (finFamilyList_factorModule_append_boundary d e).symm
+      _ = finFamilyList appendSource := by
+        simpa [appendSource, appendIndex] using
+          (finFamilyList_reindex hlen (factorModule (d.append e))).symm
+  have htot : n + (m + 1) = (n + m) + 1 := by omega
+  have hraise := DegreeProfile.raise_append_boundary_right d e
+  have hfactor :
+      finFamilyList (factorModule ((d.append (e.raise 0)).castTotal htot)) =
+        finFamilyList (factorModule (d.append (e.raise 0))) := by
+    rw [finFamilyList_eq_ofFn, finFamilyList_eq_ofFn]
+    apply (List.ofFn_inj).2
+    funext q
+    unfold factorModule
+    rw [DegreeProfile.castTotal_arrowDegree]
+  have hraisedList :
+      finFamilyList
+          (factorModule ((d.append e).raise (appendBoundaryArrowIndex w v))) =
+        compositionLeftPrefix d ++ P' :: compositionRightSuffix e := by
+    rw [hraise, hfactor, finFamilyList_factorModule_append_boundary]
+    congr 2
+    · unfold P' compositionBoundaryModule
+      congr 1
+      simp [DegreeProfile.raise]
+      omega
+    · unfold compositionRightSuffix
+      rw [finFamilyList_eq_ofFn, finFamilyList_eq_ofFn]
+      apply (List.ofFn_inj).2
+      funext i
+      unfold factorModule
+      simp [DegreeProfile.raise]
+  have htargetList : finFamilyList explicitTarget = finFamilyList appendTarget := by
+    calc
+      _ = compositionLeftPrefix d ++ P' :: compositionRightSuffix e := by
+        simpa [explicitTarget, Mleft, Mright, P', compositionLeftPrefix,
+          compositionRightSuffix] using
+            finFamilyList_finiteFamilyPrefixBoundarySuffix Mleft P' Mright
+      _ = finFamilyList
+          (factorModule ((d.append e).raise (appendBoundaryArrowIndex w v))) :=
+        hraisedList.symm
+      _ = finFamilyList appendTarget := by
+        simpa [appendTarget, appendIndex] using
+          (finFamilyList_reindex hlen
+            (factorModule ((d.append e).raise (appendBoundaryArrowIndex w v)))).symm
+  have hsource : explicitSource = appendSource := by
+    apply (List.ofFn_inj).1
+    simpa only [← finFamilyList_eq_ofFn] using hsourceList
+  have htarget : explicitTarget = appendTarget := by
+    apply (List.ofFn_inj).1
+    simpa only [← finFamilyList_eq_ofFn] using htargetList
+  have hpointwise : ∀ q, HEq (explicitMap q) (appendMap q) := by
+    intro q
+    rcases finiteFamilyPrefixBoundarySuffixIndex_cases q with
+      ⟨i, hi⟩ | hi | ⟨r, hr⟩
+    · subst q
+      have hindex : appendIndex (finiteFamilyPrefixIndex i) =
+          appendLeftArrowIndex (v := v) i := by
+        apply Fin.ext
+        simp [appendIndex, appendLeftArrowIndex]
+      have hne : appendBoundaryArrowIndex w v ≠ appendLeftArrowIndex (v := v) i := by
+        intro h
+        have hv := congrArg Fin.val h
+        simp [appendBoundaryArrowIndex, appendLeftArrowIndex] at hv
+        omega
+      obtain ⟨hA, hmap⟩ := factorDifferential_eqToHom_of_ne_comp
+        (d.append e) (appendBoundaryArrowIndex w v) (appendLeftArrowIndex i) hne
+      change HEq
+        (finiteFamilyPrefixBoundarySuffixMap Mleft Mleft P P' Mright Mright
+          (fun i ↦ 𝟙 (Mleft i)) g (fun r ↦ 𝟙 (Mright r))
+          (finiteFamilyPrefixIndex i))
+        (factorDifferential (d.append e) (appendBoundaryArrowIndex w v)
+          (appendIndex (finiteFamilyPrefixIndex i)))
+      rw [hindex, hmap]
+      exact (finiteFamilyPrefixBoundarySuffixMap_prefix_heq Mleft Mleft P P'
+        Mright Mright (fun i ↦ 𝟙 (Mleft i)) g (fun r ↦ 𝟙 (Mright r)) i).trans
+          (equalityTransport_heq_of_source_eq rfl hA
+            (factorModule_append_left d e i).symm)
+    · subst q
+      have hindex : appendIndex (finiteFamilyBoundaryIndex w.length v.length) =
+          appendBoundaryArrowIndex w v := by
+        apply Fin.ext
+        simp [appendIndex, appendBoundaryArrowIndex]
+      change HEq
+        (finiteFamilyPrefixBoundarySuffixMap Mleft Mleft P P' Mright Mright
+          (fun i ↦ 𝟙 (Mleft i)) g (fun r ↦ 𝟙 (Mright r))
+          (finiteFamilyBoundaryIndex w.length v.length))
+        (factorDifferential (d.append e) (appendBoundaryArrowIndex w v)
+          (appendIndex (finiteFamilyBoundaryIndex w.length v.length)))
+      rw [hindex]
+      exact (finiteFamilyPrefixBoundarySuffixMap_boundary_heq Mleft Mleft P P'
+        Mright Mright (fun i ↦ 𝟙 (Mleft i)) g (fun r ↦ 𝟙 (Mright r))).trans
+          (factorDifferential_append_boundary_heq d e).symm
+    · subst q
+      have hindex : appendIndex (finiteFamilySuffixIndex w.length r) =
+          appendRightArrowIndex (w := w) r := by
+        apply Fin.ext
+        simp [appendIndex, appendRightArrowIndex]
+      have hne : appendBoundaryArrowIndex w v ≠ appendRightArrowIndex (w := w) r := by
+        intro h
+        have hv := congrArg Fin.val h
+        simp [appendBoundaryArrowIndex, appendRightArrowIndex] at hv
+        omega
+      obtain ⟨hA, hmap⟩ := factorDifferential_eqToHom_of_ne_comp
+        (d.append e) (appendBoundaryArrowIndex w v) (appendRightArrowIndex r) hne
+      change HEq
+        (finiteFamilyPrefixBoundarySuffixMap Mleft Mleft P P' Mright Mright
+          (fun i ↦ 𝟙 (Mleft i)) g (fun r ↦ 𝟙 (Mright r))
+          (finiteFamilySuffixIndex w.length r))
+        (factorDifferential (d.append e) (appendBoundaryArrowIndex w v)
+          (appendIndex (finiteFamilySuffixIndex w.length r)))
+      rw [hindex, hmap]
+      exact (finiteFamilyPrefixBoundarySuffixMap_suffix_heq Mleft Mleft P P'
+        Mright Mright (fun i ↦ 𝟙 (Mleft i)) g (fun r ↦ 𝟙 (Mright r)) r).trans
+          (equalityTransport_heq_of_source_eq rfl hA
+            (factorModule_append_right d e r).symm)
+  have hcanonical := TensorMapData.ofFn_tensorMap_heq_of_pointwise
+    explicitSource explicitTarget appendSource appendTarget explicitMap appendMap
+    hsource htarget hpointwise
+  have hreindex := TensorMapData.ofFn_reindex_tensorMap_heq hlen
+    (factorModule (d.append e))
+    (factorModule ((d.append e).raise (appendBoundaryArrowIndex w v)))
+    (factorDifferential (d.append e) (appendBoundaryArrowIndex w v))
+  have hdataToD : HEq
+      (tensorMapDataPrefixId (compositionLeftPrefix d)
+        (TensorMapData.cons g (TensorMapData.identity (compositionRightSuffix e)))).tensorMap
+      (internalDifferentialTensorMap (d.append e) (appendBoundaryArrowIndex w v)) := by
+    simpa [appendSource, appendTarget, appendMap, appendIndex, summandModule,
+      internalDifferentialTensorMap, g] using
+        hleftExplicit.trans (hcanonical.trans hreindex)
+  exact (CategoryTheory.eqToHom_comp_heq
+    (internalDifferentialTensorMap (d.append e) (appendBoundaryArrowIndex w v))
+    (congrArg tensorModuleList (compositionTargetListEq d e))).trans hdataToD.symm
+
+theorem TensorMapData.ofFn_heq_identity_of_pointwise
+    {k : ℕ} (M N : Fin k → ModuleCat.{0} ℤ)
+    (f : (i : Fin k) → M i ⟶ N i) (hMN : M = N)
+    (hf : ∀ i, HEq (f i) (𝟙 (M i))) :
+    HEq (TensorMapData.ofFn M N f) (TensorMapData.identity (finFamilyList M)) := by
+  induction k with
+  | zero => rfl
+  | succ k ih =>
+      let Mtail := fun i : Fin k ↦ M i.succ
+      let Ntail := fun i : Fin k ↦ N i.succ
+      let ftail := fun i : Fin k ↦ f i.succ
+      have htail : Mtail = Ntail := by
+        funext i
+        exact congrFun hMN i.succ
+      change HEq
+        (TensorMapData.cons (f 0) (TensorMapData.ofFn Mtail Ntail ftail))
+        (TensorMapData.cons (𝟙 (M 0)) (TensorMapData.identity (finFamilyList Mtail)))
+      exact tensorMapData_cons_heq rfl (congrFun hMN 0).symm rfl
+        (congrArg finFamilyList htail).symm (hf 0)
+        (ih Mtail Ntail ftail htail (fun i ↦ hf i.succ))
+
+theorem tensorMapDataPrefixId_heq_boundary
+    (xs : List (ModuleCat.{0} ℤ))
+    {source target source' target' : List (ModuleCat.{0} ℤ)}
+    {f : TensorMapData source target} {g : TensorMapData source' target'}
+    (hsource : source = source') (htarget : target = target') (h : HEq f g) :
+    HEq (tensorMapDataPrefixId xs f) (tensorMapDataPrefixId xs g) := by
+  induction xs with
+  | nil => exact h
+  | cons M xs ih =>
+      change HEq
+        (TensorMapData.cons (𝟙 M) (tensorMapDataPrefixId xs f))
+        (TensorMapData.cons (𝟙 M) (tensorMapDataPrefixId xs g))
+      exact tensorMapData_cons_heq rfl rfl
+        (congrArg (List.append xs) hsource)
+        (congrArg (List.append xs) htarget) HEq.rfl ih
+
+theorem tensorMapDataPrefixOfFn_heq_prefixId_of_pointwise
+    {k : ℕ} (M N : Fin k → ModuleCat.{0} ℤ)
+    (f : (i : Fin k) → M i ⟶ N i) (hMN : M = N)
+    (hf : ∀ i, HEq (f i) (𝟙 (M i)))
+    {source target : List (ModuleCat.{0} ℤ)} (tail : TensorMapData source target) :
+    HEq (tensorMapDataPrefixOfFn M N f tail)
+      (tensorMapDataPrefixId (finFamilyList M) tail) := by
+  induction k with
+  | zero => exact HEq.rfl
+  | succ k ih =>
+      let Mtail := fun i : Fin k ↦ M i.succ
+      let Ntail := fun i : Fin k ↦ N i.succ
+      let ftail := fun i : Fin k ↦ f i.succ
+      have htail : Mtail = Ntail := by
+        funext i
+        exact congrFun hMN i.succ
+      change HEq
+        (TensorMapData.cons (f 0)
+          (tensorMapDataPrefixOfFn Mtail Ntail ftail tail))
+        (TensorMapData.cons (𝟙 (M 0))
+          (tensorMapDataPrefixId (finFamilyList Mtail) tail))
+      exact tensorMapData_cons_heq rfl (congrFun hMN 0).symm rfl
+        (congrArg (fun xs ↦ xs ++ target) (congrArg finFamilyList htail).symm)
+        (hf 0) (ih Mtail Ntail ftail htail (fun i ↦ hf i.succ))
+
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
