@@ -10011,6 +10011,286 @@ theorem summandCompositionMap_contraction_append_right_heq
               · exact summandCompositionMap_contraction_append_right_zero_heq d e
               · exact summandCompositionMap_contraction_append_right_succ_heq d e i
 
+theorem internalDifferentialLargeMap_append_boundary_apply
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m)) :
+    (internalDifferentialLargeMap (d.append e)
+        (appendBoundaryArrowIndex w v)).hom
+        (largeSummandCompositionValue d e x y) =
+      (eqToHom (congrArg (quotientGradedModule X Z)
+        (rightLeibnizDegreeEq n m))).hom
+          (largeSummandCompositionMap d (e.raise 0) x
+            (((ModuleCat.uliftFunctor.{1} ℤ).map
+              (internalDifferentialTensorMap e 0)).hom y)) +
+        (e.arrowDegree 0).negOnePow •
+          (eqToHom (congrArg (quotientGradedModule X Z)
+            (leftLeibnizDegreeEq n m))).hom
+            (largeSummandCompositionMap (d.raise (Fin.last w.length)) e
+              (((ModuleCat.uliftFunctor.{1} ℤ).map
+                (internalDifferentialTensorMap d (Fin.last w.length))).hom x) y) := by
+  rw [transported_boundary_internal_right_apply,
+    transported_boundary_internal_left_apply]
+  change
+    (Limits.Sigma.ι
+      (fun s : GradedSummandIndex X Z ((n + m) + 1) ↦ largeSummandModule s)
+      ⟨w.append v, (d.append e).raise (appendBoundaryArrowIndex w v)⟩).hom
+        (ULift.up ((summandCompositionMap d e ≫
+          internalDifferentialTensorMap (d.append e)
+            (appendBoundaryArrowIndex w v)).hom (x.down ⊗ₜ[ℤ] y.down))) =
+      (Limits.Sigma.ι
+        (fun s : GradedSummandIndex X Z ((n + m) + 1) ↦ largeSummandModule s)
+        ⟨w.append v, (d.append e).raise (appendBoundaryArrowIndex w v)⟩).hom
+          (ULift.up (((𝟙 (summandModule d) ⊗ₘ
+              internalDifferentialTensorMap e 0) ≫
+            summandCompositionMap d (e.raise 0) ≫
+            eqToHom (appendBoundaryRightSummandModuleEq d e)).hom
+              (x.down ⊗ₜ[ℤ] y.down))) +
+        (e.arrowDegree 0).negOnePow •
+          (Limits.Sigma.ι
+            (fun s : GradedSummandIndex X Z ((n + m) + 1) ↦ largeSummandModule s)
+            ⟨w.append v,
+              (d.append e).raise (appendBoundaryArrowIndex w v)⟩).hom
+                (ULift.up (((internalDifferentialTensorMap d
+                    (Fin.last w.length) ⊗ₘ 𝟙 (summandModule e)) ≫
+                  summandCompositionMap (d.raise (Fin.last w.length)) e ≫
+                  eqToHom (appendBoundaryLeftSummandModuleEq d e)).hom
+                    (x.down ⊗ₜ[ℤ] y.down)))
+  calc
+    _ = (Limits.Sigma.ι
+        (fun s : GradedSummandIndex X Z ((n + m) + 1) ↦ largeSummandModule s)
+        ⟨w.append v,
+          (d.append e).raise (appendBoundaryArrowIndex w v)⟩).hom
+          (ULift.up
+            ((((𝟙 (summandModule d) ⊗ₘ internalDifferentialTensorMap e 0) ≫
+                summandCompositionMap d (e.raise 0) ≫
+                eqToHom (appendBoundaryRightSummandModuleEq d e)).hom
+                  (x.down ⊗ₜ[ℤ] y.down)) +
+              (e.arrowDegree 0).negOnePow •
+                (((internalDifferentialTensorMap d (Fin.last w.length) ⊗ₘ
+                    𝟙 (summandModule e)) ≫
+                  summandCompositionMap (d.raise (Fin.last w.length)) e ≫
+                  eqToHom (appendBoundaryLeftSummandModuleEq d e)).hom
+                    (x.down ⊗ₜ[ℤ] y.down)))) := by
+      apply congrArg (Limits.Sigma.ι
+        (fun s : GradedSummandIndex X Z ((n + m) + 1) ↦ largeSummandModule s)
+        ⟨w.append v,
+          (d.append e).raise (appendBoundaryArrowIndex w v)⟩).hom
+      apply congrArg ULift.up
+      exact DFunLike.congr_fun
+        (congrArg ModuleCat.Hom.hom
+          (summandCompositionMap_internalDifferential_append_boundary d e))
+        (x.down ⊗ₜ[ℤ] y.down)
+    _ = (Limits.Sigma.ι
+        (fun s : GradedSummandIndex X Z ((n + m) + 1) ↦ largeSummandModule s)
+        ⟨w.append v,
+          (d.append e).raise (appendBoundaryArrowIndex w v)⟩).hom
+          ((ULift.up (((𝟙 (summandModule d) ⊗ₘ
+                internalDifferentialTensorMap e 0) ≫
+              summandCompositionMap d (e.raise 0) ≫
+              eqToHom (appendBoundaryRightSummandModuleEq d e)).hom
+                (x.down ⊗ₜ[ℤ] y.down))) +
+            (e.arrowDegree 0).negOnePow •
+              (ULift.up (((internalDifferentialTensorMap d
+                    (Fin.last w.length) ⊗ₘ 𝟙 (summandModule e)) ≫
+                summandCompositionMap (d.raise (Fin.last w.length)) e ≫
+                eqToHom (appendBoundaryLeftSummandModuleEq d e)).hom
+                  (x.down ⊗ₜ[ℤ] y.down)))) := rfl
+    _ = (Limits.Sigma.ι
+          (fun s : GradedSummandIndex X Z ((n + m) + 1) ↦ largeSummandModule s)
+          ⟨w.append v,
+            (d.append e).raise (appendBoundaryArrowIndex w v)⟩).hom
+            (ULift.up (((𝟙 (summandModule d) ⊗ₘ
+                internalDifferentialTensorMap e 0) ≫
+              summandCompositionMap d (e.raise 0) ≫
+              eqToHom (appendBoundaryRightSummandModuleEq d e)).hom
+                (x.down ⊗ₜ[ℤ] y.down))) +
+          (Limits.Sigma.ι
+            (fun s : GradedSummandIndex X Z ((n + m) + 1) ↦ largeSummandModule s)
+            ⟨w.append v,
+              (d.append e).raise (appendBoundaryArrowIndex w v)⟩).hom
+                ((e.arrowDegree 0).negOnePow •
+                  (ULift.up (((internalDifferentialTensorMap d
+                      (Fin.last w.length) ⊗ₘ 𝟙 (summandModule e)) ≫
+                    summandCompositionMap (d.raise (Fin.last w.length)) e ≫
+                    eqToHom (appendBoundaryLeftSummandModuleEq d e)).hom
+                      (x.down ⊗ₜ[ℤ] y.down)))) :=
+      (Limits.Sigma.ι
+        (fun s : GradedSummandIndex X Z ((n + m) + 1) ↦ largeSummandModule s)
+        ⟨w.append v,
+          (d.append e).raise (appendBoundaryArrowIndex w v)⟩).hom.map_add _ _
+    _ = _ := by
+      congr 1
+      exact map_zsmul_unit (Limits.Sigma.ι
+        (fun s : GradedSummandIndex X Z ((n + m) + 1) ↦ largeSummandModule s)
+        ⟨w.append v,
+          (d.append e).raise (appendBoundaryArrowIndex w v)⟩).hom _ _
+
+theorem contractionLargeMap_append_right_apply
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m))
+    (j : Fin v.length) :
+    (contractionLargeMap (d.append e)
+        (appendRightContractionIndex (w := w) j)).hom
+        (largeSummandCompositionValue d e x y) =
+      e.contractionSign j •
+        (eqToHom (congrArg (quotientGradedModule X Z)
+          (rightLeibnizDegreeEq n m))).hom
+          (largeSummandCompositionMap d (e.contract j) x
+            (((ModuleCat.uliftFunctor.{1} ℤ).map
+              (contractionTensorMap e j)).hom y)) := by
+  unfold contractionLargeMap
+  simp only [ModuleCat.hom_smul, LinearMap.smul_apply]
+  rw [contractionSign_append_right]
+  congr 1
+  change
+    (Limits.Sigma.ι
+      (fun s : GradedSummandIndex X Z ((n + m) + 1) ↦ largeSummandModule s)
+      ⟨eraseIntermediate (w.append v) (appendRightContractionIndex j),
+        (d.append e).contract (appendRightContractionIndex j)⟩).hom
+        (ULift.up ((summandCompositionMap d e ≫
+          contractionTensorMap (d.append e)
+            (appendRightContractionIndex j)).hom (x.down ⊗ₜ[ℤ] y.down))) =
+      (eqToHom (congrArg (quotientGradedModule X Z)
+        (rightLeibnizDegreeEq n m))).hom
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex X Z (n + (m + 1)) ↦ largeSummandModule s)
+          ⟨w.append (eraseIntermediate v j), d.append (e.contract j)⟩).hom
+            (ULift.up (((𝟙 (summandModule d) ⊗ₘ contractionTensorMap e j) ≫
+              summandCompositionMap d (e.contract j)).hom
+                (x.down ⊗ₜ[ℤ] y.down))))
+  apply (quotientGradedModule_eqToHom_inclusion_apply
+    (rightLeibnizDegreeEq n m)
+    (⟨w.append (eraseIntermediate v j), d.append (e.contract j)⟩ :
+      GradedSummandIndex X Z (n + (m + 1)))
+    (⟨eraseIntermediate (w.append v) (appendRightContractionIndex j),
+      (d.append e).contract (appendRightContractionIndex j)⟩ :
+        GradedSummandIndex X Z ((n + m) + 1)) ?_ _ _ ?_).symm
+  · apply gradedSummandIndex_mk_heq_of_eq (rightLeibnizDegreeEq n m)
+      (eraseIntermediate_append_right (w := w) j).symm
+    exact (DegreeProfile.contract_append_right_heq d e j).symm
+  · apply uliftUp_heq
+    have htarget : summandModule (d.append (e.contract j)) =
+        summandModule ((d.append e).contract (appendRightContractionIndex j)) :=
+      eq_of_heq (summandModule_contract_append_right_heq d e j).symm
+    exact moduleCatHom_apply_heq htarget
+      (summandCompositionMap_contraction_append_right_heq d e j).symm
+      (x.down ⊗ₜ[ℤ] y.down)
+
+theorem contractionLargeMap_append_left_apply
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m))
+    (i : Fin w.length) :
+    (contractionLargeMap (d.append e)
+        (appendLeftContractionIndex (v := v) i)).hom
+        (largeSummandCompositionValue d e x y) =
+      (d.contractionSign i * (m.negOnePow : ℤ)) •
+        (eqToHom (congrArg (quotientGradedModule X Z)
+          (leftLeibnizDegreeEq n m))).hom
+          (largeSummandCompositionMap (d.contract i) e
+            (((ModuleCat.uliftFunctor.{1} ℤ).map
+              (contractionTensorMap d i)).hom x) y) := by
+  unfold contractionLargeMap
+  simp only [ModuleCat.hom_smul, LinearMap.smul_apply]
+  rw [contractionSign_append_left]
+  congr 1
+  change
+    (Limits.Sigma.ι
+      (fun s : GradedSummandIndex X Z ((n + m) + 1) ↦ largeSummandModule s)
+      ⟨eraseIntermediate (w.append v) (appendLeftContractionIndex i),
+        (d.append e).contract (appendLeftContractionIndex i)⟩).hom
+        (ULift.up ((summandCompositionMap d e ≫
+          contractionTensorMap (d.append e)
+            (appendLeftContractionIndex i)).hom (x.down ⊗ₜ[ℤ] y.down))) =
+      (eqToHom (congrArg (quotientGradedModule X Z)
+        (leftLeibnizDegreeEq n m))).hom
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex X Z ((n + 1) + m) ↦ largeSummandModule s)
+          ⟨(eraseIntermediate w i).append v, (d.contract i).append e⟩).hom
+            (ULift.up (((contractionTensorMap d i ⊗ₘ 𝟙 (summandModule e)) ≫
+              summandCompositionMap (d.contract i) e).hom
+                (x.down ⊗ₜ[ℤ] y.down))))
+  apply (quotientGradedModule_eqToHom_inclusion_apply
+    (leftLeibnizDegreeEq n m)
+    (⟨(eraseIntermediate w i).append v, (d.contract i).append e⟩ :
+      GradedSummandIndex X Z ((n + 1) + m))
+    (⟨eraseIntermediate (w.append v) (appendLeftContractionIndex i),
+      (d.append e).contract (appendLeftContractionIndex i)⟩ :
+        GradedSummandIndex X Z ((n + m) + 1)) ?_ _ _ ?_).symm
+  · apply gradedSummandIndex_mk_heq_of_eq (leftLeibnizDegreeEq n m)
+      (eraseIntermediate_append_left (v := v) i).symm
+    exact (DegreeProfile.contract_append_left_heq d e i).symm
+  · apply uliftUp_heq
+    have htarget : summandModule ((d.contract i).append e) =
+        summandModule ((d.append e).contract (appendLeftContractionIndex i)) :=
+      eq_of_heq (summandModule_contract_append_left_heq d e i).symm
+    exact moduleCatHom_apply_heq htarget
+      (summandCompositionMap_contraction_append_left_heq d e i).symm
+      (x.down ⊗ₜ[ℤ] y.down)
+
+theorem largeSummandCompositionMap_leibniz
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m)
+    (x : largeSummandModule (⟨w, d⟩ : GradedSummandIndex X Y n))
+    (y : largeSummandModule (⟨v, e⟩ : GradedSummandIndex Y Z m)) :
+  (quotientTotalDifferential X Z (n + m)).hom
+      (largeSummandCompositionMap d e x y) =
+    (eqToHom (congrArg (quotientGradedModule X Z)
+        (rightLeibnizDegreeEq n m))).hom
+      (quotientCompositionMap X Y Z n (m + 1)
+        ((Limits.Sigma.ι
+          (fun s : GradedSummandIndex X Y n ↦ largeSummandModule s)
+          ⟨w, d⟩).hom x)
+        ((internalDifferentialFromSummand e +
+          contractionDifferentialFromSummand e).hom y)) +
+      m.negOnePow •
+        (eqToHom (congrArg (quotientGradedModule X Z)
+          (leftLeibnizDegreeEq n m))).hom
+          (quotientCompositionMap X Y Z (n + 1) m
+            ((internalDifferentialFromSummand d +
+              contractionDifferentialFromSummand d).hom x)
+            ((Limits.Sigma.ι
+              (fun s : GradedSummandIndex Y Z m ↦ largeSummandModule s)
+              ⟨v, e⟩).hom y)) := by
+  rw [quotientTotalDifferential_largeSummandCompositionMap_partition]
+  rw [transported_totalDifferentialComposition_right_sum
+    (rightLeibnizDegreeEq n m) d e x y]
+  rw [transported_totalDifferentialComposition_left_sum
+    (leftLeibnizDegreeEq n m) d e x y]
+  simp_rw [internalDifferentialLargeMap_append_left_apply d e x y]
+  rw [internalDifferentialLargeMap_append_boundary_apply d e x y]
+  simp_rw [internalDifferentialLargeMap_append_right_apply d e x y]
+  simp_rw [contractionLargeMap_append_left_apply d e x y]
+  simp_rw [contractionLargeMap_append_right_apply d e x y]
+  simp_rw [internalSign_append_left d e, internalSign_append_right d e]
+  rw [internalBoundaryKoszul_assembly d e]
+  rw [Fin.sum_univ_succ]
+  rw [Fin.sum_univ_castSucc]
+  have hlast : d.internalSign (Fin.last w.length) = 1 := by
+    have hempty : Finset.univ.filter
+        (fun j : Fin (w.length + 1) ↦ Fin.last w.length < j) = ∅ := by
+      apply Finset.filter_eq_empty_iff.mpr
+      intro j _
+      exact not_lt_of_ge (Fin.le_last j)
+    simp [DegreeProfile.internalSign, DegreeProfile.suffixTotal, hempty]
+  rw [hlast]
+  simp only [one_zsmul]
+  have hswap (a : ℤ) (z : quotientGradedModule X Z ((n + m) + 1)) :
+      (a * (m.negOnePow : ℤ)) • z = m.negOnePow • (a • z) := by
+    rw [Units.smul_def, ← mul_zsmul, mul_comm]
+  simp_rw [hswap]
+  simp only [Units.smul_def]
+  rw [Finset.sum_zsmul]
+  rw [Finset.sum_zsmul]
+  simp only [zsmul_add]
+  abel
+
+
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
 abbrev QuotientCoefficientRing := ULift.{1} ℤ
 
