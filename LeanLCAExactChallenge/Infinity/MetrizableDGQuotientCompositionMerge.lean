@@ -7339,6 +7339,127 @@ theorem eraseIntermediate_leftLast_length_eq
   omega
 
 
+theorem erasePosition_leftLast_eq
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory} :
+    erasePosition
+        ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y)
+        (Fin.last k) =
+      Fin.last (eraseIntermediate
+        ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y)
+        (Fin.last k)).length := by
+  apply Fin.ext
+  simp only [erasePosition, Fin.val_cast, Fin.val_last,
+    eraseIntermediate_leftLast_length_eq]
+
+theorem leftLastContractedCompositionLeftPrefix_eq
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    compositionLeftPrefix (d.contract (Fin.last k)) = leftLastCommonPrefix d := by
+  have hfull := leftLastContractedFactorList_eq d
+  rw [finFamilyList_factorModule_eq_prefix_last] at hfull
+  have hprefixLength : (compositionLeftPrefix (d.contract (Fin.last k))).length = k := by
+    simp only [compositionLeftPrefix, finFamilyList_eq_ofFn, List.length_ofFn,
+      eraseIntermediate_leftLast_length_eq]
+  have hcommonLength : (leftLastCommonPrefix d).length = k := by
+    simp only [leftLastCommonPrefix, finFamilyList_eq_ofFn, List.length_ofFn]
+  have htake := congrArg (List.take k) hfull
+  simpa [hprefixLength, hcommonLength] using htake
+
+theorem leftLastContractedLastFactor_eq
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory} {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    factorModule (d.contract (Fin.last k))
+        (Fin.last (eraseIntermediate
+          ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y)
+            (Fin.last k)).length) =
+      compositionBoundaryModule (leftLastHeadDegreeProfile d)
+        (leftLastTailDegreeProfile d) := by
+  have hfull := leftLastContractedFactorList_eq d
+  rw [finFamilyList_factorModule_eq_prefix_last,
+    leftLastContractedCompositionLeftPrefix_eq] at hfull
+  have hsingle := List.append_cancel_left hfull
+  exact List.cons.inj hsingle |>.1
+
+theorem leftLastContractedCompositionMergeTensorMap_heq
+    {X Y Z : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {v : DrinfeldWord Y Z} {n m : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (e : DegreeProfile v m) :
+    HEq
+      (adjacentMergeAfter (compositionLeftPrefix (d.contract (Fin.last k)))
+        (ys := compositionRightSuffix e)
+        (compositionBoundaryMap (d.contract (Fin.last k)) e)).tensorMap
+      (((@AdjacentMergeData.head
+          (compositionBoundaryModule (leftLastHeadDegreeProfile d)
+            (leftLastTailDegreeProfile d))
+          (factorModule e 0)
+          (tripleCompositionBoundaryModule (leftLastHeadDegreeProfile d)
+            (leftLastTailDegreeProfile d) e)
+          (compositionRightSuffix e)
+          (leftAssociatedBoundaryMap (leftLastHeadDegreeProfile d)
+            (leftLastTailDegreeProfile d) e)).prefix
+              (leftLastCommonPrefix d)).tensorMap) := by
+  let w := ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y)
+  let i : Fin (k + 1) := Fin.last k
+  let P := leftLastCommonPrefix d
+  let a := leftLastHeadDegreeProfile d
+  let b := leftLastTailDegreeProfile d
+  have hposition : erasePosition w i =
+      Fin.last (eraseIntermediate w i).length := erasePosition_leftLast_eq
+  have hprefix : compositionLeftPrefix (d.contract i) = P :=
+    leftLastContractedCompositionLeftPrefix_eq d
+  have hlast : factorModule (d.contract i)
+      (Fin.last (eraseIntermediate w i).length) = compositionBoundaryModule a b :=
+    leftLastContractedLastFactor_eq d
+  have hdegree : (d.contract i).arrowDegree
+      (Fin.last (eraseIntermediate w i).length) =
+      d.arrowDegree i.castSucc + d.arrowDegree i.succ := by
+    rw [← hposition, contract_arrowDegree_at]
+  have hcontractSource : (eraseIntermediate w i).arrowSource
+      (Fin.last (eraseIntermediate w i).length) = w.arrowSource i.castSucc := by
+    rw [← hposition, eraseIntermediate_arrowSource_at]
+  have hcontractTarget : (eraseIntermediate w i).arrowTarget
+      (Fin.last (eraseIntermediate w i).length) = Y :=
+    arrowTarget_last_eq_target (eraseIntermediate w i)
+  have hboundary : compositionBoundaryModule (d.contract i) e =
+      tripleCompositionBoundaryModule a b e := by
+    unfold compositionBoundaryModule tripleCompositionBoundaryModule a b
+    rw [hcontractSource, hdegree]
+    rfl
+  have hmap : HEq (compositionBoundaryMap (d.contract i) e)
+      (leftAssociatedBoundaryMap a b e) := by
+    unfold compositionBoundaryMap leftAssociatedBoundaryMap a b
+    apply dgCochainCompTensorOfEq_heq
+    · exact hcontractSource
+    · exact hcontractTarget
+    · rfl
+    · rfl
+    · exact hdegree
+    · rfl
+    · change (d.contract i).arrowDegree
+          (Fin.last (eraseIntermediate w i).length) + e.arrowDegree 0 =
+        (d.arrowDegree i.castSucc + d.arrowDegree i.succ) + e.arrowDegree 0
+      rw [hdegree]
+  have hdata := (adjacentMergeAfter_congr
+    (f := compositionBoundaryMap (d.contract i) e)
+    (g := leftAssociatedBoundaryMap a b e)
+    (ys := compositionRightSuffix e) (ys' := compositionRightSuffix e)
+    hprefix hlast rfl hboundary rfl hmap).trans
+      (heq_of_eq (adjacentMergeAfter_eq_prefix_head P
+        (ys := compositionRightSuffix e) (leftAssociatedBoundaryMap a b e)))
+  apply AdjacentMergeData.tensorMap_heq
+  · rw [hprefix, hlast]
+  · rw [hprefix, hboundary]
+  · exact hdata
+
+
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
 abbrev QuotientCoefficientRing := ULift.{1} ℤ
 
