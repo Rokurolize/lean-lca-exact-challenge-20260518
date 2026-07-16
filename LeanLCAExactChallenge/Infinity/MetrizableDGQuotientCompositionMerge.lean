@@ -5538,6 +5538,115 @@ theorem compositionRightSuffix_split_right_succ_core
       (fun r : Fin (k + 2) ↦ factorModule e r.succ) j)
 
 
+theorem recursiveMergePrefix_append_right_succ_core
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {n m : ℤ} (d : DegreeProfile w n)
+    (e : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord Y Z) m)
+    (j : Fin (k + 1)) :
+    recursiveMergePrefix_right_succ_core (factorModule (d.append e))
+        (⟨w.length + j.succ.val, by omega⟩ : Fin (w.length + (k + 1) + 1)) =
+      compositionLeftPrefix d ++ compositionBoundaryModule d e ::
+        recursiveMergePrefix_right_succ_core
+          (fun r : Fin (k + 2) ↦ factorModule e r.succ) j := by
+  rw (config := { transparency := .all }) [recursiveMergePrefix_eq_take_right_succ_core,
+    finFamilyList_factorModule_append_boundary,
+    compositionRightSuffix_split_right_succ_core e j]
+  let L := compositionLeftPrefix d ++ compositionBoundaryModule d e ::
+    recursiveMergePrefix_right_succ_core
+      (fun r : Fin (k + 2) ↦ factorModule e r.succ) j
+  have hL : L.length = w.length + (j.val + 1) := by
+    simp [L, compositionLeftPrefix, finFamilyList_eq_ofFn,
+      length_recursiveMergePrefix_right_succ_core]
+  have hsource :
+      compositionLeftPrefix d ++ compositionBoundaryModule d e ::
+          (recursiveMergePrefix_right_succ_core
+              (fun r : Fin (k + 2) ↦ factorModule e r.succ) j ++
+            factorModule e j.succ.castSucc :: factorModule e j.succ.succ ::
+              recursiveMergeSuffix_right_succ_core
+                (fun r : Fin (k + 2) ↦ factorModule e r.succ) j) =
+        L ++ factorModule e j.succ.castSucc :: factorModule e j.succ.succ ::
+          recursiveMergeSuffix_right_succ_core
+            (fun r : Fin (k + 2) ↦ factorModule e r.succ) j := by
+    simp [L, List.append_assoc]
+  rw [hsource]
+  change List.take (w.length + (j.val + 1)) _ = L
+  rw [← hL]
+  exact List.take_left
+
+theorem recursiveMergeSuffix_append_right_succ_core
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {n m : ℤ} (d : DegreeProfile w n)
+    (e : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord Y Z) m)
+    (j : Fin (k + 1)) :
+    recursiveMergeSuffix_right_succ_core (factorModule (d.append e))
+        (⟨w.length + j.succ.val, by omega⟩ : Fin (w.length + (k + 1) + 1)) =
+      recursiveMergeSuffix_right_succ_core
+        (fun r : Fin (k + 2) ↦ factorModule e r.succ) j := by
+  rw (config := { transparency := .all }) [recursiveMergeSuffix_eq_drop_right_succ_core,
+    finFamilyList_factorModule_append_boundary,
+    compositionRightSuffix_split_right_succ_core e j]
+  let L := compositionLeftPrefix d ++ compositionBoundaryModule d e ::
+    recursiveMergePrefix_right_succ_core
+      (fun r : Fin (k + 2) ↦ factorModule e r.succ) j
+  have hL : L.length = w.length + (j.val + 1) := by
+    simp [L, compositionLeftPrefix, finFamilyList_eq_ofFn,
+      length_recursiveMergePrefix_right_succ_core]
+  have hsource :
+      compositionLeftPrefix d ++ compositionBoundaryModule d e ::
+          (recursiveMergePrefix_right_succ_core
+              (fun r : Fin (k + 2) ↦ factorModule e r.succ) j ++
+            factorModule e j.succ.castSucc :: factorModule e j.succ.succ ::
+              recursiveMergeSuffix_right_succ_core
+                (fun r : Fin (k + 2) ↦ factorModule e r.succ) j) =
+        L ++ factorModule e j.succ.castSucc :: factorModule e j.succ.succ ::
+          recursiveMergeSuffix_right_succ_core
+            (fun r : Fin (k + 2) ↦ factorModule e r.succ) j := by
+    simp [L, List.append_assoc]
+  rw [hsource]
+  change List.drop (w.length + (j.val + 1) + 2) _ = _
+  rw [← hL, ← List.drop_drop, List.drop_left]
+  rfl
+
+theorem recursiveMergePrefix_append_right_succ_at_index_core
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {n m : ℤ} (d : DegreeProfile w n)
+    (e : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord Y Z) m)
+    (j : Fin (k + 1)) :
+    recursiveMergePrefix_right_succ_core (factorModule (d.append e))
+        (appendRightContractionIndex (w := w)
+          (v := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord Y Z)) j.succ) =
+      compositionLeftPrefix d ++ compositionBoundaryModule d e ::
+        recursiveMergePrefix_right_succ_core
+          (fun r : Fin (k + 2) ↦ factorModule e r.succ) j := by
+  change recursiveMergePrefix_right_succ_core (factorModule (d.append e))
+      (⟨w.length + j.succ.val, by omega⟩ : Fin (w.length + (k + 1) + 1)) = _
+  exact recursiveMergePrefix_append_right_succ_core d e j
+
+theorem recursiveMergeSuffix_append_right_succ_at_index_core
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {n m : ℤ} (d : DegreeProfile w n)
+    (e : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord Y Z) m)
+    (j : Fin (k + 1)) :
+    recursiveMergeSuffix_right_succ_core (factorModule (d.append e))
+        (appendRightContractionIndex (w := w)
+          (v := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord Y Z)) j.succ) =
+      recursiveMergeSuffix_right_succ_core
+        (fun r : Fin (k + 2) ↦ factorModule e r.succ) j := by
+  change recursiveMergeSuffix_right_succ_core (factorModule (d.append e))
+      (⟨w.length + j.succ.val, by omega⟩ : Fin (w.length + (k + 1) + 1)) = _
+  exact recursiveMergeSuffix_append_right_succ_core d e j
+
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
