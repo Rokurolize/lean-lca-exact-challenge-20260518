@@ -1740,6 +1740,41 @@ theorem compositionBoundaryMap_raise_left_internal_heq
   · rfl
   · simp [DegreeProfile.raise, hlast]
 
+theorem summandModule_castTotal_eq
+    {X Y : ComplexCategory} {w : DrinfeldWord X Y} {n m : ℤ}
+    (h : n = m) (d : DegreeProfile w n) :
+    summandModule (d.castTotal h) = summandModule d := by
+  apply congrArg tensorModuleList
+  rw [finFamilyList_eq_ofFn, finFamilyList_eq_ofFn]
+  apply (List.ofFn_inj).2
+  funext i
+  unfold factorModule
+  rw [DegreeProfile.castTotal_arrowDegree]
+
+def appendBoundaryRightSummandModuleEq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    summandModule (d.append (e.raise 0)) =
+      summandModule ((d.append e).raise (appendBoundaryArrowIndex w v)) := by
+  let htot : n + (m + 1) = (n + m) + 1 := by omega
+  have hraise := congrArg summandModule
+    (DegreeProfile.raise_append_boundary_right d e)
+  have hcast := summandModule_castTotal_eq htot
+    (d.append (e.raise 0))
+  exact (hraise.trans hcast).symm
+
+def appendBoundaryLeftSummandModuleEq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {v : DrinfeldWord Y Z}
+    {n m : ℤ} (d : DegreeProfile w n) (e : DegreeProfile v m) :
+    summandModule ((d.raise (Fin.last w.length)).append e) =
+      summandModule ((d.append e).raise (appendBoundaryArrowIndex w v)) := by
+  let htot : (n + 1) + m = (n + m) + 1 := by omega
+  have hraise := congrArg summandModule
+    (DegreeProfile.raise_append_boundary_left d e)
+  have hcast := summandModule_castTotal_eq htot
+    ((d.raise (Fin.last w.length)).append e)
+  exact (hraise.trans hcast).symm
+
 theorem tensorMapData_ofFn_eqToHom_of_family_eq
     {k : ℕ} (M N : Fin k → ModuleCat.{0} ℤ) (h : M = N)
     (f : (q : Fin k) → M q ⟶ N q)
