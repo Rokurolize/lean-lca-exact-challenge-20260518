@@ -6373,6 +6373,143 @@ theorem finFamilyList_recursiveMerge_source
         recursiveMergeSuffix_eq_drop_right_succ_core] at h
       exact h
 
+theorem finFamilyList_recursiveMerge_target
+    {K : ℕ} (M : Fin (K + 1) → ModuleCat.{0} ℤ) (i : Fin K)
+    (P : ModuleCat.{0} ℤ) :
+    finFamilyList (recursiveMergedFactor M i P) =
+      (finFamilyList M).take i.val ++
+        P :: (finFamilyList M).drop (i.val + 2) := by
+  cases K with
+  | zero => exact Fin.elim0 i
+  | succ k =>
+      have h := finFamilyList_recursiveMerge_target_right_succ_core M i P
+      rw [recursiveMergePrefix_eq_take_right_succ_core,
+        recursiveMergeSuffix_eq_drop_right_succ_core] at h
+      exact h
+
+theorem recursiveMergedFactorList_append_of_normal_form
+    {K L : ℕ} {M : Fin (K + 1) → ModuleCat.{0} ℤ}
+    {N : Fin (L + 1) → ModuleCat.{0} ℤ} {i : Fin K} {j : Fin L}
+    {P Q : ModuleCat.{0} ℤ} (tail : List (ModuleCat.{0} ℤ))
+    (hprefix : (finFamilyList M).take i.val =
+      (finFamilyList N).take j.val)
+    (hP : P = Q)
+    (hsuffix : (finFamilyList M).drop (i.val + 2) =
+      (finFamilyList N).drop (j.val + 2) ++ tail) :
+    finFamilyList (recursiveMergedFactor M i P) =
+      finFamilyList (recursiveMergedFactor N j Q) ++ tail := by
+  rw [finFamilyList_recursiveMerge_target,
+    finFamilyList_recursiveMerge_target, hprefix, hP, hsuffix]
+  simp only [List.cons_append, List.append_assoc]
+
+theorem recursiveAdjacentMergeDataOfFn_castSucc_suffix
+    {k : ℕ} (M : Fin (k + 3) → ModuleCat.{0} ℤ)
+    (i : Fin (k + 1)) (P : ModuleCat.{0} ℤ)
+    (f : M i.castSucc.castSucc ⊗ M i.castSucc.succ ⟶ P) :
+    HEq
+      (recursiveAdjacentMergeDataOfFn M i.castSucc P f)
+      ((recursiveAdjacentMergeDataOfFn
+        (fun q : Fin (k + 2) ↦ M q.castSucc) i P (by
+          have hindex : i.succ.castSucc = i.castSucc.succ := Fin.ext rfl
+          simpa only [hindex] using f)).suffix
+        [M (Fin.last (k + 2))]) := by
+  let M' : Fin (k + 2) → ModuleCat.{0} ℤ := fun q ↦ M q.castSucc
+  have hlist : finFamilyList M = finFamilyList M' ++
+      [M (Fin.last (k + 2))] := finFamilyList_castSucc_append_last M
+  have hprefix :
+      (finFamilyList M).take i.castSucc.val =
+        (finFamilyList M').take i.val := by
+    rw [hlist]
+    rw [List.take_append_of_le_length]
+    · simp only [Fin.val_castSucc]
+    · rw [finFamilyList_eq_ofFn, List.length_ofFn]
+      simp only [Fin.val_castSucc]
+      have hi := i.isLt
+      omega
+  have hsuffix :
+      (finFamilyList M).drop (i.castSucc.val + 2) =
+        (finFamilyList M').drop (i.val + 2) ++
+          [M (Fin.last (k + 2))] := by
+    rw [hlist]
+    rw [List.drop_append_of_le_length]
+    · simp only [Fin.val_castSucc]
+    · rw [finFamilyList_eq_ofFn, List.length_ofFn]
+      simp only [Fin.val_castSucc]
+      have hi := i.isLt
+      omega
+  let f' : M' i.castSucc ⊗ M' i.succ ⟶ P := by
+    have hindex : i.succ.castSucc = i.castSucc.succ := Fin.ext rfl
+    simpa only [M', hindex] using f
+  change HEq (recursiveAdjacentMergeDataOfFn M i.castSucc P f)
+    ((recursiveAdjacentMergeDataOfFn M' i P f').suffix
+      [M (Fin.last (k + 2))])
+  have hfull := recursiveAdjacentMergeDataOfFn_eq_after
+    M i.castSucc P f
+  have hshort := recursiveAdjacentMergeDataOfFn_eq_after
+    M' i P f'
+  have hshortSuffix := adjacentMergeAfter_suffix_heq
+    ((finFamilyList M').take i.val)
+    (ys := (finFamilyList M').drop (i.val + 2)) f'
+    [M (Fin.last (k + 2))]
+  have hshortDataSuffix := adjacentMergeData_suffix_heq
+    (finFamilyList_recursiveMerge_source M' i)
+    (finFamilyList_recursiveMerge_target M' i P)
+    hshort [M (Fin.last (k + 2))]
+  have hcanonical := adjacentMergeAfter_congr hprefix rfl rfl rfl hsuffix
+    (show HEq f f' by exact HEq.rfl)
+  exact hfull.trans (hcanonical.trans
+    (hshortSuffix.symm.trans hshortDataSuffix.symm))
+
+theorem rawContractionFactor_append_left_castSucc
+    {X Y Z : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 2) → CorrectedAcyclicComplexCategory}
+    {v : DrinfeldWord Y Z} {n m : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 2, intermediate := intermediate } : DrinfeldWord X Y) n)
+    (e : DegreeProfile v m) (i : Fin (k + 1)) :
+    rawContractionFactor (d.append e)
+        (appendLeftContractionIndex i.castSucc) =
+      rawContractionFactor d i.castSucc := by
+  have hleft :
+      (appendLeftContractionIndex
+          (w := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord X Y)) (v := v) i.castSucc).castSucc =
+        appendLeftArrowIndex
+          (w := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord X Y)) (v := v) i.castSucc := by
+    apply Fin.ext
+    rfl
+  have hright :
+      (appendLeftContractionIndex
+          (w := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord X Y)) (v := v) i.castSucc).succ =
+        appendLeftArrowIndex
+          (w := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord X Y)) (v := v) i.succ := Fin.ext rfl
+  unfold rawContractionFactor
+  change (dgHomZModuleCochainComplex
+      ((({ length := k + 2, intermediate := intermediate } :
+        DrinfeldWord X Y).append v).arrowSource
+        (appendLeftContractionIndex
+          (w := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord X Y)) (v := v) i.castSucc).castSucc)
+      ((({ length := k + 2, intermediate := intermediate } :
+        DrinfeldWord X Y).append v).arrowTarget
+        (appendLeftContractionIndex
+          (w := ({ length := k + 2, intermediate := intermediate } :
+            DrinfeldWord X Y)) (v := v) i.castSucc).succ)).X
+      (appendArrowDegree d e
+          (appendLeftContractionIndex
+            (w := ({ length := k + 2, intermediate := intermediate } :
+              DrinfeldWord X Y)) (v := v) i.castSucc).castSucc +
+        appendArrowDegree d e
+          (appendLeftContractionIndex
+            (w := ({ length := k + 2, intermediate := intermediate } :
+              DrinfeldWord X Y)) (v := v) i.castSucc).succ) = _
+  rw [hleft, hright, arrowSource_append_left, arrowTarget_append_left,
+    appendArrowDegree_left, appendArrowDegree_left]
+  rw [show i.succ.castSucc = i.castSucc.succ by apply Fin.ext; rfl]
+
 section QuotientCoefficient
 
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
