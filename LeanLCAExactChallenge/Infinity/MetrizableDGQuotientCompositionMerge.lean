@@ -8767,6 +8767,228 @@ theorem rightZeroRawContractionTensorMap_heq
         (tailDegreeProfile e))))
 
 
+theorem rightZeroRawContractionAppendTensorMap_heq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {n m : ℤ} (d : DegreeProfile w n)
+    (e : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord Y Z) m) :
+    HEq
+      (rawContractionAdjacentMergeData (d.append e)
+        (appendRightContractionIndex (0 : Fin (k + 1)))).tensorMap
+      (((@AdjacentMergeData.head
+          (compositionBoundaryModule d (rightZeroHeadDegreeProfile e))
+          (factorModule (tailDegreeProfile e) 0)
+          (tripleCompositionBoundaryModule d (rightZeroHeadDegreeProfile e)
+            (tailDegreeProfile e))
+          (compositionRightSuffix (tailDegreeProfile e))
+          (leftAssociatedBoundaryMap d (rightZeroHeadDegreeProfile e)
+            (tailDegreeProfile e))).prefix (compositionLeftPrefix d)).tensorMap) := by
+  let i := appendRightContractionIndex
+    (w := w)
+    (v := ({ length := k + 1, intermediate := intermediate } :
+      DrinfeldWord Y Z)) (0 : Fin (k + 1))
+  have hi : i.val = w.length := rfl
+  have hboundary : i.castSucc = appendBoundaryArrowIndex w
+      ({ length := k + 1, intermediate := intermediate } :
+        DrinfeldWord Y Z) := Fin.ext rfl
+  have hright : i.succ = appendRightArrowIndex (w := w)
+      (v := ({ length := k + 1, intermediate := intermediate } :
+        DrinfeldWord Y Z)) 0 := Fin.ext rfl
+  have hheadTarget :
+      ({ length := k + 1, intermediate := intermediate } :
+        DrinfeldWord Y Z).arrowTarget 0 =
+        (nil Y (intermediate 0).obj).arrowTarget 0 := by
+    rw [nil_arrowTarget_zero]
+    unfold arrowTarget vertex
+    rw [Fin.cases_succ]
+    have hzero : (0 : Fin (k + 2)) = (0 : Fin (k + 1)).castSucc := rfl
+    rw [hzero, Fin.lastCases_castSucc]
+    rfl
+  have hheadBoundary : compositionBoundaryModule d e =
+      compositionBoundaryModule d (rightZeroHeadDegreeProfile e) := by
+    unfold compositionBoundaryModule
+    rw [hheadTarget]
+    rfl
+  have hrightSuffix : compositionRightSuffix e =
+      factorModule (tailDegreeProfile e) 0 ::
+        compositionRightSuffix (tailDegreeProfile e) := by
+    unfold compositionRightSuffix
+    rw [finFamilyList_eq_ofFn, List.ofFn_succ]
+    rw [finFamilyList_eq_ofFn]
+    simp only [tailFactorModule]
+  have hfull := finFamilyList_factorModule_append_boundary d e
+  have hprefix : (finFamilyList (factorModule (d.append e))).take i.val =
+      compositionLeftPrefix d := by
+    change (finFamilyList (factorModule (d.append e))).take w.length = _
+    rw [hfull]
+    rw [List.take_append_of_le_length]
+    · simp [compositionLeftPrefix, finFamilyList_eq_ofFn]
+    · simp [compositionLeftPrefix, finFamilyList_eq_ofFn]
+  have hsuffix : (finFamilyList (factorModule (d.append e))).drop (i.val + 2) =
+      compositionRightSuffix (tailDegreeProfile e) := by
+    change (finFamilyList (factorModule (d.append e))).drop (w.length + 2) = _
+    rw [hfull]
+    rw [← List.drop_drop]
+    rw [List.drop_append_of_le_length]
+    · have hdrop : (compositionLeftPrefix d).drop w.length = [] := by
+        simp [compositionLeftPrefix, finFamilyList_eq_ofFn]
+      rw [hdrop, hrightSuffix]
+      rfl
+    · simp [compositionLeftPrefix, finFamilyList_eq_ofFn]
+  have hleftFactor : factorModule (d.append e) i.castSucc =
+      compositionBoundaryModule d (rightZeroHeadDegreeProfile e) := by
+    rw [hboundary, factorModule_append_boundary, hheadBoundary]
+  have hrightFactor : factorModule (d.append e) i.succ =
+      factorModule (tailDegreeProfile e) 0 := by
+    rw [hright, factorModule_append_right, tailFactorModule]
+  have hraw : rawContractionFactor (d.append e) i =
+      tripleCompositionBoundaryModule d (rightZeroHeadDegreeProfile e)
+        (tailDegreeProfile e) := by
+    unfold rawContractionFactor tripleCompositionBoundaryModule
+    have hsource : (w.append _).arrowSource i.castSucc =
+        w.arrowSource (Fin.last w.length) := by
+      rw [hboundary, arrowSource_append_boundary]
+    have htarget : (w.append _).arrowTarget i.succ =
+        (tailWord (Y := Z) intermediate).arrowTarget 0 := by
+      rw [hright, arrowTarget_append_right]
+      exact (tailWord_arrowTarget (X := Y) (Y := Z)
+        (intermediate := intermediate) 0).symm
+    rw [hsource, htarget]
+    congr 1
+    change appendArrowDegree d e (appendBoundaryArrowIndex w _) +
+        appendArrowDegree d e (appendRightArrowIndex (w := w) 0) = _
+    rw [appendArrowDegree_boundary, appendArrowDegree_right]
+    rfl
+  have hmap : HEq (adjacentFactorComposition (d.append e) i)
+      (leftAssociatedBoundaryMap d (rightZeroHeadDegreeProfile e)
+        (tailDegreeProfile e)) := by
+    unfold adjacentFactorComposition leftAssociatedBoundaryMap
+    apply dgCochainCompTensorOfEq_heq
+    · rw [hboundary, arrowSource_append_boundary]
+    · rw [hboundary, arrowTarget_append_boundary]
+      exact hheadTarget
+    · rw [hright, arrowSource_append_right, tailWord_arrowSource]
+    · rw [hright, arrowTarget_append_right, tailWord_arrowTarget]
+    · rw [hboundary]
+      change appendArrowDegree d e (appendBoundaryArrowIndex w _) = _
+      rw [appendArrowDegree_boundary]
+      rfl
+    · rw [hright]
+      change appendArrowDegree d e (appendRightArrowIndex (w := w) 0) = _
+      rw [appendArrowDegree_right]
+      rfl
+    · rw [hboundary, hright]
+      change appendArrowDegree d e (appendBoundaryArrowIndex w _) +
+        appendArrowDegree d e (appendRightArrowIndex (w := w) 0) = _
+      rw [appendArrowDegree_boundary, appendArrowDegree_right]
+      rfl
+  have hsource : finFamilyList (factorModule (d.append e)) =
+      compositionLeftPrefix d ++
+        compositionBoundaryModule d (rightZeroHeadDegreeProfile e) ::
+          factorModule (tailDegreeProfile e) 0 ::
+            compositionRightSuffix (tailDegreeProfile e) := by
+    rw [hfull, hheadBoundary, hrightSuffix]
+  have htarget : finFamilyList
+        (recursiveMergedFactor (factorModule (d.append e)) i
+          (rawContractionFactor (d.append e) i)) =
+      compositionLeftPrefix d ++
+        tripleCompositionBoundaryModule d (rightZeroHeadDegreeProfile e)
+            (tailDegreeProfile e) ::
+          compositionRightSuffix (tailDegreeProfile e) := by
+    rw [finFamilyList_recursiveMerge_target, hprefix, hraw, hsuffix]
+  apply AdjacentMergeData.tensorMap_heq hsource htarget
+  unfold rawContractionAdjacentMergeData
+  change HEq (recursiveAdjacentMergeDataOfFn (factorModule (d.append e)) i
+      (rawContractionFactor (d.append e) i)
+      (adjacentFactorComposition (d.append e) i)) _
+  exact (recursiveAdjacentMergeDataOfFn_eq_after
+    (factorModule (d.append e)) i (rawContractionFactor (d.append e) i)
+      (adjacentFactorComposition (d.append e) i)).trans
+    ((adjacentMergeAfter_congr hprefix hleftFactor hrightFactor hraw hsuffix hmap).trans
+      (heq_of_eq (adjacentMergeAfter_eq_prefix_head (compositionLeftPrefix d)
+        (leftAssociatedBoundaryMap d (rightZeroHeadDegreeProfile e)
+          (tailDegreeProfile e)))))
+
+theorem rightZeroContractedFactorList_eq
+    {Y Z : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory} {m : ℤ}
+    (e : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord Y Z) m) :
+    finFamilyList (factorModule (e.contract 0)) =
+      zeroMiddleRightBoundaryModule (rightZeroHeadDegreeProfile e)
+          (tailDegreeProfile e) ::
+        compositionRightSuffix (tailDegreeProfile e) := by
+  exact (rawContractionTargetListEq_right_zero_assembly e 0).trans
+    (rightZeroRawContractionTargetList_eq e)
+
+theorem rightZeroContractBoundaryModule_eq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {n m : ℤ} (d : DegreeProfile w n)
+    (e : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord Y Z) m) :
+    compositionBoundaryModule d (e.contract 0) =
+      tripleCompositionBoundaryModule d (rightZeroHeadDegreeProfile e)
+        (tailDegreeProfile e) := by
+  let v : DrinfeldWord Y Z :=
+    { length := k + 1, intermediate := intermediate }
+  have hposition : erasePosition v (0 : Fin (k + 1)) = 0 := Fin.ext rfl
+  have htarget : (eraseIntermediate v 0).arrowTarget 0 =
+      (tailWord intermediate).arrowTarget 0 :=
+    (congrArg (eraseIntermediate v 0).arrowTarget hposition.symm).trans
+      ((eraseIntermediate_arrowTarget_at v 0).trans
+        (tailWord_arrowTarget (X := Y) (Y := Z)
+          (intermediate := intermediate) 0).symm)
+  have hdegree : (e.contract 0).arrowDegree 0 =
+      e.arrowDegree 0 + (tailDegreeProfile e).arrowDegree 0 :=
+    (congrArg (e.contract 0).arrowDegree hposition.symm).trans
+      (contract_arrowDegree_at e 0)
+  unfold compositionBoundaryModule tripleCompositionBoundaryModule
+  rw [htarget, hdegree, Int.add_assoc]
+  rfl
+
+theorem rightZeroContractBoundaryMap_heq
+    {X Y Z : ComplexCategory} {w : DrinfeldWord X Y} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {n m : ℤ} (d : DegreeProfile w n)
+    (e : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord Y Z) m) :
+    HEq (compositionBoundaryMap d (e.contract 0))
+      (rightAssociatedBoundaryMap d (rightZeroHeadDegreeProfile e)
+        (tailDegreeProfile e)) := by
+  let v : DrinfeldWord Y Z :=
+    { length := k + 1, intermediate := intermediate }
+  have hposition : erasePosition v (0 : Fin (k + 1)) = 0 := Fin.ext rfl
+  have hsource : (eraseIntermediate v 0).arrowSource 0 =
+      (nil Y (intermediate 0).obj).arrowSource 0 :=
+    (congrArg (eraseIntermediate v 0).arrowSource hposition.symm).trans
+      ((eraseIntermediate_arrowSource_at v 0).trans (by
+        change v.arrowSource 0 = Y
+        exact arrowSource_zero_eq_source v))
+  have htarget : (eraseIntermediate v 0).arrowTarget 0 =
+      (tailWord intermediate).arrowTarget 0 :=
+    (congrArg (eraseIntermediate v 0).arrowTarget hposition.symm).trans
+      ((eraseIntermediate_arrowTarget_at v 0).trans
+        (tailWord_arrowTarget (X := Y) (Y := Z)
+          (intermediate := intermediate) 0).symm)
+  have hdegree : (e.contract 0).arrowDegree 0 =
+      e.arrowDegree 0 + (tailDegreeProfile e).arrowDegree 0 :=
+    (congrArg (e.contract 0).arrowDegree hposition.symm).trans
+      (contract_arrowDegree_at e 0)
+  unfold compositionBoundaryMap rightAssociatedBoundaryMap factorModule
+    zeroMiddleRightBoundaryModule tripleCompositionBoundaryModule
+  apply dgCochainCompTensorOfEq_heq
+  · rfl
+  · rfl
+  · exact hsource
+  · exact htarget
+  · rfl
+  · exact hdegree
+  · exact congrArg (d.arrowDegree (Fin.last w.length) + ·) hdegree |>.trans
+      (Int.add_assoc _ _ _).symm
+
+
 /-- A universe-1 copy of the integer coefficient ring for the large quotient carrier. -/
 abbrev QuotientCoefficientRing := ULift.{1} ℤ
 
