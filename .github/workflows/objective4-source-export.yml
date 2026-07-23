@@ -3,6 +3,8 @@ name: Export Objective 4 PR4 payload
 on:
   issue_comment:
     types: [created]
+  schedule:
+    - cron: '*/5 * * * *'
 
 permissions:
   contents: write
@@ -10,8 +12,9 @@ permissions:
 jobs:
   export:
     if: >-
-      github.event.issue.number == 7 &&
-      github.event.comment.body == '/export-pr4-payload'
+      github.event_name == 'schedule' ||
+      (github.event.issue.number == 7 &&
+       github.event.comment.body == '/export-pr4-payload')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
