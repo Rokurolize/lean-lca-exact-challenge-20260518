@@ -1,36 +1,42 @@
-name: Export current main source
+name: Export Objective 4 PR4 payload
 
 on:
-  push:
-    branches:
-      - objective4-source-export-20260723
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch:
+  issue_comment:
+    types: [created]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   export:
+    if: >-
+      github.event.issue.number == 7 &&
+      github.event.comment.body == '/export-pr4-payload'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
-      - name: Archive exact main source
+      - name: Build a hash-verified text payload
         shell: bash
         run: |
           set -euo pipefail
-          git fetch origin main
-          git archive --format=tar.gz --prefix=source/ --output=/tmp/objective4-main-source.tar.gz origin/main
-          sha256sum /tmp/objective4-main-source.tar.gz | tee /tmp/objective4-main-source.tar.gz.sha256
-      - uses: actions/upload-artifact@v4
-        with:
-          name: objective4-main-source
-          path: |
-            /tmp/objective4-main-source.tar.gz
-            /tmp/objective4-main-source.tar.gz.sha256
-          if-no-files-found: error
-          compression-level: 0
+          base=58498e4001e87bb98c6988cacf0042ad612a84cb
+          head=6d2368f01b347dd34024f892ddd7e72fabd4762d
+          git diff --name-only --diff-filter=AM "$base" "$head" > /tmp/pr4-files.txt
+          test "$(wc -l < /tmp/pr4-files.txt)" -eq 28
+          tar -czf /tmp/pr4-source.tar.gz -T /tmp/pr4-files.txt
+          sha256sum /tmp/pr4-source.tar.gz > /tmp/pr4-source.tar.gz.sha256
+          base64 -w 0 /tmp/pr4-source.tar.gz | split -b 20000 -d -a 3 - /tmp/payload.part-
+          git checkout -B objective4-pr4-payload-20260724
+          rm -rf .objective4-export
+          mkdir -p .objective4-export
+          cp /tmp/payload.part-* .objective4-export/
+          cp /tmp/pr4-source.tar.gz.sha256 .objective4-export/
+          cp /tmp/pr4-files.txt .objective4-export/
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .objective4-export
+          git commit -m 'Export hash-verified Objective 4 PR4 payload'
+          git push --force origin HEAD:objective4-pr4-payload-20260724
