@@ -1,0 +1,200 @@
+/-
+Copyright (c) 2026 Rokurolize. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Rokurolize
+-/
+
+import LeanLCAExactChallenge.Infinity.MetrizableDGQuotientChainCategory
+
+/-! # Unit laws for the smart-truncated corrected quotient -/
+
+set_option autoImplicit false
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
+
+noncomputable section
+attribute [-instance] ULift.semiring
+
+namespace LeanLCAExactChallenge
+namespace Infinity
+namespace MetrizableBoundedComplexes
+namespace DrinfeldWord
+
+open CategoryTheory
+open CategoryTheory.Limits
+open CategoryTheory.MonoidalCategory
+
+@[reassoc]
+lemma quotientChain_ιTensorObj_tensorHom
+    {K₁ K₂ L₁ L₂ : QuotientDGChain} (f : K₁ ⟶ L₁) (g : K₂ ⟶ L₂)
+    {p q n : ℕ} (h : p + q = n) :
+    HomologicalComplex.ιTensorObj K₁ K₂ p q n h ≫
+        (HomologicalComplex.tensorHom f g).f n =
+      (f.f p ⊗ₘ g.f q) ≫ HomologicalComplex.ιTensorObj L₁ L₂ p q n h := by
+  exact GradedObject.Monoidal.ι_tensorHom f.f g.f p q n h
+
+lemma quotientDGCompositionComponent_identity_left_apply
+    (K L : ComplexCategory) (n : ℤ)
+    (x : quotientCoefficientModule (quotientGradedModule L K n)) :
+    (quotientDGCompositionComponent L K K (zero_add n)).hom
+        ((quotientIdentitySpan K).hom 1 ⊗ₜ[QuotientCoefficientRing] x) = x := by
+  obtain ⟨x⟩ := x
+  change (eqToHom (congrArg
+      (fun k ↦ quotientCoefficientModule (quotientGradedModule L K k))
+      ((Int.add_comm n 0).trans (zero_add n)))).hom
+        ((quotientCompositionTensorMap L K K n 0).hom
+          ((((β_
+              (quotientCoefficientModule (quotientGradedModule K K 0))
+              (quotientCoefficientModule (quotientGradedModule L K n))).hom :
+                quotientCoefficientModule (quotientGradedModule K K 0) ⊗
+                    quotientCoefficientModule (quotientGradedModule L K n) ⟶
+                  quotientCoefficientModule (quotientGradedModule L K n) ⊗
+                    quotientCoefficientModule (quotientGradedModule K K 0))).hom
+            ((quotientIdentitySpan K).hom 1 ⊗ₜ[QuotientCoefficientRing]
+              ULift.up x))) = ULift.up x
+  rw [show (quotientIdentitySpan K).hom 1 =
+      ULift.up (quotientIdentityElement K) by
+    exact LinearMap.toSpanSingleton_apply_one QuotientCoefficientRing _ _]
+  rw [ModuleCat.MonoidalCategory.braiding_hom_apply]
+  rw [quotientCompositionTensorMap_tmul]
+  rw [quotientCoefficient_eqToHom_apply_up] <;> try omega
+  change ULift.up
+      ((eqToHom (congrArg (quotientGradedModule L K)
+        ((Int.add_comm n 0).trans (zero_add n)))).hom
+          (quotientCompositionMap L K K n 0 x (quotientIdentityElement K))) =
+    ULift.up x
+  apply ULift.down_injective
+  exact quotientCompositionMap_right_unit L K n x
+
+lemma quotientDGCompositionComponent_identity_right_apply
+    (K L : ComplexCategory) (n : ℤ)
+    (x : quotientCoefficientModule (quotientGradedModule L K n)) :
+    (quotientDGCompositionComponent L L K (add_zero n)).hom
+        (x ⊗ₜ[QuotientCoefficientRing] (quotientIdentitySpan L).hom 1) = x := by
+  obtain ⟨x⟩ := x
+  change (eqToHom (congrArg
+      (fun k ↦ quotientCoefficientModule (quotientGradedModule L K k))
+      ((Int.add_comm 0 n).trans (add_zero n)))).hom
+        ((quotientCompositionTensorMap L L K 0 n).hom
+          ((β_ ((quotientCoefficientCochainComplex L K).X n)
+            ((quotientCoefficientCochainComplex L L).X 0)).hom.hom
+            (ULift.up x ⊗ₜ[QuotientCoefficientRing]
+              (quotientIdentitySpan L).hom 1))) = ULift.up x
+  rw [show (quotientIdentitySpan L).hom 1 =
+      ULift.up (quotientIdentityElement L) by
+    exact LinearMap.toSpanSingleton_apply_one QuotientCoefficientRing _ _]
+  rw [ModuleCat.MonoidalCategory.braiding_hom_apply]
+  rw [quotientCompositionTensorMap_tmul]
+  rw [quotientCoefficient_eqToHom_apply_up] <;> try omega
+  change ULift.up
+      ((eqToHom (congrArg (quotientGradedModule L K)
+        ((Int.add_comm 0 n).trans (add_zero n)))).hom
+          (quotientCompositionMap L L K 0 n (quotientIdentityElement L) x)) =
+    ULift.up x
+  apply ULift.down_injective
+  exact quotientCompositionMap_left_unit L K n x
+
+theorem quotientDGChainEnrichedId_comp
+    (K L : CorrectedQuotientDGCategory) :
+    (λ_ (quotientDGChainEnrichedHom K L)).inv ≫
+        quotientDGChainEnrichedId K ▷ quotientDGChainEnrichedHom K L ≫
+        quotientDGChainEnrichedComp K K L = 𝟙 _ := by
+  apply HomologicalComplex.Hom.ext
+  funext n
+  apply (cancel_mono
+    (((quotientDGEnrichedHom K L).truncLE'ToRestriction
+      ComplexShape.embeddingDownNat).f n)).1
+  simp only [HomologicalComplex.comp_f, HomologicalComplex.id_f]
+  change ((((HomologicalComplex.leftUnitor'
+      (quotientDGChainEnrichedHom K L)).inv n ≫ _) ≫ _) ≫ _) = _
+  rw [HomologicalComplex.leftUnitor'_inv]
+  slice_lhs 3 4 =>
+    change _ ≫ (HomologicalComplex.tensorHom
+      (quotientDGChainEnrichedId K)
+      (𝟙 (quotientDGChainEnrichedHom K L))).f n
+    rw [quotientChain_ιTensorObj_tensorHom]
+  simp only [Category.assoc, HomologicalComplex.id_f]
+  dsimp only [quotientDGChainEnrichedComp]
+  slice_lhs 4 5 =>
+    change HomologicalComplex.ιTensorObj
+      (quotientDGChainEnrichedHom K K)
+      (quotientDGChainEnrichedHom K L) 0 n n (zero_add n) ≫
+        quotientTruncatedMapDegree (quotientDGEnrichedComp K K L) n
+    exact ιTensorObj_quotientTruncatedMapDegree
+      (quotientDGEnrichedComp K K L) (zero_add n)
+  erw [quotientTruncatedMapComponent_toRestriction]
+  dsimp [quotientTruncatedMapToCochain]
+  simp only [Category.assoc, Category.id_comp,
+    MonoidalCategory.id_whiskerRight]
+  rw [quotientDGChainEnrichedId_f_zero]
+  slice_lhs 2 3 =>
+    rw [MonoidalCategory.tensorHom_comp_tensorHom]
+  simp only [Category.id_comp]
+  rw [quotientDGChainIdentityDegreeZero_toRestriction]
+  simp only [Category.assoc]
+  dsimp only [quotientDGEnrichedHom, quotientDGEnrichedComp]
+  rw [ιTensorObj_quotientDGComposition]
+  apply ModuleCat.hom_ext
+  apply LinearMap.ext
+  intro x
+  simp only [ModuleCat.comp_apply,
+    ModuleCat.MonoidalCategory.leftUnitor_inv_apply,
+    ModuleCat.MonoidalCategory.tensorHom_tmul]
+  exact quotientDGCompositionComponent_identity_left_apply
+    (show ComplexCategoryᵒᵖ from K).unop
+    (show ComplexCategoryᵒᵖ from L).unop (-(n : ℤ)) _
+
+theorem quotientDGChainEnriched_comp_id
+    (K L : CorrectedQuotientDGCategory) :
+    (ρ_ (quotientDGChainEnrichedHom K L)).inv ≫
+        quotientDGChainEnrichedHom K L ◁ quotientDGChainEnrichedId L ≫
+        quotientDGChainEnrichedComp K L L = 𝟙 _ := by
+  apply HomologicalComplex.Hom.ext
+  funext n
+  apply (cancel_mono
+    (((quotientDGEnrichedHom K L).truncLE'ToRestriction
+      ComplexShape.embeddingDownNat).f n)).1
+  simp only [HomologicalComplex.comp_f, HomologicalComplex.id_f]
+  change ((((HomologicalComplex.rightUnitor'
+      (quotientDGChainEnrichedHom K L)).inv n ≫ _) ≫ _) ≫ _) = _
+  rw [HomologicalComplex.rightUnitor'_inv]
+  slice_lhs 3 4 =>
+    change _ ≫ (HomologicalComplex.tensorHom
+      (𝟙 (quotientDGChainEnrichedHom K L))
+      (quotientDGChainEnrichedId L)).f n
+    rw [quotientChain_ιTensorObj_tensorHom]
+  simp only [Category.assoc, HomologicalComplex.id_f]
+  dsimp only [quotientDGChainEnrichedComp]
+  slice_lhs 4 5 =>
+    change HomologicalComplex.ιTensorObj
+      (quotientDGChainEnrichedHom K L)
+      (quotientDGChainEnrichedHom L L) n 0 n (add_zero n) ≫
+        quotientTruncatedMapDegree (quotientDGEnrichedComp K L L) n
+    exact ιTensorObj_quotientTruncatedMapDegree
+      (quotientDGEnrichedComp K L L) (add_zero n)
+  erw [quotientTruncatedMapComponent_toRestriction]
+  dsimp [quotientTruncatedMapToCochain]
+  simp only [Category.assoc, Category.id_comp,
+    MonoidalCategory.whiskerLeft_id]
+  rw [quotientDGChainEnrichedId_f_zero]
+  slice_lhs 2 3 =>
+    rw [MonoidalCategory.tensorHom_comp_tensorHom]
+  simp only [Category.id_comp]
+  rw [quotientDGChainIdentityDegreeZero_toRestriction]
+  simp only [Category.assoc]
+  dsimp only [quotientDGEnrichedHom, quotientDGEnrichedComp]
+  rw [ιTensorObj_quotientDGComposition]
+  apply ModuleCat.hom_ext
+  apply LinearMap.ext
+  intro x
+  simp only [ModuleCat.comp_apply,
+    ModuleCat.MonoidalCategory.rightUnitor_inv_apply,
+    ModuleCat.MonoidalCategory.tensorHom_tmul]
+  exact quotientDGCompositionComponent_identity_right_apply
+    (show ComplexCategoryᵒᵖ from K).unop
+    (show ComplexCategoryᵒᵖ from L).unop (-(n : ℤ)) _
+
+end DrinfeldWord
+end MetrizableBoundedComplexes
+end Infinity
+end LeanLCAExactChallenge
