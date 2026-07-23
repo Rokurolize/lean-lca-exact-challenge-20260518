@@ -1,9 +1,9 @@
 name: Export current main source
 
 on:
-  pull_request:
+  push:
     branches:
-      - main
+      - objective4-source-export-20260723
   workflow_dispatch:
 
 permissions:
