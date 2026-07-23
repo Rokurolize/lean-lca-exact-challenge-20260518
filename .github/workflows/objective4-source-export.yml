@@ -1,0 +1,33 @@
+name: Export current main source
+
+on:
+  push:
+    branches:
+      - objective4-source-export-20260723
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Archive exact main source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git archive --format=tar.gz --prefix=source/ --output=/tmp/objective4-main-source.tar.gz origin/main
+          sha256sum /tmp/objective4-main-source.tar.gz | tee /tmp/objective4-main-source.tar.gz.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: objective4-main-source
+          path: |
+            /tmp/objective4-main-source.tar.gz
+            /tmp/objective4-main-source.tar.gz.sha256
+          if-no-files-found: error
+          compression-level: 0
