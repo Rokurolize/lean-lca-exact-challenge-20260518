@@ -356,12 +356,17 @@ def evaluateSucc
   (TensorProduct.lift (E.evaluateSuccBilinear d tailEval)).comp
     (eqToHom (summandModule_succ d)).hom
 
-/-- Length-zero words evaluate by the original enriched functor. -/
+/-- A length-zero word with any compatible profile evaluates by the original enriched functor. -/
+def evaluateNilProfile
+    (X Y : ComplexCategory) {n : ℤ} (d : DegreeProfile (nil X Y) n) :
+    summandModule d →ₗ[ℤ] (E.hom X Y).X n :=
+  (E.factorMap X Y n).comp (nilSummandIsoOriginal X Y d).hom.hom
+
+/-- Length-zero words with the canonical profile evaluate by the original enriched functor. -/
 def evaluateNil
     (X Y : ComplexCategory) (n : ℤ) :
     summandModule (nilDegreeProfile X Y n) →ₗ[ℤ] (E.hom X Y).X n :=
-  (E.factorMap X Y n).comp
-    (nilSummandIsoOriginal X Y (nilDegreeProfile X Y n)).hom.hom
+  E.evaluateNilProfile X Y (nilDegreeProfile X Y n)
 
 /-- Every degree profile on the zero-length word is the canonical profile. -/
 theorem degreeProfile_nil_eq
@@ -388,11 +393,7 @@ noncomputable def evaluateWordOfLength
       let w : DrinfeldWord X Y := { length := 0, intermediate := intermediate }
       have hw : w = nil X Y := eq_nil_of_length_eq_zero w rfl
       let d0 := d.castWord hw
-      have hd0 : d0 = nilDegreeProfile X Y n := degreeProfile_nil_eq d0
-      let transport : summandModule d ⟶ summandModule (nilDegreeProfile X Y n) :=
-        (summandModuleCastWordIso hw d).hom ≫
-          eqToHom (congrArg (fun q ↦ summandModule q) hd0)
-      exact (E.evaluateNil X Y n).comp transport.hom
+      exact (E.evaluateNilProfile X Y d0).comp (summandModuleCastWordIso hw d).hom.hom
   | k + 1, intermediate, n, d =>
       E.evaluateSucc d
         (evaluateWordOfLength k
