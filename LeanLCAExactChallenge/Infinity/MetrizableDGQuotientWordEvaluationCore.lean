@@ -244,13 +244,13 @@ theorem factorModule_zero_succ
   rw [hzero, Fin.lastCases_castSucc]
 
 /-- The tail degree plus the contracted first-factor degree is the total word degree. -/
-theorem tailDegree_add_head_sub_one
+theorem tailDegree_add_neg_one_add_head
     {X Y : ComplexCategory} {k : ℕ}
     {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
     {n : ℤ}
     (d : DegreeProfile
       ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
-    tailDegree d + (d.arrowDegree 0 - 1) = n := by
+    tailDegree d + (-1 + d.arrowDegree 0) = n := by
   unfold tailDegree
   omega
 
@@ -274,9 +274,9 @@ def firstContractionMap
     (d : DegreeProfile
       ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
     factorModule d 0 →ₗ[ℤ]
-      (E.hom X (intermediate 0).obj).X (d.arrowDegree 0 - 1) :=
+      (E.hom X (intermediate 0).obj).X (-1 + d.arrowDegree 0) :=
   (E.composeFirstMap X (intermediate 0).obj (intermediate 0).obj
-      (d.arrowDegree 0) (-1) (d.arrowDegree 0 - 1) (by omega)
+      (d.arrowDegree 0) (-1) (-1 + d.arrowDegree 0) rfl
       (E.contraction (intermediate 0))).comp
     (E.firstFactorMap d)
 
@@ -291,56 +291,56 @@ def evaluateSuccBilinear
       (E.hom (intermediate 0).obj Y).X (tailDegree d)) :
     factorModule d 0 →ₗ[ℤ]
       summandModule (tailDegreeProfile d) →ₗ[ℤ] (E.hom X Y).X n := by
-  let hdeg := tailDegree_add_head_sub_one d
+  let hdeg := tailDegree_add_neg_one_add_head d
   refine LinearMap.mk₂ ℤ
     (fun x t ↦ E.composeElement X (intermediate 0).obj Y
-      (d.arrowDegree 0 - 1) (tailDegree d) n hdeg
+      (-1 + d.arrowDegree 0) (tailDegree d) n hdeg
       (E.firstContractionMap d x) (tailEval t)) ?_ ?_ ?_ ?_
   · intro x₁ x₂ t
     calc
       E.composeElement X (intermediate 0).obj Y
-          (d.arrowDegree 0 - 1) (tailDegree d) n hdeg
+          (-1 + d.arrowDegree 0) (tailDegree d) n hdeg
           (E.firstContractionMap d (x₁ + x₂)) (tailEval t) =
         E.composeElement X (intermediate 0).obj Y
-          (d.arrowDegree 0 - 1) (tailDegree d) n hdeg
+          (-1 + d.arrowDegree 0) (tailDegree d) n hdeg
           (E.firstContractionMap d x₁ + E.firstContractionMap d x₂) (tailEval t) := by
             rw [map_add]
       _ = _ := (E.composeFirstMap X (intermediate 0).obj Y
-        (d.arrowDegree 0 - 1) (tailDegree d) n hdeg (tailEval t)).map_add _ _
+        (-1 + d.arrowDegree 0) (tailDegree d) n hdeg (tailEval t)).map_add _ _
   · intro r x t
     calc
       E.composeElement X (intermediate 0).obj Y
-          (d.arrowDegree 0 - 1) (tailDegree d) n hdeg
+          (-1 + d.arrowDegree 0) (tailDegree d) n hdeg
           (E.firstContractionMap d (r • x)) (tailEval t) =
         E.composeElement X (intermediate 0).obj Y
-          (d.arrowDegree 0 - 1) (tailDegree d) n hdeg
+          (-1 + d.arrowDegree 0) (tailDegree d) n hdeg
           (r • E.firstContractionMap d x) (tailEval t) := by
             rw [map_smul]
       _ = _ := (E.composeFirstMap X (intermediate 0).obj Y
-        (d.arrowDegree 0 - 1) (tailDegree d) n hdeg (tailEval t)).map_smul r _
+        (-1 + d.arrowDegree 0) (tailDegree d) n hdeg (tailEval t)).map_smul r _
   · intro x t₁ t₂
     calc
       E.composeElement X (intermediate 0).obj Y
-          (d.arrowDegree 0 - 1) (tailDegree d) n hdeg
+          (-1 + d.arrowDegree 0) (tailDegree d) n hdeg
           (E.firstContractionMap d x) (tailEval (t₁ + t₂)) =
         E.composeElement X (intermediate 0).obj Y
-          (d.arrowDegree 0 - 1) (tailDegree d) n hdeg
+          (-1 + d.arrowDegree 0) (tailDegree d) n hdeg
           (E.firstContractionMap d x) (tailEval t₁ + tailEval t₂) := by
             rw [map_add]
       _ = _ := (E.composeSecondMap X (intermediate 0).obj Y
-        (d.arrowDegree 0 - 1) (tailDegree d) n hdeg
+        (-1 + d.arrowDegree 0) (tailDegree d) n hdeg
         (E.firstContractionMap d x)).map_add _ _
   · intro r x t
     calc
       E.composeElement X (intermediate 0).obj Y
-          (d.arrowDegree 0 - 1) (tailDegree d) n hdeg
+          (-1 + d.arrowDegree 0) (tailDegree d) n hdeg
           (E.firstContractionMap d x) (tailEval (r • t)) =
         E.composeElement X (intermediate 0).obj Y
-          (d.arrowDegree 0 - 1) (tailDegree d) n hdeg
+          (-1 + d.arrowDegree 0) (tailDegree d) n hdeg
           (E.firstContractionMap d x) (r • tailEval t) := by
             rw [map_smul]
       _ = _ := (E.composeSecondMap X (intermediate 0).obj Y
-        (d.arrowDegree 0 - 1) (tailDegree d) n hdeg
+        (-1 + d.arrowDegree 0) (tailDegree d) n hdeg
         (E.firstContractionMap d x)).map_smul r _
 
 /-- Evaluate a positive word after recursively evaluating its tail. -/
