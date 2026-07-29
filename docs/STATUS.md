@@ -33,6 +33,8 @@ The comparison with actual quotient summand composition is now proved. The nil/s
 
 The dependent coordinates for prefixing an arbitrary-degree zero word to a positive word are now normalized independently of that assembly. The appended word is identified with the same positive intermediate-object family and a changed source; its degree list is the merged head degree followed by the unchanged recursive tail; and the transported tail profile and tail summand are identified with the original positive tail. Consequently the composite summand has a canonical merged-head-factor/tail-summand tensor decomposition, with all surrounding maps proved to be equality transports. The action of `summandCompositionMap` in these coordinates and the resulting evaluation/multiplicativity theorem remain open.
 
+The boundary operation for this zero-left/positive-right case is now normalized as well. Its source is the tensor product of the original homogeneous zero-word factor and the positive head factor, its target is the homogeneous source-to-first-intermediate factor in the summed degree, and the dependent `compositionBoundaryMap` is proved—after exactly those source and target transports—to be ordinary DG composition. The corresponding normalized head map and its action on pure tensors are public. Lifting this head calculation through the full adjacent-merge/tail tensor map, then proving evaluation multiplicativity and the cochain-level assembly, remains open.
+
 Still missing, and required before objective 4 can be called complete:
 
 1. Prove the Dwyer–Kan or Drinfeld base-change comparison between the ordinary localization carrier and the localized coherent DG carrier.
