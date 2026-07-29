@@ -27,6 +27,8 @@ The positive-length multiplicativity induction step is now proved on canonical p
 
 The terminal zero-length case is also proved: composing two zero-word summands, transporting the result through the canonical dependent coordinates, and evaluating agrees with enriched composition of the two original DG morphism images. The zero-length left-word case against an arbitrary positive right word, followed by the linear/cochain-level assembly, remains open.
 
+The coordinate layer for that remaining case is now public. The first ordinary factor of a positive word and its formal singleton contraction are represented by explicit summand maps; their direct target keeps the original head factor and the contraction's remaining identity factor. Comparison with the actual quotient composition and subsequent tail assembly remain open.
+
 Still missing, and required before objective 4 can be called complete:
 
 1. Prove the Dwyer–Kan or Drinfeld base-change comparison between the ordinary localization carrier and the localized coherent DG carrier.
