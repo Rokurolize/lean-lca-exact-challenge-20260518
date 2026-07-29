@@ -21,6 +21,8 @@ The coherent DG side now has a canonical map from the ordinary nerve, an all-dim
 
 The evaluation-side and composition-side positive target isomorphisms are now proved to have exactly the same hom map, so the multiplicativity induction no longer has a transport mismatch between its recursive evaluation and recursive composition coordinates.
 
+In those common coordinates, evaluation of an appended positive word is now expanded recursively. On pure head/tail tensors it is the enriched composition of the contracted head with the recursively evaluated appended tail.
+
 Still missing, and required before objective 4 can be called complete:
 
 1. Prove the Dwyer–Kan or Drinfeld base-change comparison between the ordinary localization carrier and the localized coherent DG carrier.
