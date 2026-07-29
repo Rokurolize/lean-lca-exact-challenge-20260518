@@ -131,6 +131,34 @@ theorem headContractionRightSuffix
           (singletonContractingDegreeProfile (intermediate 0))) 1] := by
   rfl
 
+/-- The singleton right-unitor target is the head/contraction suffix tensor object. -/
+def headContractionRightSuffixTensorEq
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    factorModule
+        ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+          (singletonContractingDegreeProfile (intermediate 0))) 1 ⊗
+        𝟙_ (ModuleCat.{0} ℤ) =
+      tensorModuleList (compositionRightSuffix
+        ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+          (singletonContractingDegreeProfile (intermediate 0)))) := by
+  rw [headContractionRightSuffix]
+  rfl
+
+/-- Transport across an object equality commutes with the inverse right unitor. -/
+theorem eqToHom_symm_comp_rightUnitor_inv_comp_transport
+    {M N P : ModuleCat.{0} ℤ} (h : M = N)
+    (q : N ⊗ 𝟙_ (ModuleCat.{0} ℤ) = P) :
+    eqToHom h.symm ≫ (ρ_ M).inv ≫
+        eqToHom ((congrArg
+          (fun T : ModuleCat.{0} ℤ ↦ T ⊗ 𝟙_ (ModuleCat.{0} ℤ)) h).trans q) =
+      (ρ_ N).inv ≫ eqToHom q := by
+  subst N
+  rfl
+
 /-- The first factor of the formal contraction is the degree-zero endomorphism module. -/
 theorem singletonContractingFactor_zero
     (A : CorrectedAcyclicComplexCategory) :
@@ -336,7 +364,12 @@ def headContractionIdentityTailMap
     𝟙_ (ModuleCat.{0} ℤ) ⟶ tensorModuleList (compositionRightSuffix
       ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
         (singletonContractingDegreeProfile (intermediate 0)))) :=
-  ModuleCat.ofHom (LinearMap.toSpanSingleton ℤ _ (headContractionIdentityTail d))
+  identityCochainInclusion (intermediate 0).obj ≫
+    eqToHom (headContractionFactor_one d).symm ≫
+    (ρ_ (factorModule
+      ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+        (singletonContractingDegreeProfile (intermediate 0))) 1)).inv ≫
+    eqToHom (headContractionRightSuffixTensorEq d)
 
 @[simp]
 theorem headContractionIdentityTailMap_apply_one
@@ -346,8 +379,13 @@ theorem headContractionIdentityTailMap_apply_one
     (d : DegreeProfile
       ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
     (headContractionIdentityTailMap d).hom 1 = headContractionIdentityTail d := by
+  have hid : (identityCochainInclusion (intermediate 0).obj).hom 1 =
+      identityCochain (intermediate 0).obj := by
+    exact LinearMap.toSpanSingleton_apply_one ℤ _ _
   unfold headContractionIdentityTailMap
-  exact LinearMap.toSpanSingleton_apply_one ℤ _ _
+  simp only [ModuleCat.comp_apply, hid]
+  unfold headContractionIdentityTail
+  congr 1
 
 /-- Transporting the singleton tail through a zero-word append gives the output identity tail. -/
 theorem singletonContractingTailMap_to_headTail
@@ -460,6 +498,306 @@ def headContractionDirectMap
     (summandFirstFactorIso
       ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
         (singletonContractingDegreeProfile (intermediate 0)))).inv
+
+/-- The last arrow of the two-arrow head/contraction word has index one. -/
+theorem positiveHeadContractionLastIndexEq
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {n : ℤ}
+    (_d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    Fin.last (((nil X (intermediate 0).obj).append
+      (singleton (intermediate 0).obj (intermediate 0).obj
+        (intermediate 0))).length) = 1 := by
+  apply Fin.ext
+  rfl
+
+/-- The head/contraction word has exactly its head factor before the final contraction factor. -/
+theorem headContractionLeftPrefix
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    compositionLeftPrefix
+        ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+          (singletonContractingDegreeProfile (intermediate 0))) =
+      [factorModule
+        ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+          (singletonContractingDegreeProfile (intermediate 0))) 0] := by
+  rw [compositionLeftPrefix_succ_eq]
+  rfl
+
+/-- The last factor of the head/contraction word is the remaining identity cochain. -/
+theorem positiveHeadContractionLastFactorEq
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    factorModule
+        ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+          (singletonContractingDegreeProfile (intermediate 0)))
+        (Fin.last (((nil X (intermediate 0).obj).append
+          (singleton (intermediate 0).obj (intermediate 0).obj
+            (intermediate 0))).length)) =
+      (dgHomZModuleCochainComplex (intermediate 0).obj (intermediate 0).obj).X 0 := by
+  exact (congrArg
+    (factorModule
+      ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+        (singletonContractingDegreeProfile (intermediate 0))))
+    (positiveHeadContractionLastIndexEq d)).trans (headContractionFactor_one d)
+
+/-- The head/contraction word's final identity as a map from the tensor unit. -/
+def positiveHeadContractionLastIdentityMap
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    𝟙_ (ModuleCat.{0} ℤ) ⟶
+      factorModule
+        ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+          (singletonContractingDegreeProfile (intermediate 0)))
+        (Fin.last (((nil X (intermediate 0).obj).append
+          (singleton (intermediate 0).obj (intermediate 0).obj
+            (intermediate 0))).length)) :=
+  identityCochainInclusion (intermediate 0).obj ≫
+    eqToHom (positiveHeadContractionLastFactorEq d).symm
+
+/-- The final identity with its singleton tensor-unit coordinate attached. -/
+def positiveHeadContractionLastSingletonMap
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    𝟙_ (ModuleCat.{0} ℤ) ⟶
+      tensorModuleList
+        [factorModule
+          ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+            (singletonContractingDegreeProfile (intermediate 0)))
+          (Fin.last (((nil X (intermediate 0).obj).append
+            (singleton (intermediate 0).obj (intermediate 0).obj
+              (intermediate 0))).length))] :=
+  positiveHeadContractionLastIdentityMap d ≫
+    (ρ_ (factorModule
+      ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+        (singletonContractingDegreeProfile (intermediate 0)))
+      (Fin.last (((nil X (intermediate 0).obj).append
+        (singleton (intermediate 0).obj (intermediate 0).obj
+          (intermediate 0))).length)))).inv
+
+/-- The last-factor right-unitor target is the head/contraction suffix tensor object. -/
+def positiveHeadContractionLastRightSuffixTensorEq
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    factorModule
+        ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+          (singletonContractingDegreeProfile (intermediate 0)))
+        (Fin.last (((nil X (intermediate 0).obj).append
+          (singleton (intermediate 0).obj (intermediate 0).obj
+            (intermediate 0))).length)) ⊗
+      𝟙_ (ModuleCat.{0} ℤ) =
+      tensorModuleList (compositionRightSuffix
+        ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+          (singletonContractingDegreeProfile (intermediate 0)))) :=
+  (congrArg (fun M : ModuleCat.{0} ℤ ↦ M ⊗ 𝟙_ (ModuleCat.{0} ℤ))
+    (congrArg
+      (factorModule
+        ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+          (singletonContractingDegreeProfile (intermediate 0))))
+      (positiveHeadContractionLastIndexEq d))).trans
+    (headContractionRightSuffixTensorEq d)
+
+/-- The direct head/last-factor tensor is the last-factor coordinate object. -/
+def headContractionLastCoordinateEq
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    factorModule
+        ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+          (singletonContractingDegreeProfile (intermediate 0))) 0 ⊗
+      tensorModuleList
+        [factorModule
+          ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+            (singletonContractingDegreeProfile (intermediate 0)))
+          (Fin.last (((nil X (intermediate 0).obj).append
+            (singleton (intermediate 0).obj (intermediate 0).obj
+              (intermediate 0))).length))] =
+      tensorModuleList
+        (compositionLeftPrefix
+            ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+              (singletonContractingDegreeProfile (intermediate 0))) ++
+          [factorModule
+            ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+              (singletonContractingDegreeProfile (intermediate 0)))
+            (Fin.last (((nil X (intermediate 0).obj).append
+              (singleton (intermediate 0).obj (intermediate 0).obj
+                (intermediate 0))).length))]) := by
+  change tensorModuleList
+      ([factorModule
+          ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+            (singletonContractingDegreeProfile (intermediate 0))) 0] ++
+        [factorModule
+          ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+            (singletonContractingDegreeProfile (intermediate 0)))
+          (Fin.last (((nil X (intermediate 0).obj).append
+            (singleton (intermediate 0).obj (intermediate 0).obj
+              (intermediate 0))).length))]) = _
+  exact congrArg tensorModuleList
+    (congrArg
+      (fun xs ↦ xs ++
+        [factorModule
+          ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+            (singletonContractingDegreeProfile (intermediate 0)))
+          (Fin.last (((nil X (intermediate 0).obj).append
+            (singleton (intermediate 0).obj (intermediate 0).obj
+              (intermediate 0))).length))])
+      (headContractionLeftPrefix d)).symm
+
+/-- Passing from first-factor to last-factor coordinates removes exactly the suffix transport. -/
+theorem headContractionFirstToLastCoordinateMap
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    eqToHom (headFirstCoordinateEq d) ≫
+        (summandFirstFactorIso
+          ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+            (singletonContractingDegreeProfile (intermediate 0)))).inv ≫
+        (summandLastFactorIso
+          ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+            (singletonContractingDegreeProfile (intermediate 0)))).hom =
+      (𝟙 (factorModule
+          ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+            (singletonContractingDegreeProfile (intermediate 0))) 0) ⊗ₘ
+        eqToHom (positiveHeadContractionLastRightSuffixTensorEq d).symm) ≫
+      eqToHom (headContractionLastCoordinateEq d) := by
+  have htensor := tensor_eqToHom
+    (rfl : factorModule
+      ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+        (singletonContractingDegreeProfile (intermediate 0))) 0 = _)
+    (positiveHeadContractionLastRightSuffixTensorEq d).symm
+  have htensor' :
+      (𝟙 (factorModule
+          ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+            (singletonContractingDegreeProfile (intermediate 0))) 0) ⊗ₘ
+        eqToHom (positiveHeadContractionLastRightSuffixTensorEq d).symm) =
+      eqToHom (congrArg₂
+        (fun M N : ModuleCat.{0} ℤ ↦ M ⊗ N)
+        (rfl : factorModule
+          ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+            (singletonContractingDegreeProfile (intermediate 0))) 0 = _)
+        (positiveHeadContractionLastRightSuffixTensorEq d).symm) := by
+    exact htensor.symm
+  rw [htensor']
+  unfold summandFirstFactorIso summandLastFactorIso
+  simp only [eqToIso.inv, eqToIso.hom, eqToHom_trans]
+
+/-- The singleton tail coordinate is the final identity followed by the singleton
+right-unitor coordinate. -/
+theorem headContractionIdentityTailMap_eq_lastIdentityMap
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    headContractionIdentityTailMap d =
+      positiveHeadContractionLastIdentityMap d ≫
+        (ρ_ (factorModule
+          ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+            (singletonContractingDegreeProfile (intermediate 0)))
+          (Fin.last (((nil X (intermediate 0).obj).append
+            (singleton (intermediate 0).obj (intermediate 0).obj
+              (intermediate 0))).length)))).inv ≫
+        eqToHom (positiveHeadContractionLastRightSuffixTensorEq d) := by
+  unfold headContractionIdentityTailMap positiveHeadContractionLastIdentityMap
+  let h : factorModule
+        ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+          (singletonContractingDegreeProfile (intermediate 0)))
+        (Fin.last (((nil X (intermediate 0).obj).append
+          (singleton (intermediate 0).obj (intermediate 0).obj
+            (intermediate 0))).length)) =
+      factorModule
+        ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+          (singletonContractingDegreeProfile (intermediate 0))) 1 :=
+    congrArg
+      (factorModule
+        ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+          (singletonContractingDegreeProfile (intermediate 0))))
+      (positiveHeadContractionLastIndexEq d)
+  let q := headContractionRightSuffixTensorEq d
+  rw [← eqToHom_symm_comp_rightUnitor_inv_comp_transport h q]
+  simp only [Category.assoc]
+  congr 1
+
+/-- In last-factor coordinates the direct map is the head tensored with the final identity. -/
+theorem headContractionDirectMap_comp_lastFactorIso
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    headContractionDirectMap d ≫
+        (summandLastFactorIso
+          ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+            (singletonContractingDegreeProfile (intermediate 0)))).hom =
+      (ρ_ (factorModule d 0)).inv ≫
+        (eqToHom (headContractionFactor_zero d).symm ⊗ₘ
+          positiveHeadContractionLastSingletonMap d) ≫
+        eqToHom (headContractionLastCoordinateEq d) := by
+  unfold headContractionDirectMap
+  rw [headContractionIdentityTailMap_eq_lastIdentityMap]
+  simp only [Category.assoc]
+  rw [headContractionFirstToLastCoordinateMap]
+  unfold positiveHeadContractionLastSingletonMap
+  simp only [Category.comp_id, eqToHom_refl,
+    MonoidalCategory.id_tensorHom_id]
+
+/-- The last-factor direct map first transports the ordinary head factor, then inserts the
+remaining singleton identity coordinate. -/
+theorem headContractionDirectMap_comp_lastFactorIso_factored
+    {X Y : ComplexCategory} {k : ℕ}
+    {intermediate : Fin (k + 1) → CorrectedAcyclicComplexCategory}
+    {n : ℤ}
+    (d : DegreeProfile
+      ({ length := k + 1, intermediate := intermediate } : DrinfeldWord X Y) n) :
+    headContractionDirectMap d ≫
+        (summandLastFactorIso
+          ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+            (singletonContractingDegreeProfile (intermediate 0)))).hom =
+      eqToHom (headContractionFactor_zero d).symm ≫
+        (ρ_ (factorModule
+          ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+            (singletonContractingDegreeProfile (intermediate 0))) 0)).inv ≫
+        (𝟙 (factorModule
+            ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+              (singletonContractingDegreeProfile (intermediate 0))) 0) ⊗ₘ
+          positiveHeadContractionLastSingletonMap d) ≫
+        eqToHom (headContractionLastCoordinateEq d) := by
+  rw [headContractionDirectMap_comp_lastFactorIso]
+  have htensor :
+      (eqToHom (headContractionFactor_zero d).symm ⊗ₘ
+          positiveHeadContractionLastSingletonMap d) =
+        (eqToHom (headContractionFactor_zero d).symm ⊗ₘ
+            𝟙 (𝟙_ (ModuleCat.{0} ℤ))) ≫
+          (𝟙 (factorModule
+              ((nilDegreeProfile X (intermediate 0).obj (d.arrowDegree 0)).append
+                (singletonContractingDegreeProfile (intermediate 0))) 0) ⊗ₘ
+            positiveHeadContractionLastSingletonMap d) := by
+    rw [MonoidalCategory.tensorHom_comp_tensorHom]
+    simp
+  rw [htensor]
+  simp only [Category.assoc]
+  rw [MonoidalCategory.tensorHom_id]
+  rw [← MonoidalCategory.rightUnitor_inv_naturality_assoc]
 
 end AnnihilatingEnrichedFunctorData
 end DrinfeldWord
