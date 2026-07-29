@@ -31,6 +31,8 @@ The coordinate layer for that remaining case is now public. The first ordinary f
 
 The comparison with actual quotient summand composition is now proved. The nil/singleton boundary is normalized to ordinary DG composition, its first identity factor acts as a right unit, and composing the positive head with the formal contraction equals the direct head/remaining-identity coordinates. The original positive tail is now adjoined as well: the remaining identity factor acts as a left unit at the tail boundary, the three-stage quotient composition is identified with the standard positive-word coordinate map, and the resulting element is proved equal to the original head/tail tensor. The remaining work in this branch is to use this zero-length-left/positive-right result in the full linear and cochain-level multiplicativity assembly.
 
+The dependent coordinates for prefixing an arbitrary-degree zero word to a positive word are now normalized independently of that assembly. The appended word is identified with the same positive intermediate-object family and a changed source; its degree list is the merged head degree followed by the unchanged recursive tail; and the transported tail profile and tail summand are identified with the original positive tail. Consequently the composite summand has a canonical merged-head-factor/tail-summand tensor decomposition, with all surrounding maps proved to be equality transports. The action of `summandCompositionMap` in these coordinates and the resulting evaluation/multiplicativity theorem remain open.
+
 Still missing, and required before objective 4 can be called complete:
 
 1. Prove the Dwyer–Kan or Drinfeld base-change comparison between the ordinary localization carrier and the localized coherent DG carrier.
