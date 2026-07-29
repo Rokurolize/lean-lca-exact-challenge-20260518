@@ -29,7 +29,7 @@ The terminal zero-length case is also proved: composing two zero-word summands, 
 
 The coordinate layer for that remaining case is now public. The first ordinary factor of a positive word and its formal singleton contraction are represented by explicit summand maps; their direct target keeps the original head factor and the contraction's remaining identity factor. Comparison with the actual quotient composition and subsequent tail assembly remain open.
 
-The comparison with actual quotient summand composition is now proved. The nil/singleton boundary is normalized to ordinary DG composition, its first identity factor acts as a right unit, and composing the positive head with the formal contraction equals the direct head/remaining-identity coordinates. Adjoining and identifying the positive tail remains open.
+The comparison with actual quotient summand composition is now proved. The nil/singleton boundary is normalized to ordinary DG composition, its first identity factor acts as a right unit, and composing the positive head with the formal contraction equals the direct head/remaining-identity coordinates. The original positive tail is now adjoined as well: the remaining identity factor acts as a left unit at the tail boundary, the three-stage quotient composition is identified with the standard positive-word coordinate map, and the resulting element is proved equal to the original head/tail tensor. The remaining work in this branch is to use this zero-length-left/positive-right result in the full linear and cochain-level multiplicativity assembly.
 
 Still missing, and required before objective 4 can be called complete:
 
