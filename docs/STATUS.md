@@ -23,7 +23,9 @@ The evaluation-side and composition-side positive target isomorphisms are now pr
 
 In those common coordinates, evaluation of an appended positive word is now expanded recursively. On pure head/tail tensors it is the enriched composition of the contracted head with the recursively evaluated appended tail. The remaining positive-append transports are also normalized back to the original coordinates: the head degree and contraction reduce to those of the original positive word, the recursive tail evaluation reduces to evaluation of the appended original tail profile, and the resulting pure-tensor formula is ready for the multiplicativity induction.
 
-The positive-length multiplicativity induction step is now proved on canonical pure head/tail coordinates. Recursive summand composition fixes the head and composes only the tail; assuming multiplicativity for that tail, normalized evaluation recursion and target associativity prove multiplicativity for the full positive word. The zero-length left-word base case and the subsequent linear/cochain-level assembly remain open.
+The positive-length multiplicativity induction step is now proved on canonical pure head/tail coordinates. Recursive summand composition fixes the head and composes only the tail; assuming multiplicativity for that tail, normalized evaluation recursion and target associativity prove multiplicativity for the full positive word.
+
+The terminal zero-length case is also proved: composing two zero-word summands, transporting the result through the canonical dependent coordinates, and evaluating agrees with enriched composition of the two original DG morphism images. The zero-length left-word case against an arbitrary positive right word, followed by the linear/cochain-level assembly, remains open.
 
 Still missing, and required before objective 4 can be called complete:
 
