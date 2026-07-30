@@ -70,7 +70,9 @@ private theorem routeBInternalHomPrecompReflectsBicategoricalEquivalence
   let counit : g ≫ f ≅ 𝟙 Y := EYY.preimageIso counitBase
   exact ⟨Bicategory.Equivalence.mkOfAdjointifyCounit unit'.symm counit, rfl⟩
 
-private theorem routeBMappingLocalizationTriangleUniqueness
+/-- Two mapping-quasicategory localizations of the same marked quasicategory are equivalent
+along any strict comparison triangle. -/
+theorem mappingLocalizationTriangleUniqueness
     {A L D : SSet.QCat.{u}} (W : EdgeMarking A.obj)
     (ell : A ⟶ L) (d : A ⟶ D) (b : L ⟶ D)
     (htriangle : ell ≫ b = d)
@@ -116,7 +118,7 @@ theorem routeBBaseChange_isBicategoricalEquivalence
     (h : MetrizableDirectDGMappingLocalizationProperty) :
     IsBicategoricalEquivalence
       metrizableOrdinaryToDirectDGBaseChangeQCatMap := by
-  apply routeBMappingLocalizationTriangleUniqueness
+  apply mappingLocalizationTriangleUniqueness
     (relativeNerveEdgeMarking relativeCategory)
     metrizableEquivalenceForcingQCatMap
     metrizableComplexNerveToLocalizedDirectDGQCatMap
