@@ -1384,4 +1384,147 @@ theorem endpointFiberInternalHomSimplex_forward {n : ℕ} {X Y : C}
     (fun t ↦ t.app (op (SimplexCategory.mk n))) hmap
   exact CategoryTheory.congr_fun happ h
 
+private lemma eqToHom_app_heq {A B : SSet.{u}} (e : A = B)
+    (U : SimplexCategoryᵒᵖ) (x : A.obj U) :
+    HEq ((eqToHom e).app U x) x := by
+  cases e
+  rfl
+
+/-- The last zero-side vertex of the `a`th extraction path is exactly the `a`th source
+coordinate. -/
+theorem lastZero_extractionPath {n : ℕ} (a : Fin (n + 1)) :
+    lastZero (SSet.stdSimplex.objMk (finalStepOrderHom n)) rfl
+      (extractionPath a) = ULift.up a.castSucc := by
+  classical
+  apply le_antisymm
+  · apply Finset.max'_le
+    intro k hk
+    have hk' := (Finset.mem_filter.mp hk).2
+    rcases hk'.1 with hk | hk
+    · exact hk
+    · have hk0 : intervalValue
+          (SSet.stdSimplex.objMk (finalStepOrderHom n)) k = 1 := by
+        change finalStepOrderHom n k.down = 1
+        simp [finalStepOrderHom, hk]
+      rw [hk0] at hk'
+      omega
+  · apply Finset.le_max'
+    simp only [zeroVertices, Finset.mem_filter, Finset.mem_univ, true_and]
+    constructor
+    · exact Or.inl (by rfl)
+    · change finalStepOrderHom n a.castSucc = 0
+      simp [finalStepOrderHom]
+      omega
+
+/-- The extraction path chain is sent back to the identity simplex of `Δ[n]`. -/
+theorem lastZeroSimplexMap_extraction (n : ℕ) :
+    (lastZeroSimplexMap
+        (SSet.stdSimplex.objMk (finalStepOrderHom n))
+        (extractionFirst n) (extractionLast n) rfl ≫
+      SSet.stdSimplex.map (SimplexCategory.σ (Fin.last n))).app
+        (op (SimplexCategory.mk n)) (extractionPathSimplex n) =
+      identitySimplex n := by
+  apply SSet.stdSimplex.ext
+  intro a
+  change (Fin.last n).predAbove
+      (lastZero (SSet.stdSimplex.objMk (finalStepOrderHom n)) rfl
+        ((extractionPathSimplex n).obj a)).down = a
+  change (Fin.last n).predAbove
+      (lastZero (SSet.stdSimplex.objMk (finalStepOrderHom n)) rfl
+        (extractionPath a)).down = a
+  rw [lastZero_extractionPath]
+  exact Fin.predAbove_last_castSucc
+
+private theorem lastZeroSimplexMap_extraction_of_proof (n : ℕ)
+    (hi : intervalValue (SSet.stdSimplex.objMk (finalStepOrderHom n))
+      (extractionFirst n).as = 0) :
+    (lastZeroSimplexMap
+        (SSet.stdSimplex.objMk (finalStepOrderHom n))
+        (extractionFirst n) (extractionLast n) hi ≫
+      SSet.stdSimplex.map (SimplexCategory.σ (Fin.last n))).app
+        (op (SimplexCategory.mk n)) (extractionPathSimplex n) =
+      identitySimplex n := by
+  have hhi : hi = rfl := Subsingleton.elim _ _
+  rw [hhi]
+  exact lastZeroSimplexMap_extraction n
+
+/-- Re-expanding the internal-Hom simplex produced by the coherent-arrow comparison gives the
+original parameter simplex times the interval. -/
+theorem cylinderOfInternalHomSimplex_forward {n : ℕ} {X Y : C}
+    (h : (X ⟶[SSet] Y).obj (op (SimplexCategory.mk n))) :
+    cylinderOfInternalHomSimplex
+        ((coherentArrowInternalHomMap C).app _ h) =
+      (SSet.yonedaEquiv.symm h ⊗ₘ 𝟙 (Δ[1] : SSet.{u})) ≫
+        coherentArrowCylinderMap C := by
+  unfold cylinderOfInternalHomSimplex
+  rw [← SSet.yonedaEquiv_symm_comp]
+  rw [CategoryTheory.MonoidalClosed.uncurry_natural_left]
+  unfold coherentArrowInternalHomMap
+  rw [CategoryTheory.MonoidalClosed.uncurry_curry]
+  simp
+
+/-- Prism extraction is a heterogeneous left inverse to the coherent-arrow comparison before
+the endpoint transports are normalized. -/
+theorem rawCoherentExtraction_forward_heq {n : ℕ} {X Y : C}
+    (h : (X ⟶[SSet] Y).obj (op (SimplexCategory.mk n))) :
+    HEq (rawCoherentExtraction C
+      ((coherentArrowInternalHomMap C).app _ h)) h := by
+  unfold rawCoherentExtraction coherentPrismSimplex
+  rw [cylinderOfInternalHomSimplex_forward]
+  dsimp [coherentArrowCylinderMap, extractionPrism]
+  change HEq
+    ((coherentArrowMap C
+      ((X ⟶[SSet] Y).map
+        (SimplexCategory.σ (Fin.last n)).op h)
+      (SSet.stdSimplex.objMk (finalStepOrderHom n))
+      (extractionFirst n) (extractionLast n)).app _
+        (extractionPathSimplex n)) h
+  have hzero : intervalValue
+      (SSet.stdSimplex.objMk (finalStepOrderHom n))
+      (extractionFirst n).as = 0 := by rfl
+  have hone : intervalValue
+      (SSet.stdSimplex.objMk (finalStepOrderHom n))
+      (extractionLast n).as ≠ 0 := by
+    simp [intervalValue, extractionLast, finalStepOrderHom]
+  rw [coherentArrowMap_left_right C _ _ _ _ hzero hone]
+  rw [coherentHom_yoneda_map]
+  simp only [Category.assoc, NatTrans.comp_app, comp_apply]
+  have hx := lastZeroSimplexMap_extraction_of_proof n hzero
+  change (SSet.stdSimplex.map (SimplexCategory.σ (Fin.last n)).op.unop).app _
+      ((lastZeroSimplexMap
+        (SSet.stdSimplex.objMk (finalStepOrderHom n))
+        (extractionFirst n) (extractionLast n) hzero).app _
+          (extractionPathSimplex n)) = identitySimplex n at hx
+  rw [hx]
+  have hid : identitySimplex n =
+      SSet.yonedaEquiv (𝟙 (Δ[n] : SSet.{u})) := rfl
+  rw [hid, SSet.yonedaEquiv_symm_app_id]
+  exact eqToHom_app_heq _ _ h
+
+private theorem rawCoherentExtraction_heq_of_eq {n : ℕ}
+    (a b : ((CategoryTheory.ihom (Δ[1] : SSet.{u})).obj
+      (CategoryTheory.SimplicialNerve C)).obj
+        (op (SimplexCategory.mk n))) (hab : a = b) :
+    HEq (rawCoherentExtraction C a) (rawCoherentExtraction C b) := by
+  cases hab
+  rfl
+
+/-- Dimensionwise prism extraction is a strict left inverse to the coherent-arrow map into the
+fixed-endpoint fiber. -/
+theorem endpointFiberRawCoherentExtraction_forward {n : ℕ} {X Y : C}
+    (h : (X ⟶[SSet] Y).obj (op (SimplexCategory.mk n))) :
+    endpointFiberRawCoherentExtraction C
+        ((coherentArrowEndpointFiberMap C).app _ h) = h := by
+  let z := (coherentArrowEndpointFiberMap C).app
+    (op (SimplexCategory.mk n)) h
+  change endpointFiberRawCoherentExtraction C z = h
+  generalize ha : endpointFiberInternalHomSimplex C z = a
+  have hf : a = (coherentArrowInternalHomMap C).app _ h :=
+    ha.symm.trans (endpointFiberInternalHomSimplex_forward C h)
+  apply eq_of_heq
+  refine HEq.trans (eqToHom_app_heq _ _
+    (rawCoherentExtraction C (endpointFiberInternalHomSimplex C z))) ?_
+  exact HEq.trans (rawCoherentExtraction_heq_of_eq C _ _ (ha.trans hf))
+    (rawCoherentExtraction_forward_heq C h)
+
 end LeanLCAExactChallenge.Infinity.CoherentNerveMappingComparison
