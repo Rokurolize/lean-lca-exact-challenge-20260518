@@ -1527,4 +1527,16 @@ theorem endpointFiberRawCoherentExtraction_forward {n : ℕ} {X Y : C}
   exact HEq.trans (rawCoherentExtraction_heq_of_eq C _ _ (ha.trans hf))
     (rawCoherentExtraction_forward_heq C h)
 
+/-- The coherent-arrow comparison is degreewise injective, hence a simplicial
+monomorphism. -/
+noncomputable instance coherentArrowEndpointFiberMap_mono {X Y : C} :
+    Mono (coherentArrowEndpointFiberMap C (X := X) (Y := Y)) := by
+  rw [NatTrans.mono_iff_mono_app]
+  intro U
+  rw [mono_iff_injective]
+  intro a b hab
+  rcases U with ⟨⟨n⟩⟩
+  have h := congrArg (endpointFiberRawCoherentExtraction C) hab
+  simpa only [endpointFiberRawCoherentExtraction_forward] using h
+
 end LeanLCAExactChallenge.Infinity.CoherentNerveMappingComparison
