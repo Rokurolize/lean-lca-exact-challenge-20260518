@@ -5,6 +5,7 @@ Authors: Rokurolize
 -/
 
 import LeanLCAExactChallenge.Infinity.JoyalSpecialOuterHornDuality
+import LeanLCAExactChallenge.Infinity.LeftFibrationIsoLift
 import Mathlib.AlgebraicTopology.SimplicialSet.KanComplex
 
 /-! # Quasicategories whose edges are equivalences -/
@@ -18,7 +19,52 @@ universe u
 namespace LeanLCAExactChallenge
 namespace Infinity
 
-open CategoryTheory Opposite Simplicial
+open CategoryTheory CategoryTheory.Limits CategoryTheory.MorphismProperty
+open HomotopicalAlgebra Opposite Simplicial
+
+local instance deltaZeroObjSubsingleton (U : SimplexCategoryᵒᵖ) :
+    Subsingleton ((Δ[0] : SSet.{u}).obj U) where
+  allEq a b := by
+    apply SSet.stdSimplex.ext
+    intro i
+    exact (Fin.eq_zero _).trans (Fin.eq_zero _).symm
+
+open SSet.modelCategoryQuillen in
+instance kanComplex_toDeltaZero_leftFibration
+    (X : SSet.{u}) [SSet.KanComplex X] :
+    LeftFibration (SSet.stdSimplex.isTerminalObj₀.from X) := by
+  let p := SSet.stdSimplex.isTerminalObj₀.from X
+  have hp : Fibration p :=
+    (isFibrant_iff_of_isTerminal p SSet.stdSimplex.isTerminalObj₀).mp inferInstance
+  letI : Fibration p := hp
+  constructor
+  intro A B i hi
+  cases hi with
+  | intro j hj => infer_instance
+
+/-- Every edge of a Kan complex is an equivalence edge. -/
+theorem edgeIsEquivalence_of_kan
+    (X : SSet.{u}) [SSet.KanComplex X] {x y : X _⦋0⦌}
+    (e : SSet.Edge x y) : EdgeIsEquivalence e := by
+  let p : X ⟶ (Δ[0] : SSet.{u}) := SSet.stdSimplex.isTerminalObj₀.from X
+  letI : LeftFibration p := kanComplex_toDeltaZero_leftFibration X
+  letI : SSet.Quasicategory (Δ[0] : SSet.{u}) := by
+    apply SSet.quasicategory_of_filler
+    intro n i σ h0 hn
+    exact ⟨SSet.stdSimplex.objMk (OrderHom.const _ 0),
+      fun j hj ↦ Subsingleton.elim _ _⟩
+  apply LeftFibration.edgeIsEquivalence_of_map p e
+  let eid := SSet.Edge.id (p.app (Opposite.op ⦋0⦌) x)
+  have hxy : p.app (Opposite.op ⦋0⦌) x = p.app (Opposite.op ⦋0⦌) y :=
+    Subsingleton.elim _ _
+  let eid' : SSet.Edge (p.app (Opposite.op ⦋0⦌) x)
+      (p.app (Opposite.op ⦋0⦌) y) :=
+    SSet.Edge.castEndpoints rfl hxy eid
+  have heq : e.map p = eid' := by
+    apply SSet.Edge.ext
+    exact Subsingleton.elim _ _
+  rw [heq]
+  exact (edgeIsEquivalence_id _).castEndpoints rfl hxy
 
 /-- A quasicategory in which every edge is an equivalence is a Kan complex. -/
 theorem quasicategory_all_edges_equivalences_kan
