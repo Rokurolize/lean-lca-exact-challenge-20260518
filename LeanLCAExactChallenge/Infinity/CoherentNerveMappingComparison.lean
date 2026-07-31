@@ -1071,6 +1071,21 @@ def cylinderOfInternalHomSimplex {Q : SSet.{u}} {n : ℕ}
   (β_ (Δ[n] : SSet.{u}) (Δ[1] : SSet.{u})).hom ≫
     CategoryTheory.MonoidalClosed.uncurry (SSet.yonedaEquiv.symm a)
 
+/-- Restricting an internal-Hom simplex at an interval endpoint restricts its cylinder map. -/
+theorem cylinderOfInternalHomSimplex_pre {Q : SSet.{u}} {n : ℕ}
+    (a : ((CategoryTheory.ihom (Δ[1] : SSet.{u})).obj Q).obj
+      (op (SimplexCategory.mk n)))
+    (g : (Δ[0] : SSet.{u}) ⟶ (Δ[1] : SSet.{u})) :
+    (β_ (Δ[n] : SSet.{u}) (Δ[0] : SSet.{u})).hom ≫
+        CategoryTheory.MonoidalClosed.uncurry
+          (SSet.yonedaEquiv.symm
+            (((CategoryTheory.MonoidalClosed.pre g).app Q).app _ a)) =
+      ((Δ[n] : SSet.{u}) ◁ g) ≫ cylinderOfInternalHomSimplex a := by
+  unfold cylinderOfInternalHomSimplex
+  rw [← SSet.yonedaEquiv_symm_comp]
+  rw [CategoryTheory.MonoidalClosed.uncurry_pre_app]
+  rw [CategoryTheory.BraidedCategory.braiding_naturality_right_assoc]
+
 /-- The coherent prism simplex represented by an internal-Hom simplex. -/
 def coherentPrismSimplex {Q : SSet.{u}} {n : ℕ}
     (a : ((CategoryTheory.ihom (Δ[1] : SSet.{u})).obj Q).obj
@@ -1183,5 +1198,190 @@ theorem endpointSourceObject_restrict {n : ℕ}
       rfl
     _ = _ := (simplicialNerveMap_obj_vertex C F
       (extractionPrism n) 0).symm
+
+/-- The final object of the extraction prism is the restricted target endpoint. -/
+theorem endpointTargetObject_restrict {n : ℕ}
+    (a : ((CategoryTheory.ihom (Δ[1] : SSet.{u})).obj
+      (CategoryTheory.SimplicialNerve C)).obj
+        (op (SimplexCategory.mk n))) :
+    endpointTargetObject C
+      (((CategoryTheory.MonoidalClosed.pre
+        (SSet.stdSimplex.δ (0 : Fin 2))).app
+          (CategoryTheory.SimplicialNerve C)).app _ a) =
+      (coherentPrismSimplex a).obj (extractionLast n) := by
+  let g : (Δ[0] : SSet.{u}) ⟶ (Δ[1] : SSet.{u}) :=
+    SSet.stdSimplex.δ (0 : Fin 2)
+  let b := ((CategoryTheory.MonoidalClosed.pre g).app
+      (CategoryTheory.SimplicialNerve C)).app _ a
+  let F0 : (Δ[n] : SSet.{u}) ⊗ (Δ[0] : SSet.{u}) ⟶
+      CategoryTheory.SimplicialNerve C :=
+    (β_ (Δ[n] : SSet.{u}) (Δ[0] : SSet.{u})).hom ≫
+      CategoryTheory.MonoidalClosed.uncurry (SSet.yonedaEquiv.symm b)
+  let F := cylinderOfInternalHomSimplex a
+  have hF : F0 = ((Δ[n] : SSet.{u}) ◁ g) ≫ F := by
+    exact cylinderOfInternalHomSimplex_pre a g
+  change (F0.app _ (identitySimplex n, zeroSimplex n)).obj
+      (CategoryTheory.SimplicialThickening.mk (ULift.up (Fin.last n))) =
+    (F.app _ (extractionPrism n)).obj (extractionLast n)
+  calc
+    _ = (F0.app (op (SimplexCategory.mk 0))
+        (((Δ[n] : SSet.{u}) ⊗ (Δ[0] : SSet.{u})).map
+          (SimplexCategory.const (SimplexCategory.mk 0)
+            (SimplexCategory.mk n) (Fin.last n)).op
+          (identitySimplex n, zeroSimplex n))).obj
+        (CategoryTheory.SimplicialThickening.mk (ULift.up 0)) :=
+      simplicialNerveMap_obj_vertex C F0
+        (identitySimplex n, zeroSimplex n) (Fin.last n)
+    _ = ((((Δ[n] : SSet.{u}) ◁ g) ≫ F).app (op (SimplexCategory.mk 0))
+        (((Δ[n] : SSet.{u}) ⊗ (Δ[0] : SSet.{u})).map
+          (SimplexCategory.const (SimplexCategory.mk 0)
+            (SimplexCategory.mk n) (Fin.last n)).op
+          (identitySimplex n, zeroSimplex n))).obj
+        (CategoryTheory.SimplicialThickening.mk (ULift.up 0)) := by
+      rw [← hF]
+    _ = (F.app (op (SimplexCategory.mk 0))
+        (((Δ[n] : SSet.{u}) ⊗ (Δ[1] : SSet.{u})).map
+          (SimplexCategory.const (SimplexCategory.mk 0)
+            (SimplexCategory.mk (n + 1)) (Fin.last (n + 1))).op
+          (extractionPrism n))).obj
+        (CategoryTheory.SimplicialThickening.mk (ULift.up 0)) := by
+      let p0 := (((Δ[n] : SSet.{u}) ⊗ (Δ[0] : SSet.{u})).map
+        (SimplexCategory.const (SimplexCategory.mk 0)
+          (SimplexCategory.mk n) (Fin.last n)).op
+        (identitySimplex n, zeroSimplex n))
+      let p1 := (((Δ[n] : SSet.{u}) ⊗ (Δ[1] : SSet.{u})).map
+        (SimplexCategory.const (SimplexCategory.mk 0)
+          (SimplexCategory.mk (n + 1)) (Fin.last (n + 1))).op
+        (extractionPrism n))
+      change (F.app _ (((Δ[n] : SSet.{u}) ◁ g).app _ p0)).obj _ =
+        (F.app _ p1).obj _
+      congr 2
+      change (p0.1, g.app _ p0.2) = p1
+      apply SSet.prodStdSimplex.objEquiv.injective
+      apply OrderHom.ext
+      funext i
+      have hi : i = 0 := Fin.eq_zero i
+      subst i
+      change (p0.1 0, (g.app _ p0.2) 0) = (p1.1 0, p1.2 0)
+      apply Prod.ext
+      · dsimp [p0, p1, identitySimplex, extractionPrism]
+        apply Fin.ext
+        change (Fin.last n).val =
+          ((Fin.last n).predAbove (Fin.last (n + 1))).val
+        rw [Fin.predAbove_right_last]
+      · dsimp [p0, p1, g, zeroSimplex, extractionPrism]
+        apply Fin.ext
+        change 1 = (finalStepOrderHom n (Fin.last (n + 1))).val
+        simp [finalStepOrderHom]
+    _ = _ := (simplicialNerveMap_obj_vertex C F
+      (extractionPrism n) (Fin.last (n + 1))).symm
+
+/-- The internal-Hom simplex underlying a simplex of the endpoint fiber. -/
+def endpointFiberInternalHomSimplex {n : ℕ} {X Y : C}
+    (z : (endpointFiber (CategoryTheory.SimplicialNerve C)
+      (coherentNerveVertex C X) (coherentNerveVertex C Y)).obj
+        (op (SimplexCategory.mk n))) :
+    ((CategoryTheory.ihom (Δ[1] : SSet.{u})).obj
+      (CategoryTheory.SimplicialNerve C)).obj
+        (op (SimplexCategory.mk n)) :=
+  (CategoryTheory.Limits.pullback.snd
+    (endpointPoint (CategoryTheory.SimplicialNerve C)
+      (coherentNerveVertex C X) (coherentNerveVertex C Y))
+    (endpointEvaluation (CategoryTheory.SimplicialNerve C))).app _ z
+
+/-- The extraction prism of an endpoint-fiber simplex starts at the prescribed source. -/
+theorem endpointFiber_coherentPrismSimplex_first {n : ℕ} {X Y : C}
+    (z : (endpointFiber (CategoryTheory.SimplicialNerve C)
+      (coherentNerveVertex C X) (coherentNerveVertex C Y)).obj
+        (op (SimplexCategory.mk n))) :
+    (coherentPrismSimplex (endpointFiberInternalHomSimplex C z)).obj
+        (extractionFirst n) = X := by
+  let q :=
+    (CategoryTheory.Limits.pullback.fst
+      (endpointPoint (CategoryTheory.SimplicialNerve C)
+        (coherentNerveVertex C X) (coherentNerveVertex C Y))
+      (endpointEvaluation (CategoryTheory.SimplicialNerve C))).app _ z
+  have hmap := CategoryTheory.Limits.pullback.condition
+      (f := endpointPoint (CategoryTheory.SimplicialNerve C)
+        (coherentNerveVertex C X) (coherentNerveVertex C Y))
+      (g := endpointEvaluation (CategoryTheory.SimplicialNerve C))
+  have happ := congrArg
+    (fun t ↦ t.app (op (SimplexCategory.mk n))) hmap
+  have h := CategoryTheory.congr_fun happ z
+  calc
+    _ = endpointSourceObject C
+        (((CategoryTheory.MonoidalClosed.pre
+          (SSet.stdSimplex.δ (1 : Fin 2))).app
+            (CategoryTheory.SimplicialNerve C)).app _
+              (endpointFiberInternalHomSimplex C z)) :=
+      (endpointSourceObject_restrict C
+        (endpointFiberInternalHomSimplex C z)).symm
+    _ = endpointSourceObject C
+        ((CategoryTheory.MonoidalClosed.curry'
+          (endpointVertex (CategoryTheory.SimplicialNerve C)
+            (coherentNerveVertex C X))).app _ q) :=
+      congrArg (endpointSourceObject C) (congrArg Prod.fst h).symm
+    _ = X := endpointSourceObject_constant C X q
+
+/-- The extraction prism of an endpoint-fiber simplex ends at the prescribed target. -/
+theorem endpointFiber_coherentPrismSimplex_last {n : ℕ} {X Y : C}
+    (z : (endpointFiber (CategoryTheory.SimplicialNerve C)
+      (coherentNerveVertex C X) (coherentNerveVertex C Y)).obj
+        (op (SimplexCategory.mk n))) :
+    (coherentPrismSimplex (endpointFiberInternalHomSimplex C z)).obj
+        (extractionLast n) = Y := by
+  let q :=
+    (CategoryTheory.Limits.pullback.fst
+      (endpointPoint (CategoryTheory.SimplicialNerve C)
+        (coherentNerveVertex C X) (coherentNerveVertex C Y))
+      (endpointEvaluation (CategoryTheory.SimplicialNerve C))).app _ z
+  have hmap := CategoryTheory.Limits.pullback.condition
+      (f := endpointPoint (CategoryTheory.SimplicialNerve C)
+        (coherentNerveVertex C X) (coherentNerveVertex C Y))
+      (g := endpointEvaluation (CategoryTheory.SimplicialNerve C))
+  have happ := congrArg
+    (fun t ↦ t.app (op (SimplexCategory.mk n))) hmap
+  have h := CategoryTheory.congr_fun happ z
+  calc
+    _ = endpointTargetObject C
+        (((CategoryTheory.MonoidalClosed.pre
+          (SSet.stdSimplex.δ (0 : Fin 2))).app
+            (CategoryTheory.SimplicialNerve C)).app _
+              (endpointFiberInternalHomSimplex C z)) :=
+      (endpointTargetObject_restrict C
+        (endpointFiberInternalHomSimplex C z)).symm
+    _ = endpointTargetObject C
+        ((CategoryTheory.MonoidalClosed.curry'
+          (endpointVertex (CategoryTheory.SimplicialNerve C)
+            (coherentNerveVertex C Y))).app _ q) :=
+      congrArg (endpointTargetObject C) (congrArg Prod.snd h).symm
+    _ = Y := endpointTargetObject_constant C Y q
+
+/--
+The dimensionwise prism extraction from an endpoint-fiber simplex. This is the canonical raw
+simplex supplied by the top prism, transported along the proved endpoint identifications.
+
+It is intentionally not advertised as a simplicial map: composing the chain of prism arrows
+requires the Kan-composition construction.
+-/
+def endpointFiberRawCoherentExtraction {n : ℕ} {X Y : C}
+    (z : (endpointFiber (CategoryTheory.SimplicialNerve C)
+      (coherentNerveVertex C X) (coherentNerveVertex C Y)).obj
+        (op (SimplexCategory.mk n))) :
+    (X ⟶[SSet] Y).obj (op (SimplexCategory.mk n)) :=
+  (eqToHom (congrArg₂ (fun A B : C ↦ A ⟶[SSet] B)
+    (endpointFiber_coherentPrismSimplex_first C z)
+    (endpointFiber_coherentPrismSimplex_last C z))).app _
+      (rawCoherentExtraction C (endpointFiberInternalHomSimplex C z))
+
+theorem endpointFiberInternalHomSimplex_forward {n : ℕ} {X Y : C}
+    (h : (X ⟶[SSet] Y).obj (op (SimplexCategory.mk n))) :
+    endpointFiberInternalHomSimplex C
+        ((coherentArrowEndpointFiberMap C).app _ h) =
+      (coherentArrowInternalHomMap C).app _ h := by
+  have hmap := coherentArrowEndpointFiberMap_snd (C := C) (X := X) (Y := Y)
+  have happ := congrArg
+    (fun t ↦ t.app (op (SimplexCategory.mk n))) hmap
+  exact CategoryTheory.congr_fun happ h
 
 end LeanLCAExactChallenge.Infinity.CoherentNerveMappingComparison
