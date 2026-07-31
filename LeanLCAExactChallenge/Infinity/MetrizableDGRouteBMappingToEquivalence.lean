@@ -7,6 +7,7 @@ Authors: Rokurolize
 import LeanLCAExactChallenge.Infinity.BicategoricalEquivalenceInternalHom
 import LeanLCAExactChallenge.Infinity.BicategoricalEquivalenceTwoOfThree
 import LeanLCAExactChallenge.Infinity.MetrizableDGLocalizationComparison
+import LeanLCAExactChallenge.Infinity.MetrizableDGRouteBInnerToMapping
 
 /-! # Route B mapping localization to base-change equivalence -/
 
@@ -126,7 +127,17 @@ theorem routeBBaseChange_isBicategoricalEquivalence
   · exact metrizableEquivalenceForcingMappingLocalizationProperty_direct
   · exact h
 
+/-- Inner-anodyne presentation base change implies bicategorical equivalence of the exact
+ordinary-to-direct-DG base-change map. -/
+theorem
+    metrizableOrdinaryToDirectDGBaseChange_isBicategoricalEquivalence_of_presentation_innerAnodyne
+    (hinner : SSet.innerAnodyneExtensions
+      metrizableOrdinaryToDirectDGPresentationBaseChange) :
+    MetrizableOrdinaryToDirectDGBaseChangeIsEquivalence :=
+  routeBBaseChange_isBicategoricalEquivalence
+    (metrizableDirectDGMappingLocalizationProperty_of_presentationBaseChange_innerAnodyne
+      hinner)
+
 end MetrizableBoundedComplexes
 
 end LeanLCAExactChallenge.Infinity
-
