@@ -6,7 +6,8 @@ Authors: Rokurolize
 
 import LeanLCAExactChallenge.Infinity.MetrizableDGMappingConeFunctor
 import LeanLCAExactChallenge.Infinity.MetrizableDGMappingConeCoherentSimplex
-import LeanLCAExactChallenge.Infinity.MetrizableDGMappingZModuleWhiskering
+import LeanLCAExactChallenge.Infinity.MetrizableDGSimplicialWhiskering
+import LeanLCAExactChallenge.Infinity.CoherentNerveChainNaturality
 
 /-!
 # Functoriality of bounded DG mapping-cone triangles
@@ -239,6 +240,189 @@ theorem mappingConeOrdinaryChainNatTrans_app_two
     (mappingConeOrdinaryChainNatTrans sq).app 2 =
       directDGMorphism (dgMappingConeMap sq) :=
   rfl
+
+/-- The ordinary component of a commutative square at one coherent-triangle vertex. -/
+noncomputable def mappingConeCoherentSimplexComponent
+    {f g : Arrow ComplexCategory} (sq : f ⟶ g)
+    (i : CategoryTheory.SimplicialThickening (ULift (Fin 3))) :
+    (mappingConeCoherentSimplex f.hom).obj i ⟶
+      (mappingConeCoherentSimplex g.hom).obj i :=
+  (OrdinaryToSimplicialNerve.coherentSimplexOfChainUnitGradedNatTrans
+    DirectDGSimplicialCategory (mappingConeOrdinaryChainNatTrans sq)).componentHom i
+
+@[simp]
+theorem mappingConeCoherentSimplexComponent_zero
+    {f g : Arrow ComplexCategory} (sq : f ⟶ g) :
+    mappingConeCoherentSimplexComponent sq triangleZero = directDGMorphism sq.left := by
+  simp only [mappingConeCoherentSimplexComponent,
+    OrdinaryToSimplicialNerve.coherentSimplexOfChainUnitGradedNatTrans_componentHom,
+    mappingConeOrdinaryChainNatTrans_app_zero]
+  change (eHomEquiv SSet).symm
+      (CategoryTheory.ForgetEnrichment.homTo SSet
+        (show (CategoryTheory.ForgetEnrichment.of SSet (directDGObject f.left) :
+            CategoryTheory.ForgetEnrichment SSet DirectDGSimplicialCategory) ⟶
+          CategoryTheory.ForgetEnrichment.of SSet (directDGObject g.left) from
+            directDGMorphism sq.left)) = directDGMorphism sq.left
+  rw [show CategoryTheory.ForgetEnrichment.homTo SSet
+      (show (CategoryTheory.ForgetEnrichment.of SSet (directDGObject f.left) :
+          CategoryTheory.ForgetEnrichment SSet DirectDGSimplicialCategory) ⟶
+        CategoryTheory.ForgetEnrichment.of SSet (directDGObject g.left) from
+          directDGMorphism sq.left) =
+      @eHomEquiv SSet _ _ DirectDGSimplicialCategory _ _
+        (CategoryTheory.ForgetEnrichment.to SSet
+          (CategoryTheory.ForgetEnrichment.of SSet (directDGObject f.left)))
+        (CategoryTheory.ForgetEnrichment.to SSet
+          (CategoryTheory.ForgetEnrichment.of SSet (directDGObject g.left)))
+        (show CategoryTheory.ForgetEnrichment.to SSet
+              (CategoryTheory.ForgetEnrichment.of SSet (directDGObject f.left)) ⟶
+            CategoryTheory.ForgetEnrichment.to SSet
+              (CategoryTheory.ForgetEnrichment.of SSet (directDGObject g.left)) from
+          directDGMorphism sq.left) by rfl]
+  exact Equiv.symm_apply_apply _ _
+
+@[simp]
+theorem mappingConeCoherentSimplexComponent_one
+    {f g : Arrow ComplexCategory} (sq : f ⟶ g) :
+    mappingConeCoherentSimplexComponent sq triangleOne = directDGMorphism sq.right := by
+  simp only [mappingConeCoherentSimplexComponent,
+    OrdinaryToSimplicialNerve.coherentSimplexOfChainUnitGradedNatTrans_componentHom,
+    mappingConeOrdinaryChainNatTrans_app_one]
+  change (eHomEquiv SSet).symm
+      (CategoryTheory.ForgetEnrichment.homTo SSet
+        (show (CategoryTheory.ForgetEnrichment.of SSet (directDGObject f.right) :
+            CategoryTheory.ForgetEnrichment SSet DirectDGSimplicialCategory) ⟶
+          CategoryTheory.ForgetEnrichment.of SSet (directDGObject g.right) from
+            directDGMorphism sq.right)) = directDGMorphism sq.right
+  rw [show CategoryTheory.ForgetEnrichment.homTo SSet
+      (show (CategoryTheory.ForgetEnrichment.of SSet (directDGObject f.right) :
+          CategoryTheory.ForgetEnrichment SSet DirectDGSimplicialCategory) ⟶
+        CategoryTheory.ForgetEnrichment.of SSet (directDGObject g.right) from
+          directDGMorphism sq.right) =
+      @eHomEquiv SSet _ _ DirectDGSimplicialCategory _ _
+        (CategoryTheory.ForgetEnrichment.to SSet
+          (CategoryTheory.ForgetEnrichment.of SSet (directDGObject f.right)))
+        (CategoryTheory.ForgetEnrichment.to SSet
+          (CategoryTheory.ForgetEnrichment.of SSet (directDGObject g.right)))
+        (show CategoryTheory.ForgetEnrichment.to SSet
+              (CategoryTheory.ForgetEnrichment.of SSet (directDGObject f.right)) ⟶
+            CategoryTheory.ForgetEnrichment.to SSet
+              (CategoryTheory.ForgetEnrichment.of SSet (directDGObject g.right)) from
+          directDGMorphism sq.right) by rfl]
+  exact Equiv.symm_apply_apply _ _
+
+@[simp]
+theorem mappingConeCoherentSimplexComponent_two
+    {f g : Arrow ComplexCategory} (sq : f ⟶ g) :
+    mappingConeCoherentSimplexComponent sq triangleTwo =
+      directDGMorphism (dgMappingConeMap sq) := by
+  simp only [mappingConeCoherentSimplexComponent,
+    OrdinaryToSimplicialNerve.coherentSimplexOfChainUnitGradedNatTrans_componentHom,
+    mappingConeOrdinaryChainNatTrans_app_two]
+  change (eHomEquiv SSet).symm
+      (CategoryTheory.ForgetEnrichment.homTo SSet
+        (show (CategoryTheory.ForgetEnrichment.of SSet
+              (directDGObject (dgMappingConeObject f.hom)) :
+            CategoryTheory.ForgetEnrichment SSet DirectDGSimplicialCategory) ⟶
+          CategoryTheory.ForgetEnrichment.of SSet
+            (directDGObject (dgMappingConeObject g.hom)) from
+              directDGMorphism (dgMappingConeMap sq))) =
+        directDGMorphism (dgMappingConeMap sq)
+  rw [show CategoryTheory.ForgetEnrichment.homTo SSet
+      (show (CategoryTheory.ForgetEnrichment.of SSet
+            (directDGObject (dgMappingConeObject f.hom)) :
+          CategoryTheory.ForgetEnrichment SSet DirectDGSimplicialCategory) ⟶
+        CategoryTheory.ForgetEnrichment.of SSet
+          (directDGObject (dgMappingConeObject g.hom)) from
+            directDGMorphism (dgMappingConeMap sq)) =
+      @eHomEquiv SSet _ _ DirectDGSimplicialCategory _ _
+        (CategoryTheory.ForgetEnrichment.to SSet
+          (CategoryTheory.ForgetEnrichment.of SSet
+            (directDGObject (dgMappingConeObject f.hom))))
+        (CategoryTheory.ForgetEnrichment.to SSet
+          (CategoryTheory.ForgetEnrichment.of SSet
+            (directDGObject (dgMappingConeObject g.hom))))
+        (show CategoryTheory.ForgetEnrichment.to SSet
+              (CategoryTheory.ForgetEnrichment.of SSet
+                (directDGObject (dgMappingConeObject f.hom))) ⟶
+            CategoryTheory.ForgetEnrichment.to SSet
+              (CategoryTheory.ForgetEnrichment.of SSet
+                (directDGObject (dgMappingConeObject g.hom))) from
+          directDGMorphism (dgMappingConeMap sq)) by rfl]
+  exact Equiv.symm_apply_apply _ _
+
+/-- Away from the long edge, coherent cone naturality is the locally constant chain
+naturality. -/
+theorem mappingConeCoherentSimplexComponent_naturality_of_not_special
+    {f g : Arrow ComplexCategory} (sq : f ⟶ g)
+    (i j : CategoryTheory.SimplicialThickening (ULift (Fin 3)))
+    (hspecial : ¬ (i = triangleZero ∧ j = triangleTwo)) :
+    (mappingConeCoherentSimplex f.hom).map i j ≫
+        eHomWhiskerLeft SSet ((mappingConeCoherentSimplex f.hom).obj i)
+          (mappingConeCoherentSimplexComponent sq j) =
+      (mappingConeCoherentSimplex g.hom).map i j ≫
+        eHomWhiskerRight SSet (mappingConeCoherentSimplexComponent sq i)
+          ((mappingConeCoherentSimplex g.hom).obj j) := by
+  let α := OrdinaryToSimplicialNerve.coherentSimplexOfChainUnitGradedNatTrans
+    DirectDGSimplicialCategory (mappingConeOrdinaryChainNatTrans sq)
+  change mappingConeTriangleMap f.hom i j ≫
+        eHomWhiskerLeft SSet
+          ((mappingConeLocallyConstantSimplex f.hom).obj i) (α.componentHom j) =
+      mappingConeTriangleMap g.hom i j ≫
+        eHomWhiskerRight SSet (α.componentHom i)
+          ((mappingConeLocallyConstantSimplex g.hom).obj j)
+  simp only [mappingConeTriangleMap, dif_neg hspecial]
+  exact α.map_eHomWhiskerLeft_eq_map_eHomWhiskerRight i j
+
+set_option maxHeartbeats 1000000 in
+-- The long edge unfolds both transported enrichments after the concrete endpoints are fixed.
+/-- Naturality of the distinguished long edge in the coherent mapping-cone simplex. -/
+theorem mappingConeCoherentSimplexComponent_naturality_special
+    {f g : Arrow ComplexCategory} (sq : f ⟶ g) :
+    (mappingConeCoherentSimplex f.hom).map triangleZero triangleTwo ≫
+        eHomWhiskerLeft SSet
+          ((mappingConeCoherentSimplex f.hom).obj triangleZero)
+          (mappingConeCoherentSimplexComponent sq triangleTwo) =
+      (mappingConeCoherentSimplex g.hom).map triangleZero triangleTwo ≫
+        eHomWhiskerRight SSet
+          (mappingConeCoherentSimplexComponent sq triangleZero)
+          ((mappingConeCoherentSimplex g.hom).obj triangleTwo) := by
+  rw [mappingConeCoherentSimplexComponent_two,
+    mappingConeCoherentSimplexComponent_zero]
+  change mappingConeTriangleMap f.hom triangleZero triangleTwo ≫
+        eHomWhiskerLeft SSet (directDGObject f.left)
+          (directDGMorphism (dgMappingConeMap sq)) =
+      mappingConeTriangleMap g.hom triangleZero triangleTwo ≫
+        eHomWhiskerRight SSet (directDGMorphism sq.left)
+          (directDGObject (dgMappingConeObject g.hom))
+  rw [mappingConeTriangleMap_zero_two, mappingConeTriangleMap_zero_two]
+  rw [directDG_eHomWhiskerLeft_eq_postcomposition,
+    directDG_eHomWhiskerRight_eq_precomposition]
+  exact trianglePathCoherenceMap_naturality sq
+
+theorem mappingConeCoherentSimplexComponent_naturality
+    {f g : Arrow ComplexCategory} (sq : f ⟶ g) :
+    ∀ i j : CategoryTheory.SimplicialThickening (ULift (Fin 3)),
+      (mappingConeCoherentSimplex f.hom).map i j ≫
+          eHomWhiskerLeft SSet ((mappingConeCoherentSimplex f.hom).obj i)
+            (mappingConeCoherentSimplexComponent sq j) =
+        (mappingConeCoherentSimplex g.hom).map i j ≫
+          eHomWhiskerRight SSet (mappingConeCoherentSimplexComponent sq i)
+            ((mappingConeCoherentSimplex g.hom).obj j) := by
+  intro i j
+  by_cases hspecial : i = triangleZero ∧ j = triangleTwo
+  · rcases hspecial with ⟨rfl, rfl⟩
+    exact mappingConeCoherentSimplexComponent_naturality_special sq
+  · exact mappingConeCoherentSimplexComponent_naturality_of_not_special
+      sq i j hspecial
+
+/-- A commutative square acts functorially on the full coherent mapping-cone two-simplex. -/
+noncomputable def mappingConeCoherentSimplexNatTrans
+    {f g : Arrow ComplexCategory} (sq : f ⟶ g) :
+    SSetUnitGradedNatTrans
+      (mappingConeCoherentSimplex f.hom) (mappingConeCoherentSimplex g.hom) :=
+  SSetUnitGradedNatTrans.ofComponentHom
+    (mappingConeCoherentSimplexComponent sq)
+    (mappingConeCoherentSimplexComponent_naturality sq)
 
 end MappingConeTriangle
 
