@@ -401,4 +401,23 @@ theorem directDG_eHomWhiskerRight_eq_precomposition
   · rfl
   · rfl
 
+@[simp]
+theorem directDGMorphism_id (K : ComplexCategory) :
+    directDGMorphism (𝟙 K) = 𝟙 (directDGObject K) := by
+  apply directDGToComplexFunctor.map_injective
+  rw [directDGToComplexFunctor_map_directDGMorphism,
+    directDGToComplexFunctor.map_id]
+  change 𝟙 K = 𝟙 K
+  rfl
+
+@[simp]
+theorem directDGMorphism_comp {K L M : ComplexCategory}
+    (f : K ⟶ L) (g : L ⟶ M) :
+    directDGMorphism (f ≫ g) = directDGMorphism f ≫ directDGMorphism g := by
+  apply directDGToComplexFunctor.map_injective
+  rw [directDGToComplexFunctor_map_directDGMorphism,
+    directDGToComplexFunctor.map_comp,
+    directDGToComplexFunctor_map_directDGMorphism,
+    directDGToComplexFunctor_map_directDGMorphism]
+
 end LeanLCAExactChallenge.Infinity.MetrizableBoundedComplexes

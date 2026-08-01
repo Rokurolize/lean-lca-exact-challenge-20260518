@@ -304,6 +304,27 @@ noncomputable def whiskerRight
 
 end SSetUnitGradedNatTrans
 
+/-- Simplicially enriched functors equipped with strict unit-graded transformations as
+morphisms. -/
+def SSetGradedEnrichedFunctorCategory
+    (C : Type u) (D : Type w)
+    [EnrichedCategory SSet.{v} C]
+    [EnrichedCategory SSet.{v} D] :=
+  EnrichedFunctor SSet C D
+
+noncomputable instance
+    (C : Type u) (D : Type w)
+    [Category.{v} C] [Category.{v} D]
+    [CategoryTheory.SimplicialCategory C]
+    [CategoryTheory.SimplicialCategory D] :
+    Category (SSetGradedEnrichedFunctorCategory C D) where
+  Hom F G := SSetUnitGradedNatTrans F G
+  id F := SSetUnitGradedNatTrans.id F
+  comp α β := SSetUnitGradedNatTrans.comp α β
+  id_comp α := SSetUnitGradedNatTrans.id_comp α
+  comp_id α := SSetUnitGradedNatTrans.comp_id α
+  assoc α β γ := SSetUnitGradedNatTrans.assoc α β γ
+
 variable {E H : Type v} [Category.{v} E] [Category.{v} H]
   [CategoryTheory.SimplicialCategory E] [CategoryTheory.SimplicialCategory H]
 

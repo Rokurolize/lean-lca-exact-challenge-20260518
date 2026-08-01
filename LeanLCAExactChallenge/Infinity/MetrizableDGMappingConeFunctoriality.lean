@@ -241,6 +241,61 @@ theorem mappingConeOrdinaryChainNatTrans_app_two
       directDGMorphism (dgMappingConeMap sq) :=
   rfl
 
+@[simp]
+theorem mappingConeOrdinaryChainNatTrans_id (f : Arrow ComplexCategory) :
+    mappingConeOrdinaryChainNatTrans (𝟙 f) =
+      𝟙 (mappingConeOrdinaryChain f.hom) := by
+  apply CategoryTheory.ComposableArrows.hom_ext₂
+  · change (mappingConeOrdinaryChainNatTrans (𝟙 f)).app (0 : Fin 3) = _
+    rw [mappingConeOrdinaryChainNatTrans_app_zero, Arrow.id_left,
+      directDGMorphism_id]
+    rfl
+  · change (mappingConeOrdinaryChainNatTrans (𝟙 f)).app (1 : Fin 3) = _
+    rw [mappingConeOrdinaryChainNatTrans_app_one, Arrow.id_right,
+      directDGMorphism_id]
+    rfl
+  · change (mappingConeOrdinaryChainNatTrans (𝟙 f)).app (2 : Fin 3) = _
+    rw [mappingConeOrdinaryChainNatTrans_app_two]
+    rw [show dgMappingConeMap (𝟙 f) = 𝟙 (dgMappingConeObject f.hom) by
+      exact dgMappingConeFunctor.map_id f]
+    rw [directDGMorphism_id]
+    rfl
+
+@[simp]
+theorem mappingConeOrdinaryChainNatTrans_comp
+    {f g h : Arrow ComplexCategory} (sq : f ⟶ g) (sq' : g ⟶ h) :
+    mappingConeOrdinaryChainNatTrans (sq ≫ sq') =
+      mappingConeOrdinaryChainNatTrans sq ≫
+        mappingConeOrdinaryChainNatTrans sq' := by
+  apply CategoryTheory.ComposableArrows.hom_ext₂
+  · change (mappingConeOrdinaryChainNatTrans (sq ≫ sq')).app (0 : Fin 3) =
+      (mappingConeOrdinaryChainNatTrans sq ≫
+        mappingConeOrdinaryChainNatTrans sq').app (0 : Fin 3)
+    rw [mappingConeOrdinaryChainNatTrans_app_zero,
+      CategoryTheory.NatTrans.comp_app,
+      mappingConeOrdinaryChainNatTrans_app_zero,
+      mappingConeOrdinaryChainNatTrans_app_zero,
+      Arrow.comp_left, directDGMorphism_comp]
+  · change (mappingConeOrdinaryChainNatTrans (sq ≫ sq')).app (1 : Fin 3) =
+      (mappingConeOrdinaryChainNatTrans sq ≫
+        mappingConeOrdinaryChainNatTrans sq').app (1 : Fin 3)
+    rw [mappingConeOrdinaryChainNatTrans_app_one,
+      CategoryTheory.NatTrans.comp_app,
+      mappingConeOrdinaryChainNatTrans_app_one,
+      mappingConeOrdinaryChainNatTrans_app_one,
+      Arrow.comp_right, directDGMorphism_comp]
+  · change (mappingConeOrdinaryChainNatTrans (sq ≫ sq')).app (2 : Fin 3) =
+      (mappingConeOrdinaryChainNatTrans sq ≫
+        mappingConeOrdinaryChainNatTrans sq').app (2 : Fin 3)
+    rw [mappingConeOrdinaryChainNatTrans_app_two,
+      CategoryTheory.NatTrans.comp_app,
+      mappingConeOrdinaryChainNatTrans_app_two,
+      mappingConeOrdinaryChainNatTrans_app_two,
+      show dgMappingConeMap (sq ≫ sq') =
+          dgMappingConeMap sq ≫ dgMappingConeMap sq' by
+        exact dgMappingConeFunctor.map_comp sq sq',
+      directDGMorphism_comp]
+
 /-- The ordinary component of a commutative square at one coherent-triangle vertex. -/
 noncomputable def mappingConeCoherentSimplexComponent
     {f g : Arrow ComplexCategory} (sq : f ⟶ g)
@@ -423,6 +478,67 @@ noncomputable def mappingConeCoherentSimplexNatTrans
   SSetUnitGradedNatTrans.ofComponentHom
     (mappingConeCoherentSimplexComponent sq)
     (mappingConeCoherentSimplexComponent_naturality sq)
+
+@[simp]
+theorem mappingConeCoherentSimplexNatTrans_id (f : Arrow ComplexCategory) :
+    mappingConeCoherentSimplexNatTrans (𝟙 f) =
+      SSetUnitGradedNatTrans.id (mappingConeCoherentSimplex f.hom) := by
+  apply GradedNatTrans.ext
+  funext i
+  apply (eHomEquiv SSet).symm.injective
+  change mappingConeCoherentSimplexComponent (𝟙 f) i =
+    (SSetUnitGradedNatTrans.id
+      (mappingConeCoherentSimplex f.hom)).componentHom i
+  unfold mappingConeCoherentSimplexComponent
+  rw [mappingConeOrdinaryChainNatTrans_id,
+    OrdinaryToSimplicialNerve.coherentSimplexOfChainUnitGradedNatTrans_componentHom,
+    SSetUnitGradedNatTrans.componentHom_id]
+  change (CategoryTheory.ForgetEnrichment.equivFunctor SSet
+      DirectDGSimplicialCategory).map
+        (𝟙 ((mappingConeOrdinaryChain f.hom).obj i.as.down)) =
+    𝟙 ((CategoryTheory.ForgetEnrichment.equivFunctor SSet
+      DirectDGSimplicialCategory).obj
+        ((mappingConeOrdinaryChain f.hom).obj i.as.down))
+  exact (CategoryTheory.ForgetEnrichment.equivFunctor SSet
+    DirectDGSimplicialCategory).map_id _
+
+@[simp]
+theorem mappingConeCoherentSimplexNatTrans_comp
+    {f g h : Arrow ComplexCategory} (sq : f ⟶ g) (sq' : g ⟶ h) :
+    mappingConeCoherentSimplexNatTrans (sq ≫ sq') =
+      SSetUnitGradedNatTrans.comp
+        (mappingConeCoherentSimplexNatTrans sq)
+        (mappingConeCoherentSimplexNatTrans sq') := by
+  apply GradedNatTrans.ext
+  funext i
+  apply (eHomEquiv SSet).symm.injective
+  change mappingConeCoherentSimplexComponent (sq ≫ sq') i =
+    (SSetUnitGradedNatTrans.comp
+      (mappingConeCoherentSimplexNatTrans sq)
+      (mappingConeCoherentSimplexNatTrans sq')).componentHom i
+  unfold mappingConeCoherentSimplexComponent
+  rw [mappingConeOrdinaryChainNatTrans_comp,
+    OrdinaryToSimplicialNerve.coherentSimplexOfChainUnitGradedNatTrans_componentHom,
+    SSetUnitGradedNatTrans.componentHom_comp]
+  unfold mappingConeCoherentSimplexNatTrans
+  rw [SSetUnitGradedNatTrans.componentHom_ofComponentHom,
+    SSetUnitGradedNatTrans.componentHom_ofComponentHom]
+  unfold mappingConeCoherentSimplexComponent
+  rw [OrdinaryToSimplicialNerve.coherentSimplexOfChainUnitGradedNatTrans_componentHom,
+    OrdinaryToSimplicialNerve.coherentSimplexOfChainUnitGradedNatTrans_componentHom]
+  exact (CategoryTheory.ForgetEnrichment.equivFunctor SSet
+    DirectDGSimplicialCategory).map_comp _ _
+
+/-- The coherent mapping-cone two-simplex varies functorially with its input arrow. -/
+noncomputable def mappingConeCoherentSimplexFunctor :
+    Arrow ComplexCategory ⥤
+      SSetGradedEnrichedFunctorCategory
+        (CategoryTheory.SimplicialThickening (ULift (Fin 3)))
+        DirectDGSimplicialCategory where
+  obj f := mappingConeCoherentSimplex f.hom
+  map sq := mappingConeCoherentSimplexNatTrans sq
+  map_id f := mappingConeCoherentSimplexNatTrans_id f
+  map_comp sq sq' := mappingConeCoherentSimplexNatTrans_comp sq sq'
 
 end MappingConeTriangle
 
