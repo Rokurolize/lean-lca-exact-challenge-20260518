@@ -6,6 +6,7 @@ Authors: Rokurolize
 
 import LeanLCAExactChallenge.Infinity.MetrizableDGMappingConeFunctor
 import LeanLCAExactChallenge.Infinity.MetrizableDGMappingConeCoherentSimplex
+import LeanLCAExactChallenge.Infinity.MetrizableDGMappingZModuleWhiskering
 
 /-!
 # Functoriality of bounded DG mapping-cone triangles
@@ -50,40 +51,6 @@ theorem dgMappingConeInl_naturality {f g : Arrow ComplexCategory} (sq : f ⟶ g)
   rw [CochainComplex.mappingCone.inl_v_desc_f]
   rw [CochainComplex.HomComplex.Cochain.zero_cochain_comp_v,
     CochainComplex.HomComplex.Cochain.ofHom_v]
-
-/-- Postcomposition by a bounded chain map on untruncated DG Hom complexes. -/
-def dgHomZModulePostcomposition (K : ComplexCategory)
-    {L M : ComplexCategory} (g : L ⟶ M) :
-    dgHomZModuleCochainComplex K L ⟶ dgHomZModuleCochainComplex K M where
-  f n := ModuleCat.ofHom
-    { toFun := fun γ ↦ γ.comp
-        (CochainComplex.HomComplex.Cochain.ofHom g.hom) (add_zero n)
-      map_add' := fun γ γ' ↦
-        CochainComplex.HomComplex.Cochain.add_comp γ γ' _ (add_zero n)
-      map_smul' := fun r γ ↦
-        CochainComplex.HomComplex.Cochain.smul_comp r γ _ (add_zero n) }
-  comm' n m _ := by
-    apply ModuleCat.hom_ext
-    apply LinearMap.ext
-    intro γ
-    simp [dgHomZModuleCochainComplex,
-      CochainComplex.HomComplex.δ_comp_ofHom]
-
-/-- Postcomposition on the smart-truncated direct mapping chain complexes. -/
-def dgMappingDirectZModulePostcomposition (K : ComplexCategory)
-    {L M : ComplexCategory} (g : L ⟶ M) :
-    dgMappingDirectZModuleChainComplex K L ⟶
-      dgMappingDirectZModuleChainComplex K M :=
-  HomologicalComplex.truncLE'Map (dgHomZModulePostcomposition K g)
-    ComplexShape.embeddingDownNat
-
-/-- Precomposition on the smart-truncated direct mapping chain complexes. -/
-def dgMappingDirectZModulePrecomposition (M : ComplexCategory)
-    {K L : ComplexCategory} (f : K ⟶ L) :
-    dgMappingDirectZModuleChainComplex L M ⟶
-      dgMappingDirectZModuleChainComplex K M :=
-  HomologicalComplex.truncLE'Map (dgHomZModulePrecomposition M f)
-    ComplexShape.embeddingDownNat
 
 /-- The degree-one mapping-cone coherence is natural under simultaneous precomposition at
 the source and postcomposition at the cone. -/
