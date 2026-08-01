@@ -25,6 +25,51 @@ theorem routeBPresentationBaseChange_triangle :
         directDGCoherentNerveToEquivalenceForcingPresentation := by
   exact pushout.inl_desc _ _ _
 
+/-- On the free-equivalence copies, presentation base change is the identity comparison. -/
+@[reassoc]
+theorem routeBPresentationBaseChange_equivalenceCopies_triangle :
+    pushout.inr relativeCategory.weakIntervalsToNerve
+          relativeCategory.weakIntervalsToEquivalences ≫
+        metrizableOrdinaryToDirectDGPresentationBaseChange =
+      pushout.inr directDGWeakIntervalsToCoherentNerve
+        relativeCategory.weakIntervalsToEquivalences := by
+  exact pushout.inr_desc _ _ _
+
+/-- Presentation base change is the cobase change of the ordinary-to-coherent nerve map. -/
+theorem metrizableOrdinaryToDirectDGPresentationBaseChange_isPushout :
+    IsPushout
+      metrizableComplexNerveToDirectDGHomotopyCoherentNerve
+      relativeCategory.toEquivalenceForcingPresentation
+      directDGCoherentNerveToEquivalenceForcingPresentation
+      metrizableOrdinaryToDirectDGPresentationBaseChange := by
+  let i := relativeCategory.weakIntervalsToNerve
+  let e := relativeCategory.weakIntervalsToEquivalences
+  let u := metrizableComplexNerveToDirectDGHomotopyCoherentNerve
+  let ordinaryIn := relativeCategory.toEquivalenceForcingPresentation
+  let directIn := directDGCoherentNerveToEquivalenceForcingPresentation
+  let directEquivalenceIn := pushout.inr directDGWeakIntervalsToCoherentNerve e
+  have hleft : IsPushout i e ordinaryIn (pushout.inr i e) := by
+    exact IsPushout.of_hasPushout i e
+  have houter' : IsPushout (i ≫ u) e directIn directEquivalenceIn := by
+    change IsPushout directDGWeakIntervalsToCoherentNerve e directIn directEquivalenceIn
+    exact IsPushout.of_hasPushout directDGWeakIntervalsToCoherentNerve e
+  have hright : u ≫ directIn =
+      ordinaryIn ≫ metrizableOrdinaryToDirectDGPresentationBaseChange := by
+    symm
+    dsimp only [ordinaryIn, u, directIn]
+    unfold metrizableOrdinaryToDirectDGPresentationBaseChange
+    exact pushout.inl_desc _ _ _
+  have hbottom : pushout.inr i e ≫
+      metrizableOrdinaryToDirectDGPresentationBaseChange = directEquivalenceIn := by
+    dsimp only [directEquivalenceIn, e]
+    unfold metrizableOrdinaryToDirectDGPresentationBaseChange
+    exact pushout.inr_desc _ _ _
+  have houter : IsPushout (i ≫ u) e directIn
+      (pushout.inr i e ≫ metrizableOrdinaryToDirectDGPresentationBaseChange) := by
+    rw [hbottom]
+    exact houter'
+  exact houter.of_left hright hleft
+
 /-- The direct localization map factors through the ordinary and direct presentations. -/
 theorem routeBDirectLocalizationMap_factorization :
     (relativeCategory.toEquivalenceForcingPresentation ≫
@@ -223,4 +268,3 @@ theorem metrizableDirectDGMappingLocalizationProperty_of_presentationBaseChange_
           routeBDirectDGCanonicalRestriction_isBicategoricalEquivalence Q hinner)⟩
 
 end LeanLCAExactChallenge.Infinity.MetrizableBoundedComplexes
-

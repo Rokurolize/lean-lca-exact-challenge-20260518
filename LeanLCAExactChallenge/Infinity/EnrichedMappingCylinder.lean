@@ -31,45 +31,6 @@ open scoped MonoidalCategory Simplicial
 variable {C D : Type v} [Category.{v} C] [Category.{v} D]
   [CategoryTheory.SimplicialCategory C] [CategoryTheory.SimplicialCategory D]
 
-namespace SSetUnitGradedNatTrans
-
-variable {F G : EnrichedFunctor SSet C D}
-
-/-- The ordinary target morphism represented by one unit-graded component. -/
-def componentHom (α : SSetUnitGradedNatTrans F G) (X : C) :
-    F.obj X ⟶ G.obj X :=
-  (eHomEquiv SSet).symm (α.app X)
-
-@[simp]
-theorem eHomEquiv_componentHom
-    (α : SSetUnitGradedNatTrans F G) (X : C) :
-    eHomEquiv SSet (α.componentHom X) = α.app X :=
-  Equiv.apply_symm_apply _ _
-
-theorem postcompose_eq_eHomWhiskerLeft
-    (α : SSetUnitGradedNatTrans F G) (X Y : C) :
-    α.postcompose X Y =
-      eHomWhiskerLeft SSet (F.obj X) (α.componentHom Y) := by
-  simp [postcompose, eHomWhiskerLeft, componentHom]
-
-theorem precompose_eq_map_eHomWhiskerRight
-    (α : SSetUnitGradedNatTrans F G) (X Y : C) :
-    α.precompose X Y =
-      G.map X Y ≫ eHomWhiskerRight SSet (α.componentHom X) (G.obj Y) := by
-  dsimp [precompose, eHomWhiskerRight]
-  rw [eHomEquiv_componentHom]
-  rw [leftUnitor_inv_naturality_assoc, whisker_exchange_assoc]
-
-@[reassoc]
-theorem map_eHomWhiskerLeft_eq_map_eHomWhiskerRight
-    (α : SSetUnitGradedNatTrans F G) (X Y : C) :
-    F.map X Y ≫ eHomWhiskerLeft SSet (F.obj X) (α.componentHom Y) =
-      G.map X Y ≫ eHomWhiskerRight SSet (α.componentHom X) (G.obj Y) := by
-  rw [← postcompose_eq_eHomWhiskerLeft α X Y,
-    map_postcompose_eq_precompose, precompose_eq_map_eHomWhiskerRight]
-
-end SSetUnitGradedNatTrans
-
 /-- The object type of a coherent mapping cylinder over `C`. -/
 abbrev CoherentCylinderSource :=
   SimplicialEnrichedProduct C CoherentInterval
