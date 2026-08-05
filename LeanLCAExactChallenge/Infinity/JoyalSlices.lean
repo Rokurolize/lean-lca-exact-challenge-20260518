@@ -95,6 +95,101 @@ theorem forgetAugmentation_augmentedJoinMapOfUnderlying
     (convolutionSingletonUnderlyingIso X K).hom ≫ ψ = ψ
   rw [← Category.assoc, Iso.inv_hom_id, Category.id_comp]
 
+/-- The Day transpose of a join map has the fixed augmented value determined by its left-factor
+restriction. -/
+theorem augmentedDayHomEquiv_augmentedJoinMapOfUnderlying_star
+    {X K Q : SSet.{u}} (ψ : simplicialJoin X K ⟶ Q)
+    (a : X ⟶ Q) (hleft : simplicialJoinLeftInclusion X K ≫ ψ = a) :
+    let F := emptyAugmentation.{u}.obj X
+    let E := emptyAugmentation.{u}.obj K
+    let G := emptyAugmentation.{u}.obj Q
+    letI := augmentedDayConvolution F E
+    ((augmentedDayHomEquiv F E G (augmentedJoinMapOfUnderlying X K Q ψ)).app
+      (Opposite.op WithInitial.star)) (emptyAugmentationStarPoint K) =
+      dayInternalHomStarOfMap (emptyAugmentation.map a) := by
+  dsimp only
+  apply Subtype.ext
+  funext j
+  rcases j with ⟨j | _⟩
+  · let F := emptyAugmentation.{u}.obj X
+    let E := emptyAugmentation.{u}.obj K
+    let G := emptyAugmentation.{u}.obj Q
+    letI := augmentedDayConvolution F E
+    let ℓFE := augmentedDayInternalHomStructure F
+      (CategoryTheory.MonoidalCategory.DayConvolution.convolution F E)
+    let ℓG := augmentedDayInternalHomStructure F G
+    let τ := augmentedJoinMapOfUnderlying X K Q ψ
+    change ConcreteCategory.hom
+      ((ℓFE.coev_app.app (Opposite.op WithInitial.star) ≫
+        (ℓFE.map τ ℓG).app (Opposite.op WithInitial.star)) ≫
+          ℓG.π (Opposite.op WithInitial.star) (Opposite.op (WithInitial.of j)))
+        (emptyAugmentationStarPoint K) = _
+    rw [Category.assoc, ℓFE.map_app_comp_π]
+    rw [← Category.assoc, ℓFE.coev_app_π]
+    let unitMap :=
+      (CategoryTheory.MonoidalCategory.DayConvolution.unit F E).app
+        (Opposite.op (WithInitial.of j), Opposite.op WithInitial.star)
+    let targetMap := τ.app
+      (Opposite.op (WithInitial.of j) ⊗ Opposite.op WithInitial.star)
+    have hcurry := MonoidalClosed.curry_natural_right unitMap targetMap
+    have hcurryApp := ConcreteCategory.congr_hom hcurry
+      (emptyAugmentationStarPoint K)
+    change ConcreteCategory.hom
+      (MonoidalClosed.curry unitMap ≫
+        (ihom ((F, E).1.obj
+          (Opposite.op (WithInitial.of j), Opposite.op WithInitial.star).1)).map
+            targetMap)
+        (emptyAugmentationStarPoint K) = _
+    rw [← hcurryApp]
+    apply ConcreteCategory.hom_ext
+    intro x
+    letI : Unique (E.obj (Opposite.op WithInitial.star)) :=
+      (Limits.Types.isTerminalEquivUnique _)
+        (emptyAugmentationStarIsTerminal K)
+    have hp : emptyAugmentationStarPoint K =
+        (default : E.obj (Opposite.op WithInitial.star)) := Subsingleton.elim _ _
+    rw [hp]
+    change ConcreteCategory.hom
+      ((forgetAugmentation.{u}.map τ).app (Opposite.op j))
+        (ConcreteCategory.hom
+          ((simplicialJoinLeftInclusion X K).app (Opposite.op j)) x) = _
+    have hτ : forgetAugmentation.{u}.map τ = ψ := by
+      dsimp only [τ]
+      exact forgetAugmentation_augmentedJoinMapOfUnderlying X K Q ψ
+    rw [hτ]
+    have happ := ConcreteCategory.congr_hom
+      (NatTrans.congr_app hleft (Opposite.op j)) x
+    exact happ.trans (dayInternalHomStarOfMap_emptyAugmentation_apply a j x).symm
+  · let F := emptyAugmentation.{u}.obj X
+    let G := emptyAugmentation.{u}.obj Q
+    letI : Unique (F.obj (Opposite.op WithInitial.star)) :=
+      (Limits.Types.isTerminalEquivUnique _)
+        (emptyAugmentationStarIsTerminal X)
+    letI : Unique (G.obj (Opposite.op WithInitial.star)) :=
+      (Limits.Types.isTerminalEquivUnique _)
+        (emptyAugmentationStarIsTerminal Q)
+    letI : Unique
+        ((CategoryTheory.MonoidalCategory.tensorRight
+          (Opposite.op WithInitial.star) ⋙ G).obj
+            (Opposite.op WithInitial.star)) := by
+      change Unique (G.obj (Opposite.op WithInitial.star))
+      infer_instance
+    apply ConcreteCategory.hom_ext
+    intro x
+    exact Subsingleton.elim _ _
+
+/-- A join map with specified left-factor restriction, bundled as a fixed-base Day convolution
+map. -/
+noncomputable def fixedBaseDayConvolutionMapOfJoin
+    {X K Q : SSet.{u}} (ψ : simplicialJoin X K ⟶ Q)
+    (a : X ⟶ Q) (hleft : simplicialJoinLeftInclusion X K ≫ ψ = a) :
+    let F := emptyAugmentation.{u}.obj X
+    let G := emptyAugmentation.{u}.obj Q
+    FixedBaseDayConvolutionMapOver F G K (emptyAugmentation.map a) := by
+  dsimp only
+  refine ⟨augmentedJoinMapOfUnderlying X K Q ψ, ?_⟩
+  exact augmentedDayHomEquiv_augmentedJoinMapOfUnderlying_star ψ a hleft
+
 /-- A convolution map is fixed over `a` when its restriction along a nonempty
 right-variable map agrees with an already fixed-base convolution map. -/
 noncomputable def fixedBaseDayConvolutionMapOfRestriction

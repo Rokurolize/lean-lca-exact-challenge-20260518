@@ -679,6 +679,46 @@ def simplicialJoinRightInclusion (X Y : SSet.{u}) : Y ⟶ simplicialJoin X Y := 
     exact (default, y)
   exact ConcreteCategory.congr_hom h input
 
+/-- Include the left factor into a simplicial join. -/
+def simplicialJoinLeftInclusion (X Y : SSet.{u}) : X ⟶ simplicialJoin X Y := by
+  let F := emptyAugmentation.{u}.obj X
+  let G := emptyAugmentation.{u}.obj Y
+  letI := augmentedDayConvolution F G
+  letI : Unique (G.obj (Opposite.op WithInitial.star)) :=
+    (Limits.Types.isTerminalEquivUnique _) (emptyAugmentationStarIsTerminal Y)
+  refine
+    { app := fun U ↦ by
+        change F.obj (AugmentedSimplexCategory.inclusion.op.obj U) ⟶
+          (CategoryTheory.MonoidalCategory.DayConvolution.convolution F G).obj
+            (AugmentedSimplexCategory.inclusion.op.obj U)
+        exact ConcreteCategory.ofHom (TypeCat.Fun.mk (fun x ↦
+          let x' : F.obj (AugmentedSimplexCategory.inclusion.op.obj U) := x
+          let input : (F ⊠ G).obj (AugmentedSimplexCategory.inclusion.op.obj U,
+              Opposite.op WithInitial.star) := by
+            change F.obj (AugmentedSimplexCategory.inclusion.op.obj U) ×
+              G.obj (Opposite.op WithInitial.star)
+            exact (x', default)
+          (CategoryTheory.MonoidalCategory.DayConvolution.unit F G).app
+            (AugmentedSimplexCategory.inclusion.op.obj U,
+              Opposite.op WithInitial.star) input))
+      naturality := ?_ }
+  intro U V f
+  apply ConcreteCategory.hom_ext
+  intro x
+  let fg : (AugmentedSimplexCategory.inclusion.op.obj U,
+      Opposite.op WithInitial.star) ⟶
+      (AugmentedSimplexCategory.inclusion.op.obj V,
+        Opposite.op WithInitial.star) :=
+    AugmentedSimplexCategory.inclusion.op.map f ×ₘ
+      𝟙 (Opposite.op (WithInitial.star : AugmentedSimplexCategory))
+  have h := (CategoryTheory.MonoidalCategory.DayConvolution.unit F G).naturality fg
+  let input : (F ⊠ G).obj (AugmentedSimplexCategory.inclusion.op.obj U,
+      Opposite.op WithInitial.star) := by
+    change F.obj (AugmentedSimplexCategory.inclusion.op.obj U) ×
+      G.obj (Opposite.op WithInitial.star)
+    exact (x, default)
+  exact ConcreteCategory.congr_hom h input
+
 /-- The ordinal embedding of the right block in a representable join. -/
 def standardJoinRightOperator (m n : ℕ) :=
   SimplexCategory.mkHom
@@ -687,6 +727,15 @@ def standardJoinRightOperator (m n : ℕ) :=
         intro i j hij
         simpa only [Fin.le_def] using Nat.add_le_add_left hij (m + 1) } :
       Fin (n + 1) →o Fin (m + n + 2))
+
+/-- The ordinal embedding of the left block in a representable join. -/
+def standardJoinLeftOperator (m n : ℕ) :=
+  SimplexCategory.mkHom
+    ({ toFun := fun i : Fin (m + 1) ↦ ⟨i.val, by omega⟩
+       monotone' := by
+        intro i j hij
+        simpa only [Fin.le_def] using hij } :
+      Fin (m + 1) →o Fin (m + n + 2))
 
 /-- Extending a standard simplex to augmented degree is the augmented
 representable at the same finite ordinal. -/
@@ -2385,6 +2434,91 @@ theorem simplicialJoinRightInclusion_stdSimplex (m n : ℕ) :
   rw [SSet.yonedaEquiv_comp]
   change isoValue = SSet.yonedaEquiv
     (SSet.stdSimplex.map (standardJoinRightOperator m n))
+  exact hvUnique.trans hvStd
+
+/-- Under the standard representable join isomorphism, the left-factor inclusion is the
+left-block ordinal embedding. -/
+theorem simplicialJoinLeftInclusion_stdSimplex (m n : ℕ) :
+    simplicialJoinLeftInclusion (Δ[m] : SSet.{u}) (Δ[n] : SSet.{u}) ≫
+        (simplicialJoinStdSimplexIsoNat m n).hom =
+      SSet.stdSimplex.map (standardJoinLeftOperator m n) := by
+  let F := emptyAugmentation.{u}.obj (Δ[m] : SSet.{u})
+  let G := emptyAugmentation.{u}.obj (Δ[n] : SSet.{u})
+  let h := augmentedDayConvolution F G
+  let h' : CategoryTheory.MonoidalCategory.DayConvolution F G :=
+    standardSimplexDayConvolution.{u}
+      (SimplexCategory.mk m) (SimplexCategory.mk n)
+  letI : Unique (G.obj (Opposite.op WithInitial.star)) :=
+    (Limits.Types.isTerminalEquivUnique _)
+      (emptyAugmentationStarIsTerminal (Δ[n] : SSet.{u}))
+  let p : AugmentedSimplexCategoryᵒᵖ × AugmentedSimplexCategoryᵒᵖ :=
+    (AugmentedSimplexCategory.inclusion.op.obj
+      (Opposite.op (SimplexCategory.mk m)), Opposite.op WithInitial.star)
+  let x : F.obj (AugmentedSimplexCategory.inclusion.op.obj
+      (Opposite.op (SimplexCategory.mk m))) :=
+    SSet.yonedaEquiv (𝟙 (Δ[m] : SSet.{u}))
+  let input : (F ⊠ G).obj
+      (AugmentedSimplexCategory.inclusion.op.obj
+          (Opposite.op (SimplexCategory.mk m)),
+        Opposite.op WithInitial.star) := by
+    change F.obj (AugmentedSimplexCategory.inclusion.op.obj
+        (Opposite.op (SimplexCategory.mk m))) ×
+      G.obj (Opposite.op WithInitial.star)
+    exact (x, default)
+  let chosenValue := by
+    exact ConcreteCategory.hom
+      ((@CategoryTheory.MonoidalCategory.DayConvolution.unit
+        _ _ _ _ _ _ F G h).app p) input
+  let stdValue := by
+    exact ConcreteCategory.hom
+      ((@CategoryTheory.MonoidalCategory.DayConvolution.unit
+        _ _ _ _ _ _ F G h').app p) input
+  let isoValue := ConcreteCategory.hom
+    ((h.uniqueUpToIso h').hom.app
+      ((CategoryTheory.MonoidalCategory.tensor
+        AugmentedSimplexCategoryᵒᵖ).obj p)) chosenValue
+  have hvUnique : isoValue = stdValue := by
+    let hu :=
+      CategoryTheory.MonoidalCategory.DayConvolution.unit_uniqueUpToIso_hom h h'
+    have hu0 := congrArg (fun τ ↦ τ.app p) hu
+    have hu1 := ConcreteCategory.congr_hom hu0 input
+    exact hu1
+  have hvStd : stdValue =
+      SSet.yonedaEquiv
+        (SSet.stdSimplex.map (standardJoinLeftOperator m n)) := by
+    dsimp [stdValue, h', standardSimplexDayConvolution,
+      dayConvolutionOfInputIsos, input, x, F, G]
+    rw [SSet.yonedaEquiv_map]
+    apply ULift.ext
+    change (AugmentedSimplexCategory.inclusion.map
+        (𝟙 (SimplexCategory.mk m)) ⊗ₘ
+        (default : ULift.{u} (WithInitial.star ⟶
+          AugmentedSimplexCategory.inclusion.obj
+            (SimplexCategory.mk n))).down) = _
+    have hrhs :
+        (SSet.stdSimplex.objEquiv.{u}.symm
+          (standardJoinLeftOperator m n)).down =
+        standardJoinLeftOperator m n := rfl
+    rw [hrhs]
+    apply SimplexCategory.Hom.ext
+    ext j
+    have ht :
+        AugmentedSimplexCategory.inclusion.map
+              (𝟙 (SimplexCategory.mk m)) ⊗ₘ
+            (default : ULift.{u} (WithInitial.star ⟶
+              AugmentedSimplexCategory.inclusion.obj
+                (SimplexCategory.mk n))).down =
+          AugmentedSimplexCategory.inl'
+            (SimplexCategory.mk m) (SimplexCategory.mk n) := by
+      rfl
+    rw [ht, AugmentedSimplexCategory.inl'_eval]
+    rfl
+  apply SSet.yonedaEquiv.injective
+  dsimp [simplicialJoinLeftInclusion, simplicialJoinStdSimplexIsoNat,
+    simplicialJoinStdSimplexIso, simplicialJoinStdSimplexIsoRaw]
+  rw [SSet.yonedaEquiv_comp]
+  change isoValue = SSet.yonedaEquiv
+    (SSet.stdSimplex.map (standardJoinLeftOperator m n))
   exact hvUnique.trans hvStd
 
 lemma augmentedOp_leftUnitor_inclusion_inv (j : SimplexCategoryᵒᵖ) :
@@ -4147,6 +4281,52 @@ def dayInternalHomStarOfMap {F G : AugmentedSSet.{u}} (a : F ⟶ G) :
   simp only [Category.assoc, ← G.map_comp]
   rw [← a.naturality]
   simp
+
+/-- On ordinary simplicial degrees, the augmented-degree point induced by a simplicial map
+evaluates to the original map. -/
+theorem dayInternalHomStarOfMap_emptyAugmentation_apply
+    {X Q : SSet.{u}} (a : X ⟶ Q) (j : SimplexCategory)
+    (x : X.obj (Opposite.op j)) :
+    ConcreteCategory.hom
+        ((dayInternalHomStarOfMap (emptyAugmentation.map a)).1
+          (Opposite.op (WithInitial.of j))) x =
+      ConcreteCategory.hom (a.app (Opposite.op j)) x := by
+  dsimp [dayInternalHomStarOfMap]
+  change ConcreteCategory.hom
+    ((emptyAugmentation.obj Q).map
+      (ρ_ (Opposite.op (WithInitial.of j))).inv)
+    (ConcreteCategory.hom
+      ((emptyAugmentation.map a).app (Opposite.op (WithInitial.of j)))
+      (ConcreteCategory.hom
+        (ρ_ ((emptyAugmentation.obj X).obj
+          (Opposite.op (WithInitial.of j)))).hom
+        (x, PUnit.unit))) = _
+  have hρ : (ρ_ (Opposite.op (WithInitial.of j))).inv = 𝟙 _ := rfl
+  have hG : (emptyAugmentation.obj Q).map
+      (ρ_ (Opposite.op (WithInitial.of j))).inv = 𝟙 _ := by
+    rw [hρ]
+    exact (emptyAugmentation.obj Q).map_id _
+  let y₀ := ConcreteCategory.hom
+    ((emptyAugmentation.map a).app (Opposite.op (WithInitial.of j)))
+    (ConcreteCategory.hom
+      (ρ_ ((emptyAugmentation.obj X).obj
+        (Opposite.op (WithInitial.of j)))).hom
+      (x, PUnit.unit))
+  have hGapp := ConcreteCategory.congr_hom hG y₀
+  have hx : ConcreteCategory.hom
+      (ρ_ ((emptyAugmentation.obj X).obj
+        (Opposite.op (WithInitial.of j)))).hom
+      (x, PUnit.unit) = x := by
+    exact CategoryTheory.rightUnitor_hom_apply
+  have ha : ConcreteCategory.hom
+      ((emptyAugmentation.map a).app (Opposite.op (WithInitial.of j))) x =
+      ConcreteCategory.hom (a.app (Opposite.op j)) x := by
+    rfl
+  have hy : y₀ = ConcreteCategory.hom
+      ((emptyAugmentation.map a).app (Opposite.op (WithInitial.of j))) x := by
+    dsimp only [y₀]
+    rw [hx]
+  exact hGapp.trans (hy.trans ha)
 
 /-- The relative Day slice whose base point is induced by a specified map. -/
 abbrev relativeDaySliceOverMap (F G : AugmentedSSet.{u}) (a : F ⟶ G) :

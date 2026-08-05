@@ -138,4 +138,49 @@ theorem coherentSimplexOfChainUnitGradedNatTrans_componentHom
         (α.app i.as.down) := by
   simp [coherentSimplexOfChainUnitGradedNatTrans]
 
+@[simp]
+theorem coherentSimplexOfChainUnitGradedNatTrans_id
+    {n : ℕ}
+    (F : CategoryTheory.ComposableArrows
+      (CategoryTheory.ForgetEnrichment SSet.{v} C) n) :
+    coherentSimplexOfChainUnitGradedNatTrans C (𝟙 F) =
+      SSetUnitGradedNatTrans.id (coherentSimplexOfChain C F) := by
+  apply GradedNatTrans.ext
+  funext i
+  apply (eHomEquiv SSet).symm.injective
+  change
+    (coherentSimplexOfChainUnitGradedNatTrans C (𝟙 F)).componentHom i =
+      (SSetUnitGradedNatTrans.id (coherentSimplexOfChain C F)).componentHom i
+  rw [coherentSimplexOfChainUnitGradedNatTrans_componentHom,
+    SSetUnitGradedNatTrans.componentHom_id]
+  change (CategoryTheory.ForgetEnrichment.equivFunctor SSet C).map
+      (𝟙 (F.obj i.as.down)) =
+    𝟙 ((CategoryTheory.ForgetEnrichment.equivFunctor SSet C).obj
+      (F.obj i.as.down))
+  exact (CategoryTheory.ForgetEnrichment.equivFunctor SSet C).map_id _
+
+@[simp]
+theorem coherentSimplexOfChainUnitGradedNatTrans_comp
+    {n : ℕ}
+    {F G H : CategoryTheory.ComposableArrows
+      (CategoryTheory.ForgetEnrichment SSet.{v} C) n}
+    (α : F ⟶ G) (β : G ⟶ H) :
+    coherentSimplexOfChainUnitGradedNatTrans C (α ≫ β) =
+      SSetUnitGradedNatTrans.comp
+        (coherentSimplexOfChainUnitGradedNatTrans C α)
+        (coherentSimplexOfChainUnitGradedNatTrans C β) := by
+  apply GradedNatTrans.ext
+  funext i
+  apply (eHomEquiv SSet).symm.injective
+  change
+    (coherentSimplexOfChainUnitGradedNatTrans C (α ≫ β)).componentHom i =
+      (SSetUnitGradedNatTrans.comp
+        (coherentSimplexOfChainUnitGradedNatTrans C α)
+        (coherentSimplexOfChainUnitGradedNatTrans C β)).componentHom i
+  rw [coherentSimplexOfChainUnitGradedNatTrans_componentHom,
+    SSetUnitGradedNatTrans.componentHom_comp,
+    coherentSimplexOfChainUnitGradedNatTrans_componentHom,
+    coherentSimplexOfChainUnitGradedNatTrans_componentHom]
+  exact (CategoryTheory.ForgetEnrichment.equivFunctor SSet C).map_comp _ _
+
 end LeanLCAExactChallenge.Infinity.OrdinaryToSimplicialNerve
