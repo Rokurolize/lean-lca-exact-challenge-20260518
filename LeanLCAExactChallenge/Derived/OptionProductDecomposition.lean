@@ -640,7 +640,7 @@ noncomputable def optionProductDegreeFanWithEvaluatedTargetsIsLimit {J : Type w}
   let hs' : IsLimit ((Cone.postcompose α.hom).obj s) :=
     (IsLimit.postcomposeHomEquiv α s).symm hs
   exact IsLimit.ofIsoLimit hs' <|
-    Cone.ext_inv eP.symm (by
+    Cone.extInv eP.symm (by
       intro j
       rcases j with ⟨j⟩
       cases j
@@ -979,10 +979,6 @@ theorem evaluatedDegreeFanComparisonLeft_direct {J : Type w}
   have h := congrArg (fun f => (evalProductPointIso C K n).hom ≫ f)
     hright_degree_limit.symm
   convert h using 1
-  have hdefault : (default : Discrete {x : Option J // x = none}) =
-      ⟨(default : {x : Option J // x = none})⟩ := Subsingleton.elim _ _
-  cases hdefault
-  rfl
 
 omit [HasBinaryBiproducts C] in
 /--

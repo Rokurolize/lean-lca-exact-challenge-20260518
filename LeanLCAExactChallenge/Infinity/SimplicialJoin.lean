@@ -4282,6 +4282,52 @@ def dayInternalHomStarOfMap {F G : AugmentedSSet.{u}} (a : F ⟶ G) :
   rw [← a.naturality]
   simp
 
+/-- On ordinary simplicial degrees, the augmented-degree point induced by a simplicial map
+evaluates to the original map. -/
+theorem dayInternalHomStarOfMap_emptyAugmentation_apply
+    {X Q : SSet.{u}} (a : X ⟶ Q) (j : SimplexCategory)
+    (x : X.obj (Opposite.op j)) :
+    ConcreteCategory.hom
+        ((dayInternalHomStarOfMap (emptyAugmentation.map a)).1
+          (Opposite.op (WithInitial.of j))) x =
+      ConcreteCategory.hom (a.app (Opposite.op j)) x := by
+  dsimp [dayInternalHomStarOfMap]
+  change ConcreteCategory.hom
+    ((emptyAugmentation.obj Q).map
+      (ρ_ (Opposite.op (WithInitial.of j))).inv)
+    (ConcreteCategory.hom
+      ((emptyAugmentation.map a).app (Opposite.op (WithInitial.of j)))
+      (ConcreteCategory.hom
+        (ρ_ ((emptyAugmentation.obj X).obj
+          (Opposite.op (WithInitial.of j)))).hom
+        (x, PUnit.unit))) = _
+  have hρ : (ρ_ (Opposite.op (WithInitial.of j))).inv = 𝟙 _ := rfl
+  have hG : (emptyAugmentation.obj Q).map
+      (ρ_ (Opposite.op (WithInitial.of j))).inv = 𝟙 _ := by
+    rw [hρ]
+    exact (emptyAugmentation.obj Q).map_id _
+  let y₀ := ConcreteCategory.hom
+    ((emptyAugmentation.map a).app (Opposite.op (WithInitial.of j)))
+    (ConcreteCategory.hom
+      (ρ_ ((emptyAugmentation.obj X).obj
+        (Opposite.op (WithInitial.of j)))).hom
+      (x, PUnit.unit))
+  have hGapp := ConcreteCategory.congr_hom hG y₀
+  have hx : ConcreteCategory.hom
+      (ρ_ ((emptyAugmentation.obj X).obj
+        (Opposite.op (WithInitial.of j)))).hom
+      (x, PUnit.unit) = x := by
+    exact CategoryTheory.rightUnitor_hom_apply
+  have ha : ConcreteCategory.hom
+      ((emptyAugmentation.map a).app (Opposite.op (WithInitial.of j))) x =
+      ConcreteCategory.hom (a.app (Opposite.op j)) x := by
+    rfl
+  have hy : y₀ = ConcreteCategory.hom
+      ((emptyAugmentation.map a).app (Opposite.op (WithInitial.of j))) x := by
+    dsimp only [y₀]
+    rw [hx]
+  exact hGapp.trans (hy.trans ha)
+
 /-- The relative Day slice whose base point is induced by a specified map. -/
 abbrev relativeDaySliceOverMap (F G : AugmentedSSet.{u}) (a : F ⟶ G) :
     SSet.{u} :=
