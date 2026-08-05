@@ -1175,4 +1175,162 @@ theorem coherentArrowRightMappingSpaceMap_snd {X Y : C} :
       coherentArrowRightConePointMap C := by
   exact CategoryTheory.Limits.pullback.lift_snd _ _ _
 
+private lemma rightConeExtraction_eqToHom_app_heq
+    {A B : SSet.{u}} (e : A = B) (U : SimplexCategoryᵒᵖ) (x : A.obj U) :
+    HEq ((eqToHom e).app U x) x := by
+  cases e
+  rfl
+
+/-- Evaluating the first-to-last enriched path of a right-cone simplex recovers its Hom
+simplex.  The heterogeneous equality records the object transports at the two endpoints. -/
+theorem rightConeExtraction_heq {n : ℕ} {X Y : C}
+    (h : (X ⟶[SSet] Y).obj (op (SimplexCategory.mk n))) :
+    HEq (((coherentArrowRightConeSimplex C h).map
+      (extractionFirst (n := n)) (extractionLast (n := n))).app _
+        (extractionPathSimplex n)) h := by
+  dsimp [coherentArrowRightConeSimplex]
+  change HEq
+    ((coherentArrowMap C
+      ((X ⟶[SSet] Y).map (rightConeProjection n).op h)
+      (rightConeIntervalSimplex n)
+      (extractionFirst (n := n)) (extractionLast (n := n))).app _
+        (extractionPathSimplex n)) h
+  have hzero : intervalValue (rightConeIntervalSimplex n)
+      (extractionFirst (n := n)).as = 0 := by rfl
+  have hone : intervalValue (rightConeIntervalSimplex n)
+      (extractionLast (n := n)).as ≠ 0 := by
+    change finalStepOrderHom n (Fin.last (n + 1)) ≠ 0
+    rw [show finalStepOrderHom n (Fin.last (n + 1)) = 1 by
+      simp [finalStepOrderHom]]
+    omega
+  rw [coherentArrowMap_left_right C _ _ _ _ hzero hone]
+  rw [coherentHom_yoneda_map]
+  simp only [Category.assoc, NatTrans.comp_app, comp_apply]
+  have hzeroeq : hzero = rfl := Subsingleton.elim _ _
+  rw [hzeroeq]
+  have hx := lastZeroSimplexMap_extraction n
+  change (SSet.stdSimplex.map (rightConeProjection n).op.unop).app _
+      ((lastZeroSimplexMap (rightConeIntervalSimplex n)
+        (extractionFirst (n := n)) (extractionLast (n := n)) rfl).app _
+          (extractionPathSimplex n)) = identitySimplex n at hx
+  rw [hx]
+  have hid : identitySimplex n = SSet.yonedaEquiv (𝟙 (Δ[n] : SSet.{u})) := rfl
+  rw [hid, SSet.yonedaEquiv_symm_app_id]
+  exact rightConeExtraction_eqToHom_app_heq _ _ h
+
+/-- The coherent right-cone simplex is degreewise injective. -/
+theorem coherentArrowRightConeSimplex_injective {n : ℕ} {X Y : C}
+    {h₁ h₂ : (X ⟶[SSet] Y).obj (op (SimplexCategory.mk n))}
+    (hab : coherentArrowRightConeSimplex C h₁ =
+      coherentArrowRightConeSimplex C h₂) :
+    h₁ = h₂ := by
+  have h₁e := rightConeExtraction_heq C h₁
+  have h₂e := rightConeExtraction_heq C h₂
+  rw [← hab] at h₂e
+  exact eq_of_heq (h₁e.symm.trans h₂e)
+
+/-- The all-dimensional right mapping-space comparison is a simplicial monomorphism. -/
+noncomputable instance coherentArrowRightMappingSpaceMap_mono {X Y : C} :
+    Mono (coherentArrowRightMappingSpaceMap C (X := X) (Y := Y)) := by
+  rw [NatTrans.mono_iff_mono_app]
+  intro U
+  rw [mono_iff_injective]
+  intro a b hab
+  rcases U with ⟨⟨n⟩⟩
+  have hslice := congrArg
+    ((rightMappingSpaceToOverSlice (CategoryTheory.SimplicialNerve C)
+      (coherentNerveVertex C X) (coherentNerveVertex C Y)).app
+        (op (SimplexCategory.mk n))) hab
+  have hslice' :
+      coherentArrowRightConeOverSliceSimplex C a =
+        coherentArrowRightConeOverSliceSimplex C b := by
+    have hmap :
+        ((coherentArrowRightMappingSpaceMap C ≫
+          rightMappingSpaceToOverSlice (CategoryTheory.SimplicialNerve C)
+            (coherentNerveVertex C X) (coherentNerveVertex C Y)).app
+          (op (SimplexCategory.mk n))) =
+          (coherentArrowRightConeOverSliceMap C).app
+            (op (SimplexCategory.mk n)) := NatTrans.congr_app
+      (coherentArrowRightMappingSpaceMap_fst (C := C) (X := X) (Y := Y))
+      (op (SimplexCategory.mk n))
+    have hmapa := congrArg
+      (fun k : (X ⟶[SSet] Y).obj
+            (op (SimplexCategory.mk n)) ⟶
+          (overSlice (CategoryTheory.SimplicialNerve C)
+            (coherentNerveVertex C Y)).obj
+            (op (SimplexCategory.mk n)) ↦
+        (ConcreteCategory.hom k) a) hmap
+    have hmapb := congrArg
+      (fun k : (X ⟶[SSet] Y).obj
+            (op (SimplexCategory.mk n)) ⟶
+          (overSlice (CategoryTheory.SimplicialNerve C)
+            (coherentNerveVertex C Y)).obj
+            (op (SimplexCategory.mk n)) ↦
+        (ConcreteCategory.hom k) b) hmap
+    exact hmapa.symm.trans (hslice.trans hmapb)
+  have hop :
+      SSet.yonedaEquiv (coherentArrowRightConeUnderSliceMap C a) =
+        SSet.yonedaEquiv (coherentArrowRightConeUnderSliceMap C b) := by
+    let yOpp := coherentNerveOppositeVertex C Y
+    have hop' := congrArg
+      (fun z : (overSlice (CategoryTheory.SimplicialNerve C)
+          (coherentNerveVertex C Y)).obj (op (SimplexCategory.mk n)) ↦
+        SSet.opObjEquiv (X := underSlice (CategoryTheory.SimplicialNerve C).op yOpp)
+          (n := op (SimplexCategory.mk n)) z) hslice'
+    change SSet.yonedaEquiv (coherentArrowRightConeUnderSliceMap C a) =
+      SSet.yonedaEquiv (coherentArrowRightConeUnderSliceMap C b) at hop'
+    exact hop'
+  have hunder : coherentArrowRightConeUnderSliceMap C a =
+      coherentArrowRightConeUnderSliceMap C b :=
+    SSet.yonedaEquiv.injective hop
+  let F := emptyAugmentation.{u}.obj (Δ[0] : SSet.{u})
+  let G := emptyAugmentation.{u}.obj (CategoryTheory.SimplicialNerve C).op
+  let a₀ := emptyAugmentation.{u}.map
+    (SSet.yonedaEquiv.symm (coherentNerveOppositeVertex C Y))
+  let e := relativeDaySliceOverMapFixedBaseEquiv F G
+    (Δ[n] : SSet.{u}) a₀
+  have hphi :
+      fixedBaseDayConvolutionMapOfJoin
+          (coherentArrowRightConeUnderSliceJoinMap C a)
+          (SSet.yonedaEquiv.symm (coherentNerveOppositeVertex C Y))
+          (coherentArrowRightConeUnderSliceJoinMap_left C a) =
+        fixedBaseDayConvolutionMapOfJoin
+          (coherentArrowRightConeUnderSliceJoinMap C b)
+          (SSet.yonedaEquiv.symm (coherentNerveOppositeVertex C Y))
+          (coherentArrowRightConeUnderSliceJoinMap_left C b) := by
+    apply e.symm.injective
+    simpa only [coherentArrowRightConeUnderSliceMap, e,
+      Equiv.apply_symm_apply] using hunder
+  have hjoin : coherentArrowRightConeUnderSliceJoinMap C a =
+      coherentArrowRightConeUnderSliceJoinMap C b := by
+    have hfirst := congrArg
+      (fun φ => forgetAugmentation.{u}.map φ.1) hphi
+    dsimp [fixedBaseDayConvolutionMapOfJoin] at hfirst
+    change forgetAugmentation.{u}.map
+        (augmentedJoinMapOfUnderlying (Δ[0] : SSet.{u}) (Δ[n] : SSet.{u})
+          (CategoryTheory.SimplicialNerve C).op
+          (coherentArrowRightConeUnderSliceJoinMap C a)) =
+      forgetAugmentation.{u}.map
+        (augmentedJoinMapOfUnderlying (Δ[0] : SSet.{u}) (Δ[n] : SSet.{u})
+          (CategoryTheory.SimplicialNerve C).op
+          (coherentArrowRightConeUnderSliceJoinMap C b)) at hfirst
+    rw [forgetAugmentation_augmentedJoinMapOfUnderlying,
+      forgetAugmentation_augmentedJoinMapOfUnderlying] at hfirst
+    exact hfirst
+  have hraw :
+      SSet.yonedaEquiv.symm
+          (SSet.opObjEquiv.symm (coherentArrowRightConeSimplex C a)) =
+        SSet.yonedaEquiv.symm
+          (SSet.opObjEquiv.symm (coherentArrowRightConeSimplex C b)) := by
+    apply (cancel_epi (rightConeUnderStdSimplexIso n).hom).1
+    simpa only [coherentArrowRightConeUnderSliceJoinMap] using hjoin
+  have hconeOpp :
+      SSet.opObjEquiv.symm (coherentArrowRightConeSimplex C a) =
+        SSet.opObjEquiv.symm (coherentArrowRightConeSimplex C b) :=
+    SSet.yonedaEquiv.symm.injective hraw
+  have hcone : coherentArrowRightConeSimplex C a =
+      coherentArrowRightConeSimplex C b :=
+    SSet.opObjEquiv.symm.injective hconeOpp
+  exact coherentArrowRightConeSimplex_injective C hcone
+
 end LeanLCAExactChallenge.Infinity.CoherentNerveMappingComparison
